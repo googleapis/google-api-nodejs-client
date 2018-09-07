@@ -4004,10 +4004,8 @@ export namespace vision_v1p2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4100,10 +4098,8 @@ export namespace vision_v1p2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

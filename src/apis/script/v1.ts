@@ -705,40 +705,18 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of returned
-     *     processes per page of results. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous
-     *     list request on the next page. This should be set to the value of
-     *     `nextPageToken` from a previous response.
-     * @param {string=} params.userProcessFilter.deploymentId Optional field
-     *     used to limit returned processes to those originating from projects
-     *     with a specific deployment ID.
-     * @param {string=} params.userProcessFilter.endTime Optional field used to
-     *     limit returned processes to those that completed on or before the
-     *     given timestamp.
-     * @param {string=} params.userProcessFilter.functionName Optional field
-     *     used to limit returned processes to those originating from a script
-     *     function with the given function name.
-     * @param {string=} params.userProcessFilter.projectName Optional field used
-     *     to limit returned processes to those originating from projects with
-     *     project names containing a specific string.
-     * @param {string=} params.userProcessFilter.scriptId Optional field used to
-     *     limit returned processes to those originating from projects with a
-     *     specific script ID.
-     * @param {string=} params.userProcessFilter.startTime Optional field used
-     *     to limit returned processes to those that were started on or after
-     *     the given timestamp.
-     * @param {string=} params.userProcessFilter.statuses Optional field used to
-     *     limit returned processes to those having one of the specified process
-     *     statuses.
-     * @param {string=} params.userProcessFilter.types Optional field used to
-     *     limit returned processes to those having one of the specified process
-     *     types.
-     * @param {string=} params.userProcessFilter.userAccessLevels Optional field
-     *     used to limit returned processes to those having one of the specified
-     *     user access levels.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of returned processes per page of results. Defaults to 50.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
+     * @param {string=} params.userProcessFilter.deploymentId Optional field used to limit returned processes to those originating from projects with a specific deployment ID.
+     * @param {string=} params.userProcessFilter.endTime Optional field used to limit returned processes to those that completed on or before the given timestamp.
+     * @param {string=} params.userProcessFilter.functionName Optional field used to limit returned processes to those originating from a script function with the given function name.
+     * @param {string=} params.userProcessFilter.projectName Optional field used to limit returned processes to those originating from projects with project names containing a specific string.
+     * @param {string=} params.userProcessFilter.scriptId Optional field used to limit returned processes to those originating from projects with a specific script ID.
+     * @param {string=} params.userProcessFilter.startTime Optional field used to limit returned processes to those that were started on or after the given timestamp.
+     * @param {string=} params.userProcessFilter.statuses Optional field used to limit returned processes to those having one of the specified process statuses.
+     * @param {string=} params.userProcessFilter.types Optional field used to limit returned processes to those having one of the specified process types.
+     * @param {string=} params.userProcessFilter.userAccessLevels Optional field used to limit returned processes to those having one of the specified user access levels.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -805,36 +783,17 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of returned
-     *     processes per page of results. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous
-     *     list request on the next page. This should be set to the value of
-     *     `nextPageToken` from a previous response.
-     * @param {string=} params.scriptId The script ID of the project whose
-     *     processes are listed.
-     * @param {string=} params.scriptProcessFilter.deploymentId Optional field
-     *     used to limit returned processes to those originating from projects
-     *     with a specific deployment ID.
-     * @param {string=} params.scriptProcessFilter.endTime Optional field used
-     *     to limit returned processes to those that completed on or before the
-     *     given timestamp.
-     * @param {string=} params.scriptProcessFilter.functionName Optional field
-     *     used to limit returned processes to those originating from a script
-     *     function with the given function name.
-     * @param {string=} params.scriptProcessFilter.startTime Optional field used
-     *     to limit returned processes to those that were started on or after
-     *     the given timestamp.
-     * @param {string=} params.scriptProcessFilter.statuses Optional field used
-     *     to limit returned processes to those having one of the specified
-     *     process statuses.
-     * @param {string=} params.scriptProcessFilter.types Optional field used to
-     *     limit returned processes to those having one of the specified process
-     *     types.
-     * @param {string=} params.scriptProcessFilter.userAccessLevels Optional
-     *     field used to limit returned processes to those having one of the
-     *     specified user access levels.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of returned processes per page of results. Defaults to 50.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
+     * @param {string=} params.scriptId The script ID of the project whose processes are listed.
+     * @param {string=} params.scriptProcessFilter.deploymentId Optional field used to limit returned processes to those originating from projects with a specific deployment ID.
+     * @param {string=} params.scriptProcessFilter.endTime Optional field used to limit returned processes to those that completed on or before the given timestamp.
+     * @param {string=} params.scriptProcessFilter.functionName Optional field used to limit returned processes to those originating from a script function with the given function name.
+     * @param {string=} params.scriptProcessFilter.startTime Optional field used to limit returned processes to those that were started on or after the given timestamp.
+     * @param {string=} params.scriptProcessFilter.statuses Optional field used to limit returned processes to those having one of the specified process statuses.
+     * @param {string=} params.scriptProcessFilter.types Optional field used to limit returned processes to those having one of the specified process types.
+     * @param {string=} params.scriptProcessFilter.userAccessLevels Optional field used to limit returned processes to those having one of the specified user access levels.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1045,8 +1004,7 @@ export namespace script_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().CreateProjectRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1109,8 +1067,7 @@ export namespace script_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1172,10 +1129,8 @@ export namespace script_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {integer=} params.versionNumber The version number of the project
-     *     to retrieve. If not provided, the project's HEAD version is returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.versionNumber The version number of the project to retrieve. If not provided, the project's HEAD version is returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1241,14 +1196,10 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.metricsFilter.deploymentId Optional field
-     *     indicating a specific deployment to retrieve metrics from.
-     * @param {string=} params.metricsGranularity Required field indicating what
-     *     granularity of metrics are returned.
-     * @param {string} params.scriptId Required field indicating the script to
-     *     get metrics for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.metricsFilter.deploymentId Optional field indicating a specific deployment to retrieve metrics from.
+     * @param {string=} params.metricsGranularity Required field indicating what granularity of metrics are returned.
+     * @param {string} params.scriptId Required field indicating the script to get metrics for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1319,8 +1270,7 @@ export namespace script_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
      * @param {().Content} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1474,8 +1424,7 @@ export namespace script_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
      * @param {().DeploymentConfig} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1543,8 +1492,7 @@ export namespace script_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deploymentId The deployment ID to be undeployed.
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1612,8 +1560,7 @@ export namespace script_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deploymentId The deployment ID.
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1676,14 +1623,10 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of deployments on
-     *     each returned page. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous
-     *     list request on the next page. This should be set to the value of
-     *     `nextPageToken` from a previous response.
+     * @param {integer=} params.pageSize The maximum number of deployments on each returned page. Defaults to 50.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1750,12 +1693,10 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deploymentId The deployment ID for this
-     *     deployment.
+     * @param {string} params.deploymentId The deployment ID for this deployment.
      * @param {string} params.scriptId The script project's Drive ID.
      * @param {().UpdateDeploymentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1925,8 +1866,7 @@ export namespace script_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
      * @param {().Version} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1993,8 +1933,7 @@ export namespace script_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
      * @param {integer} params.versionNumber The version number.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2056,14 +1995,10 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of versions on each
-     *     returned page. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous
-     *     list request on the next page. This should be set to the value of
-     *     `nextPageToken` from a previous response.
+     * @param {integer=} params.pageSize The maximum number of versions on each returned page. Defaults to 50.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2203,12 +2138,9 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script ID of the script to be
-     *     executed. To find the script ID, open the project in the script
-     *     editor and select **File > Project properties**.
+     * @param {string} params.scriptId The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
      * @param {().ExecutionRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

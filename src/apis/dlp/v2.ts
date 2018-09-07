@@ -385,8 +385,8 @@ export namespace dlp_v2 {
     url?: string;
   }
   /**
-   * Options defining a file or a set of files (path ending with *) within a
-   * Google Cloud Storage bucket.
+   * Options defining a file or a set of files within a Google Cloud Storage
+   * bucket.
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
     /**
@@ -403,6 +403,9 @@ export namespace dlp_v2 {
      * bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      */
     bytesLimitPerFilePercent?: number;
+    /**
+     * The set of one or more files to scan.
+     */
     fileSet?: Schema$GooglePrivacyDlpV2FileSet;
     /**
      * Limits the number of files to scan to this percentage of the input
@@ -1175,8 +1178,9 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FileSet {
     /**
-     * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing
-     * wildcard in the path is allowed.
+     * The Cloud Storage url of the file(s) to scan, in the format
+     * `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is
+     * allowed.
      */
     url?: string;
   }
@@ -2394,7 +2398,9 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Regex {
     /**
-     * Pattern defining the regular expression.
+     * Pattern defining the regular expression. Its syntax
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
+     * google/re2 repository on GitHub.
      */
     pattern?: string;
   }
@@ -3083,14 +3089,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to only return infoTypes
-     *     supported by certain parts of the API. Defaults to
-     *     supported_by=INSPECT.
-     * @param {string=} params.languageCode Optional BCP-47 language code for
-     *     localized infoType friendly names. If omitted, or if localized
-     *     strings are not available, en-US strings will be returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     * @param {string=} params.languageCode Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3214,12 +3215,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3299,12 +3297,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     deidentify template to be deleted, for example
-     *     `organizations/433245324/deidentifyTemplates/432452342` or
-     *     projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3371,12 +3365,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     deidentify template to be read, for example
-     *     `organizations/433245324/deidentifyTemplates/432452342` or
-     *     projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3450,14 +3440,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be
-     *     limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue
-     *     retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3536,14 +3523,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and deidentify
-     *     template to be updated, for example
-     *     `organizations/433245324/deidentifyTemplates/432452342` or
-     *     projects/project-id/deidentifyTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3664,6 +3646,17 @@ export namespace dlp_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
+    /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
      */
@@ -3720,12 +3713,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3804,12 +3794,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     inspectTemplate to be deleted, for example
-     *     `organizations/433245324/inspectTemplates/432452342` or
-     *     projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3876,12 +3862,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     inspectTemplate to be read, for example
-     *     `organizations/433245324/inspectTemplates/432452342` or
-     *     projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3954,14 +3936,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be
-     *     limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue
-     *     retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4037,14 +4016,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and
-     *     inspectTemplate to be updated, for example
-     *     `organizations/433245324/inspectTemplates/432452342` or
-     *     projects/project-id/inspectTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4163,6 +4137,17 @@ export namespace dlp_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
+    /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
      */
@@ -4219,12 +4204,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4303,12 +4285,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     storedInfoType to be deleted, for example
-     *     `organizations/433245324/storedInfoTypes/432452342` or
-     *     projects/project-id/storedInfoTypes/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4375,12 +4353,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     storedInfoType to be read, for example
-     *     `organizations/433245324/storedInfoTypes/432452342` or
-     *     projects/project-id/storedInfoTypes/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4454,14 +4428,10 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be
-     *     limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue
-     *     retrieval. Comes from previous call to `ListStoredInfoTypes`.
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4539,14 +4509,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and
-     *     storedInfoType to be updated, for example
-     *     `organizations/433245324/storedInfoTypes/432452342` or
-     *     projects/project-id/storedInfoTypes/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4754,12 +4719,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2DeidentifyContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4840,12 +4802,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2InspectContentRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2InspectContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4922,10 +4881,8 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent resource name.
-     * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().GooglePrivacyDlpV2ReidentifyContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5064,12 +5021,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateDeidentifyTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5148,12 +5102,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     deidentify template to be deleted, for example
-     *     `organizations/433245324/deidentifyTemplates/432452342` or
-     *     projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5219,12 +5169,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     deidentify template to be read, for example
-     *     `organizations/433245324/deidentifyTemplates/432452342` or
-     *     projects/project-id/deidentifyTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5297,14 +5243,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be
-     *     limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue
-     *     retrieval. Comes from previous call to `ListDeidentifyTemplates`.
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5382,14 +5325,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and deidentify
-     *     template to be updated, for example
-     *     `organizations/433245324/deidentifyTemplates/432452342` or
-     *     projects/project-id/deidentifyTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5509,6 +5447,17 @@ export namespace dlp_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
+    /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
      */
@@ -5566,12 +5515,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the DlpJob resource to be
-     *     cancelled.
-     * @param {().GooglePrivacyDlpV2CancelDlpJobRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the DlpJob resource to be cancelled.
+     * @param {().GooglePrivacyDlpV2CancelDlpJobRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5642,12 +5588,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2CreateDlpJobRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5719,10 +5662,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the DlpJob resource to be
-     *     deleted.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the DlpJob resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5790,8 +5731,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the DlpJob resource.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5855,29 +5795,12 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Allows filtering.  Supported
-     *     syntax:  * Filter expressions are made up of one or more
-     *     restrictions. * Restrictions can be combined by `AND` or `OR` logical
-     *     operators. A sequence of restrictions implicitly uses `AND`. * A
-     *     restriction has the form of `<field> <operator> <value>`. * Supported
-     *     fields/values for inspect jobs:     - `state` -
-     *     PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` -
-     *     DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource
-     *     name of the trigger that created job. * Supported fields for risk
-     *     analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The
-     *     operator must be `=` or `!=`.  Examples:  * inspected_storage =
-     *     cloud_storage AND state = done * inspected_storage = cloud_storage OR
-     *     inspected_storage = bigquery * inspected_storage = cloud_storage AND
-     *     (state = done OR state = canceled)  The length of this field should
-     *     be no more than 500 characters.
+     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id.
-     * @param {string=} params.type The type of job. Defaults to
-     *     `DlpJobType.INSPECT`
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {string=} params.type The type of job. Defaults to `DlpJobType.INSPECT`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6069,12 +5992,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2RedactImageRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2RedactImageRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6184,12 +6104,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateInspectTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6267,12 +6184,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     inspectTemplate to be deleted, for example
-     *     `organizations/433245324/inspectTemplates/432452342` or
-     *     projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6338,12 +6251,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     inspectTemplate to be read, for example
-     *     `organizations/433245324/inspectTemplates/432452342` or
-     *     projects/project-id/inspectTemplates/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6416,14 +6325,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be
-     *     limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue
-     *     retrieval. Comes from previous call to `ListInspectTemplates`.
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6499,14 +6405,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and
-     *     inspectTemplate to be updated, for example
-     *     `organizations/433245324/inspectTemplates/432452342` or
-     *     projects/project-id/inspectTemplates/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateInspectTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6625,6 +6526,17 @@ export namespace dlp_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
+    /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
      */
@@ -6681,12 +6593,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id.
-     * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2CreateJobTriggerRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6760,11 +6669,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the project and the
-     *     triggeredJob, for example
-     *     `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6830,11 +6736,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the project and the
-     *     triggeredJob, for example
-     *     `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6903,23 +6806,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.orderBy Optional comma separated list of
-     *     triggeredJob fields to order by, followed by `asc` or `desc` postfix.
-     *     This list is case-insensitive, default sorting order is ascending,
-     *     redundant space characters are insignificant.  Example: `name
-     *     asc,update_time, create_time desc`  Supported fields are:  -
-     *     `create_time`: corresponds to time the triggeredJob was created. -
-     *     `update_time`: corresponds to time the triggeredJob was last updated.
-     *     - `name`: corresponds to JobTrigger's name.
-     * @param {integer=} params.pageSize Optional size of the page, can be
-     *     limited by a server.
-     * @param {string=} params.pageToken Optional page token to continue
-     *     retrieval. Comes from previous call to ListJobTriggers. `order_by`
-     *     field must not change for subsequent calls.
-     * @param {string} params.parent The parent resource name, for example
-     *     `projects/my-project-id`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by a server.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * @param {string} params.parent The parent resource name, for example `projects/my-project-id`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6994,13 +6885,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the project and the
-     *     triggeredJob, for example
-     *     `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param {().GooglePrivacyDlpV2UpdateJobTriggerRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {().GooglePrivacyDlpV2UpdateJobTriggerRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7117,9 +7004,10 @@ export namespace dlp_v2 {
      * default sorting order is ascending, redundant space characters are
      * insignificant.  Example: `name asc,update_time, create_time desc`
      * Supported fields are:  - `create_time`: corresponds to time the
-     * triggeredJob was created. - `update_time`: corresponds to time the
-     * triggeredJob was last updated. - `name`: corresponds to JobTrigger's
-     * name.
+     * JobTrigger was created. - `update_time`: corresponds to time the
+     * JobTrigger was last updated. - `name`: corresponds to JobTrigger's name.
+     * - `display_name`: corresponds to JobTrigger's display name. - `status`:
+     * corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
@@ -7176,12 +7064,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7260,12 +7145,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     storedInfoType to be deleted, for example
-     *     `organizations/433245324/storedInfoTypes/432452342` or
-     *     projects/project-id/storedInfoTypes/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7332,12 +7213,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the organization and
-     *     storedInfoType to be read, for example
-     *     `organizations/433245324/storedInfoTypes/432452342` or
-     *     projects/project-id/storedInfoTypes/432452342.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7411,14 +7288,10 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional size of the page, can be
-     *     limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue
-     *     retrieval. Comes from previous call to `ListStoredInfoTypes`.
-     * @param {string} params.parent The parent resource name, for example
-     *     projects/my-project-id or organizations/my-org-id.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7496,14 +7369,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of organization and
-     *     storedInfoType to be updated, for example
-     *     `organizations/433245324/storedInfoTypes/432452342` or
-     *     projects/project-id/storedInfoTypes/432452342.
-     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

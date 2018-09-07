@@ -739,12 +739,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project and cloud region where this
-     *     device registry must be created. For example,
-     *     `projects/example-project/locations/us-central1`.
+     * @param {string} params.parent The project and cloud region where this device registry must be created. For example, `projects/example-project/locations/us-central1`.
      * @param {().DeviceRegistry} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -810,10 +807,8 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device registry. For example,
-     *     `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -877,10 +872,8 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device registry. For example,
-     *     `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -942,12 +935,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being requested. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1014,19 +1004,10 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of registries to
-     *     return in the response. If this value is zero, the service will
-     *     select a default size. A call may return fewer objects than
-     *     requested, but if there is a non-empty `page_token`, it indicates
-     *     that more entries are available.
-     * @param {string=} params.pageToken The value returned by the last
-     *     `ListDeviceRegistriesResponse`; indicates that this is a continuation
-     *     of a prior `ListDeviceRegistries` call, and that the system should
-     *     return the next page of data.
-     * @param {string} params.parent The project and cloud region path. For
-     *     example, `projects/example-project/locations/us-central1`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of registries to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
+     * @param {string=} params.pageToken The value returned by the last `ListDeviceRegistriesResponse`; indicates that this is a continuation of a prior `ListDeviceRegistries` call and the system should return the next page of data.
+     * @param {string} params.parent The project and cloud region path. For example, `projects/example-project/locations/us-central1`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1099,16 +1080,10 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource path name. For example,
-     *     `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param {string=} params.updateMask Only updates the `device_registry`
-     *     fields indicated by this mask. The field mask must not be empty, and
-     *     it must not contain fields that are immutable or only set by the
-     *     server. Mutable top-level fields: `event_notification_config`,
-     *     `http_config`, `mqtt_config`, and `state_notification_config`.
+     * @param {string} params.name The resource path name. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {string=} params.updateMask Only updates the `device_registry` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `event_notification_config`, `http_config`, `mqtt_config`, and `state_notification_config`.
      * @param {().DeviceRegistry} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1174,12 +1149,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being specified. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1248,12 +1220,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy detail is being requested. See the operation documentation for
-     *     the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1391,14 +1360,14 @@ export namespace cloudiot_v1 {
     /**
      * The maximum number of registries to return in the response. If this value
      * is zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      */
     pageSize?: number;
     /**
      * The value returned by the last `ListDeviceRegistriesResponse`; indicates
-     * that this is a continuation of a prior `ListDeviceRegistries` call, and
-     * that the system should return the next page of data.
+     * that this is a continuation of a prior `ListDeviceRegistries` call and
+     * the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -1494,12 +1463,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the device registry where this
-     *     device should be created. For example,
-     *     `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {string} params.parent The name of the device registry where this device should be created. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1566,12 +1532,8 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1637,15 +1599,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.fieldMask The fields of the `Device` resource to
-     *     be returned in the response. If the field mask is unset or empty, all
-     *     fields are returned.
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1707,29 +1663,13 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.deviceIds A list of device string identifiers. If
-     *     empty, it will ignore this field. For example, `['device0',
-     *     'device12']`. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.deviceNumIds A list of device numerical ids. If
-     *     empty, it will ignore this field. This field cannot hold more than
-     *     10,000 entries.
-     * @param {string=} params.fieldMask The fields of the `Device` resource to
-     *     be returned in the response. The fields `id`, and `num_id` are always
-     *     returned by default, along with any other fields specified.
-     * @param {integer=} params.pageSize The maximum number of devices to return
-     *     in the response. If this value is zero, the service will select a
-     *     default size. A call may return fewer objects than requested, but if
-     *     there is a non-empty `page_token`, it indicates that more entries are
-     *     available.
-     * @param {string=} params.pageToken The value returned by the last
-     *     `ListDevicesResponse`; indicates that this is a continuation of a
-     *     prior `ListDevices` call, and that the system should return the next
-     *     page of data.
-     * @param {string} params.parent The device registry path. Required. For
-     *     example,
-     *     `projects/my-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.deviceIds A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
+     * @param {string=} params.deviceNumIds A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
+     * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call and the system should return the next page of data.
+     * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1800,14 +1740,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1879,19 +1814,10 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource path name. For example,
-     *     `projects/p1/locations/us-central1/registries/registry0/devices/dev0`
-     *     or
-     *     `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
-     *     When `name` is populated as a response from the service, it always
-     *     ends in the device numeric ID.
-     * @param {string=} params.updateMask Only updates the `device` fields
-     *     indicated by this mask. The field mask must not be empty, and it must
-     *     not contain fields that are immutable or only set by the server.
-     *     Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     * @param {string} params.name The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
+     * @param {string=} params.updateMask Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2008,33 +1934,32 @@ export namespace cloudiot_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
+     * A list of device string IDs. For example, `['device0', 'device12']`. If
+     * empty, this field is ignored. Maximum IDs: 10,000
      */
     deviceIds?: string;
     /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum
+     * IDs: 10,000.
      */
     deviceNumIds?: string;
     /**
      * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
-     * other fields specified.
+     * fields `id` and `num_id` are always returned, along with any other fields
+     * specified.
      */
     fieldMask?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      */
     pageSize?: number;
     /**
      * The value returned by the last `ListDevicesResponse`; indicates that this
-     * is a continuation of a prior `ListDevices` call, and that the system
-     * should return the next page of data.
+     * is a continuation of a prior `ListDevices` call and the system should
+     * return the next page of data.
      */
     pageToken?: string;
     /**
@@ -2110,16 +2035,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {integer=} params.numVersions The number of versions to list.
-     *     Versions are listed in decreasing order of the version number. The
-     *     maximum number of versions retained is 10. If this value is zero, it
-     *     will return all the versions available.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numVersions The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2236,16 +2154,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {integer=} params.numStates The number of states to list. States
-     *     are listed in descending order of update time. The maximum number of
-     *     states retained is 10. If this value is zero, it will return all the
-     *     states available.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numStates The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2356,12 +2267,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being requested. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2432,12 +2340,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being specified. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2509,12 +2414,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy detail is being requested. See the operation documentation for
-     *     the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2665,15 +2567,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.fieldMask The fields of the `Device` resource to
-     *     be returned in the response. If the field mask is unset or empty, all
-     *     fields are returned.
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2738,29 +2634,13 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.deviceIds A list of device string identifiers. If
-     *     empty, it will ignore this field. For example, `['device0',
-     *     'device12']`. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.deviceNumIds A list of device numerical ids. If
-     *     empty, it will ignore this field. This field cannot hold more than
-     *     10,000 entries.
-     * @param {string=} params.fieldMask The fields of the `Device` resource to
-     *     be returned in the response. The fields `id`, and `num_id` are always
-     *     returned by default, along with any other fields specified.
-     * @param {integer=} params.pageSize The maximum number of devices to return
-     *     in the response. If this value is zero, the service will select a
-     *     default size. A call may return fewer objects than requested, but if
-     *     there is a non-empty `page_token`, it indicates that more entries are
-     *     available.
-     * @param {string=} params.pageToken The value returned by the last
-     *     `ListDevicesResponse`; indicates that this is a continuation of a
-     *     prior `ListDevices` call, and that the system should return the next
-     *     page of data.
-     * @param {string} params.parent The device registry path. Required. For
-     *     example,
-     *     `projects/my-project/locations/us-central1/registries/my-registry`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.deviceIds A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
+     * @param {string=} params.deviceNumIds A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
+     * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call and the system should return the next page of data.
+     * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2834,14 +2714,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2913,19 +2788,10 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource path name. For example,
-     *     `projects/p1/locations/us-central1/registries/registry0/devices/dev0`
-     *     or
-     *     `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
-     *     When `name` is populated as a response from the service, it always
-     *     ends in the device numeric ID.
-     * @param {string=} params.updateMask Only updates the `device` fields
-     *     indicated by this mask. The field mask must not be empty, and it must
-     *     not contain fields that are immutable or only set by the server.
-     *     Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     * @param {string} params.name The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
+     * @param {string=} params.updateMask Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      * @param {().Device} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3013,33 +2879,32 @@ export namespace cloudiot_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
+     * A list of device string IDs. For example, `['device0', 'device12']`. If
+     * empty, this field is ignored. Maximum IDs: 10,000
      */
     deviceIds?: string;
     /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum
+     * IDs: 10,000.
      */
     deviceNumIds?: string;
     /**
      * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
-     * other fields specified.
+     * fields `id` and `num_id` are always returned, along with any other fields
+     * specified.
      */
     fieldMask?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      */
     pageSize?: number;
     /**
      * The value returned by the last `ListDevicesResponse`; indicates that this
-     * is a continuation of a prior `ListDevices` call, and that the system
-     * should return the next page of data.
+     * is a continuation of a prior `ListDevices` call and the system should
+     * return the next page of data.
      */
     pageToken?: string;
     /**
@@ -3117,16 +2982,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {integer=} params.numVersions The number of versions to list.
-     *     Versions are listed in decreasing order of the version number. The
-     *     maximum number of versions retained is 10. If this value is zero, it
-     *     will return all the versions available.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numVersions The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3243,16 +3101,9 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device. For example,
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/device0`
-     *     or
-     *     `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param {integer=} params.numStates The number of states to list. States
-     *     are listed in descending order of update time. The maximum number of
-     *     states retained is 10. If this value is zero, it will return all the
-     *     states available.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numStates The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

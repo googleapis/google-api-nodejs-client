@@ -616,16 +616,11 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
      * @param {().Change} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -690,17 +685,11 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.changeId The identifier of the requested change,
-     *     from a previous ResourceRecordSetsChangeResponse.
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -762,22 +751,13 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results
-     *     to be returned. If unspecified, the server will decide how many
-     *     results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous
-     *     list request that was truncated. Use this parameter to continue a
-     *     previous list request.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {string=} params.sortBy Sorting criterion. The only supported
-     *     value is change sequence.
-     * @param {string=} params.sortOrder Sorting order direction: 'ascending' or
-     *     'descending'.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
+     * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -945,19 +925,12 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string=} params.digestType An optional comma-separated list of
-     *     digest types to compute and display for key signing keys. If omitted,
-     *     the recommended digest type will be computed and displayed.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
      * @param {string} params.dnsKeyId The identifier of the requested DnsKey.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1019,21 +992,12 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.digestType An optional comma-separated list of
-     *     digest types to compute and display for key signing keys. If omitted,
-     *     the recommended digest type will be computed and displayed.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results
-     *     to be returned. If unspecified, the server will decide how many
-     *     results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous
-     *     list request that was truncated. Use this parameter to continue a
-     *     previous list request.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1177,17 +1141,11 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request.
-     * @param {string} params.operation Identifies the operation addressed by
-     *     this request.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request.
+     * @param {string} params.operation Identifies the operation addressed by this request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1251,20 +1209,12 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request.
-     * @param {integer=} params.maxResults Optional. Maximum number of results
-     *     to be returned. If unspecified, the server will decide how many
-     *     results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous
-     *     list request that was truncated. Use this parameter to continue a
-     *     previous list request.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {string=} params.sortBy Sorting criterion. The only supported
-     *     values are START_TIME and ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.sortBy Sorting criterion. The only supported values are START_TIME and ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1411,14 +1361,10 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.project Identifies the project addressed by this request.
      * @param {().ManagedZone} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1484,15 +1430,10 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1558,15 +1499,10 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1629,18 +1565,11 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.dnsName Restricts the list to return only zones
-     *     with this domain name.
-     * @param {integer=} params.maxResults Optional. Maximum number of results
-     *     to be returned. If unspecified, the server will decide how many
-     *     results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous
-     *     list request that was truncated. Use this parameter to continue a
-     *     previous list request.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1706,16 +1635,11 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
      * @param {().ManagedZone} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1782,16 +1706,11 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {string} params.project Identifies the project addressed by this request.
      * @param {().ManagedZone} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2018,13 +1937,9 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests
-     *     only. An optional identifier specified by the client. Must be unique
-     *     for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2116,22 +2031,13 @@ export namespace dns_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed
-     *     by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results
-     *     to be returned. If unspecified, the server will decide how many
-     *     results to return.
-     * @param {string=} params.name Restricts the list to return only records
-     *     with this fully qualified domain name.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous
-     *     list request that was truncated. Use this parameter to continue a
-     *     previous list request.
-     * @param {string} params.project Identifies the project addressed by this
-     *     request.
-     * @param {string=} params.type Restricts the list to return only records of
-     *     this type. If present, the "name" parameter must also be present.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.name Restricts the list to return only records with this fully qualified domain name.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {string=} params.type Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

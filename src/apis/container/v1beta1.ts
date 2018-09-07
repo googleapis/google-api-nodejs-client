@@ -207,6 +207,10 @@ export namespace container_v1beta1 {
      */
     clusterIpv4Cidr?: string;
     /**
+     * Which conditions caused the current cluster state.
+     */
+    conditions?: Schema$StatusCondition[];
+    /**
      * [Output only] The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
@@ -220,10 +224,11 @@ export namespace container_v1beta1 {
      */
     currentNodeCount?: number;
     /**
-     * [Output only] The current version of the node software components. If
-     * they are currently at multiple versions because they&#39;re in the
-     * process of being upgraded, this reflects the minimum version of all
-     * nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1beta1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they&#39;re in the process of
+     * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
     /**
@@ -960,8 +965,9 @@ export namespace container_v1beta1 {
      */
     clientCertificate?: string;
     /**
-     * Configuration for client certificate authentication on the cluster.  If
-     * no configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      */
     clientCertificateConfig?: Schema$ClientCertificateConfig;
     /**
@@ -1138,13 +1144,13 @@ export namespace container_v1beta1 {
      * metadata keys for the project or be one of the reserved keys:
      * &quot;cluster-location&quot;  &quot;cluster-name&quot;
      * &quot;cluster-uid&quot;  &quot;configure-sh&quot;
-     * &quot;gci-update-strategy&quot;  &quot;gci-ensure-gke-docker&quot;
-     * &quot;instance-template&quot;  &quot;kube-env&quot;
-     * &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form
-     * strings, and only have meaning as interpreted by the image running in the
-     * instance. The only restriction placed on them is that each value&#39;s
-     * size must be less than or equal to 32 KB.  The total size of all keys and
-     * values must be less than 512 KB.
+     * &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;
+     * &quot;gci-update-strategy&quot;  &quot;instance-template&quot;
+     * &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;
+     * Values are free-form strings, and only have meaning as interpreted by the
+     * image running in the instance. The only restriction placed on them is
+     * that each value&#39;s size must be less than or equal to 32 KB.  The
+     * total size of all keys and values must be less than 512 KB.
      */
     metadata?: any;
     /**
@@ -1233,6 +1239,10 @@ export namespace container_v1beta1 {
      * a valid configuration is present.
      */
     autoscaling?: Schema$NodePoolAutoscaling;
+    /**
+     * Which conditions caused the current node pool state.
+     */
+    conditions?: Schema$StatusCondition[];
     /**
      * The node configuration of the pool.
      */
@@ -1332,6 +1342,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Operation {
     /**
+     * Which conditions caused the current cluster state.
+     */
+    clusterConditions?: Schema$StatusCondition[];
+    /**
      * Detailed operation progress, if available.
      */
     detail?: string;
@@ -1351,6 +1365,10 @@ export namespace container_v1beta1 {
      * The server-assigned ID for the operation.
      */
     name?: string;
+    /**
+     * Which conditions caused the current node pool state.
+     */
+    nodepoolConditions?: Schema$StatusCondition[];
     /**
      * The operation type.
      */
@@ -1986,6 +2004,20 @@ export namespace container_v1beta1 {
     zone?: string;
   }
   /**
+   * StatusCondition describes why a cluster or a node pool has a certain status
+   * (e.g., ERROR or DEGRADED).
+   */
+  export interface Schema$StatusCondition {
+    /**
+     * Machine-friendly representation of the condition
+     */
+    code?: string;
+    /**
+     * Human-friendly representation of the condition
+     */
+    message?: string;
+  }
+  /**
    * UpdateClusterRequest updates the settings of a cluster.
    */
   export interface Schema$UpdateClusterRequest {
@@ -2116,10 +2148,40 @@ export namespace container_v1beta1 {
      */
     network?: string;
     /**
+     * Secondary IP ranges.
+     */
+    secondaryIpRanges?: Schema$UsableSubnetworkSecondaryRange[];
+    /**
+     * A human readable status message representing the reasons for cases where
+     * the caller cannot use the secondary ranges under the subnet. For example
+     * if the secondary_ip_ranges is empty due to a permission issue, an
+     * insufficient permission message will be given by status_message.
+     */
+    statusMessage?: string;
+    /**
      * Subnetwork Name. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string;
+  }
+  /**
+   * Secondary IP range of a usable subnetwork.
+   */
+  export interface Schema$UsableSubnetworkSecondaryRange {
+    /**
+     * The range of IP addresses belonging to this subnetwork secondary range.
+     */
+    ipCidrRange?: string;
+    /**
+     * The name associated with this subnetwork secondary range, used when
+     * adding an alias IP range to a VM instance.
+     */
+    rangeName?: string;
+    /**
+     * This field is to determine the status of the secondary range
+     * programmably.
+     */
+    status?: string;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to
@@ -2189,23 +2251,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Filtering currently only supports equality
-     *     on the networkProjectId and must be in the form:
-     *     "networkProjectId=[PROJECTID]", where `networkProjectId` is the
-     *     project which owns the listed subnetworks. This defaults to the
-     *     parent project ID.
-     * @param {integer=} params.pageSize The max number of results per page that
-     *     should be returned. If the number of available results is larger than
-     *     `page_size`, a `next_page_token` is returned which can be used to get
-     *     the next page of results in subsequent requests. Acceptable values
-     *     are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.pageToken Specifies a page token to use. Set this
-     *     to the nextPageToken returned by previous list requests to get the
-     *     next page of results.
-     * @param {string} params.parent The parent project where subnetworks are
-     *     usable. Specified in the format 'projects/x'.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
+     * @param {integer=} params.pageSize The max number of results per page that should be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be used to get the next page of results in subsequent requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.pageToken Specifies a page token to use. Set this to the nextPageToken returned by previous list requests to get the next page of results.
+     * @param {string} params.parent The parent project where subnetworks are usable. Specified in the format 'projects/x'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2330,17 +2380,10 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project and location) of the server
-     *     config to get Specified in the format 'projects/x/locations/x'.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) to return operations
-     *     for. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name (project and location) of the server config to get Specified in the format 'projects/x/locations/x'.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2405,10 +2448,8 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Contains the name of the resource
-     *     requested. Specified in the format 'projects/x'.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Contains the name of the resource requested. Specified in the format 'projects/x'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2526,12 +2567,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of
-     *     the cluster to complete IP rotation. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().CompleteIPRotationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2607,12 +2645,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the
-     *     cluster will be created. Specified in the format
-     *     'projects/x/locations/x'.
+     * @param {string} params.parent The parent (project and location) where the cluster will be created. Specified in the format 'projects/x/locations/x'.
      * @param {().CreateClusterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2682,22 +2717,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Deprecated. The name of the cluster to
-     *     delete. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to delete. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2762,22 +2786,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Deprecated. The name of the cluster to
-     *     retrieve. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to retrieve. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2838,20 +2851,10 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the
-     *     clusters will be listed. Specified in the format
-     *     'projects/x/locations/x'. Location "-" matches all zones and all
-     *     regions.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides, or "-" for all zones. This field has been deprecated and
-     *     replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2918,12 +2921,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to set addons. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set addons. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetAddonsConfigRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2990,12 +2990,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of
-     *     the cluster to set legacy abac. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetLegacyAbacRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3063,12 +3060,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to set locations. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set locations. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetLocationsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3135,12 +3129,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to set logging. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set logging. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetLoggingServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3207,12 +3198,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of
-     *     the cluster to set maintenance policy. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetMaintenancePolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3287,12 +3275,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to set auth. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set auth. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetMasterAuthRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3360,12 +3345,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to set monitoring. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to set monitoring. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetMonitoringServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3433,12 +3415,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of
-     *     the cluster to set networking policy. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetNetworkPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3506,12 +3485,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of
-     *     the cluster to set labels. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to set labels. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().SetLabelsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3579,12 +3555,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of
-     *     the cluster to start IP rotation. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().StartIPRotationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3652,12 +3625,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to update. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().UpdateClusterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3722,12 +3692,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the
-     *     cluster to update. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().UpdateMasterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4130,12 +4097,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project, location, cluster id)
-     *     where the node pool will be created. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
+     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().CreateNodePoolRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4203,24 +4167,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster, node
-     *     pool id) of the node pool to delete. Specified in the format
-     *     'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string=} params.nodePoolId Deprecated. The name of the node pool
-     *     to delete. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string=} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4287,23 +4239,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster, node
-     *     pool id) of the node pool to get. Specified in the format
-     *     'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string=} params.nodePoolId Deprecated. The name of the node pool.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string=} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4365,21 +4306,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the parent field.
-     * @param {string} params.parent The parent (project, location, cluster id)
-     *     where the node pools will be listed. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the parent
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4449,13 +4380,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node
-     *     pool id) of the node poll to rollback upgrade. Specified in the
-     *     format 'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {().RollbackNodePoolUpgradeRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {().RollbackNodePoolUpgradeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4523,13 +4450,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node
-     *     pool) of the node pool to set autoscaler settings. Specified in the
-     *     format 'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {().SetNodePoolAutoscalingRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {().SetNodePoolAutoscalingRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4600,13 +4523,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node
-     *     pool id) of the node pool to set management properties. Specified in
-     *     the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {().SetNodePoolManagementRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {().SetNodePoolManagementRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4677,12 +4596,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node
-     *     pool id) of the node pool to set size. Specified in the format
-     *     'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
      * @param {().SetNodePoolSizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4750,12 +4666,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node
-     *     pool) of the node pool to update. Specified in the format
-     *     'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to update. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
      * @param {().UpdateNodePoolRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5043,12 +4956,9 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, operation id) of
-     *     the operation to cancel. Specified in the format
-     *     'projects/x/locations/x/operations/x'.
+     * @param {string} params.name The name (project, location, operation id) of the operation to cancel. Specified in the format 'projects/x/locations/x/operations/x'.
      * @param {().CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5113,22 +5023,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, operation id) of
-     *     the operation to get. Specified in the format
-     *     'projects/x/locations/x/operations/x'.
-     * @param {string=} params.operationId Deprecated. The server-assigned
-     *     `name` of the operation. This field has been deprecated and replaced
-     *     by the name field.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
+     * @param {string=} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5189,20 +5088,10 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the
-     *     operations will be listed. Specified in the format
-     *     'projects/x/locations/x'. Location "-" matches all zones and all
-     *     regions.
-     * @param {string=} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) to return operations
-     *     for, or `-` for all zones. This field has been deprecated and
-     *     replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5360,18 +5249,10 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.name The name (project and location) of the
-     *     server config to get Specified in the format
-     *     'projects/x/locations/x'.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) to return operations
-     *     for. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.name The name (project and location) of the server config to get Specified in the format 'projects/x/locations/x'.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5477,20 +5358,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetAddonsConfigRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5558,19 +5430,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().CompleteIPRotationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5648,17 +5512,10 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the parent
-     *     field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {().CreateClusterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5729,22 +5586,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     delete. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string=} params.name The name (project, location, cluster) of the
-     *     cluster to delete. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5812,22 +5658,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     retrieve. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string=} params.name The name (project, location, cluster) of the
-     *     cluster to retrieve. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5890,20 +5725,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     update. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLegacyAbacRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5972,20 +5798,10 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent The parent (project and location) where
-     *     the clusters will be listed. Specified in the format
-     *     'projects/x/locations/x'. Location "-" matches all zones and all
-     *     regions.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides, or "-" for all zones. This field has been deprecated and
-     *     replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6053,20 +5869,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLocationsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6134,20 +5941,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLoggingServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6215,20 +6013,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().UpdateMasterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6296,20 +6085,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetMonitoringServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6377,19 +6157,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLabelsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6459,14 +6231,10 @@ export namespace container_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterId The name of the cluster to update.
-     * @param {string} params.projectId The Google Developers Console [project
-     *     ID or project
-     *     number](https://support.google.com/cloud/answer/6158840).
-     * @param {string} params.zone The name of the Google Compute Engine
-     *     [zone](/compute/docs/zones#available) in which the cluster resides.
+     * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
+     * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
      * @param {().SetMaintenancePolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6540,20 +6308,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetMasterAuthRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6622,19 +6381,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetNetworkPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6703,19 +6454,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().StartIPRotationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6784,20 +6527,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().UpdateClusterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7360,24 +7094,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.nodePoolId Deprecated. The name of the node pool
-     *     to upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {().SetNodePoolAutoscalingRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {().SetNodePoolAutoscalingRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7447,19 +7169,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the parent field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the parent
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {().CreateNodePoolRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7528,24 +7242,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster, node
-     *     pool id) of the node pool to delete. Specified in the format
-     *     'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string} params.nodePoolId Deprecated. The name of the node pool
-     *     to delete. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7614,23 +7316,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster, node
-     *     pool id) of the node pool to get. Specified in the format
-     *     'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string} params.nodePoolId Deprecated. The name of the node pool.
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7694,21 +7385,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster.
-     *     This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.parent The parent (project, location, cluster id)
-     *     where the node pools will be listed. Specified in the format
-     *     'projects/x/locations/x/clusters/x'.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://developers.google.com/console/help/new/#projectnumber).
-     *     This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the parent
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7779,24 +7460,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     rollback. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.nodePoolId Deprecated. The name of the node pool
-     *     to rollback. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {().RollbackNodePoolUpgradeRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {().RollbackNodePoolUpgradeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7866,24 +7535,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     update. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.nodePoolId Deprecated. The name of the node pool
-     *     to update. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {().SetNodePoolManagementRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {().SetNodePoolManagementRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7954,23 +7611,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     update. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.nodePoolId Deprecated. The name of the node pool
-     *     to update. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetNodePoolSizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8040,23 +7686,12 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Deprecated. The name of the cluster to
-     *     upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.nodePoolId Deprecated. The name of the node pool
-     *     to upgrade. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().UpdateNodePoolRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8438,20 +8073,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.operationId Deprecated. The server-assigned `name`
-     *     of the operation. This field has been deprecated and replaced by the
-     *     name field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the operation
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
+     * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      * @param {().CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8518,22 +8144,11 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.name The name (project, location, operation id)
-     *     of the operation to get. Specified in the format
-     *     'projects/x/locations/x/operations/x'.
-     * @param {string} params.operationId Deprecated. The server-assigned `name`
-     *     of the operation. This field has been deprecated and replaced by the
-     *     name field.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the name field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) in which the cluster
-     *     resides. This field has been deprecated and replaced by the name
-     *     field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
+     * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8597,20 +8212,10 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent The parent (project and location) where
-     *     the operations will be listed. Specified in the format
-     *     'projects/x/locations/x'. Location "-" matches all zones and all
-     *     regions.
-     * @param {string} params.projectId Deprecated. The Google Developers
-     *     Console [project ID or project
-     *     number](https://support.google.com/cloud/answer/6158840). This field
-     *     has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Deprecated. The name of the Google Compute
-     *     Engine [zone](/compute/docs/zones#available) to return operations
-     *     for, or `-` for all zones. This field has been deprecated and
-     *     replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

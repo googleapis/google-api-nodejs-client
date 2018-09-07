@@ -24,27 +24,28 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace tpu_v1 {
+export namespace redis_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
 
   /**
-   * Cloud TPU API
+   * Google Cloud Memorystore for Redis API
    *
-   * TPU API provides customers with access to Google TPU technology.
+   * The Google Cloud Memorystore for Redis API is used for creating and
+   * managing Redis instances on the Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
-   * const tpu = google.tpu('v1');
+   * const redis = google.redis('v1');
    *
-   * @namespace tpu
+   * @namespace redis
    * @type {Function}
    * @version v1
    * @variation v1
-   * @param {object=} options Options for Tpu
+   * @param {object=} options Options for Redis
    */
-  export class Tpu {
+  export class Redis {
     _options: GlobalOptions;
     google?: GoogleConfigurable;
     root = this;
@@ -65,19 +66,6 @@ export namespace tpu_v1 {
   }
 
   /**
-   * A accelerator type that a Node can be configured with.
-   */
-  export interface Schema$AcceleratorType {
-    /**
-     * The resource name.
-     */
-    name?: string;
-    /**
-     * the accelerator type.
-     */
-    type?: string;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated
    * empty messages in your APIs. A typical example is to use it as the request
    * or the response type of an API method. For instance:      service Foo { rpc
@@ -86,15 +74,180 @@ export namespace tpu_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Response for ListAcceleratorTypes.
+   * This location metadata represents additional configuration options for a
+   * given location where a Redis instance may be created. All fields are output
+   * only. It is returned as content of the
+   * `google.cloud.location.Location.metadata` field.
    */
-  export interface Schema$ListAcceleratorTypesResponse {
+  export interface Schema$GoogleCloudRedisV1LocationMetadata {
     /**
-     * The listed nodes.
+     * Output only. The set of available zones in the location. The map is keyed
+     * by the lowercase ID of each zone, as defined by GCE. These keys can be
+     * specified in `location_id` or `alternative_location_id` fields when
+     * creating a Redis instance.
      */
-    acceleratorTypes?: Schema$AcceleratorType[];
+    availableZones?: any;
+  }
+  /**
+   * Represents the v1 metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudRedisV1OperationMetadata {
     /**
-     * The next page token or empty if none.
+     * API version.
+     */
+    apiVersion?: string;
+    /**
+     * Specifies if cancellation was requested for the operaiton.
+     */
+    cancelRequested?: boolean;
+    /**
+     * Creation timestamp.
+     */
+    createTime?: string;
+    /**
+     * End timestamp.
+     */
+    endTime?: string;
+    /**
+     * Operation status details.
+     */
+    statusDetail?: string;
+    /**
+     * Operation target.
+     */
+    target?: string;
+    /**
+     * Operation verb.
+     */
+    verb?: string;
+  }
+  /**
+   * Defines specific information for a particular zone. Currently empty and
+   * reserved for future use only.
+   */
+  export interface Schema$GoogleCloudRedisV1ZoneMetadata {}
+  /**
+   * A Google Cloud Redis instance.
+   */
+  export interface Schema$Instance {
+    /**
+     * Optional. Only applicable to STANDARD_HA tier which protects the instance
+     * against zonal failures by provisioning it across two zones. If provided,
+     * it must be a different zone from the one provided in [location_id].
+     */
+    alternativeLocationId?: string;
+    /**
+     * Optional. The full name of the Google Compute Engine
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the
+     * instance is connected. If left unspecified, the `default` network will be
+     * used.
+     */
+    authorizedNetwork?: string;
+    /**
+     * Output only. The time the instance was created.
+     */
+    createTime?: string;
+    /**
+     * Output only. The current zone where the Redis endpoint is placed. For
+     * Basic Tier instances, this will always be the same as the [location_id]
+     * provided by the user at creation time. For Standard Tier instances, this
+     * can be either [location_id] or [alternative_location_id] and can change
+     * after a failover event.
+     */
+    currentLocationId?: string;
+    /**
+     * An arbitrary and optional user-provided name for the instance.
+     */
+    displayName?: string;
+    /**
+     * Output only. Hostname or IP address of the exposed Redis endpoint used by
+     * clients to connect to the service.
+     */
+    host?: string;
+    /**
+     * Resource labels to represent user provided metadata
+     */
+    labels?: any;
+    /**
+     * Optional. The zone where the instance will be provisioned. If not
+     * provided, the service will choose a zone for the instance. For
+     * STANDARD_HA tier, instances will be created across two zones for
+     * protection against zonal failures. If [alternative_location_id] is also
+     * provided, it must be different from [location_id].
+     */
+    locationId?: string;
+    /**
+     * Required. Redis memory size in GiB.
+     */
+    memorySizeGb?: number;
+    /**
+     * Required. Unique name of the resource in this scope including project and
+     * location using the form:
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * Note: Redis instances are managed and addressed at regional level so
+     * location_id here refers to a GCP region; however, users may choose which
+     * specific zone (or collection of zones for cross-zone instances) an
+     * instance should be provisioned in. Refer to [location_id] and
+     * [alternative_location_id] fields for more details.
+     */
+    name?: string;
+    /**
+     * Output only. The port number of the exposed Redis endpoint.
+     */
+    port?: number;
+    /**
+     * Optional. Redis configuration parameters, according to
+     * http://redis.io/topics/config. Currently, the only supported parameters
+     * are:   *   maxmemory-policy  *   notify-keyspace-events
+     */
+    redisConfigs?: any;
+    /**
+     * Optional. The version of Redis software. If not provided, latest
+     * supported version will be used. Updating the version will perform an
+     * upgrade/downgrade to the new version. Currently, the supported values are
+     * `REDIS_3_2` for Redis 3.2.
+     */
+    redisVersion?: string;
+    /**
+     * Optional. The CIDR range of internal addresses that are reserved for this
+     * instance. If not provided, the service will choose an unused /29 block,
+     * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and
+     * non-overlapping with existing subnets in an authorized network.
+     */
+    reservedIpRange?: string;
+    /**
+     * Output only. The current state of this instance.
+     */
+    state?: string;
+    /**
+     * Output only. Additional information about the current status of this
+     * instance, if available.
+     */
+    statusMessage?: string;
+    /**
+     * Required. The service tier of the instance.
+     */
+    tier?: string;
+  }
+  /**
+   * Response for ListInstances.
+   */
+  export interface Schema$ListInstancesResponse {
+    /**
+     * A list of Redis instances in the project in the specified location, or
+     * across all locations.  If the `location_id` in the parent field of the
+     * request is &quot;-&quot;, all regions available to the project are
+     * queried, and the results aggregated. If in such an aggregated query a
+     * location is unavailable, a dummy Redis entry is included in the response
+     * with the &quot;name&quot; field set to a value of the form
+     * projects/{project_id}/locations/{location_id}/instances/- and the
+     * &quot;status&quot; field set to ERROR and &quot;status_message&quot;
+     * field set to &quot;location not available for ListInstances&quot;.
+     */
+    instances?: Schema$Instance[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
      */
     nextPageToken?: string;
   }
@@ -112,19 +265,6 @@ export namespace tpu_v1 {
     nextPageToken?: string;
   }
   /**
-   * Response for ListNodes.
-   */
-  export interface Schema$ListNodesResponse {
-    /**
-     * The next page token or empty if none.
-     */
-    nextPageToken?: string;
-    /**
-     * The listed nodes.
-     */
-    nodes?: Schema$Node[];
-  }
-  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -136,19 +276,6 @@ export namespace tpu_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
-  }
-  /**
-   * Response for ListTensorFlowVersions.
-   */
-  export interface Schema$ListTensorFlowVersionsResponse {
-    /**
-     * The next page token or empty if none.
-     */
-    nextPageToken?: string;
-    /**
-     * The listed nodes.
-     */
-    tensorflowVersions?: Schema$TensorFlowVersion[];
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -165,116 +292,21 @@ export namespace tpu_v1 {
      */
     labels?: any;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * Resource ID for the region. For example: &quot;us-east1&quot;.
      */
     locationId?: string;
     /**
-     * Service-specific metadata. For example the available capacity at the
-     * given location.
+     * Output only. The set of available zones in the location. The map is keyed
+     * by the lowercase ID of each zone, as defined by Compute Engine. These
+     * keys can be specified in `location_id` or `alternative_location_id`
+     * fields when creating a Redis instance.
      */
     metadata?: any;
     /**
-     * Resource name for the location, which may vary between implementations.
-     * For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Full resource name for the region. For example:
+     * &quot;projects/example-project/locations/us-east1&quot;.
      */
     name?: string;
-  }
-  /**
-   * A network endpoint over which a TPU worker can be reached.
-   */
-  export interface Schema$NetworkEndpoint {
-    /**
-     * The IP address of this network endpoint.
-     */
-    ipAddress?: string;
-    /**
-     * The port of this network endpoint.
-     */
-    port?: number;
-  }
-  /**
-   * A TPU instance.
-   */
-  export interface Schema$Node {
-    /**
-     * The type of hardware accelerators associated with this node. Required.
-     */
-    acceleratorType?: string;
-    /**
-     * The CIDR block that the TPU node will use when selecting an IP address.
-     * This CIDR block must be a /29 block; the Compute Engine networks API
-     * forbids a smaller block, and using a larger block would be wasteful (a
-     * node can only consume one IP address). Errors will occur if the CIDR
-     * block has already been used for a currently existing TPU node, the CIDR
-     * block conflicts with any subnetworks in the user&#39;s provided network,
-     * or the provided network is peered with another network that is using that
-     * CIDR block. Required.
-     */
-    cidrBlock?: string;
-    /**
-     * Output only. The time when the node was created.
-     */
-    createTime?: string;
-    /**
-     * The user-supplied description of the TPU. Maximum of 512 characters.
-     */
-    description?: string;
-    /**
-     * The health status of the TPU node.
-     */
-    health?: string;
-    /**
-     * Output only. If this field is populated, it contains a description of why
-     * the TPU Node is unhealthy.
-     */
-    healthDescription?: string;
-    /**
-     * Output only. DEPRECATED! Use network_endpoints instead. The network
-     * address for the TPU Node as visible to Compute Engine instances.
-     */
-    ipAddress?: string;
-    /**
-     * Resource labels to represent user-provided metadata.
-     */
-    labels?: any;
-    /**
-     * Output only. The immutable name of the TPU
-     */
-    name?: string;
-    /**
-     * The name of a network they wish to peer the TPU node to. It must be a
-     * preexisting Compute Engine network inside of the project on which this
-     * API has been activated. If none is provided, &quot;default&quot; will be
-     * used.
-     */
-    network?: string;
-    /**
-     * Output only. The network endpoints where TPU workers can be accessed and
-     * sent work. It is recommended that Tensorflow clients of the node reach
-     * out to the 0th entry in this map first.
-     */
-    networkEndpoints?: Schema$NetworkEndpoint[];
-    /**
-     * Output only. DEPRECATED! Use network_endpoints instead. The network port
-     * for the TPU Node as visible to Compute Engine instances.
-     */
-    port?: string;
-    schedulingConfig?: Schema$SchedulingConfig;
-    /**
-     * Output only. The service account used to run the tensor flow services
-     * within the node. To share resources, including Google Cloud Storage data,
-     * with the Tensorflow job running in the Node, this account must have
-     * permissions to that data.
-     */
-    serviceAccount?: string;
-    /**
-     * Output only. The current state for the TPU Node.
-     */
-    state?: string;
-    /**
-     * The version of Tensorflow running in the Node. Required.
-     */
-    tensorflowVersion?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -292,10 +324,15 @@ export namespace tpu_v1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * {  `createTime`: The time the operation was created.  `endTime`: The time
+     * the operation finished running.  `target`: Server-defined resource path
+     * for the target of the operation.  `verb`: Name of the verb executed by
+     * the operation.  `statusDetail`: Human-readable status of the operation,
+     * if any.  `cancelRequested`: Identifies whether the user has requested
+     * cancellation of the operation. Operations that have successfully been
+     * cancelled have Operation.error value with a google.rpc.Status.code of 1,
+     * corresponding to `Code.CANCELLED`.  `apiVersion`: API version used to
+     * start the operation.  }
      */
     metadata?: any;
     /**
@@ -315,59 +352,6 @@ export namespace tpu_v1 {
      */
     response?: any;
   }
-  /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * [Output only] API version used to start the operation.
-     */
-    apiVersion?: string;
-    /**
-     * [Output only] Identifies whether the user has requested cancellation of
-     * the operation. Operations that have successfully been cancelled have
-     * Operation.error value with a google.rpc.Status.code of 1, corresponding
-     * to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean;
-    /**
-     * [Output only] The time the operation was created.
-     */
-    createTime?: string;
-    /**
-     * [Output only] The time the operation finished running.
-     */
-    endTime?: string;
-    /**
-     * [Output only] Human-readable status of the operation, if any.
-     */
-    statusDetail?: string;
-    /**
-     * [Output only] Server-defined resource path for the target of the
-     * operation.
-     */
-    target?: string;
-    /**
-     * [Output only] Name of the verb executed by the operation.
-     */
-    verb?: string;
-  }
-  /**
-   * Request for ReimageNode.
-   */
-  export interface Schema$ReimageNodeRequest {
-    /**
-     * The version for reimage to create.
-     */
-    tensorflowVersion?: string;
-  }
-  export interface Schema$SchedulingConfig {
-    preemptible?: boolean;
-  }
-  /**
-   * Request for StartNode.
-   */
-  export interface Schema$StartNodeRequest {}
   /**
    * The `Status` type defines a logical error model that is suitable for
    * different programming environments, including REST APIs and RPC APIs. It is
@@ -421,29 +405,12 @@ export namespace tpu_v1 {
      */
     message?: string;
   }
-  /**
-   * Request for StopNode.
-   */
-  export interface Schema$StopNodeRequest {}
-  /**
-   * A tensorflow version that a Node can be configured with.
-   */
-  export interface Schema$TensorFlowVersion {
-    /**
-     * The resource name.
-     */
-    name?: string;
-    /**
-     * the tensorflow version.
-     */
-    version?: string;
-  }
 
 
   export class Resource$Projects {
-    root: Tpu;
+    root: Redis;
     locations: Resource$Projects$Locations;
-    constructor(root: Tpu) {
+    constructor(root: Redis) {
       this.root = root;
       this.getRoot.bind(this);
       this.locations = new Resource$Projects$Locations(root);
@@ -456,20 +423,14 @@ export namespace tpu_v1 {
 
 
   export class Resource$Projects$Locations {
-    root: Tpu;
-    acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
-    nodes: Resource$Projects$Locations$Nodes;
+    root: Redis;
+    instances: Resource$Projects$Locations$Instances;
     operations: Resource$Projects$Locations$Operations;
-    tensorflowVersions: Resource$Projects$Locations$Tensorflowversions;
-    constructor(root: Tpu) {
+    constructor(root: Redis) {
       this.root = root;
       this.getRoot.bind(this);
-      this.acceleratorTypes =
-          new Resource$Projects$Locations$Acceleratortypes(root);
-      this.nodes = new Resource$Projects$Locations$Nodes(root);
+      this.instances = new Resource$Projects$Locations$Instances(root);
       this.operations = new Resource$Projects$Locations$Operations(root);
-      this.tensorflowVersions =
-          new Resource$Projects$Locations$Tensorflowversions(root);
     }
 
     getRoot() {
@@ -478,9 +439,9 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.get
+     * redis.projects.locations.get
      * @desc Gets information about a location.
-     * @alias tpu.projects.locations.get
+     * @alias redis.projects.locations.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -517,7 +478,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -539,9 +500,9 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.list
+     * redis.projects.locations.list
      * @desc Lists information about the supported locations for this service.
-     * @alias tpu.projects.locations.list
+     * @alias redis.projects.locations.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -587,7 +548,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -644,9 +605,9 @@ export namespace tpu_v1 {
     pageToken?: string;
   }
 
-  export class Resource$Projects$Locations$Acceleratortypes {
-    root: Tpu;
-    constructor(root: Tpu) {
+  export class Resource$Projects$Locations$Instances {
+    root: Redis;
+    constructor(root: Redis) {
       this.root = root;
       this.getRoot.bind(this);
     }
@@ -657,238 +618,52 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.acceleratorTypes.get
-     * @desc Gets AcceleratorType.
-     * @alias tpu.projects.locations.acceleratorTypes.get
+     * redis.projects.locations.instances.create
+     * @desc Creates a Redis instance based on the specified tier and memory
+     * size.  By default, the instance is accessible from the project's [default
+     * network](/compute/docs/networks-and-firewalls#networks).  The creation is
+     * executed asynchronously and callers may check the returned operation to
+     * track its progress. Once the operation is completed the Redis instance
+     * will be fully functional. Completed longrunning.Operation will contain
+     * the new instance object in the response field.  The returned operation is
+     * automatically deleted after a few hours, so there is no need to call
+     * DeleteOperation.
+     * @alias redis.projects.locations.instances.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Projects$Locations$Acceleratortypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AcceleratorType>;
-    get(params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
-        callback: BodyResponseCallback<Schema$AcceleratorType>): void;
-    get(params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
-        callback: BodyResponseCallback<Schema$AcceleratorType>): void;
-    get(callback: BodyResponseCallback<Schema$AcceleratorType>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Acceleratortypes$Get|
-        BodyResponseCallback<Schema$AcceleratorType>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AcceleratorType>,
-        callback?: BodyResponseCallback<Schema$AcceleratorType>):
-        void|AxiosPromise<Schema$AcceleratorType> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Acceleratortypes$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Acceleratortypes$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$AcceleratorType>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AcceleratorType>(parameters);
-      }
-    }
-
-
-    /**
-     * tpu.projects.locations.acceleratorTypes.list
-     * @desc Lists accelerator types supported by this API.
-     * @alias tpu.projects.locations.acceleratorTypes.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter List filter.
-     * @param {string=} params.orderBy Sort results.
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Projects$Locations$Acceleratortypes$List,
-        options?: MethodOptions):
-        AxiosPromise<Schema$ListAcceleratorTypesResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Acceleratortypes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
-        callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void;
-    list(
-        params: Params$Resource$Projects$Locations$Acceleratortypes$List,
-        callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void;
-    list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Acceleratortypes$List|
-        BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
-        callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void|AxiosPromise<Schema$ListAcceleratorTypesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Acceleratortypes$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Acceleratortypes$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/acceleratorTypes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListAcceleratorTypesResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListAcceleratorTypesResponse>(
-            parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The resource name.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * List filter.
-     */
-    filter?: string;
-    /**
-     * Sort results.
-     */
-    orderBy?: string;
-    /**
-     * The maximum number of items to return.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous List request, if any.
-     */
-    pageToken?: string;
-    /**
-     * The parent resource name.
-     */
-    parent?: string;
-  }
-
-
-  export class Resource$Projects$Locations$Nodes {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * tpu.projects.locations.nodes.create
-     * @desc Creates a node.
-     * @alias tpu.projects.locations.nodes.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.nodeId The unqualified resource name.
-     * @param {string} params.parent The parent resource name.
-     * @param {().Node} params.resource Request body data
+     * @param {string=} params.instanceId Required. The logical name of the Redis instance in the customer project with the following restrictions:  * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
+     * @param {string} params.parent Required. The resource name of the instance location using the form:     `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
+     * @param {().Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Nodes$Create,
+        params?: Params$Resource$Projects$Locations$Instances$Create,
         options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Locations$Nodes$Create,
+        params: Params$Resource$Projects$Locations$Instances$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        params: Params$Resource$Projects$Locations$Nodes$Create,
+        params: Params$Resource$Projects$Locations$Instances$Create,
         callback: BodyResponseCallback<Schema$Operation>): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Create|
+        paramsOrCallback?: Params$Resource$Projects$Locations$Instances$Create|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Create;
+          Params$Resource$Projects$Locations$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Create;
+        params = {} as Params$Resource$Projects$Locations$Instances$Create;
         options = {};
       }
 
@@ -897,11 +672,11 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{+parent}/nodes')
+              url: (rootUrl + '/v1/{+parent}/instances')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -920,42 +695,43 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.nodes.delete
-     * @desc Deletes a node.
-     * @alias tpu.projects.locations.nodes.delete
+     * redis.projects.locations.instances.delete
+     * @desc Deletes a specific Redis instance.  Instance stops serving and data
+     * is deleted.
+     * @alias redis.projects.locations.instances.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Nodes$Delete,
+        params?: Params$Resource$Projects$Locations$Instances$Delete,
         options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Projects$Locations$Nodes$Delete,
+        params: Params$Resource$Projects$Locations$Instances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        params: Params$Resource$Projects$Locations$Nodes$Delete,
+        params: Params$Resource$Projects$Locations$Instances$Delete,
         callback: BodyResponseCallback<Schema$Operation>): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Delete|
+        paramsOrCallback?: Params$Resource$Projects$Locations$Instances$Delete|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Delete;
+          Params$Resource$Projects$Locations$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Delete;
+        params = {} as Params$Resource$Projects$Locations$Instances$Delete;
         options = {};
       }
 
@@ -964,7 +740,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -986,37 +762,37 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.nodes.get
-     * @desc Gets the details of a node.
-     * @alias tpu.projects.locations.nodes.get
+     * redis.projects.locations.instances.get
+     * @desc Gets the details of a specific Redis instance.
+     * @alias redis.projects.locations.instances.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Nodes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Node>;
-    get(params: Params$Resource$Projects$Locations$Nodes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Node>,
-        callback: BodyResponseCallback<Schema$Node>): void;
-    get(params: Params$Resource$Projects$Locations$Nodes$Get,
-        callback: BodyResponseCallback<Schema$Node>): void;
-    get(callback: BodyResponseCallback<Schema$Node>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Get|
-        BodyResponseCallback<Schema$Node>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Node>,
-        callback?: BodyResponseCallback<Schema$Node>):
-        void|AxiosPromise<Schema$Node> {
+    get(params?: Params$Resource$Projects$Locations$Instances$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+    get(params: Params$Resource$Projects$Locations$Instances$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Instance>,
+        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(params: Params$Resource$Projects$Locations$Instances$Get,
+        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(callback: BodyResponseCallback<Schema$Instance>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Instances$Get|
+        BodyResponseCallback<Schema$Instance>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
+        callback?: BodyResponseCallback<Schema$Instance>):
+        void|AxiosPromise<Schema$Instance> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Get;
+          Params$Resource$Projects$Locations$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Get;
+        params = {} as Params$Resource$Projects$Locations$Instances$Get;
         options = {};
       }
 
@@ -1025,7 +801,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1039,52 +815,57 @@ export namespace tpu_v1 {
         context: this.getRoot()
       };
       if (callback) {
-        createAPIRequest<Schema$Node>(parameters, callback);
+        createAPIRequest<Schema$Instance>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$Node>(parameters);
+        return createAPIRequest<Schema$Instance>(parameters);
       }
     }
 
 
     /**
-     * tpu.projects.locations.nodes.list
-     * @desc Lists nodes.
-     * @alias tpu.projects.locations.nodes.list
+     * redis.projects.locations.instances.list
+     * @desc Lists all Redis instances owned by a project in either the
+     * specified location (region) or all locations.  The location should have
+     * the following format: * `projects/{project_id}/locations/{location_id}`
+     * If `location_id` is specified as `-` (wildcard), then all regions
+     * available to the project are queried, and the results are aggregated.
+     * @alias redis.projects.locations.instances.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
+     * @param {integer=} params.pageSize The maximum number of items to return.  If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
+     * @param {string} params.parent Required. The resource name of the instance location using the form:     `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Nodes$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListNodesResponse>;
+        params?: Params$Resource$Projects$Locations$Instances$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListInstancesResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Nodes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
-        callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+        params: Params$Resource$Projects$Locations$Instances$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListInstancesResponse>,
+        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
     list(
-        params: Params$Resource$Projects$Locations$Nodes$List,
-        callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListNodesResponse>): void;
+        params: Params$Resource$Projects$Locations$Instances$List,
+        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$List|
-        BodyResponseCallback<Schema$ListNodesResponse>,
+        paramsOrCallback?: Params$Resource$Projects$Locations$Instances$List|
+        BodyResponseCallback<Schema$ListInstancesResponse>,
         optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListNodesResponse>,
-        callback?: BodyResponseCallback<Schema$ListNodesResponse>):
-        void|AxiosPromise<Schema$ListNodesResponse> {
+        BodyResponseCallback<Schema$ListInstancesResponse>,
+        callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
+        void|AxiosPromise<Schema$ListInstancesResponse> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$List;
+          Params$Resource$Projects$Locations$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$List;
+        params = {} as Params$Resource$Projects$Locations$Instances$List;
         options = {};
       }
 
@@ -1093,11 +874,11 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{+parent}/nodes')
+              url: (rootUrl + '/v1/{+parent}/instances')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -1108,51 +889,55 @@ export namespace tpu_v1 {
         context: this.getRoot()
       };
       if (callback) {
-        createAPIRequest<Schema$ListNodesResponse>(parameters, callback);
+        createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$ListNodesResponse>(parameters);
+        return createAPIRequest<Schema$ListInstancesResponse>(parameters);
       }
     }
 
 
     /**
-     * tpu.projects.locations.nodes.reimage
-     * @desc Reimages a node's OS.
-     * @alias tpu.projects.locations.nodes.reimage
+     * redis.projects.locations.instances.patch
+     * @desc Updates the metadata and configuration of a specific Redis
+     * instance.  Completed longrunning.Operation will contain the new instance
+     * object in the response field. The returned operation is automatically
+     * deleted after a few hours, so there is no need to call DeleteOperation.
+     * @alias redis.projects.locations.instances.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {().ReimageNodeRequest} params.resource Request body data
+     * @param {string} params.name Required. Unique name of the resource in this scope including project and location using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`  Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to [location_id] and [alternative_location_id] fields for more details.
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance:   *   `displayName`  *   `labels`  *   `memorySizeGb`  *   `redisConfig`
+     * @param {().Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reimage(
-        params?: Params$Resource$Projects$Locations$Nodes$Reimage,
+    patch(
+        params?: Params$Resource$Projects$Locations$Instances$Patch,
         options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    reimage(
-        params: Params$Resource$Projects$Locations$Nodes$Reimage,
+    patch(
+        params: Params$Resource$Projects$Locations$Instances$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    reimage(
-        params: Params$Resource$Projects$Locations$Nodes$Reimage,
+    patch(
+        params: Params$Resource$Projects$Locations$Instances$Patch,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    reimage(callback: BodyResponseCallback<Schema$Operation>): void;
-    reimage(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Reimage|
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Instances$Patch|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Reimage;
+          Params$Resource$Projects$Locations$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Reimage;
+        params = {} as Params$Resource$Projects$Locations$Instances$Patch;
         options = {};
       }
 
@@ -1161,148 +946,12 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{+name}:reimage')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * tpu.projects.locations.nodes.start
-     * @desc Starts a node.
-     * @alias tpu.projects.locations.nodes.start
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {().StartNodeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    start(
-        params?: Params$Resource$Projects$Locations$Nodes$Start,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    start(
-        params: Params$Resource$Projects$Locations$Nodes$Start,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    start(
-        params: Params$Resource$Projects$Locations$Nodes$Start,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    start(callback: BodyResponseCallback<Schema$Operation>): void;
-    start(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Start|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Start;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Start;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * tpu.projects.locations.nodes.stop
-     * @desc Stops a node.
-     * @alias tpu.projects.locations.nodes.stop
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {().StopNodeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    stop(
-        params?: Params$Resource$Projects$Locations$Nodes$Stop,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    stop(
-        params: Params$Resource$Projects$Locations$Nodes$Stop,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    stop(
-        params: Params$Resource$Projects$Locations$Nodes$Stop,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    stop(callback: BodyResponseCallback<Schema$Operation>): void;
-    stop(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Nodes$Stop|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Nodes$Stop;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Nodes$Stop;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
             },
             options),
         params,
@@ -1318,56 +967,70 @@ export namespace tpu_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Nodes$Create {
+  export interface Params$Resource$Projects$Locations$Instances$Create {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The unqualified resource name.
+     * Required. The logical name of the Redis instance in the customer project
+     * with the following restrictions:  * Must contain only lowercase letters,
+     * numbers, and hyphens. * Must start with a letter. * Must be between 1-40
+     * characters. * Must end with a number or a letter. * Must be unique within
+     * the customer project / location
      */
-    nodeId?: string;
+    instanceId?: string;
     /**
-     * The parent resource name.
+     * Required. The resource name of the instance location using the form:
+     * `projects/{project_id}/locations/{location_id}` where `location_id`
+     * refers to a GCP region
      */
     parent?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$Node;
+    requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Delete {
+  export interface Params$Resource$Projects$Locations$Instances$Delete {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The resource name.
+     * Required. Redis instance resource name using the form:
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * where `location_id` refers to a GCP region
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Get {
+  export interface Params$Resource$Projects$Locations$Instances$Get {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The resource name.
+     * Required. Redis instance resource name using the form:
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * where `location_id` refers to a GCP region
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$List {
+  export interface Params$Resource$Projects$Locations$Instances$List {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The maximum number of items to return.
+     * The maximum number of items to return.  If not specified, a default value
+     * of 1000 will be used by the service. Regardless of the page_size value,
+     * the response may include a partial list and a caller should only rely on
+     * response's next_page_token to determine if there are more instances left
+     * to be queried.
      */
     pageSize?: number;
     /**
@@ -1375,63 +1038,47 @@ export namespace tpu_v1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name.
+     * Required. The resource name of the instance location using the form:
+     * `projects/{project_id}/locations/{location_id}` where `location_id`
+     * refers to a GCP region
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Reimage {
+  export interface Params$Resource$Projects$Locations$Instances$Patch {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The resource name.
+     * Required. Unique name of the resource in this scope including project and
+     * location using the form:
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * Note: Redis instances are managed and addressed at regional level so
+     * location_id here refers to a GCP region; however, users may choose which
+     * specific zone (or collection of zones for cross-zone instances) an
+     * instance should be provisioned in. Refer to [location_id] and
+     * [alternative_location_id] fields for more details.
      */
     name?: string;
+    /**
+     * Required. Mask of fields to update. At least one path must be supplied in
+     * this field. The elements of the repeated paths field may only include
+     * these fields from Instance:   *   `displayName`  *   `labels`  *
+     * `memorySizeGb`  *   `redisConfig`
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$ReimageNodeRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Nodes$Start {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The resource name.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$StartNodeRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Nodes$Stop {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The resource name.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$StopNodeRequest;
+    requestBody?: Schema$Instance;
   }
 
 
   export class Resource$Projects$Locations$Operations {
-    root: Tpu;
-    constructor(root: Tpu) {
+    root: Redis;
+    constructor(root: Redis) {
       this.root = root;
       this.getRoot.bind(this);
     }
@@ -1442,7 +1089,7 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.operations.cancel
+     * redis.projects.locations.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The
      * server makes a best effort to cancel the operation, but success is not
      * guaranteed.  If the server doesn't support this method, it returns
@@ -1452,7 +1099,7 @@ export namespace tpu_v1 {
      * the operation is not deleted; instead, it becomes an operation with an
      * Operation.error value with a google.rpc.Status.code of 1, corresponding
      * to `Code.CANCELLED`.
-     * @alias tpu.projects.locations.operations.cancel
+     * @alias redis.projects.locations.operations.cancel
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -1493,7 +1140,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1516,12 +1163,12 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.operations.delete
+     * redis.projects.locations.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the
      * client is no longer interested in the operation result. It does not
      * cancel the operation. If the server doesn't support this method, it
      * returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @alias tpu.projects.locations.operations.delete
+     * @alias redis.projects.locations.operations.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -1562,7 +1209,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1584,11 +1231,11 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.operations.get
+     * redis.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
      * this method to poll the operation result at intervals as recommended by
      * the API service.
-     * @alias tpu.projects.locations.operations.get
+     * @alias redis.projects.locations.operations.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -1626,7 +1273,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1648,7 +1295,7 @@ export namespace tpu_v1 {
 
 
     /**
-     * tpu.projects.locations.operations.list
+     * redis.projects.locations.operations.list
      * @desc Lists operations that match the specified filter in the request. If
      * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
      * the `name` binding allows API services to override the binding to use
@@ -1658,7 +1305,7 @@ export namespace tpu_v1 {
      * backwards compatibility, the default name includes the operations
      * collection id, however overriding users must ensure the name binding is
      * the parent resource, without the operations collection id.
-     * @alias tpu.projects.locations.operations.list
+     * @alias redis.projects.locations.operations.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -1704,7 +1351,7 @@ export namespace tpu_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -1781,201 +1428,5 @@ export namespace tpu_v1 {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-
-
-  export class Resource$Projects$Locations$Tensorflowversions {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * tpu.projects.locations.tensorflowVersions.get
-     * @desc Gets TensorFlow Version.
-     * @alias tpu.projects.locations.tensorflowVersions.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Projects$Locations$Tensorflowversions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TensorFlowVersion>;
-    get(params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
-        callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
-    get(params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
-        callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
-    get(callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Locations$Tensorflowversions$Get|
-        BodyResponseCallback<Schema$TensorFlowVersion>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TensorFlowVersion>,
-        callback?: BodyResponseCallback<Schema$TensorFlowVersion>):
-        void|AxiosPromise<Schema$TensorFlowVersion> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Tensorflowversions$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Tensorflowversions$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$TensorFlowVersion>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TensorFlowVersion>(parameters);
-      }
-    }
-
-
-    /**
-     * tpu.projects.locations.tensorflowVersions.list
-     * @desc List TensorFlow versions supported by this API.
-     * @alias tpu.projects.locations.tensorflowVersions.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter List filter.
-     * @param {string=} params.orderBy Sort results.
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Projects$Locations$Tensorflowversions$List,
-        options?: MethodOptions):
-        AxiosPromise<Schema$ListTensorFlowVersionsResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Tensorflowversions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
-        callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void;
-    list(
-        params: Params$Resource$Projects$Locations$Tensorflowversions$List,
-        callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void;
-    list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Tensorflowversions$List|
-        BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void|AxiosPromise<Schema$ListTensorFlowVersionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Tensorflowversions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Tensorflowversions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/tensorflowVersions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListTensorFlowVersionsResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListTensorFlowVersionsResponse>(
-            parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The resource name.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * List filter.
-     */
-    filter?: string;
-    /**
-     * Sort results.
-     */
-    orderBy?: string;
-    /**
-     * The maximum number of items to return.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous List request, if any.
-     */
-    pageToken?: string;
-    /**
-     * The parent resource name.
-     */
-    parent?: string;
   }
 }

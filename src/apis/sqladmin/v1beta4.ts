@@ -1495,14 +1495,10 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the Backup Run to delete. To find a
-     *     Backup Run ID, use the list method.
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.id The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1570,12 +1566,9 @@ export namespace sqladmin_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of this Backup Run.
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1639,13 +1632,10 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().BackupRun} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1713,16 +1703,11 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {integer=} params.maxResults Maximum number of backup runs per
-     *     response.
-     * @param {string=} params.pageToken A previously-returned page token
-     *     representing part of the larger set of results to view.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {integer=} params.maxResults Maximum number of backup runs per response.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1886,14 +1871,10 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database Name of the database to be deleted in the
-     *     instance.
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.database Name of the database to be deleted in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1961,12 +1942,9 @@ export namespace sqladmin_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database Name of the database in the instance.
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2029,13 +2007,10 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().Database} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2101,12 +2076,9 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2174,15 +2146,11 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database Name of the database to be updated in the
-     *     instance.
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.database Name of the database to be updated in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().Database} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2249,15 +2217,11 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.database Name of the database to be updated in the
-     *     instance.
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.database Name of the database to be updated in the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().Database} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2458,10 +2422,8 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.databaseVersion Database version for flag
-     *     retrieval. Flags are specific to the database version.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.databaseVersion Database version for flag retrieval. Flags are specific to the database version.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2555,12 +2517,9 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2628,13 +2587,10 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance The ID of the Cloud SQL instance to be
-     *     cloned (source). This does not include the project ID.
-     * @param {string} params.project Project ID of the source as well as the
-     *     clone Cloud SQL instance.
+     * @param {string} params.instance The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
+     * @param {string} params.project Project ID of the source as well as the clone Cloud SQL instance.
      * @param {().InstancesCloneRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2700,12 +2656,9 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance to be deleted.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2772,12 +2725,9 @@ export namespace sqladmin_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance name.
-     * @param {string} params.project ID of the project that contains the
-     *     instance.
-     * @param {().InstancesDemoteMasterRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.project ID of the project that contains the instance.
+     * @param {().InstancesDemoteMasterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2846,13 +2796,10 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance to be exported.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance to be exported.
      * @param {().InstancesExportRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2918,13 +2865,10 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project ID of the project that contains the read
-     *     replica.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project ID of the project that contains the read replica.
      * @param {().InstancesFailoverRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2993,12 +2937,9 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3061,13 +3002,10 @@ export namespace sqladmin_v1beta4 {
  * @memberOf! ()
  *
  * @param {object} params Parameters for request
- * @param {string} params.instance Cloud SQL instance ID. This does not include
- *     the project ID.
- * @param {string} params.project Project ID of the project that contains the
- *     instance.
+ * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+ * @param {string} params.project Project ID of the project that contains the instance.
  * @param {().InstancesImportRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`,
- *     `method`, and `encoding`.
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
@@ -3168,16 +3106,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of
-     *     the request, such as by name or label.
-     * @param {integer=} params.maxResults The maximum number of results to
-     *     return per response.
-     * @param {string=} params.pageToken A previously-returned page token
-     *     representing part of the larger set of results to view.
-     * @param {string} params.project Project ID of the project for which to
-     *     list Cloud SQL instances.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.filter An expression for filtering the results of the request, such as by name or label.
+     * @param {integer=} params.maxResults The maximum number of results to return per response.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3246,12 +3179,9 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3330,13 +3260,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().DatabaseInstance} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3403,10 +3330,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
-     * @param {string} params.project ID of the project that contains the read
-     *     replica.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.project ID of the project that contains the read replica.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3475,12 +3400,9 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3548,12 +3470,9 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance to be restarted.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance to be restarted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3621,14 +3540,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {().InstancesRestoreBackupRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {().InstancesRestoreBackupRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3697,14 +3612,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {().InstancesRotateServerCaRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {().InstancesRotateServerCaRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3773,10 +3684,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
-     * @param {string} params.project ID of the project that contains the read
-     *     replica.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.project ID of the project that contains the read replica.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3845,10 +3754,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
-     * @param {string} params.project ID of the project that contains the read
-     *     replica.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.project ID of the project that contains the read replica.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3916,12 +3823,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the Cloud SQL project.
      * @param {().InstancesTruncateLogRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3991,13 +3896,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().DatabaseInstance} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4456,10 +4358,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.operation Instance operation ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4522,16 +4422,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {integer=} params.maxResults Maximum number of operations per
-     *     response.
-     * @param {string=} params.pageToken A previously-returned page token
-     *     representing part of the larger set of results to view.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {integer=} params.maxResults Maximum number of operations per response.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4652,13 +4547,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the Cloud SQL project.
-     * @param {().SslCertsCreateEphemeralRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().SslCertsCreateEphemeralRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4726,13 +4618,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4800,13 +4689,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4870,13 +4756,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().SslCertsInsertRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4943,12 +4826,9 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5123,10 +5003,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.project Project ID of the project for which to
-     *     list tiers.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.project Project ID of the project for which to list tiers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5216,13 +5094,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.host Host of the user in the instance.
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.name Name of the user in the instance.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5288,13 +5163,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5360,12 +5232,9 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5432,14 +5301,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.host Host of the user in the instance.
-     * @param {string} params.instance Database instance ID. This does not
-     *     include the project ID.
+     * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.name Name of the user in the instance.
-     * @param {string} params.project Project ID of the project that contains
-     *     the instance.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
