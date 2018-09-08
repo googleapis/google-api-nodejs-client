@@ -110,9 +110,9 @@ export namespace pubsub_v1 {
   }
   /**
    * Request for the `CreateSnapshot` method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
-   * API might be changed in backward-incompatible ways and is not recommended
-   * for production use. It is not subject to any SLA or deprecation policy.
+   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$CreateSnapshotRequest {
     /**
@@ -171,9 +171,9 @@ export namespace pubsub_v1 {
   }
   /**
    * Response for the `ListSnapshots` method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
-   * API might be changed in backward-incompatible ways and is not recommended
-   * for production use. It is not subject to any SLA or deprecation policy.
+   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$ListSnapshotsResponse {
     /**
@@ -203,9 +203,9 @@ export namespace pubsub_v1 {
   }
   /**
    * Response for the `ListTopicSnapshots` method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
-   * API might be changed in backward-incompatible ways and is not recommended
-   * for production use. It is not subject to any SLA or deprecation policy.
+   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$ListTopicSnapshotsResponse {
     /**
@@ -443,10 +443,10 @@ export namespace pubsub_v1 {
     message?: Schema$PubsubMessage;
   }
   /**
-   * Request for the `Seek` method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
-   * API might be changed in backward-incompatible ways and is not recommended
-   * for production use. It is not subject to any SLA or deprecation policy.
+   * Request for the `Seek` method. &lt;br&gt;&lt;br&gt;
+   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$SeekRequest {
     /**
@@ -469,6 +469,9 @@ export namespace pubsub_v1 {
      */
     time?: string;
   }
+  /**
+   * Response for the `Seek` method (this response is empty).
+   */
   export interface Schema$SeekResponse {}
   /**
    * Request message for `SetIamPolicy` method.
@@ -483,8 +486,12 @@ export namespace pubsub_v1 {
     policy?: Schema$Policy;
   }
   /**
-   * A snapshot resource.&lt;br&gt;&lt;br&gt; &lt;b&gt;ALPHA:&lt;/b&gt; This
-   * feature is part of an alpha release. This API might be changed in
+   * A snapshot resource. Snapshots are used in &lt;a
+   * href=&quot;/pubsub/docs/replay-overview&quot;&gt;Seek&lt;/a&gt; operations,
+   * which allow you to manage message acknowledgments in bulk. That is, you can
+   * set the acknowledgment state of messages in an existing subscription to the
+   * state captured by a snapshot.&lt;br&gt;&lt;br&gt; &lt;b&gt;BETA:&lt;/b&gt;
+   * This feature is part of a beta release. This API might be changed in
    * backward-incompatible ways and is not recommended for production use. It is
    * not subject to any SLA or deprecation policy.
    */
@@ -549,8 +556,8 @@ export namespace pubsub_v1 {
      * `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a
      * `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or
-     * less than 10 minutes.&lt;br&gt;&lt;br&gt; &lt;b&gt;ALPHA:&lt;/b&gt; This
-     * feature is part of an alpha release. This API might be changed in
+     * less than 10 minutes.&lt;br&gt;&lt;br&gt; &lt;b&gt;BETA:&lt;/b&gt; This
+     * feature is part of a beta release. This API might be changed in
      * backward-incompatible ways and is not recommended for production use. It
      * is not subject to any SLA or deprecation policy.
      */
@@ -575,8 +582,10 @@ export namespace pubsub_v1 {
      * Indicates whether to retain acknowledged messages. If true, then messages
      * are not expunged from the subscription&#39;s backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window.&lt;br&gt;&lt;br&gt; &lt;b&gt;ALPHA:&lt;/b&gt; This feature is
-     * part of an alpha release. This API might be changed in
+     * window. This must be true if you would like to &lt;a
+     * href=&quot;/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt;Seek to a
+     * timestamp&lt;/a&gt;. &lt;br&gt;&lt;br&gt; &lt;b&gt;BETA:&lt;/b&gt; This
+     * feature is part of a beta release. This API might be changed in
      * backward-incompatible ways and is not recommended for production use. It
      * is not subject to any SLA or deprecation policy.
      */
@@ -631,9 +640,9 @@ export namespace pubsub_v1 {
   }
   /**
    * Request for the UpdateSnapshot method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;ALPHA:&lt;/b&gt; This feature is part of an alpha release. This
-   * API might be changed in backward-incompatible ways and is not recommended
-   * for production use. It is not subject to any SLA or deprecation policy.
+   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$UpdateSnapshotRequest {
     /**
@@ -712,17 +721,21 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.create
-     * @desc Creates a snapshot from the requested subscription.<br><br>
-     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
-     * changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy. If
-     * the snapshot already exists, returns `ALREADY_EXISTS`. If the requested
-     * subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the
-     * subscription is too old -- and the resulting snapshot would expire in
-     * less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the
-     * `Snapshot.expire_time` field. If the name is not provided in the request,
-     * the server will assign a random name for this snapshot on the same
-     * project as the subscription, conforming to the [resource name
+     * @desc Creates a snapshot from the requested subscription. Snapshots are
+     * used in <a href="/pubsub/docs/replay-overview">Seek</a> operations, which
+     * allow you to manage message acknowledgments in bulk. That is, you can set
+     * the acknowledgment state of messages in an existing subscription to the
+     * state captured by a snapshot. <br><br> <b>BETA:</b> This feature is part
+     * of a beta release. This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.<br><br> If the snapshot already exists,
+     * returns `ALREADY_EXISTS`. If the requested subscription doesn't exist,
+     * returns `NOT_FOUND`. If the backlog in the subscription is too old -- and
+     * the resulting snapshot would expire in less than 1 hour -- then
+     * `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time`
+     * field. If the name is not provided in the request, the server will assign
+     * a random name for this snapshot on the same project as the subscription,
+     * conforming to the [resource name
      * format](https://cloud.google.com/pubsub/docs/overview#names). The
      * generated name is populated in the returned Snapshot object. Note that
      * for REST API requests, you must specify a name in the request.
@@ -734,7 +747,8 @@ export namespace pubsub_v1 {
      *     snapshot. If the name is not provided in the request, the server will
      *     assign a random name for this snapshot on the same project as the
      *     subscription. Note that for REST API requests, you must specify a
-     *     name. Format is `projects/{project}/snapshots/{snap}`.
+     *     name.  See the <a href="/pubsub/docs/admin#resource_names">resource
+     *     name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      * @param {().CreateSnapshotRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as
      *     `url`, `method`, and `encoding`.
@@ -796,14 +810,18 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.delete
-     * @desc Removes an existing snapshot. <br><br> <b>ALPHA:</b> This feature
-     * is part of an alpha release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy. When the snapshot is
-     * deleted, all messages retained in the snapshot are immediately dropped.
-     * After a snapshot is deleted, a new one may be created with the same name,
-     * but the new one has no association with the old snapshot or its
-     * subscription, unless the same subscription is specified.
+     * @desc Removes an existing snapshot. Snapshots are used in <a
+     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
+     * to manage message acknowledgments in bulk. That is, you can set the
+     * acknowledgment state of messages in an existing subscription to the state
+     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
+     * beta release. This API might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy. When the snapshot is deleted, all messages retained
+     * in the snapshot are immediately dropped. After a snapshot is deleted, a
+     * new one may be created with the same name, but the new one has no
+     * association with the old snapshot or its subscription, unless the same
+     * subscription is specified.
      * @alias pubsub.projects.snapshots.delete
      * @memberOf! ()
      *
@@ -870,10 +888,14 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.get
-     * @desc Gets the configuration details of a snapshot.<br><br> <b>ALPHA:</b>
-     * This feature is part of an alpha release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * @desc Gets the configuration details of a snapshot. Snapshots are used in
+     * <a href="/pubsub/docs/replay-overview">Seek</a> operations, which allow
+     * you to manage message acknowledgments in bulk. That is, you can set the
+     * acknowledgment state of messages in an existing subscription to the state
+     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
+     * beta release. This API might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
      * @alias pubsub.projects.snapshots.get
      * @memberOf! ()
      *
@@ -968,8 +990,8 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.snapshots.getIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   pubsub.projects.snapshots.getIamPolicy(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1059,10 +1081,14 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.list
-     * @desc Lists the existing snapshots.<br><br> <b>ALPHA:</b> This feature is
-     * part of an alpha release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * @desc Lists the existing snapshots. Snapshots are used in <a
+     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
+     * to manage message acknowledgments in bulk. That is, you can set the
+     * acknowledgment state of messages in an existing subscription to the state
+     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
+     * beta release. This API might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
      * @alias pubsub.projects.snapshots.list
      * @memberOf! ()
      *
@@ -1137,11 +1163,15 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.snapshots.patch
-     * @desc Updates an existing snapshot.<br><br> <b>ALPHA:</b> This feature is
-     * part of an alpha release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy. Note that certain
-     * properties of a snapshot are not modifiable.
+     * @desc Updates an existing snapshot. Snapshots are used in <a
+     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
+     * to manage message acknowledgments in bulk. That is, you can set the
+     * acknowledgment state of messages in an existing subscription to the state
+     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
+     * beta release. This API might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy. Note that certain properties of a snapshot are not
+     * modifiable.
      * @alias pubsub.projects.snapshots.patch
      * @memberOf! ()
      *
@@ -1244,8 +1274,8 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.snapshots.setIamPolicy(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   pubsub.projects.snapshots.setIamPolicy(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -1485,8 +1515,9 @@ export namespace pubsub_v1 {
      * Optional user-provided name for this snapshot. If the name is not
      * provided in the request, the server will assign a random name for this
      * snapshot on the same project as the subscription. Note that for REST API
-     * requests, you must specify a name. Format is
-     * `projects/{project}/snapshots/{snap}`.
+     * requests, you must specify a name.  See the <a
+     * href="/pubsub/docs/admin#resource_names">resource name rules</a>. Format
+     * is `projects/{project}/snapshots/{snap}`.
      */
     name?: string;
 
@@ -2454,8 +2485,8 @@ export namespace pubsub_v1 {
      *     auth: authClient,
      *   };
      *
-     *   pubsub.projects.subscriptions.modifyAckDeadline(request,
-     * function(err) { if (err) { console.error(err); return;
+     *   pubsub.projects.subscriptions.modifyAckDeadline(request, function(err)
+     * { if (err) { console.error(err); return;
      *     }
      *   });
      * });
@@ -2880,10 +2911,15 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.subscriptions.seek
      * @desc Seeks an existing subscription to a point in time or to a given
-     * snapshot, whichever is provided in the request.<br><br> <b>ALPHA:</b>
-     * This feature is part of an alpha release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * snapshot, whichever is provided in the request. Snapshots are used in <a
+     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
+     * to manage message acknowledgments in bulk. That is, you can set the
+     * acknowledgment state of messages in an existing subscription to the state
+     * captured by a snapshot. Note that both the subscription and the snapshot
+     * must be on the same topic.<br><br> <b>BETA:</b> This feature is part of a
+     * beta release. This API might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
      * @alias pubsub.projects.subscriptions.seek
      * @memberOf! ()
      *
@@ -4746,10 +4782,14 @@ export namespace pubsub_v1 {
 
     /**
      * pubsub.projects.topics.snapshots.list
-     * @desc Lists the names of the snapshots on this topic.<br><br>
-     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
-     * changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
+     * @desc Lists the names of the snapshots on this topic. Snapshots are used
+     * in <a href="/pubsub/docs/replay-overview">Seek</a> operations, which
+     * allow you to manage message acknowledgments in bulk. That is, you can set
+     * the acknowledgment state of messages in an existing subscription to the
+     * state captured by a snapshot.<br><br> <b>BETA:</b> This feature is part
+     * of a beta release. This API might be changed in backward-incompatible
+     * ways and is not recommended for production use. It is not subject to any
+     * SLA or deprecation policy.
      * @alias pubsub.projects.topics.snapshots.list
      * @memberOf! ()
      *

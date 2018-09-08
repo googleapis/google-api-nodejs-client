@@ -830,6 +830,11 @@ export namespace bigquery_v2 {
      */
     jobTimeoutMs?: string;
     /**
+     * [Output-only] The type of the job. Can be QUERY, LOAD, EXTRACT, COPY or
+     * UNKNOWN.
+     */
+    jobType?: string;
+    /**
      * The labels associated with this job. You can use these to organize and
      * group your jobs. Label keys and values can be no longer than 63
      * characters, can only contain lowercase letters, numeric characters,
@@ -1097,7 +1102,8 @@ export namespace bigquery_v2 {
     createDisposition?: string;
     /**
      * [Optional] Specifies the default dataset to use for unqualified table
-     * names in the query.
+     * names in the query. Note that this does not alter behavior of unqualified
+     * dataset names.
      */
     defaultDataset?: Schema$DatasetReference;
     /**
@@ -1341,20 +1347,19 @@ export namespace bigquery_v2 {
      */
     cacheHit?: boolean;
     /**
-     * [Output-only, Beta] The DDL operation performed, possibly dependent on
-     * the pre-existence of the DDL target. Possible values (new values might be
-     * added in the future): &quot;CREATE&quot;: The query created the DDL
-     * target. &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE
-     * IF NOT EXISTS while the table already exists, or the query is DROP TABLE
-     * IF EXISTS while the table does not exist. &quot;REPLACE&quot;: The query
+     * The DDL operation performed, possibly dependent on the pre-existence of
+     * the DDL target. Possible values (new values might be added in the
+     * future): &quot;CREATE&quot;: The query created the DDL target.
+     * &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE IF NOT
+     * EXISTS while the table already exists, or the query is DROP TABLE IF
+     * EXISTS while the table does not exist. &quot;REPLACE&quot;: The query
      * replaced the DDL target. Example case: the query is CREATE OR REPLACE
      * TABLE, and the table already exists. &quot;DROP&quot;: The query deleted
      * the DDL target.
      */
     ddlOperationPerformed?: string;
     /**
-     * [Output-only, Beta] The DDL target table. Present only for CREATE/DROP
-     * TABLE/VIEW queries.
+     * The DDL target table. Present only for CREATE/DROP TABLE/VIEW queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
@@ -1397,9 +1402,9 @@ export namespace bigquery_v2 {
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only, Beta] The type of query statement, if valid. Possible
-     * values (new values might be added in the future): &quot;SELECT&quot;:
-     * SELECT query. &quot;INSERT&quot;: INSERT query; see
+     * The type of query statement, if valid. Possible values (new values might
+     * be added in the future): &quot;SELECT&quot;: SELECT query.
+     * &quot;INSERT&quot;: INSERT query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
      * &quot;UPDATE&quot;: UPDATE query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
@@ -1436,8 +1441,8 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string;
     /**
-     * [Output-only, Beta] Standard SQL only: list of undeclared query
-     * parameters detected during a dry run validation.
+     * Standard SQL only: list of undeclared query parameters detected during a
+     * dry run validation.
      */
     undeclaredQueryParameters?: Schema$QueryParameter[];
   }

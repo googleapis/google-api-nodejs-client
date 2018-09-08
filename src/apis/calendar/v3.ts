@@ -532,6 +532,12 @@ export namespace calendar_v3 {
      */
     accessCode?: string;
     /**
+     * Features of the entry point, such as being toll or toll-free. One entry
+     * point can have multiple features. However, toll and toll-free cannot be
+     * both set on the same entry point.
+     */
+    entryPointFeatures?: string[];
+    /**
      * The type of the conference entry point. Possible values are:   -
      * &quot;video&quot; - joining a conference over HTTP. A conference can have
      * zero or one video entry point. - &quot;phone&quot; - joining a conference
@@ -576,12 +582,18 @@ export namespace calendar_v3 {
     password?: string;
     /**
      * The PIN to access the conference. The maximum length is 128 characters.
-     * When creating new conference data, populate only the subset
-     * of {meetingCode, accessCode, passcode, password, pin} fields that match
-     * the terminology that the conference provider uses. Only the populated
-     * fields should be displayed. Optional.
+     * When creating new conference data, populate only the subset of
+     * {meetingCode, accessCode, passcode, password, pin} fields that match the
+     * terminology that the conference provider uses. Only the populated fields
+     * should be displayed. Optional.
      */
     pin?: string;
+    /**
+     * The CLDR/ISO 3166 region code for the country associated with this phone
+     * access. Example: &quot;SE&quot; for Sweden. Calendar backend will
+     * populate this field only for EntryPointType.PHONE.
+     */
+    regionCode?: string;
     /**
      * The URI of the entry point. The maximum length is 1300 characters.
      * Format:   - for video, http: or https: schema is required. - for phone,

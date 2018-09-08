@@ -1336,8 +1336,8 @@ export namespace monitoring_v3 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;
-     * where {type} is the value of the type field in this object
-     * and {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the type field in this object and
+     * {project_id} is a project ID that provides API-specific context for
      * accessing the type. APIs that do not use project information can use the
      * resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
      */

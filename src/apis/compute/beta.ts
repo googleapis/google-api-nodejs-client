@@ -688,6 +688,10 @@ export namespace compute_beta {
    */
   export interface Schema$AttachedDiskInitializeParams {
     /**
+     * An optional description. Provide this property when creating the disk.
+     */
+    description?: string;
+    /**
      * Specifies the disk name. If not specified, the default is to use the name
      * of the instance. If the disk with the instance name exists already in the
      * given zone/region, a new name will be automatically generated.
@@ -697,10 +701,6 @@ export namespace compute_beta {
      * Specifies the size of the disk in base-2 GB.
      */
     diskSizeGb?: string;
-    /**
-     * [Deprecated] Storage type of the disk.
-     */
-    diskStorageType?: string;
     /**
      * Specifies the disk type to use to create the instance. If not specified,
      * the default is pd-standard, specified using the full URL. For example:
@@ -4107,8 +4107,8 @@ export namespace compute_beta {
      * The service account to be used as credentials for all operations
      * performed by the managed instance group on instances. The service
      * accounts needs all permissions required to create and delete instances.
-     * By default, the service
-     * account {projectNumber}@cloudservices.gserviceaccount.com is used.
+     * By default, the service account
+     * {projectNumber}@cloudservices.gserviceaccount.com is used.
      */
     serviceAccount?: string;
     /**
@@ -5366,10 +5366,10 @@ export namespace compute_beta {
      */
     address?: string;
     /**
-     * [Output Only] Availability zone for this location. Within a metropolitan
-     * area (metro), maintenance will not be simultaneously scheduled in more
-     * than one availability zone. Example: &quot;zone1&quot; or
-     * &quot;zone2&quot;.
+     * [Output Only] Availability zone for this InterconnectLocation. Within a
+     * metropolitan area (metro), maintenance will not be simultaneously
+     * scheduled in more than one availability zone. Example: &quot;zone1&quot;
+     * or &quot;zone2&quot;.
      */
     availabilityZone?: string;
     /**
@@ -5707,11 +5707,11 @@ export namespace compute_beta {
    * IAMContext.principal; - &quot;&quot; (empty string), resulting in one
    * aggretated counter with no field.  Examples: counter { metric:
    * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
-   * increment counter
-   * /iam/policy/backend_debug_access_count {iam_principal=[value of
-   * IAMContext.principal]}  At this time we do not support: * multiple field
-   * names (though this may be supported in the future) * decrementing the
-   * counter * incrementing it by anything other than 1
+   * increment counter /iam/policy/backend_debug_access_count
+   * {iam_principal=[value of IAMContext.principal]}  At this time we do not
+   * support: * multiple field names (though this may be supported in the
+   * future) * decrementing the counter * incrementing it by anything other than
+   * 1
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -7824,39 +7824,6 @@ export namespace compute_beta {
      */
     group?: string;
   }
-  export interface Schema$ResourcePoliciesList {
-    etag?: string;
-    /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
-     */
-    id?: string;
-    /**
-     * [Output Only] A list of ResourcePolicy resources.
-     */
-    items?: Schema$ResourcePolicy[];
-    /**
-     * [Output Only] Type of resource.Always compute#resourcePoliciesList for
-     * listsof resourcePolicies
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: any;
-  }
   export interface Schema$ResourcePoliciesScopedList {
     /**
      * A list of resourcePolicies contained in this scope.
@@ -8035,6 +8002,39 @@ export namespace compute_beta {
      * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
      */
     startTime?: string;
+  }
+  export interface Schema$ResourcePolicyList {
+    etag?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] A list of ResourcePolicy resources.
+     */
+    items?: Schema$ResourcePolicy[];
+    /**
+     * [Output Only] Type of resource.Always compute#resourcePoliciesList for
+     * listsof resourcePolicies
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   /**
    * Time window specified for weekly operations.
@@ -8647,7 +8647,7 @@ export namespace compute_beta {
   /**
    * A security policy is comprised of one or more rules. It can also be
    * associated with one or more &#39;targets&#39;. (== resource_for
-   * beta.securityPolicies ==)
+   * v1.securityPolicies ==) (== resource_for beta.securityPolicies ==)
    */
   export interface Schema$SecurityPolicy {
     /**
@@ -9099,6 +9099,10 @@ export namespace compute_beta {
      */
     description?: string;
     /**
+     * [Output Only] Expire time of the certificate. RFC3339
+     */
+    expireTime?: string;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      */
@@ -9108,6 +9112,10 @@ export namespace compute_beta {
      * certificates.
      */
     kind?: string;
+    /**
+     * Configuration and status of a managed SSL certificate.
+     */
+    managed?: Schema$SslCertificateManagedSslCertificate;
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -9127,6 +9135,22 @@ export namespace compute_beta {
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * Configuration and status of a self-managed SSL certificate.
+     */
+    selfManaged?: Schema$SslCertificateSelfManagedSslCertificate;
+    /**
+     * [Output Only] Domains associated with the certificate via Subject
+     * Alternative Name.
+     */
+    subjectAlternativeNames?: string[];
+    /**
+     * (Optional) Specifies the type of SSL certificate, either
+     * &quot;SELF_MANAGED&quot; or &quot;MANAGED&quot;. If not specified, the
+     * certificate is self-managed and the fields certificate and private_key
+     * are used.
+     */
+    type?: string;
   }
   /**
    * Contains a list of SslCertificate resources.
@@ -9160,6 +9184,41 @@ export namespace compute_beta {
      * [Output Only] Informational warning message.
      */
     warning?: any;
+  }
+  /**
+   * Configuration and status of a managed SSL certificate.
+   */
+  export interface Schema$SslCertificateManagedSslCertificate {
+    /**
+     * The domains for which a managed SSL certificate will be generated.
+     * Currently only single-domain certs are supported.
+     */
+    domains?: string[];
+    /**
+     * [Output only] Detailed statuses of the domains specified for managed
+     * certificate resource.
+     */
+    domainStatus?: any;
+    /**
+     * [Output only] Status of the managed certificate resource.
+     */
+    status?: string;
+  }
+  /**
+   * Configuration and status of a self-managed SSL certificate.
+   */
+  export interface Schema$SslCertificateSelfManagedSslCertificate {
+    /**
+     * A local certificate file. The certificate must be in PEM format. The
+     * certificate chain must be no greater than 5 certs long. The chain must
+     * include at least one intermediate cert.
+     */
+    certificate?: string;
+    /**
+     * A write-only private key in PEM format. Only insert requests will include
+     * this field.
+     */
+    privateKey?: string;
   }
   export interface Schema$SSLHealthCheck {
     /**
@@ -14058,8 +14117,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.autoscalers.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.autoscalers.testIamPermissions(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -36151,8 +36210,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.instanceGroups.removeInstances(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.instanceGroups.removeInstances(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -37113,7 +37172,8 @@ export namespace compute_beta {
 
     /**
      * compute.instances.aggregatedList
-     * @desc Retrieves aggregated list of instances.
+     * @desc Retrieves aggregated list of all of the instances in your project
+     * across all regions and zones.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -38077,7 +38137,8 @@ export namespace compute_beta {
 
     /**
      * compute.instances.getSerialPortOutput
-     * @desc Returns the specified instance's serial port output.
+     * @desc Returns the last 1 MB of serial port output from the specified
+     * instance.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -38112,8 +38173,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.instances.getSerialPortOutput(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.instances.getSerialPortOutput(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -39421,8 +39482,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.instances.setMachineResources(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.instances.setMachineResources(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -44049,8 +44110,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.interconnectAttachments.delete(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.interconnectAttachments.delete(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -44322,8 +44383,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.interconnectAttachments.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.interconnectAttachments.insert(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -55313,8 +55374,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.projects.setUsageExportBucket(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.projects.setUsageExportBucket(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -66077,23 +66138,22 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Resourcepolicies$List,
-        options?: MethodOptions): AxiosPromise<Schema$ResourcePoliciesList>;
+        options?: MethodOptions): AxiosPromise<Schema$ResourcePolicyList>;
     list(
         params: Params$Resource$Resourcepolicies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResourcePoliciesList>,
-        callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
+        options: MethodOptions|BodyResponseCallback<Schema$ResourcePolicyList>,
+        callback: BodyResponseCallback<Schema$ResourcePolicyList>): void;
     list(
         params: Params$Resource$Resourcepolicies$List,
-        callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
-    list(callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
+        callback: BodyResponseCallback<Schema$ResourcePolicyList>): void;
+    list(callback: BodyResponseCallback<Schema$ResourcePolicyList>): void;
     list(
         paramsOrCallback?: Params$Resource$Resourcepolicies$List|
-        BodyResponseCallback<Schema$ResourcePoliciesList>,
+        BodyResponseCallback<Schema$ResourcePolicyList>,
         optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResourcePoliciesList>,
-        callback?: BodyResponseCallback<Schema$ResourcePoliciesList>):
-        void|AxiosPromise<Schema$ResourcePoliciesList> {
+        BodyResponseCallback<Schema$ResourcePolicyList>,
+        callback?: BodyResponseCallback<Schema$ResourcePolicyList>):
+        void|AxiosPromise<Schema$ResourcePolicyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -66126,9 +66186,9 @@ export namespace compute_beta {
         context: this.getRoot()
       };
       if (callback) {
-        createAPIRequest<Schema$ResourcePoliciesList>(parameters, callback);
+        createAPIRequest<Schema$ResourcePolicyList>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$ResourcePoliciesList>(parameters);
+        return createAPIRequest<Schema$ResourcePolicyList>(parameters);
       }
     }
 
@@ -73916,8 +73976,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.subnetworks.expandIpCidrRange(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.subnetworks.expandIpCidrRange(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -75190,8 +75250,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.subnetworks.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.subnetworks.testIamPermissions(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -80630,8 +80690,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.targetPools.removeHealthCheck(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.targetPools.removeHealthCheck(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -81076,8 +81136,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.targetPools.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.targetPools.testIamPermissions(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -87905,8 +87965,8 @@ export namespace compute_beta {
      *     auth: authClient,
      *   };
      *
-     *   compute.vpnTunnels.testIamPermissions(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.vpnTunnels.testIamPermissions(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

@@ -1365,9 +1365,9 @@ export namespace dialogflow_v2 {
     inputAudio?: string;
     /**
      * Required. The input specification. It can be set to:  1.  an audio config
-     * which instructs the speech recognizer how to process the speech
-     * audio,  2.  a conversational query in the form of text, or  3.  an event
-     * that specifies which intent to trigger.
+     * which instructs the speech recognizer how to process the speech audio, 2.
+     * a conversational query in the form of text, or  3.  an event that
+     * specifies which intent to trigger.
      */
     queryInput?: Schema$GoogleCloudDialogflowV2QueryInput;
     /**
@@ -2199,8 +2199,8 @@ export namespace dialogflow_v2 {
   }
   /**
    * Represents the query input. It can contain either:  1.  An audio config
-   * which     instructs the speech recognizer how to process the speech
-   * audio.  2.  A conversational query in the form of text,.  3.  An event that
+   * which     instructs the speech recognizer how to process the speech audio.
+   * 2.  A conversational query in the form of text,.  3.  An event that
    * specifies which intent to trigger.
    */
   export interface Schema$GoogleCloudDialogflowV2QueryInput {

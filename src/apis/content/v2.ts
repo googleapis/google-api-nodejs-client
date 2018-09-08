@@ -59,6 +59,7 @@ export namespace content_v2 {
     liasettings: Resource$Liasettings;
     orderinvoices: Resource$Orderinvoices;
     orderpayments: Resource$Orderpayments;
+    orderreports: Resource$Orderreports;
     orders: Resource$Orders;
     pos: Resource$Pos;
     products: Resource$Products;
@@ -79,6 +80,7 @@ export namespace content_v2 {
       this.liasettings = new Resource$Liasettings(this);
       this.orderinvoices = new Resource$Orderinvoices(this);
       this.orderpayments = new Resource$Orderpayments(this);
+      this.orderreports = new Resource$Orderreports(this);
       this.orders = new Resource$Orders(this);
       this.pos = new Resource$Pos(this);
       this.products = new Resource$Products(this);
@@ -107,6 +109,10 @@ export namespace content_v2 {
      * link, or to cancel a link request, remove it from the list.
      */
     adwordsLinks?: Schema$AccountAdwordsLink[];
+    /**
+     * The business information of the account.
+     */
+    businessInformation?: Schema$AccountBusinessInformation;
     /**
      * The GMB account which is linked or in the process of being linked with
      * the Merchant Center account.
@@ -152,6 +158,31 @@ export namespace content_v2 {
      */
     youtubeChannelLinks?: Schema$AccountYouTubeChannelLink[];
   }
+  export interface Schema$AccountAddress {
+    /**
+     * CLDR country code (e.g. &quot;US&quot;).
+     */
+    country?: string;
+    /**
+     * City, town or commune. May also include dependent localities or
+     * sublocalities (e.g. neighborhoods or suburbs).
+     */
+    locality?: string;
+    /**
+     * Postal code or ZIP (e.g. &quot;94043&quot;).
+     */
+    postalCode?: string;
+    /**
+     * Top-level administrative subdivision of the country. For example, a state
+     * like California (&quot;CA&quot;) or a province like Quebec
+     * (&quot;QC&quot;).
+     */
+    region?: string;
+    /**
+     * Street-level part of the address.
+     */
+    streetAddress?: string;
+  }
   export interface Schema$AccountAdwordsLink {
     /**
      * Customer ID of the AdWords account.
@@ -170,6 +201,34 @@ export namespace content_v2 {
      * request if it was pending.
      */
     status?: string;
+  }
+  export interface Schema$AccountBusinessInformation {
+    /**
+     * The address of the business.
+     */
+    address?: Schema$AccountAddress;
+    /**
+     * The customer service information of the business.
+     */
+    customerService?: Schema$AccountCustomerService;
+    /**
+     * The phone number of the business.
+     */
+    phoneNumber?: string;
+  }
+  export interface Schema$AccountCustomerService {
+    /**
+     * Customer service email.
+     */
+    email?: string;
+    /**
+     * Customer service phone number.
+     */
+    phoneNumber?: string;
+    /**
+     * Customer service URL.
+     */
+    url?: string;
   }
   export interface Schema$AccountGoogleMyBusinessLink {
     /**
@@ -1370,13 +1429,13 @@ export namespace content_v2 {
     /**
      * A list of inclusive order price upper bounds. The last price&#39;s value
      * can be &quot;infinity&quot;. For example [{&quot;value&quot;:
-     * &quot;10&quot;, &quot;currency&quot;:
-     * &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;,
-     * &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;:
-     * &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents
-     * the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a
-     * service must have the same currency. Must be non-empty. Can only be set
-     * if all other fields are not set.
+     * &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;},
+     * {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;:
+     * &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;,
+     * &quot;currency&quot;: &quot;USD&quot;}] represents the headers
+     * &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service
+     * must have the same currency. Must be non-empty. Can only be set if all
+     * other fields are not set.
      */
     prices?: Schema$Price[];
     /**
@@ -2636,6 +2695,96 @@ export namespace content_v2 {
      */
     reasonText?: string;
   }
+  export interface Schema$OrderReportDisbursement {
+    /**
+     * The disbursement amount.
+     */
+    disbursementAmount?: Schema$Price;
+    /**
+     * The disbursement date, in ISO 8601 format.
+     */
+    disbursementCreationDate?: string;
+    /**
+     * The date the disbursement was initiated, in ISO 8601 format.
+     */
+    disbursementDate?: string;
+    /**
+     * The ID of the disbursement.
+     */
+    disbursementId?: string;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+  }
+  export interface Schema$OrderreportsListDisbursementsResponse {
+    /**
+     * The list of disbursements.
+     */
+    disbursements?: Schema$OrderReportDisbursement[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreportsListDisbursementsResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of disbursements.
+     */
+    nextPageToken?: string;
+  }
+  export interface Schema$OrderreportsListTransactionsResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreportsListTransactionsResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of transactions.
+     */
+    nextPageToken?: string;
+    /**
+     * The list of transactions.
+     */
+    transactions?: Schema$OrderReportTransaction[];
+  }
+  export interface Schema$OrderReportTransaction {
+    /**
+     * The disbursement amount.
+     */
+    disbursementAmount?: Schema$Price;
+    /**
+     * The date the disbursement was created, in ISO 8601 format.
+     */
+    disbursementCreationDate?: string;
+    /**
+     * The date the disbursement was initiated, in ISO 8601 format.
+     */
+    disbursementDate?: string;
+    /**
+     * The ID of the disbursement.
+     */
+    disbursementId?: string;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+    /**
+     * Merchant-provided id of the order.
+     */
+    merchantOrderId?: string;
+    /**
+     * The id of the order.
+     */
+    orderId?: string;
+    /**
+     * Total amount for the items.
+     */
+    productAmount?: Schema$Amount;
+    /**
+     * The date of the transaction, in ISO 8601 format.
+     */
+    transactionDate?: string;
+  }
   export interface Schema$OrderReturn {
     /**
      * The actor that created the refund.
@@ -2757,6 +2906,19 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#ordersCancelResponse&quot;.
+     */
+    kind?: string;
+  }
+  export interface Schema$OrdersCancelTestOrderByCustomerRequest {
+    /**
+     * The reason for the cancellation.
+     */
+    reason?: string;
+  }
+  export interface Schema$OrdersCancelTestOrderByCustomerResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
      */
     kind?: string;
   }
@@ -10247,6 +10409,269 @@ export namespace content_v2 {
   }
 
 
+  export class Resource$Orderreports {
+    root: Content;
+    constructor(root: Content) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * content.orderreports.listdisbursements
+     * @desc Retrieves a report for disbursements from your Merchant Center
+     * account.
+     * @alias content.orderreports.listdisbursements
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.disbursementEndDate The last date which
+     *     disbursements occurred. In ISO 8601 format. Default: current date.
+     * @param {string=} params.disbursementStartDate The first date which
+     *     disbursements occurred. In ISO 8601 format.
+     * @param {integer=} params.maxResults The maximum number of disbursements
+     *     to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string=} params.pageToken The token returned by the previous
+     *     request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listdisbursements(
+        params?: Params$Resource$Orderreports$Listdisbursements,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrderreportsListDisbursementsResponse>;
+    listdisbursements(
+        params: Params$Resource$Orderreports$Listdisbursements,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        params: Params$Resource$Orderreports$Listdisbursements,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        paramsOrCallback?: Params$Resource$Orderreports$Listdisbursements|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void|AxiosPromise<Schema$OrderreportsListDisbursementsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orderreports$Listdisbursements;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreports$Listdisbursements;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/orderreports/disbursements')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * content.orderreports.listtransactions
+     * @desc Retrieves a list of transactions for an disbursement from your
+     * Merchant Center account.
+     * @alias content.orderreports.listtransactions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.disbursementEndDate The last date in which
+     *     disbursements occurred. In ISO 8601 format. Default: current date.
+     * @param {string} params.disbursementId The Google-provided ID of the
+     *     disbursement (found in Wallet).
+     * @param {string=} params.disbursementStartDate The first date in which
+     *     disbursements occurred. In ISO 8601 format.
+     * @param {integer=} params.maxResults The maximum number of disbursements
+     *     to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string=} params.pageToken The token returned by the previous
+     *     request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listtransactions(
+        params?: Params$Resource$Orderreports$Listtransactions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrderreportsListTransactionsResponse>;
+    listtransactions(
+        params: Params$Resource$Orderreports$Listtransactions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        params: Params$Resource$Orderreports$Listtransactions,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        paramsOrCallback?: Params$Resource$Orderreports$Listtransactions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void|AxiosPromise<Schema$OrderreportsListTransactionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orderreports$Listtransactions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreports$Listtransactions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orderreports/disbursements/{disbursementId}/transactions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'disbursementId'],
+        pathParams: ['disbursementId', 'merchantId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Orderreports$Listdisbursements {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The last date which disbursements occurred. In ISO 8601 format. Default:
+     * current date.
+     */
+    disbursementEndDate?: string;
+    /**
+     * The first date which disbursements occurred. In ISO 8601 format.
+     */
+    disbursementStartDate?: string;
+    /**
+     * The maximum number of disbursements to return in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Orderreports$Listtransactions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The last date in which disbursements occurred. In ISO 8601 format.
+     * Default: current date.
+     */
+    disbursementEndDate?: string;
+    /**
+     * The Google-provided ID of the disbursement (found in Wallet).
+     */
+    disbursementId?: string;
+    /**
+     * The first date in which disbursements occurred. In ISO 8601 format.
+     */
+    disbursementStartDate?: string;
+    /**
+     * The maximum number of disbursements to return in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
+
   export class Resource$Orders {
     root: Content;
     constructor(root: Content) {
@@ -10560,6 +10985,90 @@ export namespace content_v2 {
             parameters, callback);
       } else {
         return createAPIRequest<Schema$OrdersCancelLineItemResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * content.orders.canceltestorderbycustomer
+     * @desc Sandbox only. Cancels a test order for customer-initiated
+     * cancellation.
+     * @alias content.orders.canceltestorderbycustomer
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the test order to cancel.
+     * @param {().OrdersCancelTestOrderByCustomerRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    canceltestorderbycustomer(
+        params?: Params$Resource$Orders$Canceltestorderbycustomer,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(callback: BodyResponseCallback<
+                              Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void;
+    canceltestorderbycustomer(
+        paramsOrCallback?: Params$Resource$Orders$Canceltestorderbycustomer|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback?: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void|AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orders$Canceltestorderbycustomer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Canceltestorderbycustomer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/testorders/{orderId}/cancelByCustomer')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
             parameters);
       }
     }
@@ -10953,7 +11462,9 @@ export namespace content_v2 {
 
     /**
      * content.orders.instorerefundlineitem
-     * @desc Notifies that item return and refund was handled directly in store.
+     * @desc Notifies that item return and refund was handled directly by
+     * merchant outside of Google payments processing (e.g. cash refund done in
+     * store).
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *
@@ -11950,6 +12461,27 @@ export namespace content_v2 {
      * Request body metadata
      */
     requestBody?: Schema$OrdersCancelLineItemRequest;
+  }
+  export interface Params$Resource$Orders$Canceltestorderbycustomer {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The ID of the test order to cancel.
+     */
+    orderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCancelTestOrderByCustomerRequest;
   }
   export interface Params$Resource$Orders$Createtestorder {
     /**

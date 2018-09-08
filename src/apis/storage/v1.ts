@@ -517,7 +517,7 @@ export namespace storage_v1 {
     kind?: string;
     /**
      * Cloud KMS Key used to encrypt this object, if the object is encrypted by
-     * such a key. Limited availability; usable only by enabled projects.
+     * such a key.
      */
     kmsKeyName?: string;
     /**
@@ -6906,8 +6906,7 @@ export namespace storage_v1 {
      *     the form
      *     projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
      *     that will be used to encrypt the object. Overrides the object
-     *     metadata's kms_key_name value, if any. Limited availability; usable
-     *     only by enabled projects.
+     *     metadata's kms_key_name value, if any.
      * @param {string=} params.name Name of the object. Required when the object
      *     metadata is not otherwise provided. Overrides the object metadata's
      *     name value, if any. For information about how to URL encode object
@@ -8425,8 +8424,7 @@ export namespace storage_v1 {
      * Resource name of the Cloud KMS key, of the form
      * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
      * that will be used to encrypt the object. Overrides the object metadata's
-     * kms_key_name value, if any. Limited availability; usable only by enabled
-     * projects.
+     * kms_key_name value, if any.
      */
     kmsKeyName?: string;
     /**

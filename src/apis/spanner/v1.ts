@@ -79,6 +79,13 @@ export namespace spanner_v1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -96,7 +103,7 @@ export namespace spanner_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -332,6 +339,35 @@ export namespace spanner_v1 {
      * read-only transaction with strong concurrency.
      */
     transaction?: Schema$TransactionSelector;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * Message representing a single field of a struct.
@@ -732,21 +768,21 @@ export namespace spanner_v1 {
      * merged because they are strings.     [&quot;a&quot;, [&quot;b&quot;,
      * &quot;c&quot;]], [[&quot;d&quot;], &quot;e&quot;] =&gt; [&quot;a&quot;,
      * [&quot;b&quot;, &quot;cd&quot;], &quot;e&quot;]      # Non-overlapping
-     * object fields are combined.     {&quot;a&quot;:
-     * &quot;1&quot;}, {&quot;b&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;:
-     * &quot;1&quot;, &quot;b&quot;: 2&quot;}      # Overlapping object fields
-     * are merged.     {&quot;a&quot;: &quot;1&quot;}, {&quot;a&quot;:
-     * &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;12&quot;}      # Examples of
-     * merging objects containing lists of strings.     {&quot;a&quot;:
-     * [&quot;1&quot;]}, {&quot;a&quot;: [&quot;2&quot;]} =&gt; {&quot;a&quot;:
-     * [&quot;12&quot;]}  For a more complete example, suppose a streaming SQL
-     * query is yielding a result set whose rows contain a single string field.
-     * The following `PartialResultSet`s might be yielded:      {
-     * &quot;metadata&quot;: { ... }       &quot;values&quot;:
-     * [&quot;Hello&quot;, &quot;W&quot;]       &quot;chunked_value&quot;: true
-     * &quot;resume_token&quot;: &quot;Af65...&quot;     }     {
-     * &quot;values&quot;: [&quot;orl&quot;]       &quot;chunked_value&quot;:
-     * true       &quot;resume_token&quot;: &quot;Bqp2...&quot;     }     {
+     * object fields are combined.     {&quot;a&quot;: &quot;1&quot;},
+     * {&quot;b&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;1&quot;,
+     * &quot;b&quot;: 2&quot;}      # Overlapping object fields are merged.
+     * {&quot;a&quot;: &quot;1&quot;}, {&quot;a&quot;: &quot;2&quot;} =&gt;
+     * {&quot;a&quot;: &quot;12&quot;}      # Examples of merging objects
+     * containing lists of strings.     {&quot;a&quot;: [&quot;1&quot;]},
+     * {&quot;a&quot;: [&quot;2&quot;]} =&gt; {&quot;a&quot;: [&quot;12&quot;]}
+     * For a more complete example, suppose a streaming SQL query is yielding a
+     * result set whose rows contain a single string field. The following
+     * `PartialResultSet`s might be yielded:      {       &quot;metadata&quot;:
+     * { ... }       &quot;values&quot;: [&quot;Hello&quot;, &quot;W&quot;]
+     * &quot;chunked_value&quot;: true       &quot;resume_token&quot;:
+     * &quot;Af65...&quot;     }     {       &quot;values&quot;:
+     * [&quot;orl&quot;]       &quot;chunked_value&quot;: true
+     * &quot;resume_token&quot;: &quot;Bqp2...&quot;     }     {
      * &quot;values&quot;: [&quot;d&quot;]       &quot;resume_token&quot;:
      * &quot;Zx1B...&quot;     }  This sequence of `PartialResultSet`s encodes
      * two rows, one containing the field value `&quot;Hello&quot;`, and a
@@ -4499,9 +4535,11 @@ export namespace spanner_v1 {
      * be used by ExecuteStreamingSql to specify a subset of the query result to
      * read.  The same session and read-only transaction must be used by the
      * PartitionQueryRequest used to create the partition tokens and the
-     * ExecuteSqlRequests that use the partition tokens. Partition tokens become
-     * invalid when the session used to create them is deleted or begins a new
-     * transaction.
+     * ExecuteSqlRequests that use the partition tokens.  Partition tokens
+     * become invalid when the session used to create them is deleted, is idle
+     * for too long, begins a new transaction, or becomes too old.  When any of
+     * these happen, it is not possible to resume the query, and the whole
+     * operation must be restarted from the beginning.
      * @alias spanner.projects.instances.databases.sessions.partitionQuery
      * @memberOf! ()
      *
@@ -4582,9 +4620,13 @@ export namespace spanner_v1 {
      * used by StreamingRead to specify a subset of the read result to read. The
      * same session and read-only transaction must be used by the
      * PartitionReadRequest used to create the partition tokens and the
-     * ReadRequests that use the partition tokens. Partition tokens become
-     * invalid when the session used to create them is deleted or begins a new
-     * transaction.
+     * ReadRequests that use the partition tokens.  There are no ordering
+     * guarantees on rows returned among the returned partition tokens, or even
+     * within each individual StreamingRead call issued with a partition_token.
+     * Partition tokens become invalid when the session used to create them is
+     * deleted, is idle for too long, begins a new transaction, or becomes too
+     * old.  When any of these happen, it is not possible to resume the read,
+     * and the whole operation must be restarted from the beginning.
      * @alias spanner.projects.instances.databases.sessions.partitionRead
      * @memberOf! ()
      *

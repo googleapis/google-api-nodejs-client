@@ -34,7 +34,9 @@ export namespace cloudtrace_v1 {
    *
    * Sends application trace data to Stackdriver Trace for viewing. Trace data
    * is collected for all App Engine applications by default. Trace data from
-   * other applications can be provided using this API.
+   * other applications can be provided using this API. This library is used to
+   * interact with the Trace API directly. If you are looking to instrument your
+   * application for Stackdriver Trace, we recommend using OpenCensus.
    *
    * @example
    * const {google} = require('googleapis');

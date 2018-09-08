@@ -536,14 +536,14 @@ export namespace genomics_v1alpha2 {
    * indicated data copies will be carried out before/after pipeline execution,
    * just as if the corresponding arguments were provided to `gsutil cp`.  For
    * example: Given the following `PipelineParameter`, specified in the
-   * `inputParameters` list:  ``` {name: &quot;input_file&quot;,
-   * localCopy: {path: &quot;file.txt&quot;, disk: &quot;pd1&quot;}} ```  where
-   * `disk` is defined in the `PipelineResources` object as:  ``` {name:
-   * &quot;pd1&quot;, mountPoint: &quot;/mnt/disk/&quot;} ```  We create a disk
-   * named `pd1`, mount it on the host VM, and map `/mnt/pd1` to `/mnt/disk` in
-   * the docker container.  At runtime, an entry for `input_file` would be
-   * required in the inputs map, such as:  ```   inputs[&quot;input_file&quot;]
-   * = &quot;gs://my-bucket/bar.txt&quot; ```  This would generate the following
+   * `inputParameters` list:  ``` {name: &quot;input_file&quot;, localCopy:
+   * {path: &quot;file.txt&quot;, disk: &quot;pd1&quot;}} ```  where `disk` is
+   * defined in the `PipelineResources` object as:  ``` {name: &quot;pd1&quot;,
+   * mountPoint: &quot;/mnt/disk/&quot;} ```  We create a disk named `pd1`,
+   * mount it on the host VM, and map `/mnt/pd1` to `/mnt/disk` in the docker
+   * container.  At runtime, an entry for `input_file` would be required in the
+   * inputs map, such as:  ```   inputs[&quot;input_file&quot;] =
+   * &quot;gs://my-bucket/bar.txt&quot; ```  This would generate the following
    * gsutil call:  ```   gsutil cp gs://my-bucket/bar.txt /mnt/pd1/file.txt ```
    * The file `/mnt/pd1/file.txt` maps to `/mnt/disk/file.txt` in the Docker
    * container. Acceptable paths are:  &lt;table&gt;   &lt;thead&gt;
@@ -760,6 +760,11 @@ export namespace genomics_v1alpha2 {
      */
     pipelineId?: string;
   }
+  /**
+   * The response to the RunPipeline method, returned in the operation&#39;s
+   * result field on success.
+   */
+  export interface Schema$RunPipelineResponse {}
   /**
    * Runtime metadata that will be populated in the runtimeMetadata field of the
    * Operation associated with a RunPipeline execution.
@@ -1798,8 +1803,8 @@ export namespace genomics_v1alpha2 {
      *     auth: authClient,
      *   };
      *
-     *   genomics.pipelines.getControllerConfig(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   genomics.pipelines.getControllerConfig(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

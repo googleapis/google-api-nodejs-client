@@ -202,10 +202,11 @@ export namespace container_v1 {
      */
     currentNodeCount?: number;
     /**
-     * [Output only] The current version of the node software components. If
-     * they are currently at multiple versions because they&#39;re in the
-     * process of being upgraded, this reflects the minimum version of all
-     * nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they&#39;re in the process of
+     * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
     /**
@@ -786,8 +787,9 @@ export namespace container_v1 {
      */
     clientCertificate?: string;
     /**
-     * Configuration for client certificate authentication on the cluster.  If
-     * no configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      */
     clientCertificateConfig?: Schema$ClientCertificateConfig;
     /**
@@ -933,13 +935,13 @@ export namespace container_v1 {
      * metadata keys for the project or be one of the reserved keys:
      * &quot;cluster-location&quot;  &quot;cluster-name&quot;
      * &quot;cluster-uid&quot;  &quot;configure-sh&quot;
-     * &quot;gci-update-strategy&quot;  &quot;gci-ensure-gke-docker&quot;
-     * &quot;instance-template&quot;  &quot;kube-env&quot;
-     * &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form
-     * strings, and only have meaning as interpreted by the image running in the
-     * instance. The only restriction placed on them is that each value&#39;s
-     * size must be less than or equal to 32 KB.  The total size of all keys and
-     * values must be less than 512 KB.
+     * &quot;enable-os-login&quot;  &quot;gci-update-strategy&quot;
+     * &quot;gci-ensure-gke-docker&quot;  &quot;instance-template&quot;
+     * &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;
+     * Values are free-form strings, and only have meaning as interpreted by the
+     * image running in the instance. The only restriction placed on them is
+     * that each value&#39;s size must be less than or equal to 32 KB.  The
+     * total size of all keys and values must be less than 512 KB.
      */
     metadata?: any;
     /**
@@ -5554,8 +5556,8 @@ export namespace container_v1 {
      *     auth: authClient,
      *   };
      *
-     *   container.projects.zones.clusters.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   container.projects.zones.clusters.get(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -5835,8 +5837,8 @@ export namespace container_v1 {
      *     auth: authClient,
      *   };
      *
-     *   container.projects.zones.clusters.list(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   container.projects.zones.clusters.list(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

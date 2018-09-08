@@ -32,8 +32,11 @@ export namespace cloudkms_v1 {
   /**
    * Cloud Key Management Service (KMS) API
    *
-   * Manages encryption for your cloud services the same way you do on-premises.
-   * You can generate, use, rotate, and destroy AES256 encryption keys.
+   * Cloud KMS allows you to keep cryptographic keys in one central cloud
+   * service, for direct use by other cloud resources and applications. With
+   * Cloud KMS you are the ultimate custodian of your data, you can manage
+   * encryption in the cloud the same way you do on-premises, and you have a
+   * provable and monitorable root of trust over your data.
    *
    * @example
    * const {google} = require('googleapis');
@@ -561,7 +564,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$LocationMetadata {
     /**
-     * Indicates that CryptoKeys with protection_level HSM can be created in
+     * Indicates whether CryptoKeys with protection_level HSM can be created in
      * this location.
      */
     hsmAvailable?: boolean;
@@ -617,6 +620,10 @@ export namespace cloudkms_v1 {
    * The public key for a given CryptoKeyVersion. Obtained via GetPublicKey.
    */
   export interface Schema$PublicKey {
+    /**
+     * The Algorithm associated with this key.
+     */
+    algorithm?: string;
     /**
      * The public key, encoded in PEM format. For more information, see the [RFC
      * 7468](https://tools.ietf.org/html/rfc7468) sections for [General

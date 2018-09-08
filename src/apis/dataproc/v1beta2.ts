@@ -153,9 +153,9 @@ export namespace dataproc_v1beta2 {
      */
     labels?: any;
     /**
-     * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature:
-     * This report is available for testing purposes only. It may be changed
-     * before final release.
+     * Output only. Contains cluster daemon metrics such as HDFS and YARN
+     * stats.Beta Feature: This report is available for testing purposes only.
+     * It may be changed before final release.
      */
     metrics?: Schema$ClusterMetrics;
     /**

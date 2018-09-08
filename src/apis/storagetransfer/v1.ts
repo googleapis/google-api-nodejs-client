@@ -1423,8 +1423,8 @@ export namespace storagetransfer_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * A list of query parameters specified as JSON text in the form
-     * of {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...],
+     * A list of query parameters specified as JSON text in the form of
+     * {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...],
      * "job_statuses":["status1","status2",...]}. Since `job_names` and
      * `job_statuses` support multiple values, their values must be specified
      * with array notation. `project_id` is required. `job_names` and
@@ -1747,8 +1747,8 @@ export namespace storagetransfer_v1 {
      *     auth: authClient,
      *   };
      *
-     *   storagetransfer.transferOperations.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   storagetransfer.transferOperations.get(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -2278,8 +2278,8 @@ export namespace storagetransfer_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * A list of query parameters specified as JSON text in the form
-     * of {\"project_id\" : \"my_project_id\", \"job_names\" : [\"jobid1\",
+     * A list of query parameters specified as JSON text in the form of
+     * {\"project_id\" : \"my_project_id\", \"job_names\" : [\"jobid1\",
      * \"jobid2\",...], \"operation_names\" : [\"opid1\", \"opid2\",...],
      * \"transfer_statuses\":[\"status1\", \"status2\",...]}. Since `job_names`,
      * `operation_names`, and `transfer_statuses` support multiple values, they

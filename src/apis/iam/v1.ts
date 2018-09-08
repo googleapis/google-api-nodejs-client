@@ -249,7 +249,7 @@ export namespace iam_v1 {
     accountId?: string;
     /**
      * The ServiceAccount resource to create. Currently, only the following
-     * values are user assignable: `display_name`, and `description`.
+     * values are user assignable: `display_name` .
      */
     serviceAccount?: Schema$ServiceAccount;
   }
@@ -363,13 +363,13 @@ export namespace iam_v1 {
      */
     debugMessage?: string;
     /**
-     * The name of the field for which this lint result is about, relative to
-     * the input object to lint in the request.  For nested messages,
-     * `field_name` consists of names of the embedded fields separated by period
-     * character. For instance, if the lint request is on a google.iam.v1.Policy
-     * and this lint result is about a condition expression of one of the input
-     * policy bindings, the field would be populated as
-     * `bindings.condition.expression`.  This field does not identify the
+     * The name of the field for which this lint result is about.  For nested
+     * messages, `field_name` consists of names of the embedded fields separated
+     * by period character. The top-level qualifier is the input object to lint
+     * in the request. For instance, if the lint request is on a
+     * google.iam.v1.Policy and this lint result is about a condition expression
+     * of one of the input policy bindings, the field would be populated as
+     * `policy.bindings.condition.expression`.  This field does not identify the
      * ordinality of the repetitive fields (for instance bindings in a policy).
      */
     fieldName?: string;
@@ -666,8 +666,8 @@ export namespace iam_v1 {
    */
   export interface Schema$ServiceAccount {
     /**
-     * Optional. A user-specified name for the service account. Must be less
-     * than or equal to 100 UTF-8 bytes.
+     * Optional. A user-specified description of the service account.  Must be
+     * fewer than 100 UTF-8 bytes.
      */
     displayName?: string;
     /**
@@ -675,7 +675,7 @@ export namespace iam_v1 {
      */
     email?: string;
     /**
-     * Optional. Not currently used.
+     * Used to perform a consistent read-modify-write.
      */
     etag?: string;
     /**
@@ -708,10 +708,13 @@ export namespace iam_v1 {
    * created and deleted by users.  Users are responsible for rotating these
    * keys periodically to ensure security of their service accounts.  Users
    * retain the private key of these key-pairs, and Google retains ONLY the
-   * public key.  System-managed key-pairs are managed automatically by Google,
-   * and rotated daily without user intervention.  The private key never leaves
-   * Google&#39;s servers to maximize security.  Public keys for all service
-   * accounts are also published at the OAuth2 Service Account API.
+   * public key.  System-managed keys are automatically rotated by Google, and
+   * are used for signing for a maximum of two weeks. The rotation process is
+   * probabilistic, and usage of the new key will gradually ramp up and down
+   * over the key&#39;s lifetime. We recommend caching the public key set for a
+   * service account for no more than 24 hours to ensure you have access to the
+   * latest keys.  Public keys for all service accounts are also published at
+   * the OAuth2 Service Account API.
    */
   export interface Schema$ServiceAccountKey {
     /**
@@ -2995,7 +2998,7 @@ export namespace iam_v1 {
     /**
      * iam.projects.serviceAccounts.update
      * @desc Updates a ServiceAccount.  Currently, only the following fields are
-     * updatable: `display_name`, `description`.
+     * updatable: `display_name` . The `etag` is mandatory.
      * @alias iam.projects.serviceAccounts.update
      * @memberOf! ()
      *

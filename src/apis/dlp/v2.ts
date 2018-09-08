@@ -385,8 +385,8 @@ export namespace dlp_v2 {
     url?: string;
   }
   /**
-   * Options defining a file or a set of files (path ending with *) within a
-   * Google Cloud Storage bucket.
+   * Options defining a file or a set of files within a Google Cloud Storage
+   * bucket.
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
     /**
@@ -403,6 +403,9 @@ export namespace dlp_v2 {
      * bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      */
     bytesLimitPerFilePercent?: number;
+    /**
+     * The set of one or more files to scan.
+     */
     fileSet?: Schema$GooglePrivacyDlpV2FileSet;
     /**
      * Limits the number of files to scan to this percentage of the input
@@ -1175,8 +1178,9 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FileSet {
     /**
-     * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing
-     * wildcard in the path is allowed.
+     * The Cloud Storage url of the file(s) to scan, in the format
+     * `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is
+     * allowed.
      */
     url?: string;
   }
@@ -2394,7 +2398,9 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Regex {
     /**
-     * Pattern defining the regular expression.
+     * Pattern defining the regular expression. Its syntax
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
+     * google/re2 repository on GitHub.
      */
     pattern?: string;
   }
@@ -3450,6 +3456,15 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields
+     *     to order by, followed by `asc` or `desc` postfix. This list is
+     *     case-insensitive, default sorting order is ascending, redundant space
+     *     characters are insignificant.  Example: `name asc,update_time,
+     *     create_time desc`  Supported fields are:  - `create_time`:
+     *     corresponds to time the template was created. - `update_time`:
+     *     corresponds to time the template was last updated. - `name`:
+     *     corresponds to template's name. - `display_name`: corresponds to
+     *     template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be
      *     limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue
@@ -3663,6 +3678,17 @@ export namespace dlp_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -3954,6 +3980,15 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields
+     *     to order by, followed by `asc` or `desc` postfix. This list is
+     *     case-insensitive, default sorting order is ascending, redundant space
+     *     characters are insignificant.  Example: `name asc,update_time,
+     *     create_time desc`  Supported fields are:  - `create_time`:
+     *     corresponds to time the template was created. - `update_time`:
+     *     corresponds to time the template was last updated. - `name`:
+     *     corresponds to template's name. - `display_name`: corresponds to
+     *     template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be
      *     limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue
@@ -4162,6 +4197,17 @@ export namespace dlp_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -5297,6 +5343,15 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields
+     *     to order by, followed by `asc` or `desc` postfix. This list is
+     *     case-insensitive, default sorting order is ascending, redundant space
+     *     characters are insignificant.  Example: `name asc,update_time,
+     *     create_time desc`  Supported fields are:  - `create_time`:
+     *     corresponds to time the template was created. - `update_time`:
+     *     corresponds to time the template was last updated. - `name`:
+     *     corresponds to template's name. - `display_name`: corresponds to
+     *     template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be
      *     limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue
@@ -5508,6 +5563,17 @@ export namespace dlp_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -6416,6 +6482,15 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields
+     *     to order by, followed by `asc` or `desc` postfix. This list is
+     *     case-insensitive, default sorting order is ascending, redundant space
+     *     characters are insignificant.  Example: `name asc,update_time,
+     *     create_time desc`  Supported fields are:  - `create_time`:
+     *     corresponds to time the template was created. - `update_time`:
+     *     corresponds to time the template was last updated. - `name`:
+     *     corresponds to template's name. - `display_name`: corresponds to
+     *     template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be
      *     limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue
@@ -6624,6 +6699,17 @@ export namespace dlp_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -6908,9 +6994,11 @@ export namespace dlp_v2 {
      *     This list is case-insensitive, default sorting order is ascending,
      *     redundant space characters are insignificant.  Example: `name
      *     asc,update_time, create_time desc`  Supported fields are:  -
-     *     `create_time`: corresponds to time the triggeredJob was created. -
-     *     `update_time`: corresponds to time the triggeredJob was last updated.
-     *     - `name`: corresponds to JobTrigger's name.
+     *     `create_time`: corresponds to time the JobTrigger was created. -
+     *     `update_time`: corresponds to time the JobTrigger was last updated. -
+     *     `name`: corresponds to JobTrigger's name. - `display_name`:
+     *     corresponds to JobTrigger's display name. - `status`: corresponds to
+     *     JobTrigger's status.
      * @param {integer=} params.pageSize Optional size of the page, can be
      *     limited by a server.
      * @param {string=} params.pageToken Optional page token to continue
@@ -7117,9 +7205,10 @@ export namespace dlp_v2 {
      * default sorting order is ascending, redundant space characters are
      * insignificant.  Example: `name asc,update_time, create_time desc`
      * Supported fields are:  - `create_time`: corresponds to time the
-     * triggeredJob was created. - `update_time`: corresponds to time the
-     * triggeredJob was last updated. - `name`: corresponds to JobTrigger's
-     * name.
+     * JobTrigger was created. - `update_time`: corresponds to time the
+     * JobTrigger was last updated. - `name`: corresponds to JobTrigger's name.
+     * - `display_name`: corresponds to JobTrigger's display name. - `status`:
+     * corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**

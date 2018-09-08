@@ -398,7 +398,8 @@ export namespace manufacturers_v1 {
    */
   export interface Schema$Product {
     /**
-     * Attributes of the product uploaded to the Manufacturer Center.
+     * Attributes of the product uploaded to the Manufacturer Center. Manually
+     * edited attributes are taken into account.
      */
     attributes?: Schema$Attributes;
     /**
@@ -411,29 +412,9 @@ export namespace manufacturers_v1 {
      */
     destinationStatuses?: Schema$DestinationStatus[];
     /**
-     * Final attributes of the product. The final attributes are obtained by
-     * overriding the uploaded attributes with the manually provided and deleted
-     * attributes. Google systems only process, evaluate, review, and/or use
-     * final attributes.  This field is deprecated and will be removed end of
-     * July 2018. Please use attributes.
-     */
-    finalAttributes?: Schema$Attributes;
-    /**
      * A server-generated list of issues associated with the product.
      */
     issues?: Schema$Issue[];
-    /**
-     * Names of the attributes of the product deleted manually via the
-     * Manufacturer Center UI.  This field is deprecated and will be removed end
-     * of July 2018. Please use attributes.
-     */
-    manuallyDeletedAttributes?: string[];
-    /**
-     * Attributes of the product provided manually via the Manufacturer Center
-     * UI.  This field is deprecated and will be removed end of July 2018.
-     * Please use attributes.
-     */
-    manuallyProvidedAttributes?: Schema$Attributes;
     /**
      * Name in the format `{target_country}:{content_language}:{product_id}`.
      * `target_country`   - The target country of the product as a CLDR
@@ -459,12 +440,6 @@ export namespace manufacturers_v1 {
      * US).
      */
     targetCountry?: string;
-    /**
-     * Attributes of the product uploaded via the Manufacturer Center API or via
-     * feeds.  This field is deprecated and will be removed end of July 2018.
-     * Please use attributes.
-     */
-    uploadedAttributes?: Schema$Attributes;
   }
   /**
    * A product detail of the product. For more information, see
@@ -603,11 +578,7 @@ export namespace manufacturers_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.include The information to be included in the
-     *     response. Only sections listed here will be returned.  If this
-     *     parameter is not specified, ATTRIBUTES and ISSUES are returned. This
-     *     behavior is temporary and will be removed once all clients are ready
-     *     or at the latest end of July 2018. After that no sections will be
-     *     returned.
+     *     response. Only sections listed here will be returned.
      * @param {string} params.name Name in the format
      *     `{target_country}:{content_language}:{product_id}`.  `target_country`
      *     - The target country of the product as a CLDR territory code (for
@@ -683,11 +654,7 @@ export namespace manufacturers_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.include The information to be included in the
-     *     response. Only sections listed here will be returned.  If this
-     *     parameter is not specified, ATTRIBUTES and ISSUES are returned. This
-     *     behavior is temporary and will be removed once all clients are ready
-     *     or at the latest end of July 2018. After that no sections will be
-     *     returned.
+     *     response. Only sections listed here will be returned.
      * @param {integer=} params.pageSize Maximum number of product statuses to
      *     return in the response, used for paging.
      * @param {string=} params.pageToken The token returned by the previous
@@ -877,10 +844,7 @@ export namespace manufacturers_v1 {
 
     /**
      * The information to be included in the response. Only sections listed here
-     * will be returned.  If this parameter is not specified, ATTRIBUTES and
-     * ISSUES are returned. This behavior is temporary and will be removed once
-     * all clients are ready or at the latest end of July 2018. After that no
-     * sections will be returned.
+     * will be returned.
      */
     include?: string;
     /**
@@ -907,10 +871,7 @@ export namespace manufacturers_v1 {
 
     /**
      * The information to be included in the response. Only sections listed here
-     * will be returned.  If this parameter is not specified, ATTRIBUTES and
-     * ISSUES are returned. This behavior is temporary and will be removed once
-     * all clients are ready or at the latest end of July 2018. After that no
-     * sections will be returned.
+     * will be returned.
      */
     include?: string;
     /**

@@ -717,11 +717,24 @@ export namespace ml_v1 {
      * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that also includes eight
      * NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;
      * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
-     * also includes a single NVIDIA Tesla P100 GPU. The availability of these
-     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * also includes a single NVIDIA Tesla P100 GPU.   &lt;/dd&gt;
      * &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine
      * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes four
-     * NVIDIA Tesla P100 GPUs. The availability of these GPUs is in   the
+     * NVIDIA Tesla P100 GPUs.   &lt;/dd&gt; &lt;dt&gt;standard_v100&lt;/dt&gt;
+     * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
+     * also includes a single NVIDIA Tesla V100 GPU. The availability of these
+     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;large_model_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent
+     * to &lt;i&gt;large_model&lt;/i&gt; that   also includes a single NVIDIA
+     * Tesla V100 GPU. The availability of these   GPUs is in the
+     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;complex_model_m_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
+     * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that   also includes
+     * four NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
+     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;complex_model_l_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
+     * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that   also includes
+     * eight NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
      * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
      * &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
      * Cloud TPU. See more about   &lt;a
@@ -3470,8 +3483,8 @@ export namespace ml_v1 {
      * expect that a model has many versions, or if you need to handle only a
      * limited number of results at a time, you can request that the list be
      * retrieved in batches (called pages).  If there are no versions that match
-     * the request parameters, the list request returns an empty response
-     * body: {}.
+     * the request parameters, the list request returns an empty response body:
+     * {}.
      * @alias ml.projects.models.versions.list
      * @memberOf! ()
      *

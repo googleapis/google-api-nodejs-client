@@ -258,10 +258,12 @@ export namespace appengine_v1 {
    */
   export interface Schema$AutomaticScaling {
     /**
-     * Amount of time that the Autoscaler
-     * (https://cloud.google.com/compute/docs/autoscaler/) should wait between
-     * changes to the number of virtual machines. Only applicable in the App
-     * Engine flexible environment.
+     * The time period that the Autoscaler
+     * (https://cloud.google.com/compute/docs/autoscaler/) should wait before it
+     * starts collecting information from a new instance. This prevents the
+     * autoscaler from collecting information when the instance is initializing,
+     * during which the collected usage would not be reliable. Only applicable
+     * in the App Engine flexible environment.
      */
     coolDownPeriod?: string;
     /**
@@ -462,8 +464,7 @@ export namespace appengine_v1 {
   export interface Schema$DebugInstanceRequest {
     /**
      * Public SSH key to add to the instance. Examples: [USERNAME]:ssh-rsa
-     * [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE]
-     * google-ssh
+     * [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE] google-ssh
      * {&quot;userName&quot;:&quot;[USERNAME]&quot;,&quot;expireOn&quot;:&quot;[EXPIRE_TIME]&quot;}For
      * more information, see Adding and Removing SSH Keys
      * (https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys).
@@ -1005,8 +1006,8 @@ export namespace appengine_v1 {
      */
     displayName?: string;
     /**
-     * Cross-service attributes for the location. For
-     * example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example
+     * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: any;
     /**

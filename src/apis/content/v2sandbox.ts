@@ -953,6 +953,19 @@ export namespace content_v2sandbox {
      */
     kind?: string;
   }
+  export interface Schema$OrdersCancelTestOrderByCustomerRequest {
+    /**
+     * The reason for the cancellation.
+     */
+    reason?: string;
+  }
+  export interface Schema$OrdersCancelTestOrderByCustomerResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
+     */
+    kind?: string;
+  }
   export interface Schema$OrdersCreateTestOrderRequest {
     /**
      * The  CLDR territory code of the country of the test order to create.
@@ -3136,6 +3149,90 @@ export namespace content_v2sandbox {
 
 
     /**
+     * content.orders.canceltestorderbycustomer
+     * @desc Sandbox only. Cancels a test order for customer-initiated
+     * cancellation.
+     * @alias content.orders.canceltestorderbycustomer
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the
+     *     order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the test order to cancel.
+     * @param {().OrdersCancelTestOrderByCustomerRequest} params.resource
+     *     Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    canceltestorderbycustomer(
+        params?: Params$Resource$Orders$Canceltestorderbycustomer,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(callback: BodyResponseCallback<
+                              Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void;
+    canceltestorderbycustomer(
+        paramsOrCallback?: Params$Resource$Orders$Canceltestorderbycustomer|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback?: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void|AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orders$Canceltestorderbycustomer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Canceltestorderbycustomer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2sandbox/{merchantId}/testorders/{orderId}/cancelByCustomer')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * content.orders.createtestorder
      * @desc Sandbox only. Creates a test order.
      * @alias content.orders.createtestorder
@@ -3524,7 +3621,9 @@ export namespace content_v2sandbox {
 
     /**
      * content.orders.instorerefundlineitem
-     * @desc Notifies that item return and refund was handled directly in store.
+     * @desc Notifies that item return and refund was handled directly by
+     * merchant outside of Google payments processing (e.g. cash refund done in
+     * store).
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *
@@ -4524,6 +4623,27 @@ export namespace content_v2sandbox {
      * Request body metadata
      */
     requestBody?: Schema$OrdersCancelLineItemRequest;
+  }
+  export interface Params$Resource$Orders$Canceltestorderbycustomer {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The ID of the test order to cancel.
+     */
+    orderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCancelTestOrderByCustomerRequest;
   }
   export interface Params$Resource$Orders$Createtestorder {
     /**

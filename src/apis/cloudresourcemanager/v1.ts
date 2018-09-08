@@ -922,7 +922,7 @@ export namespace cloudresourcemanager_v1 {
     id?: string;
     /**
      * Required field representing the resource type this id is for. At present,
-     * the valid types are: &quot;organization&quot;
+     * the valid types are: &quot;organization&quot; and &quot;folder&quot;.
      */
     type?: string;
   }
@@ -2844,8 +2844,8 @@ export namespace cloudresourcemanager_v1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.get(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

@@ -195,7 +195,8 @@ export namespace toolresults_v1beta3 {
   export interface Schema$Any {
     /**
      * A URL/resource name that uniquely identifies the type of the serialized
-     * protocol buffer message. The last segment of the URL&#39;s path must
+     * protocol buffer message. This string must contain at least one
+     * &quot;/&quot; character. The last segment of the URL&#39;s path must
      * represent the fully qualified name of the type (as in
      * `path/google.protobuf.Duration`). The name should be in a canonical form
      * (e.g., leading &quot;.&quot; is not accepted).  In practice, teams
@@ -1254,24 +1255,24 @@ export namespace toolresults_v1beta3 {
    * Mapping  In JSON format, the Timestamp type is encoded as a string in the
    * [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
    * format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot;
-   * where {year} is always expressed using four digits
-   * while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two
-   * digits each. The fractional seconds, which can go up to 9 digits (i.e. up
-   * to 1 nanosecond resolution), are optional. The &quot;Z&quot; suffix
-   * indicates the timezone (&quot;UTC&quot;); the timezone is required. A
-   * proto3 JSON serializer should always use UTC (as indicated by
-   * &quot;Z&quot;) when printing the Timestamp type and a proto3 JSON parser
-   * should be able to accept both UTC and other timezones (as indicated by an
-   * offset).  For example, &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01
-   * seconds past 01:30 UTC on January 15, 2017.  In JavaScript, one can convert
-   * a Date object to this format using the standard
+   * where {year} is always expressed using four digits while {month}, {day},
+   * {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+   * seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+   * are optional. The &quot;Z&quot; suffix indicates the timezone
+   * (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer
+   * should always use UTC (as indicated by &quot;Z&quot;) when printing the
+   * Timestamp type and a proto3 JSON parser should be able to accept both UTC
+   * and other timezones (as indicated by an offset).  For example,
+   * &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on
+   * January 15, 2017.  In JavaScript, one can convert a Date object to this
+   * format using the standard
    * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString]
    * method. In Python, a standard `datetime.datetime` object can be converted
    * to this format using
    * [`strftime`](https://docs.python.org/2/library/time.html#time.strftime)
    * with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in
    * Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`](
-   * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime--
+   * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
    * ) to obtain a formatter capable of generating timestamps in this format.
    */
   export interface Schema$Timestamp {

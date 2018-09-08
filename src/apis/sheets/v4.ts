@@ -5694,8 +5694,8 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.values.batchClear(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.values.batchClear(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -6285,8 +6285,8 @@ export namespace sheets_v4 {
      *     auth: authClient,
      *   };
      *
-     *   sheets.spreadsheets.values.batchUpdate(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   sheets.spreadsheets.values.batchUpdate(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

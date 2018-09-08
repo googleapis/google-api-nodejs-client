@@ -152,9 +152,9 @@ export namespace cloudfunctions_v1beta2 {
      * the short network name is used, the network must belong to the same
      * project. Otherwise, it must belong to a project within the same
      * organization. The format of this field is either
-     * `projects/{project}/global/networks/{network}` or `{network}`,
-     * where {project} is a project id where the network is defined,
-     * and {network} is the short name of the network.  See [the VPC
+     * `projects/{project}/global/networks/{network}` or `{network}`, where
+     * {project} is a project id where the network is defined, and {network} is
+     * the short name of the network.  See [the VPC
      * documentation](https://cloud.google.com/compute/docs/vpc) for more
      * information on connecting Cloud projects.  This feature is currently in
      * alpha, available only for whitelisted users.

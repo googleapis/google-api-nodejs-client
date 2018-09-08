@@ -91,6 +91,7 @@ export namespace compute_v1 {
     regions: Resource$Regions;
     routers: Resource$Routers;
     routes: Resource$Routes;
+    securityPolicies: Resource$Securitypolicies;
     snapshots: Resource$Snapshots;
     sslCertificates: Resource$Sslcertificates;
     sslPolicies: Resource$Sslpolicies;
@@ -155,6 +156,7 @@ export namespace compute_v1 {
       this.regions = new Resource$Regions(this);
       this.routers = new Resource$Routers(this);
       this.routes = new Resource$Routes(this);
+      this.securityPolicies = new Resource$Securitypolicies(this);
       this.snapshots = new Resource$Snapshots(this);
       this.sslCertificates = new Resource$Sslcertificates(this);
       this.sslPolicies = new Resource$Sslpolicies(this);
@@ -653,6 +655,10 @@ export namespace compute_v1 {
    * other, but not both.
    */
   export interface Schema$AttachedDiskInitializeParams {
+    /**
+     * An optional description. Provide this property when creating the disk.
+     */
+    description?: string;
     /**
      * Specifies the disk name. If not specified, the default is to use the name
      * of the instance. If the disk with the instance name exists already in the
@@ -1249,6 +1255,11 @@ export namespace compute_v1 {
      * settable as a field in the request body.
      */
     region?: string;
+    /**
+     * [Output Only] The resource URL for the security policy associated with
+     * this backend service.
+     */
+    securityPolicy?: string;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -2158,6 +2169,13 @@ export namespace compute_v1 {
      */
     direction?: string;
     /**
+     * Denotes whether the firewall rule is disabled, i.e not applied to the
+     * network it is associated with. When set to true, the firewall rule is not
+     * enforced and the network behaves as if it did not exist. If this is
+     * unspecified, the firewall rule will be enabled.
+     */
+    disabled?: boolean;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      */
@@ -2712,6 +2730,34 @@ export namespace compute_v1 {
      */
     pathMatcher?: string;
   }
+  export interface Schema$HTTPHealthCheck {
+    /**
+     * The value of the host header in the HTTP health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value
+     * is 80. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTP health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+  }
   /**
    * An HttpHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTP.
@@ -2787,34 +2833,6 @@ export namespace compute_v1 {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPHealthCheck {
-    /**
-     * The value of the host header in the HTTP health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value
-     * is 80. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTP health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
   }
   /**
    * Contains a list of HttpHealthCheck resources.
@@ -4656,10 +4674,10 @@ export namespace compute_v1 {
      */
     address?: string;
     /**
-     * [Output Only] Availability zone for this location. Within a metropolitan
-     * area (metro), maintenance will not be simultaneously scheduled in more
-     * than one availability zone. Example: &quot;zone1&quot; or
-     * &quot;zone2&quot;.
+     * [Output Only] Availability zone for this InterconnectLocation. Within a
+     * metropolitan area (metro), maintenance will not be simultaneously
+     * scheduled in more than one availability zone. Example: &quot;zone1&quot;
+     * or &quot;zone2&quot;.
      */
     availabilityZone?: string;
     /**
@@ -7231,6 +7249,154 @@ export namespace compute_v1 {
      * Corresponds to the label values of Node resource.
      */
     values?: string[];
+  }
+  /**
+   * A security policy is comprised of one or more rules. It can also be
+   * associated with one or more &#39;targets&#39;. (== resource_for
+   * v1.securityPolicies ==) (== resource_for beta.securityPolicies ==)
+   */
+  export interface Schema$SecurityPolicy {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * Specifies a fingerprint for this resource, which is essentially a hash of
+     * the metadata&#39;s contents and used for optimistic locking. The
+     * fingerprint is initially generated by Compute Engine and changes after
+     * every request to modify or update metadata. You must always provide an
+     * up-to-date fingerprint hash in order to update or change metadata.  To
+     * see the latest fingerprint, make get() request to the security policy.
+     */
+    fingerprint?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output only] Type of the resource. Always compute#securityPolicyfor
+     * security policies
+     */
+    kind?: string;
+    /**
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character
+     * must be a lowercase letter, and all following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
+     */
+    name?: string;
+    /**
+     * A list of rules that belong to this policy. There must always be a
+     * default rule (rule with priority 2147483647 and match &quot;*&quot;). If
+     * no rules are provided when creating a security policy, a default rule
+     * with action &quot;allow&quot; will be added.
+     */
+    rules?: Schema$SecurityPolicyRule[];
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+  }
+  export interface Schema$SecurityPolicyList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of SecurityPolicy resources.
+     */
+    items?: Schema$SecurityPolicy[];
+    /**
+     * [Output Only] Type of resource. Always compute#securityPolicyList for
+     * listsof securityPolicies
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
+  }
+  export interface Schema$SecurityPolicyReference {
+    securityPolicy?: string;
+  }
+  /**
+   * Represents a rule that describes one or more match conditions along with
+   * the action to be taken when traffic matches this condition (allow or deny).
+   */
+  export interface Schema$SecurityPolicyRule {
+    /**
+     * The Action to preform when the client connection triggers the rule. Can
+     * currently be either &quot;allow&quot; or &quot;deny()&quot; where valid
+     * values for status are 403, 404, and 502.
+     */
+    action?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output only] Type of the resource. Always compute#securityPolicyRule for
+     * security policy rules
+     */
+    kind?: string;
+    /**
+     * A match condition that incoming traffic is evaluated against. If it
+     * evaluates to true, the corresponding ?action? is enforced.
+     */
+    match?: Schema$SecurityPolicyRuleMatcher;
+    /**
+     * If set to true, the specified action is not enforced.
+     */
+    preview?: boolean;
+    /**
+     * An integer indicating the priority of a rule in the list. The priority
+     * must be a positive value between 0 and 2147483647. Rules are evaluated in
+     * the increasing order of priority.
+     */
+    priority?: number;
+  }
+  /**
+   * Represents a match condition that incoming traffic is evaluated against.
+   * Exactly one field must be specified.
+   */
+  export interface Schema$SecurityPolicyRuleMatcher {
+    /**
+     * The configuration options available when specifying versioned_expr. This
+     * field must be specified if versioned_expr is specified and cannot be
+     * specified if versioned_expr is not specified.
+     */
+    config?: Schema$SecurityPolicyRuleMatcherConfig;
+    /**
+     * Preconfigured versioned expression. If this field is specified, config
+     * must also be specified. Available preconfigured expressions along with
+     * their requirements are: SRC_IPS_V1 - must specify the corresponding
+     * src_ip_range field in config.
+     */
+    versionedExpr?: string;
+  }
+  export interface Schema$SecurityPolicyRuleMatcherConfig {
+    /**
+     * CIDR IP address range.
+     */
+    srcIpRanges?: string[];
   }
   /**
    * An instance&#39;s serial console output.
@@ -14876,6 +15042,91 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.backendServices.setSecurityPolicy
+     * @desc Sets the security policy for the specified backend service.
+     * @alias compute.backendServices.setSecurityPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource
+     *     to which the security policy should be set. The name should conform
+     *     to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify
+     *     requests. Specify a unique request ID so that if you must retry your
+     *     request, the server will know to ignore the request if it has already
+     *     been completed.  For example, consider a situation where you make an
+     *     initial request and the request times out. If you make the request
+     *     again with the same request ID, the server can check if original
+     *     operation with the same request ID was received, and if so, will
+     *     ignore the second request. This prevents clients from accidentally
+     *     creating duplicate commitments.  The request ID must be a valid UUID
+     *     with the exception that zero UUID is not supported
+     *     (00000000-0000-0000-0000-000000000000).
+     * @param {().SecurityPolicyReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSecurityPolicy(
+        params?: Params$Resource$Backendservices$Setsecuritypolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setSecurityPolicy(
+        params: Params$Resource$Backendservices$Setsecuritypolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setSecurityPolicy(
+        params: Params$Resource$Backendservices$Setsecuritypolicy,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setSecurityPolicy(callback: BodyResponseCallback<Schema$Operation>): void;
+    setSecurityPolicy(
+        paramsOrCallback?: Params$Resource$Backendservices$Setsecuritypolicy|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Backendservices$Setsecuritypolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Backendservices$Setsecuritypolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/backendServices/{backendService}/setSecurityPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.backendServices.update
      * @desc Updates the specified BackendService resource with the data
      * included in the request. There are several restrictions and guidelines to
@@ -15325,6 +15576,40 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$BackendService;
+  }
+  export interface Params$Resource$Backendservices$Setsecuritypolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the BackendService resource to which the security policy should
+     * be set. The name should conform to RFC1035.
+     */
+    backendService?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityPolicyReference;
   }
   export interface Params$Resource$Backendservices$Update {
     /**
@@ -30094,8 +30379,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.instanceGroups.removeInstances(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.instanceGroups.removeInstances(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -30896,7 +31181,8 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.aggregatedList
-     * @desc Retrieves aggregated list of instances.
+     * @desc Retrieves aggregated list of all of the instances in your project
+     * across all regions and zones.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31788,7 +32074,8 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.getSerialPortOutput
-     * @desc Returns the specified instance's serial port output.
+     * @desc Returns the last 1 MB of serial port output from the specified
+     * instance.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31823,8 +32110,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.instances.getSerialPortOutput(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.instances.getSerialPortOutput(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -32985,8 +33272,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.instances.setMachineResources(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.instances.setMachineResources(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -36695,8 +36982,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.interconnectAttachments.delete(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.interconnectAttachments.delete(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -36968,8 +37255,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.interconnectAttachments.insert(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.interconnectAttachments.insert(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -45636,8 +45923,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.projects.setUsageExportBucket(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.projects.setUsageExportBucket(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -56849,6 +57136,977 @@ export namespace compute_v1 {
   }
 
 
+  export class Resource$Securitypolicies {
+    root: Compute;
+    constructor(root: Compute) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * compute.securityPolicies.addRule
+     * @desc Inserts a rule into a security policy.
+     * @alias compute.securityPolicies.addRule
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to
+     *     update.
+     * @param {().SecurityPolicyRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addRule(
+        params?: Params$Resource$Securitypolicies$Addrule,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addRule(
+        params: Params$Resource$Securitypolicies$Addrule,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addRule(
+        params: Params$Resource$Securitypolicies$Addrule,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addRule(callback: BodyResponseCallback<Schema$Operation>): void;
+    addRule(
+        paramsOrCallback?: Params$Resource$Securitypolicies$Addrule|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Addrule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Addrule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/addRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.delete
+     * @desc Deletes the specified policy.
+     * @alias compute.securityPolicies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify
+     *     requests. Specify a unique request ID so that if you must retry your
+     *     request, the server will know to ignore the request if it has already
+     *     been completed.  For example, consider a situation where you make an
+     *     initial request and the request times out. If you make the request
+     *     again with the same request ID, the server can check if original
+     *     operation with the same request ID was received, and if so, will
+     *     ignore the second request. This prevents clients from accidentally
+     *     creating duplicate commitments.  The request ID must be a valid UUID
+     *     with the exception that zero UUID is not supported
+     *     (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.securityPolicy Name of the security policy to
+     *     delete.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Securitypolicies$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Securitypolicies$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Securitypolicies$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Securitypolicies$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.get
+     * @desc List all of the ordered rules present in a single specified policy.
+     * @alias compute.securityPolicies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to get.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Securitypolicies$Get,
+        options?: MethodOptions): AxiosPromise<Schema$SecurityPolicy>;
+    get(params: Params$Resource$Securitypolicies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$SecurityPolicy>,
+        callback: BodyResponseCallback<Schema$SecurityPolicy>): void;
+    get(params: Params$Resource$Securitypolicies$Get,
+        callback: BodyResponseCallback<Schema$SecurityPolicy>): void;
+    get(callback: BodyResponseCallback<Schema$SecurityPolicy>): void;
+    get(paramsOrCallback?: Params$Resource$Securitypolicies$Get|
+        BodyResponseCallback<Schema$SecurityPolicy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SecurityPolicy>,
+        callback?: BodyResponseCallback<Schema$SecurityPolicy>):
+        void|AxiosPromise<Schema$SecurityPolicy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecurityPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SecurityPolicy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.getRule
+     * @desc Gets a rule at the specified priority.
+     * @alias compute.securityPolicies.getRule
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.priority The priority of the rule to get from
+     *     the security policy.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to
+     *     which the queried rule belongs.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getRule(
+        params?: Params$Resource$Securitypolicies$Getrule,
+        options?: MethodOptions): AxiosPromise<Schema$SecurityPolicyRule>;
+    getRule(
+        params: Params$Resource$Securitypolicies$Getrule,
+        options: MethodOptions|BodyResponseCallback<Schema$SecurityPolicyRule>,
+        callback: BodyResponseCallback<Schema$SecurityPolicyRule>): void;
+    getRule(
+        params: Params$Resource$Securitypolicies$Getrule,
+        callback: BodyResponseCallback<Schema$SecurityPolicyRule>): void;
+    getRule(callback: BodyResponseCallback<Schema$SecurityPolicyRule>): void;
+    getRule(
+        paramsOrCallback?: Params$Resource$Securitypolicies$Getrule|
+        BodyResponseCallback<Schema$SecurityPolicyRule>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SecurityPolicyRule>,
+        callback?: BodyResponseCallback<Schema$SecurityPolicyRule>):
+        void|AxiosPromise<Schema$SecurityPolicyRule> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Getrule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Getrule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/getRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecurityPolicyRule>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SecurityPolicyRule>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.insert
+     * @desc Creates a new policy in the specified project using the data
+     * included in the request.
+     * @alias compute.securityPolicies.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify
+     *     requests. Specify a unique request ID so that if you must retry your
+     *     request, the server will know to ignore the request if it has already
+     *     been completed.  For example, consider a situation where you make an
+     *     initial request and the request times out. If you make the request
+     *     again with the same request ID, the server can check if original
+     *     operation with the same request ID was received, and if so, will
+     *     ignore the second request. This prevents clients from accidentally
+     *     creating duplicate commitments.  The request ID must be a valid UUID
+     *     with the exception that zero UUID is not supported
+     *     (00000000-0000-0000-0000-000000000000).
+     * @param {().SecurityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Securitypolicies$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Securitypolicies$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Securitypolicies$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Securitypolicies$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/global/securityPolicies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.list
+     * @desc List all the policies that have been configured for the specified
+     * project.
+     * @alias compute.securityPolicies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources
+     *     listed in the response. The expression must specify the field name, a
+     *     comparison operator, and the value that you want to use for
+     *     filtering. The value must be a string, a number, or a boolean. The
+     *     comparison operator must be either =, !=, >, or <.  For example, if
+     *     you are filtering Compute Engine instances, you can exclude instances
+     *     named example-instance by specifying name != example-instance.  You
+     *     can also filter nested fields. For example, you could specify
+     *     scheduling.automaticRestart = false to include instances only if they
+     *     are not scheduled for automatic restarts. You can use filtering on
+     *     nested fields to filter based on resource labels.  To filter on
+     *     multiple expressions, provide each separate expression within
+     *     parentheses. For example, (scheduling.automaticRestart = true)
+     *     (cpuPlatform = "Intel Skylake"). By default, each expression is an
+     *     AND expression. However, you can include AND and OR expressions
+     *     explicitly. For example, (cpuPlatform = "Intel Skylake") OR
+     *     (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart =
+     *     true).
+     * @param {integer=} params.maxResults The maximum number of results per
+     *     page that should be returned. If the number of available results is
+     *     larger than maxResults, Compute Engine returns a nextPageToken that
+     *     can be used to get the next page of results in subsequent list
+     *     requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By
+     *     default, results are returned in alphanumerical order based on the
+     *     resource name.  You can also sort results in descending order based
+     *     on the creation timestamp using orderBy="creationTimestamp desc".
+     *     This sorts results based on the creationTimestamp field in reverse
+     *     chronological order (newest result first). Use this to sort resources
+     *     like operations so that the newest operation is returned first.
+     *     Currently, only sorting by name or creationTimestamp desc is
+     *     supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set
+     *     pageToken to the nextPageToken returned by a previous list request to
+     *     get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Securitypolicies$List,
+        options?: MethodOptions): AxiosPromise<Schema$SecurityPolicyList>;
+    list(
+        params: Params$Resource$Securitypolicies$List,
+        options: MethodOptions|BodyResponseCallback<Schema$SecurityPolicyList>,
+        callback: BodyResponseCallback<Schema$SecurityPolicyList>): void;
+    list(
+        params: Params$Resource$Securitypolicies$List,
+        callback: BodyResponseCallback<Schema$SecurityPolicyList>): void;
+    list(callback: BodyResponseCallback<Schema$SecurityPolicyList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Securitypolicies$List|
+        BodyResponseCallback<Schema$SecurityPolicyList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SecurityPolicyList>,
+        callback?: BodyResponseCallback<Schema$SecurityPolicyList>):
+        void|AxiosPromise<Schema$SecurityPolicyList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Securitypolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/v1/projects/{project}/global/securityPolicies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecurityPolicyList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SecurityPolicyList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.patch
+     * @desc Patches the specified policy with the data included in the request.
+     * @alias compute.securityPolicies.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify
+     *     requests. Specify a unique request ID so that if you must retry your
+     *     request, the server will know to ignore the request if it has already
+     *     been completed.  For example, consider a situation where you make an
+     *     initial request and the request times out. If you make the request
+     *     again with the same request ID, the server can check if original
+     *     operation with the same request ID was received, and if so, will
+     *     ignore the second request. This prevents clients from accidentally
+     *     creating duplicate commitments.  The request ID must be a valid UUID
+     *     with the exception that zero UUID is not supported
+     *     (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.securityPolicy Name of the security policy to
+     *     update.
+     * @param {().SecurityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Securitypolicies$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    patch(
+        params: Params$Resource$Securitypolicies$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Securitypolicies$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Securitypolicies$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.patchRule
+     * @desc Patches a rule at the specified priority.
+     * @alias compute.securityPolicies.patchRule
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.priority The priority of the rule to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to
+     *     update.
+     * @param {().SecurityPolicyRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patchRule(
+        params?: Params$Resource$Securitypolicies$Patchrule,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    patchRule(
+        params: Params$Resource$Securitypolicies$Patchrule,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patchRule(
+        params: Params$Resource$Securitypolicies$Patchrule,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patchRule(callback: BodyResponseCallback<Schema$Operation>): void;
+    patchRule(
+        paramsOrCallback?: Params$Resource$Securitypolicies$Patchrule|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Securitypolicies$Patchrule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Patchrule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/patchRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.securityPolicies.removeRule
+     * @desc Deletes a rule at the specified priority.
+     * @alias compute.securityPolicies.removeRule
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.priority The priority of the rule to remove from
+     *     the security policy.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to
+     *     update.
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeRule(
+        params?: Params$Resource$Securitypolicies$Removerule,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    removeRule(
+        params: Params$Resource$Securitypolicies$Removerule,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeRule(
+        params: Params$Resource$Securitypolicies$Removerule,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeRule(callback: BodyResponseCallback<Schema$Operation>): void;
+    removeRule(
+        paramsOrCallback?: Params$Resource$Securitypolicies$Removerule|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Securitypolicies$Removerule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Securitypolicies$Removerule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/securityPolicies/{securityPolicy}/removeRule')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Securitypolicies$Addrule {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the security policy to update.
+     */
+    securityPolicy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityPolicyRule;
+  }
+  export interface Params$Resource$Securitypolicies$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the security policy to delete.
+     */
+    securityPolicy?: string;
+  }
+  export interface Params$Resource$Securitypolicies$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the security policy to get.
+     */
+    securityPolicy?: string;
+  }
+  export interface Params$Resource$Securitypolicies$Getrule {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The priority of the rule to get from the security policy.
+     */
+    priority?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the security policy to which the queried rule belongs.
+     */
+    securityPolicy?: string;
+  }
+  export interface Params$Resource$Securitypolicies$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityPolicy;
+  }
+  export interface Params$Resource$Securitypolicies$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Securitypolicies$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the security policy to update.
+     */
+    securityPolicy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityPolicy;
+  }
+  export interface Params$Resource$Securitypolicies$Patchrule {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The priority of the rule to patch.
+     */
+    priority?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the security policy to update.
+     */
+    securityPolicy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecurityPolicyRule;
+  }
+  export interface Params$Resource$Securitypolicies$Removerule {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The priority of the rule to remove from the security policy.
+     */
+    priority?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the security policy to update.
+     */
+    securityPolicy?: string;
+  }
+
+
   export class Resource$Snapshots {
     root: Compute;
     constructor(root: Compute) {
@@ -59395,8 +60653,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.subnetworks.expandIpCidrRange(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.subnetworks.expandIpCidrRange(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:
@@ -65106,8 +66364,8 @@ export namespace compute_v1 {
      *     auth: authClient,
      *   };
      *
-     *   compute.targetPools.removeHealthCheck(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   compute.targetPools.removeHealthCheck(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

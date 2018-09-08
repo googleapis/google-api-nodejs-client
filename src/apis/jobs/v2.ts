@@ -117,7 +117,10 @@ export namespace jobs_v2 {
      */
     jobLocation?: Schema$JobLocation;
     /**
-     * Travel time to reach the job.
+     * The number of seconds required to travel to the job location from the
+     * query location. A duration of 0 seconds indicates that the job is not
+     * reachable within the requested duration, but was returned as part of an
+     * expanded query.
      */
     travelDuration?: string;
   }

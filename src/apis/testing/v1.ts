@@ -233,6 +233,10 @@ export namespace testing_v1 {
      */
     form?: string;
     /**
+     * Whther this device is a phone, tablet, wearable, etc. @OutputOnly
+     */
+    formFactor?: string;
+    /**
      * The unique opaque id for this model. Use this for invoking the
      * TestExecutionService. @OutputOnly
      */
@@ -990,7 +994,10 @@ export namespace testing_v1 {
      */
     filesToPush?: Schema$DeviceFile[];
     /**
-     * The network traffic profile used for running the test. Optional
+     * Optional. The network traffic profile used for running the test.
+     * Available network profiles can be queried by using the
+     * NETWORK_CONFIGURATION environment type when calling
+     * TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string;
   }

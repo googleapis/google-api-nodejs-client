@@ -709,6 +709,11 @@ export namespace genomics_v2alpha1 {
     pipeline?: Schema$Pipeline;
   }
   /**
+   * The response to the RunPipeline method, returned in the operation&#39;s
+   * result field on success.
+   */
+  export interface Schema$RunPipelineResponse {}
+  /**
    * Runtime metadata that will be populated in the runtimeMetadata field of the
    * Operation associated with a RunPipeline execution.
    */
@@ -724,7 +729,8 @@ export namespace genomics_v2alpha1 {
    */
   export interface Schema$Secret {
     /**
-     * The value of the cipherText response from the `encrypt` method.
+     * The value of the cipherText response from the `encrypt` method. This
+     * field is intentionally unaudited.
      */
     cipherText?: string;
     /**

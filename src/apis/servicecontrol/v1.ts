@@ -177,6 +177,15 @@ export namespace servicecontrol_v1 {
      */
     resourceName?: string;
     /**
+     * The resource&#39;s original state before mutation. Present only for
+     * operations which have successfully modified the targeted resource(s). In
+     * general, this field should contain all changed fields, except those that
+     * are already been included in `request`, `response`, `metadata` or
+     * `service_data` fields. When the JSON object represented here has a proto
+     * equivalent, the proto name will be indicated in the `@type` property.
+     */
+    resourceOriginalState?: any;
+    /**
      * The operation response. This may not include all response elements, such
      * as those that are too large, privacy-sensitive, or duplicated elsewhere
      * in the log record. It should never include user-generated data, such as

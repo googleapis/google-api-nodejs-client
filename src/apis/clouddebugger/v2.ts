@@ -616,8 +616,8 @@ export namespace clouddebugger_v2 {
    * Captured variable         name: &quot;x&quot;,         type: &quot;T&quot;,
    * members { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot;
    * },         members { name: &quot;m2&quot;, value: &quot;7&quot;, type:
-   * &quot;int&quot; }     }  3) A pointer where the pointee was captured: T x
-   * = { 3, 7 };     T* p = &amp;x;      {   // Captured variable         name:
+   * &quot;int&quot; }     }  3) A pointer where the pointee was captured: T x =
+   * { 3, 7 };     T* p = &amp;x;      {   // Captured variable         name:
    * &quot;p&quot;,         type: &quot;T*&quot;,         value:
    * &quot;0x00500500&quot;,         members { name: &quot;m1&quot;, value:
    * &quot;3&quot;, type: &quot;int&quot; },         members { name:
@@ -1290,8 +1290,8 @@ export namespace clouddebugger_v2 {
      *     auth: authClient,
      *   };
      *
-     *   cloudDebugger.debugger.debuggees.list(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudDebugger.debugger.debuggees.list(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

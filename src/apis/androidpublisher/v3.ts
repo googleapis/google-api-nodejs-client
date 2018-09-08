@@ -766,7 +766,8 @@ export namespace androidpublisher_v3 {
     orderId?: string;
     /**
      * The payment state of the subscription. Possible values are:   - Payment
-     * pending  - Payment received  - Free trial
+     * pending  - Payment received  - Free trial  - Pending deferred
+     * upgrade/downgrade
      */
     paymentState?: number;
     /**

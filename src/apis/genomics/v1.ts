@@ -1450,6 +1450,11 @@ export namespace genomics_v1 {
     sourceUri?: string;
   }
   /**
+   * The response to the RunPipeline method, returned in the operation&#39;s
+   * result field on success.
+   */
+  export interface Schema$RunPipelineResponse {}
+  /**
    * Runtime metadata that will be populated in the runtimeMetadata field of the
    * Operation associated with a RunPipeline execution.
    */
@@ -6843,10 +6848,9 @@ export namespace genomics_v1 {
  *       console.error('authentication failed: ', err);
  *       return;
  *     }
- *     if (authClient.createScopedRequired &&
- * authClient.createScopedRequired()) { var scopes =
- * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
- * authClient.createScoped(scopes);
+ *     if (authClient.createScopedRequired && authClient.createScopedRequired())
+ * { var scopes = ['https://www.googleapis.com/auth/cloud-platform']; authClient
+ * = authClient.createScoped(scopes);
  *     }
  *     callback(authClient);
  *   });
@@ -8846,10 +8850,9 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
  *       console.error('authentication failed: ', err);
  *       return;
  *     }
- *     if (authClient.createScopedRequired &&
- * authClient.createScopedRequired()) { var scopes =
- * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
- * authClient.createScoped(scopes);
+ *     if (authClient.createScopedRequired && authClient.createScopedRequired())
+ * { var scopes = ['https://www.googleapis.com/auth/cloud-platform']; authClient
+ * = authClient.createScoped(scopes);
  *     }
  *     callback(authClient);
  *   });

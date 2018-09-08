@@ -458,6 +458,55 @@ export namespace firebasedynamiclinks_v1 {
     utmSource?: string;
   }
   /**
+   * Request for iSDK to get reopen attribution for app universal link open
+   * deeplinking. This endpoint is meant for only iOS requests.
+   */
+  export interface Schema$GetIosReopenAttributionRequest {
+    /**
+     * APP bundle ID.
+     */
+    bundleId?: string;
+    /**
+     * FDL link to be verified from an app universal link open. The FDL link can
+     * be one of: 1) short FDL. e.g. &lt;app_code&gt;.page.link/&lt;ddl_id&gt;,
+     * or 2) long FDL. e.g. &lt;app_code&gt;.page.link/?{query params}, or 3)
+     * Invite FDL. e.g. &lt;app_code&gt;.page.link/i/&lt;invite_id_or_alias&gt;
+     */
+    requestedLink?: string;
+  }
+  /**
+   * Response for iSDK to get reopen attribution for app universal link open
+   * deeplinking. This endpoint is meant for only iOS requests.
+   */
+  export interface Schema$GetIosReopenAttributionResponse {
+    /**
+     * The deep-link attributed the app universal link open. For both regular
+     * FDL links and invite FDL links.
+     */
+    deepLink?: string;
+    /**
+     * Optional invitation ID, for only invite typed requested FDL links.
+     */
+    invitationId?: string;
+    /**
+     * The entire FDL, expanded from a short link. It is the same as the
+     * requested_link, if it is long.
+     */
+    resolvedLink?: string;
+    /**
+     * Scion campaign value to be propagated by iSDK to Scion at app-reopen.
+     */
+    utmCampaign?: string;
+    /**
+     * Scion medium value to be propagated by iSDK to Scion at app-reopen.
+     */
+    utmMedium?: string;
+    /**
+     * Scion source value to be propagated by iSDK to Scion at app-reopen.
+     */
+    utmSource?: string;
+  }
+  /**
    * Parameters for Google Play Campaign Measurements. [Learn
    * more](https://developers.google.com/analytics/devguides/collection/android/v4/campaigns#campaign-params)
    */
@@ -1003,6 +1052,84 @@ export namespace firebasedynamiclinks_v1 {
             parameters);
       }
     }
+
+
+    /**
+     * firebasedynamiclinks.reopenAttribution
+     * @desc Get iOS reopen attribution for app universal link open deeplinking.
+     * @alias firebasedynamiclinks.reopenAttribution
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().GetIosReopenAttributionRequest} params.resource Request body
+     *     data
+     * @param {object} [options] Optionally override request options, such as
+     *     `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reopenAttribution(
+        params?: Params$Resource$V1$Reopenattribution, options?: MethodOptions):
+        AxiosPromise<Schema$GetIosReopenAttributionResponse>;
+    reopenAttribution(
+        params: Params$Resource$V1$Reopenattribution,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void;
+    reopenAttribution(
+        params: Params$Resource$V1$Reopenattribution,
+        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void;
+    reopenAttribution(
+        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void;
+    reopenAttribution(
+        paramsOrCallback?: Params$Resource$V1$Reopenattribution|
+        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+        callback?:
+            BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void|AxiosPromise<Schema$GetIosReopenAttributionResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1$Reopenattribution;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Reopenattribution;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/reopenAttribution')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetIosReopenAttributionResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GetIosReopenAttributionResponse>(
+            parameters);
+      }
+    }
   }
 
   export interface Params$Resource$V1$Getlinkstats {
@@ -1031,5 +1158,17 @@ export namespace firebasedynamiclinks_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIosPostInstallAttributionRequest;
+  }
+  export interface Params$Resource$V1$Reopenattribution {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIosReopenAttributionRequest;
   }
 }

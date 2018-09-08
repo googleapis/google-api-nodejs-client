@@ -580,8 +580,8 @@ export namespace cloudresourcemanager_v1beta1 {
      *     auth: authClient,
      *   };
      *
-     *   cloudResourceManager.organizations.get(request, function(err,
-     * response) { if (err) { console.error(err); return;
+     *   cloudResourceManager.organizations.get(request, function(err, response)
+     * { if (err) { console.error(err); return;
      *     }
      *
      *     // TODO: Change code below to process the `response` object:

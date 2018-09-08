@@ -307,8 +307,8 @@ export namespace appengine_v1alpha {
      */
     displayName?: string;
     /**
-     * Cross-service attributes for the location. For
-     * example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example
+     * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
     labels?: any;
     /**

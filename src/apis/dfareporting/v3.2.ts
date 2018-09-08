@@ -191,7 +191,7 @@ export namespace dfareporting_v3_2 {
   }
 
   /**
-   * Contains properties of a DCM account.
+   * Contains properties of a Campaign Manager account.
    */
   export interface Schema$Account {
     /**
@@ -332,8 +332,8 @@ export namespace dfareporting_v3_2 {
   }
   /**
    * AccountPermissions contains information about a particular account
-   * permission. Some features of DCM require an account permission to be
-   * present in the account.
+   * permission. Some features of Campaign Manager require an account permission
+   * to be present in the account.
    */
   export interface Schema$AccountPermission {
     /**
@@ -430,9 +430,9 @@ export namespace dfareporting_v3_2 {
     nextPageToken?: string;
   }
   /**
-   * AccountUserProfiles contains properties of a DCM user profile. This
-   * resource is specifically for managing user profiles, whereas UserProfiles
-   * is for accessing the API.
+   * AccountUserProfiles contains properties of a Campaign Manager user profile.
+   * This resource is specifically for managing user profiles, whereas
+   * UserProfiles is for accessing the API.
    */
   export interface Schema$AccountUserProfile {
     /**
@@ -554,7 +554,7 @@ export namespace dfareporting_v3_2 {
     metricNames?: string[];
   }
   /**
-   * Contains properties of a DCM ad.
+   * Contains properties of a Campaign Manager ad.
    */
   export interface Schema$Ad {
     /**
@@ -855,7 +855,7 @@ export namespace dfareporting_v3_2 {
     width?: string;
   }
   /**
-   * Contains properties of a DCM advertiser.
+   * Contains properties of a Campaign Manager advertiser.
    */
   export interface Schema$Advertiser {
     /**
@@ -1096,8 +1096,8 @@ export namespace dfareporting_v3_2 {
      * For example, for Chrome 5.0.375.86 beta, this field should be set to 0.
      * An asterisk (*) may be used to target any version number, and a question
      * mark (?) may be used to target cases where the version number cannot be
-     * identified. For example, Chrome *.* targets any version of
-     * Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but
+     * identified. For example, Chrome *.* targets any version of Chrome:
+     * 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but
      * not 4.0. Firefox ?.? targets cases where the ad server knows the browser
      * is Firefox but can&#39;t tell which version it is.
      */
@@ -1122,7 +1122,7 @@ export namespace dfareporting_v3_2 {
     kind?: string;
   }
   /**
-   * Contains properties of a DCM campaign.
+   * Contains properties of a Campaign Manager campaign.
    */
   export interface Schema$Campaign {
     /**
@@ -1162,8 +1162,8 @@ export namespace dfareporting_v3_2 {
      */
     audienceSegmentGroups?: Schema$AudienceSegmentGroup[];
     /**
-     * Billing invoice code included in the DCM client billing invoices
-     * associated with the campaign.
+     * Billing invoice code included in the Campaign Manager client billing
+     * invoices associated with the campaign.
      */
     billingInvoiceCode?: string;
     /**
@@ -1758,8 +1758,8 @@ export namespace dfareporting_v3_2 {
     timestampMicros?: string;
     /**
      * Whether this particular request may come from a user under the age of 16
-     * (may differ by country), under compliance with the EU?s General Data
-     * Protection Regulation (GDPR).
+     * (may differ by country), under compliance with the European Union&#39;s
+     * General Data Protection Regulation (GDPR).
      */
     treatmentForUnderage?: boolean;
     /**
@@ -1941,7 +1941,7 @@ export namespace dfareporting_v3_2 {
      * Additional sizes associated with a responsive creative. When inserting or
      * updating a creative either the size ID field or size width and height
      * fields can be used. Applicable to DISPLAY creatives when the primary
-     * asset type is HTML_IMAGE
+     * asset type is HTML_IMAGE.
      */
     additionalSizes?: Schema$Size[];
     /**
@@ -2010,11 +2010,11 @@ export namespace dfareporting_v3_2 {
      * if the browser that serves the ad does not support them. Feature
      * dependencies are features that a browser must be able to support in order
      * to render your HTML5 creative asset correctly. This field is initially
-     * auto-generated to contain all features detected by DCM for all the assets
-     * of this creative and can then be modified by the client. To reset this
-     * field, copy over all the creativeAssets&#39; detected features.
-     * Applicable to the following creative types: HTML5_BANNER. Applicable to
-     * DISPLAY when the primary asset type is not HTML_IMAGE.
+     * auto-generated to contain all features detected by Campaign Manager for
+     * all the assets of this creative and can then be modified by the client.
+     * To reset this field, copy over all the creativeAssets&#39; detected
+     * features. Applicable to the following creative types: HTML5_BANNER.
+     * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     backupImageFeatures?: string[];
     /**
@@ -2143,9 +2143,9 @@ export namespace dfareporting_v3_2 {
      */
     htmlCode?: string;
     /**
-     * Whether HTML code is DCM-generated or manually entered. Set to true to
-     * ignore changes to htmlCode. Applicable to the following creative types:
-     * FLASH_INPAGE and HTML5_BANNER.
+     * Whether HTML code is generated by Campaign Manager or manually entered.
+     * Set to true to ignore changes to htmlCode. Applicable to the following
+     * creative types: FLASH_INPAGE and HTML5_BANNER.
      */
     htmlCodeLocked?: boolean;
     /**
@@ -2232,10 +2232,10 @@ export namespace dfareporting_v3_2 {
      */
     requiredFlashPluginVersion?: string;
     /**
-     * The internal Flash version for this creative as calculated by DoubleClick
-     * Studio. This is a read-only field. Applicable to the following creative
-     * types: FLASH_INPAGE all RICH_MEDIA, and all VPAID. Applicable to DISPLAY
-     * when the primary asset type is not HTML_IMAGE.
+     * The internal Flash version for this creative as calculated by Studio.
+     * This is a read-only field. Applicable to the following creative types:
+     * FLASH_INPAGE all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when
+     * the primary asset type is not HTML_IMAGE.
      */
     requiredFlashVersion?: number;
     /**
@@ -2424,11 +2424,11 @@ export namespace dfareporting_v3_2 {
     customStartTimeValue?: number;
     /**
      * List of feature dependencies for the creative asset that are detected by
-     * DCM. Feature dependencies are features that a browser must be able to
-     * support in order to render your HTML5 creative correctly. This is a
-     * read-only, auto-generated field. Applicable to the following creative
-     * types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is
-     * not HTML_IMAGE.
+     * Campaign Manager. Feature dependencies are features that a browser must
+     * be able to support in order to render your HTML5 creative correctly. This
+     * is a read-only, auto-generated field. Applicable to the following
+     * creative types: HTML5_BANNER. Applicable to DISPLAY when the primary
+     * asset type is not HTML_IMAGE.
      */
     detectedFeatures?: string[];
     /**
@@ -2514,8 +2514,8 @@ export namespace dfareporting_v3_2 {
      */
     orientation?: string;
     /**
-     * Whether the backup asset is original or changed by the user in DCM.
-     * Applicable to the following creative types: all RICH_MEDIA.
+     * Whether the backup asset is original or changed by the user in Campaign
+     * Manager. Applicable to the following creative types: all RICH_MEDIA.
      */
     originalBackup?: boolean;
     /**
@@ -2563,23 +2563,24 @@ export namespace dfareporting_v3_2 {
      * FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives.
      * Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      * ADDITIONAL_IMAGE and ADDITIONAL_FLASH apply to FLASH_INPAGE creatives.
-     * OTHER refers to assets from sources other than DCM, such as Studio
-     * uploaded assets, applicable to all RICH_MEDIA and all VPAID creatives.
-     * PARENT_VIDEO refers to videos uploaded by the user in DCM and is
-     * applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives.
-     * TRANSCODED_VIDEO refers to videos transcoded by DCM from PARENT_VIDEO
-     * assets and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO
-     * creatives. ALTERNATE_VIDEO refers to the DCM representation of child
-     * asset videos from Studio, and is applicable to VPAID_LINEAR_VIDEO
-     * creatives. These cannot be added or removed within DCM. For
-     * VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and
-     * ALTERNATE_VIDEO assets that are marked active serve as backup in case the
-     * VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or
-     * removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative.
-     * PARENT_AUDIO refers to audios uploaded by the user in DCM and is
-     * applicable to INSTREAM_AUDIO creatives. TRANSCODED_AUDIO refers to audios
-     * transcoded by DCM from PARENT_AUDIO assets and is applicable to
-     * INSTREAM_AUDIO creatives.
+     * OTHER refers to assets from sources other than Campaign Manager, such as
+     * Studio uploaded assets, applicable to all RICH_MEDIA and all VPAID
+     * creatives. PARENT_VIDEO refers to videos uploaded by the user in Campaign
+     * Manager and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO
+     * creatives. TRANSCODED_VIDEO refers to videos transcoded by Campaign
+     * Manager from PARENT_VIDEO assets and is applicable to INSTREAM_VIDEO and
+     * VPAID_LINEAR_VIDEO creatives. ALTERNATE_VIDEO refers to the Campaign
+     * Manager representation of child asset videos from Studio, and is
+     * applicable to VPAID_LINEAR_VIDEO creatives. These cannot be added or
+     * removed within Campaign Manager. For VPAID_LINEAR_VIDEO creatives,
+     * PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked
+     * active serve as backup in case the VPAID creative cannot be served. Only
+     * PARENT_VIDEO assets can be added or removed for an INSTREAM_VIDEO or
+     * VPAID_LINEAR_VIDEO creative. PARENT_AUDIO refers to audios uploaded by
+     * the user in Campaign Manager and is applicable to INSTREAM_AUDIO
+     * creatives. TRANSCODED_AUDIO refers to audios transcoded by Campaign
+     * Manager from PARENT_AUDIO assets and is applicable to INSTREAM_AUDIO
+     * creatives.
      */
     role?: string;
     /**
@@ -2677,9 +2678,9 @@ export namespace dfareporting_v3_2 {
     clickTags?: Schema$ClickTag[];
     /**
      * List of feature dependencies for the creative asset that are detected by
-     * DCM. Feature dependencies are features that a browser must be able to
-     * support in order to render your HTML5 creative correctly. This is a
-     * read-only, auto-generated field.
+     * Campaign Manager. Feature dependencies are features that a browser must
+     * be able to support in order to render your HTML5 creative correctly. This
+     * is a read-only, auto-generated field.
      */
     detectedFeatures?: string[];
     /**
@@ -2836,8 +2837,8 @@ export namespace dfareporting_v3_2 {
    */
   export interface Schema$CreativeCustomEvent {
     /**
-     * Unique ID of this event used by DDM Reporting and Data Transfer. This is
-     * a read-only field.
+     * Unique ID of this event used by Reporting and Data Transfer. This is a
+     * read-only field.
      */
     advertiserCustomEventId?: string;
     /**
@@ -2849,9 +2850,9 @@ export namespace dfareporting_v3_2 {
      */
     advertiserCustomEventType?: string;
     /**
-     * Artwork label column, used to link events in DCM back to events in
-     * Studio. This is a required field and should not be modified after
-     * insertion.
+     * Artwork label column, used to link events in Campaign Manager back to
+     * events in Studio. This is a required field and should not be modified
+     * after insertion.
      */
     artworkLabel?: string;
     /**
@@ -3332,8 +3333,9 @@ export namespace dfareporting_v3_2 {
     /**
      * Impression ratio for this ad. This ratio determines how often each ad is
      * served relative to the others. For example, if ad A has an impression
-     * ratio of 1 and ad B has an impression ratio of 3, then DCM will serve ad
-     * B three times as often as ad A. Acceptable values are 1 to 10, inclusive.
+     * ratio of 1 and ad B has an impression ratio of 3, then Campaign Manager
+     * will serve ad B three times as often as ad A. Acceptable values are 1 to
+     * 10, inclusive.
      */
     impressionRatio?: string;
     /**
@@ -3343,15 +3345,15 @@ export namespace dfareporting_v3_2 {
     priority?: string;
   }
   /**
-   * DFP Settings
+   * Google Ad Manager Settings
    */
   export interface Schema$DfpSettings {
     /**
-     * DFP network code for this directory site.
+     * Ad Manager network code for this directory site.
      */
     dfpNetworkCode?: string;
     /**
-     * DFP network name for this directory site.
+     * Ad Manager network name for this directory site.
      */
     dfpNetworkName?: string;
     /**
@@ -3359,8 +3361,7 @@ export namespace dfareporting_v3_2 {
      */
     programmaticPlacementAccepted?: boolean;
     /**
-     * Whether this directory site is available only via DoubleClick Publisher
-     * Portal.
+     * Whether this directory site is available only via Publisher Portal.
      */
     publisherPortalOnly?: boolean;
     /**
@@ -3663,7 +3664,7 @@ export namespace dfareporting_v3_2 {
      */
     activeViewOptOut?: boolean;
     /**
-     * Directory site DFP settings.
+     * Directory site Ad Manager settings.
      */
     dfpSettings?: Schema$DfpSettings;
     /**
@@ -3711,9 +3712,9 @@ export namespace dfareporting_v3_2 {
    * Contains properties of a dynamic targeting key. Dynamic targeting keys are
    * unique, user-friendly labels, created at the advertiser level in DCM, that
    * can be assigned to ads, creatives, and placements and used for targeting
-   * with DoubleClick Studio dynamic creatives. Use these labels instead of
-   * numeric DCM IDs (such as placement IDs) to save time and avoid errors in
-   * your dynamic feeds.
+   * with Studio dynamic creatives. Use these labels instead of numeric Campaign
+   * Manager IDs (such as placement IDs) to save time and avoid errors in your
+   * dynamic feeds.
    */
   export interface Schema$DynamicTargetingKey {
     /**
@@ -3812,7 +3813,7 @@ export namespace dfareporting_v3_2 {
     enabledByDefault?: boolean;
     /**
      * Whether to remove this event tag from ads that are trafficked through
-     * DoubleClick Bid Manager to Ad Exchange. This may be useful if the event
+     * Display &amp; Video 360 to Ad Exchange. This may be useful if the event
      * tag uses a pixel that is unapproved for Ad Exchange bids on one or more
      * networks, such as the Google Display Network.
      */
@@ -4384,7 +4385,7 @@ export namespace dfareporting_v3_2 {
      */
     naturalSearchConversionAttributionOption?: string;
     /**
-     * Settings for DCM Omniture integration.
+     * Settings for Campaign Manager Omniture integration.
      */
     omnitureSettings?: Schema$OmnitureSettings;
     /**
@@ -4535,7 +4536,7 @@ export namespace dfareporting_v3_2 {
     regions?: Schema$Region[];
   }
   /**
-   * Represents a buy from the DoubleClick Planning inventory store.
+   * Represents a buy from the Planning inventory store.
    */
   export interface Schema$InventoryItem {
     /**
@@ -5166,7 +5167,7 @@ export namespace dfareporting_v3_2 {
     weight?: number;
   }
   /**
-   * Describes properties of a DoubleClick Planning order.
+   * Describes properties of a Planning order.
    */
   export interface Schema$Order {
     /**
@@ -5280,7 +5281,7 @@ export namespace dfareporting_v3_2 {
     signatureUserProfileId?: string;
   }
   /**
-   * Contains properties of a DoubleClick Planning order document.
+   * Contains properties of a Planning order document.
    */
   export interface Schema$OrderDocument {
     /**
@@ -6160,7 +6161,7 @@ export namespace dfareporting_v3_2 {
     units?: string;
   }
   /**
-   * Contains properties of a DoubleClick Planning project.
+   * Contains properties of a Planning project.
    */
   export interface Schema$Project {
     /**
@@ -6946,7 +6947,7 @@ export namespace dfareporting_v3_2 {
     sortOrder?: string;
   }
   /**
-   * Contains properties of a DCM subaccount.
+   * Contains properties of a Campaign Manager subaccount.
    */
   export interface Schema$Subaccount {
     /**
@@ -10366,6 +10367,8 @@ export namespace dfareporting_v3_2 {
      * @param {boolean=} params.archived Select only archived landing pages.
      *     Don't set this field to select both archived and non-archived landing
      *     pages.
+     * @param {string=} params.campaignIds Select only landing pages that are
+     *     associated with these campaigns.
      * @param {string=} params.ids Select only landing pages with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Value of the nextPageToken from the
@@ -10649,6 +10652,10 @@ export namespace dfareporting_v3_2 {
      * archived and non-archived landing pages.
      */
     archived?: boolean;
+    /**
+     * Select only landing pages that are associated with these campaigns.
+     */
+    campaignIds?: string;
     /**
      * Select only landing pages with these IDs.
      */
@@ -16531,7 +16538,7 @@ export namespace dfareporting_v3_2 {
      * @param {string=} params.countryId Select only directory sites with this
      *     country ID.
      * @param {string=} params.dfpNetworkCode Select only directory sites with
-     *     this DFP network code.
+     *     this Ad Manager network code.
      * @param {string=} params.ids Select only directory sites with these IDs.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Value of the nextPageToken from the
@@ -16678,7 +16685,7 @@ export namespace dfareporting_v3_2 {
      */
     countryId?: string;
     /**
-     * Select only directory sites with this DFP network code.
+     * Select only directory sites with this Ad Manager network code.
      */
     dfpNetworkCode?: string;
     /**

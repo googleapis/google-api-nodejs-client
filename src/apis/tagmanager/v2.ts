@@ -1055,15 +1055,15 @@ export namespace tagmanager_v2 {
    * Mapping  In JSON format, the Timestamp type is encoded as a string in the
    * [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
    * format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot;
-   * where {year} is always expressed using four digits
-   * while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two
-   * digits each. The fractional seconds, which can go up to 9 digits (i.e. up
-   * to 1 nanosecond resolution), are optional. The &quot;Z&quot; suffix
-   * indicates the timezone (&quot;UTC&quot;); the timezone is required, though
-   * only UTC (as indicated by &quot;Z&quot;) is presently supported.  For
-   * example, &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past
-   * 01:30 UTC on January 15, 2017.  In JavaScript, one can convert a Date
-   * object to this format using the standard
+   * where {year} is always expressed using four digits while {month}, {day},
+   * {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+   * seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+   * are optional. The &quot;Z&quot; suffix indicates the timezone
+   * (&quot;UTC&quot;); the timezone is required, though only UTC (as indicated
+   * by &quot;Z&quot;) is presently supported.  For example,
+   * &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on
+   * January 15, 2017.  In JavaScript, one can convert a Date object to this
+   * format using the standard
    * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString]
    * method. In Python, a standard `datetime.datetime` object can be converted
    * to this format using

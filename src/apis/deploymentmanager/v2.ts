@@ -446,11 +446,11 @@ export namespace deploymentmanager_v2 {
    * IAMContext.principal; - &quot;&quot; (empty string), resulting in one
    * aggretated counter with no field.  Examples: counter { metric:
    * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
-   * increment counter
-   * /iam/policy/backend_debug_access_count {iam_principal=[value of
-   * IAMContext.principal]}  At this time we do not support: * multiple field
-   * names (though this may be supported in the future) * decrementing the
-   * counter * incrementing it by anything other than 1
+   * increment counter /iam/policy/backend_debug_access_count
+   * {iam_principal=[value of IAMContext.principal]}  At this time we do not
+   * support: * multiple field names (though this may be supported in the
+   * future) * decrementing the counter * incrementing it by anything other than
+   * 1
    */
   export interface Schema$LogConfigCounterOptions {
     /**

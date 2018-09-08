@@ -1218,8 +1218,8 @@ export namespace drive_v2 {
     photoLink?: string;
     /**
      * The primary role for this user. While new values may be supported in the
-     * future, the following are currently allowed:   - organizer  - owner  -
-     * reader  - writer
+     * future, the following are currently allowed:   - owner  - organizer  -
+     * fileOrganizer  - writer  - reader
      */
     role?: string;
     /**
@@ -4171,7 +4171,8 @@ export namespace drive_v2 {
     /**
      * drive.files.trash
      * @desc Moves a file to the trash. The currently authenticated user must
-     * own the file or be an organizer on the parent for Team Drive files.
+     * own the file or be at least a fileOrganizer on the parent for Team Drive
+     * files.
      * @alias drive.files.trash
      * @memberOf! ()
      *

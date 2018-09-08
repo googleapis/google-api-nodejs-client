@@ -24,9 +24,9 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace redis_v1beta1 {
+export namespace redis_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   /**
@@ -37,12 +37,12 @@ export namespace redis_v1beta1 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const redis = google.redis('v1beta1');
+   * const redis = google.redis('v1');
    *
    * @namespace redis
    * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
+   * @version v1
+   * @variation v1
    * @param {object=} options Options for Redis
    */
   export class Redis {
@@ -74,49 +74,12 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$GoogleCloudCommonOperationMetadata {
-    /**
-     * [Output only] API version used to start the operation.
-     */
-    apiVersion?: string;
-    /**
-     * [Output only] Identifies whether the user has requested cancellation of
-     * the operation. Operations that have successfully been cancelled have
-     * Operation.error value with a google.rpc.Status.code of 1, corresponding
-     * to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean;
-    /**
-     * [Output only] The time the operation was created.
-     */
-    createTime?: string;
-    /**
-     * [Output only] The time the operation finished running.
-     */
-    endTime?: string;
-    /**
-     * [Output only] Human-readable status of the operation, if any.
-     */
-    statusDetail?: string;
-    /**
-     * [Output only] Server-defined resource path for the target of the
-     * operation.
-     */
-    target?: string;
-    /**
-     * [Output only] Name of the verb executed by the operation.
-     */
-    verb?: string;
-  }
-  /**
    * This location metadata represents additional configuration options for a
    * given location where a Redis instance may be created. All fields are output
    * only. It is returned as content of the
    * `google.cloud.location.Location.metadata` field.
    */
-  export interface Schema$GoogleCloudRedisV1beta1LocationMetadata {
+  export interface Schema$GoogleCloudRedisV1LocationMetadata {
     /**
      * Output only. The set of available zones in the location. The map is keyed
      * by the lowercase ID of each zone, as defined by GCE. These keys can be
@@ -126,10 +89,43 @@ export namespace redis_v1beta1 {
     availableZones?: any;
   }
   /**
+   * Represents the v1 metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudRedisV1OperationMetadata {
+    /**
+     * API version.
+     */
+    apiVersion?: string;
+    /**
+     * Specifies if cancellation was requested for the operaiton.
+     */
+    cancelRequested?: boolean;
+    /**
+     * Creation timestamp.
+     */
+    createTime?: string;
+    /**
+     * End timestamp.
+     */
+    endTime?: string;
+    /**
+     * Operation status details.
+     */
+    statusDetail?: string;
+    /**
+     * Operation target.
+     */
+    target?: string;
+    /**
+     * Operation verb.
+     */
+    verb?: string;
+  }
+  /**
    * Defines specific information for a particular zone. Currently empty and
    * reserved for future use only.
    */
-  export interface Schema$GoogleCloudRedisV1beta1ZoneMetadata {}
+  export interface Schema$GoogleCloudRedisV1ZoneMetadata {}
   /**
    * A Google Cloud Redis instance.
    */
@@ -195,14 +191,6 @@ export namespace redis_v1beta1 {
      * [alternative_location_id] fields for more details.
      */
     name?: string;
-    /**
-     * Output only. IAM identity used by import / export operations to transfer
-     * data to/from GCS.  Format is
-     * &quot;serviceAccount:&lt;service_account_email&gt;&quot;.  The value may
-     * change over time for a given instance so should be checked before each
-     * import/export operation.
-     */
-    persistenceIamIdentity?: string;
     /**
      * Output only. The port number of the exposed Redis endpoint.
      */
@@ -495,7 +483,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -567,7 +555,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}/locations')
+              url: (rootUrl + '/v1/{+name}/locations')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -700,7 +688,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+parent}/instances')
+              url: (rootUrl + '/v1/{+parent}/instances')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -772,7 +760,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -837,7 +825,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -920,7 +908,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+parent}/instances')
+              url: (rootUrl + '/v1/{+parent}/instances')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -1003,7 +991,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
             options),
@@ -1199,7 +1187,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}:cancel')
+              url: (rootUrl + '/v1/{+name}:cancel')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1270,7 +1258,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -1335,7 +1323,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -1414,7 +1402,7 @@ export namespace redis_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}/operations')
+              url: (rootUrl + '/v1/{+name}/operations')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },

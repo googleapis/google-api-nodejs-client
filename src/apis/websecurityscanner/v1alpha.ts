@@ -107,7 +107,8 @@ export namespace websecurityscanner_v1alpha {
     loginUrl?: string;
     /**
      * Input only. Required. The password of the custom account. The credential
-     * is stored encrypted and not returned in any response.
+     * is stored encrypted and not returned in any response nor included in
+     * audit logs.
      */
     password?: string;
     /**
@@ -222,7 +223,8 @@ export namespace websecurityscanner_v1alpha {
   export interface Schema$GoogleAccount {
     /**
      * Input only. Required. The password of the Google account. The credential
-     * is stored encrypted and not returned in any response.
+     * is stored encrypted and not returned in any response nor included in
+     * audit logs.
      */
     password?: string;
     /**

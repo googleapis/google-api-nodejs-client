@@ -317,7 +317,10 @@ export namespace logging_v2beta1 {
      * &quot;organizations/[ORGANIZATION_ID]&quot;
      * &quot;billingAccounts/[BILLING_ACCOUNT_ID]&quot;
      * &quot;folders/[FOLDER_ID]&quot; Projects listed in the project_ids field
-     * are added to this list.
+     * are added to this list. Only one of the permissions,
+     * &lt;code&gt;logging.logEntries.list&lt;/code&gt; or
+     * &lt;code&gt;logging.privateLogEntries.list&lt;/code&gt;, is needed for
+     * each parent resource.
      */
     resourceNames?: string[];
   }
@@ -930,8 +933,8 @@ export namespace logging_v2beta1 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;
-     * where {type} is the value of the type field in this object
-     * and {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the type field in this object and
+     * {project_id} is a project ID that provides API-specific context for
      * accessing the type. APIs that do not use project information can use the
      * resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
      */
@@ -1210,7 +1213,11 @@ export namespace logging_v2beta1 {
      * URL-encoded. For example, &quot;projects/my-project-id/logs/syslog&quot;
      * or
      * &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;.
-     * For more information about log names, see LogEntry.
+     * The permission &lt;code&gt;logging.logEntries.create&lt;/code&gt; is
+     * needed on each project, organization, billing account, or folder that is
+     * receiving new log entries, whether the resource is specified in
+     * &lt;code&gt;logName&lt;/code&gt; or in an individual log entry. For more
+     * information about log names, see LogEntry.
      */
     logName?: string;
     /**

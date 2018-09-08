@@ -207,6 +207,10 @@ export namespace container_v1beta1 {
      */
     clusterIpv4Cidr?: string;
     /**
+     * Which conditions caused the current cluster state.
+     */
+    conditions?: Schema$StatusCondition[];
+    /**
      * [Output only] The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
@@ -220,10 +224,11 @@ export namespace container_v1beta1 {
      */
     currentNodeCount?: number;
     /**
-     * [Output only] The current version of the node software components. If
-     * they are currently at multiple versions because they&#39;re in the
-     * process of being upgraded, this reflects the minimum version of all
-     * nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1beta1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they&#39;re in the process of
+     * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
     /**
@@ -960,8 +965,9 @@ export namespace container_v1beta1 {
      */
     clientCertificate?: string;
     /**
-     * Configuration for client certificate authentication on the cluster.  If
-     * no configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      */
     clientCertificateConfig?: Schema$ClientCertificateConfig;
     /**
@@ -1138,13 +1144,13 @@ export namespace container_v1beta1 {
      * metadata keys for the project or be one of the reserved keys:
      * &quot;cluster-location&quot;  &quot;cluster-name&quot;
      * &quot;cluster-uid&quot;  &quot;configure-sh&quot;
-     * &quot;gci-update-strategy&quot;  &quot;gci-ensure-gke-docker&quot;
-     * &quot;instance-template&quot;  &quot;kube-env&quot;
-     * &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form
-     * strings, and only have meaning as interpreted by the image running in the
-     * instance. The only restriction placed on them is that each value&#39;s
-     * size must be less than or equal to 32 KB.  The total size of all keys and
-     * values must be less than 512 KB.
+     * &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;
+     * &quot;gci-update-strategy&quot;  &quot;instance-template&quot;
+     * &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;
+     * Values are free-form strings, and only have meaning as interpreted by the
+     * image running in the instance. The only restriction placed on them is
+     * that each value&#39;s size must be less than or equal to 32 KB.  The
+     * total size of all keys and values must be less than 512 KB.
      */
     metadata?: any;
     /**
@@ -1233,6 +1239,10 @@ export namespace container_v1beta1 {
      * a valid configuration is present.
      */
     autoscaling?: Schema$NodePoolAutoscaling;
+    /**
+     * Which conditions caused the current node pool state.
+     */
+    conditions?: Schema$StatusCondition[];
     /**
      * The node configuration of the pool.
      */
@@ -1332,6 +1342,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Operation {
     /**
+     * Which conditions caused the current cluster state.
+     */
+    clusterConditions?: Schema$StatusCondition[];
+    /**
      * Detailed operation progress, if available.
      */
     detail?: string;
@@ -1351,6 +1365,10 @@ export namespace container_v1beta1 {
      * The server-assigned ID for the operation.
      */
     name?: string;
+    /**
+     * Which conditions caused the current node pool state.
+     */
+    nodepoolConditions?: Schema$StatusCondition[];
     /**
      * The operation type.
      */
@@ -1986,6 +2004,20 @@ export namespace container_v1beta1 {
     zone?: string;
   }
   /**
+   * StatusCondition describes why a cluster or a node pool has a certain status
+   * (e.g., ERROR or DEGRADED).
+   */
+  export interface Schema$StatusCondition {
+    /**
+     * Machine-friendly representation of the condition
+     */
+    code?: string;
+    /**
+     * Human-friendly representation of the condition
+     */
+    message?: string;
+  }
+  /**
    * UpdateClusterRequest updates the settings of a cluster.
    */
   export interface Schema$UpdateClusterRequest {
@@ -2116,10 +2148,40 @@ export namespace container_v1beta1 {
      */
     network?: string;
     /**
+     * Secondary IP ranges.
+     */
+    secondaryIpRanges?: Schema$UsableSubnetworkSecondaryRange[];
+    /**
+     * A human readable status message representing the reasons for cases where
+     * the caller cannot use the secondary ranges under the subnet. For example
+     * if the secondary_ip_ranges is empty due to a permission issue, an
+     * insufficient permission message will be given by status_message.
+     */
+    statusMessage?: string;
+    /**
      * Subnetwork Name. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string;
+  }
+  /**
+   * Secondary IP range of a usable subnetwork.
+   */
+  export interface Schema$UsableSubnetworkSecondaryRange {
+    /**
+     * The range of IP addresses belonging to this subnetwork secondary range.
+     */
+    ipCidrRange?: string;
+    /**
+     * The name associated with this subnetwork secondary range, used when
+     * adding an alias IP range to a VM instance.
+     */
+    rangeName?: string;
+    /**
+     * This field is to determine the status of the secondary range
+     * programmably.
+     */
+    status?: string;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to

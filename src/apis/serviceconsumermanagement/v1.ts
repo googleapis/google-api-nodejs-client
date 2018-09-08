@@ -1441,8 +1441,8 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Optional. The resource name of the monitored resource descriptor:
      * `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;`
-     * where {type} is the value of the `type` field in this object
-     * and {project_id} is a project ID that provides API-specific context for
+     * where {type} is the value of the `type` field in this object and
+     * {project_id} is a project ID that provides API-specific context for
      * accessing the type.  APIs that do not use project information can use the
      * resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
@@ -1862,7 +1862,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A unique ID for a specific instance of this message, typically assigned
      * by the client for tracking purpose. If empty, the server may choose to
-     * generate one instead.
+     * generate one instead. Must be no longer than 60 characters.
      */
     id?: string;
     /**

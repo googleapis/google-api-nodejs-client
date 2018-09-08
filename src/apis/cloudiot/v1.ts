@@ -1017,12 +1017,12 @@ export namespace cloudiot_v1 {
      * @param {integer=} params.pageSize The maximum number of registries to
      *     return in the response. If this value is zero, the service will
      *     select a default size. A call may return fewer objects than
-     *     requested, but if there is a non-empty `page_token`, it indicates
-     *     that more entries are available.
+     *     requested. A non-empty `next_page_token` in the response indicates
+     *     that more data is available.
      * @param {string=} params.pageToken The value returned by the last
      *     `ListDeviceRegistriesResponse`; indicates that this is a continuation
-     *     of a prior `ListDeviceRegistries` call, and that the system should
-     *     return the next page of data.
+     *     of a prior `ListDeviceRegistries` call and the system should return
+     *     the next page of data.
      * @param {string} params.parent The project and cloud region path. For
      *     example, `projects/example-project/locations/us-central1`.
      * @param {object} [options] Optionally override request options, such as
@@ -1391,14 +1391,14 @@ export namespace cloudiot_v1 {
     /**
      * The maximum number of registries to return in the response. If this value
      * is zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      */
     pageSize?: number;
     /**
      * The value returned by the last `ListDeviceRegistriesResponse`; indicates
-     * that this is a continuation of a prior `ListDeviceRegistries` call, and
-     * that the system should return the next page of data.
+     * that this is a continuation of a prior `ListDeviceRegistries` call and
+     * the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -1707,24 +1707,23 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.deviceIds A list of device string identifiers. If
-     *     empty, it will ignore this field. For example, `['device0',
-     *     'device12']`. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.deviceNumIds A list of device numerical ids. If
-     *     empty, it will ignore this field. This field cannot hold more than
-     *     10,000 entries.
+     * @param {string=} params.deviceIds A list of device string IDs. For
+     *     example, `['device0', 'device12']`. If empty, this field is ignored.
+     *     Maximum IDs: 10,000
+     * @param {string=} params.deviceNumIds A list of device numeric IDs. If
+     *     empty, this field is ignored. Maximum IDs: 10,000.
      * @param {string=} params.fieldMask The fields of the `Device` resource to
-     *     be returned in the response. The fields `id`, and `num_id` are always
-     *     returned by default, along with any other fields specified.
+     *     be returned in the response. The fields `id` and `num_id` are always
+     *     returned, along with any other fields specified.
      * @param {integer=} params.pageSize The maximum number of devices to return
      *     in the response. If this value is zero, the service will select a
-     *     default size. A call may return fewer objects than requested, but if
-     *     there is a non-empty `page_token`, it indicates that more entries are
-     *     available.
+     *     default size. A call may return fewer objects than requested. A
+     *     non-empty `next_page_token` in the response indicates that more data
+     *     is available.
      * @param {string=} params.pageToken The value returned by the last
      *     `ListDevicesResponse`; indicates that this is a continuation of a
-     *     prior `ListDevices` call, and that the system should return the next
-     *     page of data.
+     *     prior `ListDevices` call and the system should return the next page
+     *     of data.
      * @param {string} params.parent The device registry path. Required. For
      *     example,
      *     `projects/my-project/locations/us-central1/registries/my-registry`.
@@ -2008,33 +2007,32 @@ export namespace cloudiot_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
+     * A list of device string IDs. For example, `['device0', 'device12']`. If
+     * empty, this field is ignored. Maximum IDs: 10,000
      */
     deviceIds?: string;
     /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum
+     * IDs: 10,000.
      */
     deviceNumIds?: string;
     /**
      * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
-     * other fields specified.
+     * fields `id` and `num_id` are always returned, along with any other fields
+     * specified.
      */
     fieldMask?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      */
     pageSize?: number;
     /**
      * The value returned by the last `ListDevicesResponse`; indicates that this
-     * is a continuation of a prior `ListDevices` call, and that the system
-     * should return the next page of data.
+     * is a continuation of a prior `ListDevices` call and the system should
+     * return the next page of data.
      */
     pageToken?: string;
     /**
@@ -2738,24 +2736,23 @@ export namespace cloudiot_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.deviceIds A list of device string identifiers. If
-     *     empty, it will ignore this field. For example, `['device0',
-     *     'device12']`. This field cannot hold more than 10,000 entries.
-     * @param {string=} params.deviceNumIds A list of device numerical ids. If
-     *     empty, it will ignore this field. This field cannot hold more than
-     *     10,000 entries.
+     * @param {string=} params.deviceIds A list of device string IDs. For
+     *     example, `['device0', 'device12']`. If empty, this field is ignored.
+     *     Maximum IDs: 10,000
+     * @param {string=} params.deviceNumIds A list of device numeric IDs. If
+     *     empty, this field is ignored. Maximum IDs: 10,000.
      * @param {string=} params.fieldMask The fields of the `Device` resource to
-     *     be returned in the response. The fields `id`, and `num_id` are always
-     *     returned by default, along with any other fields specified.
+     *     be returned in the response. The fields `id` and `num_id` are always
+     *     returned, along with any other fields specified.
      * @param {integer=} params.pageSize The maximum number of devices to return
      *     in the response. If this value is zero, the service will select a
-     *     default size. A call may return fewer objects than requested, but if
-     *     there is a non-empty `page_token`, it indicates that more entries are
-     *     available.
+     *     default size. A call may return fewer objects than requested. A
+     *     non-empty `next_page_token` in the response indicates that more data
+     *     is available.
      * @param {string=} params.pageToken The value returned by the last
      *     `ListDevicesResponse`; indicates that this is a continuation of a
-     *     prior `ListDevices` call, and that the system should return the next
-     *     page of data.
+     *     prior `ListDevices` call and the system should return the next page
+     *     of data.
      * @param {string} params.parent The device registry path. Required. For
      *     example,
      *     `projects/my-project/locations/us-central1/registries/my-registry`.
@@ -3013,33 +3010,32 @@ export namespace cloudiot_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
+     * A list of device string IDs. For example, `['device0', 'device12']`. If
+     * empty, this field is ignored. Maximum IDs: 10,000
      */
     deviceIds?: string;
     /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum
+     * IDs: 10,000.
      */
     deviceNumIds?: string;
     /**
      * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
-     * other fields specified.
+     * fields `id` and `num_id` are always returned, along with any other fields
+     * specified.
      */
     fieldMask?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      */
     pageSize?: number;
     /**
      * The value returned by the last `ListDevicesResponse`; indicates that this
-     * is a continuation of a prior `ListDevices` call, and that the system
-     * should return the next page of data.
+     * is a continuation of a prior `ListDevices` call and the system should
+     * return the next page of data.
      */
     pageToken?: string;
     /**
