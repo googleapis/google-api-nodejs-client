@@ -2636,10 +2636,8 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project that the agent to
-     *     fetch is associated with. Format: `projects/<Project ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2744,12 +2742,9 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project that the agent to
-     *     export is associated with. Format: `projects/<Project ID>`.
-     * @param {().GoogleCloudDialogflowV2ExportAgentRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`.
+     * @param {().GoogleCloudDialogflowV2ExportAgentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2825,12 +2820,9 @@ export namespace dialogflow_v2 {
  * @memberOf! ()
  *
  * @param {object} params Parameters for request
- * @param {string} params.parent Required. The project that the agent to import
- *     is associated with. Format: `projects/<Project ID>`.
- * @param {().GoogleCloudDialogflowV2ImportAgentRequest} params.resource Request
- *     body data
- * @param {object} [options] Optionally override request options, such as `url`,
- *     `method`, and `encoding`.
+ * @param {string} params.parent Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`.
+ * @param {().GoogleCloudDialogflowV2ImportAgentRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
@@ -2940,14 +2932,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of items
-     *     to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken Optional. The next_page_token value
-     *     returned from a previous list request.
-     * @param {string} params.parent Required. The project to list agents from.
-     *     Format: `projects/<Project ID or '-'>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The project to list agents from. Format: `projects/<Project ID or '-'>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3023,12 +3011,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project that the agent to
-     *     train is associated with. Format: `projects/<Project ID>`.
-     * @param {().GoogleCloudDialogflowV2TrainAgentRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The project that the agent to train is associated with. Format: `projects/<Project ID>`.
+     * @param {().GoogleCloudDialogflowV2TrainAgentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3205,12 +3190,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the agent to delete
-     *     all entities types for. Format: `projects/<Project ID>/agent`.
-     * @param {().GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
+     * @param {().GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3286,12 +3268,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the agent to update
-     *     or create entity types in. Format: `projects/<Project ID>/agent`.
-     * @param {().GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the agent to update or create entity types in. Format: `projects/<Project ID>/agent`.
+     * @param {().GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3365,18 +3344,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language of entity
-     *     synonyms defined in `entity_type`. If not specified, the agent's
-     *     default language is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent, before they
-     *     can be used.
-     * @param {string} params.parent Required. The agent to create a entity type
-     *     for. Format: `projects/<Project ID>/agent`.
-     * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string} params.parent Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`.
+     * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3453,11 +3424,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the entity type to
-     *     delete. Format: `projects/<Project ID>/agent/entityTypes/<EntityType
-     *     ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3522,16 +3490,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language to retrieve
-     *     entity synonyms for. If not specified, the agent's default language
-     *     is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent, before they
-     *     can be used.
-     * @param {string} params.name Required. The name of the entity type.
-     *     Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.languageCode Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string} params.name Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3603,20 +3564,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language to list
-     *     entity synonyms for. If not specified, the agent's default language
-     *     is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent, before they
-     *     can be used.
-     * @param {integer=} params.pageSize Optional. The maximum number of items
-     *     to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken Optional. The next_page_token value
-     *     returned from a previous list request.
-     * @param {string} params.parent Required. The agent to list all entity
-     *     types from. Format: `projects/<Project ID>/agent`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.languageCode Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The agent to list all entity types from. Format: `projects/<Project ID>/agent`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3691,22 +3643,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language of entity
-     *     synonyms defined in `entity_type`. If not specified, the agent's
-     *     default language is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent, before they
-     *     can be used.
-     * @param {string} params.name Required for all methods except `create`
-     *     (`create` populates the name automatically. The unique identifier of
-     *     the entity type. Format: `projects/<Project
-     *     ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param {string=} params.updateMask Optional. The mask to control which
-     *     fields get updated.
-     * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+     * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3944,13 +3885,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the entity type to
-     *     create entities in. Format: `projects/<Project
-     *     ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param {().GoogleCloudDialogflowV2BatchCreateEntitiesRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the entity type to create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {().GoogleCloudDialogflowV2BatchCreateEntitiesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4028,13 +3965,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the entity type to
-     *     delete entries for. Format: `projects/<Project
-     *     ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param {().GoogleCloudDialogflowV2BatchDeleteEntitiesRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the entity type to delete entries for. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {().GoogleCloudDialogflowV2BatchDeleteEntitiesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4112,13 +4045,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the entity type to
-     *     update the entities in. Format: `projects/<Project
-     *     ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param {().GoogleCloudDialogflowV2BatchUpdateEntitiesRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the entity type to update the entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {().GoogleCloudDialogflowV2BatchUpdateEntitiesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4261,12 +4190,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the agent to delete
-     *     all entities types for. Format: `projects/<Project ID>/agent`.
-     * @param {().GoogleCloudDialogflowV2BatchDeleteIntentsRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the agent to delete all entities types for. Format: `projects/<Project ID>/agent`.
+     * @param {().GoogleCloudDialogflowV2BatchDeleteIntentsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4340,12 +4266,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the agent to update
-     *     or create intents in. Format: `projects/<Project ID>/agent`.
-     * @param {().GoogleCloudDialogflowV2BatchUpdateIntentsRequest}
-     *     params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the agent to update or create intents in. Format: `projects/<Project ID>/agent`.
+     * @param {().GoogleCloudDialogflowV2BatchUpdateIntentsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4418,20 +4341,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.intentView Optional. The resource view to apply
-     *     to the returned intent.
-     * @param {string=} params.languageCode Optional. The language of training
-     *     phrases, parameters and rich messages defined in `intent`. If not
-     *     specified, the agent's default language is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent, before they
-     *     can be used.
-     * @param {string} params.parent Required. The agent to create a intent for.
-     *     Format: `projects/<Project ID>/agent`.
-     * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string} params.parent Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`.
+     * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4505,10 +4419,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the intent to delete.
-     *     Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the intent to delete. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4573,18 +4485,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.intentView Optional. The resource view to apply
-     *     to the returned intent.
-     * @param {string=} params.languageCode Optional. The language to retrieve
-     *     training phrases, parameters and rich messages for. If not specified,
-     *     the agent's default language is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent, before they
-     *     can be used.
-     * @param {string} params.name Required. The name of the intent. Format:
-     *     `projects/<Project ID>/agent/intents/<Intent ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+     * @param {string=} params.languageCode Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string} params.name Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4652,22 +4556,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.intentView Optional. The resource view to apply
-     *     to the returned intent.
-     * @param {string=} params.languageCode Optional. The language to list
-     *     training phrases, parameters and rich messages for. If not specified,
-     *     the agent's default language is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent before they
-     *     can be used.
-     * @param {integer=} params.pageSize Optional. The maximum number of items
-     *     to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken Optional. The next_page_token value
-     *     returned from a previous list request.
-     * @param {string} params.parent Required. The agent to list all intents
-     *     from. Format: `projects/<Project ID>/agent`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+     * @param {string=} params.languageCode Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4741,24 +4635,12 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.intentView Optional. The resource view to apply
-     *     to the returned intent.
-     * @param {string=} params.languageCode Optional. The language of training
-     *     phrases, parameters and rich messages defined in `intent`. If not
-     *     specified, the agent's default language is used. [More than a dozen
-     *     languages](https://dialogflow.com/docs/reference/language) are
-     *     supported. Note: languages must be enabled in the agent, before they
-     *     can be used.
-     * @param {string} params.name Required for all methods except `create`
-     *     (`create` populates the name automatically. The unique identifier of
-     *     this intent. Format: `projects/<Project ID>/agent/intents/<Intent
-     *     ID>`.
-     * @param {string=} params.updateMask Optional. The mask to control which
-     *     fields get updated.
-     * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
+     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+     * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5015,11 +4897,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the session to delete
-     *     all contexts from. Format: `projects/<Project
-     *     ID>/agent/sessions/<Session ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5090,16 +4969,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this
-     *     query is sent to. Format: `projects/<Project
-     *     ID>/agent/sessions/<Session ID>`. It's up to the API caller to choose
-     *     an appropriate session ID. It can be a random number or some type of
-     *     user identifier (preferably hashed). The length of the session ID
-     *     must not exceed 36 bytes.
-     * @param {().GoogleCloudDialogflowV2DetectIntentRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
+     * @param {().GoogleCloudDialogflowV2DetectIntentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5219,12 +5091,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a context
-     *     for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
-     * @param {().GoogleCloudDialogflowV2Context} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {().GoogleCloudDialogflowV2Context} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5299,11 +5168,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context to delete.
-     *     Format: `projects/<Project ID>/agent/sessions/<Session
-     *     ID>/contexts/<Context ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5369,11 +5235,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context. Format:
-     *     `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
-     *     ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5441,14 +5304,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of items
-     *     to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken Optional. The next_page_token value
-     *     returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all contexts
-     *     from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5524,15 +5383,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the
-     *     context. Format: `projects/<Project ID>/agent/sessions/<Session
-     *     ID>/contexts/<Context ID>`.
-     * @param {string=} params.updateMask Optional. The mask to control which
-     *     fields get updated.
-     * @param {().GoogleCloudDialogflowV2Context} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+     * @param {().GoogleCloudDialogflowV2Context} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5705,13 +5559,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a session
-     *     entity type for. Format: `projects/<Project
-     *     ID>/agent/sessions/<Session ID>`.
-     * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5787,11 +5637,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the entity type to
-     *     delete. Format: `projects/<Project ID>/agent/sessions/<Session
-     *     ID>/entityTypes/<Entity Type Display Name>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5858,11 +5705,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity
-     *     type. Format: `projects/<Project ID>/agent/sessions/<Session
-     *     ID>/entityTypes/<Entity Type Display Name>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5933,15 +5777,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of items
-     *     to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken Optional. The next_page_token value
-     *     returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all session
-     *     entity types from. Format: `projects/<Project
-     *     ID>/agent/sessions/<Session ID>`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6023,16 +5862,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of this
-     *     session entity type. Format: `projects/<Project
-     *     ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display
-     *     Name>`.
-     * @param {string=} params.updateMask Optional. The mask to control which
-     *     fields get updated.
-     * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+     * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6211,8 +6044,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

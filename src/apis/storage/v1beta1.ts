@@ -369,11 +369,8 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -439,11 +436,8 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -507,8 +501,7 @@ export namespace storage_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -575,8 +568,7 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -645,12 +637,9 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -717,12 +706,9 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {().BucketAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -904,8 +890,7 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -968,10 +953,8 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to no_acl.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1031,12 +1014,9 @@ export namespace storage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to no_acl, unless the bucket resource specifies acl or
-     *     defaultObjectAcl properties, when it defaults to full.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1100,13 +1080,10 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.max-results Maximum number of buckets to return.
-     * @param {string=} params.pageToken A previously-returned page token
-     *     representing part of the larger set of results to view.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.projectId A valid API project identifier.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to no_acl.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1170,11 +1147,9 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to full.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1238,11 +1213,9 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to full.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {().Bucket} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1429,12 +1402,9 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1501,12 +1471,9 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1572,8 +1539,7 @@ export namespace storage_v1beta1 {
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.object Name of the object.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1641,8 +1607,7 @@ export namespace storage_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1711,13 +1676,10 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string} params.object Name of the object.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1785,13 +1747,10 @@ export namespace storage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be
-     *     user-userId, user-emailAddress, group-groupId, group-emailAddress,
-     *     allUsers, or allAuthenticatedUsers.
+     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string} params.object Name of the object.
      * @param {().ObjectAccessControl} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1997,11 +1956,9 @@ export namespace storage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object
-     *     resides.
+     * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string} params.object Name of the object.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2063,13 +2020,10 @@ export namespace storage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object
-     *     resides.
+     * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string} params.object Name of the object.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to no_acl.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2129,21 +2083,14 @@ export namespace storage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to store the
-     *     new object. Overrides the provided object metadata's bucket value, if
-     *     any.
-     * @param {string=} params.name Name of the object. Required when the object
-     *     metadata is not otherwise provided. Overrides the object metadata's
-     *     name value, if any.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to no_acl, unless the object resource specifies the acl property,
-     *     when it defaults to full.
+     * @param {string} params.bucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl, unless the object resource specifies the acl property, when it defaults to full.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2208,24 +2155,13 @@ export namespace storage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to look for
-     *     objects.
-     * @param {string=} params.delimiter Returns results in a directory-like
-     *     mode. items will contain only objects whose names, aside from the
-     *     prefix, do not contain delimiter. Objects whose names, aside from the
-     *     prefix, contain delimiter will have their name, truncated after the
-     *     delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param {integer=} params.max-results Maximum number of items plus
-     *     prefixes to return. As duplicate prefixes are omitted, fewer total
-     *     results may be returned than requested.
-     * @param {string=} params.pageToken A previously-returned page token
-     *     representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to objects whose names
-     *     begin with this prefix.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to no_acl.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.bucket Name of the bucket in which to look for objects.
+     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {integer=} params.max-results Maximum number of items plus prefixes to return. As duplicate prefixes are omitted, fewer total results may be returned than requested.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
+     * @param {string=} params.projection Set of properties to return. Defaults to no_acl.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2289,14 +2225,11 @@ export namespace storage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object
-     *     resides.
+     * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string} params.object Name of the object.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to full.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2359,14 +2292,11 @@ export namespace storage_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object
-     *     resides.
+     * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string} params.object Name of the object.
-     * @param {string=} params.projection Set of properties to return. Defaults
-     *     to full.
+     * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {().Object} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

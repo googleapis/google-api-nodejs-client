@@ -1166,11 +1166,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource for the `Policy` to
-     *     clear.
+     * @param {string} params.resource_ Name of the resource for the `Policy` to clear.
      * @param {().ClearOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1296,12 +1294,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ The name of the resource to start
-     *     computing the effective `Policy`.
-     * @param {().GetEffectiveOrgPolicyRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ The name of the resource to start computing the effective `Policy`.
+     * @param {().GetEffectiveOrgPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1428,11 +1423,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource the `Policy` is set
-     *     on.
+     * @param {string} params.resource_ Name of the resource the `Policy` is set on.
      * @param {().GetOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1573,12 +1566,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource to list
-     *     `Constraints` for.
-     * @param {().ListAvailableOrgPolicyConstraintsRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ Name of the resource to list `Constraints` for.
+     * @param {().ListAvailableOrgPolicyConstraintsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1727,11 +1717,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource to list Policies
-     *     for.
+     * @param {string} params.resource_ Name of the resource to list Policies for.
      * @param {().ListOrgPoliciesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1858,11 +1846,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Resource name of the resource to attach
-     *     the `Policy`.
+     * @param {string} params.resource_ Resource name of the resource to attach the `Policy`.
      * @param {().SetOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2098,8 +2084,7 @@ export namespace cloudresourcemanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Lien} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2216,8 +2201,7 @@ export namespace cloudresourcemanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name/identifier of the Lien to delete.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2284,8 +2268,7 @@ export namespace cloudresourcemanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name/identifier of the Lien.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2411,14 +2394,10 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     *     This is a suggestion for the server.
-     * @param {string=} params.pageToken The `next_page_token` value returned
-     *     from a previous List request, if any.
-     * @param {string=} params.parent The name of the resource to list all
-     *     attached Liens. For example, `projects/1234`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of items to return. This is a suggestion for the server.
+     * @param {string=} params.pageToken The `next_page_token` value returned from a previous List request, if any.
+     * @param {string=} params.parent The name of the resource to list all attached Liens. For example, `projects/1234`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2608,8 +2587,7 @@ export namespace cloudresourcemanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2748,11 +2726,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource for the `Policy` to
-     *     clear.
+     * @param {string} params.resource_ Name of the resource for the `Policy` to clear.
      * @param {().ClearOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2871,10 +2847,8 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Organization to
-     *     fetch, e.g. "organizations/1234".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the Organization to fetch, e.g. "organizations/1234".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2996,12 +2970,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ The name of the resource to start
-     *     computing the effective `Policy`.
-     * @param {().GetEffectiveOrgPolicyRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ The name of the resource to start computing the effective `Policy`.
+     * @param {().GetEffectiveOrgPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3131,12 +3102,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being requested. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3262,11 +3230,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource the `Policy` is set
-     *     on.
+     * @param {string} params.resource_ Name of the resource the `Policy` is set on.
      * @param {().GetOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3409,12 +3375,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource to list
-     *     `Constraints` for.
-     * @param {().ListAvailableOrgPolicyConstraintsRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ Name of the resource to list `Constraints` for.
+     * @param {().ListAvailableOrgPolicyConstraintsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3567,11 +3530,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource to list Policies
-     *     for.
+     * @param {string} params.resource_ Name of the resource to list Policies for.
      * @param {().ListOrgPoliciesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3713,8 +3674,7 @@ export namespace cloudresourcemanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().SearchOrganizationsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3848,12 +3808,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being specified. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3978,11 +3935,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Resource name of the resource to attach
-     *     the `Policy`.
+     * @param {string} params.resource_ Resource name of the resource to attach the `Policy`.
      * @param {().SetOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4110,12 +4065,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy detail is being requested. See the operation documentation for
-     *     the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4428,11 +4380,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource for the `Policy` to
-     *     clear.
+     * @param {string} params.resource_ Name of the resource for the `Policy` to clear.
      * @param {().ClearOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4566,8 +4516,7 @@ export namespace cloudresourcemanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Project} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4692,10 +4641,8 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example,
-     *     `foo-bar-123`).  Required.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectId The Project ID (for example, `foo-bar-123`).  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4815,10 +4762,8 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example,
-     *     `my-project-123`).  Required.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4937,11 +4882,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example,
-     *     `my-project-123`).  Required.
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
      * @param {().GetAncestryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5069,12 +5012,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ The name of the resource to start
-     *     computing the effective `Policy`.
-     * @param {().GetEffectiveOrgPolicyRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ The name of the resource to start computing the effective `Policy`.
+     * @param {().GetEffectiveOrgPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5203,12 +5143,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being requested. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5333,11 +5270,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource the `Policy` is set
-     *     on.
+     * @param {string} params.resource_ Name of the resource the `Policy` is set on.
      * @param {().GetOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5472,36 +5407,10 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of
-     *     the request.  Filter rules are case insensitive. The fields eligible
-     *     for filtering are:  + `name` + `id` +
-     *     <code>labels.<em>key</em></code> where *key* is the name of a label
-     *     Some examples of using labels as filters:  |Filter|Description|
-     *     |------|-----------| |name:how*|The project's name starts with
-     *     "how".| |name:Howl|The project's name is `Howl` or `howl`.|
-     *     |name:HOWL|Equivalent to above.| |NAME:howl|Equivalent to above.|
-     *     |labels.color:*|The project has the label `color`.|
-     *     |labels.color:red|The project's label `color` has the value `red`.|
-     *     |labels.color:red&nbsp;labels.size:big|The project's label `color`
-     *     has the value `red` and its label `size` has the value `big`.  If you
-     *     specify a filter that has both `parent.type` and `parent.id`, then
-     *     the `resourcemanager.projects.list` permission is checked on the
-     *     parent. If the user has this permission, all projects under the
-     *     parent will be returned after remaining filters have been applied. If
-     *     the user lacks this permission, then all projects for which the user
-     *     has the `resourcemanager.projects.get` permission will be returned
-     *     after remaining filters have been applied. If no filter is specified,
-     *     the call will return projects for which the user has
-     *     `resourcemanager.projects.get` permissions.  Optional.
-     * @param {integer=} params.pageSize The maximum number of Projects to
-     *     return in the response. The server can return fewer Projects than
-     *     requested. If unspecified, server picks an appropriate default.
-     *     Optional.
-     * @param {string=} params.pageToken A pagination token returned from a
-     *     previous call to ListProjects that indicates from where listing
-     *     should continue.  Optional.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + <code>labels.<em>key</em></code> where *key* is the name of a label  Some examples of using labels as filters:  |Filter|Description| |------|-----------| |name:how*|The project's name starts with "how".| |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project has the label `color`.| |labels.color:red|The project's label `color` has the value `red`.| |labels.color:red&nbsp;labels.size:big|The project's label `color` has the value `red` and its label `size` has the value `big`.  If you specify a filter that has both `parent.type` and `parent.id`, then the `resourcemanager.projects.list` permission is checked on the parent. If the user has this permission, all projects under the parent will be returned after remaining filters have been applied. If the user lacks this permission, then all projects for which the user has the `resourcemanager.projects.get` permission will be returned after remaining filters have been applied. If no filter is specified, the call will return projects for which the user has `resourcemanager.projects.get` permissions.  Optional.
+     * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5640,12 +5549,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource to list
-     *     `Constraints` for.
-     * @param {().ListAvailableOrgPolicyConstraintsRequest} params.resource
-     *     Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ Name of the resource to list `Constraints` for.
+     * @param {().ListAvailableOrgPolicyConstraintsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5794,11 +5700,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Name of the resource to list Policies
-     *     for.
+     * @param {string} params.resource_ Name of the resource to list Policies for.
      * @param {().ListOrgPoliciesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5951,12 +5855,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being specified. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6080,11 +5981,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ Resource name of the resource to attach
-     *     the `Policy`.
+     * @param {string} params.resource_ Resource name of the resource to attach the `Policy`.
      * @param {().SetOrgPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6209,12 +6108,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy detail is being requested. See the operation documentation for
-     *     the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6347,11 +6243,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The project ID (for example,
-     *     `foo-bar-123`).  Required.
+     * @param {string} params.projectId The project ID (for example, `foo-bar-123`).  Required.
      * @param {().UndeleteProjectRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6479,11 +6373,9 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The project ID (for example,
-     *     `my-project-123`).  Required.
+     * @param {string} params.projectId The project ID (for example, `my-project-123`).  Required.
      * @param {().Project} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

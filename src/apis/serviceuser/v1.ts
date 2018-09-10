@@ -2107,14 +2107,9 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and the service to
-     *     disable for that consumer.  The Service User implementation accepts
-     *     the following forms for consumer: - "project:<project_id>"  A valid
-     *     path would be: -
-     *     projects/my-project/services/servicemanagement.googleapis.com
+     * @param {string} params.name Name of the consumer and the service to disable for that consumer.  The Service User implementation accepts the following forms for consumer: - "project:<project_id>"  A valid path would be: - projects/my-project/services/servicemanagement.googleapis.com
      * @param {().DisableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2182,12 +2177,9 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the consumer and the service to
-     *     enable for that consumer.  A valid path would be: -
-     *     projects/my-project/services/servicemanagement.googleapis.com
+     * @param {string} params.name Name of the consumer and the service to enable for that consumer.  A valid path would be: - projects/my-project/services/servicemanagement.googleapis.com
      * @param {().EnableServiceRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2253,14 +2245,10 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested size of the next page of
-     *     data.
-     * @param {string=} params.pageToken Token identifying which result to start
-     *     with; returned by a previous list call.
-     * @param {string} params.parent List enabled services for the specified
-     *     parent.  An example valid parent would be: - projects/my-project
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Requested size of the next page of data.
+     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+     * @param {string} params.parent List enabled services for the specified parent.  An example valid parent would be: - projects/my-project
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2408,12 +2396,9 @@ export namespace serviceuser_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested size of the next page of
-     *     data.
-     * @param {string=} params.pageToken Token identifying which result to start
-     *     with; returned by a previous list call.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Requested size of the next page of data.
+     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

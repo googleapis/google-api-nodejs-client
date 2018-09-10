@@ -206,8 +206,7 @@ export namespace translate_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().DetectLanguageRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -273,11 +272,8 @@ export namespace translate_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.q The input text upon which to perform language
-     *     detection. Repeat this parameter to perform language detection on
-     *     multiple text inputs.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.q The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -380,12 +376,9 @@ export namespace translate_v2 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.model The model type for which supported
-     *     languages should be returned.
-     * @param {string=} params.target The language to use to return localized,
-     *     human readable names of supported languages.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.model The model type for which supported languages should be returned.
+     * @param {string=} params.target The language to use to return localized, human readable names of supported languages.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -481,22 +474,12 @@ export namespace translate_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.cid The customization id for translate
-     * @param {string=} params.format The format of the source text, in either
-     *     HTML (default) or plain-text. A value of "html" indicates HTML and a
-     *     value of "text" indicates plain-text.
-     * @param {string=} params.model The `model` type requested for this
-     *     translation. Valid values are listed in public documentation.
-     * @param {string} params.q The input text to translate. Repeat this
-     *     parameter to perform translation operations on multiple text inputs.
-     * @param {string=} params.source The language of the source text, set to
-     *     one of the language codes listed in Language Support. If the source
-     *     language is not specified, the API will attempt to identify the
-     *     source language automatically and return it within the response.
-     * @param {string} params.target The language to use for translation of the
-     *     input text, set to one of the language codes listed in Language
-     *     Support.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.format The format of the source text, in either HTML (default) or plain-text. A value of "html" indicates HTML and a value of "text" indicates plain-text.
+     * @param {string=} params.model The `model` type requested for this translation. Valid values are listed in public documentation.
+     * @param {string} params.q The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
+     * @param {string=} params.source The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
+     * @param {string} params.target The language to use for translation of the input text, set to one of the language codes listed in Language Support.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -563,8 +546,7 @@ export namespace translate_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().TranslateTextRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

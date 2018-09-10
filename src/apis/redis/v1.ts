@@ -446,8 +446,7 @@ export namespace redis_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -508,12 +507,10 @@ export namespace redis_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations
-     *     collection, if applicable.
+     * @param {string} params.name The resource that owns the locations collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -635,19 +632,10 @@ export namespace redis_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Required. The logical name of the
-     *     Redis instance in the customer project with the following
-     *     restrictions:  * Must contain only lowercase letters, numbers, and
-     *     hyphens. * Must start with a letter. * Must be between 1-40
-     *     characters. * Must end with a number or a letter. * Must be unique
-     *     within the customer project / location
-     * @param {string} params.parent Required. The resource name of the instance
-     *     location using the form:
-     *     `projects/{project_id}/locations/{location_id}` where `location_id`
-     *     refers to a GCP region
+     * @param {string=} params.instanceId Required. The logical name of the Redis instance in the customer project with the following restrictions:  * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
+     * @param {string} params.parent Required. The resource name of the instance location using the form:     `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
      * @param {().Instance} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -714,12 +702,8 @@ export namespace redis_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using
-     *     the form:
-     *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *     where `location_id` refers to a GCP region
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -784,12 +768,8 @@ export namespace redis_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Redis instance resource name using
-     *     the form:
-     *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *     where `location_id` refers to a GCP region
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -853,20 +833,10 @@ export namespace redis_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     *     If not specified, a default value of 1000 will be used by the
-     *     service. Regardless of the page_size value, the response may include
-     *     a partial list and a caller should only rely on response's
-     *     next_page_token to determine if there are more instances left to be
-     *     queried.
-     * @param {string=} params.pageToken The next_page_token value returned from
-     *     a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the instance
-     *     location using the form:
-     *     `projects/{project_id}/locations/{location_id}` where `location_id`
-     *     refers to a GCP region
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The maximum number of items to return.  If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string} params.parent Required. The resource name of the instance location using the form:     `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -936,21 +906,10 @@ export namespace redis_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Unique name of the resource in this
-     *     scope including project and location using the form:
-     *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *     Note: Redis instances are managed and addressed at regional level so
-     *     location_id here refers to a GCP region; however, users may choose
-     *     which specific zone (or collection of zones for cross-zone instances)
-     *     an instance should be provisioned in. Refer to [location_id] and
-     *     [alternative_location_id] fields for more details.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At
-     *     least one path must be supplied in this field. The elements of the
-     *     repeated paths field may only include these fields from Instance:   *
-     *     `displayName`  *   `labels`  *   `memorySizeGb`  *   `redisConfig`
+     * @param {string} params.name Required. Unique name of the resource in this scope including project and location using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`  Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to [location_id] and [alternative_location_id] fields for more details.
+     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance:   *   `displayName`  *   `labels`  *   `memorySizeGb`  *   `redisConfig`
      * @param {().Instance} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1144,10 +1103,8 @@ export namespace redis_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be
-     *     cancelled.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1215,10 +1172,8 @@ export namespace redis_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be
-     *     deleted.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1285,8 +1240,7 @@ export namespace redis_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1359,8 +1313,7 @@ export namespace redis_v1 {
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

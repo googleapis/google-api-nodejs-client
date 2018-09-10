@@ -905,12 +905,9 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.shelf ID of bookshelf to retrieve.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string} params.userId ID of user for whom to retrieve
-     *     bookshelves.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.userId ID of user for whom to retrieve bookshelves.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -971,12 +968,9 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string} params.userId ID of user for whom to retrieve
-     *     bookshelves.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.userId ID of user for whom to retrieve bookshelves.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1089,16 +1083,11 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string} params.shelf ID of bookshelf to retrieve volumes.
-     * @param {boolean=} params.showPreorders Set to true to show pre-ordered
-     *     books. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {integer=} params.startIndex Index of the first element to return
-     *     (starts at 0)
-     * @param {string} params.userId ID of user for whom to retrieve bookshelf
-     *     volumes.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
+     * @param {string} params.userId ID of user for whom to retrieve bookshelf volumes.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1209,15 +1198,11 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.drive_document_id A drive document id. The
-     *     upload_client_token must not be set.
-     * @param {string=} params.mime_type The document MIME type. It can be set
-     *     only if the drive_document_id is set.
-     * @param {string=} params.name The document name. It can be set only if the
-     *     drive_document_id is set.
+     * @param {string=} params.drive_document_id A drive document id. The upload_client_token must not be set.
+     * @param {string=} params.mime_type The document MIME type. It can be set only if the drive_document_id is set.
+     * @param {string=} params.name The document name. It can be set only if the drive_document_id is set.
      * @param {string=} params.upload_client_token
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1287,8 +1272,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.volumeId The id of the book to be removed.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1352,8 +1336,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().BooksCloudloadingResource} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1484,10 +1467,8 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to
-     *     request the data.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.cpksver The device/version ID from which to request the data.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1577,10 +1558,8 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1648,11 +1627,9 @@ export namespace books_v1 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.docId The docid to share.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string=} params.volumeId The volume to share.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1718,11 +1695,9 @@ export namespace books_v1 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.docId The docid to unshare.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string=} params.volumeId The volume to unshare.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1853,15 +1828,11 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the
-     *     requested volume.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string} params.summaryId The ID for the layer to get the summary
-     *     for.
+     * @param {string=} params.contentVersion The content version for the requested volume.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.summaryId The ID for the layer to get the summary for.
      * @param {string} params.volumeId The volume to retrieve layers for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1923,16 +1894,12 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the
-     *     requested volume.
+     * @param {string=} params.contentVersion The content version for the requested volume.
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous page.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.pageToken The value of the nextToken from the previous page.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId The volume to retrieve layers for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2059,26 +2026,17 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.allowWebDefinitions For the dictionary layer.
-     *     Whether or not to allow web definitions.
-     * @param {string} params.annotationDataId The ID of the annotation data to
-     *     retrieve.
-     * @param {string} params.contentVersion The content version for the volume
-     *     you are trying to retrieve.
-     * @param {integer=} params.h The requested pixel height for any images. If
-     *     height is provided width must also be provided.
-     * @param {string} params.layerId The ID for the layer to get the
-     *     annotations.
-     * @param {string=} params.locale The locale information for the data.
-     *     ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+     * @param {boolean=} params.allowWebDefinitions For the dictionary layer. Whether or not to allow web definitions.
+     * @param {string} params.annotationDataId The ID of the annotation data to retrieve.
+     * @param {string} params.contentVersion The content version for the volume you are trying to retrieve.
+     * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
+     * @param {string} params.layerId The ID for the layer to get the annotations.
+     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      * @param {integer=} params.scale The requested scale for the image.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId The volume to retrieve annotations for.
-     * @param {integer=} params.w The requested pixel width for any images. If
-     *     width is provided height must also be provided.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2143,32 +2101,20 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.annotationDataId The list of Annotation Data Ids
-     *     to retrieve. Pagination is ignored if this is set.
-     * @param {string} params.contentVersion The content version for the
-     *     requested volume.
-     * @param {integer=} params.h The requested pixel height for any images. If
-     *     height is provided width must also be provided.
-     * @param {string} params.layerId The ID for the layer to get the annotation
-     *     data.
-     * @param {string=} params.locale The locale information for the data.
-     *     ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+     * @param {string=} params.annotationDataId The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
+     * @param {string} params.contentVersion The content version for the requested volume.
+     * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
+     * @param {string} params.layerId The ID for the layer to get the annotation data.
+     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous page.
+     * @param {string=} params.pageToken The value of the nextToken from the previous page.
      * @param {integer=} params.scale The requested scale for the image.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to
-     *     items updated prior to this timestamp (exclusive).
-     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to
-     *     items updated since this timestamp (inclusive).
-     * @param {string} params.volumeId The volume to retrieve annotation data
-     *     for.
-     * @param {integer=} params.w The requested pixel width for any images. If
-     *     width is provided height must also be provided.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+     * @param {string} params.volumeId The volume to retrieve annotation data for.
+     * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2364,17 +2310,12 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.annotationId The ID of the volume annotation to
-     *     retrieve.
-     * @param {string} params.layerId The ID for the layer to get the
-     *     annotations.
-     * @param {string=} params.locale The locale information for the data.
-     *     ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string} params.annotationId The ID of the volume annotation to retrieve.
+     * @param {string} params.layerId The ID for the layer to get the annotations.
+     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId The volume to retrieve annotations for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2438,37 +2379,22 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.contentVersion The content version for the
-     *     requested volume.
-     * @param {string=} params.endOffset The end offset to end retrieving data
-     *     from.
-     * @param {string=} params.endPosition The end position to end retrieving
-     *     data from.
-     * @param {string} params.layerId The ID for the layer to get the
-     *     annotations.
-     * @param {string=} params.locale The locale information for the data.
-     *     ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
+     * @param {string} params.contentVersion The content version for the requested volume.
+     * @param {string=} params.endOffset The end offset to end retrieving data from.
+     * @param {string=} params.endPosition The end position to end retrieving data from.
+     * @param {string} params.layerId The ID for the layer to get the annotations.
+     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous page.
-     * @param {boolean=} params.showDeleted Set to true to return deleted
-     *     annotations. updatedMin must be in the request to use this. Defaults
-     *     to false.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string=} params.startOffset The start offset to start retrieving
-     *     data from.
-     * @param {string=} params.startPosition The start position to start
-     *     retrieving data from.
-     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to
-     *     items updated prior to this timestamp (exclusive).
-     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to
-     *     items updated since this timestamp (inclusive).
-     * @param {string=} params.volumeAnnotationsVersion The version of the
-     *     volume annotations that you are requesting.
+     * @param {string=} params.pageToken The value of the nextToken from the previous page.
+     * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string=} params.startOffset The start offset to start retrieving data from.
+     * @param {string=} params.startPosition The start position to start retrieving data from.
+     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
+     * @param {string=} params.volumeAnnotationsVersion The version of the volume annotations that you are requesting.
      * @param {string} params.volumeId The volume to retrieve annotations for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2648,8 +2574,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2715,16 +2640,11 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to
-     *     release the restriction.
-     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message
-     *     localization, i.e. en_US.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string} params.volumeIds The volume(s) to release restrictions
-     *     for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.volumeIds The volume(s) to release restrictions for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2791,19 +2711,13 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to
-     *     request the restrictions.
-     * @param {string=} params.licenseTypes The type of access license to
-     *     request. If not specified, the default is BOTH.
-     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message
-     *     localization, i.e. en_US.
+     * @param {string} params.cpksver The device/version ID from which to request the restrictions.
+     * @param {string=} params.licenseTypes The type of access license to request. If not specified, the default is BOTH.
+     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @param {string} params.nonce The client nonce value.
-     * @param {string} params.source String to identify the originator of this
-     *     request.
-     * @param {string} params.volumeId The volume to request concurrent/download
-     *     restrictions for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.source String to identify the originator of this request.
+     * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2870,23 +2784,15 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to
-     *     release the restriction.
-     * @param {string=} params.features List of features supported by the
-     *     client, i.e., 'RENTALS'
-     * @param {boolean=} params.includeNonComicsSeries Set to true to include
-     *     non-comics series. Defaults to false.
-     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message
-     *     localization, i.e. en_US.
+     * @param {string} params.cpksver The device/version ID from which to release the restriction.
+     * @param {string=} params.features List of features supported by the client, i.e., 'RENTALS'
+     * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
+     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @param {string} params.nonce The client nonce value.
-     * @param {boolean=} params.showPreorders Set to true to show pre-ordered
-     *     books. Defaults to false.
-     * @param {string} params.source String to identify the originator of this
-     *     request.
-     * @param {string=} params.volumeIds The volume(s) to request download
-     *     restrictions for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
+     * @param {string} params.source String to identify the originator of this request.
+     * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2954,8 +2860,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Usersettings} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3168,10 +3073,8 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.annotationId The ID for the annotation to delete.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3236,15 +3139,11 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.annotationId The ID for the annotation to insert.
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based
-     *     location.
-     * @param {boolean=} params.showOnlySummaryInResponse Requests that only the
-     *     summary of the specified layer be provided in the response.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+     * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {().Annotation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3310,25 +3209,17 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the
-     *     requested volume.
+     * @param {string=} params.contentVersion The content version for the requested volume.
      * @param {string=} params.layerId The layer ID to limit annotation by.
      * @param {string=} params.layerIds The layer ID(s) to limit annotation by.
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous page.
-     * @param {boolean=} params.showDeleted Set to true to return deleted
-     *     annotations. updatedMin must be in the request to use this. Defaults
-     *     to false.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to
-     *     items updated prior to this timestamp (exclusive).
-     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to
-     *     items updated since this timestamp (inclusive).
+     * @param {string=} params.pageToken The value of the nextToken from the previous page.
+     * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
+     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
      * @param {string=} params.volumeId The volume to restrict annotations to.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3394,11 +3285,9 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.layerIds Array of layer IDs to get the summary
-     *     for.
+     * @param {string} params.layerIds Array of layer IDs to get the summary for.
      * @param {string} params.volumeId Volume id to get the summary for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3465,11 +3354,9 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.annotationId The ID for the annotation to update.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {().Annotation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3680,14 +3567,11 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.reason The reason for which the book is added to
-     *     the library.
+     * @param {string=} params.reason The reason for which the book is added to the library.
      * @param {string} params.shelf ID of bookshelf to which to add a volume.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId ID of volume to add.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3752,12 +3636,9 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.shelf ID of bookshelf from which to remove a
-     *     volume.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.shelf ID of bookshelf from which to remove a volume.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3824,10 +3705,8 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.shelf ID of bookshelf to retrieve.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3890,10 +3769,8 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3960,14 +3837,10 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.shelf ID of bookshelf with the volume.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId ID of volume to move.
-     * @param {integer} params.volumePosition Position on shelf to move the item
-     *     (0 puts the item before the current first item, 1 puts it between the
-     *     first and the second and so on.)
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4032,15 +3905,11 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.reason The reason for which the book is removed
-     *     from the library.
-     * @param {string} params.shelf ID of bookshelf from which to remove a
-     *     volume.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.reason The reason for which the book is removed from the library.
+     * @param {string} params.shelf ID of bookshelf from which to remove a volume.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId ID of volume to remove.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4229,23 +4098,15 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based
-     *     location.
+     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.projection Restrict information returned to a set
-     *     of selected fields.
-     * @param {string=} params.q Full-text search query string in this
-     *     bookshelf.
-     * @param {string} params.shelf The bookshelf ID or name retrieve volumes
-     *     for.
-     * @param {boolean=} params.showPreorders Set to true to show pre-ordered
-     *     books. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {integer=} params.startIndex Index of the first element to return
-     *     (starts at 0)
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {string=} params.q Full-text search query string in this bookshelf.
+     * @param {string} params.shelf The bookshelf ID or name retrieve volumes for.
+     * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4364,14 +4225,10 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion Volume content version for which
-     *     this reading position is requested.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string} params.volumeId ID of volume for which to retrieve a
-     *     reading position.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.contentVersion Volume content version for which this reading position is requested.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.volumeId ID of volume for which to retrieve a reading position.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4433,22 +4290,14 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.action Action that caused this reading position
-     *     to be set.
-     * @param {string=} params.contentVersion Volume content version for which
-     *     this reading position applies.
-     * @param {string=} params.deviceCookie Random persistent device cookie
-     *     optional on set position.
-     * @param {string} params.position Position string for the new volume
-     *     reading position.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {string} params.timestamp RFC 3339 UTC format timestamp associated
-     *     with this reading position.
-     * @param {string} params.volumeId ID of volume for which to update the
-     *     reading position.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.action Action that caused this reading position to be set.
+     * @param {string=} params.contentVersion Volume content version for which this reading position applies.
+     * @param {string=} params.deviceCookie Random persistent device cookie optional on set position.
+     * @param {string} params.position Position string for the new volume reading position.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
+     * @param {string} params.volumeId ID of volume for which to update the reading position.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4584,14 +4433,10 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Ex: 'en_US'. Used for generating notification title and body.
-     * @param {string} params.notification_id String to identify the
-     *     notification.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
+     * @param {string} params.notification_id String to identify the notification.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4686,10 +4531,8 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Default is en-US if unset.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4755,17 +4598,11 @@ export namespace books_v1 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.categoryId List of category ids requested.
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Default is en-US if unset.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed
-     *     maturity rating of returned volumes. Books with a higher maturity
-     *     rating are filtered out.
-     * @param {integer=} params.pageSize Number of maximum results per page to
-     *     be included in the response.
-     * @param {string=} params.pageToken The value of the nextToken from the
-     *     previous page.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
+     * @param {integer=} params.pageSize Number of maximum results per page to be included in the response.
+     * @param {string=} params.pageToken The value of the nextToken from the previous page.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4885,15 +4722,10 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed
-     *     maturity rating of returned recommendations. Books with a higher
-     *     maturity rating are filtered out.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4997,8 +4829,7 @@ export namespace books_v1 {
      * @param {string=} params.product device product
      * @param {string=} params.serial device serial
      * @param {string=} params.volumeId Volume id to exercise the offer
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5067,8 +4898,7 @@ export namespace books_v1 {
      * @param {string=} params.offerId Offer to dimiss
      * @param {string=} params.product device product
      * @param {string=} params.serial device serial
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5138,8 +4968,7 @@ export namespace books_v1 {
      * @param {string=} params.model device model
      * @param {string=} params.product device product
      * @param {string=} params.serial device serial
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5321,8 +5150,7 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.series_id String that identifies the series
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5406,13 +5234,10 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.page_size Number of maximum results per page to
-     *     be included in the response.
-     * @param {string=} params.page_token The value of the nextToken from the
-     *     previous page.
+     * @param {integer=} params.page_size Number of maximum results per page to be included in the response.
+     * @param {string=} params.page_token The value of the nextToken from the previous page.
      * @param {string} params.series_id String that identifies the series
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5516,19 +5341,14 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based
-     *     location.
-     * @param {boolean=} params.includeNonComicsSeries Set to true to include
-     *     non-comics series. Defaults to false.
+     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+     * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
      * @param {string=} params.partner Brand results for partner ID.
-     * @param {string=} params.projection Restrict information returned to a set
-     *     of selected fields.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {boolean=} params.user_library_consistent_read
      * @param {string} params.volumeId ID of volume to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5588,32 +5408,21 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.download Restrict to volumes by download
-     *     availability.
+     * @param {string=} params.download Restrict to volumes by download availability.
      * @param {string=} params.filter Filter search results.
-     * @param {string=} params.langRestrict Restrict results to books with this
-     *     language code.
-     * @param {string=} params.libraryRestrict Restrict search to this user's
-     *     library.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed
-     *     maturity rating of returned recommendations. Books with a higher
-     *     maturity rating are filtered out.
+     * @param {string=} params.langRestrict Restrict results to books with this language code.
+     * @param {string=} params.libraryRestrict Restrict search to this user's library.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Sort search results.
-     * @param {string=} params.partner Restrict and brand results for partner
-     *     ID.
+     * @param {string=} params.partner Restrict and brand results for partner ID.
      * @param {string=} params.printType Restrict to books or magazines.
-     * @param {string=} params.projection Restrict information returned to a set
-     *     of selected fields.
+     * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {string} params.q Full-text search query string.
-     * @param {boolean=} params.showPreorders Set to true to show books
-     *     available for preorder. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {integer=} params.startIndex Index of the first result to return
-     *     (starts at 0)
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5789,16 +5598,11 @@ export namespace books_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.association Association type.
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed
-     *     maturity rating of returned recommendations. Books with a higher
-     *     maturity rating are filtered out.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId ID of the source volume.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5907,20 +5711,13 @@ export namespace books_v1 {
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.acquireMethod How the book was acquired
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based
-     *     location.
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Ex:'en_US'. Used for generating recommendations.
+     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.processingState The processing state of the user
-     *     uploaded volumes to be returned. Applicable only if the UPLOADED is
-     *     specified in the acquireMethod.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {integer=} params.startIndex Index of the first result to return
-     *     (starts at 0)
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6036,15 +5833,10 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed
-     *     maturity rating of returned recommendations. Books with a higher
-     *     maturity rating are filtered out.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6109,14 +5901,11 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Ex: 'en_US'. Used for generating recommendations.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      * @param {string} params.rating Rating to be given to the volume.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
+     * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId ID of the source volume.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6252,19 +6041,13 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country
-     *     code. Ex: 'en_US'. Used for generating recommendations.
+     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.processingState The processing state of the user
-     *     uploaded volumes to be returned.
-     * @param {string=} params.source String to identify the originator of this
-     *     request.
-     * @param {integer=} params.startIndex Index of the first result to return
-     *     (starts at 0)
-     * @param {string=} params.volumeId The ids of the volumes to be returned.
-     *     If not specified all that match the processingState are returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned.
+     * @param {string=} params.source String to identify the originator of this request.
+     * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+     * @param {string=} params.volumeId The ids of the volumes to be returned. If not specified all that match the processingState are returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

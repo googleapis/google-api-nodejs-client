@@ -1654,33 +1654,14 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.companyName Optional.  If provided, restricts
-     *     completion to specified company.  The format is
-     *     "projects/{project_id}/companies/{company_id}", for example,
-     *     "projects/api-test-project/companies/foo".
-     * @param {string=} params.languageCode Required.  The language of the
-     *     query. This is the BCP-47 language code, such as "en-US" or
-     *     "sr-Latn". For more information, see [Tags for Identifying
-     *     Languages](https://tools.ietf.org/html/bcp47).  For
-     *     CompletionType.JOB_TITLE type, only open jobs with same language_code
-     *     are returned.  For CompletionType.COMPANY_NAME type, only companies
-     *     having open jobs with same language_code are returned.  For
-     *     CompletionType.COMBINED type, only open jobs with same language_code
-     *     or companies having open jobs with same language_code are returned.
-     *     The maximum number of allowed characters is 255.
-     * @param {string} params.name Required.  Resource name of project the
-     *     completion is performed within.  The format is
-     *     "projects/{project_id}", for example, "projects/api-test-project".
-     * @param {integer=} params.pageSize Required.  Completion result count. The
-     *     maximum allowed page size is 10.
-     * @param {string=} params.query Required.  The query used to generate
-     *     suggestions.  The maximum number of allowed characters is 255.
-     * @param {string=} params.scope Optional.  The scope of the completion. The
-     *     defaults is CompletionScope.PUBLIC.
-     * @param {string=} params.type Optional.  The completion topic. The default
-     *     is CompletionType.COMBINED.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.companyName Optional.  If provided, restricts completion to specified company.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * @param {string=} params.languageCode Required.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with same language_code are returned.  For CompletionType.COMBINED type, only open jobs with same language_code or companies having open jobs with same language_code are returned.  The maximum number of allowed characters is 255.
+     * @param {string} params.name Required.  Resource name of project the completion is performed within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {integer=} params.pageSize Required.  Completion result count.  The maximum allowed page size is 10.
+     * @param {string=} params.query Required.  The query used to generate suggestions.  The maximum number of allowed characters is 255.
+     * @param {string=} params.scope Optional.  The scope of the completion. The defaults is CompletionScope.PUBLIC.
+     * @param {string=} params.type Optional.  The completion topic. The default is CompletionType.COMBINED.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1810,12 +1791,9 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required.  Resource name of the project
-     *     under which the company is created.  The format is
-     *     "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required.  Resource name of the project under which the company is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().CreateCompanyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1880,12 +1858,8 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required.  The resource name of the company
-     *     to be deleted.  The format is
-     *     "projects/{project_id}/companies/{company_id}", for example,
-     *     "projects/api-test-project/companies/foo".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required.  The resource name of the company to be deleted.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1949,12 +1923,8 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required.  The resource name of the company
-     *     to be retrieved.  The format is
-     *     "projects/{project_id}/companies/{company_id}", for example,
-     *     "projects/api-test-project/companies/foo".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required.  The resource name of the company to be retrieved.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2014,20 +1984,11 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional.  The maximum number of
-     *     companies to be returned, at most 100. Default is 100 if a
-     *     non-positive number is provided.
-     * @param {string=} params.pageToken Optional.  The starting indicator from
-     *     which to return results.
-     * @param {string} params.parent Required.  Resource name of the project
-     *     under which the company is created.  The format is
-     *     "projects/{project_id}", for example, "projects/api-test-project".
-     * @param {boolean=} params.requireOpenJobs Optional.  Set to true if the
-     *     companies requested must have open jobs.  Defaults to false.  If
-     *     true, at most page_size of companies are fetched, among which only
-     *     those with open jobs are returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize Optional.  The maximum number of companies to be returned, at most 100. Default is 100 if a non-positive number is provided.
+     * @param {string=} params.pageToken Optional.  The starting indicator from which to return results.
+     * @param {string} params.parent Required.  Resource name of the project under which the company is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {boolean=} params.requireOpenJobs Optional.  Set to true if the companies requested must have open jobs.  Defaults to false.  If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2096,14 +2057,9 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required during company update.  The resource
-     *     name for a company. This is generated by the service when a company
-     *     is created.  The format is
-     *     "projects/{project_id}/companies/{company_id}", for example,
-     *     "projects/api-test-project/companies/foo".
+     * @param {string} params.name Required during company update.  The resource name for a company. This is generated by the service when a company is created.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
      * @param {().UpdateCompanyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2272,12 +2228,9 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required.  The resource name of the project
-     *     under which the job is created.  The format is
-     *     "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required.  The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().BatchDeleteJobsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2343,12 +2296,9 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required.  The resource name of the project
-     *     under which the job is created.  The format is
-     *     "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {string} params.parent Required.  The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().CreateJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2414,11 +2364,8 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required.  The resource name of the job to be
-     *     deleted.  The format is "projects/{project_id}/jobs/{job_id}", for
-     *     example, "projects/api-test-project/jobs/1234".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required.  The resource name of the job to be deleted.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2483,11 +2430,8 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required.  The resource name of the job to
-     *     retrieve.  The format is "projects/{project_id}/jobs/{job_id}", for
-     *     example, "projects/api-test-project/jobs/1234".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name Required.  The resource name of the job to retrieve.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2547,27 +2491,12 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required.  The filter string specifies the
-     *     jobs to be enumerated.  Supported operator: =, AND  The fields
-     *     eligible for filtering are:  * `companyName` (Required) *
-     *     `requisitionId` (Optional)  Sample Query:  * companyName =
-     *     "projects/api-test-project/companies/123" * companyName =
-     *     "projects/api-test-project/companies/123" AND requisitionId = "req-1"
-     * @param {string=} params.jobView Optional.  The desired job attributes
-     *     returned for jobs in the search response. Defaults to
-     *     JobView.JOB_VIEW_FULL if no value is specified.
-     * @param {integer=} params.pageSize Optional.  The maximum number of jobs
-     *     to be returned per page of results.  If job_view is set to
-     *     JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000.
-     *     Otherwise, the maximum allowed page size is 100.  Default is 100 if
-     *     empty or a number < 1 is specified.
-     * @param {string=} params.pageToken Optional.  The starting point of a
-     *     query result.
-     * @param {string} params.parent Required.  The resource name of the project
-     *     under which the job is created.  The format is
-     *     "projects/{project_id}", for example, "projects/api-test-project".
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Required.  The filter string specifies the jobs to be enumerated.  Supported operator: =, AND  The fields eligible for filtering are:  * `companyName` (Required) * `requisitionId` (Optional)  Sample Query:  * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1"
+     * @param {string=} params.jobView Optional.  The desired job attributes returned for jobs in the search response. Defaults to JobView.JOB_VIEW_FULL if no value is specified.
+     * @param {integer=} params.pageSize Optional.  The maximum number of jobs to be returned per page of results.  If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100.  Default is 100 if empty or a number < 1 is specified.
+     * @param {string=} params.pageToken Optional.  The starting point of a query result.
+     * @param {string} params.parent Required.  The resource name of the project under which the job is created.  The format is "projects/{project_id}", for example, "projects/api-test-project".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2633,15 +2562,9 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required during job update.  The resource
-     *     name for the job. This is generated by the service when a job is
-     *     created.  The format is "projects/{project_id}/jobs/{job_id}", for
-     *     example, "projects/api-test-project/jobs/1234".  Use of this field in
-     *     job queries and API calls is preferred over the use of requisition_id
-     *     since this value is unique.
+     * @param {string} params.name Required during job update.  The resource name for the job. This is generated by the service when a job is created.  The format is "projects/{project_id}/jobs/{job_id}", for example, "projects/api-test-project/jobs/1234".  Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
      * @param {().UpdateJobRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2707,12 +2630,9 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required.  The resource name of the project
-     *     to search within.  The format is "projects/{project_id}", for
-     *     example, "projects/api-test-project".
+     * @param {string} params.parent Required.  The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().SearchJobsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2784,12 +2704,9 @@ export namespace jobs_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required.  The resource name of the project
-     *     to search within.  The format is "projects/{project_id}", for
-     *     example, "projects/api-test-project".
+     * @param {string} params.parent Required.  The resource name of the project to search within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {().SearchJobsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

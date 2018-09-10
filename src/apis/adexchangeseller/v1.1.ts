@@ -494,10 +494,8 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to get information about. Tip:
-     *     'myaccount' is a valid ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account to get information about. Tip: 'myaccount' is a valid ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -582,13 +580,9 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of ad clients to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad clients. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -688,8 +682,7 @@ export namespace adexchangeseller_v1_1 {
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client for which to get the ad unit.
      * @param {string} params.adUnitId Ad unit to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -753,15 +746,10 @@ export namespace adexchangeseller_v1_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad
-     *     units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad units. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -880,15 +868,10 @@ export namespace adexchangeseller_v1_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {string} params.adUnitId Ad unit for which to list custom
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through custom channels. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adUnitId Ad unit for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -997,12 +980,8 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.locale The locale to use for translating alert
-     *     messages. The account locale will be used if this is not supplied.
-     *     The AdSense default (English) will be used if the supplied locale is
-     *     invalid or unsupported.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1094,11 +1073,9 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client which contains the custom
-     *     channel.
+     * @param {string} params.adClientId Ad client which contains the custom channel.
      * @param {string} params.customChannelId Custom channel to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1163,15 +1140,10 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list custom
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through custom channels. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1288,19 +1260,12 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client which contains the custom
-     *     channel.
-     * @param {string} params.customChannelId Custom channel for which to list
-     *     ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad
-     *     units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad units. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client which contains the custom channel.
+     * @param {string} params.customChannelId Custom channel for which to list ad units.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1430,8 +1395,7 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1517,8 +1481,7 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1605,8 +1568,7 @@ export namespace adexchangeseller_v1_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.dealId Preferred deal to get information about.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1668,8 +1630,7 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1770,25 +1731,15 @@ export namespace adexchangeseller_v1_1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dimension Dimensions to base the report on.
-     * @param {string} params.endDate End of the date range to report on in
-     *     "YYYY-MM-DD" format, inclusive.
+     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      * @param {string=} params.filter Filters to be run on the report.
-     * @param {string=} params.locale Optional locale to use for translating
-     *     report output to a local language. Defaults to "en_US" if not
-     *     specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report
-     *     data to return.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
      * @param {string=} params.metric Numeric columns to include in the report.
-     * @param {string=} params.sort The name of a dimension or metric to sort
-     *     the resulting report on, optionally prefixed with "+" to sort
-     *     ascending or "-" to sort descending. If no prefix is specified, the
-     *     column is sorted ascending.
-     * @param {string} params.startDate Start of the date range to report on in
-     *     "YYYY-MM-DD" format, inclusive.
-     * @param {integer=} params.startIndex Index of the first row of report data
-     *     to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1912,16 +1863,11 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locale Optional locale to use for translating
-     *     report output to a local language. Defaults to "en_US" if not
-     *     specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report
-     *     data to return.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
      * @param {string} params.savedReportId The saved report to retrieve.
-     * @param {integer=} params.startIndex Index of the first row of report data
-     *     to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1986,13 +1932,9 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of saved reports
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through saved reports. To retrieve the next page, set this parameter
-     *     to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2115,15 +2057,10 @@ export namespace adexchangeseller_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list URL
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of URL channels to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through URL channels. To retrieve the next page, set this parameter
-     *     to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client for which to list URL channels.
+     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

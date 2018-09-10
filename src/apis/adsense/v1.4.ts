@@ -642,10 +642,8 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to get information about.
-     * @param {boolean=} params.tree Whether the tree of sub accounts should be
-     *     returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.tree Whether the tree of sub accounts should be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -705,13 +703,9 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of accounts to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through accounts. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -822,8 +816,7 @@ export namespace adsense_v1_4 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account which contains the ad client.
      * @param {string} params.adClientId Ad client to get the code for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -891,13 +884,9 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account for which to list ad clients.
-     * @param {integer=} params.maxResults The maximum number of ad clients to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad clients. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1020,8 +1009,7 @@ export namespace adsense_v1_4 {
      * @param {string} params.accountId Account to which the ad client belongs.
      * @param {string} params.adClientId Ad client for which to get the ad unit.
      * @param {string} params.adUnitId Ad unit to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1087,8 +1075,7 @@ export namespace adsense_v1_4 {
      * @param {string} params.accountId Account which contains the ad client.
      * @param {string} params.adClientId Ad client with contains the ad unit.
      * @param {string} params.adUnitId Ad unit to get the code for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1158,15 +1145,10 @@ export namespace adsense_v1_4 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to which the ad client belongs.
      * @param {string} params.adClientId Ad client for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad
-     *     units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad units. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1316,15 +1298,10 @@ export namespace adsense_v1_4 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to which the ad client belongs.
      * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {string} params.adUnitId Ad unit for which to list custom
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through custom channels. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adUnitId Ad unit for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1440,8 +1417,7 @@ export namespace adsense_v1_4 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account which contains the ad unit.
      * @param {string} params.alertId Alert to delete.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1506,14 +1482,9 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to retrieve the
-     *     alerts.
-     * @param {string=} params.locale The locale to use for translating alert
-     *     messages. The account locale will be used if this is not supplied.
-     *     The AdSense default (English) will be used if the supplied locale is
-     *     invalid or unsupported.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account for which to retrieve the alerts.
+     * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1628,11 +1599,9 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client which contains the custom
-     *     channel.
+     * @param {string} params.adClientId Ad client which contains the custom channel.
      * @param {string} params.customChannelId Custom channel to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1698,15 +1667,10 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client for which to list custom
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through custom channels. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1833,19 +1797,12 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client which contains the custom
-     *     channel.
-     * @param {string} params.customChannelId Custom channel for which to list
-     *     ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad
-     *     units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad units. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client which contains the custom channel.
+     * @param {string} params.customChannelId Custom channel for which to list ad units.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1961,10 +1918,8 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to retrieve the
-     *     payments.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account for which to retrieve the payments.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2059,31 +2014,18 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account upon which to report.
-     * @param {string=} params.currency Optional currency to use when reporting
-     *     on monetary metrics. Defaults to the account's currency if not set.
+     * @param {string=} params.currency Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
      * @param {string=} params.dimension Dimensions to base the report on.
-     * @param {string} params.endDate End of the date range to report on in
-     *     "YYYY-MM-DD" format, inclusive.
+     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      * @param {string=} params.filter Filters to be run on the report.
-     * @param {string=} params.locale Optional locale to use for translating
-     *     report output to a local language. Defaults to "en_US" if not
-     *     specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report
-     *     data to return.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
      * @param {string=} params.metric Numeric columns to include in the report.
-     * @param {string=} params.sort The name of a dimension or metric to sort
-     *     the resulting report on, optionally prefixed with "+" to sort
-     *     ascending or "-" to sort descending. If no prefix is specified, the
-     *     column is sorted ascending.
-     * @param {string} params.startDate Start of the date range to report on in
-     *     "YYYY-MM-DD" format, inclusive.
-     * @param {integer=} params.startIndex Index of the first row of report data
-     *     to return.
-     * @param {boolean=} params.useTimezoneReporting Whether the report should
-     *     be generated in the AdSense account's local timezone. If false
-     *     default PST/PDT timezone will be used.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {boolean=} params.useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2231,18 +2173,12 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the saved reports
-     *     belong.
-     * @param {string=} params.locale Optional locale to use for translating
-     *     report output to a local language. Defaults to "en_US" if not
-     *     specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report
-     *     data to return.
+     * @param {string} params.accountId Account to which the saved reports belong.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
      * @param {string} params.savedReportId The saved report to retrieve.
-     * @param {integer=} params.startIndex Index of the first row of report data
-     *     to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2318,15 +2254,10 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the saved reports
-     *     belong.
-     * @param {integer=} params.maxResults The maximum number of saved reports
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through saved reports. To retrieve the next page, set this parameter
-     *     to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account to which the saved reports belong.
+     * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2458,11 +2389,9 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to get the saved ad
-     *     style.
+     * @param {string} params.accountId Account for which to get the saved ad style.
      * @param {string} params.savedAdStyleId Saved ad style to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2526,15 +2455,10 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to list saved ad
-     *     styles.
-     * @param {integer=} params.maxResults The maximum number of saved ad styles
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through saved ad styles. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.accountId Account for which to list saved ad styles.
+     * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2654,15 +2578,10 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client for which to list URL
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of URL channels to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through URL channels. To retrieve the next page, set this parameter
-     *     to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client for which to list URL channels.
+     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2771,13 +2690,9 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of ad clients to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad clients. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2877,8 +2792,7 @@ export namespace adsense_v1_4 {
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client for which to get the ad unit.
      * @param {string} params.adUnitId Ad unit to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2941,8 +2855,7 @@ export namespace adsense_v1_4 {
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client with contains the ad unit.
      * @param {string} params.adUnitId Ad unit to get the code for.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3011,15 +2924,10 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad
-     *     units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad units. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3152,15 +3060,10 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {string} params.adUnitId Ad unit for which to list custom
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through custom channels. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adUnitId Ad unit for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3271,8 +3174,7 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.alertId Alert to delete.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3334,12 +3236,8 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.locale The locale to use for translating alert
-     *     messages. The account locale will be used if this is not supplied.
-     *     The AdSense default (English) will be used if the supplied locale is
-     *     invalid or unsupported.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3442,11 +3340,9 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client which contains the custom
-     *     channel.
+     * @param {string} params.adClientId Ad client which contains the custom channel.
      * @param {string} params.customChannelId Custom channel to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3511,15 +3407,10 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list custom
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through custom channels. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client for which to list custom channels.
+     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3635,19 +3526,12 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client which contains the custom
-     *     channel.
-     * @param {string} params.customChannelId Custom channel for which to list
-     *     ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad
-     *     units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through ad units. To retrieve the next page, set this parameter to
-     *     the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client which contains the custom channel.
+     * @param {string} params.customChannelId Custom channel for which to list ad units.
+     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
+     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3777,8 +3661,7 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3864,8 +3747,7 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3951,8 +3833,7 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4040,31 +3921,18 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.accountId Accounts upon which to report.
-     * @param {string=} params.currency Optional currency to use when reporting
-     *     on monetary metrics. Defaults to the account's currency if not set.
+     * @param {string=} params.currency Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
      * @param {string=} params.dimension Dimensions to base the report on.
-     * @param {string} params.endDate End of the date range to report on in
-     *     "YYYY-MM-DD" format, inclusive.
+     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      * @param {string=} params.filter Filters to be run on the report.
-     * @param {string=} params.locale Optional locale to use for translating
-     *     report output to a local language. Defaults to "en_US" if not
-     *     specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report
-     *     data to return.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
      * @param {string=} params.metric Numeric columns to include in the report.
-     * @param {string=} params.sort The name of a dimension or metric to sort
-     *     the resulting report on, optionally prefixed with "+" to sort
-     *     ascending or "-" to sort descending. If no prefix is specified, the
-     *     column is sorted ascending.
-     * @param {string} params.startDate Start of the date range to report on in
-     *     "YYYY-MM-DD" format, inclusive.
-     * @param {integer=} params.startIndex Index of the first row of report data
-     *     to return.
-     * @param {boolean=} params.useTimezoneReporting Whether the report should
-     *     be generated in the AdSense account's local timezone. If false
-     *     default PST/PDT timezone will be used.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
+     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {boolean=} params.useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4210,16 +4078,11 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.locale Optional locale to use for translating
-     *     report output to a local language. Defaults to "en_US" if not
-     *     specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report
-     *     data to return.
+     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
      * @param {string} params.savedReportId The saved report to retrieve.
-     * @param {integer=} params.startIndex Index of the first row of report data
-     *     to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4293,13 +4156,9 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of saved reports
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through saved reports. To retrieve the next page, set this parameter
-     *     to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4422,8 +4281,7 @@ export namespace adsense_v1_4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.savedAdStyleId Saved ad style to retrieve.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4485,13 +4343,9 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of saved ad styles
-     *     to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through saved ad styles. To retrieve the next page, set this
-     *     parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4600,15 +4454,10 @@ export namespace adsense_v1_4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list URL
-     *     channels.
-     * @param {integer=} params.maxResults The maximum number of URL channels to
-     *     include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page
-     *     through URL channels. To retrieve the next page, set this parameter
-     *     to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.adClientId Ad client for which to list URL channels.
+     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
+     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
