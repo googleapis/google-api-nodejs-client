@@ -4478,12 +4478,9 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.spreadsheetId The spreadsheet to apply the updates
-     *     to.
-     * @param {().BatchUpdateSpreadsheetRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.spreadsheetId The spreadsheet to apply the updates to.
+     * @param {().BatchUpdateSpreadsheetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4608,8 +4605,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {().Spreadsheet} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4743,14 +4739,10 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeGridData True if grid data should be
-     *     returned. This parameter is ignored if a field mask was set in the
-     *     request.
-     * @param {string=} params.ranges The ranges to retrieve from the
-     *     spreadsheet.
+     * @param {boolean=} params.includeGridData True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
+     * @param {string=} params.ranges The ranges to retrieve from the spreadsheet.
      * @param {string} params.spreadsheetId The spreadsheet to request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4885,10 +4877,8 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The spreadsheet to request.
-     * @param {().GetSpreadsheetByDataFilterRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().GetSpreadsheetByDataFilterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5085,12 +5075,9 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.metadataId The ID of the developer metadata to
-     *     retrieve.
-     * @param {string} params.spreadsheetId The ID of the spreadsheet to
-     *     retrieve metadata from.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer} params.metadataId The ID of the developer metadata to retrieve.
+     * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve metadata from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5210,12 +5197,9 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.spreadsheetId The ID of the spreadsheet to
-     *     retrieve metadata from.
-     * @param {().SearchDeveloperMetadataRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve metadata from.
+     * @param {().SearchDeveloperMetadataRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5399,12 +5383,9 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.sheetId The ID of the sheet to copy.
-     * @param {string} params.spreadsheetId The ID of the spreadsheet containing
-     *     the sheet to copy.
-     * @param {().CopySheetToAnotherSpreadsheetRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.spreadsheetId The ID of the spreadsheet containing the sheet to copy.
+     * @param {().CopySheetToAnotherSpreadsheetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5578,28 +5559,15 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeValuesInResponse Determines if the update
-     *     response should include the values of the cells that were appended.
-     *     By default, responses do not include the updated values.
-     * @param {string=} params.insertDataOption How the input data should be
-     *     inserted.
-     * @param {string} params.range The A1 notation of a range to search for a
-     *     logical table of data. Values will be appended after the last row of
-     *     the table.
-     * @param {string=} params.responseDateTimeRenderOption Determines how
-     *     dates, times, and durations in the response should be rendered. This
-     *     is ignored if response_value_render_option is FORMATTED_VALUE. The
-     *     default dateTime render option is
-     *     [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.responseValueRenderOption Determines how values
-     *     in the response should be rendered. The default render option is
-     *     ValueRenderOption.FORMATTED_VALUE.
+     * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
+     * @param {string=} params.insertDataOption How the input data should be inserted.
+     * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+     * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {string=} params.valueInputOption How the input data should be
-     *     interpreted.
+     * @param {string=} params.valueInputOption How the input data should be interpreted.
      * @param {().ValueRange} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5727,8 +5695,7 @@ export namespace sheets_v4 {
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {().BatchClearValuesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5857,10 +5824,8 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchClearValuesByDataFilterRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().BatchClearValuesByDataFilterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6010,24 +5975,12 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.dateTimeRenderOption How dates, times, and
-     *     durations should be represented in the output. This is ignored if
-     *     value_render_option is FORMATTED_VALUE. The default dateTime render
-     *     option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results
-     *     should use.  For example, if the spreadsheet data is:
-     *     `A1=1,B1=2,A2=3,B2=4`, then requesting
-     *     `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`,
-     *     whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return
-     *     `[[1,3],[2,4]]`.
+     * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
      * @param {string=} params.ranges The A1 notation of the values to retrieve.
-     * @param {string} params.spreadsheetId The ID of the spreadsheet to
-     *     retrieve data from.
-     * @param {string=} params.valueRenderOption How values should be
-     *     represented in the output. The default render option is
-     *     ValueRenderOption.FORMATTED_VALUE.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
+     * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6170,12 +6123,9 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.spreadsheetId The ID of the spreadsheet to
-     *     retrieve data from.
-     * @param {().BatchGetValuesByDataFilterRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
+     * @param {().BatchGetValuesByDataFilterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6318,8 +6268,7 @@ export namespace sheets_v4 {
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {().BatchUpdateValuesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6454,10 +6403,8 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchUpdateValuesByDataFilterRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().BatchUpdateValuesByDataFilterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6601,8 +6548,7 @@ export namespace sheets_v4 {
      * @param {string} params.range The A1 notation of the values to clear.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {().ClearValuesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6737,24 +6683,12 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.dateTimeRenderOption How dates, times, and
-     *     durations should be represented in the output. This is ignored if
-     *     value_render_option is FORMATTED_VALUE. The default dateTime render
-     *     option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results
-     *     should use.  For example, if the spreadsheet data is:
-     *     `A1=1,B1=2,A2=3,B2=4`, then requesting
-     *     `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`,
-     *     whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return
-     *     `[[1,3],[2,4]]`.
+     * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
      * @param {string} params.range The A1 notation of the values to retrieve.
-     * @param {string} params.spreadsheetId The ID of the spreadsheet to
-     *     retrieve data from.
-     * @param {string=} params.valueRenderOption How values should be
-     *     represented in the output. The default render option is
-     *     ValueRenderOption.FORMATTED_VALUE.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
+     * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6879,26 +6813,14 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeValuesInResponse Determines if the update
-     *     response should include the values of the cells that were updated. By
-     *     default, responses do not include the updated values. If the range to
-     *     write was larger than than the range actually written, the response
-     *     will include all values in the requested range (excluding trailing
-     *     empty rows and columns).
+     * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
      * @param {string} params.range The A1 notation of the values to update.
-     * @param {string=} params.responseDateTimeRenderOption Determines how
-     *     dates, times, and durations in the response should be rendered. This
-     *     is ignored if response_value_render_option is FORMATTED_VALUE. The
-     *     default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
-     * @param {string=} params.responseValueRenderOption Determines how values
-     *     in the response should be rendered. The default render option is
-     *     ValueRenderOption.FORMATTED_VALUE.
+     * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
+     * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {string=} params.valueInputOption How the input data should be
-     *     interpreted.
+     * @param {string=} params.valueInputOption How the input data should be interpreted.
      * @param {().ValueRange} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

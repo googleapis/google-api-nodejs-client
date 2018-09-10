@@ -400,10 +400,8 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by
-     *     this method.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -473,8 +471,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -548,8 +545,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -616,10 +612,8 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by
-     *     this method.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -687,10 +681,8 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AchievementResetMultipleForAllRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().AchievementResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -818,16 +810,10 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google
-     *     Play developer console.
-     * @param {integer=} params.maxResults The maximum number of player
-     *     resources to return in the response, used for paging. For any
-     *     response, the actual number of player resources returned may be less
-     *     than the specified maxResults.
-     * @param {string=} params.pageToken The token returned by the previous
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -934,8 +920,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.eventId The ID of the event.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1000,8 +985,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1065,8 +1049,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1134,8 +1117,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.eventId The ID of the event.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1203,10 +1185,8 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().EventsResetMultipleForAllRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().EventsResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1333,12 +1313,9 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google
-     *     Play developer console.
-     * @param {string} params.playerId A player ID. A value of me may be used in
-     *     place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1404,12 +1381,9 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google
-     *     Play developer console.
-     * @param {string} params.playerId A player ID. A value of me may be used in
-     *     place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.applicationId The application ID from the Google Play developer console.
+     * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1522,8 +1496,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.questId The ID of the quest.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1587,8 +1560,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1651,8 +1623,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1720,8 +1691,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.questId The ID of the quest.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1788,10 +1758,8 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QuestsResetMultipleForAllRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().QuestsResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1918,8 +1886,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1983,8 +1950,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2077,8 +2043,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2148,8 +2113,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2220,8 +2184,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2289,8 +2252,7 @@ export namespace gamesManagement_v1management {
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2358,10 +2320,8 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ScoresResetMultipleForAllRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().ScoresResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2487,8 +2447,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2554,8 +2513,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

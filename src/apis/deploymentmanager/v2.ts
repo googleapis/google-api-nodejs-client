@@ -1030,13 +1030,10 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
+     * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {().DeploymentsCancelPreviewRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().DeploymentsCancelPreviewRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1160,13 +1157,10 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.deletePolicy Sets the policy to use for deleting
-     *     resources.
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
+     * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
+     * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1290,11 +1284,9 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
+     * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1414,8 +1406,7 @@ export namespace deploymentmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1540,20 +1531,11 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.createPolicy Sets the policy to use for creating
-     *     new resources.
-     * @param {boolean=} params.preview If set to true, creates a deployment and
-     *     creates "shell" resources but does not actually instantiate these
-     *     resources. This allows you to preview what your deployment looks
-     *     like. After previewing a deployment, you can deploy your resources by
-     *     making a request with the update() method or you can use the
-     *     cancelPreview() method to cancel the preview altogether. Note that
-     *     the deployment will still exist after you cancel the preview and you
-     *     must separately delete this deployment if you want to remove it.
+     * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
+     * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
      * @param {().Deployment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1688,44 +1670,12 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources
-     *     listed in the response. The expression must specify the field name, a
-     *     comparison operator, and the value that you want to use for
-     *     filtering. The value must be a string, a number, or a boolean. The
-     *     comparison operator must be either =, !=, >, or <.  For example, if
-     *     you are filtering Compute Engine instances, you can exclude instances
-     *     named example-instance by specifying name != example-instance.  You
-     *     can also filter nested fields. For example, you could specify
-     *     scheduling.automaticRestart = false to include instances only if they
-     *     are not scheduled for automatic restarts. You can use filtering on
-     *     nested fields to filter based on resource labels.  To filter on
-     *     multiple expressions, provide each separate expression within
-     *     parentheses. For example, (scheduling.automaticRestart = true)
-     *     (cpuPlatform = "Intel Skylake"). By default, each expression is an
-     *     AND expression. However, you can include AND and OR expressions
-     *     explicitly. For example, (cpuPlatform = "Intel Skylake") OR
-     *     (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart =
-     *     true).
-     * @param {integer=} params.maxResults The maximum number of results per
-     *     page that should be returned. If the number of available results is
-     *     larger than maxResults, Compute Engine returns a nextPageToken that
-     *     can be used to get the next page of results in subsequent list
-     *     requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By
-     *     default, results are returned in alphanumerical order based on the
-     *     resource name.  You can also sort results in descending order based
-     *     on the creation timestamp using orderBy="creationTimestamp desc".
-     *     This sorts results based on the creationTimestamp field in reverse
-     *     chronological order (newest result first). Use this to sort resources
-     *     like operations so that the newest operation is returned first.
-     *     Currently, only sorting by name or creationTimestamp desc is
-     *     supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     pageToken to the nextPageToken returned by a previous list request to
-     *     get the next page of results.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1855,27 +1805,13 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.createPolicy Sets the policy to use for creating
-     *     new resources.
-     * @param {string=} params.deletePolicy Sets the policy to use for deleting
-     *     resources.
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
-     * @param {boolean=} params.preview If set to true, updates the deployment
-     *     and creates and updates the "shell" resources but does not actually
-     *     alter or instantiate these resources. This allows you to preview what
-     *     your deployment will look like. You can use this intent to preview
-     *     how an update would affect your deployment. You must provide a
-     *     target.config with a configuration if this is set to true. After
-     *     previewing a deployment, you can deploy your resources by making a
-     *     request with the update() or you can cancelPreview() to remove the
-     *     preview altogether. Note that the deployment will still exist after
-     *     you cancel the preview and you must separately delete this deployment
-     *     if you want to remove it.
+     * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
+     * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
+     * @param {string} params.deployment The name of the deployment for this request.
+     * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
      * @param {().Deployment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2004,8 +1940,7 @@ export namespace deploymentmanager_v2 {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2133,12 +2068,10 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
+     * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
      * @param {().DeploymentsStopRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2265,8 +2198,7 @@ export namespace deploymentmanager_v2 {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2399,27 +2331,13 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.createPolicy Sets the policy to use for creating
-     *     new resources.
-     * @param {string=} params.deletePolicy Sets the policy to use for deleting
-     *     resources.
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
-     * @param {boolean=} params.preview If set to true, updates the deployment
-     *     and creates and updates the "shell" resources but does not actually
-     *     alter or instantiate these resources. This allows you to preview what
-     *     your deployment will look like. You can use this intent to preview
-     *     how an update would affect your deployment. You must provide a
-     *     target.config with a configuration if this is set to true. After
-     *     previewing a deployment, you can deploy your resources by making a
-     *     request with the update() or you can cancelPreview() to remove the
-     *     preview altogether. Note that the deployment will still exist after
-     *     you cancel the preview and you must separately delete this deployment
-     *     if you want to remove it.
+     * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
+     * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
+     * @param {string} params.deployment The name of the deployment for this request.
+     * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
      * @param {().Deployment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2855,13 +2773,10 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
-     * @param {string} params.manifest The name of the manifest for this
-     *     request.
+     * @param {string} params.deployment The name of the deployment for this request.
+     * @param {string} params.manifest The name of the manifest for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2992,46 +2907,13 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
-     * @param {string=} params.filter A filter expression that filters resources
-     *     listed in the response. The expression must specify the field name, a
-     *     comparison operator, and the value that you want to use for
-     *     filtering. The value must be a string, a number, or a boolean. The
-     *     comparison operator must be either =, !=, >, or <.  For example, if
-     *     you are filtering Compute Engine instances, you can exclude instances
-     *     named example-instance by specifying name != example-instance.  You
-     *     can also filter nested fields. For example, you could specify
-     *     scheduling.automaticRestart = false to include instances only if they
-     *     are not scheduled for automatic restarts. You can use filtering on
-     *     nested fields to filter based on resource labels.  To filter on
-     *     multiple expressions, provide each separate expression within
-     *     parentheses. For example, (scheduling.automaticRestart = true)
-     *     (cpuPlatform = "Intel Skylake"). By default, each expression is an
-     *     AND expression. However, you can include AND and OR expressions
-     *     explicitly. For example, (cpuPlatform = "Intel Skylake") OR
-     *     (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart =
-     *     true).
-     * @param {integer=} params.maxResults The maximum number of results per
-     *     page that should be returned. If the number of available results is
-     *     larger than maxResults, Compute Engine returns a nextPageToken that
-     *     can be used to get the next page of results in subsequent list
-     *     requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By
-     *     default, results are returned in alphanumerical order based on the
-     *     resource name.  You can also sort results in descending order based
-     *     on the creation timestamp using orderBy="creationTimestamp desc".
-     *     This sorts results based on the creationTimestamp field in reverse
-     *     chronological order (newest result first). Use this to sort resources
-     *     like operations so that the newest operation is returned first.
-     *     Currently, only sorting by name or creationTimestamp desc is
-     *     supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     pageToken to the nextPageToken returned by a previous list request to
-     *     get the next page of results.
+     * @param {string} params.deployment The name of the deployment for this request.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3245,11 +3127,9 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.operation The name of the operation for this
-     *     request.
+     * @param {string} params.operation The name of the operation for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3379,44 +3259,12 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources
-     *     listed in the response. The expression must specify the field name, a
-     *     comparison operator, and the value that you want to use for
-     *     filtering. The value must be a string, a number, or a boolean. The
-     *     comparison operator must be either =, !=, >, or <.  For example, if
-     *     you are filtering Compute Engine instances, you can exclude instances
-     *     named example-instance by specifying name != example-instance.  You
-     *     can also filter nested fields. For example, you could specify
-     *     scheduling.automaticRestart = false to include instances only if they
-     *     are not scheduled for automatic restarts. You can use filtering on
-     *     nested fields to filter based on resource labels.  To filter on
-     *     multiple expressions, provide each separate expression within
-     *     parentheses. For example, (scheduling.automaticRestart = true)
-     *     (cpuPlatform = "Intel Skylake"). By default, each expression is an
-     *     AND expression. However, you can include AND and OR expressions
-     *     explicitly. For example, (cpuPlatform = "Intel Skylake") OR
-     *     (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart =
-     *     true).
-     * @param {integer=} params.maxResults The maximum number of results per
-     *     page that should be returned. If the number of available results is
-     *     larger than maxResults, Compute Engine returns a nextPageToken that
-     *     can be used to get the next page of results in subsequent list
-     *     requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By
-     *     default, results are returned in alphanumerical order based on the
-     *     resource name.  You can also sort results in descending order based
-     *     on the creation timestamp using orderBy="creationTimestamp desc".
-     *     This sorts results based on the creationTimestamp field in reverse
-     *     chronological order (newest result first). Use this to sort resources
-     *     like operations so that the newest operation is returned first.
-     *     Currently, only sorting by name or creationTimestamp desc is
-     *     supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     pageToken to the nextPageToken returned by a previous list request to
-     *     get the next page of results.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3625,13 +3473,10 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
+     * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {string} params.resource_ The name of the resource for this
-     *     request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ The name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3762,46 +3607,13 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this
-     *     request.
-     * @param {string=} params.filter A filter expression that filters resources
-     *     listed in the response. The expression must specify the field name, a
-     *     comparison operator, and the value that you want to use for
-     *     filtering. The value must be a string, a number, or a boolean. The
-     *     comparison operator must be either =, !=, >, or <.  For example, if
-     *     you are filtering Compute Engine instances, you can exclude instances
-     *     named example-instance by specifying name != example-instance.  You
-     *     can also filter nested fields. For example, you could specify
-     *     scheduling.automaticRestart = false to include instances only if they
-     *     are not scheduled for automatic restarts. You can use filtering on
-     *     nested fields to filter based on resource labels.  To filter on
-     *     multiple expressions, provide each separate expression within
-     *     parentheses. For example, (scheduling.automaticRestart = true)
-     *     (cpuPlatform = "Intel Skylake"). By default, each expression is an
-     *     AND expression. However, you can include AND and OR expressions
-     *     explicitly. For example, (cpuPlatform = "Intel Skylake") OR
-     *     (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart =
-     *     true).
-     * @param {integer=} params.maxResults The maximum number of results per
-     *     page that should be returned. If the number of available results is
-     *     larger than maxResults, Compute Engine returns a nextPageToken that
-     *     can be used to get the next page of results in subsequent list
-     *     requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By
-     *     default, results are returned in alphanumerical order based on the
-     *     resource name.  You can also sort results in descending order based
-     *     on the creation timestamp using orderBy="creationTimestamp desc".
-     *     This sorts results based on the creationTimestamp field in reverse
-     *     chronological order (newest result first). Use this to sort resources
-     *     like operations so that the newest operation is returned first.
-     *     Currently, only sorting by name or creationTimestamp desc is
-     *     supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     pageToken to the nextPageToken returned by a previous list request to
-     *     get the next page of results.
+     * @param {string} params.deployment The name of the deployment for this request.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4025,44 +3837,12 @@ export namespace deploymentmanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources
-     *     listed in the response. The expression must specify the field name, a
-     *     comparison operator, and the value that you want to use for
-     *     filtering. The value must be a string, a number, or a boolean. The
-     *     comparison operator must be either =, !=, >, or <.  For example, if
-     *     you are filtering Compute Engine instances, you can exclude instances
-     *     named example-instance by specifying name != example-instance.  You
-     *     can also filter nested fields. For example, you could specify
-     *     scheduling.automaticRestart = false to include instances only if they
-     *     are not scheduled for automatic restarts. You can use filtering on
-     *     nested fields to filter based on resource labels.  To filter on
-     *     multiple expressions, provide each separate expression within
-     *     parentheses. For example, (scheduling.automaticRestart = true)
-     *     (cpuPlatform = "Intel Skylake"). By default, each expression is an
-     *     AND expression. However, you can include AND and OR expressions
-     *     explicitly. For example, (cpuPlatform = "Intel Skylake") OR
-     *     (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart =
-     *     true).
-     * @param {integer=} params.maxResults The maximum number of results per
-     *     page that should be returned. If the number of available results is
-     *     larger than maxResults, Compute Engine returns a nextPageToken that
-     *     can be used to get the next page of results in subsequent list
-     *     requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By
-     *     default, results are returned in alphanumerical order based on the
-     *     resource name.  You can also sort results in descending order based
-     *     on the creation timestamp using orderBy="creationTimestamp desc".
-     *     This sorts results based on the creationTimestamp field in reverse
-     *     chronological order (newest result first). Use this to sort resources
-     *     like operations so that the newest operation is returned first.
-     *     Currently, only sorting by name or creationTimestamp desc is
-     *     supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set
-     *     pageToken to the nextPageToken returned by a previous list request to
-     *     get the next page of results.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

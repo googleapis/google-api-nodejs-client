@@ -2214,12 +2214,9 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of dataset being deleted
-     * @param {boolean=} params.deleteContents If True, delete all the tables in
-     *     the dataset. If False and the dataset contains tables, the request
-     *     will fail. Default is False
+     * @param {boolean=} params.deleteContents If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
      * @param {string} params.projectId Project ID of the dataset being deleted
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2340,8 +2337,7 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the requested dataset
      * @param {string} params.projectId Project ID of the requested dataset
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2461,8 +2457,7 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID of the new dataset
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2592,20 +2587,12 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.all Whether to list all datasets, including
-     *     hidden ones
-     * @param {string=} params.filter An expression for filtering the results of
-     *     the request by label. The syntax is "labels.<name>[:<value>]".
-     *     Multiple filters can be ANDed together by connecting with a space.
-     *     Example: "labels.department:receiving labels.active". See Filtering
-     *     datasets using labels for details.
-     * @param {integer=} params.maxResults The maximum number of results to
-     *     return
-     * @param {string=} params.pageToken Page token, returned by a previous
-     *     call, to request the next page of results
+     * @param {boolean=} params.all Whether to list all datasets, including hidden ones
+     * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
+     * @param {integer=} params.maxResults The maximum number of results to return
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Project ID of the datasets to be listed
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2737,8 +2724,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2869,8 +2855,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3131,13 +3116,9 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the job to cancel
-     * @param {string=} params.location [Experimental] The geographic location
-     *     of the job. Required except for US and EU. See details at
-     *     https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
-     * @param {string} params.projectId [Required] Project ID of the job to
-     *     cancel
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string} params.projectId [Required] Project ID of the job to cancel
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3261,13 +3242,9 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the requested job
-     * @param {string=} params.location [Experimental] The geographic location
-     *     of the job. Required except for US and EU. See details at
-     *     https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
-     * @param {string} params.projectId [Required] Project ID of the requested
-     *     job
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string} params.projectId [Required] Project ID of the requested job
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3397,21 +3374,13 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the query job
-     * @param {string=} params.location [Experimental] The geographic location
-     *     where the job should run. Required except for US and EU. See details
-     *     at
-     *     https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string=} params.location [Experimental] The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      * @param {integer=} params.maxResults Maximum number of results to read
-     * @param {string=} params.pageToken Page token, returned by a previous
-     *     call, to request the next page of results
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId [Required] Project ID of the query job
      * @param {string=} params.startIndex Zero-based index of the starting row
-     * @param {integer=} params.timeoutMs How long to wait for the query to
-     *     complete, in milliseconds, before returning. Default is 10 seconds.
-     *     If the timeout passes before the job completes, the 'jobComplete'
-     *     field in the response will be false
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3544,14 +3513,12 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project that will be
-     *     billed for the job
+     * @param {string} params.projectId Project ID of the project that will be billed for the job
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3686,23 +3653,15 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.allUsers Whether to display jobs owned by all
-     *     users in the project. Default false
-     * @param {string=} params.maxCreationTime Max value for job creation time,
-     *     in milliseconds since the POSIX epoch. If set, only jobs created
-     *     before or at this timestamp are returned
+     * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
+     * @param {string=} params.maxCreationTime Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.minCreationTime Min value for job creation time,
-     *     in milliseconds since the POSIX epoch. If set, only jobs created
-     *     after or at this timestamp are returned
-     * @param {string=} params.pageToken Page token, returned by a previous
-     *     call, to request the next page of results
+     * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Project ID of the jobs to list
-     * @param {string=} params.projection Restrict information returned to a set
-     *     of selected fields
+     * @param {string=} params.projection Restrict information returned to a set of selected fields
      * @param {string=} params.stateFilter Filter for job state
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3823,11 +3782,9 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project billed for the
-     *     query
+     * @param {string} params.projectId Project ID of the project billed for the query
      * @param {().QueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4130,10 +4087,8 @@ export namespace bigquery_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID for which the service account
-     *     is requested.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.projectId Project ID for which the service account is requested.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4268,10 +4223,8 @@ export namespace bigquery_v2 {
      *
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous
-     *     call, to request the next page of results
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4444,8 +4397,7 @@ export namespace bigquery_v2 {
      * @param {string} params.projectId Project ID of the destination table.
      * @param {string} params.tableId Table ID of the destination table.
      * @param {().TableDataInsertAllRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4594,16 +4546,12 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the table to read
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous
-     *     call, identifying the result set
+     * @param {string=} params.pageToken Page token, returned by a previous call, identifying the result set
      * @param {string} params.projectId Project ID of the table to read
-     * @param {string=} params.selectedFields List of fields to return
-     *     (comma-separated). If unspecified, all fields are returned
-     * @param {string=} params.startIndex Zero-based index of the starting row
-     *     to read
+     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
+     * @param {string=} params.startIndex Zero-based index of the starting row to read
      * @param {string} params.tableId Table ID of the table to read
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4803,8 +4751,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the table to delete
      * @param {string} params.projectId Project ID of the table to delete
      * @param {string} params.tableId Table ID of the table to delete
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4931,11 +4878,9 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the requested table
      * @param {string} params.projectId Project ID of the requested table
-     * @param {string=} params.selectedFields List of fields to return
-     *     (comma-separated). If unspecified, all fields are returned
+     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
      * @param {string} params.tableId Table ID of the requested table
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5060,8 +5005,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the new table
      * @param {string} params.projectId Project ID of the new table
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5198,11 +5142,9 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the tables to list
      * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous
-     *     call, to request the next page of results
+     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Project ID of the tables to list
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5340,8 +5282,7 @@ export namespace bigquery_v2 {
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5477,8 +5418,7 @@ export namespace bigquery_v2 {
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
      * @param {().Table} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

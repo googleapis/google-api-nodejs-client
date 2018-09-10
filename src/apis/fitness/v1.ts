@@ -654,12 +654,9 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId Aggregate data for the person identified.
-     *     Use me to indicate the authenticated user. Only me is supported at
-     *     this time.
+     * @param {string} params.userId Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {().AggregateRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -768,12 +765,9 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId Create the data source for the person
-     *     identified. Use me to indicate the authenticated user. Only me is
-     *     supported at this time.
+     * @param {string} params.userId Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {().DataSource} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -840,13 +834,9 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     to delete.
-     * @param {string} params.userId Retrieve a data source for the person
-     *     identified. Use me to indicate the authenticated user. Only me is
-     *     supported at this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.dataSourceId The data stream ID of the data source to delete.
+     * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -913,13 +903,9 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     to retrieve.
-     * @param {string} params.userId Retrieve a data source for the person
-     *     identified. Use me to indicate the authenticated user. Only me is
-     *     supported at this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.dataSourceId The data stream ID of the data source to retrieve.
+     * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -985,13 +971,9 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.dataTypeName The names of data types to include
-     *     in the list. If not specified, all data sources will be returned.
-     * @param {string} params.userId List data sources for the person
-     *     identified. Use me to indicate the authenticated user. Only me is
-     *     supported at this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.dataTypeName The names of data types to include in the list. If not specified, all data sources will be returned.
+     * @param {string} params.userId List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1061,14 +1043,10 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     to update.
-     * @param {string} params.userId Update the data source for the person
-     *     identified. Use me to indicate the authenticated user. Only me is
-     *     supported at this time.
+     * @param {string} params.dataSourceId The data stream ID of the data source to update.
+     * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {().DataSource} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1138,14 +1116,10 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     to update.
-     * @param {string} params.userId Update the data source for the person
-     *     identified. Use me to indicate the authenticated user. Only me is
-     *     supported at this time.
+     * @param {string} params.dataSourceId The data stream ID of the data source to update.
+     * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {().DataSource} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1333,19 +1307,11 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     that created the dataset.
-     * @param {integer=} params.limit If specified, no more than this many data
-     *     point changes will be included in the response.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of nextPageToken from the previous
-     *     response.
-     * @param {string} params.userId List data points for the person identified.
-     *     Use me to indicate the authenticated user. Only me is supported at
-     *     this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+     * @param {integer=} params.limit If specified, no more than this many data point changes will be included in the response.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param {string} params.userId List data points for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1468,21 +1434,12 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in
-     *     milliseconds since epoch.
-     * @param {string} params.datasetId Dataset identifier that is a composite
-     *     of the minimum data point start time and maximum data point end time
-     *     represented as nanoseconds from the epoch. The ID is formatted like:
-     *     "startTime-endTime" where startTime and endTime are 64 bit integers.
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     that created the dataset.
-     * @param {string=} params.modifiedTimeMillis When the operation was
-     *     performed on the client.
-     * @param {string} params.userId Delete a dataset for the person identified.
-     *     Use me to indicate the authenticated user. Only me is supported at
-     *     this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
+     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+     * @param {string=} params.modifiedTimeMillis When the operation was performed on the client.
+     * @param {string} params.userId Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1552,26 +1509,12 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset identifier that is a composite
-     *     of the minimum data point start time and maximum data point end time
-     *     represented as nanoseconds from the epoch. The ID is formatted like:
-     *     "startTime-endTime" where startTime and endTime are 64 bit integers.
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     that created the dataset.
-     * @param {integer=} params.limit If specified, no more than this many data
-     *     points will be included in the dataset. If there are more data points
-     *     in the dataset, nextPageToken will be set in the dataset response.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large datasets. To get the next page of a dataset,
-     *     set this parameter to the value of nextPageToken from the previous
-     *     response. Each subsequent call will yield a partial dataset with data
-     *     point end timestamps that are strictly smaller than those in the
-     *     previous partial response.
-     * @param {string} params.userId Retrieve a dataset for the person
-     *     identified. Use me to indicate the authenticated user. Only me is
-     *     supported at this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+     * @param {integer=} params.limit If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
+     * @param {string} params.userId Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1637,22 +1580,12 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in
-     *     milliseconds since epoch. Note that the minStartTimeNs and
-     *     maxEndTimeNs properties in the request body are in nanoseconds
-     *     instead of milliseconds.
-     * @param {string} params.datasetId Dataset identifier that is a composite
-     *     of the minimum data point start time and maximum data point end time
-     *     represented as nanoseconds from the epoch. The ID is formatted like:
-     *     "startTime-endTime" where startTime and endTime are 64 bit integers.
-     * @param {string} params.dataSourceId The data stream ID of the data source
-     *     that created the dataset.
-     * @param {string} params.userId Patch a dataset for the person identified.
-     *     Use me to indicate the authenticated user. Only me is supported at
-     *     this time.
+     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
+     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
+     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
+     * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1836,14 +1769,10 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in
-     *     milliseconds since epoch.
+     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
      * @param {string} params.sessionId The ID of the session to be deleted.
-     * @param {string} params.userId Delete a session for the person identified.
-     *     Use me to indicate the authenticated user. Only me is supported at
-     *     this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.userId Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1907,24 +1836,12 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.endTime An RFC3339 timestamp. Only sessions
-     *     ending between the start and end times will be included in the
-     *     response.
-     * @param {boolean=} params.includeDeleted If true, deleted sessions will be
-     *     returned. When set to true, sessions returned in this response will
-     *     only have an ID and will not have any other fields.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of nextPageToken from the previous
-     *     response.
-     * @param {string=} params.startTime An RFC3339 timestamp. Only sessions
-     *     ending between the start and end times will be included in the
-     *     response.
-     * @param {string} params.userId List sessions for the person identified.
-     *     Use me to indicate the authenticated user. Only me is supported at
-     *     this time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+     * @param {boolean=} params.includeDeleted If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
+     * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1990,15 +1907,11 @@ export namespace fitness_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in
-     *     milliseconds since epoch.
+     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
      * @param {string} params.sessionId The ID of the session to be created.
-     * @param {string} params.userId Create sessions for the person identified.
-     *     Use me to indicate the authenticated user. Only me is supported at
-     *     this time.
+     * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {().Session} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

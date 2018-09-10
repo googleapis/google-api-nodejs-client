@@ -655,8 +655,7 @@ export namespace cloudbilling_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().BillingAccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -779,10 +778,8 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the billing account to
-     *     retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -846,11 +843,8 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being requested. See the operation documentation for the
-     *     appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -981,20 +975,10 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Options for how to filter the returned
-     *     billing accounts. Currently this only supports filtering for
-     *     [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     *     single provided reseller billing account. (e.g.
-     *     "master_billing_account=billingAccounts/012345-678901-ABCDEF").
-     *     Boolean algebra and other fields are not currently supported.
-     * @param {integer=} params.pageSize Requested page size. The maximum page
-     *     size is 100; this is also the default.
-     * @param {string=} params.pageToken A token identifying a page of results
-     *     to return. This should be a `next_page_token` value returned from a
-     *     previous `ListBillingAccounts` call. If unspecified, the first page
-     *     of results is returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.filter Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
+     * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
+     * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1070,13 +1054,10 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the billing account resource to
-     *     be updated.
-     * @param {string=} params.updateMask The update mask applied to the
-     *     resource. Only "display_name" is currently supported.
+     * @param {string} params.name The name of the billing account resource to be updated.
+     * @param {string=} params.updateMask The update mask applied to the resource. Only "display_name" is currently supported.
      * @param {().BillingAccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1144,12 +1125,9 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy is being specified. See the operation documentation for the
-     *     appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1217,12 +1195,9 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the
-     *     policy detail is being requested. See the operation documentation for
-     *     the appropriate value for this field.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1499,17 +1474,10 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the billing account
-     *     associated with the projects that you want to list. For example,
-     *     `billingAccounts/012345-567890-ABCDEF`.
-     * @param {integer=} params.pageSize Requested page size. The maximum page
-     *     size is 100; this is also the default.
-     * @param {string=} params.pageToken A token identifying a page of results
-     *     to be returned. This should be a `next_page_token` value returned
-     *     from a previous `ListProjectBillingInfo` call. If unspecified, the
-     *     first page of results is returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
+     * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1678,11 +1646,8 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the project for which
-     *     billing information is retrieved. For example,
-     *     `projects/tokyo-rain-123`.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.name The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1833,12 +1798,9 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the project associated
-     *     with the billing information that you want to update. For example,
-     *     `projects/tokyo-rain-123`.
+     * @param {string} params.name The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
      * @param {().ProjectBillingInfo} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2014,12 +1976,8 @@ export namespace cloudbilling_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Requested page size. Defaults to 5000.
-     * @param {string=} params.pageToken A token identifying a page of results
-     *     to return. This should be a `next_page_token` value returned from a
-     *     previous `ListServices` call. If unspecified, the first page of
-     *     results is returned.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListServices` call. If unspecified, the first page of results is returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2180,30 +2138,13 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.currencyCode The ISO 4217 currency code for the
-     *     pricing info in the response proto. Will use the conversion rate as
-     *     of start_time. Optional. If not specified USD will be used.
-     * @param {string=} params.endTime Optional exclusive end time of the time
-     *     range for which the pricing versions will be returned. Timestamps in
-     *     the future are not allowed. The time range has to be within a single
-     *     calendar month in America/Los_Angeles timezone. Time range as a whole
-     *     is optional. If not specified, the latest pricing will be returned
-     *     (up to 12 hours old at most).
+     * @param {string=} params.currencyCode The ISO 4217 currency code for the pricing info in the response proto. Will use the conversion rate as of start_time. Optional. If not specified USD will be used.
+     * @param {string=} params.endTime Optional exclusive end time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
      * @param {integer=} params.pageSize Requested page size. Defaults to 5000.
-     * @param {string=} params.pageToken A token identifying a page of results
-     *     to return. This should be a `next_page_token` value returned from a
-     *     previous `ListSkus` call. If unspecified, the first page of results
-     *     is returned.
-     * @param {string} params.parent The name of the service. Example:
-     *     "services/DA34-426B-A397"
-     * @param {string=} params.startTime Optional inclusive start time of the
-     *     time range for which the pricing versions will be returned.
-     *     Timestamps in the future are not allowed. The time range has to be
-     *     within a single calendar month in America/Los_Angeles timezone. Time
-     *     range as a whole is optional. If not specified, the latest pricing
-     *     will be returned (up to 12 hours old at most).
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListSkus` call. If unspecified, the first page of results is returned.
+     * @param {string} params.parent The name of the service. Example: "services/DA34-426B-A397"
+     * @param {string=} params.startTime Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

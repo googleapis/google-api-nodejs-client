@@ -554,8 +554,7 @@ export namespace plus_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.activityId The ID of the activity to get.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -617,19 +616,10 @@ export namespace plus_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.collection The collection of activities to list.
-     * @param {integer=} params.maxResults The maximum number of activities to
-     *     include in the response, which is used for paging. For any response,
-     *     the actual number returned might be less than the specified
-     *     maxResults.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of "nextPageToken" from the previous
-     *     response.
-     * @param {string} params.userId The ID of the user to get activities for.
-     *     The special value "me" can be used to indicate the authenticated
-     *     user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -694,20 +684,12 @@ export namespace plus_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.language Specify the preferred language to search
-     *     with. See search language codes for available values.
-     * @param {integer=} params.maxResults The maximum number of activities to
-     *     include in the response, which is used for paging. For any response,
-     *     the actual number returned might be less than the specified
-     *     maxResults.
+     * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
+     * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.orderBy Specifies how to order search results.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of "nextPageToken" from the previous
-     *     response. This token can be of any length.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
      * @param {string} params.query Full-text search query string.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -859,8 +841,7 @@ export namespace plus_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment to get.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -920,20 +901,11 @@ export namespace plus_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.activityId The ID of the activity to get comments
-     *     for.
-     * @param {integer=} params.maxResults The maximum number of comments to
-     *     include in the response, which is used for paging. For any response,
-     *     the actual number returned might be less than the specified
-     *     maxResults.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of "nextPageToken" from the previous
-     *     response.
-     * @param {string=} params.sortOrder The order in which to sort the list of
-     *     comments.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.activityId The ID of the activity to get comments for.
+     * @param {integer=} params.maxResults The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string=} params.sortOrder The order in which to sort the list of comments.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1051,11 +1023,8 @@ export namespace plus_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.userId The ID of the person to get the profile
-     *     for. The special value "me" can be used to indicate the authenticated
-     *     user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.userId The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1116,19 +1085,11 @@ export namespace plus_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.collection The collection of people to list.
-     * @param {integer=} params.maxResults The maximum number of people to
-     *     include in the response, which is used for paging. For any response,
-     *     the actual number returned might be less than the specified
-     *     maxResults.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.orderBy The order to return people in.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of "nextPageToken" from the previous
-     *     response.
-     * @param {string} params.userId Get the collection of people for the person
-     *     identified. Use "me" to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {string} params.userId Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1193,19 +1154,11 @@ export namespace plus_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.activityId The ID of the activity to get the list
-     *     of people for.
+     * @param {string} params.activityId The ID of the activity to get the list of people for.
      * @param {string} params.collection The collection of people to list.
-     * @param {integer=} params.maxResults The maximum number of people to
-     *     include in the response, which is used for paging. For any response,
-     *     the actual number returned might be less than the specified
-     *     maxResults.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of "nextPageToken" from the previous
-     *     response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1272,20 +1225,11 @@ export namespace plus_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.language Specify the preferred language to search
-     *     with. See search language codes for available values.
-     * @param {integer=} params.maxResults The maximum number of people to
-     *     include in the response, which is used for paging. For any response,
-     *     the actual number returned might be less than the specified
-     *     maxResults.
-     * @param {string=} params.pageToken The continuation token, which is used
-     *     to page through large result sets. To get the next page of results,
-     *     set this parameter to the value of "nextPageToken" from the previous
-     *     response. This token can be of any length.
-     * @param {string} params.query Specify a query string for full text search
-     *     of public text in all profiles.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.language Specify the preferred language to search with. See search language codes for available values.
+     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
+     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response. This token can be of any length.
+     * @param {string} params.query Specify a query string for full text search of public text in all profiles.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

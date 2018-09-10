@@ -964,14 +964,9 @@ export namespace civicinfo_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.query The search query. Queries can cover any
-     *     parts of a OCD ID or a human readable division name. All words given
-     *     in the query are treated as required patterns. In addition to that,
-     *     most query operators of the Apache Lucene library are supported. See
-     *     http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
+     * @param {string=} params.query The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
      * @param {().DivisionSearchRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1071,8 +1066,7 @@ export namespace civicinfo_v2 {
      *
      * @param {object} params Parameters for request
      * @param {().ElectionsQueryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1141,23 +1135,12 @@ export namespace civicinfo_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.address The registered address of the voter to
-     *     look up.
-     * @param {string=} params.electionId The unique ID of the election to look
-     *     up. A list of election IDs can be obtained at
-     *     https://www.googleapis.com/civicinfo/{version}/electionsIf no
-     *     election ID is specified in the query and there is more than one
-     *     election with data for the given voter, the additional elections are
-     *     provided in the otherElections response field.
-     * @param {boolean=} params.officialOnly If set to true, only data from
-     *     official state sources will be returned.
-     * @param {boolean=} params.returnAllAvailableData If set to true, the query
-     *     will return the success codeand include any partial information when
-     *     it is unable to determine a matching address or unable to determine
-     *     the election for electionId=0 queries.
+     * @param {string} params.address The registered address of the voter to look up.
+     * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/electionsIf no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
+     * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
+     * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      * @param {().VoterInfoRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1285,20 +1268,12 @@ export namespace civicinfo_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.address The address to look up. May only be
-     *     specified if the field ocdId is not given in the URL.
-     * @param {boolean=} params.includeOffices Whether to return information
-     *     about offices and officials. If false, only the top-level district
-     *     information will be returned.
-     * @param {string=} params.levels A list of office levels to filter by. Only
-     *     offices that serve at least one of these levels will be returned.
-     *     Divisions that don't contain a matching office will not be returned.
-     * @param {string=} params.roles A list of office roles to filter by. Only
-     *     offices fulfilling one of these roles will be returned. Divisions
-     *     that don't contain a matching office will not be returned.
+     * @param {string=} params.address The address to look up. May only be specified if the field ocdId is not given in the URL.
+     * @param {boolean=} params.includeOffices Whether to return information about offices and officials. If false, only the top-level district information will be returned.
+     * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
      * @param {().RepresentativeInfoRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1374,22 +1349,12 @@ export namespace civicinfo_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.levels A list of office levels to filter by. Only
-     *     offices that serve at least one of these levels will be returned.
-     *     Divisions that don't contain a matching office will not be returned.
-     * @param {string} params.ocdId The Open Civic Data division identifier of
-     *     the division to look up.
-     * @param {boolean=} params.recursive If true, information about all
-     *     divisions contained in the division requested will be included as
-     *     well. For example, if querying ocd-division/country:us/district:dc,
-     *     this would also return all DC's wards and ANCs.
-     * @param {string=} params.roles A list of office roles to filter by. Only
-     *     offices fulfilling one of these roles will be returned. Divisions
-     *     that don't contain a matching office will not be returned.
-     * @param {().DivisionRepresentativeInfoRequest} params.resource Request
-     *     body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
+     * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
+     * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {().DivisionRepresentativeInfoRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

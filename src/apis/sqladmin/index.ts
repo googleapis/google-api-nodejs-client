@@ -14,24 +14,17 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
-import {sqladmin_v1beta3} from './v1beta3';
 import {sqladmin_v1beta4} from './v1beta4';
 
 export const VERSIONS = {
-  'v1beta3': sqladmin_v1beta3.Sqladmin,
   'v1beta4': sqladmin_v1beta4.Sqladmin,
 };
 
-export function sqladmin(version: 'v1beta3'): sqladmin_v1beta3.Sqladmin;
-export function sqladmin(options: sqladmin_v1beta3.Options):
-    sqladmin_v1beta3.Sqladmin;
 export function sqladmin(version: 'v1beta4'): sqladmin_v1beta4.Sqladmin;
 export function sqladmin(options: sqladmin_v1beta4.Options):
     sqladmin_v1beta4.Sqladmin;
-export function
-sqladmin<T = sqladmin_v1beta3.Sqladmin | sqladmin_v1beta4.Sqladmin>(
+export function sqladmin<T = sqladmin_v1beta4.Sqladmin>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v1beta3'|
-    sqladmin_v1beta3.Options|'v1beta4'|sqladmin_v1beta4.Options) {
+    versionOrOptions: 'v1beta4'|sqladmin_v1beta4.Options) {
   return getAPI<T>('sqladmin', versionOrOptions, VERSIONS, this);
 }

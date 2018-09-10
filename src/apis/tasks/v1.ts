@@ -225,8 +225,7 @@ export namespace tasks_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -289,8 +288,7 @@ export namespace tasks_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -352,8 +350,7 @@ export namespace tasks_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().TaskList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -416,12 +413,9 @@ export namespace tasks_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.maxResults Maximum number of task lists returned
-     *     on one page. Optional. The default is 100.
-     * @param {string=} params.pageToken Token specifying the result page to
-     *     return. Optional.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
+     * @param {string=} params.pageToken Token specifying the result page to return. Optional.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -488,8 +482,7 @@ export namespace tasks_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
      * @param {().TaskList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -554,8 +547,7 @@ export namespace tasks_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
      * @param {().TaskList} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -717,8 +709,7 @@ export namespace tasks_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -782,8 +773,7 @@ export namespace tasks_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -847,8 +837,7 @@ export namespace tasks_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -908,15 +897,11 @@ export namespace tasks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent Parent task identifier. If the task is
-     *     created at the top level, this parameter is omitted. Optional.
-     * @param {string=} params.previous Previous sibling task identifier. If the
-     *     task is created at the first position among its siblings, this
-     *     parameter is omitted. Optional.
+     * @param {string=} params.parent Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
+     * @param {string=} params.previous Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      * @param {string} params.tasklist Task list identifier.
      * @param {().Task} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -979,34 +964,18 @@ export namespace tasks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.completedMax Upper bound for a task's completion
-     *     date (as a RFC 3339 timestamp) to filter by. Optional. The default is
-     *     not to filter by completion date.
-     * @param {string=} params.completedMin Lower bound for a task's completion
-     *     date (as a RFC 3339 timestamp) to filter by. Optional. The default is
-     *     not to filter by completion date.
-     * @param {string=} params.dueMax Upper bound for a task's due date (as a
-     *     RFC 3339 timestamp) to filter by. Optional. The default is not to
-     *     filter by due date.
-     * @param {string=} params.dueMin Lower bound for a task's due date (as a
-     *     RFC 3339 timestamp) to filter by. Optional. The default is not to
-     *     filter by due date.
-     * @param {string=} params.maxResults Maximum number of task lists returned
-     *     on one page. Optional. The default is 100.
-     * @param {string=} params.pageToken Token specifying the result page to
-     *     return. Optional.
-     * @param {boolean=} params.showCompleted Flag indicating whether completed
-     *     tasks are returned in the result. Optional. The default is True.
-     * @param {boolean=} params.showDeleted Flag indicating whether deleted
-     *     tasks are returned in the result. Optional. The default is False.
-     * @param {boolean=} params.showHidden Flag indicating whether hidden tasks
-     *     are returned in the result. Optional. The default is False.
+     * @param {string=} params.completedMax Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     * @param {string=} params.completedMin Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
+     * @param {string=} params.dueMax Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     * @param {string=} params.dueMin Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
+     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
+     * @param {string=} params.pageToken Token specifying the result page to return. Optional.
+     * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
+     * @param {boolean=} params.showDeleted Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
+     * @param {boolean=} params.showHidden Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
      * @param {string} params.tasklist Task list identifier.
-     * @param {string=} params.updatedMin Lower bound for a task's last
-     *     modification time (as a RFC 3339 timestamp) to filter by. Optional.
-     *     The default is not to filter by last modification time.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.updatedMin Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1071,15 +1040,11 @@ export namespace tasks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent New parent task identifier. If the task is
-     *     moved to the top level, this parameter is omitted. Optional.
-     * @param {string=} params.previous New previous sibling task identifier. If
-     *     the task is moved to the first position among its siblings, this
-     *     parameter is omitted. Optional.
+     * @param {string=} params.parent New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
+     * @param {string=} params.previous New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1145,8 +1110,7 @@ export namespace tasks_v1 {
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
      * @param {().Task} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1212,8 +1176,7 @@ export namespace tasks_v1 {
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
      * @param {().Task} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

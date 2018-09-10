@@ -198,8 +198,7 @@ export namespace cloudprofiler_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Parent project to create the profile in.
      * @param {().CreateProfileRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -269,8 +268,7 @@ export namespace cloudprofiler_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Parent project to create the profile in.
      * @param {().Profile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -339,15 +337,10 @@ export namespace cloudprofiler_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Opaque, server-assigned, unique
-     *     ID for this profile.
-     * @param {string=} params.updateMask Field mask used to specify the fields
-     *     to be overwritten. Currently only profile_bytes and labels fields are
-     *     supported by UpdateProfile, so only those fields can be specified in
-     *     the mask. When no mask is provided, all fields are overwritten.
+     * @param {string} params.name Output only. Opaque, server-assigned, unique ID for this profile.
+     * @param {string=} params.updateMask Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten.
      * @param {().Profile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

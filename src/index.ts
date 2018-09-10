@@ -195,7 +195,6 @@ export {sourcerepo_v1} from './apis/sourcerepo/v1';
 export {spanner_v1} from './apis/spanner/v1';
 export {speech_v1} from './apis/speech/v1';
 export {speech_v1beta1} from './apis/speech/v1beta1';
-export {sqladmin_v1beta3} from './apis/sqladmin/v1beta3';
 export {sqladmin_v1beta4} from './apis/sqladmin/v1beta4';
 export {storage_v1} from './apis/storage/v1';
 export {storage_v1beta1} from './apis/storage/v1beta1';

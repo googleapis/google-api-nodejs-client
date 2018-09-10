@@ -458,13 +458,8 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -524,15 +519,9 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerAuthToken The customerAuthToken query
-     *     string is required when creating a resold account that transfers a
-     *     direct customer's subscription or transfers another reseller
-     *     customer's subscription to your reseller management. This is a
-     *     hexadecimal authentication token needed to complete the subscription
-     *     transfer. For more information, see the administrator help center.
+     * @param {string=} params.customerAuthToken The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      * @param {().Customer} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -596,14 +585,9 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      * @param {().Customer} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -666,14 +650,9 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      * @param {().Customer} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -823,8 +802,7 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -903,10 +881,8 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.serviceAccountEmailAddress The service account
-     *     which will own the created Cloud-PubSub topic.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.serviceAccountEmailAddress The service account which will own the created Cloud-PubSub topic.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -974,10 +950,8 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.serviceAccountEmailAddress The service account
-     *     which owns the Cloud-PubSub topic.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.serviceAccountEmailAddress The service account which owns the Cloud-PubSub topic.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1087,19 +1061,9 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1169,20 +1133,10 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      * @param {().ChangePlanRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1251,20 +1205,10 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      * @param {().RenewalSettings} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1333,20 +1277,10 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
      * @param {().Seats} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1414,21 +1348,10 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.deletionType The deletionType query string enables
-     *     the cancellation, downgrade, or suspension of a subscription.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.deletionType The deletionType query string enables the cancellation, downgrade, or suspension of a subscription.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1494,19 +1417,9 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1570,20 +1483,10 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.customerAuthToken The customerAuthToken query
-     *     string is required when creating a resold account that transfers a
-     *     direct customer's subscription or transfers another reseller
-     *     customer's subscription to your reseller management. This is a
-     *     hexadecimal authentication token needed to complete the subscription
-     *     transfer. For more information, see the administrator help center.
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
+     * @param {string=} params.customerAuthToken The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      * @param {().Subscription} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1652,31 +1555,12 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.customerAuthToken The customerAuthToken query
-     *     string is required when creating a resold account that transfers a
-     *     direct customer's subscription or transfers another reseller
-     *     customer's subscription to your reseller management. This is a
-     *     hexadecimal authentication token needed to complete the subscription
-     *     transfer. For more information, see the administrator help center.
-     * @param {string=} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string=} params.customerNamePrefix When retrieving all of your
-     *     subscriptions and filtering for specific customers, you can enter a
-     *     prefix for a customer name. Using an example customer group that
-     *     includes exam.com, example20.com and example.com:   - exa -- Returns
-     *     all customer names that start with 'exa' which could include
-     *     exam.com, example20.com, and example.com. A name prefix is similar to
-     *     using a regular expression's asterisk, exa*.  - example -- Returns
-     *     example20.com and example.com.
-     * @param {integer=} params.maxResults When retrieving a large list, the
-     *     maxResults is the maximum number of results per page. The
-     *     nextPageToken value takes you to the next page. The default is 20.
+     * @param {string=} params.customerAuthToken The customerAuthToken query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
+     * @param {string=} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string=} params.customerNamePrefix When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com:   - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*.  - example -- Returns example20.com and example.com.
+     * @param {integer=} params.maxResults When retrieving a large list, the maxResults is the maximum number of results per page. The nextPageToken value takes you to the next page. The default is 20.
      * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1742,19 +1626,9 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1822,19 +1696,9 @@ export namespace reseller_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Either the customer's primary domain
-     *     name or the customer's unique identifier. If using the domain name,
-     *     we do not recommend using a customerId as a key for persistent data.
-     *     If the domain name for a customerId is changed, the Google system
-     *     automatically updates.
-     * @param {string} params.subscriptionId This is a required property. The
-     *     subscriptionId is the subscription identifier and is unique for each
-     *     customer. Since a subscriptionId changes when a subscription is
-     *     updated, we recommend to not use this ID as a key for persistent
-     *     data. And the subscriptionId can be found using the retrieve all
-     *     reseller subscriptions method.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string} params.customerId Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
+     * @param {string} params.subscriptionId This is a required property. The subscriptionId is the subscription identifier and is unique for each customer. Since a subscriptionId changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the subscriptionId can be found using the retrieve all reseller subscriptions method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */

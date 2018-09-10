@@ -820,8 +820,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().AddMatterPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -890,8 +889,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().CloseMatterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -958,8 +956,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {().Matter} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1022,8 +1019,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1087,10 +1083,8 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {string=} params.view Specifies which parts of the Matter to
-     *     return in the response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {string=} params.view Specifies which parts of the Matter to return in the response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1150,16 +1144,11 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The number of matters to return in the
-     *     response. Default and maximum are 100.
-     * @param {string=} params.pageToken The pagination token as returned in the
-     *     response.
-     * @param {string=} params.state If set, list only matters with that
-     *     specific state. The default is listing matters of all states.
-     * @param {string=} params.view Specifies which parts of the matter to
-     *     return in response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The number of matters to return in the response. Default and maximum are 100.
+     * @param {string=} params.pageToken The pagination token as returned in the response.
+     * @param {string=} params.state If set, list only matters with that specific state. The default is listing matters of all states.
+     * @param {string=} params.view Specifies which parts of the matter to return in response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1223,10 +1212,8 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().RemoveMatterPermissionsRequest} params.resource Request body
-     *     data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {().RemoveMatterPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1293,8 +1280,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().ReopenMatterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1361,8 +1347,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().UndeleteMatterRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1430,8 +1415,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().Matter} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1668,8 +1652,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().Export} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1736,8 +1719,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.exportId The export ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1804,8 +1786,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.exportId The export ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1867,12 +1848,9 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {integer=} params.pageSize The number of exports to return in the
-     *     response.
-     * @param {string=} params.pageToken The pagination token as returned in the
-     *     response.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {integer=} params.pageSize The number of exports to return in the response.
+     * @param {string=} params.pageToken The pagination token as returned in the response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2024,8 +2002,7 @@ export namespace vault_v1 {
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
      * @param {().AddHeldAccountsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2096,8 +2073,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
      * @param {().Hold} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2165,8 +2141,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2234,8 +2209,7 @@ export namespace vault_v1 {
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
      * @param {string=} params.view Specifies which parts of the Hold to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2298,14 +2272,10 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {integer=} params.pageSize The number of holds to return in the
-     *     response, between 0 and 100 inclusive. Leaving this empty, or as 0,
-     *     is the same as page_size = 100.
-     * @param {string=} params.pageToken The pagination token as returned in the
-     *     response. An empty token means start from the beginning.
+     * @param {integer=} params.pageSize The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
+     * @param {string=} params.pageToken The pagination token as returned in the response. An empty token means start from the beginning.
      * @param {string=} params.view Specifies which parts of the Hold to return.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2375,8 +2345,7 @@ export namespace vault_v1 {
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
      * @param {().RemoveHeldAccountsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2455,8 +2424,7 @@ export namespace vault_v1 {
      * @param {string} params.holdId The ID of the hold.
      * @param {string} params.matterId The matter ID.
      * @param {().Hold} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2674,8 +2642,7 @@ export namespace vault_v1 {
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
      * @param {().HeldAccount} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2742,12 +2709,10 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account to remove from the
-     *     hold.
+     * @param {string} params.accountId The ID of the account to remove from the hold.
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2819,8 +2784,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {object} [options] Optionally override request options, such as
-     *     `url`, `method`, and `encoding`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
