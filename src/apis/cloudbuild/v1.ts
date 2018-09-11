@@ -272,6 +272,11 @@ export namespace cloudbuild_v1 {
      */
     diskSizeGb?: string;
     /**
+     * Option to specify the logging mode, which determines where the logs are
+     * stored.
+     */
+    logging?: string;
+    /**
      * Option to define build log streaming behavior to Google Cloud Storage.
      */
     logStreamingOption?: string;

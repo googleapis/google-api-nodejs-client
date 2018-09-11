@@ -72,6 +72,7 @@ import * as dns from './dns';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
+import * as file from './file';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
@@ -215,6 +216,7 @@ export const APIS: APIList = {
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
+  file: file.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebaserules: firebaserules.VERSIONS,
   firestore: firestore.VERSIONS,
@@ -355,6 +357,7 @@ export class GeneratedAPIs {
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
+  file = file.file;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebaserules = firebaserules.firebaserules;
   firestore = firestore.firestore;
@@ -493,6 +496,7 @@ export class GeneratedAPIs {
     this.doubleclickbidmanager = this.doubleclickbidmanager.bind(this);
     this.doubleclicksearch = this.doubleclicksearch.bind(this);
     this.drive = this.drive.bind(this);
+    this.file = this.file.bind(this);
     this.firebasedynamiclinks = this.firebasedynamiclinks.bind(this);
     this.firebaserules = this.firebaserules.bind(this);
     this.firestore = this.firestore.bind(this);
