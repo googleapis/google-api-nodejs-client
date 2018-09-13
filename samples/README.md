@@ -9,8 +9,9 @@ The following samples show basic usage of various APIs. Throughout these samples
 
 View and manage your Google Analytics data.
 
-Documentation for the Google Analytics API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_analytics_v3_.analytics.html).
+<!--Documentation for the Google Analytics API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_analytics_v3_.analytics.html).-->
+
 
 <table>
   <tr>
@@ -23,8 +24,8 @@ Documentation for the Google Analytics API in
 
 View and manage Blogger data.
 
-Documentation for the Blogger API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_blogger_v3_.blogger.html).
+<!--Documentation for the Blogger API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_blogger_v3_.blogger.html).-->
 
 <table>
   <tr>
@@ -37,8 +38,8 @@ Documentation for the Blogger API in
 
 Lets you set key/value pairs using the GCE metadata service.
 
-Documentation for the Google Compute Engine Metadata API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_compute_v1_.compute.html).
+<!--Documentation for the Google Compute Engine Metadata API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_compute_v1_.compute.html).-->
 
 <table>
   <tr>
@@ -51,8 +52,8 @@ Documentation for the Google Compute Engine Metadata API in
 
 Lets you search over a website or collection of websites.
 
-Documentation for the CustomSearch API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_customsearch_v1_.customsearch.html).
+<!--Documentation for the CustomSearch API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_customsearch_v1_.customsearch.html).-->
 
 <table>
   <tr>
@@ -66,8 +67,8 @@ Documentation for the CustomSearch API in
 
 The Google Mirror API allows you to build web-based services that interact with Google Glass. It provides this functionality over a cloud-based API and does not require running code on Glass.
 
-Documentation for the Glass Mirror API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_mirror_v1_.mirror.html).
+<!--Documentation for the Glass Mirror API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_mirror_v1_.mirror.html).-->
 
 <table>
   <tr>
@@ -80,8 +81,8 @@ Documentation for the Glass Mirror API in
 
 With the YouTube Data API, you can add a variety of YouTube features to your application. Use the API to upload videos, manage playlists and subscriptions, update channel settings, and more.
 
-Documentation for the YouTube Data API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_youtube_v3_.youtube.html).
+<!--Documentation for the YouTube Data API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_youtube_v3_.youtube.html).-->
 
 <table>
   <tr>
