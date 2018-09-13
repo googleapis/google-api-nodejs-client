@@ -116,6 +116,7 @@ export {doubleclickbidmanager_v1} from './apis/doubleclickbidmanager/v1';
 export {doubleclicksearch_v2} from './apis/doubleclicksearch/v2';
 export {drive_v2} from './apis/drive/v2';
 export {drive_v3} from './apis/drive/v3';
+export {file_v1beta1} from './apis/file/v1beta1';
 export {firebasedynamiclinks_v1} from './apis/firebasedynamiclinks/v1';
 export {firebaserules_v1} from './apis/firebaserules/v1';
 export {firestore_v1} from './apis/firestore/v1';

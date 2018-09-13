@@ -224,7 +224,7 @@ export namespace composer_v1beta1 {
      * &quot;projects/{projectId}/global/networks/{networkId}&quot;.  If
      * unspecified, the default network in the environment&#39;s project is
      * used. If a [Custom Subnet
-     * Network](/vpc/docs/vpc#vpc_networks_and_subnets) is provided,
+     * Network]((/vpc/docs/vpc#vpc_networks_and_subnets) is provided,
      * `nodeConfig.subnetwork` must also be provided. For [Shared
      * VPC](/vpc/docs/shared-vpc) subnetwork requirements, see
      * `nodeConfig.subnetwork`.
