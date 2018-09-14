@@ -52,7 +52,7 @@ if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/analytics'];
   sampleClient.authenticate(scopes)
     .then(c => runSample())
-    .catch(e => console.error);
+    .catch(console.error);
 }
 
 // export functions for testing purposes
