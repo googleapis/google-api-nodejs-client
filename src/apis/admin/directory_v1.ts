@@ -927,6 +927,10 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Member {
     /**
+     * Delivery settings of member
+     */
+    delivery_settings?: string;
+    /**
      * Email of member (Read-only)
      */
     email?: string;
@@ -1671,7 +1675,7 @@ export namespace admin_directory_v1 {
      */
     aliases?: string[];
     /**
-     * Indicates if user is archived
+     * Indicates if user is archived.
      */
     archived?: boolean;
     /**
@@ -1773,7 +1777,7 @@ export namespace admin_directory_v1 {
     relations?: any;
     sshPublicKeys?: any;
     /**
-     * Indicates if user is suspended
+     * Indicates if user is suspended.
      */
     suspended?: boolean;
     /**

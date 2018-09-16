@@ -32,8 +32,8 @@ export namespace sqladmin_v1beta4 {
   /**
    * Cloud SQL Admin API
    *
-   * Cloud SQL provides the Cloud SQL Admin API, a REST API for administering
-   * your instances programmatically.
+   * Creates and manages Cloud SQL instances, which provide fully managed MySQL
+   * or PostgreSQL databases.
    *
    * @example
    * const {google} = require('googleapis');
@@ -129,7 +129,7 @@ export namespace sqladmin_v1beta4 {
     startTime?: string;
   }
   /**
-   * A database instance backup run resource.
+   * A BackupRun resource.
    */
   export interface Schema$BackupRun {
     /**
@@ -152,8 +152,8 @@ export namespace sqladmin_v1beta4 {
      */
     error?: Schema$OperationError;
     /**
-     * A unique identifier for this backup run. Note that this is unique only
-     * within the scope of a particular Cloud SQL instance.
+     * The identifier for this backup run. Unique only for a specific Cloud SQL
+     * instance.
      */
     id?: string;
     /**
@@ -248,7 +248,7 @@ export namespace sqladmin_v1beta4 {
     pitrTimestampMs?: string;
   }
   /**
-   * A database resource inside a Cloud SQL instance.
+   * Represents a SQL database on the Cloud SQL instance.
    */
   export interface Schema$Database {
     /**
@@ -260,7 +260,8 @@ export namespace sqladmin_v1beta4 {
      */
     collation?: string;
     /**
-     * HTTP 1.1 Entity tag for the resource.
+     * This field is deprecated and will be removed from a future version of the
+     * API.
      */
     etag?: string;
     /**
@@ -287,16 +288,14 @@ export namespace sqladmin_v1beta4 {
     selfLink?: string;
   }
   /**
-   * MySQL flags for Cloud SQL instances.
+   * Database flags for Cloud SQL instances.
    */
   export interface Schema$DatabaseFlags {
     /**
      * The name of the flag. These flags are passed at instance startup, so
-     * include both MySQL server options and MySQL system variables. Flags
-     * should be specified with underscores, not hyphens. For more information,
-     * see Configuring MySQL Flags in the Google Cloud SQL documentation, as
-     * well as the official MySQL documentation for server options and system
-     * variables.
+     * include both server options and system variables for MySQL. Flags should
+     * be specified with underscores, not hyphens. For more information, see
+     * Configuring Database Flags in the Cloud SQL documentation.
      */
     name?: string;
     /**
@@ -310,9 +309,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * FIRST_GEN: Basic Cloud SQL instance that runs in a Google-managed
-     * container. SECOND_GEN: A newer Cloud SQL backend that runs in a Compute
-     * Engine VM. EXTERNAL: A MySQL server that is not managed by Google.
+     * FIRST_GEN: First Generation instance. MySQL only. SECOND_GEN: Second
+     * Generation instance or PostgreSQL instance. EXTERNAL: A database server
+     * that is not managed by Google. This property is read-only; use the tier
+     * property in the settings object to determine the database type and Second
+     * or First Generation.
      */
     backendType?: string;
     /**
@@ -323,9 +324,7 @@ export namespace sqladmin_v1beta4 {
      * The current disk usage of the instance in bytes. This property has been
      * deprecated. Users should use the
      * &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in
-     * Cloud Monitoring API instead. Please see
-     * https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ
-     * for details.
+     * Cloud Monitoring API instead. Please see this announcement for details.
      */
     currentDiskSize?: string;
     /**
@@ -336,7 +335,8 @@ export namespace sqladmin_v1beta4 {
      */
     databaseVersion?: string;
     /**
-     * HTTP 1.1 Entity tag for the resource.
+     * This field is deprecated and will be removed from a future version of the
+     * API. Use the settings.settingsVersion field instead.
      */
     etag?: string;
     /**
@@ -402,8 +402,7 @@ export namespace sqladmin_v1beta4 {
      */
     region?: string;
     /**
-     * Configuration specific to read-replicas replicating from on-premises
-     * masters.
+     * Configuration specific to failover replicas and read replicas.
      */
     replicaConfiguration?: Schema$ReplicaConfiguration;
     /**
@@ -589,7 +588,7 @@ export namespace sqladmin_v1beta4 {
     settingsVersion?: string;
   }
   /**
-   * A Google Cloud SQL service flag resource.
+   * A flag resource.
    */
   export interface Schema$Flag {
     /**
@@ -1143,8 +1142,8 @@ export namespace sqladmin_v1beta4 {
      */
     activationPolicy?: string;
     /**
-     * The App Engine app IDs that can access this instance. This property is
-     * only applicable to First Generation instances.
+     * The App Engine app IDs that can access this instance. First Generation
+     * instances only.
      */
     authorizedGaeApplications?: string[];
     /**
@@ -1175,13 +1174,13 @@ export namespace sqladmin_v1beta4 {
      */
     databaseReplicationEnabled?: boolean;
     /**
-     * The size of data disk, in GB. The data disk size minimum is 10GB. Applies
-     * only to Second Generation instances.
+     * The size of data disk, in GB. The data disk size minimum is 10GB. Not
+     * used for First Generation instances.
      */
     dataDiskSizeGb?: string;
     /**
-     * The type of data disk. Only supported for Second Generation instances.
-     * The default type is PD_SSD. Applies only to Second Generation instances.
+     * The type of data disk: PD_SSD (default) or PD_HDD. Not used for First
+     * Generation instances.
      */
     dataDiskType?: string;
     /**
@@ -1204,8 +1203,8 @@ export namespace sqladmin_v1beta4 {
     locationPreference?: Schema$LocationPreference;
     /**
      * The maintenance window for this instance. This specifies when the
-     * instance may be restarted for maintenance purposes. Applies only to
-     * Second Generation instances.
+     * instance can be restarted for maintenance purposes. Not used for First
+     * Generation instances.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
@@ -1228,18 +1227,21 @@ export namespace sqladmin_v1beta4 {
     settingsVersion?: string;
     /**
      * Configuration to increase storage size automatically. The default value
-     * is true. Applies only to Second Generation instances.
+     * is true. Not used for First Generation instances.
      */
     storageAutoResize?: boolean;
     /**
      * The maximum size to which storage capacity can be automatically
      * increased. The default value is 0, which specifies that there is no
-     * limit. Applies only to Second Generation instances.
+     * limit. Not used for First Generation instances.
      */
     storageAutoResizeLimit?: string;
     /**
-     * The tier of service for this instance, for example D1, D2. For more
-     * information, see pricing.
+     * The tier (or machine type) for this instance, for example
+     * db-n1-standard-1 (MySQL instances) or db-custom-1-3840 (PostgreSQL
+     * instances). For MySQL instances, this property determines whether the
+     * instance is First or Second Generation. For more information, see
+     * Instance Settings.
      */
     tier?: string;
     /**
@@ -1420,7 +1422,8 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$User {
     /**
-     * HTTP 1.1 Entity tag for the resource.
+     * This field is deprecated and will be removed from a future version of the
+     * API.
      */
     etag?: string;
     /**
@@ -1441,7 +1444,7 @@ export namespace sqladmin_v1beta4 {
     kind?: string;
     /**
      * The name of the user in the Cloud SQL instance. Can be omitted for update
-     * since it is already specified on the URL.
+     * since it is already specified in the URL.
      */
     name?: string;
     /**
@@ -1698,7 +1701,8 @@ export namespace sqladmin_v1beta4 {
     /**
      * sql.backupRuns.list
      * @desc Lists all backup runs associated with a given instance and
-     * configuration in the reverse chronological order of the enqueued time.
+     * configuration in the reverse chronological order of the backup initiation
+     * time.
      * @alias sql.backupRuns.list
      * @memberOf! ()
      *
@@ -2422,7 +2426,7 @@ export namespace sqladmin_v1beta4 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.databaseVersion Database version for flag retrieval. Flags are specific to the database version.
+     * @param {string=} params.databaseVersion Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2487,8 +2491,8 @@ export namespace sqladmin_v1beta4 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Database version for flag retrieval. Flags are specific to the database
-     * version.
+     * Database type and version you want to retrieve flags for. By default,
+     * this method returns flags for all database types and versions.
      */
     databaseVersion?: string;
   }
@@ -5300,7 +5304,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.host Host of the user in the instance.
+     * @param {string=} params.host Host of the user in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
@@ -5352,7 +5356,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
             },
             options),
         params,
-        requiredParams: ['project', 'instance', 'host', 'name'],
+        requiredParams: ['project', 'instance', 'name'],
         pathParams: ['instance', 'project'],
         context: this.getRoot()
       };

@@ -568,9 +568,8 @@ export namespace jobs_v3 {
      */
     customAttributeHistogramFacets?: Schema$CustomAttributeHistogramRequest[];
     /**
-     * Optional. Specifies the simple type of histogram facets, for example,
-     * `COMPANY_SIZE`, `EMPLOYMENT_TYPE` etc. This field is equivalent to
-     * GetHistogramRequest.
+     * Optional.  Specifies the simple type of histogram facets, for example,
+     * `COMPANY_SIZE`, `EMPLOYMENT_TYPE` etc.
      */
     simpleHistogramFacets?: string[];
   }
@@ -1428,28 +1427,26 @@ export namespace jobs_v3 {
     offset?: number;
     /**
      * Optional.  The criteria determining how search results are sorted.
-     * Default is &quot;relevance desc&quot;.  Supported options are:   *
+     * Default is &quot;relevance desc&quot;.  Supported options are:  *
      * &quot;relevance desc&quot;: By relevance descending, as determined by the
-     * API     algorithms. Relevance thresholding of query results is only
-     * available     with this ordering.   * &quot;posting_publish_time
-     * desc&quot;: By Job.posting_publish_time     descending.   *
-     * &quot;posting_update_time desc&quot;: By Job.posting_update_time
-     * descending.   * &quot;title&quot;: By Job.title ascending.   *
-     * &quot;title desc&quot;: By Job.title descending.   *
-     * &quot;annualized_base_compensation&quot;: By job&#39;s
-     * CompensationInfo.annualized_base_compensation ascending. If job&#39;s
-     * annualized base compensation is unspecified, they are put at the end of
-     * search result.   * &quot;annualized_base_compensation desc&quot;: By
-     * job&#39;s     CompensationInfo.annualized_base_compensation descending.
-     * If job&#39;s     annualized base compensation is unspecified, they are
-     * put at the end of     search result.   *
-     * &quot;annualized_total_compensation&quot;: By job&#39;s
-     * CompensationInfo.annualized_total_compensation ascending. If job&#39;s
-     * annualized total compensation is unspecified, they are put at the end of
-     * search result.   * &quot;annualized_total_compensation desc&quot;: By
-     * job&#39;s     CompensationInfo.annualized_total_compensation descending.
-     * If job&#39;s     annualized total compensation is unspecified, they are
-     * put at the end     of search result.
+     * API algorithms. Relevance thresholding of query results is only available
+     * with this ordering. * &quot;posting_publish_time desc&quot;: By
+     * Job.posting_publish_time descending. * &quot;posting_update_time
+     * desc&quot;: By Job.posting_update_time descending. * &quot;title&quot;:
+     * By Job.title ascending. * &quot;title desc&quot;: By Job.title
+     * descending. * &quot;annualized_base_compensation&quot;: By job&#39;s
+     * CompensationInfo.annualized_base_compensation_range ascending. Jobs whose
+     * annualized base compensation is unspecified are put at the end of search
+     * results. * &quot;annualized_base_compensation desc&quot;: By job&#39;s
+     * CompensationInfo.annualized_base_compensation_range descending. Jobs
+     * whose annualized base compensation is unspecified are put at the end of
+     * search results. * &quot;annualized_total_compensation&quot;: By job&#39;s
+     * CompensationInfo.annualized_total_compensation_range ascending. Jobs
+     * whose annualized base compensation is unspecified are put at the end of
+     * search results. * &quot;annualized_total_compensation desc&quot;: By
+     * job&#39;s CompensationInfo.annualized_total_compensation_range
+     * descending. Jobs whose annualized base compensation is unspecified are
+     * put at the end of search results.
      */
     orderBy?: string;
     /**
@@ -1506,7 +1503,7 @@ export namespace jobs_v3 {
      */
     estimatedTotalSize?: number;
     /**
-     * The histogram results that match with specified
+     * The histogram results that match specified
      * SearchJobsRequest.histogram_facets.
      */
     histogramResults?: Schema$HistogramResults;

@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/sqladmin
+# @google/file
 
-> Creates and manages Cloud SQL instances, which provide fully managed MySQL or PostgreSQL databases.
+> The Cloud Filestore API is used for creating and managing cloud file servers.
 
 ## Installation
 
 ```sh
-$ npm install @google/sqladmin
+$ npm install @google/file
 ```
 
 ## Usage
