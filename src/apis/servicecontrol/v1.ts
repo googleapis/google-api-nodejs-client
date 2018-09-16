@@ -565,8 +565,7 @@ export namespace servicecontrol_v1 {
   /**
    * A common proto for logging HTTP requests. Only contains semantics defined
    * by the HTTP specification. Product-specific logging information MUST be
-   * defined in a separate message.  This is an exact copy of HttpRequest
-   * message defined in Stackdriver.
+   * defined in a separate message.
    */
   export interface Schema$HttpRequest {
     /**

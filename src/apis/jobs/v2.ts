@@ -2057,7 +2057,7 @@ export namespace jobs_v2 {
      */
     estimatedTotalSize?: string;
     /**
-     * The histogram results that match with specified
+     * The histogram results that match specified
      * SearchJobsRequest.HistogramFacets.
      */
     histogramResults?: Schema$HistogramResults;

@@ -124,6 +124,11 @@ export namespace vision_v1p2beta1 {
      */
     landmarkAnnotations?: Schema$EntityAnnotation[];
     /**
+     * If present, localized object detection has completed successfully. This
+     * will be sorted descending by confidence score.
+     */
+    localizedObjectAnnotations?: Schema$LocalizedObjectAnnotation[];
+    /**
      * If present, logo detection has completed successfully.
      */
     logoAnnotations?: Schema$EntityAnnotation[];
@@ -591,6 +596,12 @@ export namespace vision_v1p2beta1 {
      */
     landmarkAnnotations?: Schema$GoogleCloudVisionV1p1beta1EntityAnnotation[];
     /**
+     * If present, localized object detection has completed successfully. This
+     * will be sorted descending by confidence score.
+     */
+    localizedObjectAnnotations?:
+        Schema$GoogleCloudVisionV1p1beta1LocalizedObjectAnnotation[];
+    /**
      * If present, logo detection has completed successfully.
      */
     logoAnnotations?: Schema$GoogleCloudVisionV1p1beta1EntityAnnotation[];
@@ -940,6 +951,33 @@ export namespace vision_v1p2beta1 {
      * &quot;image/tiff&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
+  }
+  /**
+   * Set of detected objects with bounding boxes.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1LocalizedObjectAnnotation {
+    /**
+     * Image region to which this object belongs. This must be populated.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
+    /**
+     * The BCP-47 language code, such as &quot;en-US&quot; or
+     * &quot;sr-Latn&quot;. For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+    /**
+     * Object ID that should align with EntityAnnotation mid.
+     */
+    mid?: string;
+    /**
+     * Object name, expressed in its `language_code` language.
+     */
+    name?: string;
+    /**
+     * Score of the result. Range [0, 1].
+     */
+    score?: number;
   }
   /**
    * Detected entity location information.
@@ -1431,6 +1469,12 @@ export namespace vision_v1p2beta1 {
      * If present, landmark detection has completed successfully.
      */
     landmarkAnnotations?: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
+    /**
+     * If present, localized object detection has completed successfully. This
+     * will be sorted descending by confidence score.
+     */
+    localizedObjectAnnotations?:
+        Schema$GoogleCloudVisionV1p2beta1LocalizedObjectAnnotation[];
     /**
      * If present, logo detection has completed successfully.
      */
@@ -1956,6 +2000,33 @@ export namespace vision_v1p2beta1 {
      * Min lat/long pair.
      */
     minLatLng?: Schema$LatLng;
+  }
+  /**
+   * Set of detected objects with bounding boxes.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1LocalizedObjectAnnotation {
+    /**
+     * Image region to which this object belongs. This must be populated.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    /**
+     * The BCP-47 language code, such as &quot;en-US&quot; or
+     * &quot;sr-Latn&quot;. For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+    /**
+     * Object ID that should align with EntityAnnotation mid.
+     */
+    mid?: string;
+    /**
+     * Object name, expressed in its `language_code` language.
+     */
+    name?: string;
+    /**
+     * Score of the result. Range [0, 1].
+     */
+    score?: number;
   }
   /**
    * Detected entity location information.
@@ -3097,8 +3168,7 @@ export namespace vision_v1p2beta1 {
     product?: Schema$GoogleCloudVisionV1p3beta1Product;
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to 1
-     * (full confidence).  This field is returned only if `view` is set to
-     * `FULL` in the request.
+     * (full confidence).
      */
     score?: number;
   }
@@ -3491,6 +3561,33 @@ export namespace vision_v1p2beta1 {
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
     longitude?: number;
+  }
+  /**
+   * Set of detected objects with bounding boxes.
+   */
+  export interface Schema$LocalizedObjectAnnotation {
+    /**
+     * Image region to which this object belongs. This must be populated.
+     */
+    boundingPoly?: Schema$BoundingPoly;
+    /**
+     * The BCP-47 language code, such as &quot;en-US&quot; or
+     * &quot;sr-Latn&quot;. For more information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string;
+    /**
+     * Object ID that should align with EntityAnnotation mid.
+     */
+    mid?: string;
+    /**
+     * Object name, expressed in its `language_code` language.
+     */
+    name?: string;
+    /**
+     * Score of the result. Range [0, 1].
+     */
+    score?: number;
   }
   /**
    * Detected entity location information.

@@ -5948,7 +5948,7 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object.
+     * @param {string} params.destinationBucket Name of the bucket containing the source objects. The destination object is stored in this bucket.
      * @param {string} params.destinationObject Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
@@ -7706,7 +7706,8 @@ export namespace storage_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object.
+     * Name of the bucket containing the source objects. The destination object
+     * is stored in this bucket.
      */
     destinationBucket?: string;
     /**
