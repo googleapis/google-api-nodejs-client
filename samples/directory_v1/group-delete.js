@@ -17,7 +17,10 @@ const {google} = require('googleapis');
 const nconf = require('nconf');
 const path = require('path');
 
-nconf.argv().env().file(path.join(__dirname, '../jwt.keys.json'));
+nconf
+  .argv()
+  .env()
+  .file(path.join(__dirname, '../jwt.keys.json'));
 
 // Create JWT auth object
 const jwt = new google.auth.JWT(
@@ -26,7 +29,7 @@ const jwt = new google.auth.JWT(
   nconf.get('private_key'),
   [
     'https://www.googleapis.com/auth/admin.directory.group',
-    'https://www.googleapis.com/auth/admin.directory.group.member'
+    'https://www.googleapis.com/auth/admin.directory.group.member',
   ]
 );
 
@@ -41,10 +44,13 @@ jwt.authorize((err, data) => {
   const admin = google.admin('directory_v1');
 
   // Delete group
-  admin.groups.insert({
-    groupKey: 'some_group@example.com',
-    auth: jwt
-  }, (err, data) => {
-    console.log(err || data);
-  });
+  admin.groups.insert(
+    {
+      groupKey: 'some_group@example.com',
+      auth: jwt,
+    },
+    (err, data) => {
+      console.log(err || data);
+    }
+  );
 });

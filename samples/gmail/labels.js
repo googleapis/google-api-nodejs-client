@@ -13,22 +13,22 @@
 
 'use strict';
 
-const { google } = require('googleapis');
+const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 
 const gmail = google.gmail({
   version: 'v1',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample (action, messageId, labelId) {
+async function runSample(action, messageId, labelId) {
   if (action === 'add') {
     const res = await gmail.users.messages.modify({
       userId: 'me',
       id: messageId,
       requestBody: {
-        'addLabelIds': [labelId]
-      }
+        addLabelIds: [labelId],
+      },
     });
     console.log(res.data);
     return res.data;
@@ -37,8 +37,8 @@ async function runSample (action, messageId, labelId) {
       userId: 'me',
       id: messageId,
       requestBody: {
-        'removeLabelIds': [labelId]
-      }
+        removeLabelIds: [labelId],
+      },
     });
     console.log(res.data);
     return res.data;
@@ -55,17 +55,17 @@ if (module === require.main) {
   console.log(`labelId: ${labelId}`);
 
   const scopes = ['https://www.googleapis.com/auth/gmail.modify'];
-  sampleClient.authenticate(scopes)
-    .then(c => runSample(action, messageId, labelId))
+  sampleClient
+    .authenticate(scopes)
+    .then(() => runSample(action, messageId, labelId))
     .catch(console.error);
 }
 
-function showUsage () {
-  console.info('USAGE: node labels.js <add|remove> <messageId> <labelId>');
-  process.exit();
+function showUsage() {
+  throw new Error('USAGE: node labels.js <add|remove> <messageId> <labelId>');
 }
 
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

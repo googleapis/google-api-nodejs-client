@@ -18,16 +18,17 @@ const sampleClient = require('../sampleclient');
 
 const blogger = google.blogger({
   version: 'v3',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample () {
+async function runSample() {
   const res = await blogger.posts.insert({
     blogId: '4340475495955554224',
     requestBody: {
       title: 'Hello from the googleapis npm module!',
-      content: 'Visit https://github.com/google/google-api-nodejs-client to learn more!'
-    }
+      content:
+        'Visit https://github.com/google/google-api-nodejs-client to learn more!',
+    },
   });
   console.log(res.data);
   return res.data;
@@ -35,12 +36,13 @@ async function runSample () {
 
 if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/blogger'];
-  sampleClient.authenticate(scopes)
+  sampleClient
+    .authenticate(scopes)
     .then(runSample)
     .catch(console.error);
 }
 
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

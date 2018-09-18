@@ -17,20 +17,6 @@
     "build/src",
     "package.json"
   ],
-  "semistandard": {
-    "ignore": [
-      "apis",
-      "templates/*"
-    ],
-    "globals": [
-      "after",
-      "afterEach",
-      "before",
-      "beforeEach",
-      "describe",
-      "it"
-    ]
-  },
   "repository": "google/google-api-nodejs-client",
   "name": "googleapis",
   "contributors": [
@@ -71,15 +57,16 @@
     "docs": "echo no docs 👻",
     "system-test": "echo no system tests 👻",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
-    "lint": "gts check && semistandard 'samples/**/*.js'",
+    "lint": "gts check && eslint 'samples/**/*.js'",
     "compile": "tsc -v && tsc -p . && copyfiles src/apis/**/README.md src/apis/**/package.json build",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
     "codecov": "nyc --cache mocha build/test -t 10000 -S -R spec && nyc report --reporter=html",
-    "fix": "semistandard --fix 'samples/**/*.js' && gts fix",
+    "fix": "eslint --fix 'samples/**/*.js' && prettier --write samples/**/*.js && gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
-    "postgenerate": "npm run fix"
+    "postgenerate": "npm run fix",
+    "prettier": "prettier --write samples/**/*.js"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -96,7 +83,6 @@
     "node": ">=6.0"
   },
   "devDependencies": {
-    "@types/express": "^4.11.1",
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.5.2",
     "@types/mocha": "^5.2.0",
@@ -112,12 +98,14 @@
     "@types/source-map-support": "^0.4.0",
     "@types/tmp": "^0.0.33",
     "@types/url-template": "^2.0.28",
-    "@types/uuid": "^3.4.3",
     "assert-rejects": "^1.0.0",
     "axios": "^0.18.0",
     "codecov": "^3.0.2",
     "copyfiles": "^2.0.0",
-    "express": "^4.16.3",
+    "eslint": "^5.6.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
     "gts": "^0.8.0",
     "hard-rejection": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
@@ -126,7 +114,6 @@
     "mkdirp": "^0.5.1",
     "mocha": "^5.1.1",
     "mv": "^2.1.1",
-    "nconf": "^0.10.0",
     "ncp": "^2.0.0",
     "nock": "^9.2.5",
     "nunjucks": "^3.1.2",
@@ -134,12 +121,11 @@
     "opn": "^5.3.0",
     "p-queue": "^3.0.0",
     "pify": "^4.0.0",
+    "prettier": "^1.14.2",
     "rimraf": "^2.6.2",
-    "semistandard": "^12.0.1",
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.5",
     "tmp": "^0.0.33",
-    "typescript": "~3.0.0",
-    "uuid": "^3.2.1"
+    "typescript": "~3.0.0"
   }
 }
