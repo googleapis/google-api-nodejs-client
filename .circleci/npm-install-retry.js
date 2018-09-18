@@ -6,7 +6,7 @@ let spawn = require('child_process').spawn;
 //USE: ./index.js <ms npm can be idle> <number of attempts> [... NPM ARGS]
 //
 
-let timeout = process.argv[2] || 60000;
+let timeout = process.argv[2] || process.env.NPM_INSTALL_TIMEOUT || 60000;
 let attempts = process.argv[3] || 3;
 let args = process.argv.slice(4);
 if (args.length === 0) {
