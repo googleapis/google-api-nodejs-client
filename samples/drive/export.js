@@ -20,18 +20,18 @@ const os = require('os');
 
 const drive = google.drive({
   version: 'v3',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample () {
+async function runSample() {
   // [START main_body]
   return new Promise(async (resolve, reject) => {
     const fileId = '1ZdR3L3qP4Bkq8noWLJHSr_iBau0DNT4Kli4SxNc2YEo';
     const dest = fs.createWriteStream(`${os.tmpdir()}/resume.pdf`);
 
     const res = await drive.files.export(
-      { fileId, mimeType: 'application/pdf' },
-      { responseType: 'stream' }
+      {fileId, mimeType: 'application/pdf'},
+      {responseType: 'stream'}
     );
     res.data
       .on('end', () => {
@@ -50,13 +50,14 @@ async function runSample () {
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
-  sampleClient.authenticate(scopes)
-    .then(c => runSample())
+  sampleClient
+    .authenticate(scopes)
+    .then(runSample)
     .catch(console.error);
 }
 
 // export functions for testing purposes
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

@@ -34,7 +34,7 @@ const client = new google.auth.OAuth2(
 // Generate the url that will be used for authorization
 this.authorizeUrl = client.generateAuthUrl({
   access_type: 'offline',
-  scope: scopes
+  scope: scopes,
 });
 
 // Open an http server to accept the oauth callback. In this
@@ -56,33 +56,36 @@ app.get('/oauth2callback', (req, res) => {
 });
 const server = app.listen(3000, () => {
   // open the browser to the authorize url to start the workflow
-  opn(this.authorizeUrl, { wait: false });
+  opn(this.authorizeUrl, {wait: false});
 });
 
 /**
  * Lists the names and IDs of up to 10 files.
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function listFiles (auth) {
+function listFiles(auth) {
   const service = google.drive('v3');
-  service.files.list({
-    auth: auth,
-    pageSize: 10,
-    fields: 'nextPageToken, files(id, name)'
-  }, (err, res) => {
-    if (err) {
-      console.error('The API returned an error.');
-      throw err;
-    }
-    const files = res.data.files;
-    if (files.length === 0) {
-      console.log('No files found.');
-    } else {
-      console.log('Files:');
-      for (const file of files) {
-        console.log(`${file.name} (${file.id})`);
+  service.files.list(
+    {
+      auth: auth,
+      pageSize: 10,
+      fields: 'nextPageToken, files(id, name)',
+    },
+    (err, res) => {
+      if (err) {
+        console.error('The API returned an error.');
+        throw err;
+      }
+      const files = res.data.files;
+      if (files.length === 0) {
+        console.log('No files found.');
+      } else {
+        console.log('Files:');
+        for (const file of files) {
+          console.log(`${file.name} (${file.id})`);
+        }
       }
     }
-  });
+  );
 }
 // [END main_body]

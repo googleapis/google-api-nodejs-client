@@ -18,10 +18,10 @@ const sampleClient = require('../sampleclient');
 
 const gmail = google.gmail({
   version: 'v1',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample () {
+async function runSample() {
   // You can use UTF-8 encoding for the subject using the method below.
   // You can also just use a plain string if you don't need anything fancy.
   const subject = '🤘 Hello 🤘';
@@ -34,7 +34,7 @@ async function runSample () {
     `Subject: ${utf8Subject}`,
     '',
     'This is a message just to say hello.',
-    'So... <b>Hello!</b>  🤘❤️😎'
+    'So... <b>Hello!</b>  🤘❤️😎',
   ];
   const message = messageParts.join('\n');
 
@@ -48,8 +48,8 @@ async function runSample () {
   const res = await gmail.users.messages.send({
     userId: 'me',
     requestBody: {
-      raw: encodedMessage
-    }
+      raw: encodedMessage,
+    },
   });
   console.log(res.data);
   return res.data;
@@ -59,16 +59,17 @@ const scopes = [
   'https://mail.google.com/',
   'https://www.googleapis.com/auth/gmail.modify',
   'https://www.googleapis.com/auth/gmail.compose',
-  'https://www.googleapis.com/auth/gmail.send'
+  'https://www.googleapis.com/auth/gmail.send',
 ];
 
 if (module === require.main) {
-  sampleClient.authenticate(scopes)
-    .then(c => runSample())
+  sampleClient
+    .authenticate(scopes)
+    .then(runSample)
     .catch(console.error);
 }
 
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

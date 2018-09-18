@@ -23,12 +23,12 @@ const customsearch = google.customsearch('v1');
 //      "API KEY"
 //      "CUSTOM ENGINE ID"
 
-async function runSample (options) {
+async function runSample(options) {
   console.log(options);
   const res = await customsearch.cse.list({
     cx: options.cx,
     q: options.q,
-    auth: options.apiKey
+    auth: options.apiKey,
   });
   console.log(res.data);
   return res.data;
@@ -40,11 +40,11 @@ if (module === require.main) {
   const options = {
     q: process.argv[2],
     apiKey: process.argv[3],
-    cx: process.argv[4]
+    cx: process.argv[4],
   };
   runSample(options).catch(console.error);
 }
 
 module.exports = {
-  runSample
+  runSample,
 };

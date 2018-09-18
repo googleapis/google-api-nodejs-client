@@ -18,10 +18,10 @@ const sampleClient = require('../sampleclient');
 
 const sheets = google.sheets({
   version: 'v4',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample (spreadsheetId, range) {
+async function runSample(spreadsheetId, range) {
   const res = await sheets.spreadsheets.values.append({
     spreadsheetId,
     range,
@@ -29,9 +29,9 @@ async function runSample (spreadsheetId, range) {
     requestBody: {
       values: [
         ['Justin', '1/1/2001', 'Website'],
-        ['Node.js', '2018-03-14', 'Fun']
-      ]
-    }
+        ['Node.js', '2018-03-14', 'Fun'],
+      ],
+    },
   });
   console.log(res.data);
   return res.data;
@@ -40,17 +40,18 @@ async function runSample (spreadsheetId, range) {
 const scopes = [
   'https://www.googleapis.com/auth/drive',
   'https://www.googleapis.com/auth/drive.file',
-  'https://www.googleapis.com/auth/spreadsheets'
+  'https://www.googleapis.com/auth/spreadsheets',
 ];
 
 if (module === require.main) {
   const [spreadsheetId, range] = process.argv.slice(2);
-  sampleClient.authenticate(scopes)
-    .then(c => runSample(spreadsheetId, range))
+  sampleClient
+    .authenticate(scopes)
+    .then(() => runSample(spreadsheetId, range))
     .catch(console.error);
 }
 
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

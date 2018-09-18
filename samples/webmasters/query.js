@@ -18,16 +18,16 @@ const sampleClient = require('../sampleclient');
 
 const webmasters = google.webmasters({
   version: 'v3',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample () {
+async function runSample() {
   const res = await webmasters.searchanalytics.query({
     siteUrl: 'http://jbeckwith.com',
     requestBody: {
       startDate: '2018-01-01',
-      endDate: '2018-04-01'
-    }
+      endDate: '2018-04-01',
+    },
   });
   console.log(res.data);
   return res.data;
@@ -35,16 +35,17 @@ async function runSample () {
 
 const scopes = [
   'https://www.googleapis.com/auth/webmasters',
-  'https://www.googleapis.com/auth/webmasters.readonly'
+  'https://www.googleapis.com/auth/webmasters.readonly',
 ];
 
 if (module === require.main) {
-  sampleClient.authenticate(scopes)
-    .then(c => runSample())
+  sampleClient
+    .authenticate(scopes)
+    .then(runSample)
     .catch(console.error);
 }
 
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

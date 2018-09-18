@@ -19,14 +19,20 @@ const nconf = require('nconf');
 const path = require('path');
 
 // Ex: node blogger.js --api_key "YOUR API KEY"
-nconf.argv().env().file(path.join(__dirname, 'config.json'));
+nconf
+  .argv()
+  .env()
+  .file(path.join(__dirname, 'config.json'));
 
-blogger.blogs.get({
-  key: nconf.get('api_key'),
-  blogId: 3213900
-}, (err, res) => {
-  if (err) {
-    throw err;
+blogger.blogs.get(
+  {
+    key: nconf.get('api_key'),
+    blogId: 3213900,
+  },
+  (err, res) => {
+    if (err) {
+      throw err;
+    }
+    console.log(res.data);
   }
-  console.log(res.data);
-});
+);
