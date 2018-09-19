@@ -37,7 +37,7 @@ $ npm run generate
 You can pass in custom Discovery URLs or paths to discovery docs:
 
 ``` sh
-$ node build/src/scripts/generate http://discoveryurl.example.com /path/to/discoverydoc.json
+$ node build/src/generator/generate http://discoveryurl.example.com /path/to/discoverydoc.json
 ```
 
 ## Generating Documentation
