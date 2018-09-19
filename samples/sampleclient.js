@@ -27,7 +27,9 @@ const fs = require('fs');
 const path = require('path');
 
 const keyPath = path.join(__dirname, 'oauth2.keys.json');
-let keys = {redirect_uris: ['']};
+let keys = {
+  redirect_uris: ['http://localhost:3000/oauth2callback'],
+};
 if (fs.existsSync(keyPath)) {
   const keyFile = require(keyPath);
   keys = keyFile.installed || keyFile.web;
