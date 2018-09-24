@@ -45,6 +45,8 @@ If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datas
 ### Support and maintenance
 These client libraries are official supported by Google. However, these libraries are considered complete and are in maintenance mode. This means that we will address critical bugs and security issues but will not add any new features. For Google Cloud Platform APIs, we recommend using [google-cloud-node](https://github.com/GoogleCloudPlatform/google-cloud-node) which is under active development.
 
+This library supports the maintenance LTS, active LTS, and current release of node.js.  See the [node.js release schedule](https://github.com/nodejs/Release) for more information.
+
 ## Getting started
 
 ### Installation
