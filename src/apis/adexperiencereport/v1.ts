@@ -101,8 +101,7 @@ export namespace adexperiencereport_v1 {
     underReview?: boolean;
   }
   /**
-   * Response message for GetSiteSummary. Do not confuse with same message in
-   * google.chrome.abusiveexperiencereport.v1
+   * Response message for GetSiteSummary.
    */
   export interface Schema$SiteSummaryResponse {
     /**

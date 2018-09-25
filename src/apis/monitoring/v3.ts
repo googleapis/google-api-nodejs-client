@@ -4573,7 +4573,7 @@ export namespace monitoring_v3 {
     /**
      * monitoring.projects.notificationChannels.create
      * @desc Creates a new notification channel, representing a single
-     * notification endpoint such as an email address, SMS number, or pagerduty
+     * notification endpoint such as an email address, SMS number, or PagerDuty
      * service.
      * @alias monitoring.projects.notificationChannels.create
      * @memberOf! ()

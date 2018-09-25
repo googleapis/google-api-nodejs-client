@@ -32,11 +32,8 @@ export namespace cloudkms_v1 {
   /**
    * Cloud Key Management Service (KMS) API
    *
-   * Cloud KMS allows you to keep cryptographic keys in one central cloud
-   * service, for direct use by other cloud resources and applications. With
-   * Cloud KMS you are the ultimate custodian of your data, you can manage
-   * encryption in the cloud the same way you do on-premises, and you have a
-   * provable and monitorable root of trust over your data.
+   * Manages keys and performs cryptographic operations in a central cloud
+   * service, for direct use by other cloud resources and applications.
    *
    * @example
    * const {google} = require('googleapis');

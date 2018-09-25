@@ -1,7 +1,7 @@
 {
-  "name": "@google/adexchangeseller",
+  "name": "@google/file",
   "version": "0.1.0",
-  "description": "adexchangeseller",
+  "description": "file",
   "main": "index.js",
   "types": "index.d.ts",
   "keywords": ["google"],

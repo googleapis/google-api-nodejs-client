@@ -143,6 +143,46 @@ export namespace androidenterprise_v1 {
      * &quot;approve&quot; mode.
      */
     permission?: string[];
+    /**
+     * Options for displaying the Play Search page.
+     */
+    playSearch?: Schema$AdministratorWebTokenSpecPlaySearch;
+    /**
+     * Options for displaying the Private Apps page.
+     */
+    privateApps?: Schema$AdministratorWebTokenSpecPrivateApps;
+    /**
+     * Options for displaying the Store Builder page.
+     */
+    storeBuilder?: Schema$AdministratorWebTokenSpecStoreBuilder;
+    /**
+     * Options for displaying the Web Apps page.
+     */
+    webApps?: Schema$AdministratorWebTokenSpecWebApps;
+  }
+  export interface Schema$AdministratorWebTokenSpecPlaySearch {
+    /**
+     * Whether the Play Search page is displayed. Default is true.
+     */
+    enabled?: boolean;
+  }
+  export interface Schema$AdministratorWebTokenSpecPrivateApps {
+    /**
+     * Whether the Private Apps page is displayed. Default is true.
+     */
+    enabled?: boolean;
+  }
+  export interface Schema$AdministratorWebTokenSpecStoreBuilder {
+    /**
+     * Whether the Store Builder page is displayed. Default is true.
+     */
+    enabled?: boolean;
+  }
+  export interface Schema$AdministratorWebTokenSpecWebApps {
+    /**
+     * Whether the Web Apps page is displayed. Default is true.
+     */
+    enabled?: boolean;
   }
   /**
    * Deprecated and unused.
@@ -1625,11 +1665,9 @@ export namespace androidenterprise_v1 {
     kind?: string;
     /**
      * Ordered list of pages a user should be able to reach from this page. The
-     * pages must exist, must not be this page, and once a link is created the
-     * page linked to cannot be deleted until all links to it are removed. It is
-     * recommended that the basic pages are created first, before adding the
-     * links between pages.  No attempt is made to verify that all pages are
-     * reachable from the homepage.
+     * list can&#39;t include this page. It is recommended that the basic pages
+     * are created first, before adding the links between pages.  The API
+     * doesn&#39;t verify that the pages exist or the pages are reachable.
      */
     link?: string[];
     /**

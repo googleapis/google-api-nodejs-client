@@ -66,6 +66,14 @@ export namespace firestore_v1beta2 {
   }
 
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated
+   * empty messages in your APIs. A typical example is to use it as the request
+   * or the response type of an API method. For instance:      service Foo { rpc
+   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+   * representation for `Empty` is empty JSON object `{}`.
+   */
+  export interface Schema$Empty {}
+  /**
    * Represents a single field in the database.  Fields are grouped by their
    * &quot;Collection Group&quot;, which represent all collections in the
    * database with the same id.
@@ -239,6 +247,38 @@ export namespace firestore_v1beta2 {
     order?: string;
   }
   /**
+   * Metadata for google.longrunning.Operation results from
+   * FirestoreAdmin.CreateIndex.
+   */
+  export interface Schema$GoogleFirestoreAdminV1beta2IndexOperationMetadata {
+    /**
+     * The time this operation completed. Will be unset if operation still in
+     * progress.
+     */
+    endTime?: string;
+    /**
+     * The index resource that this operation is acting on. For example:
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     */
+    index?: string;
+    /**
+     * The progress, in bytes, of this operation.
+     */
+    progressBytes?: Schema$GoogleFirestoreAdminV1beta2Progress;
+    /**
+     * The progress, in documents, of this operation.
+     */
+    progressDocuments?: Schema$GoogleFirestoreAdminV1beta2Progress;
+    /**
+     * The time this operation started.
+     */
+    startTime?: string;
+    /**
+     * The state of the operation.
+     */
+    state?: string;
+  }
+  /**
    * The response for FirestoreAdmin.ListFields.
    */
   export interface Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse {
@@ -246,6 +286,20 @@ export namespace firestore_v1beta2 {
      * The requested fields.
      */
     fields?: Schema$GoogleFirestoreAdminV1beta2Field[];
+    /**
+     * A page token that may be used to request another page of results. If
+     * blank, this is the last page.
+     */
+    nextPageToken?: string;
+  }
+  /**
+   * The response for FirestoreAdmin.ListIndexes.
+   */
+  export interface Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse {
+    /**
+     * The requested indexes.
+     */
+    indexes?: Schema$GoogleFirestoreAdminV1beta2Index[];
     /**
      * A page token that may be used to request another page of results. If
      * blank, this is the last page.
@@ -377,10 +431,13 @@ export namespace firestore_v1beta2 {
 
   export class Resource$Projects$Databases {
     root: Firestore;
+    collectionGroup: Resource$Projects$Databases$Collectiongroup;
     collectionGroups: Resource$Projects$Databases$Collectiongroups;
     constructor(root: Firestore) {
       this.root = root;
       this.getRoot.bind(this);
+      this.collectionGroup =
+          new Resource$Projects$Databases$Collectiongroup(root);
       this.collectionGroups =
           new Resource$Projects$Databases$Collectiongroups(root);
     }
@@ -391,14 +448,255 @@ export namespace firestore_v1beta2 {
   }
 
 
+  export class Resource$Projects$Databases$Collectiongroup {
+    root: Firestore;
+    indexes: Resource$Projects$Databases$Collectiongroup$Indexes;
+    constructor(root: Firestore) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.indexes =
+          new Resource$Projects$Databases$Collectiongroup$Indexes(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+  }
+
+
+  export class Resource$Projects$Databases$Collectiongroup$Indexes {
+    root: Firestore;
+    constructor(root: Firestore) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * firestore.projects.databases.collectionGroup.indexes.create
+     * @desc Creates a composite index. This returns a
+     * google.longrunning.Operation which may be used to track the status of the
+     * creation. The metadata for the operation will be the type
+     * IndexOperationMetadata.
+     * @alias firestore.projects.databases.collectionGroup.indexes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     * @param {().GoogleFirestoreAdminV1beta2Index} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?:
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$Create,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+        params:
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$Create,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    create(
+        params:
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$Create,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    create(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$Create|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Collectiongroup$Indexes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta2/{+parent}/indexes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+
+    /**
+     * firestore.projects.databases.collectionGroup.indexes.list
+     * @desc Lists composite indexes.
+     * @alias firestore.projects.databases.collectionGroup.indexes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The filter to apply to list results.
+     * @param {integer=} params.pageSize The number of results to return.
+     * @param {string=} params.pageToken A page token, returned from a previous call to FirestoreAdmin.ListIndexes, that may be used to get the next page of results.
+     * @param {string} params.parent A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
+    list(
+        params: Params$Resource$Projects$Databases$Collectiongroup$Indexes$List,
+        options: MethodOptions|BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
+        callback: BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Databases$Collectiongroup$Indexes$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$List|
+        BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void|
+        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Collectiongroup$Indexes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Databases$Collectiongroup$Indexes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta2/{+parent}/indexes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Databases$Collectiongroup$Indexes$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A parent name of the form
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1beta2Index;
+  }
+  export interface Params$Resource$Projects$Databases$Collectiongroup$Indexes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The filter to apply to list results.
+     */
+    filter?: string;
+    /**
+     * The number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * A page token, returned from a previous call to
+     * FirestoreAdmin.ListIndexes, that may be used to get the next page of
+     * results.
+     */
+    pageToken?: string;
+    /**
+     * A parent name of the form
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     */
+    parent?: string;
+  }
+
+
+
   export class Resource$Projects$Databases$Collectiongroups {
     root: Firestore;
     fields: Resource$Projects$Databases$Collectiongroups$Fields;
+    indexes: Resource$Projects$Databases$Collectiongroups$Indexes;
     constructor(root: Firestore) {
       this.root = root;
       this.getRoot.bind(this);
       this.fields =
           new Resource$Projects$Databases$Collectiongroups$Fields(root);
+      this.indexes =
+          new Resource$Projects$Databases$Collectiongroups$Indexes(root);
     }
 
     getRoot() {
@@ -746,5 +1044,189 @@ export namespace firestore_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta2Field;
+  }
+
+
+  export class Resource$Projects$Databases$Collectiongroups$Indexes {
+    root: Firestore;
+    constructor(root: Firestore) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * firestore.projects.databases.collectionGroups.indexes.delete
+     * @desc Deletes a composite index.
+     * @alias firestore.projects.databases.collectionGroups.indexes.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?:
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params:
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params:
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * firestore.projects.databases.collectionGroups.indexes.get
+     * @desc Gets a composite index.
+     * @alias firestore.projects.databases.collectionGroups.indexes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?:
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>;
+    get(params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
+        callback:
+            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
+        void;
+    get(params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
+        callback:
+            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
+        void;
+    get(callback:
+            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
+        void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get|
+        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
+        callback?:
+            BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
+        void|AxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A name of the form
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A name of the form
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     */
+    name?: string;
   }
 }

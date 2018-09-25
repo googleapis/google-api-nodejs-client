@@ -936,7 +936,9 @@ export namespace genomics_v1alpha2 {
      * server makes a best effort to cancel the operation, but success is not
      * guaranteed. Clients may use Operations.GetOperation or
      * Operations.ListOperations to check whether the cancellation succeeded or
-     * the operation completed despite cancellation.
+     * the operation completed despite cancellation. Authorization requires the
+     * following [Google IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.cancel`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1056,9 +1058,11 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * @desc Gets the latest state of a long-running operation. Clients can use
      * this method to poll the operation result at intervals as recommended by
-     * the API service.
+     * the API service. Authorization requires the following [Google
+     * IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.get`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1174,6 +1178,9 @@ export namespace genomics_v1alpha2 {
     /**
      * genomics.operations.list
      * @desc Lists operations that match the specified filter in the request.
+     * Authorization requires the following [Google
+     * IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.list`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

@@ -679,7 +679,7 @@ export namespace dataproc_v1beta2 {
     instanceId?: string;
     /**
      * Optional. Map from parameter names to values that should be used for
-     * those parameters.
+     * those parameters. Values may not exceed 100 characters.
      */
     parameters?: any;
     /**
@@ -1285,6 +1285,10 @@ export namespace dataproc_v1beta2 {
      * version.
      */
     imageVersion?: string;
+    /**
+     * The set of optional components to activate on the cluster.
+     */
+    optionalComponents?: string[];
     /**
      * Optional. The properties to set on daemon config files.Property keys are
      * specified in prefix:property format, such as core:fs.defaultFS. The
@@ -2124,8 +2128,9 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.instanceId Deprecated. Please use request_id field instead.
      * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2590,12 +2595,7 @@ export namespace dataproc_v1beta2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Optional. A tag that prevents multiple concurrent workflow instances with
-     * the same tag from running. This mitigates risk of concurrent instances
-     * started due to retries.It is recommended to always set this value to a
-     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
-     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     * and hyphens (-). The maximum length is 40 characters.
+     * Deprecated. Please use request_id field instead.
      */
     instanceId?: string;
     /**
@@ -2604,6 +2604,15 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -5504,8 +5513,9 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.instanceId Deprecated. Please use request_id field instead.
      * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5967,12 +5977,7 @@ export namespace dataproc_v1beta2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Optional. A tag that prevents multiple concurrent workflow instances with
-     * the same tag from running. This mitigates risk of concurrent instances
-     * started due to retries.It is recommended to always set this value to a
-     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
-     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     * and hyphens (-). The maximum length is 40 characters.
+     * Deprecated. Please use request_id field instead.
      */
     instanceId?: string;
     /**
@@ -5981,6 +5986,15 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata

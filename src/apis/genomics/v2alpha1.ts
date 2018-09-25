@@ -975,7 +975,9 @@ export namespace genomics_v2alpha1 {
      * automatically when the Cloud Genomics API is first enabled, but if you
      * delete this permission, or if you enabled the Cloud Genomics API before
      * the v2alpha1 API launch, you must disable and re-enable the API to grant
-     * the Genomics Service Agent the required permissions.  [1]: /genomics/gsa
+     * the Genomics Service Agent the required permissions. Authorization
+     * requires the following [Google IAM](https://cloud.google.com/iam/)
+     * permission:  * `genomics.operations.create`  [1]: /genomics/gsa
      * @alias genomics.pipelines.run
      * @memberOf! ()
      *
@@ -1082,7 +1084,9 @@ export namespace genomics_v2alpha1 {
      * server makes a best effort to cancel the operation, but success is not
      * guaranteed. Clients may use Operations.GetOperation or
      * Operations.ListOperations to check whether the cancellation succeeded or
-     * the operation completed despite cancellation.
+     * the operation completed despite cancellation. Authorization requires the
+     * following [Google IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.cancel`
      * @alias genomics.projects.operations.cancel
      * @memberOf! ()
      *
@@ -1149,9 +1153,11 @@ export namespace genomics_v2alpha1 {
 
     /**
      * genomics.projects.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * @desc Gets the latest state of a long-running operation. Clients can use
      * this method to poll the operation result at intervals as recommended by
-     * the API service.
+     * the API service. Authorization requires the following [Google
+     * IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.get`
      * @alias genomics.projects.operations.get
      * @memberOf! ()
      *
@@ -1215,6 +1221,9 @@ export namespace genomics_v2alpha1 {
     /**
      * genomics.projects.operations.list
      * @desc Lists operations that match the specified filter in the request.
+     * Authorization requires the following [Google
+     * IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.list`
      * @alias genomics.projects.operations.list
      * @memberOf! ()
      *

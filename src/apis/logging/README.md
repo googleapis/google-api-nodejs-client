@@ -2,7 +2,7 @@
 
 # @google/logging
 
-> Writes log entries and manages your Stackdriver Logging configuration.
+> Writes log entries and manages your Logging configuration.
 
 ## Installation
 

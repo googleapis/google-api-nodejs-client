@@ -19,7 +19,6 @@ import * as abusiveexperiencereport from './abusiveexperiencereport';
 import * as acceleratedmobilepageurl from './acceleratedmobilepageurl';
 import * as adexchangebuyer from './adexchangebuyer';
 import * as adexchangebuyer2 from './adexchangebuyer2';
-import * as adexchangeseller from './adexchangeseller';
 import * as adexperiencereport from './adexperiencereport';
 import * as admin from './admin';
 import * as adsense from './adsense';
@@ -72,6 +71,7 @@ import * as dns from './dns';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
+import * as file from './file';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
@@ -162,7 +162,6 @@ export const APIS: APIList = {
   acceleratedmobilepageurl: acceleratedmobilepageurl.VERSIONS,
   adexchangebuyer: adexchangebuyer.VERSIONS,
   adexchangebuyer2: adexchangebuyer2.VERSIONS,
-  adexchangeseller: adexchangeseller.VERSIONS,
   adexperiencereport: adexperiencereport.VERSIONS,
   admin: admin.VERSIONS,
   adsense: adsense.VERSIONS,
@@ -215,6 +214,7 @@ export const APIS: APIList = {
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
+  file: file.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebaserules: firebaserules.VERSIONS,
   firestore: firestore.VERSIONS,
@@ -301,7 +301,6 @@ export class GeneratedAPIs {
   acceleratedmobilepageurl = acceleratedmobilepageurl.acceleratedmobilepageurl;
   adexchangebuyer = adexchangebuyer.adexchangebuyer;
   adexchangebuyer2 = adexchangebuyer2.adexchangebuyer2;
-  adexchangeseller = adexchangeseller.adexchangeseller;
   adexperiencereport = adexperiencereport.adexperiencereport;
   admin = admin.admin;
   adsense = adsense.adsense;
@@ -355,6 +354,7 @@ export class GeneratedAPIs {
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
+  file = file.file;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebaserules = firebaserules.firebaserules;
   firestore = firestore.firestore;
@@ -440,7 +440,6 @@ export class GeneratedAPIs {
     this.acceleratedmobilepageurl = this.acceleratedmobilepageurl.bind(this);
     this.adexchangebuyer = this.adexchangebuyer.bind(this);
     this.adexchangebuyer2 = this.adexchangebuyer2.bind(this);
-    this.adexchangeseller = this.adexchangeseller.bind(this);
     this.adexperiencereport = this.adexperiencereport.bind(this);
     this.admin = this.admin.bind(this);
     this.adsense = this.adsense.bind(this);
@@ -493,6 +492,7 @@ export class GeneratedAPIs {
     this.doubleclickbidmanager = this.doubleclickbidmanager.bind(this);
     this.doubleclicksearch = this.doubleclicksearch.bind(this);
     this.drive = this.drive.bind(this);
+    this.file = this.file.bind(this);
     this.firebasedynamiclinks = this.firebasedynamiclinks.bind(this);
     this.firebaserules = this.firebaserules.bind(this);
     this.firestore = this.firestore.bind(this);

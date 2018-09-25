@@ -2839,7 +2839,7 @@ export namespace storage_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object.
+     * @param {string} params.destinationBucket Name of the bucket containing the source objects. The destination object is stored in this bucket.
      * @param {string} params.destinationObject Name of the new object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
@@ -3498,7 +3498,8 @@ export namespace storage_v1beta2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object.
+     * Name of the bucket containing the source objects. The destination object
+     * is stored in this bucket.
      */
     destinationBucket?: string;
     /**

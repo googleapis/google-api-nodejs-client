@@ -16,18 +16,23 @@
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {jobs_v2} from './v2';
 import {jobs_v3} from './v3';
+import {jobs_v3p1beta1} from './v3p1beta1';
 
 export const VERSIONS = {
   'v2': jobs_v2.Jobs,
   'v3': jobs_v3.Jobs,
+  'v3p1beta1': jobs_v3p1beta1.Jobs,
 };
 
 export function jobs(version: 'v2'): jobs_v2.Jobs;
 export function jobs(options: jobs_v2.Options): jobs_v2.Jobs;
 export function jobs(version: 'v3'): jobs_v3.Jobs;
 export function jobs(options: jobs_v3.Options): jobs_v3.Jobs;
-export function jobs<T = jobs_v2.Jobs | jobs_v3.Jobs>(
+export function jobs(version: 'v3p1beta1'): jobs_v3p1beta1.Jobs;
+export function jobs(options: jobs_v3p1beta1.Options): jobs_v3p1beta1.Jobs;
+export function jobs<T = jobs_v2.Jobs | jobs_v3.Jobs | jobs_v3p1beta1.Jobs>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v2'|jobs_v2.Options|'v3'|jobs_v3.Options) {
+    versionOrOptions: 'v2'|jobs_v2.Options|'v3'|
+    jobs_v3.Options|'v3p1beta1'|jobs_v3p1beta1.Options) {
   return getAPI<T>('jobs', versionOrOptions, VERSIONS, this);
 }

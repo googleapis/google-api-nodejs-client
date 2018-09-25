@@ -149,7 +149,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest {
     /**
-     * Required. The collection of entities to create.
+     * Required. The entities to create.
      */
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
@@ -199,12 +199,11 @@ export namespace dialogflow_v2beta1 {
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
   }
   /**
-   * The response message for EntityTypes.BatchCreateEntities.
+   * The request message for EntityTypes.BatchUpdateEntities.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest {
     /**
-     * Required. The collection of new entities to replace the existing
-     * entities.
+     * Required. The entities to update or create.
      */
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
@@ -224,7 +223,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest {
     /**
-     * The collection of entity type to update or create.
+     * The collection of entity types to update or create.
      */
     entityTypeBatchInline?: Schema$GoogleCloudDialogflowV2beta1EntityTypeBatch;
     /**
@@ -652,8 +651,9 @@ export namespace dialogflow_v2beta1 {
      */
     events?: string[];
     /**
-     * Optional. Collection of information about all followup intents that have
-     * name of this intent as a root_name.
+     * Read-only. Information about all followup intents that have this intent
+     * as a direct or indirect parent. We populate this field only in the
+     * output.
      */
     followupIntentInfo?:
         Schema$GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[];
@@ -710,9 +710,12 @@ export namespace dialogflow_v2beta1 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2beta1IntentParameter[];
     /**
-     * The unique identifier of the parent intent in the chain of followup
-     * intents. It identifies the parent followup intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Read-only after creation. The unique identifier of the parent intent in
+     * the chain of followup intents. You can set this field when creating an
+     * intent, for example with CreateIntent or BatchUpdateIntents, in order to
+     * make this intent a followup intent.  It identifies the parent followup
+     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
+     * ID&gt;`.
      */
     parentFollowupIntentName?: string;
     /**
@@ -726,10 +729,10 @@ export namespace dialogflow_v2beta1 {
      */
     resetContexts?: boolean;
     /**
-     * The unique identifier of the root intent in the chain of followup
-     * intents. It identifies the correct followup intents chain for this
-     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
-     * ID&gt;`.
+     * Read-only. The unique identifier of the root intent in the chain of
+     * followup intents. It identifies the correct followup intents chain for
+     * this intent. We populate this field only in the output.  Format:
+     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string;
     /**
@@ -761,7 +764,7 @@ export namespace dialogflow_v2beta1 {
      */
     followupIntentName?: string;
     /**
-     * The unique identifier of the followup intent parent. Format:
+     * The unique identifier of the followup intent&#39;s parent. Format:
      * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
@@ -2035,8 +2038,9 @@ export namespace dialogflow_v2beta1 {
      */
     events?: string[];
     /**
-     * Optional. Collection of information about all followup intents that have
-     * name of this intent as a root_name.
+     * Read-only. Information about all followup intents that have this intent
+     * as a direct or indirect parent. We populate this field only in the
+     * output.
      */
     followupIntentInfo?:
         Schema$GoogleCloudDialogflowV2IntentFollowupIntentInfo[];
@@ -2081,9 +2085,12 @@ export namespace dialogflow_v2beta1 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2IntentParameter[];
     /**
-     * The unique identifier of the parent intent in the chain of followup
-     * intents. It identifies the parent followup intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Read-only after creation. The unique identifier of the parent intent in
+     * the chain of followup intents. You can set this field when creating an
+     * intent, for example with CreateIntent or BatchUpdateIntents, in order to
+     * make this intent a followup intent.  It identifies the parent followup
+     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
+     * ID&gt;`.
      */
     parentFollowupIntentName?: string;
     /**
@@ -2097,10 +2104,10 @@ export namespace dialogflow_v2beta1 {
      */
     resetContexts?: boolean;
     /**
-     * The unique identifier of the root intent in the chain of followup
-     * intents. It identifies the correct followup intents chain for this
-     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
-     * ID&gt;`.
+     * Read-only. The unique identifier of the root intent in the chain of
+     * followup intents. It identifies the correct followup intents chain for
+     * this intent. We populate this field only in the output.  Format:
+     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string;
     /**
@@ -2123,7 +2130,7 @@ export namespace dialogflow_v2beta1 {
      */
     followupIntentName?: string;
     /**
-     * The unique identifier of the followup intent parent. Format:
+     * The unique identifier of the followup intent&#39;s parent. Format:
      * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
@@ -4127,9 +4134,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchCreate
-     * @desc Creates multiple new entities in the specified entity type (extends
-     * the existing collection of entries).  Operation <response:
-     * google.protobuf.Empty>
+     * @desc Creates multiple new entities in the specified entity type.
+     * Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchCreate
      * @memberOf! ()
      *
@@ -4287,14 +4293,15 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchUpdate
-     * @desc Updates entities in the specified entity type (replaces the
-     * existing collection of entries).  Operation <response:
+     * @desc Updates or creates multiple entities in the specified entity type.
+     * This method does not affect entities in the entity type that aren't
+     * explicitly specified in the request.  Operation <response:
      * google.protobuf.Empty,            metadata: google.protobuf.Struct>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the entity type to update the entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {string} params.parent Required. The name of the entity type to update or create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param {().GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4406,8 +4413,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to update the entities in. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to update or create entities in.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
 
@@ -5972,12 +5979,13 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.intents.delete
-     * @desc Deletes the specified intent.
+     * @desc Deletes the specified intent and its direct or indirect followup
+     * intents.
      * @alias dialogflow.projects.agent.intents.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the intent to delete. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them.  Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6343,8 +6351,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The name of the intent to delete. Format: `projects/<Project
-     * ID>/agent/intents/<Intent ID>`.
+     * Required. The name of the intent to delete. If this intent has direct or
+     * indirect followup intents, we also delete them.  Format:
+     * `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
   }

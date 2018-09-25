@@ -16,10 +16,12 @@
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {videointelligence_v1} from './v1';
 import {videointelligence_v1beta2} from './v1beta2';
+import {videointelligence_v1p1beta1} from './v1p1beta1';
 
 export const VERSIONS = {
   'v1': videointelligence_v1.Videointelligence,
   'v1beta2': videointelligence_v1beta2.Videointelligence,
+  'v1p1beta1': videointelligence_v1p1beta1.Videointelligence,
 };
 
 export function videointelligence(version: 'v1'):
@@ -30,11 +32,18 @@ export function videointelligence(version: 'v1beta2'):
     videointelligence_v1beta2.Videointelligence;
 export function videointelligence(options: videointelligence_v1beta2.Options):
     videointelligence_v1beta2.Videointelligence;
+export function videointelligence(version: 'v1p1beta1'):
+    videointelligence_v1p1beta1.Videointelligence;
+export function videointelligence(options: videointelligence_v1p1beta1.Options):
+    videointelligence_v1p1beta1.Videointelligence;
 export function videointelligence<
     T = videointelligence_v1.Videointelligence |
-        videointelligence_v1beta2.Videointelligence>(
+        videointelligence_v1beta2.Videointelligence |
+        videointelligence_v1p1beta1.Videointelligence>(
     this: GoogleConfigurable,
     versionOrOptions: 'v1'|
-    videointelligence_v1.Options|'v1beta2'|videointelligence_v1beta2.Options) {
+    videointelligence_v1.Options|'v1beta2'|
+    videointelligence_v1beta2.Options|'v1p1beta1'|
+    videointelligence_v1p1beta1.Options) {
   return getAPI<T>('videointelligence', versionOrOptions, VERSIONS, this);
 }
