@@ -2,7 +2,7 @@
 
 # @google/sqladmin
 
-> Cloud SQL provides the Cloud SQL Admin API, a REST API for administering your instances programmatically.
+> Creates and manages Cloud SQL instances, which provide fully managed MySQL or PostgreSQL databases.
 
 ## Installation
 

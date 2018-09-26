@@ -2669,12 +2669,13 @@ export namespace compute_beta {
      * only. A global forwarding rule supports either IPv4 or IPv6.  When the
      * load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL
      * reference to an existing Address resource ( internal regional static IP
-     * address).  When the load balancing scheme is INTERNAL, this can only be
-     * an RFC 1918 IP address belonging to the network/subnet configured for the
-     * forwarding rule. By default, if this field is empty, an ephemeral
-     * internal IP address will be automatically allocated from the IP range of
-     * the subnet or network configured for this forwarding rule.  An address
-     * can be specified either by a literal IP address or a URL reference to an
+     * address), with a purpose of GCE_END_POINT and address_type of INTERNAL.
+     * When the load balancing scheme is INTERNAL, this can only be an RFC 1918
+     * IP address belonging to the network/subnet configured for the forwarding
+     * rule. By default, if this field is empty, an ephemeral internal IP
+     * address will be automatically allocated from the IP range of the subnet
+     * or network configured for this forwarding rule.  An address can be
+     * specified either by a literal IP address or a URL reference to an
      * existing Address resource. The following examples are all valid:   -
      * 100.1.2.3  -
      * https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address
@@ -2939,6 +2940,60 @@ export namespace compute_beta {
     policy?: Schema$Policy;
   }
   /**
+   * A guest attributes entry.
+   */
+  export interface Schema$GuestAttributes {
+    /**
+     * [Output Only] Type of the resource. Always compute#guestAttributes for
+     * guest attributes entry.
+     */
+    kind?: string;
+    /**
+     * The path to be queried. This can be the default namespace (&#39;/&#39;)
+     * or a nested namespace (&#39;//&#39;) or a specified key (&#39;//&#39;)
+     */
+    queryPath?: string;
+    /**
+     * [Output Only] The value of the requested queried path.
+     */
+    queryValue?: Schema$GuestAttributesValue;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * The key to search for.
+     */
+    variableKey?: string;
+    /**
+     * [Output Only] The value found for the requested key.
+     */
+    variableValue?: string;
+  }
+  /**
+   * A guest attributes namespace/key/value entry.
+   */
+  export interface Schema$GuestAttributesEntry {
+    /**
+     * Key for the guest attribute entry.
+     */
+    key?: string;
+    /**
+     * Namespace for the guest attribute entry.
+     */
+    namespace?: string;
+    /**
+     * Value for the guest attribute entry.
+     */
+    value?: string;
+  }
+  /**
+   * Array of guest attribute namespace/key/value tuples.
+   */
+  export interface Schema$GuestAttributesValue {
+    items?: Schema$GuestAttributesEntry[];
+  }
+  /**
    * Guest OS features.
    */
   export interface Schema$GuestOsFeature {
@@ -3013,7 +3068,6 @@ export namespace compute_beta {
      * health check field must be specified, which must match type field.
      */
     type?: string;
-    udpHealthCheck?: Schema$UDPHealthCheck;
     /**
      * A so-far healthy instance will be marked unhealthy after this many
      * consecutive failures. The default value is 2.
@@ -3170,6 +3224,51 @@ export namespace compute_beta {
      */
     response?: string;
   }
+  export interface Schema$HTTPHealthCheck {
+    /**
+     * The value of the host header in the HTTP health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value
+     * is 80. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTP health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTP health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
+  }
   /**
    * An HttpHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTP.
@@ -3245,51 +3344,6 @@ export namespace compute_beta {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPHealthCheck {
-    /**
-     * The value of the host header in the HTTP health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value
-     * is 80. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of
-     * following values: USE_FIXED_PORT: The port number in port is used for
-     * health checking. USE_NAMED_PORT: The portName is used for health
-     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
-     * for each network endpoint is used for health checking. For other
-     * backends, the port or named port specified in the Backend Service is used
-     * for health checking.   If not specified, HTTP health check follows
-     * behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTP health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
   }
   /**
    * Contains a list of HttpHealthCheck resources.
@@ -4112,6 +4166,10 @@ export namespace compute_beta {
      */
     serviceAccount?: string;
     /**
+     * [Output Only] The status of this managed instance group.
+     */
+    status?: Schema$InstanceGroupManagerStatus;
+    /**
      * The URLs for all TargetPool resources to which instances in the
      * instanceGroup field are added. The target pools automatically apply to
      * all of the instances in the managed instance group.
@@ -4408,6 +4466,17 @@ export namespace compute_beta {
      * in the group all receive these target pool settings.
      */
     targetPools?: string[];
+  }
+  export interface Schema$InstanceGroupManagerStatus {
+    /**
+     * [Output Only] A bit indicating whether the managed instance group is in a
+     * stable state. A stable state means that: none of the instances in the
+     * managed instance group is currently undergoing any type of change (for
+     * example, creation, restart, or deletion); no future changes are scheduled
+     * for instances in the managed instance group; and the managed instance
+     * group itself is not being modified.
+     */
+    isStable?: boolean;
   }
   export interface Schema$InstanceGroupManagerUpdatePolicy {
     /**
@@ -5321,6 +5390,77 @@ export namespace compute_beta {
     googleDemarcId?: string;
   }
   /**
+   * Diagnostics information about interconnect, contains detailed and current
+   * technical information about Google?s side of the connection.
+   */
+  export interface Schema$InterconnectDiagnostics {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing individual
+     * neighbors currently seen by the Google router in the ARP cache for the
+     * Interconnect. This will be empty when the Interconnect is not bundled.
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * A list of InterconnectDiagnostics.LinkStatus objects, describing the
+     * status for each link on the Interconnect.
+     */
+    links?: Schema$InterconnectDiagnosticsLinkStatus[];
+    /**
+     * The MAC address of the Interconnect&#39;s bundle interface.
+     */
+    macAddress?: string;
+  }
+  /**
+   * Describing the ARP neighbor entries seen on this link
+   */
+  export interface Schema$InterconnectDiagnosticsARPEntry {
+    /**
+     * The IP address of this ARP neighbor.
+     */
+    ipAddress?: string;
+    /**
+     * The MAC address of this ARP neighbor.
+     */
+    macAddress?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkLACPStatus {
+    /**
+     * System ID of the port on Google?s side of the LACP exchange.
+     */
+    googleSystemId?: string;
+    /**
+     * System ID of the port on the neighbor?s side of the LACP exchange.
+     */
+    neighborSystemId?: string;
+    state?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    state?: string;
+    /**
+     * Value of the current optical power, read in dBm.
+     */
+    value?: number;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkStatus {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP
+     * neighbor entries seen on this link. This will be empty if the link is
+     * bundled
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * The unique ID for this link assigned during turn up by Google.
+     */
+    circuitId?: string;
+    /**
+     * The Demarc address assigned by Google and provided in the LoA.
+     */
+    googleDemarc?: string;
+    lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+  }
+  /**
    * Response to the list request, and contains a list of interconnects.
    */
   export interface Schema$InterconnectList {
@@ -5528,6 +5668,12 @@ export namespace compute_beta {
     state?: string;
   }
   /**
+   * Response for the InterconnectsGetDiagnosticsRequest.
+   */
+  export interface Schema$InterconnectsGetDiagnosticsResponse {
+    result?: Schema$InterconnectDiagnostics;
+  }
+  /**
    * A license resource.
    */
   export interface Schema$License {
@@ -5560,8 +5706,8 @@ export namespace compute_beta {
      */
     licenseCode?: string;
     /**
-     * [Output Only] Name of the resource. The name is 1-63 characters long and
-     * complies with RFC1035.
+     * Name of the resource. The name must be 1-63 characters long and comply
+     * with RFC1035.
      */
     name?: string;
     resourceRequirements?: Schema$LicenseResourceRequirements;
@@ -6090,6 +6236,11 @@ export namespace compute_beta {
      */
     creationTimestamp?: string;
     /**
+     * The default port used if the port number is not specified in the network
+     * endpoint.
+     */
+    defaultPort?: number;
+    /**
      * An optional description of this resource. Provide this property when you
      * create the resource.
      */
@@ -6106,7 +6257,7 @@ export namespace compute_beta {
     kind?: string;
     /**
      * This field is only valid when the network endpoint group is used for load
-     * balancing.
+     * balancing. [Deprecated] This field is deprecated.
      */
     loadBalancer?: Schema$NetworkEndpointGroupLbNetworkEndpointGroup;
     /**
@@ -6120,6 +6271,11 @@ export namespace compute_beta {
      */
     name?: string;
     /**
+     * The URL of the network to which all network endpoints in the NEG belong.
+     * Uses &quot;default&quot; project network if unspecified.
+     */
+    network?: string;
+    /**
      * Type of network endpoints in this network endpoint group. Currently the
      * only supported value is GCE_VM_IP_PORT.
      */
@@ -6132,6 +6288,16 @@ export namespace compute_beta {
      * [Output only] Number of network endpoints in the network endpoint group.
      */
     size?: number;
+    /**
+     * Optional URL of the subnetwork to which all network endpoints in the NEG
+     * belong.
+     */
+    subnetwork?: string;
+    /**
+     * [Output Only] The URL of the zone where the network endpoint group is
+     * located.
+     */
+    zone?: string;
   }
   export interface Schema$NetworkEndpointGroupAggregatedList {
     /**
@@ -6171,22 +6337,23 @@ export namespace compute_beta {
   export interface Schema$NetworkEndpointGroupLbNetworkEndpointGroup {
     /**
      * The default port used if the port number is not specified in the network
-     * endpoint.
+     * endpoint. [Deprecated] This field is deprecated.
      */
     defaultPort?: number;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses &quot;default&quot; project network if unspecified.
+     * Uses &quot;default&quot; project network if unspecified. [Deprecated]
+     * This field is deprecated.
      */
     network?: string;
     /**
      * Optional URL of the subnetwork to which all network endpoints in the NEG
-     * belong.
+     * belong. [Deprecated] This field is deprecated.
      */
     subnetwork?: string;
     /**
      * [Output Only] The URL of the zone where the network endpoint group is
-     * located.
+     * located. [Deprecated] This field is deprecated.
      */
     zone?: string;
   }
@@ -6498,11 +6665,6 @@ export namespace compute_beta {
      * which cannot be a dash.
      */
     name?: string;
-    /**
-     * [Deprecated] Use nodeGroups.listNodes instead. [Output Only] A list of
-     * nodes in this node group.
-     */
-    nodes?: Schema$NodeGroupNode[];
     /**
      * The URL of the node template to which this node group belongs.
      */
@@ -8250,6 +8412,10 @@ export namespace compute_beta {
      */
     name?: string;
     /**
+     * A list of Nat services created in this router.
+     */
+    nats?: Schema$RouterNat[];
+    /**
      * URI of the network to which this router belongs.
      */
     network?: string;
@@ -8467,6 +8633,92 @@ export namespace compute_beta {
      */
     warning?: any;
   }
+  /**
+   * Represents a Nat resource. It enables the VMs within the specified
+   * subnetworks to access Internet without external IP addresses. It specifies
+   * a list of subnetworks (and the ranges within) that want to use NAT.
+   * Customers can also provide the external IPs that would be used for NAT. GCP
+   * would auto-allocate ephemeral IPs if no external IPs are provided.
+   */
+  export interface Schema$RouterNat {
+    /**
+     * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
+     */
+    icmpIdleTimeoutSec?: number;
+    /**
+     * Minimum number of ports allocated to a VM from this NAT config. If not
+     * set, a default number of ports is allocated to a VM. This gets rounded up
+     * to the nearest power of 2. Eg. if the value of this field is 50, at least
+     * 64 ports will be allocated to a VM.
+     */
+    minPortsPerVm?: number;
+    /**
+     * Unique name of this Nat service. The name must be 1-63 characters long
+     * and comply with RFC1035.
+     */
+    name?: string;
+    /**
+     * Specify the NatIpAllocateOption. If it is AUTO_ONLY, then nat_ip should
+     * be empty.
+     */
+    natIpAllocateOption?: string;
+    /**
+     * A list of URLs of the IP resources used for this Nat service. These IPs
+     * must be valid static external IP addresses assigned to the project.
+     * max_length is subject to change post alpha.
+     */
+    natIps?: string[];
+    /**
+     * Specify the Nat option. If this field contains
+     * ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES,
+     * then there should not be any other Router.Nat section in any Router for
+     * this network in this region.
+     */
+    sourceSubnetworkIpRangesToNat?: string;
+    /**
+     * A list of Subnetwork resources whose traffic should be translated by NAT
+     * Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the
+     * SubnetworkIpRangeToNatOption above.
+     */
+    subnetworks?: Schema$RouterNatSubnetworkToNat[];
+    /**
+     * Timeout (in seconds) for TCP established connections. Defaults to 1200s
+     * if not set.
+     */
+    tcpEstablishedIdleTimeoutSec?: number;
+    /**
+     * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if
+     * not set.
+     */
+    tcpTransitoryIdleTimeoutSec?: number;
+    /**
+     * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
+     */
+    udpIdleTimeoutSec?: number;
+  }
+  /**
+   * Defines the IP ranges that want to use NAT for a subnetwork.
+   */
+  export interface Schema$RouterNatSubnetworkToNat {
+    /**
+     * URL for the subnetwork resource to use NAT.
+     */
+    name?: string;
+    /**
+     * A list of the secondary ranges of the Subnetwork that are allowed to use
+     * NAT. This can be populated only if
+     * &quot;LIST_OF_SECONDARY_IP_RANGES&quot; is one of the values in
+     * source_ip_ranges_to_nat.
+     */
+    secondaryIpRangeNames?: string[];
+    /**
+     * Specify the options for NAT ranges in the Subnetwork. All usages of
+     * single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only
+     * valid option with multiple values is: [&quot;PRIMARY_IP_RANGE&quot;,
+     * &quot;LIST_OF_SECONDARY_IP_RANGES&quot;] Default: [ALL_IP_RANGES]
+     */
+    sourceIpRangesToNat?: string[];
+  }
   export interface Schema$RoutersPreviewResponse {
     /**
      * Preview of given router.
@@ -8494,6 +8746,7 @@ export namespace compute_beta {
      */
     bestRoutesForRouter?: Schema$Route[];
     bgpPeerStatus?: Schema$RouterStatusBgpPeerStatus[];
+    natStatus?: Schema$RouterStatusNatStatus[];
     /**
      * URI of the network to which this router belongs.
      */
@@ -8541,6 +8794,40 @@ export namespace compute_beta {
      * Time this session has been up, in seconds. Format: 145
      */
     uptimeSeconds?: string;
+  }
+  /**
+   * Status of a NAT contained in this router.
+   */
+  export interface Schema$RouterStatusNatStatus {
+    /**
+     * A list of IPs auto-allocated for NAT. Example: [&quot;1.1.1.1&quot;,
+     * &quot;129.2.16.89&quot;]
+     */
+    autoAllocatedNatIps?: string[];
+    /**
+     * The number of extra IPs to allocate. This will be greater than 0 only if
+     * user-specified IPs are NOT enough to allow all configured VMs to use NAT.
+     * This value is meaningful only when auto-allocation of NAT IPs is *not*
+     * used.
+     */
+    minExtraNatIpsNeeded?: number;
+    /**
+     * Unique name of this NAT.
+     */
+    name?: string;
+    /**
+     * Number of VM endpoints (i.e., Nics) that can use NAT.
+     */
+    numVmEndpointsWithNatMappings?: number;
+    /**
+     * A list of fully qualified URLs of reserved IP address resources.
+     */
+    userAllocatedNatIpResources?: string[];
+    /**
+     * A list of IPs user-allocated for NAT. They will be raw IP strings like
+     * &quot;179.12.26.133&quot;.
+     */
+    userAllocatedNatIps?: string[];
   }
   export interface Schema$RouterStatusResponse {
     /**
@@ -8877,6 +9164,25 @@ export namespace compute_beta {
      * Defines whether the instance has the vTPM enabled.
      */
     enableVtpm?: boolean;
+  }
+  /**
+   * A shielded VM identity entry.
+   */
+  export interface Schema$ShieldedVmIdentity {
+    encryptionKey?: Schema$ShieldedVmIdentityEntry;
+    /**
+     * [Output Only] Type of the resource. Always compute#shieldedVmIdentity for
+     * shielded VM identity entry.
+     */
+    kind?: string;
+    signingKey?: Schema$ShieldedVmIdentityEntry;
+  }
+  /**
+   * A Shielded VM Identity Entry.
+   */
+  export interface Schema$ShieldedVmIdentityEntry {
+    ekCert?: string;
+    ekPub?: string;
   }
   /**
    * The policy describes the baseline against which VM instance boot integrity
@@ -9408,7 +9714,9 @@ export namespace compute_beta {
      */
     description?: string;
     /**
-     * Whether to enable flow logging for this subnetwork.
+     * Whether to enable flow logging for this subnetwork. If this field is not
+     * explicitly set, it will not appear in get listings. If not set the
+     * default behavior is to disable flow logging.
      */
     enableFlowLogs?: boolean;
     /**
@@ -10584,28 +10892,6 @@ export namespace compute_beta {
      */
     permissions?: string[];
   }
-  export interface Schema$UDPHealthCheck {
-    /**
-     * The UDP port number for the health check request. Valid values are 1
-     * through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Raw data of request to send in payload of UDP packet. It is an error if
-     * this is empty. The request data can only be ASCII.
-     */
-    request?: string;
-    /**
-     * The bytes to match against the beginning of the response data. It is an
-     * error if this is empty. The response data can only be ASCII.
-     */
-    response?: string;
-  }
   /**
    * A UrlMap resource. This resource defines the mapping from URL to the
    * BackendService resource, based on the &quot;longest-match&quot; of the
@@ -10847,6 +11133,78 @@ export namespace compute_beta {
      * should conform to Cloud Storage object naming conventions.
      */
     reportNamePrefix?: string;
+  }
+  /**
+   * Contain information of Nat mapping for a VM endpoint (i.e., NIC).
+   */
+  export interface Schema$VmEndpointNatMappings {
+    /**
+     * Name of the VM instance which the endpoint belongs to
+     */
+    instanceName?: string;
+    interfaceNatMappings?: Schema$VmEndpointNatMappingsInterfaceNatMappings[];
+  }
+  /**
+   * Contain information of Nat mapping for an interface of this endpoint.
+   */
+  export interface Schema$VmEndpointNatMappingsInterfaceNatMappings {
+    /**
+     * A list of all IP:port-range mappings assigned to this interface. These
+     * ranges are inclusive, that is, both the first and the last ports can be
+     * used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;,
+     * &quot;1.1.1.1:2234-2234&quot;].
+     */
+    natIpPortRanges?: string[];
+    /**
+     * Total number of ports across all NAT IPs allocated to this interface. It
+     * equals to the aggregated port number in the field nat_ip_port_ranges.
+     */
+    numTotalNatPorts?: number;
+    /**
+     * Alias IP range for this interface endpoint. It will be a private (RFC
+     * 1918) IP range. Examples: &quot;10.33.4.55/32&quot;, or
+     * &quot;192.168.5.0/24&quot;.
+     */
+    sourceAliasIpRange?: string;
+    /**
+     * Primary IP of the VM for this NIC.
+     */
+    sourceVirtualIp?: string;
+  }
+  /**
+   * Contains a list of VmEndpointNatMappings.
+   */
+  export interface Schema$VmEndpointNatMappingsList {
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of resource. Always compute#vmEndpointNatMappingsList
+     * for lists of Nat mappings of VM endpoints.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] A list of Nat mapping information of VM endpoints.
+     */
+    result?: Schema$VmEndpointNatMappings[];
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   /**
    * VPN tunnel resource. (== resource_for beta.vpnTunnels ==) (== resource_for
@@ -36079,6 +36437,80 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.getGuestAttributes
+     * @desc Returns the specified guest attributes entry.
+     * @alias compute.instances.getGuestAttributes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.queryPath Specifies the guest attributes path to be queried.
+     * @param {string=} params.variableKey Specifies the key for the guest attributes entry.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getGuestAttributes(
+        params?: Params$Resource$Instances$Getguestattributes,
+        options?: MethodOptions): AxiosPromise<Schema$GuestAttributes>;
+    getGuestAttributes(
+        params: Params$Resource$Instances$Getguestattributes,
+        options: MethodOptions|BodyResponseCallback<Schema$GuestAttributes>,
+        callback: BodyResponseCallback<Schema$GuestAttributes>): void;
+    getGuestAttributes(
+        params: Params$Resource$Instances$Getguestattributes,
+        callback: BodyResponseCallback<Schema$GuestAttributes>): void;
+    getGuestAttributes(callback: BodyResponseCallback<Schema$GuestAttributes>):
+        void;
+    getGuestAttributes(
+        paramsOrCallback?: Params$Resource$Instances$Getguestattributes|
+        BodyResponseCallback<Schema$GuestAttributes>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GuestAttributes>,
+        callback?: BodyResponseCallback<Schema$GuestAttributes>):
+        void|AxiosPromise<Schema$GuestAttributes> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getguestattributes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getguestattributes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/getGuestAttributes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GuestAttributes>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GuestAttributes>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.getIamPolicy
      * @desc Gets the access control policy for a resource. May be empty if no
      * such policy or resource exists.
@@ -36282,6 +36714,78 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.getShieldedVmIdentity
+     * @desc Returns the Shielded VM Identity of an instance
+     * @alias compute.instances.getShieldedVmIdentity
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getShieldedVmIdentity(
+        params?: Params$Resource$Instances$Getshieldedvmidentity,
+        options?: MethodOptions): AxiosPromise<Schema$ShieldedVmIdentity>;
+    getShieldedVmIdentity(
+        params: Params$Resource$Instances$Getshieldedvmidentity,
+        options: MethodOptions|BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        params: Params$Resource$Instances$Getshieldedvmidentity,
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        paramsOrCallback?: Params$Resource$Instances$Getshieldedvmidentity|
+        BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        callback?: BodyResponseCallback<Schema$ShieldedVmIdentity>):
+        void|AxiosPromise<Schema$ShieldedVmIdentity> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getshieldedvmidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getshieldedvmidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/getShieldedVmIdentity')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShieldedVmIdentity>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ShieldedVmIdentity>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.insert
      * @desc Creates an instance resource in the specified project using the
      * data included in the request.
@@ -36351,7 +36855,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate  - projects/project/global/global/instanceTemplates/instanceTemplate  - global/instancesTemplates/instanceTemplate
+     * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate  - projects/project/global/instanceTemplates/instanceTemplate  - global/instanceTemplates/instanceTemplate
      * @param {string} params.zone The name of the zone for this request.
      * @param {().Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39583,6 +40087,33 @@ export namespace compute_beta {
      */
     zone?: string;
   }
+  export interface Params$Resource$Instances$Getguestattributes {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Specifies the guest attributes path to be queried.
+     */
+    queryPath?: string;
+    /**
+     * Specifies the key for the guest attributes entry.
+     */
+    variableKey?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Instances$Getiampolicy {
     /**
      * Auth client or API Key for the request
@@ -39633,6 +40164,25 @@ export namespace compute_beta {
      */
     zone?: string;
   }
+  export interface Params$Resource$Instances$Getshieldedvmidentity {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Instances$Insert {
     /**
      * Auth client or API Key for the request
@@ -39660,9 +40210,9 @@ export namespace compute_beta {
      * Specifies instance template to create the instance.  This field is
      * optional. It can be a full or partial URL. For example, the following are
      * all valid URLs to an instance template:   -
-     * https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate
-     * - projects/project/global/global/instanceTemplates/instanceTemplate  -
-     * global/instancesTemplates/instanceTemplate
+     * https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate
+     * - projects/project/global/instanceTemplates/instanceTemplate  -
+     * global/instanceTemplates/instanceTemplate
      */
     sourceInstanceTemplate?: string;
     /**
@@ -43417,6 +43967,88 @@ export namespace compute_beta {
 
 
     /**
+     * compute.interconnects.getDiagnostics
+     * @desc Returns the interconnectDiagnostics for the specified interconnect.
+     * @alias compute.interconnects.getDiagnostics
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect resource to query.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getDiagnostics(
+        params?: Params$Resource$Interconnects$Getdiagnostics,
+        options?: MethodOptions):
+        AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse>;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        paramsOrCallback?: Params$Resource$Interconnects$Getdiagnostics|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void|AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Interconnects$Getdiagnostics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Interconnects$Getdiagnostics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/interconnects/{interconnect}/getDiagnostics')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.interconnects.insert
      * @desc Creates a Interconnect in the specified project using the data
      * included in the request.
@@ -44057,6 +44689,21 @@ export namespace compute_beta {
 
     /**
      * Name of the interconnect to return.
+     */
+    interconnect?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Interconnects$Getdiagnostics {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the interconnect resource to query.
      */
     interconnect?: string;
     /**
@@ -62620,6 +63267,85 @@ export namespace compute_beta {
 
 
     /**
+     * compute.routers.getNatMappingInfo
+     * @desc Retrieves runtime Nat mapping information of VM endpoints.
+     * @alias compute.routers.getNatMappingInfo
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query for Nat Mapping information of VM endpoints.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getNatMappingInfo(
+        params?: Params$Resource$Routers$Getnatmappinginfo,
+        options?: MethodOptions):
+        AxiosPromise<Schema$VmEndpointNatMappingsList>;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        paramsOrCallback?: Params$Resource$Routers$Getnatmappinginfo|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback?: BodyResponseCallback<Schema$VmEndpointNatMappingsList>):
+        void|AxiosPromise<Schema$VmEndpointNatMappingsList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Routers$Getnatmappinginfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Getnatmappinginfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$VmEndpointNatMappingsList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VmEndpointNatMappingsList>(parameters);
+      }
+    }
+
+
+    /**
      * compute.routers.getRouterStatus
      * @desc Retrieves runtime information of the specified router.
      * @example
@@ -63672,6 +64398,69 @@ export namespace compute_beta {
     region?: string;
     /**
      * Name of the Router resource to return.
+     */
+    router?: string;
+  }
+  export interface Params$Resource$Routers$Getnatmappinginfo {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the Router resource to query for Nat Mapping information of VM
+     * endpoints.
      */
     router?: string;
   }
@@ -64728,6 +65517,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {boolean=} params.validateOnly If true, the request will not be committed.
      * @param {().SecurityPolicyRule} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -65179,6 +65969,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {boolean=} params.validateOnly If true, the request will not be committed.
      * @param {().SecurityPolicy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -65620,6 +66411,7 @@ export namespace compute_beta {
      * @param {integer=} params.priority The priority of the rule to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {boolean=} params.validateOnly If true, the request will not be committed.
      * @param {().SecurityPolicyRule} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -65970,6 +66762,10 @@ export namespace compute_beta {
      * Name of the security policy to update.
      */
     securityPolicy?: string;
+    /**
+     * If true, the request will not be committed.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -66061,6 +66857,10 @@ export namespace compute_beta {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+    /**
+     * If true, the request will not be committed.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -66226,6 +67026,10 @@ export namespace compute_beta {
      * Name of the security policy to update.
      */
     securityPolicy?: string;
+    /**
+     * If true, the request will not be committed.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata

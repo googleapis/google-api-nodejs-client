@@ -451,11 +451,15 @@ export namespace jobs_v2 {
    */
   export interface Schema$CompensationRange {
     /**
-     * Required.  The maximum amount of compensation.
+     * Optional.  The maximum amount of compensation. If left empty, the value
+     * is set to a maximal compensation value and the currency code is set to
+     * match the currency code of min_compensation.
      */
     max?: Schema$Money;
     /**
-     * Required.  The minimum amount of compensation.
+     * Optional.  The minimum amount of compensation. If left empty, the value
+     * is set to zero and the currency code is set to match the currency code of
+     * max_compensation.
      */
     min?: Schema$Money;
   }
@@ -604,12 +608,12 @@ export namespace jobs_v2 {
     type?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole calendar date, for example date of birth. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. The day can be 0
+   * to represent a year and month where the day is not significant, for example
+   * credit card expiration date. The year can be 0 to represent a month and day
+   * independent of year, for example anniversary date. Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
@@ -2057,7 +2061,7 @@ export namespace jobs_v2 {
      */
     estimatedTotalSize?: string;
     /**
-     * The histogram results that match with specified
+     * The histogram results that match specified
      * SearchJobsRequest.HistogramFacets.
      */
     histogramResults?: Schema$HistogramResults;

@@ -107,7 +107,8 @@ export namespace cloudtrace_v1 {
     spans?: Schema$TraceSpan[];
     /**
      * Globally unique identifier for the trace. This identifier is a 128-bit
-     * numeric value formatted as a 32-byte hex string.
+     * numeric value formatted as a 32-byte hex string. For example,
+     * `382d4f4c6b7bb2f4a972559d9085001d`.
      */
     traceId?: string;
   }
@@ -171,7 +172,7 @@ export namespace cloudtrace_v1 {
     parentSpanId?: string;
     /**
      * Identifier for the span. Must be a 64-bit integer other than 0 and unique
-     * within a trace.
+     * within a trace. For example, `2205310701640571284`.
      */
     spanId?: string;
     /**

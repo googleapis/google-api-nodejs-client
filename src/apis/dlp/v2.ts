@@ -719,9 +719,14 @@ export namespace dlp_v2 {
      * A list of phrases to detect as a CustomInfoType.
      */
     dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
+    exclusionType?: string;
     /**
-     * All CustomInfoTypes must have a name that does not conflict with built-in
-     * InfoTypes or other CustomInfoTypes.
+     * CustomInfoType can either be a new infoType, or an extension of built-in
+     * infoType, when the name matches one of existing infoTypes and that
+     * infoType is specified in `InspectContent.info_types` field. Specifying
+     * the latter adds findings to the one detected by the system. If built-in
+     * info type is not specified in `InspectContent.info_types` list then the
+     * name is treated as a custom info type.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
@@ -1127,6 +1132,44 @@ export namespace dlp_v2 {
     timestamps?: string[];
   }
   /**
+   * List of exclude infoTypes.
+   */
+  export interface Schema$GooglePrivacyDlpV2ExcludeInfoTypes {
+    /**
+     * InfoType list in ExclusionRule rule drops a finding when it overlaps or
+     * contained within with a finding of an infoType from this list. For
+     * example, for `InspectionRuleSet.info_types` containing
+     * &quot;PHONE_NUMBER&quot;` and `exclusion_rule` containing
+     * `exclude_info_types.info_types` with &quot;EMAIL_ADDRESS&quot; the phone
+     * number findings are dropped if they overlap with EMAIL_ADDRESS finding.
+     * That leads to &quot;555-222-2222@example.org&quot; to generate only a
+     * single finding, namely email address.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+  }
+  /**
+   * The rule that specifies conditions when findings of infoTypes specified in
+   * `InspectionRuleSet` are removed from results.
+   */
+  export interface Schema$GooglePrivacyDlpV2ExclusionRule {
+    /**
+     * Dictionary which defines the rule.
+     */
+    dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
+    /**
+     * Set of infoTypes for which findings would affect this rule.
+     */
+    excludeInfoTypes?: Schema$GooglePrivacyDlpV2ExcludeInfoTypes;
+    /**
+     * How the rule is applied, see MatchingType documentation for details.
+     */
+    matchingType?: string;
+    /**
+     * Regular expression which defines the rule.
+     */
+    regex?: Schema$GooglePrivacyDlpV2Regex;
+  }
+  /**
    * An expression, consisting or an operator and conditions.
    */
   export interface Schema$GooglePrivacyDlpV2Expressions {
@@ -1462,6 +1505,12 @@ export namespace dlp_v2 {
      * POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.
      */
     minLikelihood?: string;
+    /**
+     * Set of rules to apply to the findings for this InspectConfig. Exclusion
+     * rules, contained in the set are executed in the end, other rules are
+     * executed in the order they are specified for each info type.
+     */
+    ruleSet?: Schema$GooglePrivacyDlpV2InspectionRuleSet[];
   }
   /**
    * Request to search for potentially sensitive info in a ContentItem.
@@ -1506,6 +1555,35 @@ export namespace dlp_v2 {
      * A summary of the outcome of this inspect job.
      */
     result?: Schema$GooglePrivacyDlpV2Result;
+  }
+  /**
+   * A single inspection rule to be applied to infoTypes, specified in
+   * `InspectionRuleSet`.
+   */
+  export interface Schema$GooglePrivacyDlpV2InspectionRule {
+    /**
+     * Exclusion rule.
+     */
+    exclusionRule?: Schema$GooglePrivacyDlpV2ExclusionRule;
+    /**
+     * Hotword-based detection rule.
+     */
+    hotwordRule?: Schema$GooglePrivacyDlpV2HotwordRule;
+  }
+  /**
+   * Rule set for modifying a set of infoTypes to alter behavior under certain
+   * circumstances, depending on the specific details of the rules within the
+   * set.
+   */
+  export interface Schema$GooglePrivacyDlpV2InspectionRuleSet {
+    /**
+     * List of infoTypes this rule set is applied to.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+    /**
+     * Set of rules to be applied to infoTypes. The rules are applied in order.
+     */
+    rules?: Schema$GooglePrivacyDlpV2InspectionRule[];
   }
   export interface Schema$GooglePrivacyDlpV2InspectJobConfig {
     /**
@@ -3015,23 +3093,25 @@ export namespace dlp_v2 {
     message?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$GoogleTypeDate {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**

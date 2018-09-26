@@ -407,7 +407,7 @@ export namespace container_v1beta1 {
      * If this is a private cluster setup. Private clusters are clusters that,
      * by default have no external IP addresses on the nodes and where nodes and
      * the master communicate over private IP addresses. This field is
-     * deprecated, use private_cluster_config.enabled instead.
+     * deprecated, use private_cluster_config.enable_private_nodes instead.
      */
     privateCluster?: boolean;
     /**
@@ -1451,14 +1451,16 @@ export namespace container_v1beta1 {
      */
     enablePrivateEndpoint?: boolean;
     /**
-     * Whether nodes have only private IP addresses, and communicate with the
-     * master via private networking.
+     * Whether nodes have internal IP addresses only. If enabled, all nodes are
+     * given only RFC 1918 private addresses and communicate with the master via
+     * private networking.
      */
     enablePrivateNodes?: boolean;
     /**
-     * The IP prefix in CIDR notation to use for the hosted master network. This
-     * prefix will be used for assigning private IP addresses to the master or
-     * set of masters, as well as the ILB VIP.
+     * The IP range in CIDR notation to use for the hosted master network. This
+     * range will be used for assigning internal IP addresses to the master or
+     * set of masters, as well as the ILB VIP. This range must not overlap with
+     * any other ranges in use within the cluster&#39;s network.
      */
     masterIpv4CidrBlock?: string;
     /**

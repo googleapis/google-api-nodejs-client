@@ -361,6 +361,10 @@ export namespace container_v1 {
      */
     nodePools?: Schema$NodePool[];
     /**
+     * Configuration for private cluster.
+     */
+    privateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
      * The resource labels for the cluster to use to annotate any related Google
      * Compute Engine resources.
      */
@@ -1144,6 +1148,39 @@ export namespace container_v1 {
      * place. This field is deprecated, use location instead.
      */
     zone?: string;
+  }
+  /**
+   * Configuration options for private clusters.
+   */
+  export interface Schema$PrivateClusterConfig {
+    /**
+     * Whether the master&#39;s internal IP address is used as the cluster
+     * endpoint.
+     */
+    enablePrivateEndpoint?: boolean;
+    /**
+     * Whether nodes have internal IP addresses only. If enabled, all nodes are
+     * given only RFC 1918 private addresses and communicate with the master via
+     * private networking.
+     */
+    enablePrivateNodes?: boolean;
+    /**
+     * The IP range in CIDR notation to use for the hosted master network. This
+     * range will be used for assigning internal IP addresses to the master or
+     * set of masters, as well as the ILB VIP. This range must not overlap with
+     * any other ranges in use within the cluster&#39;s network.
+     */
+    masterIpv4CidrBlock?: string;
+    /**
+     * Output only. The internal IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    privateEndpoint?: string;
+    /**
+     * Output only. The external IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    publicEndpoint?: string;
   }
   /**
    * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed

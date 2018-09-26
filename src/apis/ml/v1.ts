@@ -586,6 +586,10 @@ export namespace ml_v1 {
      */
     modelName?: string;
     /**
+     * Optional. Format of the output data files, defaults to JSON.
+     */
+    outputDataFormat?: string;
+    /**
      * Required. The output Google Cloud Storage location.
      */
     outputPath?: string;
@@ -884,9 +888,10 @@ export namespace ml_v1 {
     /**
      * Optional. The machine learning framework Cloud ML Engine uses to train
      * this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`,
-     * and `XGBOOST`. If you do not specify a framework, Cloud ML Engine uses
-     * TensorFlow. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set
-     * the runtime version of the model to 1.4 or greater.
+     * `XGBOOST`. If you do not specify a framework, Cloud ML Engine will
+     * analyze files in the deployment_uri to determine a framework. If you
+     * choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version
+     * of the model to 1.4 or greater.
      */
     framework?: string;
     /**

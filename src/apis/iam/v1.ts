@@ -642,7 +642,9 @@ export namespace iam_v1 {
      */
     name?: string;
     /**
-     * The current launch stage of the role.
+     * The current launch stage of the role. If the `ALPHA` launch stage has
+     * been selected for a role, the `stage` field will not be included in the
+     * returned definition for the role.
      */
     stage?: string;
     /**

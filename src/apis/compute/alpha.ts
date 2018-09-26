@@ -655,6 +655,21 @@ export namespace compute_alpha {
     zone?: string;
   }
   /**
+   * AllocationAffinity is the configuration of desired allocation which this
+   * instance could take capacity from.
+   */
+  export interface Schema$AllocationAffinity {
+    consumeAllocationType?: string;
+    /**
+     * Corresponds to the label key of allocation resource.
+     */
+    key?: string;
+    /**
+     * Corresponds to the label values of allocation resource.
+     */
+    values?: string[];
+  }
+  /**
    * Contains a list of allocations.
    */
   export interface Schema$AllocationAggregatedList {
@@ -687,7 +702,7 @@ export namespace compute_alpha {
      */
     warning?: any;
   }
-  export interface Schema$AllocationsList {
+  export interface Schema$AllocationList {
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
@@ -4200,7 +4215,7 @@ export namespace compute_alpha {
    * v1.instances ==)
    */
   export interface Schema$Instance {
-    allocationAffinity?: Schema$InstanceAllocationAffinity;
+    allocationAffinity?: Schema$AllocationAffinity;
     /**
      * Allows this instance to send and receive packets with non-matching
      * destination or source IPs. This is required if you plan to use this
@@ -4410,21 +4425,6 @@ export namespace compute_alpha {
      * [Output Only] Informational warning message.
      */
     warning?: any;
-  }
-  /**
-   * AllocationAffinity is the configuration of desired allocation which this
-   * instance could take capacity from.
-   */
-  export interface Schema$InstanceAllocationAffinity {
-    consumeAllocationType?: string;
-    /**
-     * Corresponds to the label key of Allocation resource.
-     */
-    key?: string;
-    /**
-     * Corresponds to the label values of allocation resource.
-     */
-    values?: string[];
   }
   /**
    * InstanceGroups (== resource_for beta.instanceGroups ==) (== resource_for
@@ -5045,6 +5045,13 @@ export namespace compute_alpha {
      * group itself is not being modified.
      */
     isStable?: boolean;
+    /**
+     * [Output Only] A bit indicating whether version target has been reached in
+     * this managed instance group, i.e. all instances are in their target
+     * version. Instances&#39; target version are specified by version field on
+     * Instance Group Manager.
+     */
+    versionTargetReached?: boolean;
   }
   /**
    * InstanceGroupManagers.updatePerInstanceConfigs
@@ -6193,6 +6200,12 @@ export namespace compute_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The status of this InterconnectLocation. If the status is
+     * AVAILABLE, new Interconnects may be provisioned in this
+     * InterconnectLocation. Otherwise, no new Interconnects may be provisioned.
+     */
+    status?: string;
   }
   /**
    * Response to the list request, and contains a list of interconnect
@@ -7127,7 +7140,7 @@ export namespace compute_alpha {
     kind?: string;
     /**
      * This field is only valid when the network endpoint group is used for load
-     * balancing.
+     * balancing. [Deprecated] This field is deprecated.
      */
     loadBalancer?: Schema$NetworkEndpointGroupLbNetworkEndpointGroup;
     /**
@@ -7197,22 +7210,23 @@ export namespace compute_alpha {
   export interface Schema$NetworkEndpointGroupLbNetworkEndpointGroup {
     /**
      * The default port used if the port number is not specified in the network
-     * endpoint.
+     * endpoint. [Deprecated] This field is deprecated.
      */
     defaultPort?: number;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses &quot;default&quot; project network if unspecified.
+     * Uses &quot;default&quot; project network if unspecified. [Deprecated]
+     * This field is deprecated.
      */
     network?: string;
     /**
      * Optional URL of the subnetwork to which all network endpoints in the NEG
-     * belong.
+     * belong. [Deprecated] This field is deprecated.
      */
     subnetwork?: string;
     /**
      * [Output Only] The URL of the zone where the network endpoint group is
-     * located.
+     * located. [Deprecated] This field is deprecated.
      */
     zone?: string;
   }
@@ -7543,11 +7557,6 @@ export namespace compute_alpha {
      * which cannot be a dash.
      */
     name?: string;
-    /**
-     * [Deprecated] Use nodeGroups.listNodes instead. [Output Only] A list of
-     * nodes in this node group.
-     */
-    nodes?: Schema$NodeGroupNode[];
     /**
      * The URL of the node template to which this node group belongs.
      */
@@ -14687,22 +14696,22 @@ export namespace compute_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Allocations$List, options?: MethodOptions):
-        AxiosPromise<Schema$AllocationsList>;
+        AxiosPromise<Schema$AllocationList>;
     list(
         params: Params$Resource$Allocations$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AllocationsList>,
-        callback: BodyResponseCallback<Schema$AllocationsList>): void;
+        options: MethodOptions|BodyResponseCallback<Schema$AllocationList>,
+        callback: BodyResponseCallback<Schema$AllocationList>): void;
     list(
         params: Params$Resource$Allocations$List,
-        callback: BodyResponseCallback<Schema$AllocationsList>): void;
-    list(callback: BodyResponseCallback<Schema$AllocationsList>): void;
+        callback: BodyResponseCallback<Schema$AllocationList>): void;
+    list(callback: BodyResponseCallback<Schema$AllocationList>): void;
     list(
         paramsOrCallback?: Params$Resource$Allocations$List|
-        BodyResponseCallback<Schema$AllocationsList>,
+        BodyResponseCallback<Schema$AllocationList>,
         optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AllocationsList>,
-        callback?: BodyResponseCallback<Schema$AllocationsList>):
-        void|AxiosPromise<Schema$AllocationsList> {
+        BodyResponseCallback<Schema$AllocationList>,
+        callback?: BodyResponseCallback<Schema$AllocationList>):
+        void|AxiosPromise<Schema$AllocationList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Allocations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14734,9 +14743,9 @@ export namespace compute_alpha {
         context: this.getRoot()
       };
       if (callback) {
-        createAPIRequest<Schema$AllocationsList>(parameters, callback);
+        createAPIRequest<Schema$AllocationList>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$AllocationsList>(parameters);
+        return createAPIRequest<Schema$AllocationList>(parameters);
       }
     }
 
@@ -31747,7 +31756,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate  - projects/project/global/global/instanceTemplates/instanceTemplate  - global/instancesTemplates/instanceTemplate
+     * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate  - projects/project/global/instanceTemplates/instanceTemplate  - global/instanceTemplates/instanceTemplate
      * @param {string=} params.sourceMachineImage Specifies instance machine to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/machineImages/machineImage  - projects/project/global/global/machineImages/machineImage  - global/machineImages/machineImage
      * @param {string} params.zone The name of the zone for this request.
      * @param {().Instance} params.resource Request body data
@@ -34142,9 +34151,9 @@ export namespace compute_alpha {
      * Specifies instance template to create the instance.  This field is
      * optional. It can be a full or partial URL. For example, the following are
      * all valid URLs to an instance template:   -
-     * https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate
-     * - projects/project/global/global/instanceTemplates/instanceTemplate  -
-     * global/instancesTemplates/instanceTemplate
+     * https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate
+     * - projects/project/global/instanceTemplates/instanceTemplate  -
+     * global/instanceTemplates/instanceTemplate
      */
     sourceInstanceTemplate?: string;
     /**

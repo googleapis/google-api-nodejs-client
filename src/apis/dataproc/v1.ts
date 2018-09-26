@@ -314,6 +314,21 @@ export namespace dataproc_v1 {
     stateStartTime?: string;
   }
   /**
+   * A selector that chooses target cluster for jobs based on metadata.
+   */
+  export interface Schema$ClusterSelector {
+    /**
+     * Required. The cluster labels. Cluster must have all labels to match.
+     */
+    clusterLabels?: any;
+    /**
+     * Optional. The zone where workflow process executes. This parameter does
+     * not affect the selection of the cluster.If unspecified, the zone of the
+     * first cluster matching the selector is used.
+     */
+    zone?: string;
+  }
+  /**
    * The status of a cluster and its instances.
    */
   export interface Schema$ClusterStatus {
@@ -644,6 +659,32 @@ export namespace dataproc_v1 {
     numInstances?: number;
   }
   /**
+   * A request to instantiate a workflow template.
+   */
+  export interface Schema$InstantiateWorkflowTemplateRequest {
+    /**
+     * Optional. Map from parameter names to values that should be used for
+     * those parameters. Values may not exceed 100 characters.
+     */
+    parameters?: any;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+    /**
+     * Optional. The version of workflow template to instantiate. If specified,
+     * the workflow will be instantiated only if the current version of the
+     * workflow template has the supplied version.This option cannot be used to
+     * instantiate a previous version of workflow template.
+     */
+    version?: number;
+  }
+  /**
    * A Cloud Dataproc job resource.
    */
   export interface Schema$Job {
@@ -834,6 +875,22 @@ export namespace dataproc_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * A response to a request to list workflow templates in a project.
+   */
+  export interface Schema$ListWorkflowTemplatesResponse {
+    /**
+     * Output only. This token is included in the response if there are more
+     * results to fetch. To fetch additional results, provide this value as the
+     * page_token in a subsequent
+     * &lt;code&gt;ListWorkflowTemplatesRequest&lt;/code&gt;.
+     */
+    nextPageToken?: string;
+    /**
+     * Output only. WorkflowTemplates list.
+     */
+    templates?: Schema$WorkflowTemplate[];
+  }
+  /**
    * The runtime logging config of the job.
    */
   export interface Schema$LoggingConfig {
@@ -844,6 +901,32 @@ export namespace dataproc_v1 {
      * DEBUG&#39;
      */
     driverLogLevels?: any;
+  }
+  /**
+   * Cluster that is managed by the workflow.
+   */
+  export interface Schema$ManagedCluster {
+    /**
+     * Required. The cluster name prefix. A unique cluster name will be formed
+     * by appending a random suffix.The name must contain only lower-case
+     * letters (a-z), numbers (0-9), and hyphens (-). Must begin with a letter.
+     * Cannot begin or end with hyphen. Must consist of between 2 and 35
+     * characters.
+     */
+    clusterName?: string;
+    /**
+     * Required. The cluster configuration.
+     */
+    config?: Schema$ClusterConfig;
+    /**
+     * Optional. The labels to associate with this cluster.Label keys must be
+     * between 1 and 63 characters long, and must conform to the following PCRE
+     * regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and
+     * 63 characters long, and must conform to the following PCRE regular
+     * expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be
+     * associated with a given cluster.
+     */
+    labels?: any;
   }
   /**
    * Specifies the resources used to actively manage an instance group.
@@ -914,6 +997,75 @@ export namespace dataproc_v1 {
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
     response?: any;
+  }
+  /**
+   * A job executed by the workflow.
+   */
+  export interface Schema$OrderedJob {
+    /**
+     * Job is a Hadoop job.
+     */
+    hadoopJob?: Schema$HadoopJob;
+    /**
+     * Job is a Hive job.
+     */
+    hiveJob?: Schema$HiveJob;
+    /**
+     * Optional. The labels to associate with this job.Label keys must be
+     * between 1 and 63 characters long, and must conform to the following
+     * regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and
+     * 63 characters long, and must conform to the following regular expression:
+     * \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a
+     * given job.
+     */
+    labels?: any;
+    /**
+     * Job is a Pig job.
+     */
+    pigJob?: Schema$PigJob;
+    /**
+     * Optional. The optional list of prerequisite job step_ids. If not
+     * specified, the job will start at the beginning of workflow.
+     */
+    prerequisiteStepIds?: string[];
+    /**
+     * Job is a Pyspark job.
+     */
+    pysparkJob?: Schema$PySparkJob;
+    /**
+     * Optional. Job scheduling configuration.
+     */
+    scheduling?: Schema$JobScheduling;
+    /**
+     * Job is a Spark job.
+     */
+    sparkJob?: Schema$SparkJob;
+    /**
+     * Job is a SparkSql job.
+     */
+    sparkSqlJob?: Schema$SparkSqlJob;
+    /**
+     * Required. The step id. The id must be unique among all jobs within the
+     * template.The step id is used as prefix for job id, as job
+     * goog-dataproc-workflow-step-id label, and in prerequisiteStepIds field
+     * from other steps.The id must contain only letters (a-z, A-Z), numbers
+     * (0-9), underscores (_), and hyphens (-). Cannot begin or end with
+     * underscore or hyphen. Must consist of between 3 and 50 characters.
+     */
+    stepId?: string;
+  }
+  /**
+   * Configuration for parameter validation.
+   */
+  export interface Schema$ParameterValidation {
+    /**
+     * Validation based on regular expressions.
+     */
+    regex?: Schema$RegexValidation;
+    /**
+     * Validation based on a list of allowed values.
+     */
+    values?: Schema$ValueValidation;
   }
   /**
    * A Cloud Dataproc job for running Apache Pig (https://pig.apache.org/)
@@ -1062,6 +1214,17 @@ export namespace dataproc_v1 {
      * ]   } }
      */
     queries?: string[];
+  }
+  /**
+   * Validation based on regular expressions.
+   */
+  export interface Schema$RegexValidation {
+    /**
+     * Required. RE2 regular expressions used to validate the parameter&#39;s
+     * value. The value must match the regex in its entirety (substring matches
+     * are not sufficient).
+     */
+    regexes?: string[];
   }
   /**
    * Request message for SetIamPolicy method.
@@ -1251,6 +1414,60 @@ export namespace dataproc_v1 {
     requestId?: string;
   }
   /**
+   * A configurable parameter that replaces one or more fields in the template.
+   * Parameterizable fields: - Labels - File uris - Job properties - Job
+   * arguments - Script variables - Main class (in HadoopJob and SparkJob) -
+   * Zone (in ClusterSelector)
+   */
+  export interface Schema$TemplateParameter {
+    /**
+     * Optional. Brief description of the parameter. Must not exceed 1024
+     * characters.
+     */
+    description?: string;
+    /**
+     * Required. Paths to all fields that the parameter replaces. A field is
+     * allowed to appear in at most one parameter&#39;s list of field paths.A
+     * field path is similar in syntax to a google.protobuf.FieldMask. For
+     * example, a field path that references the zone field of a workflow
+     * template&#39;s cluster selector would be specified as
+     * &lt;code&gt;placement.clusterSelector.zone&lt;/code&gt;.Also, field paths
+     * can reference fields using the following syntax: Values in maps can be
+     * referenced by key. Examples&lt;br&gt; labels&#39;key&#39;
+     * placement.clusterSelector.clusterLabels&#39;key&#39;
+     * placement.managedCluster.labels&#39;key&#39;
+     * placement.clusterSelector.clusterLabels&#39;key&#39;
+     * jobsstep-id.labels&#39;key&#39; Jobs in the jobs list can be referenced
+     * by step-id. Examples:&lt;br&gt; jobsstep-id.hadoopJob.mainJarFileUri
+     * jobsstep-id.hiveJob.queryFileUri jobsstep-id.pySparkJob.mainPythonFileUri
+     * jobsstep-id.hadoopJob.jarFileUris0 jobsstep-id.hadoopJob.archiveUris0
+     * jobsstep-id.hadoopJob.fileUris0 jobsstep-id.pySparkJob.pythonFileUris0
+     * Items in repeated fields can be referenced by a zero-based index.
+     * Example:&lt;br&gt; jobsstep-id.sparkJob.args0 Other examples:
+     * jobsstep-id.hadoopJob.properties&#39;key&#39; jobsstep-id.hadoopJob.args0
+     * jobsstep-id.hiveJob.scriptVariables&#39;key&#39;
+     * jobsstep-id.hadoopJob.mainJarFileUri placement.clusterSelector.zoneIt may
+     * not be possible to parameterize maps and repeated fields in their
+     * entirety since only individual map values and individual items in
+     * repeated fields can be referenced. For example, the following field paths
+     * are invalid: placement.clusterSelector.clusterLabels
+     * jobsstep-id.sparkJob.args
+     */
+    fields?: string[];
+    /**
+     * Required. Parameter name. The parameter name is used as the key, and
+     * paired with the parameter value, which are passed to the template when
+     * the template is instantiated. The name must contain only capital letters
+     * (A-Z), numbers (0-9), and underscores (_), and must not start with a
+     * number. The maximum length is 40 characters.
+     */
+    name?: string;
+    /**
+     * Optional. Validation rules to be applied to this parameter&#39;s value.
+     */
+    validation?: Schema$ParameterValidation;
+  }
+  /**
    * Request message for TestIamPermissions method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -1271,6 +1488,15 @@ export namespace dataproc_v1 {
      * allowed.
      */
     permissions?: string[];
+  }
+  /**
+   * Validation based on a list of allowed values.
+   */
+  export interface Schema$ValueValidation {
+    /**
+     * Required. List of allowed values for the parameter.
+     */
+    values?: string[];
   }
   /**
    * The workflow graph.
@@ -1343,6 +1569,81 @@ export namespace dataproc_v1 {
      * Output only. The name of the node.
      */
     stepId?: string;
+  }
+  /**
+   * A Cloud Dataproc workflow template resource.
+   */
+  export interface Schema$WorkflowTemplate {
+    /**
+     * Output only. The time template was created.
+     */
+    createTime?: string;
+    /**
+     * Required. The template id.The id must contain only letters (a-z, A-Z),
+     * numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with
+     * underscore or hyphen. Must consist of between 3 and 50 characters.
+     */
+    id?: string;
+    /**
+     * Required. The Directed Acyclic Graph of Jobs to submit.
+     */
+    jobs?: Schema$OrderedJob[];
+    /**
+     * Optional. The labels to associate with this template. These labels will
+     * be propagated to all jobs and clusters created by the workflow
+     * instance.Label keys must contain 1 to 63 characters, and must conform to
+     * RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).Label values may be
+     * empty, but, if present, must contain 1 to 63 characters, and must conform
+     * to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels
+     * can be associated with a template.
+     */
+    labels?: any;
+    /**
+     * Output only. The &quot;resource name&quot; of the template, as described
+     * in https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. Template parameters whose values are substituted into the
+     * template. Values for parameters must be provided when the template is
+     * instantiated.
+     */
+    parameters?: Schema$TemplateParameter[];
+    /**
+     * Required. WorkflowTemplate scheduling information.
+     */
+    placement?: Schema$WorkflowTemplatePlacement;
+    /**
+     * Output only. The time template was last updated.
+     */
+    updateTime?: string;
+    /**
+     * Optional. Used to perform a consistent read-modify-write.This field
+     * should be left blank for a CreateWorkflowTemplate request. It is required
+     * for an UpdateWorkflowTemplate request, and must match the current server
+     * version. A typical update template flow would fetch the current template
+     * with a GetWorkflowTemplate request, which will return the current
+     * template with the version field filled in with the current server
+     * version. The user updates other fields in the template, then returns it
+     * as part of the UpdateWorkflowTemplate request.
+     */
+    version?: number;
+  }
+  /**
+   * Specifies workflow execution target.Either managed_cluster or
+   * cluster_selector is required.
+   */
+  export interface Schema$WorkflowTemplatePlacement {
+    /**
+     * Optional. A selector that chooses target cluster for jobs based on
+     * metadata.The selector is evaluated at the time each job is submitted.
+     */
+    clusterSelector?: Schema$ClusterSelector;
+    /**
+     * Optional. A cluster that is managed by the workflow.
+     */
+    managedCluster?: Schema$ManagedCluster;
   }
   /**
    * A YARN application created by a job. Application information is a subset of
@@ -1419,6 +1720,210 @@ export namespace dataproc_v1 {
 
 
     /**
+     * dataproc.projects.locations.workflowTemplates.create
+     * @desc Creates new workflow template.
+     * @alias dataproc.projects.locations.workflowTemplates.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+    create(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Create|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
+        void|AxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/workflowTemplates')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WorkflowTemplate>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.delete
+     * @desc Deletes a workflow template. It does not cancel in-progress
+     * workflows.
+     * @alias dataproc.projects.locations.workflowTemplates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.get
+     * @desc Retrieves the latest workflow template.Can retrieve previously
+     * instantiated template by specifying optional version parameter.
+     * @alias dataproc.projects.locations.workflowTemplates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+    get(params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Get|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
+        void|AxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WorkflowTemplate>(parameters);
+      }
+    }
+
+
+    /**
      * dataproc.projects.locations.workflowTemplates.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty
      * policy if the resource exists and does not have a policy set.
@@ -1487,6 +1992,246 @@ export namespace dataproc_v1 {
         createAPIRequest<Schema$Policy>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.instantiate
+     * @desc Instantiates a template and begins execution.The returned Operation
+     * can be used to track execution of workflow by polling operations.get. The
+     * Operation will complete when entire workflow is finished.The running
+     * workflow can be aborted via operations.cancel. This will cause any
+     * inflight jobs to be cancelled and workflow-owned clusters to be
+     * deleted.The Operation.metadata will be WorkflowMetadata.On successful
+     * completion, Operation.response will be Empty.
+     * @alias dataproc.projects.locations.workflowTemplates.instantiate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    instantiate(
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    instantiate(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:instantiate')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.instantiateInline
+     * @desc Instantiates a template and begins execution.This method is
+     * equivalent to executing the sequence CreateWorkflowTemplate,
+     * InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned
+     * Operation can be used to track execution of workflow by polling
+     * operations.get. The Operation will complete when entire workflow is
+     * finished.The running workflow can be aborted via operations.cancel. This
+     * will cause any inflight jobs to be cancelled and workflow-owned clusters
+     * to be deleted.The Operation.metadata will be WorkflowMetadata.On
+     * successful completion, Operation.response will be Empty.
+     * @alias dataproc.projects.locations.workflowTemplates.instantiateInline
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    instantiateInline(
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    instantiateInline(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/v1/{+parent}/workflowTemplates:instantiateInline')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.list
+     * @desc Lists workflows that match the specified filter in the request.
+     * @alias dataproc.projects.locations.workflowTemplates.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
+     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$List|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void|AxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/workflowTemplates')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
+            parameters);
       }
     }
 
@@ -1646,8 +2391,134 @@ export namespace dataproc_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+
+    /**
+     * dataproc.projects.locations.workflowTemplates.update
+     * @desc Updates (replaces) workflow template. The updated template must
+     * contain version that matches the current server version.
+     * @alias dataproc.projects.locations.workflowTemplates.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+    update(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Update|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
+        void|AxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WorkflowTemplate>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to delete. If specified, will
+     * only delete the template if the current server version matches specified
+     * version.
+     */
+    version?: number;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to retrieve. Only previously
+     * instatiated versions can be retrieved.If unspecified, retrieves the
+     * current version.
+     */
+    version?: number;
+  }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy {
     /**
      * Auth client or API Key for the request
@@ -1664,6 +2535,73 @@ export namespace dataproc_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstantiateWorkflowTemplateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template region, as
+     * described in https://cloud.google.com/apis/design/resource_names of the
+     * form projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return in each response.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the
+     * next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy {
     /**
@@ -1698,6 +2636,24 @@ export namespace dataproc_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The "resource name" of the template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowTemplate;
   }
 
 
@@ -5133,6 +6089,210 @@ export namespace dataproc_v1 {
 
 
     /**
+     * dataproc.projects.regions.workflowTemplates.create
+     * @desc Creates new workflow template.
+     * @alias dataproc.projects.regions.workflowTemplates.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+    create(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Create|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
+        void|AxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/workflowTemplates')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WorkflowTemplate>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.delete
+     * @desc Deletes a workflow template. It does not cancel in-progress
+     * workflows.
+     * @alias dataproc.projects.regions.workflowTemplates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.get
+     * @desc Retrieves the latest workflow template.Can retrieve previously
+     * instantiated template by specifying optional version parameter.
+     * @alias dataproc.projects.regions.workflowTemplates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {integer=} params.version Optional. The version of workflow template to retrieve. Only previously instatiated versions can be retrieved.If unspecified, retrieves the current version.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+    get(params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Get|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
+        void|AxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WorkflowTemplate>(parameters);
+      }
+    }
+
+
+    /**
      * dataproc.projects.regions.workflowTemplates.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty
      * policy if the resource exists and does not have a policy set.
@@ -5199,6 +6359,242 @@ export namespace dataproc_v1 {
         createAPIRequest<Schema$Policy>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.instantiate
+     * @desc Instantiates a template and begins execution.The returned Operation
+     * can be used to track execution of workflow by polling operations.get. The
+     * Operation will complete when entire workflow is finished.The running
+     * workflow can be aborted via operations.cancel. This will cause any
+     * inflight jobs to be cancelled and workflow-owned clusters to be
+     * deleted.The Operation.metadata will be WorkflowMetadata.On successful
+     * completion, Operation.response will be Empty.
+     * @alias dataproc.projects.regions.workflowTemplates.instantiate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the workflow template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    instantiate(
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    instantiate(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:instantiate')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.instantiateInline
+     * @desc Instantiates a template and begins execution.This method is
+     * equivalent to executing the sequence CreateWorkflowTemplate,
+     * InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned
+     * Operation can be used to track execution of workflow by polling
+     * operations.get. The Operation will complete when entire workflow is
+     * finished.The running workflow can be aborted via operations.cancel. This
+     * will cause any inflight jobs to be cancelled and workflow-owned clusters
+     * to be deleted.The Operation.metadata will be WorkflowMetadata.On
+     * successful completion, Operation.response will be Empty.
+     * @alias dataproc.projects.regions.workflowTemplates.instantiateInline
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    instantiateInline(
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    instantiateInline(
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/v1/{+parent}/workflowTemplates:instantiateInline')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.list
+     * @desc Lists workflows that match the specified filter in the request.
+     * @alias dataproc.projects.regions.workflowTemplates.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response.
+     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+     * @param {string} params.parent Required. The "resource name" of the region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+    list(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$List|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void|AxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/workflowTemplates')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
+            parameters);
       }
     }
 
@@ -5356,8 +6752,134 @@ export namespace dataproc_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+
+    /**
+     * dataproc.projects.regions.workflowTemplates.update
+     * @desc Updates (replaces) workflow template. The updated template must
+     * contain version that matches the current server version.
+     * @alias dataproc.projects.regions.workflowTemplates.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only. The "resource name" of the template, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+    update(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Update|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
+        void|AxiosPromise<Schema$WorkflowTemplate> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WorkflowTemplate>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to delete. If specified, will
+     * only delete the template if the current server version matches specified
+     * version.
+     */
+    version?: number;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to retrieve. Only previously
+     * instatiated versions can be retrieved.If unspecified, retrieves the
+     * current version.
+     */
+    version?: number;
+  }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy {
     /**
      * Auth client or API Key for the request
@@ -5374,6 +6896,73 @@ export namespace dataproc_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstantiateWorkflowTemplateRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template region, as
+     * described in https://cloud.google.com/apis/design/resource_names of the
+     * form projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return in each response.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the
+     * next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy {
     /**
@@ -5408,5 +6997,23 @@ export namespace dataproc_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The "resource name" of the template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowTemplate;
   }
 }

@@ -233,7 +233,7 @@ export namespace testing_v1 {
      */
     form?: string;
     /**
-     * Whther this device is a phone, tablet, wearable, etc. @OutputOnly
+     * Whether this device is a phone, tablet, wearable, etc. @OutputOnly
      */
     formFactor?: string;
     /**
@@ -501,23 +501,25 @@ export namespace testing_v1 {
     value?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -562,6 +564,10 @@ export namespace testing_v1 {
      * An Android device which must be used with an Android test.
      */
     androidDevice?: Schema$AndroidDevice;
+    /**
+     * An iOS device which must be used with an iOS test.
+     */
+    iosDevice?: Schema$IosDevice;
   }
   /**
    * The matrix of environments in which the test is to be executed.
@@ -576,6 +582,10 @@ export namespace testing_v1 {
      * A matrix of Android devices.
      */
     androidMatrix?: Schema$AndroidMatrix;
+    /**
+     * A list of iOS devices.
+     */
+    iosDeviceList?: Schema$IosDeviceList;
   }
   /**
    * A key-value pair passed as an environment variable to the test
@@ -646,6 +656,163 @@ export namespace testing_v1 {
      * The android:mimeType value of the &lt;data&gt; tag
      */
     mimeType?: string;
+  }
+  /**
+   * A single iOS device.
+   */
+  export interface Schema$IosDevice {
+    /**
+     * Required. The id of the iOS device to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    iosModelId?: string;
+    /**
+     * Required. The id of the iOS major software version to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    iosVersionId?: string;
+    /**
+     * Required. The locale the test device used for testing. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    locale?: string;
+    /**
+     * Required. How the device is oriented during the test. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    orientation?: string;
+  }
+  /**
+   * The currently supported iOS devices.
+   */
+  export interface Schema$IosDeviceCatalog {
+    /**
+     * Output only. The set of supported iOS device models.
+     */
+    models?: Schema$IosModel[];
+    /**
+     * Output only. The set of supported runtime configurations.
+     */
+    runtimeConfiguration?: Schema$IosRuntimeConfiguration;
+    /**
+     * Output only. The set of supported iOS software versions.
+     */
+    versions?: Schema$IosVersion[];
+  }
+  /**
+   * A list of iOS device configurations in which the test is to be executed.
+   */
+  export interface Schema$IosDeviceList {
+    /**
+     * Required. A list of iOS devices
+     */
+    iosDevices?: Schema$IosDevice[];
+  }
+  /**
+   * A description of an iOS device tests may be run on.
+   */
+  export interface Schema$IosModel {
+    /**
+     * Output only. Device capabilities. Copied from
+     * https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/DeviceCompatibilityMatrix/DeviceCompatibilityMatrix.html
+     */
+    deviceCapabilities?: string[];
+    /**
+     * Whether this device is a phone, tablet, wearable, etc. @OutputOnly
+     */
+    formFactor?: string;
+    /**
+     * Output only. The unique opaque id for this model. Use this for invoking
+     * the TestExecutionService.
+     */
+    id?: string;
+    /**
+     * Output only. The human-readable name for this device model. Examples:
+     * &quot;iPhone 4s&quot;, &quot;iPad Mini 2&quot;
+     */
+    name?: string;
+    /**
+     * Output only. The set of iOS major software versions this device supports.
+     */
+    supportedVersionIds?: string[];
+    /**
+     * Output only. Tags for this dimension. Examples: &quot;default&quot;,
+     * &quot;preview&quot;, &quot;deprecated&quot;
+     */
+    tags?: string[];
+  }
+  /**
+   * iOS configuration that can be selected at the time a test is run.
+   */
+  export interface Schema$IosRuntimeConfiguration {
+    /**
+     * Output only. The set of available locales.
+     */
+    locales?: Schema$Locale[];
+    /**
+     * Output only. The set of available orientations.
+     */
+    orientations?: Schema$Orientation[];
+  }
+  /**
+   * A description of how to set up an iOS device prior to a test.
+   */
+  export interface Schema$IosTestSetup {
+    /**
+     * Optional. The network traffic profile used for running the test.
+     * Available network profiles can be queried by using the
+     * NETWORK_CONFIGURATION environment type when calling
+     * TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
+     */
+    networkProfile?: string;
+  }
+  /**
+   * An iOS version
+   */
+  export interface Schema$IosVersion {
+    /**
+     * Output only. An opaque id for this iOS version. Use this id to invoke the
+     * TestExecutionService.
+     */
+    id?: string;
+    /**
+     * Output only. An integer representing the major iOS version. Examples:
+     * &quot;8&quot;, &quot;9&quot;
+     */
+    majorVersion?: number;
+    /**
+     * Output only. An integer representing the minor iOS version. Examples:
+     * &quot;1&quot;, &quot;2&quot;
+     */
+    minorVersion?: number;
+    /**
+     * Output only. Tags for this dimension. Examples: &quot;default&quot;,
+     * &quot;preview&quot;, &quot;deprecated&quot;
+     */
+    tags?: string[];
+  }
+  /**
+   * A test of an iOS application that uses the XCTest framework. Xcode supports
+   * the option to &quot;build for testing&quot;, which generates an .xctestrun
+   * file that contains a test specification (arguments, test methods, etc).
+   * This test type accepts a zip file containing the .xctestrun file and the
+   * corresponding contents of the Build/Products directory that contains all
+   * the binaries needed to run the tests.
+   */
+  export interface Schema$IosXcTest {
+    /**
+     * Required. The .zip containing the .xctestrun file and the contents of the
+     * DerivedData/Build/Products directory. The .xctestrun file in this zip is
+     * ignored if the xctestrun field is specified.
+     */
+    testsZip?: Schema$FileReference;
+    /**
+     * Optional. An .xctestrun file that will override the .xctestrun file in
+     * the tests zip. Because the .xctestrun file contains environment variables
+     * along with test methods to run and/or ignore, this can be useful for
+     * sharding tests. Default is taken from the tests zip.
+     */
+    xctestrun?: Schema$FileReference;
   }
   /**
    * Specifies an intent that starts the main launcher activity.
@@ -860,6 +1027,10 @@ export namespace testing_v1 {
      */
     androidDeviceCatalog?: Schema$AndroidDeviceCatalog;
     /**
+     * Supported iOS devices
+     */
+    iosDeviceCatalog?: Schema$IosDeviceCatalog;
+    /**
      * Supported network configurations
      */
     networkConfigurationCatalog?: Schema$NetworkConfigurationCatalog;
@@ -1034,6 +1205,14 @@ export namespace testing_v1 {
      * Disables video recording; may reduce test latency.
      */
     disableVideoRecording?: boolean;
+    /**
+     * Optional. Test setup requirements for iOS.
+     */
+    iosTestSetup?: Schema$IosTestSetup;
+    /**
+     * An iOS XCTest, via an .xctestrun file
+     */
+    iosXcTest?: Schema$IosXcTest;
     /**
      * Test setup requirements for Android e.g. files to install, bootstrap
      * scripts. Optional

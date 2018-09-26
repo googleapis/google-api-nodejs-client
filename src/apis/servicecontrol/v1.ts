@@ -565,8 +565,7 @@ export namespace servicecontrol_v1 {
   /**
    * A common proto for logging HTTP requests. Only contains semantics defined
    * by the HTTP specification. Product-specific logging information MUST be
-   * defined in a separate message.  This is an exact copy of HttpRequest
-   * message defined in Stackdriver.
+   * defined in a separate message.
    */
   export interface Schema$HttpRequest {
     /**
@@ -621,7 +620,7 @@ export namespace servicecontrol_v1 {
      */
     requestSize?: string;
     /**
-     * The scheme (http, https), the host name, the path and the query portion
+     * The scheme (http, https), the host name, the path, and the query portion
      * of the URL that was requested. Example:
      * `&quot;http://example.com/some/info?color=red&quot;`.
      */
@@ -637,7 +636,8 @@ export namespace servicecontrol_v1 {
      */
     serverIp?: string;
     /**
-     * The response code indicating the status of response. Examples: 200, 404.
+     * The response code indicating the status of the response. Examples: 200,
+     * 404.
      */
     status?: number;
     /**
@@ -724,8 +724,8 @@ export namespace servicecontrol_v1 {
     timestamp?: string;
     /**
      * Optional. Resource name of the trace associated with the log entry, if
-     * any. If it contains a relative resource name, the name is assumed to be
-     * relative to `//tracing.googleapis.com`. Example:
+     * any. If this field contains a relative resource name, you can assume the
+     * name is relative to `//tracing.googleapis.com`. Example:
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      */
     trace?: string;

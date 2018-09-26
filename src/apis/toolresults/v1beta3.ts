@@ -1266,7 +1266,7 @@ export namespace toolresults_v1beta3 {
    * &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on
    * January 15, 2017.  In JavaScript, one can convert a Date object to this
    * format using the standard
-   * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString]
+   * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
    * method. In Python, a standard `datetime.datetime` object can be converted
    * to this format using
    * [`strftime`](https://docs.python.org/2/library/time.html#time.strftime)
