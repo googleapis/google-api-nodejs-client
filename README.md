@@ -239,7 +239,7 @@ async function main () {
   });
 
   // obtain the current project Id
-  const project = await google.auth.getDefaultProjectId();
+  const project = await google.auth.getProjectId();
 
   // Fetch the list of GCE zones within a project.
   const res = await compute.zones.list({ project, auth });
@@ -438,7 +438,7 @@ async function main() {
     scopes: ['https://www.googleapis.com/auth/cloud-platform']
   });
 
-  const projectId = await google.auth.getDefaultProjectId();
+  const projectId = await google.auth.getProjectId();
 
   const request = {
     projectId,

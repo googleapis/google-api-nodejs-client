@@ -42,7 +42,7 @@ async function main() {
   });
 
   // Obtain the current project Id
-  const project = await google.auth.getDefaultProjectId();
+  const project = await google.auth.getProjectId();
 
   // Get the list of available compute zones for your project
   const res = await compute.zones.list({project, auth});
