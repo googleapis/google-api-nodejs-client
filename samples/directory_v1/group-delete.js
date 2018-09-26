@@ -14,43 +14,30 @@
 'use strict';
 
 const {google} = require('googleapis');
-const nconf = require('nconf');
 const path = require('path');
 
-nconf
-  .argv()
-  .env()
-  .file(path.join(__dirname, '../jwt.keys.json'));
+async function runSample() {
+  // acquire an authentication client using a service account
+  const auth = await google.auth.getClient({
+    keyFile: path.join(__dirname, '../jwt.keys.json'),
+    scopes: [
+      'https://www.googleapis.com/auth/admin.directory.group',
+      'https://www.googleapis.com/auth/admin.directory.group.member',
+    ],
+  });
 
-// Create JWT auth object
-const jwt = new google.auth.JWT(
-  nconf.get('client_email'),
-  null,
-  nconf.get('private_key'),
-  [
-    'https://www.googleapis.com/auth/admin.directory.group',
-    'https://www.googleapis.com/auth/admin.directory.group.member',
-  ]
-);
+  // obtain the admin client
+  const admin = google.admin({
+    version: 'directory_v1',
+    auth,
+  });
 
-// Authorize
-jwt.authorize((err, data) => {
-  if (err) {
-    throw err;
-  }
-  console.log('You have been successfully authenticated: ', data);
+  // delete the group key
+  const res = await admin.groups.delete({
+    groupKey: 'some_group@example.com',
+  });
 
-  // Get Google Admin API
-  const admin = google.admin('directory_v1');
+  console.log(res.data);
+}
 
-  // Delete group
-  admin.groups.insert(
-    {
-      groupKey: 'some_group@example.com',
-      auth: jwt,
-    },
-    (err, data) => {
-      console.log(err || data);
-    }
-  );
-});
+runSample().catch(console.error);
