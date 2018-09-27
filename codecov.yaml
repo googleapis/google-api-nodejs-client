@@ -1,0 +1,4 @@
+---
+codecov:
+  ci:
+    - source.cloud.google.com
