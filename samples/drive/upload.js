@@ -13,8 +13,10 @@
 
 'use strict';
 
-const {google} = require('googleapis');
 const fs = require('fs');
+const readline = require('readline');
+
+const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 
 const drive = google.drive({
