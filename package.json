@@ -15,6 +15,7 @@
     "LICENSE",
     "README.md",
     "build/src",
+    "!build/src/**/*.map",
     "package.json"
   ],
   "repository": "google/google-api-nodejs-client",
