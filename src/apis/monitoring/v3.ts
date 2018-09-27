@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -517,6 +516,26 @@ export namespace monitoring_v3 {
      * (https://en.wikipedia.org/wiki/Markdown) for more information.
      */
     mimeType?: string;
+  }
+  /**
+   * A set of (label, value) pairs which were dropped during aggregation,
+   * attached to google.api.Distribution.Exemplars in google.api.Distribution
+   * values during aggregation.These values are used in combination with the
+   * label values that remain on the aggregated Distribution timeseries to
+   * construct the full label set for the exemplar values. The resulting full
+   * label set may be used to identify the specific task/job/instance (for
+   * example) which may be contributing to a long-tail, while allowing the
+   * storage savings of only storing aggregated distribution values for a large
+   * group.Note that there are no guarantees on ordering of the labels from
+   * exemplar-to-exemplar and from distribution-to-distribution in the same
+   * stream, and there may be duplicates. It is up to clients to resolve any
+   * ambiguities.
+   */
+  export interface Schema$DroppedLabels {
+    /**
+     * Map from label to its value, for all labels dropped in any aggregation.
+     */
+    label?: any;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -1110,10 +1129,11 @@ export namespace monitoring_v3 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded. All user-defined custom metric types have the DNS name
-     * custom.googleapis.com. Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded. All user-defined metric types have the DNS name
+     * custom.googleapis.com or external.googleapis.com. Metric types should use
+     * a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -1565,6 +1585,22 @@ export namespace monitoring_v3 {
      * &quot;google/protobuf/source_context.proto&quot;.
      */
     fileName?: string;
+  }
+  /**
+   * The context of a span, attached to google.api.Distribution.Exemplars in
+   * google.api.Distribution values during aggregation.It contains the name of a
+   * span with format:  projects/PROJECT_ID/traces/TRACE_ID/spans/SPAN_ID
+   */
+  export interface Schema$SpanContext {
+    /**
+     * The resource name of the span in the following format:
+     * projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID] TRACE_ID is a
+     * unique identifier for a trace within a project; it is a 32-character
+     * hexadecimal encoding of a 16-byte array.SPAN_ID is a unique identifier
+     * for a span within a trace; it is a 16-character hexadecimal encoding of
+     * an 8-byte array.
+     */
+    spanName?: string;
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -4537,7 +4573,7 @@ export namespace monitoring_v3 {
     /**
      * monitoring.projects.notificationChannels.create
      * @desc Creates a new notification channel, representing a single
-     * notification endpoint such as an email address, SMS number, or pagerduty
+     * notification endpoint such as an email address, SMS number, or PagerDuty
      * service.
      * @alias monitoring.projects.notificationChannels.create
      * @memberOf! ()

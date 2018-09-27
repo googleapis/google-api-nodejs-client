@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -113,7 +112,8 @@ export namespace androiddeviceprovisioning_v1 {
     claims?: Schema$PartnerClaim[];
   }
   /**
-   * A customer resource in the zero-touch enrollment API.
+   * A reseller, vendor, or customer in the zero-touch reseller and customer
+   * APIs.
    */
   export interface Schema$Company {
     /**
@@ -127,12 +127,16 @@ export namespace androiddeviceprovisioning_v1 {
     companyId?: string;
     /**
      * Required. The name of the company. For example _XYZ Corp_. Displayed to
-     * the customer&#39;s employees in the zero-touch enrollment portal.
+     * the company&#39;s employees in the zero-touch enrollment portal.
      */
     companyName?: string;
     /**
-     * Output only. The API resource name of the company in the format
-     * `partners/[PARTNER_ID]/customers/[CUSTOMER_ID]`. Assigned by the server.
+     * Output only. The API resource name of the company. The resource name is
+     * one of the following formats:  *
+     * `partners/[PARTNER_ID]/customers/[CUSTOMER_ID]` *
+     * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]` *
+     * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]/customers/[CUSTOMER_ID]`
+     * Assigned by the server.
      */
     name?: string;
     /**
@@ -367,7 +371,8 @@ export namespace androiddeviceprovisioning_v1 {
   }
   /**
    * Encapsulates hardware and product IDs to identify a manufactured device. To
-   * learn more, read [Identifiers](/zero-touch/guides/identifiers).
+   * understand requirements on identifier sets, read
+   * [Identifiers](/zero-touch/guides/identifiers).
    */
   export interface Schema$DeviceIdentifier {
     /**
@@ -375,10 +380,10 @@ export namespace androiddeviceprovisioning_v1 {
      */
     imei?: string;
     /**
-     * Required. The device manufacturer’s name. Matches the device&#39;s
-     * built-in value returned from `android.os.Build.MANUFACTURER`. Allowed
-     * values are listed in [manufacturer
-     * names](/zero-touch/resources/manufacturer-names).
+     * The device manufacturer’s name. Matches the device&#39;s built-in value
+     * returned from `android.os.Build.MANUFACTURER`. Allowed values are listed
+     * in
+     * [manufacturers](/zero-touch/resources/manufacturer-names#manufacturers-names).
      */
     manufacturer?: string;
     /**
@@ -386,8 +391,14 @@ export namespace androiddeviceprovisioning_v1 {
      */
     meid?: string;
     /**
+     * The device model&#39;s name. Matches the device&#39;s built-in value
+     * returned from `android.os.Build.MODEL`. Allowed values are listed in
+     * [models](/zero-touch/resources/manufacturer-names#model-names).
+     */
+    model?: string;
+    /**
      * The manufacturer&#39;s serial number for the device. This value might not
-     * be unique.
+     * be unique across different device models.
      */
     serialNumber?: string;
   }
@@ -3045,7 +3056,7 @@ export namespace androiddeviceprovisioning_v1 {
 
     /**
      * androiddeviceprovisioning.partners.vendors.list
-     * @desc Lists vendors of the partner.
+     * @desc Lists the vendors of the partner.
      * @alias androiddeviceprovisioning.partners.vendors.list
      * @memberOf! ()
      *

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -112,6 +111,19 @@ export namespace ml_v1 {
      * The global training step for this metric.
      */
     trainingStep?: string;
+  }
+  /**
+   * Represents a hardware accelerator request config.
+   */
+  export interface Schema$GoogleCloudMlV1__AcceleratorConfig {
+    /**
+     * The number of accelerators to attach to each machine running the job.
+     */
+    count?: string;
+    /**
+     * The available types of accelerators.
+     */
+    type?: string;
   }
   /**
    * Options for automatically scaling a model.
@@ -542,6 +554,11 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__PredictionInput {
     /**
+     * Optional. The type and number of accelerators to be attached to each
+     * machine running the job.
+     */
+    accelerator?: Schema$GoogleCloudMlV1__AcceleratorConfig;
+    /**
      * Optional. Number of records per batch, defaults to 64. The service will
      * buffer batch_size number of records in memory before invoking one
      * Tensorflow prediction call internally. So take the record size and memory
@@ -568,6 +585,10 @@ export namespace ml_v1 {
      * `&quot;projects/YOUR_PROJECT/models/YOUR_MODEL&quot;`
      */
     modelName?: string;
+    /**
+     * Optional. Format of the output data files, defaults to JSON.
+     */
+    outputDataFormat?: string;
     /**
      * Required. The output Google Cloud Storage location.
      */
@@ -700,11 +721,24 @@ export namespace ml_v1 {
      * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that also includes eight
      * NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;
      * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
-     * also includes a single NVIDIA Tesla P100 GPU. The availability of these
-     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * also includes a single NVIDIA Tesla P100 GPU.   &lt;/dd&gt;
      * &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine
      * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes four
-     * NVIDIA Tesla P100 GPUs. The availability of these GPUs is in   the
+     * NVIDIA Tesla P100 GPUs.   &lt;/dd&gt; &lt;dt&gt;standard_v100&lt;/dt&gt;
+     * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
+     * also includes a single NVIDIA Tesla V100 GPU. The availability of these
+     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;large_model_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent
+     * to &lt;i&gt;large_model&lt;/i&gt; that   also includes a single NVIDIA
+     * Tesla V100 GPU. The availability of these   GPUs is in the
+     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;complex_model_m_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
+     * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that   also includes
+     * four NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
+     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;complex_model_l_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
+     * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that   also includes
+     * eight NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
      * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
      * &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
      * Cloud TPU. See more about   &lt;a
@@ -854,9 +888,10 @@ export namespace ml_v1 {
     /**
      * Optional. The machine learning framework Cloud ML Engine uses to train
      * this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`,
-     * and `XGBOOST`. If you do not specify a framework, Cloud ML Engine uses
-     * TensorFlow. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set
-     * the runtime version of the model to 1.4 or greater.
+     * `XGBOOST`. If you do not specify a framework, Cloud ML Engine will
+     * analyze files in the deployment_uri to determine a framework. If you
+     * choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version
+     * of the model to 1.4 or greater.
      */
     framework?: string;
     /**
@@ -978,6 +1013,13 @@ export namespace ml_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$GoogleIamV1__Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$GoogleType__Expr;
     /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
@@ -1200,6 +1242,35 @@ export namespace ml_v1 {
      * google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$GoogleType__Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
 
 
@@ -1766,6 +1837,76 @@ export namespace ml_v1 {
 
 
     /**
+     * ml.projects.jobs.patch
+     * @desc Updates a specific job resource.  Currently the only supported
+     * fields to update are `labels`.
+     * @alias ml.projects.jobs.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The job name.
+     * @param {string=} params.updateMask Required. Specifies the path, relative to `Job`, of the field to update. To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your job resource.  For example, to change the labels of a job, the `update_mask` parameter would be specified as `labels`, `etag`, and the `PATCH` request body would specify the new value, as follows:     {       "labels": {          "owner": "Google",          "color": "Blue"       }       "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4"     } If `etag` matches the one on the server, the labels of the job will be replaced with the given ones, and the server end `etag` will be recalculated.  Currently the only supported update masks are `labels` and `etag`.
+     * @param {().GoogleCloudMlV1__Job} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Jobs$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+    patch(
+        params: Params$Resource$Projects$Jobs$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    patch(
+        params: Params$Resource$Projects$Jobs$Patch,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    patch(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Patch|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
+        void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
+      }
+    }
+
+
+    /**
      * ml.projects.jobs.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces
      * any existing policy.
@@ -2004,6 +2145,36 @@ export namespace ml_v1 {
      * Required. The name of the project for which to list jobs.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job name.
+     */
+    name?: string;
+    /**
+     * Required. Specifies the path, relative to `Job`, of the field to update.
+     * To adopt etag mechanism, include `etag` field in the mask, and include
+     * the `etag` value in your job resource.  For example, to change the labels
+     * of a job, the `update_mask` parameter would be specified as `labels`,
+     * `etag`, and the `PATCH` request body would specify the new value, as
+     * follows:     {       "labels": {          "owner": "Google", "color":
+     * "Blue"       }       "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4"
+     * } If `etag` matches the one on the server, the labels of the job will be
+     * replaced with the given ones, and the server end `etag` will be
+     * recalculated.  Currently the only supported update masks are `labels` and
+     * `etag`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__Job;
   }
   export interface Params$Resource$Projects$Jobs$Setiampolicy {
     /**

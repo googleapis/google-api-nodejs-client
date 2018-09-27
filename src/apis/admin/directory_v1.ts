@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -928,6 +927,10 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Member {
     /**
+     * Delivery settings of member
+     */
+    delivery_settings?: string;
+    /**
      * Email of member (Read-only)
      */
     email?: string;
@@ -1672,6 +1675,10 @@ export namespace admin_directory_v1 {
      */
     aliases?: string[];
     /**
+     * Indicates if user is archived.
+     */
+    archived?: boolean;
+    /**
      * Boolean indicating if the user should change password in next login
      */
     changePasswordAtNextLogin?: boolean;
@@ -1770,7 +1777,7 @@ export namespace admin_directory_v1 {
     relations?: any;
     sshPublicKeys?: any;
     /**
-     * Indicates if user is suspended
+     * Indicates if user is suspended.
      */
     suspended?: boolean;
     /**

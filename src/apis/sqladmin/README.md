@@ -2,7 +2,7 @@
 
 # @google/sqladmin
 
-> Creates and configures Cloud SQL instances, which provide fully-managed MySQL databases.
+> Creates and manages Cloud SQL instances, which provide fully managed MySQL or PostgreSQL databases.
 
 ## Installation
 

@@ -42,6 +42,11 @@ Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 ### Working with Google Cloud Platform APIs?
 If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datastore, Cloud Storage or Pub/Sub, consider using the [`@google-cloud`][googlecloud] client libraries: single purpose idiomatic Node.js clients for Google Cloud Platform services.
 
+### Support and maintenance
+These client libraries are official supported by Google. However, these libraries are considered complete and are in maintenance mode. This means that we will address critical bugs and security issues but will not add any new features. For Google Cloud Platform APIs, we recommend using [google-cloud-node](https://github.com/GoogleCloudPlatform/google-cloud-node) which is under active development.
+
+This library supports the maintenance LTS, active LTS, and current release of node.js.  See the [node.js release schedule](https://github.com/nodejs/Release) for more information.
+
 ## Getting started
 
 ### Installation
@@ -101,10 +106,7 @@ runSample().catch(console.error);
 ```
 
 ### Samples
-There are a lot of [samples](https://github.com/google/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
-
-### Reference API
-This library provides generated [Reference API documentation](http://google.github.io/google-api-nodejs-client/).
+There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
 
 ## Authentication and authorization
 The are three primary ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
@@ -115,7 +117,7 @@ The are three primary ways to authenticate to Google APIs. Some service support 
 
 - **API Key** - With an API key, you can access your service from a client or the server.  Typically less secure, this is only available on a small subset of services with limited scopes.  [Learn more](#using-api-keys).
 
-To learn more about the authentication client, see the [Google Auth Library](https://github.com/google/google-auth-library-nodejs).
+To learn more about the authentication client, see the [Google Auth Library](https://github.com/googleapis/google-auth-library-nodejs).
 
 ### OAuth2 client
 This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token and refreshes the token and retry the request seamlessly The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
@@ -154,7 +156,7 @@ const url = oauth2Client.generateAuthUrl({
 });
 ```
 
-**IMPORTANT NOTE** - The `refresh_token` is only returned on the first authorization. More details [here](https://github.com/google/google-api-nodejs-client/issues/750#issuecomment-304521450).
+**IMPORTANT NOTE** - The `refresh_token` is only returned on the first authorization. More details [here](https://github.com/googleapis/google-api-nodejs-client/issues/750#issuecomment-304521450).
 
 #### Retrieve authorization code
 
@@ -196,7 +198,7 @@ oauth2client.setCredentials({
 });
 ```
 
-Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API. 
+Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API.
 
 ### Using API keys
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
@@ -237,7 +239,7 @@ async function main () {
   });
 
   // obtain the current project Id
-  const project = await google.auth.getDefaultProjectId();
+  const project = await google.auth.getProjectId();
 
   // Fetch the list of GCE zones within a project.
   const res = await compute.zones.list({ project, auth });
@@ -436,7 +438,7 @@ async function main() {
     scopes: ['https://www.googleapis.com/auth/cloud-platform']
   });
 
-  const projectId = await google.auth.getDefaultProjectId();
+  const projectId = await google.auth.getProjectId();
 
   const request = {
     projectId,
@@ -507,37 +509,37 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
 
-[snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
-[snyk-url]: https://snyk.io/test/github/google/google-api-nodejs-client
-[david-image]: https://david-dm.org/google/google-api-nodejs-client.svg
-[david-url]: https://david-dm.org/google/google-api-nodejs-client
+[snyk-image]: https://snyk.io/test/github/googleapis/google-api-nodejs-client/badge.svg
+[snyk-url]: https://snyk.io/test/github/googleapis/google-api-nodejs-client
+[david-image]: https://david-dm.org/googleapis/google-api-nodejs-client.svg
+[david-url]: https://david-dm.org/googleapis/google-api-nodejs-client
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
-[circle]: https://circleci.com/gh/google/google-api-nodejs-client
-[circleimg]: https://circleci.com/gh/google/google-api-nodejs-client.svg?style=shield
+[circle]: https://circleci.com/gh/googleapis/google-api-nodejs-client
+[circleimg]: https://circleci.com/gh/googleapis/google-api-nodejs-client.svg?style=shield
 [releaselevel]: https://cloud.google.com/terms/launch-stages
 [releaselevelimg]: https://img.shields.io/badge/Release%20Level-Alpha-ff69b4.svg
 [supported-list]: https://developers.google.com/apis-explorer/
-[bugs]: https://github.com/google/google-api-nodejs-client/issues
+[bugs]: https://github.com/googleapis/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
 [usingkeys]: https://support.google.com/cloud/answer/6158862?hl=en
-[contributing]: https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
-[copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
+[contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
+[copying]: https://github.com/googleapis/google-api-nodejs-client/tree/master/COPYING
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
 [axios]: https://github.com/axios/axios
 [requestopts]: https://github.com/axios/axios#request-config
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
-[releasenotes]: https://github.com/google/google-api-nodejs-client/releases
+[releasenotes]: https://github.com/googleapis/google-api-nodejs-client/releases
 [devconsole]: https://console.developer.google.com
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
-[oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/samples/oauth2.js
-[options]: https://github.com/google/google-api-nodejs-client/tree/master#options
+[oauthexample]: https://github.com/googleapis/google-api-nodejs-client/tree/master/samples/oauth2.js
+[options]: https://github.com/googleapis/google-api-nodejs-client/tree/master#options
 [googlecloud]: https://cloud.google.com/nodejs/docs/reference/libraries
 [googlecloudapis]: https://cloud.google.com/nodejs/docs/reference/apis
 [cloudplatform]: https://cloud.google.com/docs/
-[codecovimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
-[codecov]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
+[codecovimg]: https://codecov.io/github/googleapis/google-api-nodejs-client/coverage.svg?branch=master
+[codecov]: https://codecov.io/github/googleapis/google-api-nodejs-client?branch=master
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
 [downloads]: https://nodei.co/npm/googleapis/

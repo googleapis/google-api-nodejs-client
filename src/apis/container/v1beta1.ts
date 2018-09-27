@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -193,6 +192,10 @@ export namespace container_v1beta1 {
      */
     addonsConfig?: Schema$AddonsConfig;
     /**
+     * Cluster-level autoscaling configuration.
+     */
+    autoscaling?: Schema$ClusterAutoscaling;
+    /**
      * Configuration for Binary Authorization.
      */
     binaryAuthorization?: Schema$BinaryAuthorization;
@@ -203,6 +206,10 @@ export namespace container_v1beta1 {
      * chosen or specify a `/14` block in `10.0.0.0/8`.
      */
     clusterIpv4Cidr?: string;
+    /**
+     * Which conditions caused the current cluster state.
+     */
+    conditions?: Schema$StatusCondition[];
     /**
      * [Output only] The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
@@ -217,12 +224,19 @@ export namespace container_v1beta1 {
      */
     currentNodeCount?: number;
     /**
-     * [Output only] The current version of the node software components. If
-     * they are currently at multiple versions because they&#39;re in the
-     * process of being upgraded, this reflects the minimum version of all
-     * nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1beta1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they&#39;re in the process of
+     * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
+    /**
+     * The default constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool of this cluster. Only honored
+     * if cluster created with IP Alias support.
+     */
+    defaultMaxPodsConstraint?: Schema$MaxPodsConstraint;
     /**
      * An optional description of this cluster.
      */
@@ -328,7 +342,8 @@ export namespace container_v1beta1 {
     /**
      * The IP prefix in CIDR notation to use for the hosted master network. This
      * prefix will be used for assigning private IP addresses to the master or
-     * set of masters, as well as the ILB VIP.
+     * set of masters, as well as the ILB VIP. This field is deprecated, use
+     * private_cluster_config.master_ipv4_cidr_block instead.
      */
     masterIpv4CidrBlock?: string;
     /**
@@ -391,9 +406,14 @@ export namespace container_v1beta1 {
     /**
      * If this is a private cluster setup. Private clusters are clusters that,
      * by default have no external IP addresses on the nodes and where nodes and
-     * the master communicate over private IP addresses.
+     * the master communicate over private IP addresses. This field is
+     * deprecated, use private_cluster_config.enable_private_nodes instead.
      */
     privateCluster?: boolean;
+    /**
+     * Configuration for private cluster.
+     */
+    privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
      * The resource labels for the cluster to use to annotate any related Google
      * Compute Engine resources.
@@ -440,6 +460,22 @@ export namespace container_v1beta1 {
     zone?: string;
   }
   /**
+   * ClusterAutoscaling contains global, per-cluster information required by
+   * Cluster Autoscaler to automatically adjust the size of the cluster and
+   * create/delete node pools based on the current needs.
+   */
+  export interface Schema$ClusterAutoscaling {
+    /**
+     * Enables automatic node pool creation and deletion.
+     */
+    enableNodeAutoprovisioning?: boolean;
+    /**
+     * Contains global constraints regarding minimum and maximum amount of
+     * resources in the cluster.
+     */
+    resourceLimits?: Schema$ResourceLimit[];
+  }
+  /**
    * ClusterUpdate describes an update to the cluster. Exactly one update can be
    * applied to a cluster with each request, so at most one field can be
    * provided.
@@ -454,6 +490,10 @@ export namespace container_v1beta1 {
      */
     desiredBinaryAuthorization?: Schema$BinaryAuthorization;
     /**
+     * Cluster-level autoscaling configuration.
+     */
+    desiredClusterAutoscaling?: Schema$ClusterAutoscaling;
+    /**
      * The desired image type for the node pool. NOTE: Set the
      * &quot;desired_node_pool&quot; field as well.
      */
@@ -467,6 +507,15 @@ export namespace container_v1beta1 {
      * must always include the cluster&#39;s primary zone.
      */
     desiredLocations?: string[];
+    /**
+     * The logging service the cluster should use to write metrics. Currently
+     * available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the
+     * Google Cloud Logging service with Kubernetes-native resource model in
+     * Stackdriver * &quot;logging.googleapis.com&quot; - the Google Cloud
+     * Logging service * &quot;none&quot; - no logs will be exported from the
+     * cluster
+     */
+    desiredLoggingService?: string;
     /**
      * The desired configuration options for master authorized networks feature.
      */
@@ -485,9 +534,11 @@ export namespace container_v1beta1 {
     desiredMasterVersion?: string;
     /**
      * The monitoring service the cluster should use to write metrics. Currently
-     * available options:  * &quot;monitoring.googleapis.com&quot; - the Google
-     * Cloud Monitoring service * &quot;none&quot; - no metrics will be exported
-     * from the cluster
+     * available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; -
+     * the Google Cloud Monitoring service with Kubernetes-native resource model
+     * in Stackdriver * &quot;monitoring.googleapis.com&quot; - the Google Cloud
+     * Monitoring service * &quot;none&quot; - no metrics will be exported from
+     * the cluster
      */
     desiredMonitoringService?: string;
     /**
@@ -914,8 +965,9 @@ export namespace container_v1beta1 {
      */
     clientCertificate?: string;
     /**
-     * Configuration for client certificate authentication on the cluster.  If
-     * no configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      */
     clientCertificateConfig?: Schema$ClientCertificateConfig;
     /**
@@ -960,6 +1012,15 @@ export namespace container_v1beta1 {
     enabled?: boolean;
   }
   /**
+   * Constraints applied to pods.
+   */
+  export interface Schema$MaxPodsConstraint {
+    /**
+     * Constraint enforced on the max num of pods per node.
+     */
+    maxPodsPerNode?: string;
+  }
+  /**
    * Progress metric is (string, int|float|string) pair.
    */
   export interface Schema$Metric {
@@ -986,15 +1047,16 @@ export namespace container_v1beta1 {
    */
   export interface Schema$NetworkConfig {
     /**
-     * Output only. The name of the Google Compute Engine
-     * network(/compute/docs/networks-and-firewalls#networks). Example:
+     * Output only. The relative name of the Google Compute Engine
+     * network(/compute/docs/networks-and-firewalls#networks) to which the
+     * cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      */
     network?: string;
     /**
-     * Output only. The name of the Google Compute Engine
-     * [subnetwork](/compute/docs/vpc). Example:
-     * projects/my-project/regions/us-central1/subnetworks/my-subnet
+     * Output only. The relative name of the Google Compute Engine
+     * [subnetwork](/compute/docs/vpc) to which the cluster is connected.
+     * Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string;
   }
@@ -1082,13 +1144,13 @@ export namespace container_v1beta1 {
      * metadata keys for the project or be one of the reserved keys:
      * &quot;cluster-location&quot;  &quot;cluster-name&quot;
      * &quot;cluster-uid&quot;  &quot;configure-sh&quot;
-     * &quot;gci-update-strategy&quot;  &quot;gci-ensure-gke-docker&quot;
-     * &quot;instance-template&quot;  &quot;kube-env&quot;
-     * &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form
-     * strings, and only have meaning as interpreted by the image running in the
-     * instance. The only restriction placed on them is that each value&#39;s
-     * size must be less than or equal to 32 KB.  The total size of all keys and
-     * values must be less than 512 KB.
+     * &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;
+     * &quot;gci-update-strategy&quot;  &quot;instance-template&quot;
+     * &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;
+     * Values are free-form strings, and only have meaning as interpreted by the
+     * image running in the instance. The only restriction placed on them is
+     * that each value&#39;s size must be less than or equal to 32 KB.  The
+     * total size of all keys and values must be less than 512 KB.
      */
     metadata?: any;
     /**
@@ -1178,6 +1240,10 @@ export namespace container_v1beta1 {
      */
     autoscaling?: Schema$NodePoolAutoscaling;
     /**
+     * Which conditions caused the current node pool state.
+     */
+    conditions?: Schema$StatusCondition[];
+    /**
      * The node configuration of the pool.
      */
     config?: Schema$NodeConfig;
@@ -1198,6 +1264,11 @@ export namespace container_v1beta1 {
      * NodeManagement configuration for this NodePool.
      */
     management?: Schema$NodeManagement;
+    /**
+     * The constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool.
+     */
+    maxPodsConstraint?: Schema$MaxPodsConstraint;
     /**
      * The name of the node pool.
      */
@@ -1225,6 +1296,10 @@ export namespace container_v1beta1 {
    * adjust the size of the node pool to the current cluster usage.
    */
   export interface Schema$NodePoolAutoscaling {
+    /**
+     * Can this node pool be deleted automatically.
+     */
+    autoprovisioned?: boolean;
     /**
      * Is autoscaling enabled for this node pool.
      */
@@ -1267,6 +1342,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Operation {
     /**
+     * Which conditions caused the current cluster state.
+     */
+    clusterConditions?: Schema$StatusCondition[];
+    /**
      * Detailed operation progress, if available.
      */
     detail?: string;
@@ -1286,6 +1365,10 @@ export namespace container_v1beta1 {
      * The server-assigned ID for the operation.
      */
     name?: string;
+    /**
+     * Which conditions caused the current node pool state.
+     */
+    nodepoolConditions?: Schema$StatusCondition[];
     /**
      * The operation type.
      */
@@ -1357,6 +1440,57 @@ export namespace container_v1beta1 {
      * pods must be valid under a PodSecurityPolicy to be created.
      */
     enabled?: boolean;
+  }
+  /**
+   * Configuration options for private clusters.
+   */
+  export interface Schema$PrivateClusterConfig {
+    /**
+     * Whether the master&#39;s internal IP address is used as the cluster
+     * endpoint.
+     */
+    enablePrivateEndpoint?: boolean;
+    /**
+     * Whether nodes have internal IP addresses only. If enabled, all nodes are
+     * given only RFC 1918 private addresses and communicate with the master via
+     * private networking.
+     */
+    enablePrivateNodes?: boolean;
+    /**
+     * The IP range in CIDR notation to use for the hosted master network. This
+     * range will be used for assigning internal IP addresses to the master or
+     * set of masters, as well as the ILB VIP. This range must not overlap with
+     * any other ranges in use within the cluster&#39;s network.
+     */
+    masterIpv4CidrBlock?: string;
+    /**
+     * Output only. The internal IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    privateEndpoint?: string;
+    /**
+     * Output only. The external IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    publicEndpoint?: string;
+  }
+  /**
+   * Contains information about amount of some resource in the cluster. For
+   * memory, value should be in GB.
+   */
+  export interface Schema$ResourceLimit {
+    /**
+     * Maximum amount of the resource in the cluster.
+     */
+    maximum?: string;
+    /**
+     * Minimum amount of the resource in the cluster.
+     */
+    minimum?: string;
+    /**
+     * Resource name &quot;cpu&quot;, &quot;memory&quot; or gpu-specific string.
+     */
+    resourceType?: string;
   }
   /**
    * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
@@ -1872,6 +2006,20 @@ export namespace container_v1beta1 {
     zone?: string;
   }
   /**
+   * StatusCondition describes why a cluster or a node pool has a certain status
+   * (e.g., ERROR or DEGRADED).
+   */
+  export interface Schema$StatusCondition {
+    /**
+     * Machine-friendly representation of the condition
+     */
+    code?: string;
+    /**
+     * Human-friendly representation of the condition
+     */
+    message?: string;
+  }
+  /**
    * UpdateClusterRequest updates the settings of a cluster.
    */
   export interface Schema$UpdateClusterRequest {
@@ -2002,10 +2150,40 @@ export namespace container_v1beta1 {
      */
     network?: string;
     /**
+     * Secondary IP ranges.
+     */
+    secondaryIpRanges?: Schema$UsableSubnetworkSecondaryRange[];
+    /**
+     * A human readable status message representing the reasons for cases where
+     * the caller cannot use the secondary ranges under the subnet. For example
+     * if the secondary_ip_ranges is empty due to a permission issue, an
+     * insufficient permission message will be given by status_message.
+     */
+    statusMessage?: string;
+    /**
      * Subnetwork Name. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string;
+  }
+  /**
+   * Secondary IP range of a usable subnetwork.
+   */
+  export interface Schema$UsableSubnetworkSecondaryRange {
+    /**
+     * The range of IP addresses belonging to this subnetwork secondary range.
+     */
+    ipCidrRange?: string;
+    /**
+     * The name associated with this subnetwork secondary range, used when
+     * adding an alias IP range to a VM instance.
+     */
+    rangeName?: string;
+    /**
+     * This field is to determine the status of the secondary range
+     * programmably.
+     */
+    status?: string;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to

@@ -19,11 +19,11 @@ const sampleClient = require('../sampleclient');
 // initialize the Youtube API library
 const youtube = google.youtube({
   version: 'v3',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
 // a very simple example of getting data from a playlist
-async function runSample () {
+async function runSample() {
   // the first query will return data with an etag
   const res = await getPlaylistData(null);
   const etag = res.data.etag;
@@ -35,7 +35,7 @@ async function runSample () {
   console.log(res2.status);
 }
 
-async function getPlaylistData (etag) {
+async function getPlaylistData(etag) {
   // Create custom HTTP headers for the request to enable use of eTags
   const headers = {};
   if (etag) {
@@ -44,17 +44,16 @@ async function getPlaylistData (etag) {
   const res = await youtube.playlists.list({
     part: 'id,snippet',
     id: 'PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi',
-    headers: headers
+    headers: headers,
   });
   console.log('Status code: ' + res.status);
   console.log(res.data);
   return res;
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/youtube'
-];
+const scopes = ['https://www.googleapis.com/auth/youtube'];
 
-sampleClient.authenticate(scopes)
-  .then(c => runSample())
+sampleClient
+  .authenticate(scopes)
+  .then(runSample)
   .catch(console.error);

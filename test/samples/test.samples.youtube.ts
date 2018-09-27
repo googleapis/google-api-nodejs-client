@@ -30,7 +30,7 @@ for (const p in samples) {
   }
 }
 
-const someFile = path.resolve('test/fixtures/public.pem');
+const someFile = path.join(__dirname, '../../../test/fixtures/public.pem');
 
 describe('YouTube samples', () => {
   afterEach(() => {

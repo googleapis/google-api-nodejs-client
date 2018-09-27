@@ -18,11 +18,11 @@ const sampleClient = require('../sampleclient');
 
 const plus = google.plus({
   version: 'v1',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample () {
-  const res = await plus.people.get({ userId: 'me' });
+async function runSample() {
+  const res = await plus.people.get({userId: 'me'});
   console.log(res.data);
 }
 
@@ -30,11 +30,12 @@ const scopes = [
   'https://www.googleapis.com/auth/plus.login',
   'https://www.googleapis.com/auth/plus.me',
   'https://www.googleapis.com/auth/userinfo.email',
-  'https://www.googleapis.com/auth/userinfo.profile'
+  'https://www.googleapis.com/auth/userinfo.profile',
 ];
 
 if (module === require.main) {
-  sampleClient.authenticate(scopes)
-    .then(c => runSample())
+  sampleClient
+    .authenticate(scopes)
+    .then(runSample)
     .catch(console.error);
 }

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -518,7 +517,7 @@ export namespace storage_v1 {
     kind?: string;
     /**
      * Cloud KMS Key used to encrypt this object, if the object is encrypted by
-     * such a key. Limited availability; usable only by enabled projects.
+     * such a key.
      */
     kmsKeyName?: string;
     /**
@@ -5949,7 +5948,7 @@ export namespace storage_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object.
+     * @param {string} params.destinationBucket Name of the bucket containing the source objects. The destination object is stored in this bucket.
      * @param {string} params.destinationObject Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
@@ -6644,7 +6643,7 @@ export namespace storage_v1 {
      * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any. Limited availability; usable only by enabled projects.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
@@ -7707,7 +7706,8 @@ export namespace storage_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the bucket in which to store the new object.
+     * Name of the bucket containing the source objects. The destination object
+     * is stored in this bucket.
      */
     destinationBucket?: string;
     /**
@@ -8016,8 +8016,7 @@ export namespace storage_v1 {
      * Resource name of the Cloud KMS key, of the form
      * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
      * that will be used to encrypt the object. Overrides the object metadata's
-     * kms_key_name value, if any. Limited availability; usable only by enabled
-     * projects.
+     * kms_key_name value, if any.
      */
     kmsKeyName?: string;
     /**

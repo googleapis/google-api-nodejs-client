@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -203,10 +202,11 @@ export namespace container_v1 {
      */
     currentNodeCount?: number;
     /**
-     * [Output only] The current version of the node software components. If
-     * they are currently at multiple versions because they&#39;re in the
-     * process of being upgraded, this reflects the minimum version of all
-     * nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they&#39;re in the process of
+     * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
     /**
@@ -330,6 +330,10 @@ export namespace container_v1 {
      */
     network?: string;
     /**
+     * Configuration for cluster networking.
+     */
+    networkConfig?: Schema$NetworkConfig;
+    /**
      * Configuration options for the NetworkPolicy feature.
      */
     networkPolicy?: Schema$NetworkPolicy;
@@ -356,6 +360,10 @@ export namespace container_v1 {
      * specified.
      */
     nodePools?: Schema$NodePool[];
+    /**
+     * Configuration for private cluster.
+     */
+    privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
      * The resource labels for the cluster to use to annotate any related Google
      * Compute Engine resources.
@@ -783,8 +791,9 @@ export namespace container_v1 {
      */
     clientCertificate?: string;
     /**
-     * Configuration for client certificate authentication on the cluster.  If
-     * no configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      */
     clientCertificateConfig?: Schema$ClientCertificateConfig;
     /**
@@ -829,6 +838,24 @@ export namespace container_v1 {
     enabled?: boolean;
   }
   /**
+   * NetworkConfig reports the relative names of network &amp; subnetwork.
+   */
+  export interface Schema$NetworkConfig {
+    /**
+     * Output only. The relative name of the Google Compute Engine
+     * network(/compute/docs/networks-and-firewalls#networks) to which the
+     * cluster is connected. Example:
+     * projects/my-project/global/networks/my-network
+     */
+    network?: string;
+    /**
+     * Output only. The relative name of the Google Compute Engine
+     * [subnetwork](/compute/docs/vpc) to which the cluster is connected.
+     * Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
+     */
+    subnetwork?: string;
+  }
+  /**
    * Configuration options for the NetworkPolicy feature.
    * https://kubernetes.io/docs/concepts/services-networking/networkpolicies/
    */
@@ -870,6 +897,12 @@ export namespace container_v1 {
      */
     diskSizeGb?: number;
     /**
+     * Type of the disk attached to each node (e.g. &#39;pd-standard&#39; or
+     * &#39;pd-ssd&#39;)  If unspecified, the default disk type is
+     * &#39;pd-standard&#39;
+     */
+    diskType?: string;
+    /**
      * The image type to use for this node. Note that for a given image type,
      * the latest version of it will be used.
      */
@@ -906,13 +939,13 @@ export namespace container_v1 {
      * metadata keys for the project or be one of the reserved keys:
      * &quot;cluster-location&quot;  &quot;cluster-name&quot;
      * &quot;cluster-uid&quot;  &quot;configure-sh&quot;
-     * &quot;gci-update-strategy&quot;  &quot;gci-ensure-gke-docker&quot;
-     * &quot;instance-template&quot;  &quot;kube-env&quot;
-     * &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form
-     * strings, and only have meaning as interpreted by the image running in the
-     * instance. The only restriction placed on them is that each value&#39;s
-     * size must be less than or equal to 32 KB.  The total size of all keys and
-     * values must be less than 512 KB.
+     * &quot;enable-os-login&quot;  &quot;gci-update-strategy&quot;
+     * &quot;gci-ensure-gke-docker&quot;  &quot;instance-template&quot;
+     * &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;
+     * Values are free-form strings, and only have meaning as interpreted by the
+     * image running in the instance. The only restriction placed on them is
+     * that each value&#39;s size must be less than or equal to 32 KB.  The
+     * total size of all keys and values must be less than 512 KB.
      */
     metadata?: any;
     /**
@@ -1115,6 +1148,39 @@ export namespace container_v1 {
      * place. This field is deprecated, use location instead.
      */
     zone?: string;
+  }
+  /**
+   * Configuration options for private clusters.
+   */
+  export interface Schema$PrivateClusterConfig {
+    /**
+     * Whether the master&#39;s internal IP address is used as the cluster
+     * endpoint.
+     */
+    enablePrivateEndpoint?: boolean;
+    /**
+     * Whether nodes have internal IP addresses only. If enabled, all nodes are
+     * given only RFC 1918 private addresses and communicate with the master via
+     * private networking.
+     */
+    enablePrivateNodes?: boolean;
+    /**
+     * The IP range in CIDR notation to use for the hosted master network. This
+     * range will be used for assigning internal IP addresses to the master or
+     * set of masters, as well as the ILB VIP. This range must not overlap with
+     * any other ranges in use within the cluster&#39;s network.
+     */
+    masterIpv4CidrBlock?: string;
+    /**
+     * Output only. The internal IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    privateEndpoint?: string;
+    /**
+     * Output only. The external IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    publicEndpoint?: string;
   }
   /**
    * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed

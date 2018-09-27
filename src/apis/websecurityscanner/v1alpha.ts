@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -108,7 +107,8 @@ export namespace websecurityscanner_v1alpha {
     loginUrl?: string;
     /**
      * Input only. Required. The password of the custom account. The credential
-     * is stored encrypted and not returned in any response.
+     * is stored encrypted and not returned in any response nor included in
+     * audit logs.
      */
     password?: string;
     /**
@@ -189,6 +189,11 @@ export namespace websecurityscanner_v1alpha {
      */
     violatingResource?: Schema$ViolatingResource;
     /**
+     * Output only. An addon containing information about vulnerable or missing
+     * HTTP headers.
+     */
+    vulnerableHeaders?: Schema$VulnerableHeaders;
+    /**
      * Output only. An addon containing information about request parameters
      * which were found to be vulnerable.
      */
@@ -218,13 +223,27 @@ export namespace websecurityscanner_v1alpha {
   export interface Schema$GoogleAccount {
     /**
      * Input only. Required. The password of the Google account. The credential
-     * is stored encrypted and not returned in any response.
+     * is stored encrypted and not returned in any response nor included in
+     * audit logs.
      */
     password?: string;
     /**
      * Required. The user name of the Google account.
      */
     username?: string;
+  }
+  /**
+   * Describes a HTTP Header.
+   */
+  export interface Schema$Header {
+    /**
+     * Header name.
+     */
+    name?: string;
+    /**
+     * Header value.
+     */
+    value?: string;
   }
   /**
    * Response for the `ListCrawledUrls` method.
@@ -447,6 +466,19 @@ export namespace websecurityscanner_v1alpha {
      * URL of this violating resource.
      */
     resourceUrl?: string;
+  }
+  /**
+   * Information about vulnerable or missing HTTP Headers.
+   */
+  export interface Schema$VulnerableHeaders {
+    /**
+     * List of vulnerable headers.
+     */
+    headers?: Schema$Header[];
+    /**
+     * List of missing headers.
+     */
+    missingHeaders?: Schema$Header[];
   }
   /**
    * Information about vulnerable request parameters.

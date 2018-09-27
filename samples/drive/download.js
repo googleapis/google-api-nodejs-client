@@ -22,10 +22,10 @@ const path = require('path');
 
 const drive = google.drive({
   version: 'v3',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample (fileId) {
+async function runSample(fileId) {
   return new Promise(async (resolve, reject) => {
     const filePath = path.join(os.tmpdir(), uuid.v4());
     console.log(`writing to ${filePath}`);
@@ -57,8 +57,7 @@ async function runSample (fileId) {
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
   if (process.argv.length !== 3) {
-    console.error('Usage: node samples/drive/download.js $FILE_ID');
-    process.exit();
+    throw new Error('Usage: node samples/drive/download.js $FILE_ID');
   }
   const fileId = process.argv[2];
   const scopes = [
@@ -68,15 +67,16 @@ if (module === require.main) {
     'https://www.googleapis.com/auth/drive.metadata',
     'https://www.googleapis.com/auth/drive.metadata.readonly',
     'https://www.googleapis.com/auth/drive.photos.readonly',
-    'https://www.googleapis.com/auth/drive.readonly'
+    'https://www.googleapis.com/auth/drive.readonly',
   ];
-  sampleClient.authenticate(scopes)
-    .then(c => runSample(fileId))
+  sampleClient
+    .authenticate(scopes)
+    .then(() => runSample(fileId))
     .catch(console.error);
 }
 
 // export functions for testing purposes
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

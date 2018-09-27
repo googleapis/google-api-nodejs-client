@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -259,10 +258,12 @@ export namespace appengine_v1 {
    */
   export interface Schema$AutomaticScaling {
     /**
-     * Amount of time that the Autoscaler
-     * (https://cloud.google.com/compute/docs/autoscaler/) should wait between
-     * changes to the number of virtual machines. Only applicable in the App
-     * Engine flexible environment.
+     * The time period that the Autoscaler
+     * (https://cloud.google.com/compute/docs/autoscaler/) should wait before it
+     * starts collecting information from a new instance. This prevents the
+     * autoscaler from collecting information when the instance is initializing,
+     * during which the collected usage would not be reliable. Only applicable
+     * in the App Engine flexible environment.
      */
     coolDownPeriod?: string;
     /**
@@ -475,11 +476,11 @@ export namespace appengine_v1 {
    */
   export interface Schema$Deployment {
     /**
-     * Options for any Google Cloud Container Builder builds created as a part
-     * of this deployment.Note that this is orthogonal to the build parameter,
-     * where the deployment depends on an already existing cloud build. These
-     * options will only be used if a new build is created, such as when
-     * deploying to the App Engine flexible environment using files or zip.
+     * Options for any Google Cloud Build builds created as a part of this
+     * deployment.Note that this is orthogonal to the build parameter, where the
+     * deployment depends on an already existing cloud build. These options will
+     * only be used if a new build is created, such as when deploying to the App
+     * Engine flexible environment using files or zip.
      */
     cloudBuildOptions?: Schema$CloudBuildOptions;
     /**
@@ -1753,7 +1754,7 @@ export namespace appengine_v1 {
     /**
      * Duration that static files should be cached by web proxies and browsers.
      * Only applicable if the corresponding StaticFilesHandler
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#staticfileshandler)
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StaticFilesHandler)
      * does not specify its own expiration time.Only returned in GET requests if
      * view=FULL is set.
      */
@@ -4544,7 +4545,7 @@ export namespace appengine_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
-     * @param {boolean=} params.migrateTraffic Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#inboundservicetype) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#automaticscaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#shardby) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
+     * @param {boolean=} params.migrateTraffic Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
      * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
      * @param {().Service} params.resource Request body data
@@ -4675,11 +4676,11 @@ export namespace appengine_v1 {
      * specify. By default, traffic is shifted immediately. For gradual traffic
      * migration, the target versions must be located within instances that are
      * configured for both warmup requests
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#inboundservicetype)
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#InboundServiceType)
      * and automatic scaling
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#automaticscaling).
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#AutomaticScaling).
      * You must specify the shardBy
-     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#shardby)
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#ShardBy)
      * field in the Service resource. Gradual traffic migration is not supported
      * in the App Engine flexible environment. For examples, see Migrating and
      * Splitting Traffic

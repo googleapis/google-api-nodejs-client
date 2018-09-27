@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -132,7 +131,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest {
     /**
-     * Required. The collection of entities to create.
+     * Required. The entities to create.
      */
     entities?: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
     /**
@@ -182,12 +181,11 @@ export namespace dialogflow_v2 {
     intents?: Schema$GoogleCloudDialogflowV2Intent[];
   }
   /**
-   * The response message for EntityTypes.BatchCreateEntities.
+   * The request message for EntityTypes.BatchUpdateEntities.
    */
   export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntitiesRequest {
     /**
-     * Required. The collection of new entities to replace the existing
-     * entities.
+     * Required. The entities to update or create.
      */
     entities?: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
     /**
@@ -207,7 +205,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest {
     /**
-     * The collection of entity type to update or create.
+     * The collection of entity types to update or create.
      */
     entityTypeBatchInline?: Schema$GoogleCloudDialogflowV2EntityTypeBatch;
     /**
@@ -439,14 +437,21 @@ export namespace dialogflow_v2 {
      */
     displayName?: string;
     /**
+     * Optional. Indicates that this intent ends an interaction. Some
+     * integrations (e.g., Actions on Google or Dialogflow phone gateway) use
+     * this information to close interaction with an end user. Default is false.
+     */
+    endInteraction?: boolean;
+    /**
      * Optional. The collection of event names that trigger the intent. If the
      * collection of input contexts is not empty, all of the contexts must be
      * present in the active user session for an event to trigger this intent.
      */
     events?: string[];
     /**
-     * Optional. Collection of information about all followup intents that have
-     * name of this intent as a root_name.
+     * Read-only. Information about all followup intents that have this intent
+     * as a direct or indirect parent. We populate this field only in the
+     * output.
      */
     followupIntentInfo?:
         Schema$GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[];
@@ -503,9 +508,12 @@ export namespace dialogflow_v2 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2beta1IntentParameter[];
     /**
-     * The unique identifier of the parent intent in the chain of followup
-     * intents. It identifies the parent followup intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Read-only after creation. The unique identifier of the parent intent in
+     * the chain of followup intents. You can set this field when creating an
+     * intent, for example with CreateIntent or BatchUpdateIntents, in order to
+     * make this intent a followup intent.  It identifies the parent followup
+     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
+     * ID&gt;`.
      */
     parentFollowupIntentName?: string;
     /**
@@ -519,10 +527,10 @@ export namespace dialogflow_v2 {
      */
     resetContexts?: boolean;
     /**
-     * The unique identifier of the root intent in the chain of followup
-     * intents. It identifies the correct followup intents chain for this
-     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
-     * ID&gt;`.
+     * Read-only. The unique identifier of the root intent in the chain of
+     * followup intents. It identifies the correct followup intents chain for
+     * this intent. We populate this field only in the output.  Format:
+     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string;
     /**
@@ -531,7 +539,7 @@ export namespace dialogflow_v2 {
      */
     trainingPhrases?: Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase[];
     /**
-     * Required. Indicates whether webhooks are enabled for the intent.
+     * Optional. Indicates whether webhooks are enabled for the intent.
      */
     webhookState?: string;
   }
@@ -545,7 +553,7 @@ export namespace dialogflow_v2 {
      */
     followupIntentName?: string;
     /**
-     * The unique identifier of the followup intent parent. Format:
+     * The unique identifier of the followup intent&#39;s parent. Format:
      * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
@@ -603,6 +611,21 @@ export namespace dialogflow_v2 {
      * Displays suggestion chips for Actions on Google.
      */
     suggestions?: Schema$GoogleCloudDialogflowV2beta1IntentMessageSuggestions;
+    /**
+     * Plays audio from a file in Telephony Gateway.
+     */
+    telephonyPlayAudio?:
+        Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonyPlayAudio;
+    /**
+     * Synthesizes speech in Telephony Gateway.
+     */
+    telephonySynthesizeSpeech?:
+        Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonySynthesizeSpeech;
+    /**
+     * Transfers the call in Telephony Gateway.
+     */
+    telephonyTransferCall?:
+        Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall;
     /**
      * Returns a text response.
      */
@@ -865,6 +888,53 @@ export namespace dialogflow_v2 {
     suggestions?: Schema$GoogleCloudDialogflowV2beta1IntentMessageSuggestion[];
   }
   /**
+   * Plays audio from a file in Telephony Gateway.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonyPlayAudio {
+    /**
+     * Required. URI to a Google Cloud Storage object containing the audio to
+     * play, e.g., &quot;gs://bucket/object&quot;. The object must contain a
+     * single channel (mono) of linear PCM audio (2 bytes / sample) at 8kHz.
+     * This object must be readable by the `service-&lt;Project
+     * Number&gt;@gcp-sa-dialogflow.iam.gserviceaccount.com` service account
+     * where &lt;Project Number&gt; is the number of the Telephony Gateway
+     * project (usually the same as the Dialogflow agent project). If the Google
+     * Cloud Storage bucket is in the Telephony Gateway project, this permission
+     * is added by default when enabling the Dialogflow V2 API.  For audio from
+     * other sources, consider using the `TelephonySynthesizeSpeech` message
+     * with SSML.
+     */
+    audioUri?: string;
+  }
+  /**
+   * Synthesizes speech and plays back the synthesized audio to the caller in
+   * Telephony Gateway.  Telephony Gateway takes the synthesizer settings from
+   * `DetectIntentResponse.output_audio_config` which can either be set at
+   * request-level or can come from the agent-level synthesizer config.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonySynthesizeSpeech {
+    /**
+     * The SSML to be synthesized. For more information, see
+     * [SSML](https://developers.google.com/actions/reference/ssml).
+     */
+    ssml?: string;
+    /**
+     * The raw text to be synthesized.
+     */
+    text?: string;
+  }
+  /**
+   * Transfers the call in Telephony Gateway.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall {
+    /**
+     * Required. The phone number to transfer the call to in [E.164
+     * format](https://en.wikipedia.org/wiki/E.164).  We currently only allow
+     * transferring to US numbers (+1xxxyyyzzzz).
+     */
+    phoneNumber?: string;
+  }
+  /**
    * The text response message.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageText {
@@ -924,7 +994,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase {
     /**
-     * Required. The unique identifier of this training phrase.
+     * Output only. The unique identifier of this training phrase.
      */
     name?: string;
     /**
@@ -971,6 +1041,55 @@ export namespace dialogflow_v2 {
     userDefined?: boolean;
   }
   /**
+   * Represents the result of querying a Knowledge base.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswers {
+    /**
+     * A list of answers from Knowledge Connector.
+     */
+    answers?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer[];
+  }
+  /**
+   * An answer from Knowledge Connector.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer {
+    /**
+     * The piece of text from the `source` knowledge base document that answers
+     * this conversational query.
+     */
+    answer?: string;
+    /**
+     * The corresponding FAQ question if the answer was extracted from a FAQ
+     * Document, empty otherwise.
+     */
+    faqQuestion?: string;
+    /**
+     * The system&#39;s confidence score that this Knowledge answer is a good
+     * match for this converstational query, range from 0.0 (completely
+     * uncertain) to 1.0 (completely certain). Note: The confidence score is
+     * likely to vary somewhat (possibly even for identical requests), as the
+     * underlying model is under constant improvement, we may deprecate it in
+     * the future. We recommend using `match_confidence_level` which should be
+     * generally more stable.
+     */
+    matchConfidence?: number;
+    /**
+     * The system&#39;s confidence level that this knowledge answer is a good
+     * match for this conversational query. NOTE: The confidence level for a
+     * given `&lt;query, answer&gt;` pair may change without notice, as it
+     * depends on models that are constantly being improved. However, it will
+     * change less frequently than the confidence score below, and should be
+     * preferred for referencing the quality of an answer.
+     */
+    matchConfidenceLevel?: string;
+    /**
+     * Indicates which Knowledge Document this answer was extracted from.
+     * Format: `projects/&lt;Project ID&gt;/knowledgeBases/&lt;Knowledge Base
+     * ID&gt;/documents/&lt;Document ID&gt;`.
+     */
+    source?: string;
+  }
+  /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
@@ -985,16 +1104,15 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of `QueryParameters.payload`
-     * field passed in the request.  This field is used for the telephony
-     * gateway. It should have a structure similar to this JSON message:
-     * &lt;pre&gt;{  &quot;telephony&quot;: {  &quot;caller_id&quot;:
-     * &quot;+18558363987&quot; }&lt;/pre&gt; Note: The caller ID field
-     * (`caller_id`) will be in [E.164
-     * format](https://en.wikipedia.org/wiki/E.164) and is not supported for
-     * standard tier agents. When the telephony gateway is used with a standard
-     * tier agent the `caller_id` field above will have a value of
-     * `REDACTED_IN_STANDARD_TIER_AGENT`.
+     * Optional. This field is set to the value of the `QueryParameters.payload`
+     * field passed in the request. Some integrations that query a Dialogflow
+     * agent may provide additional information in the payload.  In particular
+     * for the Telephony Gateway this field has the form: &lt;pre&gt;{
+     * &quot;telephony&quot;: {    &quot;caller_id&quot;:
+     * &quot;+18558363987&quot;  } }&lt;/pre&gt; Note: The caller ID field
+     * (`caller_id`) will be redacted for Standard Edition agents and populated
+     * with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164)
+     * for Enterprise Edition agents.
      */
     payload?: any;
     /**
@@ -1050,6 +1168,11 @@ export namespace dialogflow_v2 {
      */
     intentDetectionConfidence?: number;
     /**
+     * The result from Knowledge Connector (if any), ordered by decreasing
+     * `KnowledgeAnswers.match_confidence`.
+     */
+    knowledgeAnswers?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswers;
+    /**
      * The language that was triggered during intent detection. See [Language
      * Support](https://dialogflow.com/docs/reference/language) for a list of
      * the currently supported language codes.
@@ -1076,6 +1199,12 @@ export namespace dialogflow_v2 {
      */
     queryText?: string;
     /**
+     * The sentiment analysis result, which depends on the
+     * `sentiment_analysis_request_config` specified in the request.
+     */
+    sentimentAnalysisResult?:
+        Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult;
+    /**
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that
@@ -1097,9 +1226,40 @@ export namespace dialogflow_v2 {
     webhookSource?: string;
   }
   /**
+   * The sentiment, such as positive/negative feeling or association, for a unit
+   * of analysis, such as the query text.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1Sentiment {
+    /**
+     * A non-negative number in the [0, +inf) range, which represents the
+     * absolute magnitude of sentiment, regardless of score (positive or
+     * negative).
+     */
+    magnitude?: number;
+    /**
+     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
+     * sentiment).
+     */
+    score?: number;
+  }
+  /**
+   * The result of sentiment analysis as configured by
+   * `sentiment_analysis_request_config`.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult {
+    /**
+     * The sentiment analysis result for `query_text`.
+     */
+    queryTextSentiment?: Schema$GoogleCloudDialogflowV2beta1Sentiment;
+  }
+  /**
    * The request message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
+    /**
+     * Alternative query results from KnowledgeService.
+     */
+    alternativeQueryResults?: Schema$GoogleCloudDialogflowV2beta1QueryResult[];
     /**
      * Optional. The contents of the original request that was passed to
      * `[Streaming]DetectIntent` call.
@@ -1127,6 +1287,12 @@ export namespace dialogflow_v2 {
    * The response message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookResponse {
+    /**
+     * Optional. Indicates that this intent ends an interaction. Some
+     * integrations (e.g., Actions on Google or Dialogflow phone gateway) use
+     * this information to close interaction with an end user. Default is false.
+     */
+    endInteraction?: boolean;
     /**
      * Optional. Makes the platform immediately invoke another `DetectIntent`
      * call internally with the specified event as input.
@@ -1426,8 +1592,9 @@ export namespace dialogflow_v2 {
      */
     events?: string[];
     /**
-     * Optional. Collection of information about all followup intents that have
-     * name of this intent as a root_name.
+     * Read-only. Information about all followup intents that have this intent
+     * as a direct or indirect parent. We populate this field only in the
+     * output.
      */
     followupIntentInfo?:
         Schema$GoogleCloudDialogflowV2IntentFollowupIntentInfo[];
@@ -1472,9 +1639,12 @@ export namespace dialogflow_v2 {
      */
     parameters?: Schema$GoogleCloudDialogflowV2IntentParameter[];
     /**
-     * The unique identifier of the parent intent in the chain of followup
-     * intents. It identifies the parent followup intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * Read-only after creation. The unique identifier of the parent intent in
+     * the chain of followup intents. You can set this field when creating an
+     * intent, for example with CreateIntent or BatchUpdateIntents, in order to
+     * make this intent a followup intent.  It identifies the parent followup
+     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
+     * ID&gt;`.
      */
     parentFollowupIntentName?: string;
     /**
@@ -1488,10 +1658,10 @@ export namespace dialogflow_v2 {
      */
     resetContexts?: boolean;
     /**
-     * The unique identifier of the root intent in the chain of followup
-     * intents. It identifies the correct followup intents chain for this
-     * intent. Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent
-     * ID&gt;`.
+     * Read-only. The unique identifier of the root intent in the chain of
+     * followup intents. It identifies the correct followup intents chain for
+     * this intent. We populate this field only in the output.  Format:
+     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     rootFollowupIntentName?: string;
     /**
@@ -1500,7 +1670,7 @@ export namespace dialogflow_v2 {
      */
     trainingPhrases?: Schema$GoogleCloudDialogflowV2IntentTrainingPhrase[];
     /**
-     * Required. Indicates whether webhooks are enabled for the intent.
+     * Optional. Indicates whether webhooks are enabled for the intent.
      */
     webhookState?: string;
   }
@@ -1523,7 +1693,7 @@ export namespace dialogflow_v2 {
      */
     followupIntentName?: string;
     /**
-     * The unique identifier of the followup intent parent. Format:
+     * The unique identifier of the followup intent&#39;s parent. Format:
      * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     parentFollowupIntentName?: string;
@@ -1900,7 +2070,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2IntentTrainingPhrase {
     /**
-     * Required. The unique identifier of this training phrase.
+     * Output only. The unique identifier of this training phrase.
      */
     name?: string;
     /**
@@ -2012,16 +2182,15 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of `QueryParameters.payload`
-     * field passed in the request.  This field is used for the telephony
-     * gateway. It should have a structure similar to this JSON message:
-     * &lt;pre&gt;{  &quot;telephony&quot;: {  &quot;caller_id&quot;:
-     * &quot;+18558363987&quot; }&lt;/pre&gt; Note: The caller ID field
-     * (`caller_id`) will be in [E.164
-     * format](https://en.wikipedia.org/wiki/E.164) and is not supported for
-     * standard tier agents. When the telephony gateway is used with a standard
-     * tier agent the `caller_id` field above will have a value of
-     * `REDACTED_IN_STANDARD_TIER_AGENT`.
+     * Optional. This field is set to the value of the `QueryParameters.payload`
+     * field passed in the request. Some integrations that query a Dialogflow
+     * agent may provide additional information in the payload.  In particular
+     * for the Telephony Gateway this field has the form: &lt;pre&gt;{
+     * &quot;telephony&quot;: {    &quot;caller_id&quot;:
+     * &quot;+18558363987&quot;  } }&lt;/pre&gt; Note: The caller ID field
+     * (`caller_id`) will be redacted for Standard Edition agents and populated
+     * with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164)
+     * for Enterprise Edition agents.
      */
     payload?: any;
     /**
@@ -3716,9 +3885,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchCreate
-     * @desc Creates multiple new entities in the specified entity type (extends
-     * the existing collection of entries).  Operation <response:
-     * google.protobuf.Empty>
+     * @desc Creates multiple new entities in the specified entity type.
+     * Operation <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchCreate
      * @memberOf! ()
      *
@@ -3876,14 +4044,15 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchUpdate
-     * @desc Updates entities in the specified entity type (replaces the
-     * existing collection of entries).  Operation <response:
+     * @desc Updates or creates multiple entities in the specified entity type.
+     * This method does not affect entities in the entity type that aren't
+     * explicitly specified in the request.  Operation <response:
      * google.protobuf.Empty,            metadata: google.protobuf.Struct>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchUpdate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the entity type to update the entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {string} params.parent Required. The name of the entity type to update or create entities in. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param {().GoogleCloudDialogflowV2BatchUpdateEntitiesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3995,8 +4164,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to update the entities in. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to update or create entities in.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
     parent?: string;
 
@@ -4252,12 +4421,13 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.intents.delete
-     * @desc Deletes the specified intent.
+     * @desc Deletes the specified intent and its direct or indirect followup
+     * intents.
      * @alias dialogflow.projects.agent.intents.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the intent to delete. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them.  Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4613,8 +4783,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The name of the intent to delete. Format: `projects/<Project
-     * ID>/agent/intents/<Intent ID>`.
+     * Required. The name of the intent to delete. If this intent has direct or
+     * indirect followup intents, we also delete them.  Format:
+     * `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
   }

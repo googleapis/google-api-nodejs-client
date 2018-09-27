@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -309,7 +308,7 @@ export namespace calendar_v3 {
      * &quot;email&quot; - Reminders are sent via email.  - &quot;sms&quot; -
      * Reminders are sent via SMS. This value is read-only and is ignored on
      * inserts and updates. SMS reminders are only available for G Suite
-     * customers.
+     * customers.   Required when adding a notification.
      */
     method?: string;
     /**
@@ -318,8 +317,9 @@ export namespace calendar_v3 {
      * the calendar.  - &quot;eventChange&quot; - Notification sent when an
      * event is changed.  - &quot;eventCancellation&quot; - Notification sent
      * when an event is cancelled.  - &quot;eventResponse&quot; - Notification
-     * sent when an event is changed.  - &quot;agenda&quot; - An agenda with the
-     * events of the day (sent out in the morning).
+     * sent when an attendee responds to the event invitation.  -
+     * &quot;agenda&quot; - An agenda with the events of the day (sent out in
+     * the morning).   Required when adding a notification.
      */
     type?: string;
   }
@@ -532,6 +532,12 @@ export namespace calendar_v3 {
      */
     accessCode?: string;
     /**
+     * Features of the entry point, such as being toll or toll-free. One entry
+     * point can have multiple features. However, toll and toll-free cannot be
+     * both set on the same entry point.
+     */
+    entryPointFeatures?: string[];
+    /**
      * The type of the conference entry point. Possible values are:   -
      * &quot;video&quot; - joining a conference over HTTP. A conference can have
      * zero or one video entry point. - &quot;phone&quot; - joining a conference
@@ -582,6 +588,12 @@ export namespace calendar_v3 {
      * should be displayed. Optional.
      */
     pin?: string;
+    /**
+     * The CLDR/ISO 3166 region code for the country associated with this phone
+     * access. Example: &quot;SE&quot; for Sweden. Calendar backend will
+     * populate this field only for EntryPointType.PHONE.
+     */
+    regionCode?: string;
     /**
      * The URI of the entry point. The maximum length is 1300 characters.
      * Format:   - for video, http: or https: schema is required. - for phone,
@@ -759,7 +771,9 @@ export namespace calendar_v3 {
     /**
      * For an instance of a recurring event, this is the time at which this
      * event would start according to the recurrence data in the recurring event
-     * identified by recurringEventId. Immutable.
+     * identified by recurringEventId. It uniquely identifies the instance
+     * within the recurring event series even if the instance was moved to a
+     * different time. Immutable.
      */
     originalStartTime?: Schema$EventDateTime;
     /**
@@ -866,7 +880,7 @@ export namespace calendar_v3 {
     /**
      * URL link to the attachment. For adding Google Drive file attachments use
      * the same format as in alternateLink property of the Files resource in the
-     * Drive API.
+     * Drive API. Required when adding an attachment.
      */
     fileUrl?: string;
     /**
@@ -898,11 +912,11 @@ export namespace calendar_v3 {
     /**
      * The attendee&#39;s email address, if available. This field must be
      * present when adding an attendee. It must be a valid email address as per
-     * RFC5322.
+     * RFC5322. Required when adding an attendee.
      */
     email?: string;
     /**
-     * The attendee&#39;s Profile ID, if available. It corresponds to theid
+     * The attendee&#39;s Profile ID, if available. It corresponds to the id
      * field in the People collection of the Google+ API
      */
     id?: string;
@@ -964,11 +978,13 @@ export namespace calendar_v3 {
      * Reminders are sent via SMS. These are only available for G Suite
      * customers. Requests to set SMS reminders for other account types are
      * ignored.  - &quot;popup&quot; - Reminders are sent via a UI popup.
+     * Required when adding a reminder.
      */
     method?: string;
     /**
      * Number of minutes before the start of the event when the reminder should
      * trigger. Valid values are between 0 and 40320 (4 weeks in minutes).
+     * Required when adding a reminder.
      */
     minutes?: number;
   }
@@ -1058,13 +1074,13 @@ export namespace calendar_v3 {
   export interface Schema$FreeBusyRequest {
     /**
      * Maximal number of calendars for which FreeBusy information is to be
-     * provided. Optional.
+     * provided. Optional. Maximum value is 50.
      */
     calendarExpansionMax?: number;
     /**
      * Maximal number of calendar identifiers to be provided for a single group.
-     * Optional. An error will be returned for a group with more members than
-     * this value.
+     * Optional. An error is returned for a group with more members than this
+     * value. Maximum value is 100.
      */
     groupExpansionMax?: number;
     /**
@@ -1072,11 +1088,11 @@ export namespace calendar_v3 {
      */
     items?: Schema$FreeBusyRequestItem[];
     /**
-     * The end of the interval for the query.
+     * The end of the interval for the query formatted as per RFC3339.
      */
     timeMax?: string;
     /**
-     * The start of the interval for the query.
+     * The start of the interval for the query formatted as per RFC3339.
      */
     timeMin?: string;
     /**
@@ -1865,7 +1881,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.delete
-     * @desc Deletes an entry on the user's calendar list.
+     * @desc Removes a calendar from the user's calendar list.
      * @alias calendar.calendarList.delete
      * @memberOf! ()
      *
@@ -1930,7 +1946,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.get
-     * @desc Returns an entry on the user's calendar list.
+     * @desc Returns a calendar from the user's calendar list.
      * @alias calendar.calendarList.get
      * @memberOf! ()
      *
@@ -1992,7 +2008,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.insert
-     * @desc Adds an entry to the user's calendar list.
+     * @desc Inserts an existing calendar into the user's calendar list.
      * @alias calendar.calendarList.insert
      * @memberOf! ()
      *
@@ -2060,7 +2076,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.list
-     * @desc Returns entries on the user's calendar list.
+     * @desc Returns the calendars on the user's calendar list.
      * @alias calendar.calendarList.list
      * @memberOf! ()
      *
@@ -2131,8 +2147,8 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.patch
-     * @desc Updates an entry on the user's calendar list. This method supports
-     * patch semantics.
+     * @desc Updates an existing calendar on the user's calendar list. This
+     * method supports patch semantics.
      * @alias calendar.calendarList.patch
      * @memberOf! ()
      *
@@ -2200,7 +2216,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.update
-     * @desc Updates an entry on the user's calendar list.
+     * @desc Updates an existing calendar on the user's calendar list.
      * @alias calendar.calendarList.update
      * @memberOf! ()
      *

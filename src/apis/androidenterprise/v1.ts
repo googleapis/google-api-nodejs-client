@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -144,6 +143,46 @@ export namespace androidenterprise_v1 {
      * &quot;approve&quot; mode.
      */
     permission?: string[];
+    /**
+     * Options for displaying the Play Search page.
+     */
+    playSearch?: Schema$AdministratorWebTokenSpecPlaySearch;
+    /**
+     * Options for displaying the Private Apps page.
+     */
+    privateApps?: Schema$AdministratorWebTokenSpecPrivateApps;
+    /**
+     * Options for displaying the Store Builder page.
+     */
+    storeBuilder?: Schema$AdministratorWebTokenSpecStoreBuilder;
+    /**
+     * Options for displaying the Web Apps page.
+     */
+    webApps?: Schema$AdministratorWebTokenSpecWebApps;
+  }
+  export interface Schema$AdministratorWebTokenSpecPlaySearch {
+    /**
+     * Whether the Play Search page is displayed. Default is true.
+     */
+    enabled?: boolean;
+  }
+  export interface Schema$AdministratorWebTokenSpecPrivateApps {
+    /**
+     * Whether the Private Apps page is displayed. Default is true.
+     */
+    enabled?: boolean;
+  }
+  export interface Schema$AdministratorWebTokenSpecStoreBuilder {
+    /**
+     * Whether the Store Builder page is displayed. Default is true.
+     */
+    enabled?: boolean;
+  }
+  export interface Schema$AdministratorWebTokenSpecWebApps {
+    /**
+     * Whether the Web Apps page is displayed. Default is true.
+     */
+    enabled?: boolean;
   }
   /**
    * Deprecated and unused.
@@ -1626,11 +1665,9 @@ export namespace androidenterprise_v1 {
     kind?: string;
     /**
      * Ordered list of pages a user should be able to reach from this page. The
-     * pages must exist, must not be this page, and once a link is created the
-     * page linked to cannot be deleted until all links to it are removed. It is
-     * recommended that the basic pages are created first, before adding the
-     * links between pages.  No attempt is made to verify that all pages are
-     * reachable from the homepage.
+     * list can&#39;t include this page. It is recommended that the basic pages
+     * are created first, before adding the links between pages.  The API
+     * doesn&#39;t verify that the pages exist or the pages are reachable.
      */
     link?: string[];
     /**
@@ -2562,75 +2599,6 @@ export namespace androidenterprise_v1 {
 
 
     /**
-     * androidenterprise.enterprises.delete
-     * @desc Deletes the binding between the EMM and enterprise. This is now
-     * deprecated. Use this method only to unenroll customers that were
-     * previously enrolled with the insert call, then enroll them again with the
-     * enroll call.
-     * @alias androidenterprise.enterprises.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Enterprises$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
-    delete(
-        params: Params$Resource$Enterprises$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    delete(
-        params: Params$Resource$Enterprises$Delete,
-        callback: BodyResponseCallback<void>): void;
-    delete(callback: BodyResponseCallback<void>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Enterprises$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Enterprises$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Enterprises$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/androidenterprise/v1/enterprises/{enterpriseId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<void>(parameters, callback);
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-
-    /**
      * androidenterprise.enterprises.enroll
      * @desc Enrolls an enterprise with the calling EMM.
      * @alias androidenterprise.enterprises.enroll
@@ -3050,75 +3018,6 @@ export namespace androidenterprise_v1 {
         createAPIRequest<Schema$StoreLayout>(parameters, callback);
       } else {
         return createAPIRequest<Schema$StoreLayout>(parameters);
-      }
-    }
-
-
-    /**
-     * androidenterprise.enterprises.insert
-     * @desc Establishes the binding between the EMM and an enterprise. This is
-     * now deprecated; use enroll instead.
-     * @alias androidenterprise.enterprises.insert
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.token The token provided by the enterprise to register the EMM.
-     * @param {().Enterprise} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert(
-        params?: Params$Resource$Enterprises$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
-    insert(
-        params: Params$Resource$Enterprises$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
-    insert(
-        params: Params$Resource$Enterprises$Insert,
-        callback: BodyResponseCallback<Schema$Enterprise>): void;
-    insert(callback: BodyResponseCallback<Schema$Enterprise>): void;
-    insert(
-        paramsOrCallback?: Params$Resource$Enterprises$Insert|
-        BodyResponseCallback<Schema$Enterprise>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Enterprise>,
-        callback?: BodyResponseCallback<Schema$Enterprise>):
-        void|AxiosPromise<Schema$Enterprise> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Enterprises$Insert;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Enterprises$Insert;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/androidenterprise/v1/enterprises')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['token'],
-        pathParams: [],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Enterprise>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Enterprise>(parameters);
       }
     }
 
@@ -3686,17 +3585,6 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$AdministratorWebTokenSpec;
   }
-  export interface Params$Resource$Enterprises$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-  }
   export interface Params$Resource$Enterprises$Enroll {
     /**
      * Auth client or API Key for the request
@@ -3777,22 +3665,6 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
-  }
-  export interface Params$Resource$Enterprises$Insert {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The token provided by the enterprise to register the EMM.
-     */
-    token?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Enterprise;
   }
   export interface Params$Resource$Enterprises$List {
     /**

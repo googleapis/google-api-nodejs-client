@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -314,6 +313,12 @@ export namespace streetviewpublish_v1 {
    * Raw pose measurement for an entity.
    */
   export interface Schema$Pose {
+    /**
+     * The estimated horizontal accuracy of this pose in meters with 68% (one
+     * standard deviation) confidence. For more information, see:
+     * https://developer.android.com/reference/android/location/Location#getAccuracy()
+     */
+    accuracyMeters?: number;
     /**
      * Altitude of the pose in meters above WGS84 ellipsoid. NaN indicates an
      * unmeasured quantity.

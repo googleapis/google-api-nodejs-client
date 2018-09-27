@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -159,7 +158,7 @@ export namespace composer_v1beta1 {
      */
     environments?: Schema$Environment[];
     /**
-     * The page token used to query for the next page if one exists
+     * The page token used to query for the next page if one exists.
      */
     nextPageToken?: string;
   }
@@ -222,12 +221,13 @@ export namespace composer_v1beta1 {
      * Optional. The Compute Engine network to be used for machine
      * communications, specified as a [relative resource
      * name](/apis/design/resource_names#relative_resource_name). For example:
-     * &quot;projects/{projectId}/global/networks/{networkId}&quot;.  [Shared
-     * VPC](/vpc/docs/shared-vpc) is not currently supported. The network must
-     * belong to the environment&#39;s project. If unspecified, the
-     * &quot;default&quot; network ID in the environment&#39;s project is used.
-     * If a [Custom Subnet Network]((/vpc/docs/vpc#vpc_networks_and_subnets) is
-     * provided, `nodeConfig.subnetwork` must also be provided.
+     * &quot;projects/{projectId}/global/networks/{networkId}&quot;.  If
+     * unspecified, the default network in the environment&#39;s project is
+     * used. If a [Custom Subnet
+     * Network](/vpc/docs/vpc#vpc_networks_and_subnets) is provided,
+     * `nodeConfig.subnetwork` must also be provided. For [Shared
+     * VPC](/vpc/docs/shared-vpc) subnetwork requirements, see
+     * `nodeConfig.subnetwork`.
      */
     network?: string;
     /**
@@ -249,8 +249,10 @@ export namespace composer_v1beta1 {
      * name](/apis/design/resource_names#relative_resource_name). For example:
      * &quot;projects/{projectId}/regions/{regionId}/subnetworks/{subnetworkId}&quot;
      * If a subnetwork is provided, `nodeConfig.network` must also be provided,
-     * and the subnetwork must belong to the enclosing environment&#39;s project
-     * and location.
+     * and the subnetwork must belong to the same project as the network.  For
+     * Shared VPC, you must configure the subnetwork with secondary ranges named
+     * &lt;strong&gt;composer-pods&lt;/strong&gt; and
+     * &lt;strong&gt;composer-services&lt;/strong&gt; to support Alias IPs.
      */
     subnetwork?: string;
     /**

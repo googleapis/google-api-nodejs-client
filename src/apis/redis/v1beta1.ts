@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -31,7 +30,7 @@ export namespace redis_v1beta1 {
   }
 
   /**
-   * Cloud Memorystore for Redis API
+   * Google Cloud Memorystore for Redis API
    *
    * The Google Cloud Memorystore for Redis API is used for creating and
    * managing Redis instances on the Google Cloud Platform.
@@ -66,6 +65,14 @@ export namespace redis_v1beta1 {
     }
   }
 
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated
+   * empty messages in your APIs. A typical example is to use it as the request
+   * or the response type of an API method. For instance:      service Foo { rpc
+   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+   * representation for `Empty` is empty JSON object `{}`.
+   */
+  export interface Schema$Empty {}
   /**
    * Represents the metadata of the long-running operation.
    */
@@ -189,6 +196,14 @@ export namespace redis_v1beta1 {
      */
     name?: string;
     /**
+     * Output only. IAM identity used by import / export operations to transfer
+     * data to/from GCS.  Format is
+     * &quot;serviceAccount:&lt;service_account_email&gt;&quot;.  The value may
+     * change over time for a given instance so should be checked before each
+     * import/export operation.
+     */
+    persistenceIamIdentity?: string;
+    /**
      * Output only. The port number of the exposed Redis endpoint.
      */
     port?: number;
@@ -289,17 +304,19 @@ export namespace redis_v1beta1 {
      */
     labels?: any;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * Resource ID for the region. For example: &quot;us-east1&quot;.
      */
     locationId?: string;
     /**
-     * Service-specific metadata. For example the available capacity at the
-     * given location.
+     * Output only. The set of available zones in the location. The map is keyed
+     * by the lowercase ID of each zone, as defined by Compute Engine. These
+     * keys can be specified in `location_id` or `alternative_location_id`
+     * fields when creating a Redis instance.
      */
     metadata?: any;
     /**
-     * Resource name for the location, which may vary between implementations.
-     * For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Full resource name for the region. For example:
+     * &quot;projects/example-project/locations/us-east1&quot;.
      */
     name?: string;
   }
@@ -319,10 +336,15 @@ export namespace redis_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * {  `createTime`: The time the operation was created.  `endTime`: The time
+     * the operation finished running.  `target`: Server-defined resource path
+     * for the target of the operation.  `verb`: Name of the verb executed by
+     * the operation.  `statusDetail`: Human-readable status of the operation,
+     * if any.  `cancelRequested`: Identifies whether the user has requested
+     * cancellation of the operation. Operations that have successfully been
+     * cancelled have Operation.error value with a google.rpc.Status.code of 1,
+     * corresponding to `Code.CANCELLED`.  `apiVersion`: API version used to
+     * start the operation.  }
      */
     metadata?: any;
     /**
@@ -1079,6 +1101,148 @@ export namespace redis_v1beta1 {
 
 
     /**
+     * redis.projects.locations.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The
+     * server makes a best effort to cancel the operation, but success is not
+     * guaranteed.  If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
+     * or other methods to check whether the cancellation succeeded or whether
+     * the operation completed despite cancellation. On successful cancellation,
+     * the operation is not deleted; instead, it becomes an operation with an
+     * Operation.error value with a google.rpc.Status.code of 1, corresponding
+     * to `Code.CANCELLED`.
+     * @alias redis.projects.locations.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+        params?: Params$Resource$Projects$Locations$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    cancel(
+        params: Params$Resource$Projects$Locations$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Locations$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+name}:cancel')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * redis.projects.locations.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the
+     * client is no longer interested in the operation result. It does not
+     * cancel the operation. If the server doesn't support this method, it
+     * returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @alias redis.projects.locations.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Locations$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Projects$Locations$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
      * redis.projects.locations.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
      * this method to poll the operation result at intervals as recommended by
@@ -1221,6 +1385,28 @@ export namespace redis_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Operations$Get {
     /**
      * Auth client or API Key for the request

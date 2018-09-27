@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -490,10 +489,6 @@ export namespace dns_v1beta2 {
    * Limits associated with a Project.
    */
   export interface Schema$Quota {
-    /**
-     * Whether a black hole zone should suppress system zones for this project.
-     */
-    blackHoleHidesSystemZones?: boolean;
     /**
      * Maximum allowed number of DnsKeys per ManagedZone.
      */

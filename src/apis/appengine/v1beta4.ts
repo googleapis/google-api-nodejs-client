@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -166,10 +165,12 @@ export namespace appengine_v1beta4 {
    */
   export interface Schema$AutomaticScaling {
     /**
-     * Amount of time that the Autoscaler
-     * (https://cloud.google.com/compute/docs/autoscaler/) should wait between
-     * changes to the number of virtual machines. Only applicable for VM
-     * runtimes.
+     * The time period that the Autoscaler
+     * (https://cloud.google.com/compute/docs/autoscaler/) should wait before it
+     * starts collecting information from a new instance. This prevents the
+     * autoscaler from collecting information when the instance is initializing,
+     * during which the collected usage would not be reliable. Only applicable
+     * in the App Engine flexible environment.
      */
     coolDownPeriod?: string;
     /**

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -102,8 +101,7 @@ export namespace adexperiencereport_v1 {
     underReview?: boolean;
   }
   /**
-   * Response message for GetSiteSummary. Do not confuse with same message in
-   * google.chrome.abusiveexperiencereport.v1
+   * Response message for GetSiteSummary.
    */
   export interface Schema$SiteSummaryResponse {
     /**

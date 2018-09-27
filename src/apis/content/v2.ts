@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -60,6 +59,8 @@ export namespace content_v2 {
     liasettings: Resource$Liasettings;
     orderinvoices: Resource$Orderinvoices;
     orderpayments: Resource$Orderpayments;
+    orderreports: Resource$Orderreports;
+    orderreturns: Resource$Orderreturns;
     orders: Resource$Orders;
     pos: Resource$Pos;
     products: Resource$Products;
@@ -80,6 +81,8 @@ export namespace content_v2 {
       this.liasettings = new Resource$Liasettings(this);
       this.orderinvoices = new Resource$Orderinvoices(this);
       this.orderpayments = new Resource$Orderpayments(this);
+      this.orderreports = new Resource$Orderreports(this);
+      this.orderreturns = new Resource$Orderreturns(this);
       this.orders = new Resource$Orders(this);
       this.pos = new Resource$Pos(this);
       this.products = new Resource$Products(this);
@@ -109,8 +112,12 @@ export namespace content_v2 {
      */
     adwordsLinks?: Schema$AccountAdwordsLink[];
     /**
+     * The business information of the account.
+     */
+    businessInformation?: Schema$AccountBusinessInformation;
+    /**
      * The GMB account which is linked or in the process of being linked with
-     * the Merchant Center accounnt.
+     * the Merchant Center account.
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
     /**
@@ -153,6 +160,31 @@ export namespace content_v2 {
      */
     youtubeChannelLinks?: Schema$AccountYouTubeChannelLink[];
   }
+  export interface Schema$AccountAddress {
+    /**
+     * CLDR country code (e.g. &quot;US&quot;).
+     */
+    country?: string;
+    /**
+     * City, town or commune. May also include dependent localities or
+     * sublocalities (e.g. neighborhoods or suburbs).
+     */
+    locality?: string;
+    /**
+     * Postal code or ZIP (e.g. &quot;94043&quot;).
+     */
+    postalCode?: string;
+    /**
+     * Top-level administrative subdivision of the country. For example, a state
+     * like California (&quot;CA&quot;) or a province like Quebec
+     * (&quot;QC&quot;).
+     */
+    region?: string;
+    /**
+     * Street-level part of the address.
+     */
+    streetAddress?: string;
+  }
   export interface Schema$AccountAdwordsLink {
     /**
      * Customer ID of the AdWords account.
@@ -171,6 +203,34 @@ export namespace content_v2 {
      * request if it was pending.
      */
     status?: string;
+  }
+  export interface Schema$AccountBusinessInformation {
+    /**
+     * The address of the business.
+     */
+    address?: Schema$AccountAddress;
+    /**
+     * The customer service information of the business.
+     */
+    customerService?: Schema$AccountCustomerService;
+    /**
+     * The phone number of the business.
+     */
+    phoneNumber?: string;
+  }
+  export interface Schema$AccountCustomerService {
+    /**
+     * Customer service email.
+     */
+    email?: string;
+    /**
+     * Customer service phone number.
+     */
+    phoneNumber?: string;
+    /**
+     * Customer service URL.
+     */
+    url?: string;
   }
   export interface Schema$AccountGoogleMyBusinessLink {
     /**
@@ -265,7 +325,8 @@ export namespace content_v2 {
   }
   export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
     /**
-     * Action to perform for this link.
+     * Action to perform for this link. The &quot;request&quot; action is only
+     * available to select merchants.
      */
     action?: string;
     /**
@@ -311,13 +372,14 @@ export namespace content_v2 {
      */
     kind?: string;
     /**
-     * The status of the updated link. Only defined if the method is link.
+     * Deprecated. This field is never set.
      */
     linkStatus?: string;
   }
   export interface Schema$AccountsLinkRequest {
     /**
-     * Action to perform for this link.
+     * Action to perform for this link. The &quot;request&quot; action is only
+     * available to select merchants.
      */
     action?: string;
     /**
@@ -370,6 +432,11 @@ export namespace content_v2 {
      * &quot;content#accountStatus&quot;.
      */
     kind?: string;
+    /**
+     * List of product-related data by channel, destination, and country. Data
+     * in this field may be delayed by up to 30 minutes.
+     */
+    products?: Schema$AccountStatusProducts[];
     /**
      * Whether the account&#39;s website is claimed or not.
      */
@@ -545,6 +612,80 @@ export namespace content_v2 {
      * The actual value on the landing page.
      */
     valueOnLandingPage?: string;
+  }
+  export interface Schema$AccountStatusItemLevelIssue {
+    /**
+     * The attribute&#39;s name, if the issue is caused by a single attribute.
+     */
+    attributeName?: string;
+    /**
+     * The error code of the issue.
+     */
+    code?: string;
+    /**
+     * A short issue description in English.
+     */
+    description?: string;
+    /**
+     * A detailed issue description in English.
+     */
+    detail?: string;
+    /**
+     * The URL of a web page to help with resolving this issue.
+     */
+    documentation?: string;
+    /**
+     * Number of items with this issue.
+     */
+    numItems?: string;
+    /**
+     * Whether the issue can be resolved by the merchant.
+     */
+    resolution?: string;
+    /**
+     * How this issue affects serving of the offer.
+     */
+    servability?: string;
+  }
+  export interface Schema$AccountStatusProducts {
+    /**
+     * The channel the data applies to.
+     */
+    channel?: string;
+    /**
+     * The country the data applies to.
+     */
+    country?: string;
+    /**
+     * The destination the data applies to.
+     */
+    destination?: string;
+    /**
+     * List of item-level issues.
+     */
+    itemLevelIssues?: Schema$AccountStatusItemLevelIssue[];
+    /**
+     * Aggregated product statistics.
+     */
+    statistics?: Schema$AccountStatusStatistics;
+  }
+  export interface Schema$AccountStatusStatistics {
+    /**
+     * Number of active offers.
+     */
+    active?: string;
+    /**
+     * Number of disapproved offers.
+     */
+    disapproved?: string;
+    /**
+     * Number of expiring offers.
+     */
+    expiring?: string;
+    /**
+     * Number of pending offers.
+     */
+    pending?: string;
   }
   /**
    * The tax settings of a merchant account.
@@ -756,6 +897,10 @@ export namespace content_v2 {
      * Contains at least one service.
      */
     services?: string[];
+  }
+  export interface Schema$CustomerReturnReason {
+    description?: string;
+    reasonCode?: string;
   }
   export interface Schema$CutoffTime {
     /**
@@ -1432,7 +1577,7 @@ export namespace content_v2 {
      */
     salePriceEffectiveDate?: string;
     /**
-     * The quantity of the product that is reserved for sell-on-google ads.
+     * The quantity of the product that is available for selling on Google.
      * Supported only for online products.
      */
     sellOnGoogleQuantity?: number;
@@ -1555,7 +1700,7 @@ export namespace content_v2 {
      */
     salePriceEffectiveDate?: string;
     /**
-     * The quantity of the product that is reserved for sell-on-google ads.
+     * The quantity of the product that is available for selling on Google.
      * Supported only for online products.
      */
     sellOnGoogleQuantity?: number;
@@ -1573,22 +1718,24 @@ export namespace content_v2 {
      */
     additionalChargeSummaries?: Schema$InvoiceSummaryAdditionalChargeSummary[];
     /**
-     * [required] Customer balance on this invoice. A positive amount means the
-     * customer is paying, a negative one means the customer is receiving money.
+     * [required] Customer balance on this invoice. A negative amount means the
+     * customer is paying, a positive one means the customer is receiving money.
      * Note: the sum of merchant_balance, customer_balance and google_balance
-     * must always be zero.
+     * must always be zero.  Furthermore the absolute value of this amount is
+     * expected to be equal to the sum of product amount and additional charges,
+     * minus promotions.
      */
     customerBalance?: Schema$Amount;
     /**
-     * [required] Google balance on this invoice. A positive amount means Google
-     * is paying, a negative one means Google is receiving money. Note: the sum
+     * [required] Google balance on this invoice. A negative amount means Google
+     * is paying, a positive one means Google is receiving money. Note: the sum
      * of merchant_balance, customer_balance and google_balance must always be
      * zero.
      */
     googleBalance?: Schema$Amount;
     /**
-     * [required] Merchant balance on this invoice. A positive amount means the
-     * merchant is paying, a negative one means the merchant is receiving money.
+     * [required] Merchant balance on this invoice. A negative amount means the
+     * merchant is paying, a positive one means the merchant is receiving money.
      * Note: the sum of merchant_balance, customer_balance and google_balance
      * must always be zero.
      */
@@ -1885,6 +2032,22 @@ export namespace content_v2 {
      */
     ratio?: number;
   }
+  export interface Schema$MerchantOrderReturn {
+    creationDate?: string;
+    merchantOrderId?: string;
+    orderId?: string;
+    orderReturnId?: string;
+    returnItems?: Schema$MerchantOrderReturnItem[];
+    returnShipments?: Schema$ReturnShipment[];
+  }
+  export interface Schema$MerchantOrderReturnItem {
+    customerReturnReason?: Schema$CustomerReturnReason;
+    itemId?: string;
+    merchantReturnReason?: Schema$RefundReason;
+    product?: Schema$OrderLineItemProduct;
+    returnShipmentIds?: string[];
+    state?: string;
+  }
   export interface Schema$Order {
     /**
      * Whether the order was acknowledged.
@@ -1998,8 +2161,9 @@ export namespace content_v2 {
      */
     recipientName?: string;
     /**
-     * Top-level administrative subdivision of the country (e.g.
-     * &quot;CA&quot;).
+     * Top-level administrative subdivision of the country. For example, a state
+     * like California (&quot;CA&quot;) or a province like Quebec
+     * (&quot;QC&quot;).
      */
     region?: string;
     /**
@@ -2034,8 +2198,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderCustomer {
     /**
-     * Email address that should be used for order related communications. In
-     * certain cases this might not be a real users email, but a proxy email.
+     * Deprecated.
      */
     email?: string;
     /**
@@ -2435,9 +2598,13 @@ export namespace content_v2 {
      */
     chargeState?: string;
     /**
-     * Invoice ID from orderInvoice service that corresponds to the charge.
+     * Deprecated. Please use invoiceIds instead.
      */
     invoiceId?: string;
+    /**
+     * Invoice IDs from the orderinvoices service that correspond to the charge.
+     */
+    invoiceIds?: string[];
   }
   export interface Schema$OrderpaymentsNotifyChargeResponse {
     /**
@@ -2452,9 +2619,13 @@ export namespace content_v2 {
   }
   export interface Schema$OrderpaymentsNotifyRefundRequest {
     /**
-     * Invoice ID from orderInvoice service that corresponds to the charge.
+     * Deprecated. Please use invoiceIds instead.
      */
     invoiceId?: string;
+    /**
+     * Invoice IDs from the orderinvoices service that correspond to the refund.
+     */
+    invoiceIds?: string[];
     /**
      * Whether refund was successful.
      */
@@ -2553,6 +2724,96 @@ export namespace content_v2 {
      */
     reasonText?: string;
   }
+  export interface Schema$OrderReportDisbursement {
+    /**
+     * The disbursement amount.
+     */
+    disbursementAmount?: Schema$Price;
+    /**
+     * The disbursement date, in ISO 8601 format.
+     */
+    disbursementCreationDate?: string;
+    /**
+     * The date the disbursement was initiated, in ISO 8601 format.
+     */
+    disbursementDate?: string;
+    /**
+     * The ID of the disbursement.
+     */
+    disbursementId?: string;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+  }
+  export interface Schema$OrderreportsListDisbursementsResponse {
+    /**
+     * The list of disbursements.
+     */
+    disbursements?: Schema$OrderReportDisbursement[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreportsListDisbursementsResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of disbursements.
+     */
+    nextPageToken?: string;
+  }
+  export interface Schema$OrderreportsListTransactionsResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreportsListTransactionsResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of transactions.
+     */
+    nextPageToken?: string;
+    /**
+     * The list of transactions.
+     */
+    transactions?: Schema$OrderReportTransaction[];
+  }
+  export interface Schema$OrderReportTransaction {
+    /**
+     * The disbursement amount.
+     */
+    disbursementAmount?: Schema$Price;
+    /**
+     * The date the disbursement was created, in ISO 8601 format.
+     */
+    disbursementCreationDate?: string;
+    /**
+     * The date the disbursement was initiated, in ISO 8601 format.
+     */
+    disbursementDate?: string;
+    /**
+     * The ID of the disbursement.
+     */
+    disbursementId?: string;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+    /**
+     * Merchant-provided id of the order.
+     */
+    merchantOrderId?: string;
+    /**
+     * The id of the order.
+     */
+    orderId?: string;
+    /**
+     * Total amount for the items.
+     */
+    productAmount?: Schema$Amount;
+    /**
+     * The date of the transaction, in ISO 8601 format.
+     */
+    transactionDate?: string;
+  }
   export interface Schema$OrderReturn {
     /**
      * The actor that created the refund.
@@ -2574,6 +2835,18 @@ export namespace content_v2 {
      * The explanation of the reason.
      */
     reasonText?: string;
+  }
+  export interface Schema$OrderreturnsListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreturnsListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of returns.
+     */
+    nextPageToken?: string;
+    resources?: Schema$MerchantOrderReturn[];
   }
   export interface Schema$OrdersAcknowledgeRequest {
     /**
@@ -2601,9 +2874,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCancelLineItemRequest {
     /**
-     * Amount to refund for the cancelation. Optional. If not set, Google will
-     * calculate the default based on the price and tax of the items involved.
-     * The amount must not be larger than the net amount left on the order.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -2679,7 +2950,27 @@ export namespace content_v2 {
      */
     kind?: string;
   }
+  export interface Schema$OrdersCancelTestOrderByCustomerRequest {
+    /**
+     * The reason for the cancellation.
+     */
+    reason?: string;
+  }
+  export interface Schema$OrdersCancelTestOrderByCustomerResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
+     */
+    kind?: string;
+  }
   export interface Schema$OrdersCreateTestOrderRequest {
+    /**
+     * The  CLDR territory code of the country of the test order to create.
+     * Affects the currency and addresses of orders created via template_name,
+     * or the addresses of orders created via test_order.  Acceptable values
+     * are:   - &quot;US&quot;  - &quot;FR&quot;  Defaults to US.
+     */
+    country?: string;
     /**
      * The test order template to use. Specify as an alternative to testOrder as
      * a shortcut for retrieving a template and then creating an order using
@@ -2701,6 +2992,23 @@ export namespace content_v2 {
      * The ID of the newly created test order.
      */
     orderId?: string;
+  }
+  export interface Schema$OrdersCreateTestReturnRequest {
+    /**
+     * Returned items.
+     */
+    items?: Schema$OrdersCustomBatchRequestEntryCreateTestReturnReturnItem[];
+  }
+  export interface Schema$OrdersCreateTestReturnResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#ordersCreateTestReturnResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The ID of the newly created test order return.
+     */
+    returnId?: string;
   }
   export interface Schema$OrdersCustomBatchRequest {
     /**
@@ -2798,9 +3106,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryCancelLineItem {
     /**
-     * Amount to refund for the cancelation. Optional. If not set, Google will
-     * calculate the default based on the price and tax of the items involved.
-     * The amount must not be larger than the net amount left on the order.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -2836,6 +3142,16 @@ export namespace content_v2 {
      */
     reasonText?: string;
   }
+  export interface Schema$OrdersCustomBatchRequestEntryCreateTestReturnReturnItem {
+    /**
+     * The ID of the line item to return.
+     */
+    lineItemId?: string;
+    /**
+     * Quantity that is returned.
+     */
+    quantity?: number;
+  }
   export interface Schema$OrdersCustomBatchRequestEntryInStoreRefundLineItem {
     /**
      * The amount that is refunded. Required.
@@ -2870,7 +3186,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryRefund {
     /**
-     * The amount that is refunded.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -2941,8 +3257,9 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryReturnRefundLineItem {
     /**
-     * The amount that is refunded. Optional, but if filled then both
-     * amountPretax and amountTax must be set.
+     * The amount that is refunded. If omitted, refundless return is assumed
+     * (same as calling returnLineItem method). Optional, but if filled then
+     * both amountPretax and amountTax must be set.
      */
     amountPretax?: Schema$Price;
     /**
@@ -3100,8 +3417,9 @@ export namespace content_v2 {
      */
     errors?: Schema$Errors;
     /**
-     * The status of the execution. Only defined if the method is not get or
-     * getByMerchantOrderId and if the request was successful.
+     * The status of the execution. Only defined if   - the request was
+     * successful; and  - the method is not get, getByMerchantOrderId, or one of
+     * the test methods.
      */
     executionStatus?: string;
     /**
@@ -3251,7 +3569,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersRefundRequest {
     /**
-     * The amount that is refunded.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -3367,8 +3685,9 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersReturnRefundLineItemRequest {
     /**
-     * The amount that is refunded. Optional, but if filled then both
-     * amountPretax and amountTax must be set.
+     * The amount that is refunded. If omitted, refundless return is assumed
+     * (same as calling returnLineItem method). Optional, but if filled then
+     * both amountPretax and amountTax must be set.
      */
     amountPretax?: Schema$Price;
     /**
@@ -3838,7 +4157,8 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items sold.
+     * The relative change of the available quantity. Negative for items
+     * returned.
      */
     quantity?: string;
     /**
@@ -3877,7 +4197,8 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items sold.
+     * The relative change of the available quantity. Negative for items
+     * returned.
      */
     quantity?: string;
     /**
@@ -3921,7 +4242,8 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items sold.
+     * The relative change of the available quantity. Negative for items
+     * returned.
      */
     quantity?: string;
     /**
@@ -4039,7 +4361,7 @@ export namespace content_v2 {
      */
     ageGroup?: string;
     /**
-     * Specifies the intended aspects for the product.
+     * Deprecated. Do not use.
      */
     aspects?: Schema$ProductAspect[];
     /**
@@ -4243,7 +4565,7 @@ export namespace content_v2 {
      */
     offerId?: string;
     /**
-     * Whether an item is available for purchase only online.
+     * Deprecated. Whether an item is available for purchase only online.
      */
     onlineOnly?: boolean;
     /**
@@ -4272,7 +4594,8 @@ export namespace content_v2 {
      */
     salePriceEffectiveDate?: string;
     /**
-     * The quantity of the product that is reserved for sell-on-google ads.
+     * The quantity of the product that is available for selling on Google.
+     * Supported only for online products.
      */
     sellOnGoogleQuantity?: string;
     /**
@@ -4313,6 +4636,10 @@ export namespace content_v2 {
      */
     sizeType?: string;
     /**
+     * The source of the offer, i.e., how the offer was created.
+     */
+    source?: string;
+    /**
      * The CLDR territory code for the item.
      */
     targetCountry?: string;
@@ -4333,7 +4660,8 @@ export namespace content_v2 {
      */
     unitPricingMeasure?: Schema$ProductUnitPricingMeasure;
     /**
-     * The read-only list of intended destinations which passed validation.
+     * Deprecated. The read-only list of intended destinations which passed
+     * validation.
      */
     validatedDestinations?: string[];
     /**
@@ -4367,7 +4695,7 @@ export namespace content_v2 {
     type?: string;
     /**
      * Free-form unit of the attribute. Unit can only be used for values of type
-     * INT or FLOAT.
+     * int, float, or price.
      */
     unit?: string;
     /**
@@ -4841,6 +5169,16 @@ export namespace content_v2 {
      */
     subtables?: Schema$Table[];
   }
+  export interface Schema$RefundReason {
+    description?: string;
+    reasonCode?: string;
+  }
+  export interface Schema$ReturnShipment {
+    creationDate?: string;
+    returnMethodType?: string;
+    shipmentId?: string;
+    shipmentTrackingInfos?: Schema$ShipmentTrackingInfo[];
+  }
   export interface Schema$Row {
     /**
      * The list of cells that constitute the row. Must have the same length as
@@ -4923,6 +5261,10 @@ export namespace content_v2 {
      * [required] Invoice details for a single unit.
      */
     unitInvoice?: Schema$UnitInvoice;
+  }
+  export interface Schema$ShipmentTrackingInfo {
+    carrier?: string;
+    trackingNumber?: string;
   }
   /**
    * The merchant account&#39;s shipping settings.
@@ -5110,7 +5452,7 @@ export namespace content_v2 {
   }
   export interface Schema$TestOrderCustomer {
     /**
-     * Email address of the customer.
+     * Deprecated.
      */
     email?: string;
     /**
@@ -9415,7 +9757,10 @@ export namespace content_v2 {
     /**
      * content.orderinvoices.createrefundinvoice
      * @desc Creates a refund invoice for one or more shipment groups, and
-     * triggers a refund for non-facilitated payment orders.
+     * triggers a refund for non-facilitated payment orders. This can only be
+     * used for line items that have previously been charged using
+     * createChargeInvoice. All amounts (except for the summary) are incremental
+     * with respect to the previous invoice.
      * @alias content.orderinvoices.createrefundinvoice
      * @memberOf! ()
      *
@@ -9959,6 +10304,458 @@ export namespace content_v2 {
   }
 
 
+  export class Resource$Orderreports {
+    root: Content;
+    constructor(root: Content) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * content.orderreports.listdisbursements
+     * @desc Retrieves a report for disbursements from your Merchant Center
+     * account.
+     * @alias content.orderreports.listdisbursements
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.disbursementEndDate The last date which disbursements occurred. In ISO 8601 format. Default: current date.
+     * @param {string=} params.disbursementStartDate The first date which disbursements occurred. In ISO 8601 format.
+     * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listdisbursements(
+        params?: Params$Resource$Orderreports$Listdisbursements,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrderreportsListDisbursementsResponse>;
+    listdisbursements(
+        params: Params$Resource$Orderreports$Listdisbursements,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        params: Params$Resource$Orderreports$Listdisbursements,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        paramsOrCallback?: Params$Resource$Orderreports$Listdisbursements|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void|AxiosPromise<Schema$OrderreportsListDisbursementsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orderreports$Listdisbursements;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreports$Listdisbursements;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/orderreports/disbursements')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * content.orderreports.listtransactions
+     * @desc Retrieves a list of transactions for an disbursement from your
+     * Merchant Center account.
+     * @alias content.orderreports.listtransactions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disbursementId The Google-provided ID of the disbursement (found in Wallet).
+     * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {string=} params.transactionEndDate The last date in which transaction occurred. In ISO 8601 format. Default: current date.
+     * @param {string=} params.transactionStartDate The first date in which transaction occurred. In ISO 8601 format.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listtransactions(
+        params?: Params$Resource$Orderreports$Listtransactions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrderreportsListTransactionsResponse>;
+    listtransactions(
+        params: Params$Resource$Orderreports$Listtransactions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        params: Params$Resource$Orderreports$Listtransactions,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        paramsOrCallback?: Params$Resource$Orderreports$Listtransactions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void|AxiosPromise<Schema$OrderreportsListTransactionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orderreports$Listtransactions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreports$Listtransactions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orderreports/disbursements/{disbursementId}/transactions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'disbursementId'],
+        pathParams: ['disbursementId', 'merchantId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Orderreports$Listdisbursements {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The last date which disbursements occurred. In ISO 8601 format. Default:
+     * current date.
+     */
+    disbursementEndDate?: string;
+    /**
+     * The first date which disbursements occurred. In ISO 8601 format.
+     */
+    disbursementStartDate?: string;
+    /**
+     * The maximum number of disbursements to return in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Orderreports$Listtransactions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google-provided ID of the disbursement (found in Wallet).
+     */
+    disbursementId?: string;
+    /**
+     * The maximum number of disbursements to return in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * The last date in which transaction occurred. In ISO 8601 format. Default:
+     * current date.
+     */
+    transactionEndDate?: string;
+    /**
+     * The first date in which transaction occurred. In ISO 8601 format.
+     */
+    transactionStartDate?: string;
+  }
+
+
+  export class Resource$Orderreturns {
+    root: Content;
+    constructor(root: Content) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * content.orderreturns.get
+     * @desc Retrieves an order return from your Merchant Center account.
+     * @alias content.orderreturns.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.returnId Merchant order return ID generated by Google.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Orderreturns$Get,
+        options?: MethodOptions): AxiosPromise<Schema$MerchantOrderReturn>;
+    get(params: Params$Resource$Orderreturns$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MerchantOrderReturn>,
+        callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
+    get(params: Params$Resource$Orderreturns$Get,
+        callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
+    get(callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
+    get(paramsOrCallback?: Params$Resource$Orderreturns$Get|
+        BodyResponseCallback<Schema$MerchantOrderReturn>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MerchantOrderReturn>,
+        callback?: BodyResponseCallback<Schema$MerchantOrderReturn>):
+        void|AxiosPromise<Schema$MerchantOrderReturn> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Orderreturns$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreturns$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/content/v2/{merchantId}/orderreturns/{returnId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'returnId'],
+        pathParams: ['merchantId', 'returnId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$MerchantOrderReturn>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MerchantOrderReturn>(parameters);
+      }
+    }
+
+
+    /**
+     * content.orderreturns.list
+     * @desc Lists order returns in your Merchant Center account.
+     * @alias content.orderreturns.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.createdEndDate Obtains order returns created before this date (inclusively), in ISO 8601 format.
+     * @param {string=} params.createdStartDate Obtains order returns created after this date (inclusively), in ISO 8601 format.
+     * @param {integer=} params.maxResults The maximum number of order returns to return in the response, used for paging. The default value is 25 returns per page, and the maximum allowed value is 250 returns per page.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string=} params.orderBy Return the results in the specified order.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Orderreturns$List, options?: MethodOptions):
+        AxiosPromise<Schema$OrderreturnsListResponse>;
+    list(
+        params: Params$Resource$Orderreturns$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreturnsListResponse>,
+        callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+    list(
+        params: Params$Resource$Orderreturns$List,
+        callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Orderreturns$List|
+        BodyResponseCallback<Schema$OrderreturnsListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreturnsListResponse>,
+        callback?: BodyResponseCallback<Schema$OrderreturnsListResponse>):
+        void|AxiosPromise<Schema$OrderreturnsListResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Orderreturns$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreturns$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2/{merchantId}/orderreturns')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreturnsListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreturnsListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Orderreturns$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * Merchant order return ID generated by Google.
+     */
+    returnId?: string;
+  }
+  export interface Params$Resource$Orderreturns$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Obtains order returns created before this date (inclusively), in ISO 8601
+     * format.
+     */
+    createdEndDate?: string;
+    /**
+     * Obtains order returns created after this date (inclusively), in ISO 8601
+     * format.
+     */
+    createdStartDate?: string;
+    /**
+     * The maximum number of order returns to return in the response, used for
+     * paging. The default value is 25 returns per page, and the maximum allowed
+     * value is 250 returns per page.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * Return the results in the specified order.
+     */
+    orderBy?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
+
   export class Resource$Orders {
     root: Content;
     constructor(root: Content) {
@@ -10270,6 +11067,87 @@ export namespace content_v2 {
 
 
     /**
+     * content.orders.canceltestorderbycustomer
+     * @desc Sandbox only. Cancels a test order for customer-initiated
+     * cancellation.
+     * @alias content.orders.canceltestorderbycustomer
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the test order to cancel.
+     * @param {().OrdersCancelTestOrderByCustomerRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    canceltestorderbycustomer(
+        params?: Params$Resource$Orders$Canceltestorderbycustomer,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(callback: BodyResponseCallback<
+                              Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void;
+    canceltestorderbycustomer(
+        paramsOrCallback?: Params$Resource$Orders$Canceltestorderbycustomer|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback?: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void|AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orders$Canceltestorderbycustomer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Canceltestorderbycustomer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/testorders/{orderId}/cancelByCustomer')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * content.orders.createtestorder
      * @desc Sandbox only. Creates a test order.
      * @alias content.orders.createtestorder
@@ -10340,6 +11218,84 @@ export namespace content_v2 {
             parameters, callback);
       } else {
         return createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * content.orders.createtestreturn
+     * @desc Sandbox only. Creates a test return.
+     * @alias content.orders.createtestreturn
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {().OrdersCreateTestReturnRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    createtestreturn(
+        params?: Params$Resource$Orders$Createtestreturn,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrdersCreateTestReturnResponse>;
+    createtestreturn(
+        params: Params$Resource$Orders$Createtestreturn,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void;
+    createtestreturn(
+        params: Params$Resource$Orders$Createtestreturn,
+        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void;
+    createtestreturn(
+        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void;
+    createtestreturn(
+        paramsOrCallback?: Params$Resource$Orders$Createtestreturn|
+        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+        callback?: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void|AxiosPromise<Schema$OrdersCreateTestReturnResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Orders$Createtestreturn;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Createtestreturn;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/orders/{orderId}/testreturn')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
             parameters);
       }
     }
@@ -10567,6 +11523,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.country The country of the template to retrieve. Defaults to US.
      * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
      * @param {string} params.templateName The name of the template to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10644,7 +11601,9 @@ export namespace content_v2 {
 
     /**
      * content.orders.instorerefundlineitem
-     * @desc Notifies that item return and refund was handled directly in store.
+     * @desc Notifies that item return and refund was handled directly by
+     * merchant outside of Google payments processing (e.g. cash refund done in
+     * store).
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *
@@ -10799,7 +11758,7 @@ export namespace content_v2 {
 
     /**
      * content.orders.refund
-     * @desc Refund a portion of the order, up to the full amount paid.
+     * @desc Deprecated, please use returnRefundLineItem instead.
      * @alias content.orders.refund
      * @memberOf! ()
      *
@@ -11591,6 +12550,27 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCancelLineItemRequest;
   }
+  export interface Params$Resource$Orders$Canceltestorderbycustomer {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The ID of the test order to cancel.
+     */
+    orderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCancelTestOrderByCustomerRequest;
+  }
   export interface Params$Resource$Orders$Createtestorder {
     /**
      * Auth client or API Key for the request
@@ -11607,6 +12587,27 @@ export namespace content_v2 {
      * Request body metadata
      */
     requestBody?: Schema$OrdersCreateTestOrderRequest;
+  }
+  export interface Params$Resource$Orders$Createtestreturn {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The ID of the order.
+     */
+    orderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCreateTestReturnRequest;
   }
   export interface Params$Resource$Orders$Custombatch {
     /**
@@ -11658,6 +12659,10 @@ export namespace content_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The country of the template to retrieve. Defaults to US.
+     */
+    country?: string;
     /**
      * The ID of the account that should manage the order. This cannot be a
      * multi-client account.

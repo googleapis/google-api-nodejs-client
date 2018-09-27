@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -481,23 +480,34 @@ export namespace classroom_v1 {
     workType?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
+   */
+  export interface Schema$CourseWorkChangesInfo {
+    /**
+     * The `course_id` of the course to subscribe to work changes for.
+     */
+    courseId?: string;
+  }
+  /**
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -562,6 +572,11 @@ export namespace classroom_v1 {
      * This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`.
      */
     courseRosterChangesInfo?: Schema$CourseRosterChangesInfo;
+    /**
+     * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
+     * This field must be specified if `feed_type` is `COURSE_WORK_CHANGES`.
+     */
+    courseWorkChangesInfo?: Schema$CourseWorkChangesInfo;
     /**
      * The type of feed.
      */

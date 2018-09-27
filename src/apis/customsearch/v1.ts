@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -180,7 +179,7 @@ export namespace customsearch_v1 {
      * @param {string=} params.hl Sets the user interface language.
      * @param {string=} params.hq Appends the extra query terms to the query.
      * @param {string=} params.imgColorType Returns black and white, grayscale, or color images: mono, gray, and color.
-     * @param {string=} params.imgDominantColor Returns images of a specific dominant color: yellow, green, teal, blue, purple, pink, white, gray, black and brown.
+     * @param {string=} params.imgDominantColor Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
      * @param {string=} params.imgSize Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
      * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
      * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL
@@ -319,8 +318,8 @@ export namespace customsearch_v1 {
      */
     imgColorType?: string;
     /**
-     * Returns images of a specific dominant color: yellow, green, teal, blue,
-     * purple, pink, white, gray, black and brown.
+     * Returns images of a specific dominant color: red, orange, yellow, green,
+     * teal, blue, purple, pink, white, gray, black and brown.
      */
     imgDominantColor?: string;
     /**
@@ -413,9 +412,9 @@ export namespace customsearch_v1 {
 
     /**
      * search.cse.siterestrict.list
-     * @desc (Closed Beta API) Returns metadata about the search performed,
-     * metadata about the custom search engine used for the search, and the
-     * search results only for site-restrict cses.
+     * @desc Returns metadata about the search performed, metadata about the
+     * custom search engine used for the search, and the search results. Uses a
+     * small set of url patterns.
      * @alias search.cse.siterestrict.list
      * @memberOf! ()
      *
@@ -434,7 +433,7 @@ export namespace customsearch_v1 {
      * @param {string=} params.hl Sets the user interface language.
      * @param {string=} params.hq Appends the extra query terms to the query.
      * @param {string=} params.imgColorType Returns black and white, grayscale, or color images: mono, gray, and color.
-     * @param {string=} params.imgDominantColor Returns images of a specific dominant color: yellow, green, teal, blue, purple, pink, white, gray, black and brown.
+     * @param {string=} params.imgDominantColor Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
      * @param {string=} params.imgSize Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
      * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
      * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL
@@ -576,8 +575,8 @@ export namespace customsearch_v1 {
      */
     imgColorType?: string;
     /**
-     * Returns images of a specific dominant color: yellow, green, teal, blue,
-     * purple, pink, white, gray, black and brown.
+     * Returns images of a specific dominant color: red, orange, yellow, green,
+     * teal, blue, purple, pink, white, gray, black and brown.
      */
     imgDominantColor?: string;
     /**

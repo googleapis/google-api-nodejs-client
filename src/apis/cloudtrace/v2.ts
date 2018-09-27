@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -35,7 +34,9 @@ export namespace cloudtrace_v2 {
    *
    * Sends application trace data to Stackdriver Trace for viewing. Trace data
    * is collected for all App Engine applications by default. Trace data from
-   * other applications can be provided using this API.
+   * other applications can be provided using this API. This library is used to
+   * interact with the Trace API directly. If you are looking to instrument your
+   * application for Stackdriver Trace, we recommend using OpenCensus.
    *
    * @example
    * const {google} = require('googleapis');
@@ -237,12 +238,11 @@ export namespace cloudtrace_v2 {
     childSpanCount?: number;
     /**
      * A description of the span&#39;s operation (up to 128 bytes). Stackdriver
-     * Trace displays the description in the {% dynamic print
-     * site_values.console_name %}. For example, the display name can be a
-     * qualified method name or a file name and a line number where the
-     * operation is called. A best practice is to use the same display name
-     * within an application and at the same call point. This makes it easier to
-     * correlate spans in different traces.
+     * Trace displays the description in the Google Cloud Platform Console. For
+     * example, the display name can be a qualified method name or a file name
+     * and a line number where the operation is called. A best practice is to
+     * use the same display name within an application and at the same call
+     * point. This makes it easier to correlate spans in different traces.
      */
     displayName?: Schema$TruncatableString;
     /**

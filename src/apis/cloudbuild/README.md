@@ -2,7 +2,7 @@
 
 # @google/cloudbuild
 
-> Builds container images in the cloud.
+> Creates and manages builds on Google Cloud Platform.
 
 ## Installation
 

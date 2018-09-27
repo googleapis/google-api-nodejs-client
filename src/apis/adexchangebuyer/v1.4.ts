@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -339,6 +338,18 @@ export namespace adexchangebuyer_v1_4 {
      * field should not be set in requests.
      */
     corrections?: any[];
+    /**
+     * Creative status identity type that the creative item applies to. Ad
+     * Exchange real-time bidding is migrating to the sizeless creative
+     * verification. Originally, Ad Exchange assigned creative verification
+     * status to a unique combination of a buyer creative ID and creative
+     * dimensions. Post-migration, a single verification status will be assigned
+     * at the buyer creative ID level. This field allows to distinguish whether
+     * a given creative status applies to a unique combination of a buyer
+     * creative ID and creative dimensions, or to a buyer creative ID as a
+     * whole.
+     */
+    creativeStatusIdentityType?: string;
     /**
      * Top-level deals status. Read-only. This field should not be set in
      * requests. If disapproved, an entry for auctionType=DIRECT_DEALS (or ALL)
@@ -1514,10 +1525,6 @@ export namespace adexchangebuyer_v1_4 {
     sellerContacts?: Schema$ContactInformation[];
   }
   export interface Schema$PublisherProfileApiProto {
-    /**
-     * Deprecated: use the seller.account_id. The account id of the seller.
-     */
-    accountId?: string;
     /**
      * Publisher provided info on its audience.
      */

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -31,7 +30,7 @@ export namespace appsactivity_v1 {
   }
 
   /**
-   * G Suite Activity API
+   * Drive Activity API
    *
    * Provides a historical view of activity.
    *

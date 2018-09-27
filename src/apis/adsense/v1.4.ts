@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -176,15 +175,15 @@ export namespace adsense_v1_4 {
   }
   export interface Schema$AdCode {
     /**
-     * The ad code snippet.
+     * The Auto ad code snippet. The ad code snippet.
      */
     adCode?: string;
     /**
-     * The ad code snippet that goes in the body of an AMP page.
+     * The AMP Auto ad code snippet that goes in the body of an AMP page.
      */
     ampBody?: string;
     /**
-     * The ad code snippet that goes in the head of an AMP page.
+     * The AMP Auto ad code snippet that goes in the head of an AMP page.
      */
     ampHead?: string;
     /**
@@ -810,7 +809,7 @@ export namespace adsense_v1_4 {
 
     /**
      * adsense.accounts.adclients.getAdCode
-     * @desc Get ad code for a given ad client.
+     * @desc Get Auto ad code for a given ad client.
      * @alias adsense.accounts.adclients.getAdCode
      * @memberOf! ()
      *

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -390,6 +389,7 @@ export namespace language_v1beta2 {
   /**
    * All available features for sentiment, syntax, and semantic analysis.
    * Setting each one to true will enable that specific analysis for the input.
+   * Next ID: 10
    */
   export interface Schema$Features {
     /**
@@ -485,7 +485,7 @@ export namespace language_v1beta2 {
   }
   /**
    * Represents the feeling associated with the entire text or entities in the
-   * text.
+   * text. Next ID: 6
    */
   export interface Schema$Sentiment {
     /**

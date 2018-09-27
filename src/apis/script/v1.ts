@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -115,14 +114,6 @@ export namespace script_v1 {
      * The deployment&#39;s entry points.
      */
     entryPoints?: Schema$EntryPoint[];
-    /**
-     * Script&#39;s defined set of functions.
-     */
-    functionSet?: Schema$GoogleAppsScriptTypeFunctionSet;
-    /**
-     * Set of scopes required by the deployment.
-     */
-    scopeSet?: Schema$GoogleAppsScriptTypeScopeSet;
     /**
      * Last modified date time stamp.
      */
@@ -403,28 +394,6 @@ export namespace script_v1 {
      * The executing users access level to the script.
      */
     userAccessLevel?: string;
-  }
-  /**
-   * Represents an authorization scope.
-   */
-  export interface Schema$GoogleAppsScriptTypeScope {
-    /**
-     * Who authorized the scope.
-     */
-    authorizer?: string;
-    /**
-     * The scope&#39;s identifying string.
-     */
-    name?: string;
-  }
-  /**
-   * A set of scopes. No duplicates are permitted.
-   */
-  export interface Schema$GoogleAppsScriptTypeScopeSet {
-    /**
-     * List of scope values in the set.
-     */
-    values?: Schema$GoogleAppsScriptTypeScope[];
   }
   /**
    * A simple user profile resource.

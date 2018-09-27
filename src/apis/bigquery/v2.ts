@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -73,6 +72,20 @@ export namespace bigquery_v2 {
     }
   }
 
+  export interface Schema$BigQueryModelTraining {
+    /**
+     * [Output-only, Beta] Index of current ML training iteration. Updated
+     * during create model query job to show job progress.
+     */
+    currentIteration?: number;
+    /**
+     * [Output-only, Beta] Expected number of iterations for the create model
+     * query job specified as num_iterations in the input query. The actual
+     * total number of iterations may be less than this number due to early
+     * stop.
+     */
+    expectedTotalIterations?: string;
+  }
   export interface Schema$BigtableColumn {
     /**
      * [Optional] The encoding of the values when the type is not STRING.
@@ -185,9 +198,10 @@ export namespace bigquery_v2 {
   export interface Schema$Clustering {
     /**
      * [Repeated] One or more fields on which data should be clustered. Only
-     * top-level, non-repeated, simple-type fields are supported. The order of
-     * the fields will determine how clusters will be generated, so it is
-     * important.
+     * top-level, non-repeated, simple-type fields are supported. When you
+     * cluster a table using multiple columns, the order of columns you specify
+     * is important. The order of the specified columns determines the sort
+     * order of the data.
      */
     fields?: string[];
   }
@@ -313,7 +327,8 @@ export namespace bigquery_v2 {
     /**
      * The labels associated with this dataset. You can use these to organize
      * and group your datasets. You can set this property when inserting or
-     * updating a dataset. See Labeling Datasets for more information.
+     * updating a dataset. See Creating and Updating Dataset Labels for more
+     * information.
      */
     labels?: any;
     /**
@@ -581,9 +596,10 @@ export namespace bigquery_v2 {
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when reading data. If the number of bad records exceeds this value, an
-     * invalid error is returned in the job result. The default value is 0,
-     * which requires that all records are valid. This setting is ignored for
-     * Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
+     * invalid error is returned in the job result. This is only valid for CSV,
+     * JSON, and Google Sheets. The default value is 0, which requires that all
+     * records are valid. This setting is ignored for Google Cloud Bigtable,
+     * Google Cloud Datastore backups and Avro formats.
      */
     maxBadRecords?: number;
     /**
@@ -692,7 +708,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$GoogleSheetsOptions {
     /**
-     * [Experimental] [Optional] Range of a sheet to query from. Only used when
+     * [Beta] [Optional] Range of a sheet to query from. Only used when
      * non-empty. Typical format: !:
      */
     range?: string;
@@ -814,6 +830,11 @@ export namespace bigquery_v2 {
      */
     jobTimeoutMs?: string;
     /**
+     * [Output-only] The type of the job. Can be QUERY, LOAD, EXTRACT, COPY or
+     * UNKNOWN.
+     */
+    jobType?: string;
+    /**
      * The labels associated with this job. You can use these to organize and
      * group your jobs. Label keys and values can be no longer than 63
      * characters, can only contain lowercase letters, numeric characters,
@@ -890,9 +911,9 @@ export namespace bigquery_v2 {
      */
     autodetect?: boolean;
     /**
-     * [Experimental] Clustering specification for the destination table. Must
-     * be specified with time-based partitioning, data in the table will be
-     * first partitioned and subsequently clustered.
+     * [Beta] Clustering specification for the destination table. Must be
+     * specified with time-based partitioning, data in the table will be first
+     * partitioned and subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -913,8 +934,8 @@ export namespace bigquery_v2 {
      */
     destinationTable?: Schema$TableReference;
     /**
-     * [Experimental] [Optional] Properties with which to create the destination
-     * table if it is new.
+     * [Beta] [Optional] Properties with which to create the destination table
+     * if it is new.
      */
     destinationTableProperties?: Schema$DestinationTableProperties;
     /**
@@ -947,8 +968,9 @@ export namespace bigquery_v2 {
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when running the job. If the number of bad records exceeds this value, an
-     * invalid error is returned in the job result. The default value is 0,
-     * which requires that all records are valid.
+     * invalid error is returned in the job result. This is only valid for CSV
+     * and JSON. The default value is 0, which requires that all records are
+     * valid.
      */
     maxBadRecords?: number;
     /**
@@ -1064,9 +1086,9 @@ export namespace bigquery_v2 {
      */
     allowLargeResults?: boolean;
     /**
-     * [Experimental] Clustering specification for the destination table. Must
-     * be specified with time-based partitioning, data in the table will be
-     * first partitioned and subsequently clustered.
+     * [Beta] Clustering specification for the destination table. Must be
+     * specified with time-based partitioning, data in the table will be first
+     * partitioned and subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -1080,7 +1102,8 @@ export namespace bigquery_v2 {
     createDisposition?: string;
     /**
      * [Optional] Specifies the default dataset to use for unqualified table
-     * names in the query.
+     * names in the query. Note that this does not alter behavior of unqualified
+     * dataset names.
      */
     defaultDataset?: Schema$DatasetReference;
     /**
@@ -1260,8 +1283,8 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * [Experimental] The geographic location of the job. Required except for US
-     * and EU. See details at
+     * The geographic location of the job. Required except for US and EU. See
+     * details at
      * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
      */
     location?: string;
@@ -1272,7 +1295,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobStatistics {
     /**
-     * [Experimental] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and
+     * [TrustedTester] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and
      * EXTRACT jobs.
      */
     completionRatio?: number;
@@ -1299,6 +1322,10 @@ export namespace bigquery_v2 {
      */
     query?: Schema$JobStatistics2;
     /**
+     * [Output-only] Quotas which delayed this job&#39;s start time.
+     */
+    quotaDeferments?: string[];
+    /**
      * [Output-only] Start time of this job, in milliseconds since the epoch.
      * This field will be present when the job transitions from the PENDING
      * state to either RUNNING or DONE.
@@ -1320,20 +1347,19 @@ export namespace bigquery_v2 {
      */
     cacheHit?: boolean;
     /**
-     * [Output-only, Experimental] The DDL operation performed, possibly
-     * dependent on the pre-existence of the DDL target. Possible values (new
-     * values might be added in the future): &quot;CREATE&quot;: The query
-     * created the DDL target. &quot;SKIP&quot;: No-op. Example cases: the query
-     * is CREATE TABLE IF NOT EXISTS while the table already exists, or the
-     * query is DROP TABLE IF EXISTS while the table does not exist.
-     * &quot;REPLACE&quot;: The query replaced the DDL target. Example case: the
-     * query is CREATE OR REPLACE TABLE, and the table already exists.
-     * &quot;DROP&quot;: The query deleted the DDL target.
+     * The DDL operation performed, possibly dependent on the pre-existence of
+     * the DDL target. Possible values (new values might be added in the
+     * future): &quot;CREATE&quot;: The query created the DDL target.
+     * &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE IF NOT
+     * EXISTS while the table already exists, or the query is DROP TABLE IF
+     * EXISTS while the table does not exist. &quot;REPLACE&quot;: The query
+     * replaced the DDL target. Example case: the query is CREATE OR REPLACE
+     * TABLE, and the table already exists. &quot;DROP&quot;: The query deleted
+     * the DDL target.
      */
     ddlOperationPerformed?: string;
     /**
-     * [Output-only, Experimental] The DDL target table. Present only for
-     * CREATE/DROP TABLE/VIEW queries.
+     * The DDL target table. Present only for CREATE/DROP TABLE/VIEW queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
@@ -1341,15 +1367,15 @@ export namespace bigquery_v2 {
      */
     estimatedBytesProcessed?: string;
     /**
-     * [Output-only, Beta] Index of current ML training iteration. Updated
-     * during create model query job to show job progress.
+     * [Output-only, Beta] Information about create model query job progress.
+     */
+    modelTraining?: Schema$BigQueryModelTraining;
+    /**
+     * [Output-only, Beta] Deprecated; do not use.
      */
     modelTrainingCurrentIteration?: number;
     /**
-     * [Output-only, Beta] Expected number of iterations for the create model
-     * query job specified as num_iterations in the input query. The actual
-     * total number of iterations may be less than this number due to early
-     * stop.
+     * [Output-only, Beta] Deprecated; do not use.
      */
     modelTrainingExpectedTotalIteration?: string;
     /**
@@ -1376,9 +1402,9 @@ export namespace bigquery_v2 {
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only, Experimental] The type of query statement, if valid.
-     * Possible values (new values might be added in the future):
-     * &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see
+     * The type of query statement, if valid. Possible values (new values might
+     * be added in the future): &quot;SELECT&quot;: SELECT query.
+     * &quot;INSERT&quot;: INSERT query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
      * &quot;UPDATE&quot;: UPDATE query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
@@ -1394,7 +1420,7 @@ export namespace bigquery_v2 {
      */
     statementType?: string;
     /**
-     * [Output-only] [Experimental] Describes a timeline of job execution.
+     * [Output-only] [Beta] Describes a timeline of job execution.
      */
     timeline?: Schema$QueryTimelineSample[];
     /**
@@ -1415,8 +1441,8 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string;
     /**
-     * [Output-only, Experimental] Standard SQL only: list of undeclared query
-     * parameters detected during a dry run validation.
+     * Standard SQL only: list of undeclared query parameters detected during a
+     * dry run validation.
      */
     undeclaredQueryParameters?: Schema$QueryParameter[];
   }
@@ -1587,8 +1613,8 @@ export namespace bigquery_v2 {
      */
     kind?: string;
     /**
-     * [Experimental] The geographic location where the job should run. Required
-     * except for US and EU.
+     * The geographic location where the job should run. Required except for US
+     * and EU.
      */
     location?: string;
     /**
@@ -1751,9 +1777,9 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Table {
     /**
-     * [Experimental] Clustering specification for the table. Must be specified
-     * with time-based partitioning, data in the table will be first partitioned
-     * and subsequently clustered.
+     * [Beta] Clustering specification for the table. Must be specified with
+     * time-based partitioning, data in the table will be first partitioned and
+     * subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -1770,7 +1796,10 @@ export namespace bigquery_v2 {
      */
     encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * [Output-only] A hash of this resource.
+     * [Output-only] A hash of the table metadata. Used to ensure there were no
+     * concurrent modifications to the resource when attempting an update. Not
+     * guaranteed to change when the table contents or the fields numRows,
+     * numBytes, numLongTermBytes or lastModifiedTime change.
      */
     etag?: string;
     /**
@@ -2031,16 +2060,16 @@ export namespace bigquery_v2 {
      */
     expirationMs?: string;
     /**
-     * [Experimental] [Optional] If not set, the table is partitioned by pseudo
-     * column, referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type,
-     * or &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the
-     * table is instead partitioned by this field. The field must be a top-level
+     * [Beta] [Optional] If not set, the table is partitioned by pseudo column,
+     * referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type, or
+     * &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the table
+     * is instead partitioned by this field. The field must be a top-level
      * TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
      */
     field?: string;
     /**
-     * [Experimental] [Optional] If set to true, queries over this table require
-     * a partition filter that can be used for partition elimination to be
+     * [Beta] [Optional] If set to true, queries over this table require a
+     * partition filter that can be used for partition elimination to be
      * specified.
      */
     requirePartitionFilter?: boolean;

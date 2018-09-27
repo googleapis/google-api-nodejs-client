@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -84,10 +83,9 @@ export namespace iamcredentials_v1 {
      */
     lifetime?: string;
     /**
-     * Code to identify ApiScope (OAuth scope to be precise) to be included in
-     * the OAuth token. See
-     * https://developers.google.com/identity/protocols/googlescopes for more
-     * information. At least one value required.
+     * Code to identify the scopes to be included in the OAuth 2.0 access token.
+     * See https://developers.google.com/identity/protocols/googlescopes for
+     * more information. At least one value required.
      */
     scope?: string[];
   }
@@ -97,7 +95,59 @@ export namespace iamcredentials_v1 {
      */
     accessToken?: string;
     /**
-     * Token expiration time.
+     * Token expiration time. The expiration time is always set.
+     */
+    expireTime?: string;
+  }
+  export interface Schema$GenerateIdentityBindingAccessTokenRequest {
+    /**
+     * Required. Input token. Must be in JWT format according to RFC7523
+     * (https://tools.ietf.org/html/rfc7523) and must have &#39;kid&#39; field
+     * in the header. Supported signing algorithms: RS256 (RS512, ES256, ES512
+     * coming soon). Mandatory payload fields (along the lines of RFC 7523,
+     * section 3): - iss: issuer of the token. Must provide a discovery document
+     * at        $iss/.well-known/openid-configuration . The document needs to
+     * be        formatted according to section 4.2 of the OpenID Connect
+     * Discovery        1.0 specification. - iat: Issue time in seconds since
+     * epoch. Must be in the past. - exp: Expiration time in seconds since
+     * epoch. Must be less than 48 hours        after iat. We recommend to
+     * create tokens that last shorter than 6        hours to improve security
+     * unless business reasons mandate longer        expiration times. Shorter
+     * token lifetimes are generally more secure        since tokens that have
+     * been exfiltrated by attackers can be used for        a shorter time. you
+     * can configure the maximum lifetime of the        incoming token in the
+     * configuration of the mapper.        The resulting Google token will
+     * expire within an hour or at &quot;exp&quot;,        whichever is earlier.
+     * - sub: JWT subject, identity asserted in the JWT. - aud: Configured in
+     * the mapper policy. By default the service account        email.  Claims
+     * from the incoming token can be transferred into the output token accoding
+     * to the mapper configuration. The outgoing claim size is limited. Outgoing
+     * claims size must be less than 4kB serialized as JSON without whitespace.
+     * Example header: {   &quot;alg&quot;: &quot;RS256&quot;, &quot;kid&quot;:
+     * &quot;92a4265e14ab04d4d228a48d10d4ca31610936f8&quot; } Example payload: {
+     * &quot;iss&quot;: &quot;https://accounts.google.com&quot;,
+     * &quot;iat&quot;: 1517963104,   &quot;exp&quot;: 1517966704,
+     * &quot;aud&quot;:
+     * &quot;https://iamcredentials.googleapis.com/google.iam.credentials.v1.CloudGaia&quot;,
+     * &quot;sub&quot;: &quot;113475438248934895348&quot;,
+     * &quot;my_claims&quot;: {     &quot;additional_claim&quot;:
+     * &quot;value&quot;   } }
+     */
+    jwt?: string;
+    /**
+     * Code to identify the scopes to be included in the OAuth 2.0 access token.
+     * See https://developers.google.com/identity/protocols/googlescopes for
+     * more information. At least one value required.
+     */
+    scope?: string[];
+  }
+  export interface Schema$GenerateIdentityBindingAccessTokenResponse {
+    /**
+     * The OAuth 2.0 access token.
+     */
+    accessToken?: string;
+    /**
+     * Token expiration time. The expiration time is always set.
      */
     expireTime?: string;
   }
@@ -284,6 +334,89 @@ export namespace iamcredentials_v1 {
             parameters, callback);
       } else {
         return createAPIRequest<Schema$GenerateAccessTokenResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * iamcredentials.projects.serviceAccounts.generateIdentityBindingAccessToken
+     * @alias
+     * iamcredentials.projects.serviceAccounts.generateIdentityBindingAccessToken
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Use hyphen as placeholder for project id since there is no project context for this API.
+     * @param {().GenerateIdentityBindingAccessTokenRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    generateIdentityBindingAccessToken(
+        params?:
+            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse>;
+    generateIdentityBindingAccessToken(
+        params:
+            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GenerateIdentityBindingAccessTokenResponse>,
+        callback: BodyResponseCallback<
+            Schema$GenerateIdentityBindingAccessTokenResponse>): void;
+    generateIdentityBindingAccessToken(
+        params:
+            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
+        callback: BodyResponseCallback<
+            Schema$GenerateIdentityBindingAccessTokenResponse>): void;
+    generateIdentityBindingAccessToken(
+        callback: BodyResponseCallback<
+            Schema$GenerateIdentityBindingAccessTokenResponse>): void;
+    generateIdentityBindingAccessToken(
+        paramsOrCallback?:
+            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken|
+        BodyResponseCallback<Schema$GenerateIdentityBindingAccessTokenResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GenerateIdentityBindingAccessTokenResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GenerateIdentityBindingAccessTokenResponse>):
+        void|AxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://iamcredentials.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:generateIdentityBindingAccessToken')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateIdentityBindingAccessTokenResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GenerateIdentityBindingAccessTokenResponse>(parameters);
       }
     }
 
@@ -516,6 +649,26 @@ export namespace iamcredentials_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GenerateAccessTokenRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account for which the credentials are
+     * requested, in the following format:
+     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Use hyphen as
+     * placeholder for project id since there is no project context for this
+     * API.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateIdentityBindingAccessTokenRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Generateidtoken {
     /**

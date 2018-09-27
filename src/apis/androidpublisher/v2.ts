@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -775,7 +774,8 @@ export namespace androidpublisher_v2 {
     orderId?: string;
     /**
      * The payment state of the subscription. Possible values are:   - Payment
-     * pending  - Payment received  - Free trial
+     * pending  - Payment received  - Free trial  - Pending deferred
+     * upgrade/downgrade
      */
     paymentState?: number;
     /**

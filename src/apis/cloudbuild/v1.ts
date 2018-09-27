@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -31,9 +30,9 @@ export namespace cloudbuild_v1 {
   }
 
   /**
-   * Cloud Container Builder
+   * Cloud Build API
    *
-   * Builds container images in the cloud.
+   * Creates and manages builds on Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -130,7 +129,7 @@ export namespace cloudbuild_v1 {
     objects?: Schema$ArtifactObjects;
   }
   /**
-   * A build resource in the Container Builder API.  At a high level, a `Build`
+   * A build resource in the Cloud Build API.  At a high level, a `Build`
    * describes where to find source code, how to build it (for example, the
    * builder image to run on the source), and where to store the built
    * artifacts.  Fields can include the following variables, which will be
@@ -272,6 +271,11 @@ export namespace cloudbuild_v1 {
      * error.
      */
     diskSizeGb?: string;
+    /**
+     * Option to specify the logging mode, which determines where the logs are
+     * stored.
+     */
+    logging?: string;
     /**
      * Option to define build log streaming behavior to Google Cloud Storage.
      */
@@ -419,6 +423,25 @@ export namespace cloudbuild_v1 {
      * Output only. Unique identifier of the trigger.
      */
     id?: string;
+    /**
+     * ignored_files and included_files are file glob matches using
+     * http://godoc/pkg/path/filepath#Match extended with support for
+     * &quot;**&quot;.  If ignored_files and changed files are both empty, then
+     * they are not used to determine whether or not to trigger a build.  If
+     * ignored_files is not empty, then we ignore any files that match any of
+     * the ignored_file globs. If the change has no files that are outside of
+     * the ignored_files globs, then we do not trigger a build.
+     */
+    ignoredFiles?: string[];
+    /**
+     * If any of the files altered in the commit pass the ignored_files filter
+     * and included_files is empty, then as far as this filter is concerned, we
+     * should trigger the build.  If any of the files altered in the commit pass
+     * the ignored_files filter and included_files is not empty, then we make
+     * sure that at least one of those files matches a included_files glob. If
+     * not, then we do not trigger a build.
+     */
+    includedFiles?: string[];
     /**
      * Substitutions data for Build resource.
      */
@@ -609,6 +632,14 @@ export namespace cloudbuild_v1 {
      * indices.
      */
     buildStepImages?: string[];
+    /**
+     * List of build step outputs, produced by builder images, in the order
+     * corresponding to build step indices.  [Cloud
+     * Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can
+     * produce this output by writing to `$BUILDER_OUTPUT/output`. Only the
+     * first 4KB of data is stored.
+     */
+    buildStepOutputs?: string[];
     /**
      * Container images that were built as a part of the build.
      */

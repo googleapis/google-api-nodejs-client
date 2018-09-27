@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -705,8 +704,8 @@ export namespace drive_v3 {
     photoLink?: string;
     /**
      * The role granted by this permission. While new values may be supported in
-     * the future, the following are currently allowed:   - organizer  - owner
-     * - writer  - commenter  - reader
+     * the future, the following are currently allowed:   - owner  - organizer
+     * - fileOrganizer  - writer  - commenter  - reader
      */
     role?: string;
     /**

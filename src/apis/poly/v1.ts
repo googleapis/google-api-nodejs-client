@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -33,8 +32,11 @@ export namespace poly_v1 {
   /**
    * Poly API
    *
-   * The Poly API provides read-only access to assets hosted on &lt;a
-   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt;.
+   * The Poly API provides read access to assets hosted on &lt;a
+   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; to
+   * all, and upload access to &lt;a
+   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; for
+   * whitelisted accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -125,6 +127,10 @@ export namespace poly_v1 {
      * immutable; the author of an asset may change them post-publication.
      */
     presentationParams?: Schema$PresentationParams;
+    /**
+     * The remix info for the asset.
+     */
+    remixInfo?: Schema$RemixInfo;
     /**
      * The thumbnail image for the asset.
      */
@@ -388,6 +394,17 @@ export namespace poly_v1 {
      * The z component.
      */
     z?: number;
+  }
+  /**
+   * Info about the sources of this asset (i.e. assets that were remixed to
+   * create this asset).
+   */
+  export interface Schema$RemixInfo {
+    /**
+     * Resource ids for the sources of this remix, of the form:
+     * `assets/{ASSET_ID}`
+     */
+    sourceAsset?: string[];
   }
   /**
    * A response message from a request to startImport. This is returned in the

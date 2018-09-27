@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -33,7 +32,8 @@ export namespace firestore_v1beta1 {
   /**
    * Cloud Firestore API
    *
-   *
+   * Accesses the NoSQL document database built for automatic scaling, high
+   * performance, and ease of application development.
    *
    * @example
    * const {google} = require('googleapis');
@@ -620,6 +620,40 @@ export namespace firestore_v1beta1 {
     mode?: string;
   }
   /**
+   * Metadata for index operations. This metadata populates the metadata field
+   * of google.longrunning.Operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1beta1IndexOperationMetadata {
+    /**
+     * True if the [google.longrunning.Operation] was cancelled. If the
+     * cancellation is in progress, cancelled will be true but
+     * google.longrunning.Operation.done will be false.
+     */
+    cancelled?: boolean;
+    /**
+     * Progress of the existing operation, measured in number of documents.
+     */
+    documentProgress?: Schema$GoogleFirestoreAdminV1beta1Progress;
+    /**
+     * The time the operation ended, either successfully or otherwise. Unset if
+     * the operation is still active.
+     */
+    endTime?: string;
+    /**
+     * The index resource that this operation is acting on. For example:
+     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     */
+    index?: string;
+    /**
+     * The type of index operation.
+     */
+    operationType?: string;
+    /**
+     * The time that work began on the operation.
+     */
+    startTime?: string;
+  }
+  /**
    * The response for FirestoreAdmin.ListIndexes.
    */
   export interface Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse {
@@ -650,127 +684,6 @@ export namespace firestore_v1beta1 {
      * estimate is unavailable. May change as work progresses.
      */
     workEstimated?: string;
-  }
-  /**
-   * Metadata for google.longrunning.Operation results from
-   * FirestoreAdmin.UpdateField.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2FieldOperationMetadata {
-    /**
-     * The progress, in bytes, of this operation.
-     */
-    bytesProgress?: Schema$GoogleFirestoreAdminV1beta2Progress;
-    /**
-     * The progress, in documents, of this operation.
-     */
-    documentProgress?: Schema$GoogleFirestoreAdminV1beta2Progress;
-    /**
-     * The time this operation completed. Will be unset if operation still in
-     * progress.
-     */
-    endTime?: string;
-    /**
-     * The field resource that this operation is acting on. For example:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
-     */
-    field?: string;
-    /**
-     * A list of IndexConfigDelta, which describe the intent of this operation.
-     */
-    indexConfigDeltas?: Schema$GoogleFirestoreAdminV1beta2IndexConfigDelta[];
-    /**
-     * The time this operation started.
-     */
-    startTime?: string;
-    /**
-     * The state of the operation.
-     */
-    state?: string;
-  }
-  /**
-   * Cloud Firestore indexes enable simple and complex queries against documents
-   * in a database.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2Index {
-    /**
-     * The fields supported by this index.  For composite indexes, this is
-     * always 2 or more fields. The last field entry is always for the field
-     * path `__name__`. If, on creation, `__name__` was not specified as the
-     * last field, it will be added automatically with the same direction as
-     * that of the last field defined. If the final field in a composite index
-     * is not directional, the `__name__` will be ordered ASCENDING (unless
-     * explicitly specified).  For single field indexes, this will always be
-     * exactly one entry with a field path equal to the field path of the
-     * associated field.
-     */
-    fields?: Schema$GoogleFirestoreAdminV1beta2IndexField[];
-    /**
-     * Output only. A server defined name for this index. The form of this name
-     * for composite indexes will be:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}`
-     * For single field indexes, this field will be empty.
-     */
-    name?: string;
-    /**
-     * Indexes with a collection query scope specified allow queries against a
-     * collection that is the child of a specific document, specified at query
-     * time, and that has the same collection id.  Indexes with a collection
-     * group query scope specified allow queries against all collections
-     * descended from a specific document, specified at query time, and that
-     * have the same collection id as this index.
-     */
-    queryScope?: string;
-    /**
-     * Output only. The serving state of the index.
-     */
-    state?: string;
-  }
-  /**
-   * Information about an index configuration change.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2IndexConfigDelta {
-    /**
-     * Specifies how the index is changing.
-     */
-    changeType?: string;
-    /**
-     * The index being changed.
-     */
-    index?: Schema$GoogleFirestoreAdminV1beta2Index;
-  }
-  /**
-   * A field in an index. The field_path describes which field is indexed, the
-   * value_mode describes how the field value is indexed.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2IndexField {
-    /**
-     * Indicates that this field supports operations on `array_value`s.
-     */
-    arrayConfig?: string;
-    /**
-     * Can be __name__. For single field indexes, this must match the name of
-     * the field or may be omitted.
-     */
-    fieldPath?: string;
-    /**
-     * Indicates that this field supports ordering by the specified order or
-     * comparing using =, &lt;, &lt;=, &gt;, &gt;=.
-     */
-    order?: string;
-  }
-  /**
-   * Describes the progress of the operation. Unit of work is generic and must
-   * be interpreted based on where Progress is used.
-   */
-  export interface Schema$GoogleFirestoreAdminV1beta2Progress {
-    /**
-     * The amount of work completed.
-     */
-    completedWork?: string;
-    /**
-     * The amount of work estimated.
-     */
-    estimatedWork?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -66,6 +65,15 @@ export namespace cloudshell_v1alpha1 {
     }
   }
 
+  /**
+   * Request message for AuthorizeEnvironment.
+   */
+  export interface Schema$AuthorizeEnvironmentRequest {
+    /**
+     * The OAuth access token that should be sent to the environment.
+     */
+    accessToken?: string;
+  }
   /**
    * Request message for CreatePublicKey.
    */
@@ -211,7 +219,15 @@ export namespace cloudshell_v1alpha1 {
   /**
    * Request message for StartEnvironment.
    */
-  export interface Schema$StartEnvironmentRequest {}
+  export interface Schema$StartEnvironmentRequest {
+    /**
+     * The initial access token passed to the environment. If this is present
+     * and valid, the environment will be pre-authenticated with gcloud so that
+     * the user can run gcloud commands in Cloud Shell without having to log in.
+     * This code can be updated later by calling AuthorizeEnvironment.
+     */
+    accessToken?: string;
+  }
   /**
    * Message included in the response field of operations returned from
    * StartEnvironment once the operation is complete.
@@ -303,6 +319,75 @@ export namespace cloudshell_v1alpha1 {
 
     getRoot() {
       return this.root;
+    }
+
+
+    /**
+     * cloudshell.users.environments.authorize
+     * @desc Sends an access token to a running environment on behalf of a user.
+     * When this completes, the environment will be authorized to run gcloud
+     * commands without requiring the user to manually authenticate.
+     * @alias cloudshell.users.environments.authorize
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the resource that should receive the token, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
+     * @param {().AuthorizeEnvironmentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    authorize(
+        params?: Params$Resource$Users$Environments$Authorize,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    authorize(
+        params: Params$Resource$Users$Environments$Authorize,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    authorize(
+        params: Params$Resource$Users$Environments$Authorize,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    authorize(callback: BodyResponseCallback<Schema$Empty>): void;
+    authorize(
+        paramsOrCallback?: Params$Resource$Users$Environments$Authorize|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Environments$Authorize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Environments$Authorize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudshell.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1alpha1/{+name}:authorize')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
 
@@ -512,6 +597,24 @@ export namespace cloudshell_v1alpha1 {
     }
   }
 
+  export interface Params$Resource$Users$Environments$Authorize {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the resource that should receive the token, for example
+     * `users/me/environments/default` or
+     * `users/someone@example.com/environments/default`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuthorizeEnvironmentRequest;
+  }
   export interface Params$Resource$Users$Environments$Get {
     /**
      * Auth client or API Key for the request

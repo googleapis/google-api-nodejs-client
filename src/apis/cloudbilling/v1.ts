@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -152,8 +151,7 @@ export namespace cloudbilling_v1 {
      * If this account is a
      * [subaccount](https://cloud.google.com/billing/docs/concepts), then this
      * will be the resource name of the master billing account that it is being
-     * resold through. Otherwise this will be empty.  &gt; This field is
-     * currently in &gt; [Beta](https://cloud.google.com/terms/launch-stages).
+     * resold through. Otherwise this will be empty.
      */
     masterBillingAccount?: string;
     /**
@@ -176,25 +174,31 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -224,6 +228,35 @@ export namespace cloudbilling_v1 {
      * etc.
      */
     usageType?: string;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * Response message for `ListBillingAccounts`.
@@ -312,18 +345,22 @@ export namespace cloudbilling_v1 {
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -606,13 +643,13 @@ export namespace cloudbilling_v1 {
     /**
      * cloudbilling.billingAccounts.create
      * @desc Creates a billing account. This method can only be used to create
-     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts) for
+     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts) by
      * GCP resellers. When creating a subaccount, the current authenticated user
      * must have the `billing.accounts.update` IAM permission on the master
      * account, which is typically given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
+     * This method will return an error if the master account has not been
+     * provisioned as a reseller account.
      * @alias cloudbilling.billingAccounts.create
      * @memberOf! ()
      *
@@ -802,8 +839,6 @@ export namespace cloudbilling_v1 {
      * must have the `billing.accounts.getIamPolicy` permission on the account,
      * which is often given to billing account
      * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
      * @alias cloudbilling.billingAccounts.getIamPolicy
      * @memberOf! ()
      *
@@ -940,7 +975,7 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.  > This field is currently in > [Beta](https://cloud.google.com/terms/launch-stages).
+     * @param {string=} params.filter Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
      * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
      * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1014,8 +1049,7 @@ export namespace cloudbilling_v1 {
      * the `billing.accounts.update` IAM permission, which is typically given to
      * the
      * [administrator](https://cloud.google.com/billing/docs/how-to/billing-access)
-     * of the billing account.  > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
+     * of the billing account.
      * @alias cloudbilling.billingAccounts.patch
      * @memberOf! ()
      *
@@ -1087,8 +1121,6 @@ export namespace cloudbilling_v1 {
      * existing policy. The caller must have the `billing.accounts.setIamPolicy`
      * permission on the account, which is often given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
      * @alias cloudbilling.billingAccounts.setIamPolicy
      * @memberOf! ()
      *
@@ -1158,8 +1190,7 @@ export namespace cloudbilling_v1 {
      * @desc Tests the access control policy for a billing account. This method
      * takes the resource and a set of permissions as input and returns the
      * subset of the input permissions that the caller is allowed for that
-     * resource.  > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
+     * resource.
      * @alias cloudbilling.billingAccounts.testIamPermissions
      * @memberOf! ()
      *
@@ -1280,8 +1311,7 @@ export namespace cloudbilling_v1 {
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
      * single provided reseller billing account. (e.g.
      * "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean
-     * algebra and other fields are not currently supported.  > This field is
-     * currently in > [Beta](https://cloud.google.com/terms/launch-stages).
+     * algebra and other fields are not currently supported.
      */
     filter?: string;
     /**

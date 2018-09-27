@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -93,6 +92,13 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * members can have the following values: allUsers: A special identifier
      * that represents anyone who is  on the internet; with or without a Google
@@ -147,9 +153,9 @@ export namespace dataproc_v1beta2 {
      */
     labels?: any;
     /**
-     * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature:
-     * This report is available for testing purposes only. It may be changed
-     * before final release.
+     * Output only. Contains cluster daemon metrics such as HDFS and YARN
+     * stats.Beta Feature: This report is available for testing purposes only.
+     * It may be changed before final release.
      */
     metrics?: Schema$ClusterMetrics;
     /**
@@ -406,6 +412,35 @@ export namespace dataproc_v1beta2 {
     gcePdKmsKeyName?: string;
   }
   /**
+   * Represents an expression text. Example: title: &quot;User account
+   * presence&quot; description: &quot;Determines whether the request has a user
+   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.The application context of the containing message determines which
+     * well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * Common config settings for resources of Compute Engine cluster instances,
    * applicable to all instances in the cluster.
    */
@@ -644,7 +679,7 @@ export namespace dataproc_v1beta2 {
     instanceId?: string;
     /**
      * Optional. Map from parameter names to values that should be used for
-     * those parameters.
+     * those parameters. Values may not exceed 100 characters.
      */
     parameters?: any;
     /**
@@ -1221,8 +1256,8 @@ export namespace dataproc_v1beta2 {
   export interface Schema$RegexValidation {
     /**
      * Required. RE2 regular expressions used to validate the parameter&#39;s
-     * value. The provided value must match the regexes in its entirety, e.g.
-     * substring matches are not enough.
+     * value. The value must match the regex in its entirety (substring matches
+     * are not sufficient).
      */
     regexes?: string[];
   }
@@ -1250,6 +1285,10 @@ export namespace dataproc_v1beta2 {
      * version.
      */
     imageVersion?: string;
+    /**
+     * The set of optional components to activate on the cluster.
+     */
+    optionalComponents?: string[];
     /**
      * Optional. The properties to set on daemon config files.Property keys are
      * specified in prefix:property format, such as core:fs.defaultFS. The
@@ -1415,56 +1454,51 @@ export namespace dataproc_v1beta2 {
   }
   /**
    * A configurable parameter that replaces one or more fields in the template.
+   * Parameterizable fields: - Labels - File uris - Job properties - Job
+   * arguments - Script variables - Main class (in HadoopJob and SparkJob) -
+   * Zone (in ClusterSelector)
    */
   export interface Schema$TemplateParameter {
     /**
-     * Optional. User-friendly description of the parameter. Must not exceed
-     * 1024 characters.
+     * Optional. Brief description of the parameter. Must not exceed 1024
+     * characters.
      */
     description?: string;
     /**
-     * Required. Paths to all fields that this parameter replaces. Each field
-     * may appear in at most one Parameter&#39;s fields list.Field path syntax:A
-     * field path is similar to a FieldMask. For example, a field path that
-     * references the zone field of the template&#39;s cluster selector would
-     * look like:placement.clusterSelector.zoneThe only differences between
-     * field paths and standard field masks are that: Values in maps can be
-     * referenced by key.Example:
-     * placement.clusterSelector.clusterLabels&#39;key&#39; Jobs in the jobs
-     * list can be referenced by step id.Example:
-     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri Items in repeated fields
-     * can be referenced by zero-based index.Example:
-     * jobs&#39;step-id&#39;.sparkJob.args0NOTE: Maps and repeated fields may
-     * not be parameterized in their entirety. Only individual map values and
-     * items in repeated fields may be referenced. For example, the following
-     * field paths are invalid: - placement.clusterSelector.clusterLabels -
-     * jobs&#39;step-id&#39;.sparkJob.argsParameterizable fields:Only certain
-     * types of fields may be parameterized, specifically: - Labels - File uris
-     * - Job properties - Job arguments - Script variables - Main class (in
-     * HadoopJob and SparkJob) - Zone (in ClusterSelector)Examples of
-     * parameterizable fields:Labels:labels&#39;key&#39;
+     * Required. Paths to all fields that the parameter replaces. A field is
+     * allowed to appear in at most one parameter&#39;s list of field paths.A
+     * field path is similar in syntax to a google.protobuf.FieldMask. For
+     * example, a field path that references the zone field of a workflow
+     * template&#39;s cluster selector would be specified as
+     * &lt;code&gt;placement.clusterSelector.zone&lt;/code&gt;.Also, field paths
+     * can reference fields using the following syntax: Values in maps can be
+     * referenced by key. Examples&lt;br&gt; labels&#39;key&#39;
+     * placement.clusterSelector.clusterLabels&#39;key&#39;
      * placement.managedCluster.labels&#39;key&#39;
      * placement.clusterSelector.clusterLabels&#39;key&#39;
-     * jobs&#39;step-id&#39;.labels&#39;key&#39;File
-     * uris:jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
-     * jobs&#39;step-id&#39;.hiveJob.queryFileUri
-     * jobs&#39;step-id&#39;.pySparkJob.mainPythonFileUri
-     * jobs&#39;step-id&#39;.hadoopJob.jarFileUris0
-     * jobs&#39;step-id&#39;.hadoopJob.archiveUris0
-     * jobs&#39;step-id&#39;.hadoopJob.fileUris0
-     * jobs&#39;step-id&#39;.pySparkJob.pythonFileUris0Other:jobs&#39;step-id&#39;.hadoopJob.properties&#39;key&#39;
-     * jobs&#39;step-id&#39;.hadoopJob.args0
-     * jobs&#39;step-id&#39;.hiveJob.scriptVariables&#39;key&#39;
-     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
-     * placement.clusterSelector.zone
+     * jobsstep-id.labels&#39;key&#39; Jobs in the jobs list can be referenced
+     * by step-id. Examples:&lt;br&gt; jobsstep-id.hadoopJob.mainJarFileUri
+     * jobsstep-id.hiveJob.queryFileUri jobsstep-id.pySparkJob.mainPythonFileUri
+     * jobsstep-id.hadoopJob.jarFileUris0 jobsstep-id.hadoopJob.archiveUris0
+     * jobsstep-id.hadoopJob.fileUris0 jobsstep-id.pySparkJob.pythonFileUris0
+     * Items in repeated fields can be referenced by a zero-based index.
+     * Example:&lt;br&gt; jobsstep-id.sparkJob.args0 Other examples:
+     * jobsstep-id.hadoopJob.properties&#39;key&#39; jobsstep-id.hadoopJob.args0
+     * jobsstep-id.hiveJob.scriptVariables&#39;key&#39;
+     * jobsstep-id.hadoopJob.mainJarFileUri placement.clusterSelector.zoneIt may
+     * not be possible to parameterize maps and repeated fields in their
+     * entirety since only individual map values and individual items in
+     * repeated fields can be referenced. For example, the following field paths
+     * are invalid: placement.clusterSelector.clusterLabels
+     * jobsstep-id.sparkJob.args
      */
     fields?: string[];
     /**
-     * Required. User-friendly parameter name. This name is used as a key when
-     * providing a value for this parameter when the template is instantiated.
-     * Must contain only capital letters (A-Z), numbers (0-9), and underscores
-     * (_), and must not start with a number. The maximum length is 40
-     * characters.
+     * Required. Parameter name. The parameter name is used as the key, and
+     * paired with the parameter value, which are passed to the template when
+     * the template is instantiated. The name must contain only capital letters
+     * (A-Z), numbers (0-9), and underscores (_), and must not start with a
+     * number. The maximum length is 40 characters.
      */
     name?: string;
     /**
@@ -1499,7 +1533,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$ValueValidation {
     /**
-     * Required. List of allowed values for this parameter.
+     * Required. List of allowed values for the parameter.
      */
     values?: string[];
   }
@@ -1611,8 +1645,8 @@ export namespace dataproc_v1beta2 {
     name?: string;
     /**
      * Optional. Template parameters whose values are substituted into the
-     * template. Values for these parameters must be provided when the template
-     * is instantiated.
+     * template. Values for parameters must be provided when the template is
+     * instantiated.
      */
     parameters?: Schema$TemplateParameter[];
     /**
@@ -2094,8 +2128,9 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.instanceId Deprecated. Please use request_id field instead.
      * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2560,12 +2595,7 @@ export namespace dataproc_v1beta2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Optional. A tag that prevents multiple concurrent workflow instances with
-     * the same tag from running. This mitigates risk of concurrent instances
-     * started due to retries.It is recommended to always set this value to a
-     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
-     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     * and hyphens (-). The maximum length is 40 characters.
+     * Deprecated. Please use request_id field instead.
      */
     instanceId?: string;
     /**
@@ -2574,6 +2604,15 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -5474,8 +5513,9 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.instanceId Deprecated. Please use request_id field instead.
      * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5937,12 +5977,7 @@ export namespace dataproc_v1beta2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Optional. A tag that prevents multiple concurrent workflow instances with
-     * the same tag from running. This mitigates risk of concurrent instances
-     * started due to retries.It is recommended to always set this value to a
-     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
-     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     * and hyphens (-). The maximum length is 40 characters.
+     * Deprecated. Please use request_id field instead.
      */
     instanceId?: string;
     /**
@@ -5951,6 +5986,15 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata

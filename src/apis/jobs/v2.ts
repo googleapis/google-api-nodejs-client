@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -31,9 +30,9 @@ export namespace jobs_v2 {
   }
 
   /**
-   * Cloud Job Discovery
+   * Cloud Talent Solution API
    *
-   * Cloud Job Discovery provides the capability to create, read, update, and
+   * Cloud Talent Solution provides the capability to create, read, update, and
    * delete job postings, as well as search jobs based on keywords and filters.
    *
    * @example
@@ -118,7 +117,10 @@ export namespace jobs_v2 {
      */
     jobLocation?: Schema$JobLocation;
     /**
-     * Travel time to reach the job.
+     * The number of seconds required to travel to the job location from the
+     * query location. A duration of 0 seconds indicates that the job is not
+     * reachable within the requested duration, but was returned as part of an
+     * expanded query.
      */
     travelDuration?: string;
   }
@@ -449,11 +451,15 @@ export namespace jobs_v2 {
    */
   export interface Schema$CompensationRange {
     /**
-     * Required.  The maximum amount of compensation.
+     * Optional.  The maximum amount of compensation. If left empty, the value
+     * is set to a maximal compensation value and the currency code is set to
+     * match the currency code of min_compensation.
      */
     max?: Schema$Money;
     /**
-     * Required.  The minimum amount of compensation.
+     * Optional.  The minimum amount of compensation. If left empty, the value
+     * is set to zero and the currency code is set to match the currency code of
+     * max_compensation.
      */
     min?: Schema$Money;
   }
@@ -602,12 +608,12 @@ export namespace jobs_v2 {
     type?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole calendar date, for example date of birth. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. The day can be 0
+   * to represent a year and month where the day is not significant, for example
+   * credit card expiration date. The year can be 0 to represent a month and day
+   * independent of year, for example anniversary date. Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
@@ -857,8 +863,8 @@ export namespace jobs_v2 {
      * Required.  A list of facets that specify the histogram data to be
      * calculated against and returned.  Histogram response times can be slow,
      * and counts can be approximations. This call may be temporarily or
-     * permanently removed prior to the production release of Cloud Job
-     * Discovery.
+     * permanently removed prior to the production release of Cloud Talent
+     * Solution.
      */
     searchTypes?: string[];
   }
@@ -2055,7 +2061,7 @@ export namespace jobs_v2 {
      */
     estimatedTotalSize?: string;
     /**
-     * The histogram results that match with specified
+     * The histogram results that match specified
      * SearchJobsRequest.HistogramFacets.
      */
     histogramResults?: Schema$HistogramResults;
@@ -2359,7 +2365,8 @@ export namespace jobs_v2 {
 
     /**
      * jobs.companies.list
-     * @desc Lists all companies associated with a Cloud Job Discovery account.
+     * @desc Lists all companies associated with a Cloud Talent Solution
+     * account.
      * @alias jobs.companies.list
      * @memberOf! ()
      *

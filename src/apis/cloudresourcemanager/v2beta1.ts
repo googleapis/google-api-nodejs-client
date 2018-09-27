@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -128,6 +127,13 @@ export namespace cloudresourcemanager_v2beta1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -150,6 +156,35 @@ export namespace cloudresourcemanager_v2beta1 {
     role?: string;
   }
   /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * A Folder in an Organization&#39;s resource hierarchy, used to organize that
    * Organization&#39;s resources.
    */
@@ -165,7 +200,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * display name. The display name must start and end with a letter or digit,
      * may contain letters, digits, spaces, hyphens and underscores and can be
      * no longer than 30 characters. This is captured by the regular expression:
-     * [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
+     * [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
      */
     displayName?: string;
     /**
@@ -960,7 +995,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * documentation.  The Folder's display name must start and end with a
      * letter or digit, may contain letters, digits, spaces, hyphens and
      * underscores and can be no longer than 30 characters. This is captured by
-     * the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
+     * the regular expression: [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
      * The caller must have `resourcemanager.folders.update` permission on the
      * identified folder.  If the update fails due to the unique name constraint
      * then a PreconditionFailure explaining this violation will be returned in

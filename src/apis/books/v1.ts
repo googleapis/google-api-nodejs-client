@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -563,6 +562,7 @@ export namespace books_v1 {
     doc_type?: string;
     dont_show_notification?: boolean;
     iconUrl?: string;
+    is_document_mature?: boolean;
     /**
      * Resource type.
      */

@@ -16,7 +16,6 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
 import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
@@ -1323,7 +1322,7 @@ export namespace sheets_v4 {
    * Color* toProto(UIColor* color) {          CGFloat red, green, blue, alpha;
    * if (![color getRed:&amp;red green:&amp;green blue:&amp;blue
    * alpha:&amp;alpha]) {            return nil;          }          Color*
-   * result = [Color alloc] init];          [result setRed:red]; [result
+   * result = [[Color alloc] init];          [result setRed:red]; [result
    * setGreen:green];          [result setBlue:blue];          if (alpha &lt;=
    * 0.9999) {            [result setAlpha:floatWrapperWithValue(alpha)]; }
    * [result autorelease];          return result;     }     // ...   Example
