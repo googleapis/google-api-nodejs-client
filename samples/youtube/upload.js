@@ -17,9 +17,11 @@
  * Usage: node upload.js PATH_TO_VIDEO_FILE
  */
 
+const fs = require('fs');
+const readline = require('readline');
+
 const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
-const fs = require('fs');
 
 // initialize the Youtube API library
 const youtube = google.youtube({
@@ -52,8 +54,8 @@ async function runSample(fileName) {
       // number of bytes uploaded to this point.
       onUploadProgress: evt => {
         const progress = (evt.bytesRead / fileSize) * 100;
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
+        readline.clearLine();
+        readline.cursorTo(0);
         process.stdout.write(`${Math.round(progress)}% complete`);
       },
     }

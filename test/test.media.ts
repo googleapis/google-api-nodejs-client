@@ -37,7 +37,7 @@ async function testMultpart(drive: drive_v2.Drive) {
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);
   const boundary =
       res.request.headers['content-type'].replace(boundaryPrefix, '');
-  expectedResp = expectedResp.replace(/\n/g, '\r\n')
+  expectedResp = expectedResp.replace(/\r?\n/g, '\r\n')
                      .replace(/\$boundary/g, boundary)
                      .replace('$media', media.body)
                      .replace('$resource', JSON.stringify(requestBody))
@@ -61,7 +61,7 @@ async function testMediaBody(drive: drive_v2.Drive) {
       res.request.headers['content-type'].indexOf('multipart/related;'), 0);
   const boundary =
       res.request.headers['content-type'].replace(boundaryPrefix, '');
-  expectedResp = expectedResp.replace(/\n/g, '\r\n')
+  expectedResp = expectedResp.replace(/\r?\n/g, '\r\n')
                      .replace(/\$boundary/g, boundary)
                      .replace('$media', media.body)
                      .replace('$resource', JSON.stringify(requestBody))
@@ -309,7 +309,7 @@ describe('Media', () => {
         {userId: 'me', requestBody, media});
     const boundary =
         res.request.headers['content-type'].replace(boundaryPrefix, '');
-    expectedBody = expectedBody.replace(/\n/g, '\r\n')
+    expectedBody = expectedBody.replace(/\r?\n/g, '\r\n')
                        .replace(/\$boundary/g, boundary)
                        .replace('$media', bodyString)
                        .replace('$resource', JSON.stringify(requestBody))
@@ -332,7 +332,7 @@ describe('Media', () => {
         {userId: 'me', requestBody, media});
     const boundary2 =
         res2.request.headers['content-type'].replace(boundaryPrefix, '');
-    expectedBody = expectedBody.replace(/\n/g, '\r\n')
+    expectedBody = expectedBody.replace(/\r?\n/g, '\r\n')
                        .replace(/\$boundary/g, boundary2)
                        .replace('$media', bodyString)
                        .replace('$resource', JSON.stringify(requestBody))

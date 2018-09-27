@@ -13,8 +13,10 @@
 
 'use strict';
 
-const {google} = require('googleapis');
 const fs = require('fs');
+const readline = require('readline');
+
+const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 
 const drive = google.drive({
@@ -38,8 +40,8 @@ async function runSample(fileName) {
       // number of bytes uploaded to this point.
       onUploadProgress: evt => {
         const progress = (evt.bytesRead / fileSize) * 100;
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
+        readline.clearLine();
+        readline.cursorTo(0);
         process.stdout.write(`${Math.round(progress)}% complete`);
       },
     }

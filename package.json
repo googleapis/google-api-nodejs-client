@@ -56,7 +56,7 @@
     "prepare": "npm run compile",
     "test": "nyc mocha build/test",
     "docs": "echo no docs 👻",
-    "system-test": "echo no system tests 👻",
+    "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
     "lint": "gts check && eslint 'samples/**/*.js'",
     "compile": "tsc -v && tsc -p . && copyfiles src/apis/**/README.md src/apis/**/package.json build",
