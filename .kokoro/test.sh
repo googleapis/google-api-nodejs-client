@@ -22,4 +22,5 @@ cd $(dirname $0)/..
 
 npm install
 npm test
-node_modules/.bin/codecov
+
+bash $KOKORO_GFILE_DIR/codecov.sh
