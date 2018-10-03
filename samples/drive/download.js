@@ -19,6 +19,7 @@ const fs = require('fs');
 const os = require('os');
 const uuid = require('uuid');
 const path = require('path');
+const readline = require('readline');
 
 const drive = google.drive({
   version: 'v3',
@@ -46,8 +47,8 @@ async function runSample(fileId) {
       })
       .on('data', d => {
         progress += d.length;
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
+        readline.clearLine();
+        readline.cursorTo(0);
         process.stdout.write(`Downloaded ${progress} bytes`);
       })
       .pipe(dest);
