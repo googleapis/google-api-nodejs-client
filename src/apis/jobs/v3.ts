@@ -730,8 +730,9 @@ export namespace jobs_v3 {
      * codes must be in BCP-47 format, such as &quot;en-US&quot; or
      * &quot;sr-Latn&quot;. For more information, see [Tags for Identifying
      * Languages](https://tools.ietf.org/html/bcp47){:
-     * class=&quot;external&quot; target=&quot;_blank&quot; }.  The default
-     * value is `en-US`.
+     * class=&quot;external&quot; target=&quot;_blank&quot; }.  If this field is
+     * unspecified and Job.description is present, detected language code based
+     * on Job.description is assigned, otherwise defaults to &#39;en_US&#39;.
      */
     languageCode?: string;
     /**
@@ -897,17 +898,18 @@ export namespace jobs_v3 {
     /**
      * Optional.  This filter specifies a structured syntax to match against the
      * Job.custom_attributes marked as `filterable`.  The syntax for this
-     * expression is a subset of Google SQL syntax.  Supported operators are: =,
-     * !=, &lt;, &lt;=, &gt;, &gt;= where the left of the operator is a custom
-     * field key and the right of the operator is a number or string (surrounded
-     * by quotes) value.  Supported functions are LOWER(&lt;field_name&gt;) to
-     * perform case insensitive match and EMPTY(&lt;field_name&gt;) to filter on
-     * the existence of a key.  Boolean expressions (AND/OR/NOT) are supported
-     * up to 3 levels of nesting (for example, &quot;((A AND B AND C) OR NOT D)
-     * AND E&quot;), a maximum of 50 comparisons/functions are allowed in the
-     * expression. The expression must be &lt; 2000 characters in length. Sample
-     * Query: (LOWER(driving_license)=&quot;class a&quot; OR
-     * EMPTY(driving_license)) AND driving_years &gt; 10
+     * expression is a subset of SQL syntax.  Supported operators are: `=`,
+     * `!=`, `&lt;`, `&lt;=`, `&gt;`, and `&gt;=` where the left of the operator
+     * is a custom field key and the right of the operator is a number or a
+     * quoted string. You must escape backslash (\\) and quote (\&quot;)
+     * characters.  Supported functions are `LOWER([field_name])` to perform a
+     * case insensitive match and `EMPTY([field_name])` to filter on the
+     * existence of a key.  Boolean expressions (AND/OR/NOT) are supported up to
+     * 3 levels of nesting (for example, &quot;((A AND B AND C) OR NOT D) AND
+     * E&quot;), a maximum of 50 comparisons or functions are allowed in the
+     * expression. The expression must be &lt; 3000 characters in length. Sample
+     * Query: `(LOWER(driving_license)=&quot;class \&quot;a\&quot;&quot; OR
+     * EMPTY(driving_license)) AND driving_years &gt; 10`
      */
     customAttributeFilter?: string;
     /**
@@ -1434,21 +1436,21 @@ export namespace jobs_v3 {
      * Default is &quot;relevance desc&quot;.  Supported options are:  *
      * &quot;relevance desc&quot;: By relevance descending, as determined by the
      * API algorithms. Relevance thresholding of query results is only available
-     * with this ordering. * &quot;posting_publish_time desc&quot;: By
-     * Job.posting_publish_time descending. * &quot;posting_update_time
+     * with this ordering. * &quot;posting`_`publish`_`time desc&quot;: By
+     * Job.posting_publish_time descending. * &quot;posting`_`update`_`time
      * desc&quot;: By Job.posting_update_time descending. * &quot;title&quot;:
      * By Job.title ascending. * &quot;title desc&quot;: By Job.title
-     * descending. * &quot;annualized_base_compensation&quot;: By job&#39;s
+     * descending. * &quot;annualized`_`base`_`compensation&quot;: By job&#39;s
      * CompensationInfo.annualized_base_compensation_range ascending. Jobs whose
      * annualized base compensation is unspecified are put at the end of search
-     * results. * &quot;annualized_base_compensation desc&quot;: By job&#39;s
-     * CompensationInfo.annualized_base_compensation_range descending. Jobs
-     * whose annualized base compensation is unspecified are put at the end of
-     * search results. * &quot;annualized_total_compensation&quot;: By job&#39;s
-     * CompensationInfo.annualized_total_compensation_range ascending. Jobs
-     * whose annualized base compensation is unspecified are put at the end of
-     * search results. * &quot;annualized_total_compensation desc&quot;: By
-     * job&#39;s CompensationInfo.annualized_total_compensation_range
+     * results. * &quot;annualized`_`base`_`compensation desc&quot;: By
+     * job&#39;s CompensationInfo.annualized_base_compensation_range descending.
+     * Jobs whose annualized base compensation is unspecified are put at the end
+     * of search results. * &quot;annualized`_`total`_`compensation&quot;: By
+     * job&#39;s CompensationInfo.annualized_total_compensation_range ascending.
+     * Jobs whose annualized base compensation is unspecified are put at the end
+     * of search results. * &quot;annualized`_`total`_`compensation desc&quot;:
+     * By job&#39;s CompensationInfo.annualized_total_compensation_range
      * descending. Jobs whose annualized base compensation is unspecified are
      * put at the end of search results.
      */
@@ -1538,7 +1540,7 @@ export namespace jobs_v3 {
     /**
      * The precise result count, which is available only if the client set
      * enable_precise_result_size to `true` or if the response is the last page
-     * of results. Otherwise, the value will be `-1`.
+     * of results. Otherwise, the value is `-1`.
      */
     totalSize?: number;
   }

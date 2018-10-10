@@ -477,6 +477,10 @@ export namespace admin_directory_v1 {
      */
     bootMode?: string;
     /**
+     * Reports of CPU utilization and temperature (Read-only)
+     */
+    cpuStatusReports?: any[];
+    /**
      * List of device files to download (Read-only)
      */
     deviceFiles?: any[];
@@ -484,6 +488,10 @@ export namespace admin_directory_v1 {
      * Unique identifier of Chrome OS Device (Read-only)
      */
     deviceId?: string;
+    /**
+     * Reports of disk space and other info about mounted/connected volumes.
+     */
+    diskVolumeReports?: any[];
     /**
      * ETag of the resource.
      */
@@ -559,6 +567,14 @@ export namespace admin_directory_v1 {
      * Final date the device will be supported (Read-only)
      */
     supportEndDate?: string;
+    /**
+     * Reports of amounts of available RAM memory (Read-only)
+     */
+    systemRamFreeReports?: any[];
+    /**
+     * Total RAM on the device [in bytes] (Read-only)
+     */
+    systemRamTotal?: string;
     /**
      * Trusted Platform Module (TPM) (Read-only)
      */

@@ -128,6 +128,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     name?: string;
     /**
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
+     */
+    sdkVersion?: string;
+    /**
      * Short Dynamic Link suffix. Optional.
      */
     suffix?: Schema$Suffix;
@@ -166,6 +171,11 @@ export namespace firebasedynamiclinks_v1 {
      * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
     longDynamicLink?: string;
+    /**
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
+     */
+    sdkVersion?: string;
     /**
      * Short Dynamic Link suffix. Optional.
      */
@@ -361,7 +371,8 @@ export namespace firebasedynamiclinks_v1 {
      */
     retrievalMethod?: string;
     /**
-     * Google SDK version.
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
      */
     sdkVersion?: string;
     /**
@@ -473,6 +484,11 @@ export namespace firebasedynamiclinks_v1 {
      * Invite FDL. e.g. &lt;app_code&gt;.page.link/i/&lt;invite_id_or_alias&gt;
      */
     requestedLink?: string;
+    /**
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
+     */
+    sdkVersion?: string;
   }
   /**
    * Response for iSDK to get reopen attribution for app universal link open
@@ -907,6 +923,7 @@ export namespace firebasedynamiclinks_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.durationDays The span of time requested in days.
      * @param {string} params.dynamicLink Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
+     * @param {string=} params.sdkVersion Google SDK version. Version takes the form "$major.$minor.$patch"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1136,6 +1153,10 @@ export namespace firebasedynamiclinks_v1 {
      * Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
      */
     dynamicLink?: string;
+    /**
+     * Google SDK version. Version takes the form "$major.$minor.$patch"
+     */
+    sdkVersion?: string;
   }
   export interface Params$Resource$V1$Installattribution {
     /**

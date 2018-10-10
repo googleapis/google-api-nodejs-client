@@ -1524,6 +1524,10 @@ export namespace dataproc_v1 {
      */
     deleteCluster?: Schema$ClusterOperation;
     /**
+     * Output only. Workflow end time.
+     */
+    endTime?: string;
+    /**
      * Output only. The workflow graph.
      */
     graph?: Schema$WorkflowGraph;
@@ -1531,6 +1535,10 @@ export namespace dataproc_v1 {
      * Map from parameter names to values that were used for those parameters.
      */
     parameters?: any;
+    /**
+     * Output only. Workflow start time.
+     */
+    startTime?: string;
     /**
      * Output only. The workflow state.
      */

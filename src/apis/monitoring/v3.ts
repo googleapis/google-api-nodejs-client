@@ -791,15 +791,14 @@ export namespace monitoring_v3 {
     useSsl?: boolean;
   }
   /**
-   * Nimbus InternalCheckers.
+   * Nimbus InternalCheckers. The API currently only allows reading of internal
+   * checkers, creation of internal checkers is a manual process.
    */
   export interface Schema$InternalChecker {
     /**
-     * The checker ID.
-     */
-    checkerId?: string;
-    /**
-     * The checker&#39;s human-readable name.
+     * The checker&#39;s human-readable name. The display name should be unique
+     * within a Stackdriver Workspace in order to make it easier to identify;
+     * however, uniqueness is not enforced.
      */
     displayName?: string;
     /**
@@ -808,14 +807,17 @@ export namespace monitoring_v3 {
      */
     gcpZone?: string;
     /**
-     * The internal network to perform this uptime check on.
+     * A unique resource name for this InternalChecker. The format
+     * is:projects/[PROJECT_ID]/internalCheckers/[CHECKER_ID].PROJECT_ID is the
+     * GCP project ID where the internal resource lives. Not necessarily the
+     * same as the project_id for the config.
+     */
+    name?: string;
+    /**
+     * The GCP VPC network (https://cloud.google.com/vpc/docs/vpc) where the
+     * internal resource lives (ex: &quot;default&quot;).
      */
     network?: string;
-    /**
-     * The GCP project ID. Not necessarily the same as the project_id for the
-     * config.
-     */
-    projectId?: string;
   }
   /**
    * A description of a label.
@@ -1299,7 +1301,8 @@ export namespace monitoring_v3 {
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
-     * Compute Engine VM instance is gce_instance.
+     * Compute Engine VM instance is gce_instance. For a list of types, see
+     * Monitoring resource types and Logging resource types.
      */
     type?: string;
   }
@@ -1824,7 +1827,7 @@ export namespace monitoring_v3 {
     contentMatchers?: Schema$ContentMatcher[];
     /**
      * A human-friendly name for the uptime check configuration. The display
-     * name should be unique within a Stackdriver Account in order to make it
+     * name should be unique within a Stackdriver Workspace in order to make it
      * easier to identify; however, uniqueness is not enforced. Required.
      */
     displayName?: string;

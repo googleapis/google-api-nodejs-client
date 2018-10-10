@@ -32,9 +32,9 @@ export namespace adexchangebuyer2_v2beta1 {
   /**
    * Ad Exchange Buyer API II
    *
-   * Accesses the latest features for managing Ad Exchange accounts, Real-Time
-   * Bidding configurations and auction metrics, and Marketplace programmatic
-   * deals.
+   * Accesses the latest features for managing Authorized Buyers accounts,
+   * Real-Time Bidding configurations and auction metrics, and Marketplace
+   * programmatic deals.
    *
    * @example
    * const {google} = require('googleapis');
@@ -210,12 +210,12 @@ export namespace adexchangebuyer2_v2beta1 {
     status?: string;
   }
   /**
-   * Represents a buyer of inventory. Each buyer is identified by a unique Ad
-   * Exchange account ID.
+   * Represents a buyer of inventory. Each buyer is identified by a unique
+   * Authorized Buyers account ID.
    */
   export interface Schema$Buyer {
     /**
-     * Ad Exchange account ID of the buyer.
+     * Authorized Buyers account ID of the buyer.
      */
     accountId?: string;
   }
@@ -227,7 +227,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Schema$CalloutStatusRow {
     /**
      * The ID of the callout status. See
-     * [callout-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/callout-status-codes).
+     * [callout-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/callout-status-codes).
      */
     calloutStatusId?: number;
     /**
@@ -247,10 +247,9 @@ export namespace adexchangebuyer2_v2beta1 {
   /**
    * A client resource represents a client buyer&amp;mdash;an agency, a brand,
    * or an advertiser customer of the sponsor buyer. Users associated with the
-   * client buyer have restricted access to the Ad Exchange Marketplace and
-   * certain other sections of the Ad Exchange Buyer UI based on the role
-   * granted to the client buyer. All fields are required unless otherwise
-   * specified.
+   * client buyer have restricted access to the Marketplace and certain other
+   * sections of the Authorized Buyers UI based on the role granted to the
+   * client buyer. All fields are required unless otherwise specified.
    */
   export interface Schema$Client {
     /**
@@ -317,11 +316,11 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   /**
    * A client user is created under a client buyer and has restricted access to
-   * the Ad Exchange Marketplace and certain other sections of the Ad Exchange
-   * Buyer UI based on the role granted to the associated client buyer.  The
-   * only way a new client user can be created is via accepting an email
-   * invitation (see the accounts.clients.invitations.create method).  All
-   * fields are required unless otherwise specified.
+   * the Marketplace and certain other sections of the Authorized Buyers UI
+   * based on the role granted to the associated client buyer.  The only way a
+   * new client user can be created is via accepting an email invitation (see
+   * the accounts.clients.invitations.create method).  All fields are required
+   * unless otherwise specified.
    */
   export interface Schema$ClientUser {
     /**
@@ -346,7 +345,7 @@ export namespace adexchangebuyer2_v2beta1 {
     userId?: string;
   }
   /**
-   * An invitation for a new client user to get access to the Ad Exchange Buyer
+   * An invitation for a new client user to get access to the Authorized Buyers
    * UI. All fields are required unless otherwise specified.
    */
   export interface Schema$ClientUserInvitation {
@@ -555,8 +554,8 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   /**
    * Represents creative restrictions associated to Programmatic Guaranteed/
-   * Preferred Deal in DFP. This doesn&#39;t apply to Private Auction and AdX
-   * Preferred Deals.
+   * Preferred Deal in Ad Manager. This doesn&#39;t apply to Private Auction and
+   * AdX Preferred Deals.
    */
   export interface Schema$CreativeRestrictions {
     /**
@@ -575,7 +574,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Schema$CreativeSize {
     /**
      * What formats are allowed by the publisher. If this repeated field is
-     * empty then all formats are allowed. E.g., if this field contains
+     * empty then all formats are allowed. For example, if this field contains
      * AllowedFormatType.AUDIO then the publisher only allows an audio ad
      * (without any video).
      */
@@ -607,7 +606,7 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   /**
    * Represents information for a creative that is associated with a
-   * Programmatic Guaranteed/Preferred Deal in DFP.
+   * Programmatic Guaranteed/Preferred Deal in Ad Manager.
    */
   export interface Schema$CreativeSpecification {
     /**
@@ -631,7 +630,7 @@ export namespace adexchangebuyer2_v2beta1 {
     bidCount?: Schema$MetricValue;
     /**
      * The ID of the creative status. See
-     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
     creativeStatusId?: number;
     /**
@@ -763,9 +762,9 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativePreApprovalPolicy?: string;
     /**
-     * Restricitions about the creatives associated with the deal (i.e. size)
-     * This is available for Programmatic Guaranteed/Preferred Deals in DFP.
-     * @OutputOnly
+     * Restricitions about the creatives associated with the deal (i.e., size)
+     * This is available for Programmatic Guaranteed/Preferred Deals in Ad
+     * Manager. @OutputOnly
      */
     creativeRestrictions?: Schema$CreativeRestrictions;
     /**
@@ -1020,8 +1019,8 @@ export namespace adexchangebuyer2_v2beta1 {
    * A set of filters that is applied to a request for data. Within a filter
    * set, an AND operation is performed across the filters represented by each
    * field. An OR operation is performed across the filters represented by the
-   * multiple values of a repeated field. E.g. &quot;format=VIDEO AND deal_id=12
-   * AND (seller_network_id=34 OR seller_network_id=56)&quot;
+   * multiple values of a repeated field, e.g., &quot;format=VIDEO AND
+   * deal_id=12 AND (seller_network_id=34 OR seller_network_id=56)&quot;.
    */
   export interface Schema$FilterSet {
     /**
@@ -1032,14 +1031,14 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the creative on which to filter; optional. This field may be
      * set only for a filter set that accesses account-level troubleshooting
-     * data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x
+     * data, i.e., one whose name matches the `bidders/x/accounts/x/filterSets/x
      * pattern.
      */
     creativeId?: string;
     /**
      * The ID of the deal on which to filter; optional. This field may be set
      * only for a filter set that accesses account-level troubleshooting data,
-     * i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x
+     * i.e., one whose name matches the `bidders/x/accounts/x/filterSets/x
      * pattern.
      */
     dealId?: string;
@@ -1049,7 +1048,7 @@ export namespace adexchangebuyer2_v2beta1 {
     environment?: string;
     /**
      * The list of formats on which to filter; may be empty. The filters
-     * represented by multiple formats are ORed together (i.e. if non-empty,
+     * represented by multiple formats are ORed together (i.e., if non-empty,
      * results must match any one of the formats).
      */
     formats?: string[];
@@ -1063,12 +1062,12 @@ export namespace adexchangebuyer2_v2beta1 {
     name?: string;
     /**
      * The list of platforms on which to filter; may be empty. The filters
-     * represented by multiple platforms are ORed together (i.e. if non-empty,
+     * represented by multiple platforms are ORed together (i.e., if non-empty,
      * results must match any one of the platforms).
      */
     platforms?: string[];
     /**
-     * For Exchange Bidding buyers only. The list of publisher identifiers on
+     * For Open Bidding partners only. The list of publisher identifiers on
      * which to filter; may be empty. The filters represented by multiple
      * publisher identifiers are ORed together.
      */
@@ -1084,11 +1083,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     relativeDateRange?: Schema$RelativeDateRange;
     /**
-     * For Ad Exchange buyers only. The list of IDs of the seller (publisher)
+     * For Authorized Buyers only. The list of IDs of the seller (publisher)
      * networks on which to filter; may be empty. The filters represented by
-     * multiple seller network IDs are ORed together (i.e. if non-empty, results
-     * must match any one of the publisher networks). See
-     * [seller-network-ids](https://developers.google.com/ad-exchange/rtb/downloads/seller-network-ids)
+     * multiple seller network IDs are ORed together (i.e., if non-empty,
+     * results must match any one of the publisher networks). See
+     * [seller-network-ids](https://developers.google.com/authorized-buyers/rtb/downloads/seller-network-ids)
      * file for the set of existing seller network IDs.
      */
     sellerNetworkIds?: number[];
@@ -1233,7 +1232,7 @@ export namespace adexchangebuyer2_v2beta1 {
    * Represents the size of an ad unit that can be targeted on an ad request. It
    * only applies to Private Auction, AdX Preferred Deals and Auction Packages.
    * This targeting does not apply to Programmatic Guaranteed and Preferred
-   * Deals in DFP.
+   * Deals in Ad Manager.
    */
   export interface Schema$InventorySizeTargeting {
     /**
@@ -1567,11 +1566,12 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     inventorySizeTargeting?: Schema$InventorySizeTargeting;
     /**
-     * Placement targeting information, e.g. URL, mobile applications.
+     * Placement targeting information, e.g., URL, mobile applications.
      */
     placementTargeting?: Schema$PlacementTargeting;
     /**
-     * Technology targeting information, e.g. operating system, device category.
+     * Technology targeting information, e.g., operating system, device
+     * category.
      */
     technologyTargeting?: Schema$TechnologyTargeting;
     /**
@@ -1784,7 +1784,7 @@ export namespace adexchangebuyer2_v2beta1 {
     reason?: string;
   }
   /**
-   * Represents targeting about where the ads can appear, e.g. certain sites or
+   * Represents targeting about where the ads can appear, e.g., certain sites or
    * mobile applications. Different placement targeting types will be logically
    * OR&#39;ed.
    */
@@ -1900,7 +1900,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     productId?: string;
     /**
-     * The revision number of the product. (auto-assigned by marketplace)
+     * The revision number of the product (auto-assigned by Marketplace).
      */
     productRevision?: string;
     /**
@@ -1939,7 +1939,7 @@ export namespace adexchangebuyer2_v2beta1 {
   /**
    * Note: this resource requires whitelisting for access. Please contact your
    * account manager for access to Marketplace resources.  Represents a proposal
-   * in the marketplace. A proposal is the unit of negotiation between a seller
+   * in the Marketplace. A proposal is the unit of negotiation between a seller
    * and a buyer and contains deals which are served.  Note: you can not update,
    * create, or otherwise modify Private Auction or Preferred Deals deals
    * through the API.  Fields are updatable unless noted otherwise.
@@ -2141,19 +2141,19 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   /**
    * A relative date range, specified by an offset and a duration. The supported
-   * range of dates begins 30 days before today and ends today. I.e. the limits
+   * range of dates begins 30 days before today and ends today, i.e., the limits
    * for these values are: offset_days &gt;= 0 duration_days &gt;= 1 offset_days
    * + duration_days &lt;= 30
    */
   export interface Schema$RelativeDateRange {
     /**
-     * The number of days in the requested date range. E.g. for a range spanning
-     * today, 1. For a range spanning the last 7 days, 7.
+     * The number of days in the requested date range, e.g., for a range
+     * spanning today: 1. For a range spanning the last 7 days: 7.
      */
     durationDays?: number;
     /**
      * The end date of the filter set, specified as the number of days before
-     * today. E.g. for a range where the last date is today, 0.
+     * today, e.g., for a range where the last date is today: 0.
      */
     offsetDays?: number;
   }
@@ -2192,7 +2192,7 @@ export namespace adexchangebuyer2_v2beta1 {
   }
   /**
    * Represents a seller of inventory. Each seller is identified by a unique Ad
-   * Exchange account ID.
+   * Manager account ID.
    */
   export interface Schema$Seller {
     /**
@@ -2318,7 +2318,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The daypart targeting to include / exclude. Filled in when the key is
      * GOOG_DAYPART_TARGETING. The definition of this targeting is derived from
-     * the structure used by DFP.
+     * the structure used by Ad Manager.
      */
     dayPartTargetingValue?: Schema$DayPartTargeting;
     /**
@@ -2389,10 +2389,10 @@ export namespace adexchangebuyer2_v2beta1 {
     seconds?: number;
   }
   /**
-   * Represents a list of targeted and excluded URLs (e.g google.com). For
+   * Represents a list of targeted and excluded URLs (e.g., google.com). For
    * Private Auction and AdX Preferred Deals, URLs are either included or
-   * excluded. For DFP Programmatic Guaranteed and Preferred Deals, this
-   * doesn&#39;t apply.
+   * excluded. For Programmatic Guaranteed and Preferred Deals, this doesn&#39;t
+   * apply.
    */
   export interface Schema$UrlTargeting {
     /**
@@ -4568,7 +4568,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
-     * @param {string=} params.filter An optional PQL query used to query for products. See https://developers.google.com/doubleclick-publishers/docs/pqlreference for documentation about PQL and examples.  Nested repeated fields, such as product.targetingCriterion.inclusions, cannot be filtered.
+     * @param {string=} params.filter An optional PQL query used to query for products. See https://developers.google.com/ad-manager/docs/pqlreference for documentation about PQL and examples.  Nested repeated fields, such as product.targetingCriterion.inclusions, cannot be filtered.
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken The page token as returned from ListProductsResponse.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4659,9 +4659,9 @@ export namespace adexchangebuyer2_v2beta1 {
     accountId?: string;
     /**
      * An optional PQL query used to query for products. See
-     * https://developers.google.com/doubleclick-publishers/docs/pqlreference
-     * for documentation about PQL and examples.  Nested repeated fields, such
-     * as product.targetingCriterion.inclusions, cannot be filtered.
+     * https://developers.google.com/ad-manager/docs/pqlreference for
+     * documentation about PQL and examples.  Nested repeated fields, such as
+     * product.targetingCriterion.inclusions, cannot be filtered.
      */
     filter?: string;
     /**
@@ -5882,7 +5882,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeId The ID of the creative to delete.
-     * @param {string} params.ownerName Name of the owner (bidder or account) of the creative to be deleted. For example:  - For an account-level creative for the buyer account representing bidder   123: `bidders/123/accounts/123/`  - For an account-level creative for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/`
+     * @param {string} params.ownerName Name of the owner (bidder or account) of the creative to be deleted. For example:  - For an account-level creative for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level creative for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5955,9 +5955,9 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Name of the owner (bidder or account) of the creative to be deleted. For
      * example:  - For an account-level creative for the buyer account
-     * representing bidder   123: `bidders/123/accounts/123/`  - For an
+     * representing bidder   123: `bidders/123/accounts/123`  - For an
      * account-level creative for the child seat buyer account 456   whose
-     * bidder is 123: `bidders/123/accounts/456/`
+     * bidder is 123: `bidders/123/accounts/456`
      */
     ownerName?: string;
   }
@@ -7009,7 +7009,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
@@ -7098,7 +7098,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the creative status for which to retrieve a breakdown by
      * creative. See
-     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
     creativeStatusId?: number;
     /**
@@ -7147,7 +7147,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
@@ -7236,7 +7236,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the creative status for which to retrieve a breakdown by
      * detail. See
-     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      * Details are only available for statuses 10, 14, 15, 17, 18, 19, 86,
      * and 87.
      */
@@ -8666,7 +8666,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by creative. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from the previous call to the filteredBids.creatives.list method.
@@ -8752,7 +8752,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the creative status for which to retrieve a breakdown by
      * creative. See
-     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
     creativeStatusId?: number;
     /**
@@ -8800,7 +8800,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
+     * @param {integer} params.creativeStatusId The ID of the creative status for which to retrieve a breakdown by detail. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes). Details are only available for statuses 10, 14, 15, 17, 18, 19, 86, and 87.
      * @param {string} params.filterSetName Name of the filter set that should be applied to the requested metrics. For example:  - For a bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456/filterSets/abc`
      * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from the previous call to the filteredBids.details.list method.
@@ -8886,7 +8886,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the creative status for which to retrieve a breakdown by
      * detail. See
-     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      * Details are only available for statuses 10, 14, 15, 17, 18, 19, 86,
      * and 87.
      */

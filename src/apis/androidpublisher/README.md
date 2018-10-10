@@ -2,7 +2,7 @@
 
 # @google/androidpublisher
 
-> Lets Android application developers access their Google Play accounts.
+> Accesses Android application developers&#39; Google Play accounts.
 
 ## Installation
 

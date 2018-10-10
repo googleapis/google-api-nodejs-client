@@ -540,6 +540,10 @@ export namespace androiddeviceprovisioning_v1 {
      * results are available.
      */
     nextPageToken?: string;
+    /**
+     * The total count of items in the list irrespective of pagination.
+     */
+    totalSize?: number;
   }
   /**
    * Request to find devices by customers.
@@ -576,6 +580,10 @@ export namespace androiddeviceprovisioning_v1 {
      * results are available.
      */
     nextPageToken?: string;
+    /**
+     * The total count of items in the list irrespective of pagination.
+     */
+    totalSize?: number;
   }
   /**
    * Response message of all customers related to this partner.
@@ -585,6 +593,15 @@ export namespace androiddeviceprovisioning_v1 {
      * List of customers related to this reseller partner.
      */
     customers?: Schema$Company[];
+    /**
+     * A token to retrieve the next page of results. Omitted if no further
+     * results are available.
+     */
+    nextPageToken?: string;
+    /**
+     * The total count of items in the list irrespective of pagination.
+     */
+    totalSize?: number;
   }
   /**
    * Response message to list customers of the vendor.
@@ -599,6 +616,10 @@ export namespace androiddeviceprovisioning_v1 {
      * results are available.
      */
     nextPageToken?: string;
+    /**
+     * The total count of items in the list irrespective of pagination.
+     */
+    totalSize?: number;
   }
   /**
    * Response message to list vendors of the partner.
@@ -609,6 +630,10 @@ export namespace androiddeviceprovisioning_v1 {
      * results are available.
      */
     nextPageToken?: string;
+    /**
+     * The total count of items in the list irrespective of pagination.
+     */
+    totalSize?: number;
     /**
      * List of vendors of the reseller partner. Fields `name`, `companyId` and
      * `companyName` are populated to the Company object.
@@ -2139,6 +2164,8 @@ export namespace androiddeviceprovisioning_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to be returned. If not specified or 0, all the records are returned.
+     * @param {string=} params.pageToken A token identifying a page of results returned by the server.
      * @param {string} params.partnerId Required. The ID of the reseller partner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2224,6 +2251,15 @@ export namespace androiddeviceprovisioning_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The maximum number of results to be returned. If not specified or 0, all
+     * the records are returned.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results returned by the server.
+     */
+    pageToken?: string;
     /**
      * Required. The ID of the reseller partner.
      */

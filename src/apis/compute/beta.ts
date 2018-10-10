@@ -5848,16 +5848,17 @@ export namespace compute_beta {
    * and end in &quot;_count&quot;. Field names should not contain an initial
    * slash. The actual exported metric names will have &quot;/iam/policy&quot;
    * prepended.  Field names correspond to IAM request parameters and field
-   * values are their respective values.  At present the only supported field
-   * names are - &quot;iam_principal&quot;, corresponding to
-   * IAMContext.principal; - &quot;&quot; (empty string), resulting in one
-   * aggretated counter with no field.  Examples: counter { metric:
+   * values are their respective values.  Supported field names: -
+   * &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is
+   * present, otherwise the value of IAMContext.authority_selector if present,
+   * and otherwise a representation of IAMContext.principal; or -
+   * &quot;iam_principal&quot;, a representation of IAMContext.principal even if
+   * a token or authority selector is present; or - &quot;&quot; (empty string),
+   * resulting in a counter with no fields.  Examples: counter { metric:
    * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
    * increment counter /iam/policy/backend_debug_access_count
    * {iam_principal=[value of IAMContext.principal]}  At this time we do not
-   * support: * multiple field names (though this may be supported in the
-   * future) * decrementing the counter * incrementing it by anything other than
-   * 1
+   * support multiple field names (though this may be supported in the future).
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -6128,17 +6129,17 @@ export namespace compute_beta {
     port?: number;
   }
   /**
-   * Represents a Network resource. Read Networks and Firewalls for more
-   * information. (== resource_for v1.networks ==) (== resource_for
-   * beta.networks ==)
+   * Represents a Network resource. Read Virtual Private Cloud (VPC) Network
+   * Overview for more information. (== resource_for v1.networks ==) (==
+   * resource_for beta.networks ==)
    */
   export interface Schema$Network {
     /**
-     * When set to true, the network is created in &quot;auto subnet mode&quot;.
-     * When set to false, the network is in &quot;custom subnet mode&quot;.  In
-     * &quot;auto subnet mode&quot;, a newly created network is assigned the
-     * default CIDR of 10.128.0.0/9 and it automatically creates one subnetwork
-     * per region.
+     * When set to true, the VPC network is created in &quot;auto&quot; mode.
+     * When set to false, the VPC network is created in &quot;custom&quot; mode.
+     * An auto mode VPC network starts with one subnet per region. Each subnet
+     * has a predetermined range as described in Auto mode VPC network IP
+     * ranges.
      */
     autoCreateSubnetworks?: boolean;
     /**
@@ -6151,9 +6152,8 @@ export namespace compute_beta {
      */
     description?: string;
     /**
-     * A gateway address for default routing to other networks. This value is
-     * read only and is selected by the Google Compute Engine, typically as the
-     * first usable address in the IPv4Range.
+     * [Output Only] The gateway address for default routing out of the network.
+     * This value is read only and is selected by GCP.
      */
     gatewayIPv4?: string;
     /**
@@ -6197,7 +6197,7 @@ export namespace compute_beta {
     selfLink?: string;
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in
-     * this network.
+     * this VPC network.
      */
     subnetworks?: string[];
   }
@@ -6602,9 +6602,9 @@ export namespace compute_beta {
   export interface Schema$NetworkRoutingConfig {
     /**
      * The network-wide routing mode to use. If set to REGIONAL, this
-     * network&#39;s cloud routers will only advertise routes with subnetworks
-     * of this network in the same region as the router. If set to GLOBAL, this
-     * network&#39;s cloud routers will advertise routes with all subnetworks of
+     * network&#39;s cloud routers will only advertise routes with subnets of
+     * this network in the same region as the router. If set to GLOBAL, this
+     * network&#39;s cloud routers will advertise routes with all subnets of
      * this network, across regions.
      */
     routingMode?: string;

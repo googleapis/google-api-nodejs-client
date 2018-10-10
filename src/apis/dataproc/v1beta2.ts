@@ -847,7 +847,7 @@ export namespace dataproc_v1beta2 {
     substate?: string;
   }
   /**
-   * Specifies the cluster auto delete related schedule configuration.
+   * Specifies the cluster auto-delete schedule configuration.
    */
   export interface Schema$LifecycleConfig {
     /**
@@ -855,14 +855,16 @@ export namespace dataproc_v1beta2 {
      */
     autoDeleteTime?: string;
     /**
-     * Optional. The life duration of cluster, the cluster will be auto-deleted
-     * at the end of this duration.
+     * Optional. The lifetime duration of cluster. The cluster will be
+     * auto-deleted at the end of this period. Valid range: 10m, 14d.Example:
+     * &quot;1d&quot;, to delete the cluster 1 day after its creation..
      */
     autoDeleteTtl?: string;
     /**
-     * Optional. The longest duration that cluster would keep alive while
-     * staying  idle; passing this threshold will cause cluster to be
-     * auto-deleted.
+     * Optional. The duration to keep the cluster alive while idling. Passing
+     * this threshold will cause the cluster to be deleted. Valid range: 10m,
+     * 14d.Example: &quot;10m&quot;, the minimum value, to delete the cluster
+     * when it has had no jobs running for 10 minutes.
      */
     idleDeleteTtl?: string;
   }
@@ -1563,6 +1565,10 @@ export namespace dataproc_v1beta2 {
      */
     deleteCluster?: Schema$ClusterOperation;
     /**
+     * Output only. Workflow end time.
+     */
+    endTime?: string;
+    /**
      * Output only. The workflow graph.
      */
     graph?: Schema$WorkflowGraph;
@@ -1570,6 +1576,10 @@ export namespace dataproc_v1beta2 {
      * Map from parameter names to values that were used for those parameters.
      */
     parameters?: any;
+    /**
+     * Output only. Workflow start time.
+     */
+    startTime?: string;
     /**
      * Output only. The workflow state.
      */

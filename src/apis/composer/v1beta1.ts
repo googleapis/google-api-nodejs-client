@@ -118,8 +118,8 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$EnvironmentConfig {
     /**
-     * The URI of the Apache Airflow Web UI hosted within this environment (see
-     * [Airflow web
+     * Output only. The URI of the Apache Airflow Web UI hosted within this
+     * environment (see [Airflow web
      * interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      */
     airflowUri?: string;
@@ -368,15 +368,28 @@ export namespace composer_v1beta1 {
      */
     envVariables?: any;
     /**
-     * Output only. The version of the software running in the environment. This
+     * Immutable. The version of the software running in the environment. This
      * encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
-     * `composer-[0-9]+\.[0-9]+(\.[0-9]+)?-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
-     * The Cloud Composer portion of the version is a [semantic
-     * version](https://semver.org). The portion of the image version following
-     * &lt;em&gt;airflow-&lt;/em&gt; is an official Apache Airflow repository
-     * [release name](https://github.com/apache/incubator-airflow/releases). See
-     * also [Release Notes](/composer/docs/release-notes).
+     * `composer-([0-9]+\.[0-9]+(\.[0-9]+)?|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
+     * When used as input, the server will also check if the provided version is
+     * supported and deny the creation request for an unsupported version.  The
+     * Cloud Composer portion of the version is a [semantic
+     * version](https://semver.org) or `latest`. The patch version can be
+     * omitted and the current Cloud Composer patch version will be selected.
+     * When `latest` is provided instead of an explicit version number, the
+     * server will replace `latest` with the current Cloud Composer version and
+     * store that version number in the same field.  The portion of the image
+     * version that follows &lt;em&gt;airflow-&lt;/em&gt; is an official Apache
+     * Airflow repository [release
+     * name](https://github.com/apache/incubator-airflow/releases).  Supported
+     * values for input are: * `composer-latest-airflow-latest` *
+     * `composer-latest-airflow-1.10.0` * `composer-latest-airflow-1.9.0` *
+     * `composer-latest-airflow-1.10` * `composer-latest-airflow-1.9` *
+     * `composer-1.1.1-airflow-latest` * `composer-1.1.1-airflow-1.10.0` *
+     * `composer-1.1.1-airflow-1.9.0` * `composer-1.1.1-airflow-1.10` *
+     * `composer-1.1.1-airflow-1.9`  See also [Release
+     * Notes](/composer/docs/release-notes).
      */
     imageVersion?: string;
     /**
@@ -388,6 +401,13 @@ export namespace composer_v1beta1 {
      * pinning it to a version specifier, use the empty string as the value.
      */
     pypiPackages?: any;
+    /**
+     * Optional. The major version of Python used to run the Apache Airflow
+     * scheduler, worker, and webserver processes.  Can be set to &#39;2&#39; or
+     * &#39;3&#39;. If not specified, the default is &#39;2&#39;. Cannot be
+     * updated.
+     */
+    pythonVersion?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for

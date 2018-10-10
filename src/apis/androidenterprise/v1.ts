@@ -136,11 +136,7 @@ export namespace androidenterprise_v1 {
      */
     parent?: string;
     /**
-     * The list of permissions the admin is granted within the iframe. The admin
-     * will only be allowed to view an iframe if they have all of the
-     * permissions associated with it. The only valid value is
-     * &quot;approveApps&quot; that will allow the admin to access the iframe in
-     * &quot;approve&quot; mode.
+     * Deprecated. Use PlaySearch.approveApps.
      */
     permission?: string[];
     /**
@@ -161,6 +157,10 @@ export namespace androidenterprise_v1 {
     webApps?: Schema$AdministratorWebTokenSpecWebApps;
   }
   export interface Schema$AdministratorWebTokenSpecPlaySearch {
+    /**
+     * Allow access to the iframe in approve mode. Default is false.
+     */
+    approveApps?: boolean;
     /**
      * Whether the Play Search page is displayed. Default is true.
      */

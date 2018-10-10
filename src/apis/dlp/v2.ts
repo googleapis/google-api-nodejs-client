@@ -431,6 +431,55 @@ export namespace dlp_v2 {
     path?: string;
   }
   /**
+   * Message representing a set of files in a Cloud Storage bucket. Regular
+   * expressions are used to allow fine-grained control over which files in the
+   * bucket to include.  Included files are those that match at least one item
+   * in `include_regex` and do not match any items in `exclude_regex`. Note that
+   * a file that matches items from both lists will _not_ be included. For a
+   * match to occur, the entire file path (i.e., everything in the url after the
+   * bucket name) must match the regular expression.  For example, given the
+   * input `{bucket_name: &quot;mybucket&quot;, include_regex:
+   * [&quot;directory1/.*&quot;], exclude_regex:
+   * [&quot;directory1/excluded.*&quot;]}`:  * `gs://mybucket/directory1/myfile`
+   * will be included * `gs://mybucket/directory1/directory2/myfile` will be
+   * included (`.*` matches across `/`) *
+   * `gs://mybucket/directory0/directory1/myfile` will _not_ be included (the
+   * full path doesn&#39;t match any items in `include_regex`) *
+   * `gs://mybucket/directory1/excludedfile` will _not_ be included (the path
+   * matches an item in `exclude_regex`)  If `include_regex` is left empty, it
+   * will match all files by default (this is equivalent to setting
+   * `include_regex: [&quot;.*&quot;]`).  Some other common use cases:  *
+   * `{bucket_name: &quot;mybucket&quot;, exclude_regex: [&quot;.*\.pdf&quot;]}`
+   * will include all files in `mybucket` except for .pdf files * `{bucket_name:
+   * &quot;mybucket&quot;, include_regex: [&quot;directory/[^/]+&quot;]}` will
+   * include all files directly under `gs://mybucket/directory/`, without
+   * matching across `/`
+   */
+  export interface Schema$GooglePrivacyDlpV2CloudStorageRegexFileSet {
+    /**
+     * The name of a Cloud Storage bucket. Required.
+     */
+    bucketName?: string;
+    /**
+     * A list of regular expressions matching file paths to exclude. All files
+     * in the bucket that match at least one of these regular expressions will
+     * be excluded from the scan.  Regular expressions use RE2
+     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
+     * under the google/re2 repository on GitHub.
+     */
+    excludeRegex?: string[];
+    /**
+     * A list of regular expressions matching file paths to include. All files
+     * in the bucket that match at least one of these regular expressions will
+     * be included in the set of files, except for those that also match an item
+     * in `exclude_regex`. Leaving this field empty will match all files by
+     * default (this is equivalent to including `.*` in the list).  Regular
+     * expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax);
+     * a guide can be found under the google/re2 repository on GitHub.
+     */
+    includeRegex?: string[];
+  }
+  /**
    * Represents a color in the RGB color space.
    */
   export interface Schema$GooglePrivacyDlpV2Color {
@@ -504,9 +553,13 @@ export namespace dlp_v2 {
   export interface Schema$GooglePrivacyDlpV2ContentLocation {
     /**
      * Name of the container where the finding is located. The top level name is
-     * the source file name or table name. Nested names could be absent if the
-     * embedded object has no string identifier (for an example an image
-     * contained within a document).
+     * the source file name or table name. Names of some common storage
+     * containers are formatted as follows:  * BigQuery tables:
+     * `&lt;project_id&gt;:&lt;dataset_id&gt;.&lt;table_id&gt;` * Cloud Storage
+     * files: `gs://&lt;bucket&gt;/&lt;path&gt;` * Datastore namespace:
+     * &lt;namespace&gt;  Nested names could be absent if the embedded object
+     * has no string identifier (for an example an image contained within a
+     * document).
      */
     containerName?: string;
     /**
@@ -719,6 +772,10 @@ export namespace dlp_v2 {
      * A list of phrases to detect as a CustomInfoType.
      */
     dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
+    /**
+     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
+     * to be returned. It still can be used for rules matching.
+     */
     exclusionType?: string;
     /**
      * CustomInfoType can either be a new infoType, or an extension of built-in
@@ -1221,9 +1278,14 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FileSet {
     /**
+     * The regex-filtered set of files to scan. Exactly one of `url` or
+     * `regex_file_set` must be set.
+     */
+    regexFileSet?: Schema$GooglePrivacyDlpV2CloudStorageRegexFileSet;
+    /**
      * The Cloud Storage url of the file(s) to scan, in the format
      * `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is
-     * allowed.
+     * allowed. Exactly one of `url` or `regex_file_set` must be set.
      */
     url?: string;
   }
@@ -4508,6 +4570,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
@@ -4709,6 +4772,17 @@ export namespace dlp_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc, display_name, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the most recent version of the
+     * resource was created. - `state`: corresponds to the state of the
+     * resource. - `name`: corresponds to resource name. - `display_name`:
+     * corresponds to info type's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -5876,6 +5950,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id.
@@ -6028,6 +6103,16 @@ export namespace dlp_v2 {
      * characters.
      */
     filter?: string;
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc, end_time asc, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the job was created. - `end_time`:
+     * corresponds to time the job ended. - `name`: corresponds to job's name. -
+     * `state`: corresponds to `state`
+     */
+    orderBy?: string;
     /**
      * The standard list page size.
      */
@@ -7368,6 +7453,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
@@ -7569,6 +7655,17 @@ export namespace dlp_v2 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc, display_name, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the most recent version of the
+     * resource was created. - `state`: corresponds to the state of the
+     * resource. - `name`: corresponds to resource name. - `display_name`:
+     * corresponds to info type's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
