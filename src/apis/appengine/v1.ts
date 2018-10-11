@@ -135,7 +135,7 @@ export namespace appengine_v1 {
     /**
      * HTTP path dispatch rules for requests to the application that do not
      * explicitly target a service or version. Rules are order-dependent. Up to
-     * 20 dispatch rules can be supported.@OutputOnly
+     * 20 dispatch rules can be supported.
      */
     dispatchRules?: Schema$UrlDispatchRule[];
     /**
@@ -577,6 +577,11 @@ export namespace appengine_v1 {
      * case, config_id must be omitted.
      */
     configId?: string;
+    /**
+     * Enable or disable trace sampling. By default, this is set to false for
+     * enabled.
+     */
+    disableTraceSampling?: boolean;
     /**
      * Endpoints service name which is the name of the &quot;service&quot;
      * resource in the Service Management API. For example

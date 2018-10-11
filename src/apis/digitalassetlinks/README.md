@@ -2,7 +2,7 @@
 
 # @google/digitalassetlinks
 
-> API for discovering relationships between online assets such as web sites or mobile apps.
+> Discovers relationships between online assets such as websites or mobile apps.
 
 ## Installation
 

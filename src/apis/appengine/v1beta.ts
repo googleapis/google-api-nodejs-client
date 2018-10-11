@@ -135,7 +135,7 @@ export namespace appengine_v1beta {
     /**
      * HTTP path dispatch rules for requests to the application that do not
      * explicitly target a service or version. Rules are order-dependent. Up to
-     * 20 dispatch rules can be supported.@OutputOnly
+     * 20 dispatch rules can be supported.
      */
     dispatchRules?: Schema$UrlDispatchRule[];
     /**

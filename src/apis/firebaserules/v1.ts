@@ -164,6 +164,12 @@ export namespace firebaserules_v1 {
      */
     rulesetName?: string;
     /**
+     * Optional, indicates the freshness of the result. The response is
+     * guaranteed to be the latest within an interval up to the sync_time
+     * (inclusive).
+     */
+    syncTime?: string;
+    /**
      * Timestamp for the most recent `Release.update_time`.
      */
     updateTime?: string;
@@ -803,7 +809,7 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.executableVersion The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1
+     * @param {string=} params.executableVersion The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
      * @param {string} params.name Resource name of the `Release`.  Format: `projects/{project_id}/releases/{release_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1065,7 +1071,7 @@ export namespace firebaserules_v1 {
 
     /**
      * The requested runtime executable version. Defaults to
-     * FIREBASE_RULES_EXECUTABLE_V1
+     * FIREBASE_RULES_EXECUTABLE_V1.
      */
     executableVersion?: string;
     /**

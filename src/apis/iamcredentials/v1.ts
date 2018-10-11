@@ -267,7 +267,7 @@ export namespace iamcredentials_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a wildcard for the project will infer the project from the account.
+     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      * @param {().GenerateAccessTokenRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -345,7 +345,7 @@ export namespace iamcredentials_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Use hyphen as placeholder for project id since there is no project context for this API.
+     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      * @param {().GenerateIdentityBindingAccessTokenRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -428,7 +428,7 @@ export namespace iamcredentials_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a wildcard for the project will infer the project from the account.
+     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      * @param {().GenerateIdTokenRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -500,7 +500,7 @@ export namespace iamcredentials_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a wildcard for the project will infer the project from the account.
+     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      * @param {().SignBlobRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -569,7 +569,7 @@ export namespace iamcredentials_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a wildcard for the project will infer the project from the account.
+     * @param {string} params.name The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      * @param {().SignJwtRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -640,8 +640,7 @@ export namespace iamcredentials_v1 {
     /**
      * The resource name of the service account for which the credentials are
      * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a
-     * wildcard for the project will infer the project from the account.
+     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      */
     name?: string;
 
@@ -659,9 +658,7 @@ export namespace iamcredentials_v1 {
     /**
      * The resource name of the service account for which the credentials are
      * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Use hyphen as
-     * placeholder for project id since there is no project context for this
-     * API.
+     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      */
     name?: string;
 
@@ -679,8 +676,7 @@ export namespace iamcredentials_v1 {
     /**
      * The resource name of the service account for which the credentials are
      * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a
-     * wildcard for the project will infer the project from the account.
+     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      */
     name?: string;
 
@@ -698,8 +694,7 @@ export namespace iamcredentials_v1 {
     /**
      * The resource name of the service account for which the credentials are
      * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a
-     * wildcard for the project will infer the project from the account.
+     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      */
     name?: string;
 
@@ -717,8 +712,7 @@ export namespace iamcredentials_v1 {
     /**
      * The resource name of the service account for which the credentials are
      * requested, in the following format:
-     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. Using `-` as a
-     * wildcard for the project will infer the project from the account.
+     * `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`.
      */
     name?: string;
 

@@ -176,6 +176,11 @@ export namespace cloudiot_v1 {
      */
     lastStateTime?: string;
     /**
+     * **Beta Feature**  The logging verbosity for device activity. If
+     * unspecified, DeviceRegistry.log_level will be used.
+     */
+    logLevel?: string;
+    /**
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add
      * contextual information for the device.  Keys must conform to the regular
@@ -299,6 +304,12 @@ export namespace cloudiot_v1 {
      * The identifier of this device registry. For example, `myRegistry`.
      */
     id?: string;
+    /**
+     * **Beta Feature**  The default logging verbosity for activity from devices
+     * in this registry. The verbosity level can be overridden by
+     * Device.log_level.
+     */
+    logLevel?: string;
     /**
      * The MQTT configuration for this device registry.
      */
@@ -558,6 +569,28 @@ export namespace cloudiot_v1 {
      */
     publicKeyCertificate?: Schema$PublicKeyCertificate;
   }
+  /**
+   * Request for `SendCommandToDevice`.
+   */
+  export interface Schema$SendCommandToDeviceRequest {
+    /**
+     * The command data to send to the device.
+     */
+    binaryData?: string;
+    /**
+     * Optional subfolder for the command. If empty, the command will be
+     * delivered to the /devices/{device-id}/commands topic, otherwise it will
+     * be delivered to the /devices/{device-id}/commands/{subfolder} topic.
+     * Multi-level subfolders are allowed. This field must not have more than
+     * 256 characters, and must not contain any MQTT wildcards (&quot;+&quot; or
+     * &quot;#&quot;) or null characters.
+     */
+    subfolder?: string;
+  }
+  /**
+   * Response for `SendCommandToDevice`.
+   */
+  export interface Schema$SendCommandToDeviceResponse {}
   /**
    * Request message for `SetIamPolicy` method.
    */
@@ -1874,6 +1907,98 @@ export namespace cloudiot_v1 {
         return createAPIRequest<Schema$Device>(parameters);
       }
     }
+
+
+    /**
+     * cloudiot.projects.locations.registries.devices.sendCommandToDevice
+     * @desc Sends a command to the specified device. In order for a device to
+     * be able to receive commands, it must: 1) be connected to Cloud IoT Core
+     * using the MQTT protocol, and 2) be subscribed to the group of MQTT topics
+     * specified by    /devices/{device-id}/commands/#. This subscription will
+     * receive commands    at the top-level topic /devices/{device-id}/commands
+     * as well as commands    for subfolders, like
+     * /devices/{device-id}/commands/subfolder.    Note that subscribing to
+     * specific subfolders is not supported. If the command could not be
+     * delivered to the device, this method will return an error; in particular,
+     * if the device is not subscribed, this method will return
+     * FAILED_PRECONDITION. Otherwise, this method will return OK. If the
+     * subscription is QoS 1, at least once delivery will be guaranteed; for QoS
+     * 0, no acknowledgment will be expected from the device.
+     * @alias cloudiot.projects.locations.registries.devices.sendCommandToDevice
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {().SendCommandToDeviceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    sendCommandToDevice(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
+        options?: MethodOptions):
+        AxiosPromise<Schema$SendCommandToDeviceResponse>;
+    sendCommandToDevice(
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
+        callback: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void;
+    sendCommandToDevice(
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
+        callback: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void;
+    sendCommandToDevice(
+        callback: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void;
+    sendCommandToDevice(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice|
+        BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
+        callback?: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void|AxiosPromise<Schema$SendCommandToDeviceResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:sendCommandToDevice')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SendCommandToDeviceResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SendCommandToDeviceResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Registries$Devices$Create {
@@ -2013,6 +2138,25 @@ export namespace cloudiot_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Device;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendCommandToDeviceRequest;
   }
 
   export class Resource$Projects$Locations$Registries$Devices$Configversions {
@@ -2851,6 +2995,99 @@ export namespace cloudiot_v1 {
         return createAPIRequest<Schema$Device>(parameters);
       }
     }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.sendCommandToDevice
+     * @desc Sends a command to the specified device. In order for a device to
+     * be able to receive commands, it must: 1) be connected to Cloud IoT Core
+     * using the MQTT protocol, and 2) be subscribed to the group of MQTT topics
+     * specified by    /devices/{device-id}/commands/#. This subscription will
+     * receive commands    at the top-level topic /devices/{device-id}/commands
+     * as well as commands    for subfolders, like
+     * /devices/{device-id}/commands/subfolder.    Note that subscribing to
+     * specific subfolders is not supported. If the command could not be
+     * delivered to the device, this method will return an error; in particular,
+     * if the device is not subscribed, this method will return
+     * FAILED_PRECONDITION. Otherwise, this method will return OK. If the
+     * subscription is QoS 1, at least once delivery will be guaranteed; for QoS
+     * 0, no acknowledgment will be expected from the device.
+     * @alias
+     * cloudiot.projects.locations.registries.groups.devices.sendCommandToDevice
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {().SendCommandToDeviceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    sendCommandToDevice(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice,
+        options?: MethodOptions):
+        AxiosPromise<Schema$SendCommandToDeviceResponse>;
+    sendCommandToDevice(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
+        callback: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void;
+    sendCommandToDevice(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice,
+        callback: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void;
+    sendCommandToDevice(
+        callback: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void;
+    sendCommandToDevice(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice|
+        BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
+        callback?: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
+        void|AxiosPromise<Schema$SendCommandToDeviceResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:sendCommandToDevice')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SendCommandToDeviceResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SendCommandToDeviceResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Get {
@@ -2958,6 +3195,25 @@ export namespace cloudiot_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Device;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendCommandToDeviceRequest;
   }
 
   export class
