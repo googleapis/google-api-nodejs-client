@@ -1,66 +1,53 @@
-# Contributing
-Before making any contributions, please sign one of the contributor license agreements below. Fork the repo, develop and test your code changes.
+# How to become a contributor and submit your own code
 
-Install all dependencies including development requirements by running:
+**Table of contents**
 
-``` sh
-$ npm install
-```
-
-This library uses TypeScript.  To compile the code, run:
-
-``` sh
-$ npm run compile
-```
-
-Next, go ahead and run the tests:
-
-```sh
-$ npm test
-```
-
-This looks for tests in the `test/` directory.  In addition to running the tests, this also checks code formatting.  Code formatting (and other issues) can be fixed automatically by running:
-
-```sh
-$ npm run fix
-```
-
-The repo owner reviews your request. They can approve and merge your change. If your change needs additional work, they follow up with comments.
-
-## Generating APIs
-If you're a developer interested in contributing to this library, the following section will be useful for you. Each of the files in `src/apis/` is generated from the discovery docs available online. You can generate these files by running the following command:
-
-``` sh
-$ npm run generate
-```
-
-You can pass in custom Discovery URLs or paths to discovery docs:
-
-``` sh
-$ node build/src/generator/generate http://discoveryurl.example.com /path/to/discoverydoc.json
-```
-
-## Generating Documentation
-You can generate the documentation for the APIs by running:
-
-``` sh
-npm run docs
-```
-
-Documentation will be generated in `docs/`.
-
-## Preparing for release
-Before releasing a new version, package maintainers should draft release notes, bump the version in `package.json`, and submit a Pull Request with **only** the version bump. After the PR is merged, create the release.  This will automatically create a new tag, resulting in an automated release.
+* [Contributor License Agreements](#contributor-license-agreements)
+* [Contributing a patch](#contributing-a-patch)
+* [Running the tests](#running-the-tests)
+* [Releasing the library](#releasing-the-library)
 
 ## Contributor License Agreements
-Before creating a pull request, please fill out either the individual or corporate Contributor License Agreement.
 
-* If you are an individual writing original source code and you're sure you own the intellectual property, then you'll need to sign an [individual CLA][indv-cla].
-* If you work for a company that wants to allow you to contribute your work to this client library, then you'll need to sign a [corporate CLA][corp-cla].
+We'd love to accept your sample apps and patches! Before we can take them, we
+have to jump a couple of legal hurdles.
 
-Follow either of the two links above to access the appropriate CLA and instructions for how to sign and return it. Once we receive it, we'll add you to the official list of contributors and be able to accept your patches.
+Please fill out either the individual or corporate Contributor License Agreement
+(CLA).
 
-[js-guide]: https://google.github.io/styleguide/jsguide.html
-[c-linter]: https://code.google.com/p/closure-linter/
-[indv-cla]: https://developers.google.com/open-source/cla/individual
-[corp-cla]: https://developers.google.com/open-source/cla/corporate
+  * If you are an individual writing original source code and you're sure you
+    own the intellectual property, then you'll need to sign an [individual CLA]
+    (https://developers.google.com/open-source/cla/individual).
+  * If you work for a company that wants to allow you to contribute your work,
+    then you'll need to sign a [corporate CLA]
+    (https://developers.google.com/open-source/cla/corporate).
+
+Follow either of the two links above to access the appropriate CLA and
+instructions for how to sign and return it. Once we receive it, we'll be able to
+accept your pull requests.
+
+## Contributing A Patch
+
+1.  Submit an issue describing your proposed change to the repo in question.
+1.  The repo owner will respond to your issue promptly.
+1.  If your proposed change is accepted, and you haven't already done so, sign a
+    Contributor License Agreement (see details above).
+1.  Fork the desired repo, develop and test your code changes.
+1.  Ensure that your code adheres to the existing style in the code to which
+    you are contributing.
+1.  Ensure that your code has an appropriate set of tests which all pass.
+1.  Submit a pull request.
+
+## Running the tests
+
+1.  [Prepare your environment for Node.js setup][setup].
+
+1.  Install dependencies:
+
+        npm install
+
+1.  Run the tests:
+
+        npm test
+
+[setup]: https://cloud.google.com/nodejs/docs/setup
