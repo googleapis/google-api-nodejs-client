@@ -668,8 +668,8 @@ export namespace iam_v1 {
    */
   export interface Schema$ServiceAccount {
     /**
-     * Optional. A user-specified description of the service account.  Must be
-     * fewer than 100 UTF-8 bytes.
+     * Optional. A user-specified name for the service account. Must be less
+     * than or equal to 100 UTF-8 bytes.
      */
     displayName?: string;
     /**
@@ -677,7 +677,8 @@ export namespace iam_v1 {
      */
     email?: string;
     /**
-     * Used to perform a consistent read-modify-write.
+     * Optional. Note: `etag` is an inoperable legacy field that is only
+     * returned for backwards compatibility.
      */
     etag?: string;
     /**

@@ -1047,7 +1047,7 @@ export namespace serviceusage_v1 {
    * controls how fields of the request message are mapped to the URL path.
    * Example:      service Messaging {       rpc GetMessage(GetMessageRequest)
    * returns (Message) {         option (google.api.http) = {             get:
-   * &quot;/v1/{name=messages/*&quot;}&quot;         };       }     } message
+   * &quot;/v1/{name=messages/*}&quot;         };       }     }     message
    * GetMessageRequest {       string name = 1; // Mapped to URL path.     }
    * message Message {       string text = 1; // The resource content.     }
    * This enables an HTTP REST to gRPC mapping as below:  HTTP | gRPC

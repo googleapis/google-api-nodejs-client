@@ -17,12 +17,14 @@ import {getAPI, ServiceOptions} from 'googleapis-common';
 
 import * as abusiveexperiencereport from './abusiveexperiencereport';
 import * as acceleratedmobilepageurl from './acceleratedmobilepageurl';
+import * as accesscontextmanager from './accesscontextmanager';
 import * as adexchangebuyer from './adexchangebuyer';
 import * as adexchangebuyer2 from './adexchangebuyer2';
 import * as adexperiencereport from './adexperiencereport';
 import * as admin from './admin';
 import * as adsense from './adsense';
 import * as adsensehost from './adsensehost';
+import * as alertcenter from './alertcenter';
 import * as analytics from './analytics';
 import * as analyticsreporting from './analyticsreporting';
 import * as androiddeviceprovisioning from './androiddeviceprovisioning';
@@ -41,6 +43,7 @@ import * as calendar from './calendar';
 import * as chat from './chat';
 import * as civicinfo from './civicinfo';
 import * as classroom from './classroom';
+import * as cloudasset from './cloudasset';
 import * as cloudbilling from './cloudbilling';
 import * as cloudbuild from './cloudbuild';
 import * as clouddebugger from './clouddebugger';
@@ -73,6 +76,7 @@ import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
 import * as file from './file';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
+import * as firebasehosting from './firebasehosting';
 import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
 import * as fitness from './fitness';
@@ -121,6 +125,7 @@ import * as servicebroker from './servicebroker';
 import * as serviceconsumermanagement from './serviceconsumermanagement';
 import * as servicecontrol from './servicecontrol';
 import * as servicemanagement from './servicemanagement';
+import * as servicenetworking from './servicenetworking';
 import * as serviceusage from './serviceusage';
 import * as serviceuser from './serviceuser';
 import * as sheets from './sheets';
@@ -160,12 +165,14 @@ export interface APIList {
 export const APIS: APIList = {
   abusiveexperiencereport: abusiveexperiencereport.VERSIONS,
   acceleratedmobilepageurl: acceleratedmobilepageurl.VERSIONS,
+  accesscontextmanager: accesscontextmanager.VERSIONS,
   adexchangebuyer: adexchangebuyer.VERSIONS,
   adexchangebuyer2: adexchangebuyer2.VERSIONS,
   adexperiencereport: adexperiencereport.VERSIONS,
   admin: admin.VERSIONS,
   adsense: adsense.VERSIONS,
   adsensehost: adsensehost.VERSIONS,
+  alertcenter: alertcenter.VERSIONS,
   analytics: analytics.VERSIONS,
   analyticsreporting: analyticsreporting.VERSIONS,
   androiddeviceprovisioning: androiddeviceprovisioning.VERSIONS,
@@ -184,6 +191,7 @@ export const APIS: APIList = {
   chat: chat.VERSIONS,
   civicinfo: civicinfo.VERSIONS,
   classroom: classroom.VERSIONS,
+  cloudasset: cloudasset.VERSIONS,
   cloudbilling: cloudbilling.VERSIONS,
   cloudbuild: cloudbuild.VERSIONS,
   clouddebugger: clouddebugger.VERSIONS,
@@ -216,6 +224,7 @@ export const APIS: APIList = {
   drive: drive.VERSIONS,
   file: file.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
+  firebasehosting: firebasehosting.VERSIONS,
   firebaserules: firebaserules.VERSIONS,
   firestore: firestore.VERSIONS,
   fitness: fitness.VERSIONS,
@@ -264,6 +273,7 @@ export const APIS: APIList = {
   serviceconsumermanagement: serviceconsumermanagement.VERSIONS,
   servicecontrol: servicecontrol.VERSIONS,
   servicemanagement: servicemanagement.VERSIONS,
+  servicenetworking: servicenetworking.VERSIONS,
   serviceusage: serviceusage.VERSIONS,
   serviceuser: serviceuser.VERSIONS,
   sheets: sheets.VERSIONS,
@@ -299,12 +309,14 @@ export const APIS: APIList = {
 export class GeneratedAPIs {
   abusiveexperiencereport = abusiveexperiencereport.abusiveexperiencereport;
   acceleratedmobilepageurl = acceleratedmobilepageurl.acceleratedmobilepageurl;
+  accesscontextmanager = accesscontextmanager.accesscontextmanager;
   adexchangebuyer = adexchangebuyer.adexchangebuyer;
   adexchangebuyer2 = adexchangebuyer2.adexchangebuyer2;
   adexperiencereport = adexperiencereport.adexperiencereport;
   admin = admin.admin;
   adsense = adsense.adsense;
   adsensehost = adsensehost.adsensehost;
+  alertcenter = alertcenter.alertcenter;
   analytics = analytics.analytics;
   analyticsreporting = analyticsreporting.analyticsreporting;
   androiddeviceprovisioning =
@@ -324,6 +336,7 @@ export class GeneratedAPIs {
   chat = chat.chat;
   civicinfo = civicinfo.civicinfo;
   classroom = classroom.classroom;
+  cloudasset = cloudasset.cloudasset;
   cloudbilling = cloudbilling.cloudbilling;
   cloudbuild = cloudbuild.cloudbuild;
   clouddebugger = clouddebugger.clouddebugger;
@@ -356,6 +369,7 @@ export class GeneratedAPIs {
   drive = drive.drive;
   file = file.file;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
+  firebasehosting = firebasehosting.firebasehosting;
   firebaserules = firebaserules.firebaserules;
   firestore = firestore.firestore;
   fitness = fitness.fitness;
@@ -405,6 +419,7 @@ export class GeneratedAPIs {
       serviceconsumermanagement.serviceconsumermanagement;
   servicecontrol = servicecontrol.servicecontrol;
   servicemanagement = servicemanagement.servicemanagement;
+  servicenetworking = servicenetworking.servicenetworking;
   serviceusage = serviceusage.serviceusage;
   serviceuser = serviceuser.serviceuser;
   sheets = sheets.sheets;
@@ -438,12 +453,14 @@ export class GeneratedAPIs {
   constructor() {
     this.abusiveexperiencereport = this.abusiveexperiencereport.bind(this);
     this.acceleratedmobilepageurl = this.acceleratedmobilepageurl.bind(this);
+    this.accesscontextmanager = this.accesscontextmanager.bind(this);
     this.adexchangebuyer = this.adexchangebuyer.bind(this);
     this.adexchangebuyer2 = this.adexchangebuyer2.bind(this);
     this.adexperiencereport = this.adexperiencereport.bind(this);
     this.admin = this.admin.bind(this);
     this.adsense = this.adsense.bind(this);
     this.adsensehost = this.adsensehost.bind(this);
+    this.alertcenter = this.alertcenter.bind(this);
     this.analytics = this.analytics.bind(this);
     this.analyticsreporting = this.analyticsreporting.bind(this);
     this.androiddeviceprovisioning = this.androiddeviceprovisioning.bind(this);
@@ -462,6 +479,7 @@ export class GeneratedAPIs {
     this.chat = this.chat.bind(this);
     this.civicinfo = this.civicinfo.bind(this);
     this.classroom = this.classroom.bind(this);
+    this.cloudasset = this.cloudasset.bind(this);
     this.cloudbilling = this.cloudbilling.bind(this);
     this.cloudbuild = this.cloudbuild.bind(this);
     this.clouddebugger = this.clouddebugger.bind(this);
@@ -494,6 +512,7 @@ export class GeneratedAPIs {
     this.drive = this.drive.bind(this);
     this.file = this.file.bind(this);
     this.firebasedynamiclinks = this.firebasedynamiclinks.bind(this);
+    this.firebasehosting = this.firebasehosting.bind(this);
     this.firebaserules = this.firebaserules.bind(this);
     this.firestore = this.firestore.bind(this);
     this.fitness = this.fitness.bind(this);
@@ -542,6 +561,7 @@ export class GeneratedAPIs {
     this.serviceconsumermanagement = this.serviceconsumermanagement.bind(this);
     this.servicecontrol = this.servicecontrol.bind(this);
     this.servicemanagement = this.servicemanagement.bind(this);
+    this.servicenetworking = this.servicenetworking.bind(this);
     this.serviceusage = this.serviceusage.bind(this);
     this.serviceuser = this.serviceuser.bind(this);
     this.sheets = this.sheets.bind(this);

@@ -32,7 +32,7 @@ export namespace androidpublisher_v1 {
   /**
    * Google Play Developer API
    *
-   * Lets Android application developers access their Google Play accounts.
+   * Accesses Android application developers&#39; Google Play accounts.
    *
    * @example
    * const {google} = require('googleapis');

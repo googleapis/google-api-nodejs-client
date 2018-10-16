@@ -550,7 +550,7 @@ export namespace ml_v1 {
     type?: string;
   }
   /**
-   * Represents input parameters for a prediction job.
+   * Represents input parameters for a prediction job. Next field: 19
    */
   export interface Schema$GoogleCloudMlV1__PredictionInput {
     /**

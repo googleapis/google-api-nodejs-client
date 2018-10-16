@@ -32,7 +32,7 @@ export namespace androidpublisher_v3 {
   /**
    * Google Play Developer API
    *
-   * Lets Android application developers access their Google Play accounts.
+   * Accesses Android application developers&#39; Google Play accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -1828,6 +1828,7 @@ export namespace androidpublisher_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.ackBundleInstallationWarning Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      * @param {object} params.media Media object
@@ -1919,6 +1920,12 @@ export namespace androidpublisher_v3 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Must be set to true if the bundle installation may trigger a warning on
+     * user devices (for example, if installation size may be over a threshold,
+     * typically 100 MB).
+     */
+    ackBundleInstallationWarning?: boolean;
     /**
      * Unique identifier for this edit.
      */

@@ -3132,12 +3132,13 @@ export namespace compute_alpha {
      * only. A global forwarding rule supports either IPv4 or IPv6.  When the
      * load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL
      * reference to an existing Address resource ( internal regional static IP
-     * address).  When the load balancing scheme is INTERNAL, this can only be
-     * an RFC 1918 IP address belonging to the network/subnet configured for the
-     * forwarding rule. By default, if this field is empty, an ephemeral
-     * internal IP address will be automatically allocated from the IP range of
-     * the subnet or network configured for this forwarding rule.  An address
-     * can be specified either by a literal IP address or a URL reference to an
+     * address), with a purpose of GCE_END_POINT and address_type of INTERNAL.
+     * When the load balancing scheme is INTERNAL, this can only be an RFC 1918
+     * IP address belonging to the network/subnet configured for the forwarding
+     * rule. By default, if this field is empty, an ephemeral internal IP
+     * address will be automatically allocated from the IP range of the subnet
+     * or network configured for this forwarding rule.  An address can be
+     * specified either by a literal IP address or a URL reference to an
      * existing Address resource. The following examples are all valid:   -
      * 100.1.2.3  -
      * https://www.googleapis.com/compute/v1/projects/project/regions/region/addresses/address
@@ -3411,6 +3412,15 @@ export namespace compute_alpha {
      */
     kind?: string;
     /**
+     * The path to be queried. This can be the default namespace (&#39;/&#39;)
+     * or a nested namespace (&#39;//&#39;) or a specified key (&#39;//&#39;)
+     */
+    queryPath?: string;
+    /**
+     * [Output Only] The value of the requested queried path.
+     */
+    queryValue?: Schema$GuestAttributesValue;
+    /**
      * [Output Only] Server-defined URL for this resource.
      */
     selfLink?: string;
@@ -3422,6 +3432,29 @@ export namespace compute_alpha {
      * [Output Only] The value found for the requested key.
      */
     variableValue?: string;
+  }
+  /**
+   * A guest attributes namespace/key/value entry.
+   */
+  export interface Schema$GuestAttributesEntry {
+    /**
+     * Key for the guest attribute entry.
+     */
+    key?: string;
+    /**
+     * Namespace for the guest attribute entry.
+     */
+    namespace?: string;
+    /**
+     * Value for the guest attribute entry.
+     */
+    value?: string;
+  }
+  /**
+   * Array of guest attribute namespace/key/value tuples.
+   */
+  export interface Schema$GuestAttributesValue {
+    items?: Schema$GuestAttributesEntry[];
   }
   /**
    * Guest OS features.
@@ -4215,6 +4248,10 @@ export namespace compute_alpha {
    * v1.instances ==)
    */
   export interface Schema$Instance {
+    /**
+     * The configuration of desired allocations which this Instance could
+     * consume capacity from.
+     */
     allocationAffinity?: Schema$AllocationAffinity;
     /**
      * Allows this instance to send and receive packets with non-matching
@@ -5046,12 +5083,20 @@ export namespace compute_alpha {
      */
     isStable?: boolean;
     /**
+     * [Output Only] A status of consistency of Instances&#39; versions with
+     * their target version specified by version field on Instance Group
+     * Manager.
+     */
+    versionTarget?: Schema$InstanceGroupManagerStatusVersionTarget;
+  }
+  export interface Schema$InstanceGroupManagerStatusVersionTarget {
+    /**
      * [Output Only] A bit indicating whether version target has been reached in
      * this managed instance group, i.e. all instances are in their target
      * version. Instances&#39; target version are specified by version field on
      * Instance Group Manager.
      */
-    versionTargetReached?: boolean;
+    isReached?: boolean;
   }
   /**
    * InstanceGroupManagers.updatePerInstanceConfigs
@@ -5297,6 +5342,11 @@ export namespace compute_alpha {
     targetInstance?: string;
   }
   export interface Schema$InstanceProperties {
+    /**
+     * The configuration of desired allocations which this Instance could
+     * consume capacity from.
+     */
+    allocationAffinity?: Schema$AllocationAffinity;
     /**
      * Enables instances created based on this template to send packets with
      * source IP addresses other than their own and receive packets with
@@ -6445,8 +6495,8 @@ export namespace compute_alpha {
      */
     licenseCode?: string;
     /**
-     * [Output Only] Name of the resource. The name is 1-63 characters long and
-     * complies with RFC1035.
+     * Name of the resource. The name must be 1-63 characters long and comply
+     * with RFC1035.
      */
     name?: string;
     resourceRequirements?: Schema$LicenseResourceRequirements;
@@ -6587,16 +6637,17 @@ export namespace compute_alpha {
    * and end in &quot;_count&quot;. Field names should not contain an initial
    * slash. The actual exported metric names will have &quot;/iam/policy&quot;
    * prepended.  Field names correspond to IAM request parameters and field
-   * values are their respective values.  At present the only supported field
-   * names are - &quot;iam_principal&quot;, corresponding to
-   * IAMContext.principal; - &quot;&quot; (empty string), resulting in one
-   * aggretated counter with no field.  Examples: counter { metric:
+   * values are their respective values.  Supported field names: -
+   * &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is
+   * present, otherwise the value of IAMContext.authority_selector if present,
+   * and otherwise a representation of IAMContext.principal; or -
+   * &quot;iam_principal&quot;, a representation of IAMContext.principal even if
+   * a token or authority selector is present; or - &quot;&quot; (empty string),
+   * resulting in a counter with no fields.  Examples: counter { metric:
    * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
    * increment counter /iam/policy/backend_debug_access_count
    * {iam_principal=[value of IAMContext.principal]}  At this time we do not
-   * support: * multiple field names (though this may be supported in the
-   * future) * decrementing the counter * incrementing it by anything other than
-   * 1
+   * support multiple field names (though this may be supported in the future).
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -6658,13 +6709,17 @@ export namespace compute_alpha {
      */
     selfLink?: string;
     /**
-     * The source instance used to create the template. You can provide this as
-     * a partial or full URL to the resource. For example, the following are
-     * valid values:   -
+     * The source instance used to create the machine image. You can provide
+     * this as a partial or full URL to the resource. For example, the following
+     * are valid values:   -
      * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
      * - projects/project/zones/zone/instances/instance
      */
     sourceInstance?: string;
+    /**
+     * [Output Only] properties of source instance. Currently, input for this
+     * field is not supported.
+     */
     sourceInstanceProperties?: Schema$SourceInstanceProperties;
     /**
      * [Output Only] The status of disk creation.
@@ -7008,17 +7063,17 @@ export namespace compute_alpha {
     port?: number;
   }
   /**
-   * Represents a Network resource. Read Networks and Firewalls for more
-   * information. (== resource_for v1.networks ==) (== resource_for
-   * beta.networks ==)
+   * Represents a Network resource. Read Virtual Private Cloud (VPC) Network
+   * Overview for more information. (== resource_for v1.networks ==) (==
+   * resource_for beta.networks ==)
    */
   export interface Schema$Network {
     /**
-     * When set to true, the network is created in &quot;auto subnet mode&quot;.
-     * When set to false, the network is in &quot;custom subnet mode&quot;.  In
-     * &quot;auto subnet mode&quot;, a newly created network is assigned the
-     * default CIDR of 10.128.0.0/9 and it automatically creates one subnetwork
-     * per region.
+     * When set to true, the VPC network is created in &quot;auto&quot; mode.
+     * When set to false, the VPC network is created in &quot;custom&quot; mode.
+     * An auto mode VPC network starts with one subnet per region. Each subnet
+     * has a predetermined range as described in Auto mode VPC network IP
+     * ranges.
      */
     autoCreateSubnetworks?: boolean;
     /**
@@ -7035,9 +7090,8 @@ export namespace compute_alpha {
      */
     description?: string;
     /**
-     * A gateway address for default routing to other networks. This value is
-     * read only and is selected by the Google Compute Engine, typically as the
-     * first usable address in the IPv4Range.
+     * [Output Only] The gateway address for default routing out of the network.
+     * This value is read only and is selected by GCP.
      */
     gatewayIPv4?: string;
     /**
@@ -7085,7 +7139,7 @@ export namespace compute_alpha {
     selfLink?: string;
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in
-     * this network.
+     * this VPC network.
      */
     subnetworks?: string[];
   }
@@ -7124,6 +7178,11 @@ export namespace compute_alpha {
      */
     creationTimestamp?: string;
     /**
+     * The default port used if the port number is not specified in the network
+     * endpoint.
+     */
+    defaultPort?: number;
+    /**
      * An optional description of this resource. Provide this property when you
      * create the resource.
      */
@@ -7154,6 +7213,11 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
+     * The URL of the network to which all network endpoints in the NEG belong.
+     * Uses &quot;default&quot; project network if unspecified.
+     */
+    network?: string;
+    /**
      * Type of network endpoints in this network endpoint group. Currently the
      * only supported value is GCE_VM_IP_PORT.
      */
@@ -7167,10 +7231,20 @@ export namespace compute_alpha {
      */
     size?: number;
     /**
+     * Optional URL of the subnetwork to which all network endpoints in the NEG
+     * belong.
+     */
+    subnetwork?: string;
+    /**
      * Specify the type of this network endpoint group. Only LOAD_BALANCING is
      * valid for now.
      */
     type?: string;
+    /**
+     * [Output Only] The URL of the zone where the network endpoint group is
+     * located.
+     */
+    zone?: string;
   }
   export interface Schema$NetworkEndpointGroupAggregatedList {
     /**
@@ -7483,9 +7557,9 @@ export namespace compute_alpha {
   export interface Schema$NetworkRoutingConfig {
     /**
      * The network-wide routing mode to use. If set to REGIONAL, this
-     * network&#39;s cloud routers will only advertise routes with subnetworks
-     * of this network in the same region as the router. If set to GLOBAL, this
-     * network&#39;s cloud routers will advertise routes with all subnetworks of
+     * network&#39;s cloud routers will only advertise routes with subnets of
+     * this network in the same region as the router. If set to GLOBAL, this
+     * network&#39;s cloud routers will advertise routes with all subnets of
      * this network, across regions.
      */
     routingMode?: string;
@@ -9936,9 +10010,9 @@ export namespace compute_alpha {
      * when you attach the disk to a virtual machine instance.  If you do not
      * provide an encryption key, then the disk will be encrypted using an
      * automatically generated key and you do not need to provide a key to use
-     * the disk later.  Instance templates do not store customer-supplied
-     * encryption keys, so you cannot use your own keys to encrypt disks in a
-     * managed instance group.
+     * the disk later.  Machine Images do not store customer-supplied encryption
+     * keys, so you cannot use your own keys to encrypt disks in a managed
+     * instance group.
      */
     diskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
@@ -10002,7 +10076,7 @@ export namespace compute_alpha {
      * initializeParams.sourceImage or disks.source is required except for local
      * SSD.  If desired, you can also attach existing non-root persistent disks
      * using this property. This field is only applicable for persistent disks.
-     * Note that for InstanceTemplate, specify the disk name, not the URL for
+     * Note that for sourceMachineImage, specify the disk name, not the URL for
      * the disk.
      */
     source?: string;
@@ -10316,6 +10390,25 @@ export namespace compute_alpha {
     enableVtpm?: boolean;
   }
   /**
+   * A shielded VM identity entry.
+   */
+  export interface Schema$ShieldedVmIdentity {
+    encryptionKey?: Schema$ShieldedVmIdentityEntry;
+    /**
+     * [Output Only] Type of the resource. Always compute#shieldedVmIdentity for
+     * shielded VM identity entry.
+     */
+    kind?: string;
+    signingKey?: Schema$ShieldedVmIdentityEntry;
+  }
+  /**
+   * A Shielded VM Identity Entry.
+   */
+  export interface Schema$ShieldedVmIdentityEntry {
+    ekCert?: string;
+    ekPub?: string;
+  }
+  /**
    * The policy describes the baseline against which VM instance boot integrity
    * is measured.
    */
@@ -10521,8 +10614,8 @@ export namespace compute_alpha {
   }
   export interface Schema$SourceInstanceProperties {
     /**
-     * Enables instances created based on this template to send packets with
-     * source IP addresses other than their own and receive packets with
+     * Enables instances created based on this machine image to send packets
+     * with source IP addresses other than their own and receive packets with
      * destination IP addresses other than their own. If these instances will be
      * used as an IP gateway or it will be set as the next-hop in a Route
      * resource, specify true. If unsure, leave this set to false. See the
@@ -10530,37 +10623,38 @@ export namespace compute_alpha {
      */
     canIpForward?: boolean;
     /**
-     * Whether the resource should be protected against deletion.
+     * Whether the instance created from the machine image should be protected
+     * against deletion.
      */
     deletionProtection?: boolean;
     /**
      * An optional text description for the instances that are created from this
-     * instance template.
+     * machine image.
      */
     description?: string;
     /**
      * An array of disks that are associated with the instances that are created
-     * from this template.
+     * from this machine image.
      */
     disks?: Schema$SavedAttachedDisk[];
     /**
      * A list of guest accelerator cards&#39; type and count to use for
-     * instances created from the instance template.
+     * instances created from the machine image.
      */
     guestAccelerators?: Schema$AcceleratorConfig[];
     /**
-     * Labels to apply to instances that are created from this template.
+     * Labels to apply to instances that are created from this machine image.
      */
     labels?: any;
     /**
-     * The machine type to use for instances that are created from this
-     * template.
+     * The machine type to use for instances that are created from this machine
+     * image.
      */
     machineType?: string;
     /**
      * The metadata key/value pairs to assign to instances that are created from
-     * this template. These pairs can consist of custom metadata or predefined
-     * keys. See Project and instance metadata for more information.
+     * this machine image. These pairs can consist of custom metadata or
+     * predefined keys. See Project and instance metadata for more information.
      */
     metadata?: Schema$Metadata;
     /**
@@ -10577,19 +10671,19 @@ export namespace compute_alpha {
     networkInterfaces?: Schema$NetworkInterface[];
     /**
      * Specifies the scheduling options for the instances that are created from
-     * this template.
+     * this machine image.
      */
     scheduling?: Schema$Scheduling;
     /**
      * A list of service accounts with specified scopes. Access tokens for these
      * service accounts are available to the instances that are created from
-     * this template. Use metadata queries to obtain the access tokens for these
-     * instances.
+     * this machine image. Use metadata queries to obtain the access tokens for
+     * these instances.
      */
     serviceAccounts?: Schema$ServiceAccount[];
     /**
      * A list of tags to apply to the instances that are created from this
-     * template. The tags identify valid sources or targets for network
+     * machine image. The tags identify valid sources or targets for network
      * firewalls. The setTags method can modify this list of tags. Each tag
      * within the list must comply with RFC1035.
      */
@@ -11000,7 +11094,9 @@ export namespace compute_alpha {
      */
     description?: string;
     /**
-     * Whether to enable flow logging for this subnetwork.
+     * Whether to enable flow logging for this subnetwork. If this field is not
+     * explicitly set, it will not appear in get listings. If not set the
+     * default behavior is to disable flow logging.
      */
     enableFlowLogs?: boolean;
     /**
@@ -31536,6 +31632,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.queryPath Specifies the guest attributes path to be queried.
      * @param {string=} params.variableKey Specifies the key for the guest attributes entry.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31742,6 +31839,78 @@ export namespace compute_alpha {
         createAPIRequest<Schema$SerialPortOutput>(parameters, callback);
       } else {
         return createAPIRequest<Schema$SerialPortOutput>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.getShieldedVmIdentity
+     * @desc Returns the Shielded VM Identity of an instance
+     * @alias compute.instances.getShieldedVmIdentity
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getShieldedVmIdentity(
+        params?: Params$Resource$Instances$Getshieldedvmidentity,
+        options?: MethodOptions): AxiosPromise<Schema$ShieldedVmIdentity>;
+    getShieldedVmIdentity(
+        params: Params$Resource$Instances$Getshieldedvmidentity,
+        options: MethodOptions|BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        params: Params$Resource$Instances$Getshieldedvmidentity,
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        paramsOrCallback?: Params$Resource$Instances$Getshieldedvmidentity|
+        BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        callback?: BodyResponseCallback<Schema$ShieldedVmIdentity>):
+        void|AxiosPromise<Schema$ShieldedVmIdentity> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getshieldedvmidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getshieldedvmidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/getShieldedVmIdentity')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShieldedVmIdentity>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ShieldedVmIdentity>(parameters);
       }
     }
 
@@ -34066,6 +34235,10 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
+     * Specifies the guest attributes path to be queried.
+     */
+    queryPath?: string;
+    /**
      * Specifies the key for the guest attributes entry.
      */
     variableKey?: string;
@@ -34119,6 +34292,25 @@ export namespace compute_alpha {
      * the previous call.
      */
     start?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getshieldedvmidentity {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * The name of the zone for this request.
      */
@@ -39310,10 +39502,8 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.delete
-     * @desc Deletes the specified machine image. If you delete an instance
-     * template that is being referenced from another instance group, the
-     * instance group will not be able to create or recreate virtual machine
-     * instances. Deleting an machine image is permanent and cannot be undone.
+     * @desc Deletes the specified machine image. Deleting a machine image is
+     * permanent and cannot be undone.
      * @alias compute.machineImages.delete
      * @memberOf! ()
      *
@@ -39521,18 +39711,18 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.insert
-     * @desc Creates an machine image in the specified project using the data
-     * that is included in the request. If you are creating a new template to
-     * update an existing instance group, your new machine image must use the
+     * @desc Creates a machine image in the specified project using the data
+     * that is included in the request. If you are creating a new machine image
+     * to update an existing instance, your new machine image should use the
      * same network or, if applicable, the same subnetwork as the original
-     * template.
+     * instance.
      * @alias compute.machineImages.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string=} params.sourceInstance Optional. Source image to restore onto a disk.
+     * @param {string=} params.sourceInstance Required. Source instance that is used to create the machine image from.
      * @param {().MachineImage} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -39892,7 +40082,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
     /**
-     * Optional. Source image to restore onto a disk.
+     * Required. Source instance that is used to create the machine image from.
      */
     sourceInstance?: string;
 

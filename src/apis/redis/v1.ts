@@ -97,7 +97,7 @@ export namespace redis_v1 {
      */
     apiVersion?: string;
     /**
-     * Specifies if cancellation was requested for the operaiton.
+     * Specifies if cancellation was requested for the operation.
      */
     cancelRequested?: boolean;
     /**

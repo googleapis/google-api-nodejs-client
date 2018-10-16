@@ -608,23 +608,25 @@ export namespace jobs_v2 {
     type?: string;
   }
   /**
-   * Represents a whole calendar date, for example date of birth. The time of
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
    * day and time zone are either specified elsewhere or are not significant.
-   * The date is relative to the Proleptic Gregorian Calendar. The day can be 0
-   * to represent a year and month where the day is not significant, for example
-   * credit card expiration date. The year can be 0 to represent a month and day
-   * independent of year, for example anniversary date. Related types are
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -1153,8 +1155,9 @@ export namespace jobs_v2 {
      * codes must be in BCP-47 format, such as &quot;en-US&quot; or
      * &quot;sr-Latn&quot;. For more information, see [Tags for Identifying
      * Languages](https://tools.ietf.org/html/bcp47){:
-     * class=&quot;external&quot; target=&quot;_blank&quot; }.  The default
-     * value is `en-US`.
+     * class=&quot;external&quot; target=&quot;_blank&quot; }.  If this field is
+     * unspecified and Job.description is present, detected language code based
+     * on Job.description is assigned, otherwise defaults to &#39;en_US&#39;.
      */
     languageCode?: string;
     /**
@@ -1316,7 +1319,7 @@ export namespace jobs_v2 {
      * expressions (AND/OR/NOT) are supported up to 3 levels of nesting (For
      * example, &quot;((A AND B AND C) OR NOT D) AND E&quot;), and there can be
      * a maximum of 50 comparisons/functions in the expression. The expression
-     * must be &lt; 2000 characters in length.  Sample Query: (key1 =
+     * must be &lt; 3000 characters in length.  Sample Query: (key1 =
      * &quot;TEST&quot; OR LOWER(key1)=&quot;test&quot; OR NOT EMPTY(key1)) AND
      * key2 &gt; 100
      */

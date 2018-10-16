@@ -3031,8 +3031,8 @@ export namespace vision_v1 {
     name?: string;
     /**
      * The category for the product identified by the reference image. This
-     * should be either &quot;homegoods&quot; or &quot;apparel&quot;.  This
-     * field is immutable.
+     * should be either &quot;homegoods&quot;, &quot;apparel&quot;, or
+     * &quot;toys&quot;.  This field is immutable.
      */
     productCategory?: string;
     /**

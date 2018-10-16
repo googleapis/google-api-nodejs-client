@@ -118,8 +118,8 @@ export namespace composer_v1 {
    */
   export interface Schema$EnvironmentConfig {
     /**
-     * The URI of the Apache Airflow Web UI hosted within this environment (see
-     * [Airflow web
+     * Output only. The URI of the Apache Airflow Web UI hosted within this
+     * environment (see [Airflow web
      * interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      */
     airflowUri?: string;
