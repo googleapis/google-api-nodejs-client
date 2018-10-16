@@ -28,10 +28,6 @@ const cliArgs = argv._;
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
 
-const DISCOVERY_URL = argv['discovery-url'] ?
-    argv['discovery-url'] :
-    (cliArgs.length ? cliArgs[0] :
-                      'https://www.googleapis.com/discovery/v1/apis/');
 const FRAGMENT_URL =
     'https://storage.googleapis.com/apisnippets-staging/public/';
 
@@ -177,9 +173,9 @@ export class Generator {
   /**
    * Generate all APIs and write to files.
    */
-  async generateAllAPIs() {
+  async generateAllAPIs(discoveryUrl: string) {
     const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
-    const res = await this.request<Schemas>({url: DISCOVERY_URL, headers});
+    const res = await this.request<Schemas>({url: discoveryUrl, headers});
     const apis = res.data.items;
     const queue = new Q({concurrency: 10});
     console.log(`Generating ${apis.length} APIs...`);
