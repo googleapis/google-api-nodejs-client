@@ -83,6 +83,15 @@ export class {{ Name }} {
     return this.root;
   }
 
+interface StandardParameters {
+  {% for pname, p in api.parameters|dictsort %}
+  /**
+    * {{ p.description|oneLine|cleanComments|safe }}
+    */
+  {{ pname|getSafeParamName }}?: {{ p.type }};
+  {% endfor %}
+}
+
 {% if api.methods %}
   {% for mname, m in api.methods|dictsort %}
     {{ method.render(m, mname, api, api) }}
@@ -121,7 +130,7 @@ export interface Schema${{ schema.id }} {
 
 {% if api.methods %}
   {% for mname, m in api.methods|dictsort %}
-    export interface Params$${{ mname|capitalize }} {
+    export interface Params$${{ mname|capitalize }} extends StandardParameters {
 
       /**
        * Auth client or API Key for the request
