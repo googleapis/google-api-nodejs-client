@@ -106,7 +106,7 @@
     "eslint": "^5.6.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-prettier": "^3.0.0",
     "gts": "^0.8.0",
     "hard-rejection": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
