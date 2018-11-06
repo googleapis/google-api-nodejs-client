@@ -2103,10 +2103,10 @@ export namespace content_v2 {
      */
     placedDate?: string;
     /**
-     * The details of the merchant provided promotions applied to the order.
-     * More details about the program are here.
+     * Deprecated. The details of the merchant provided promotions applied to
+     * the order. More details about the program are here.
      */
-    promotions?: Schema$OrderPromotion[];
+    promotions?: Schema$OrderLegacyPromotion[];
     /**
      * Refunds for the order.
      */
@@ -2333,6 +2333,66 @@ export namespace content_v2 {
      * [required] Reason for the return.
      */
     reason?: string;
+  }
+  export interface Schema$OrderLegacyPromotion {
+    benefits?: Schema$OrderLegacyPromotionBenefit[];
+    /**
+     * The date and time frame when the promotion is active and ready for
+     * validation review. Note that the promotion live time may be delayed for a
+     * few hours due to the validation review. Start date and end date are
+     * separated by a forward slash (/). The start date is specified by the
+     * format (YYYY-MM-DD), followed by the letter ?T?, the time of the day when
+     * the sale starts (in Greenwich Mean Time, GMT), followed by an expression
+     * of the time zone for the sale. The end date is in the same format.
+     */
+    effectiveDates?: string;
+    /**
+     * Optional. The text code that corresponds to the promotion when applied on
+     * the retailer?s website.
+     */
+    genericRedemptionCode?: string;
+    /**
+     * The unique ID of the promotion.
+     */
+    id?: string;
+    /**
+     * The full title of the promotion.
+     */
+    longTitle?: string;
+    /**
+     * Whether the promotion is applicable to all products or only specific
+     * products.
+     */
+    productApplicability?: string;
+    /**
+     * Indicates that the promotion is valid online.
+     */
+    redemptionChannel?: string;
+  }
+  export interface Schema$OrderLegacyPromotionBenefit {
+    /**
+     * The discount in the order price when the promotion is applied.
+     */
+    discount?: Schema$Price;
+    /**
+     * The OfferId(s) that were purchased in this order and map to this specific
+     * benefit of the promotion.
+     */
+    offerIds?: string[];
+    /**
+     * Further describes the benefit of the promotion. Note that we will expand
+     * on this enumeration as we support new promotion sub-types.
+     */
+    subType?: string;
+    /**
+     * The impact on tax when the promotion is applied.
+     */
+    taxImpact?: Schema$Price;
+    /**
+     * Describes whether the promotion applies to products (e.g. 20% off) or to
+     * shipping (e.g. Free Shipping).
+     */
+    type?: string;
   }
   export interface Schema$OrderLineItem {
     /**
@@ -2641,66 +2701,6 @@ export namespace content_v2 {
      * &quot;content#orderpaymentsNotifyRefundResponse&quot;.
      */
     kind?: string;
-  }
-  export interface Schema$OrderPromotion {
-    benefits?: Schema$OrderPromotionBenefit[];
-    /**
-     * The date and time frame when the promotion is active and ready for
-     * validation review. Note that the promotion live time may be delayed for a
-     * few hours due to the validation review. Start date and end date are
-     * separated by a forward slash (/). The start date is specified by the
-     * format (YYYY-MM-DD), followed by the letter ?T?, the time of the day when
-     * the sale starts (in Greenwich Mean Time, GMT), followed by an expression
-     * of the time zone for the sale. The end date is in the same format.
-     */
-    effectiveDates?: string;
-    /**
-     * Optional. The text code that corresponds to the promotion when applied on
-     * the retailer?s website.
-     */
-    genericRedemptionCode?: string;
-    /**
-     * The unique ID of the promotion.
-     */
-    id?: string;
-    /**
-     * The full title of the promotion.
-     */
-    longTitle?: string;
-    /**
-     * Whether the promotion is applicable to all products or only specific
-     * products.
-     */
-    productApplicability?: string;
-    /**
-     * Indicates that the promotion is valid online.
-     */
-    redemptionChannel?: string;
-  }
-  export interface Schema$OrderPromotionBenefit {
-    /**
-     * The discount in the order price when the promotion is applied.
-     */
-    discount?: Schema$Price;
-    /**
-     * The OfferId(s) that were purchased in this order and map to this specific
-     * benefit of the promotion.
-     */
-    offerIds?: string[];
-    /**
-     * Further describes the benefit of the promotion. Note that we will expand
-     * on this enumeration as we support new promotion sub-types.
-     */
-    subType?: string;
-    /**
-     * The impact on tax when the promotion is applied.
-     */
-    taxImpact?: Schema$Price;
-    /**
-     * Describes whether the promotion applies to products (e.g. 20% off) or to
-     * shipping (e.g. Free Shipping).
-     */
-    type?: string;
   }
   export interface Schema$OrderRefund {
     /**
@@ -5433,10 +5433,10 @@ export namespace content_v2 {
      */
     predefinedDeliveryAddress?: string;
     /**
-     * The details of the merchant provided promotions applied to the order.
-     * More details about the program are here.
+     * Deprecated. The details of the merchant provided promotions applied to
+     * the order. More details about the program are here.
      */
-    promotions?: Schema$OrderPromotion[];
+    promotions?: Schema$OrderLegacyPromotion[];
     /**
      * The total cost of shipping for all items.
      */
@@ -10325,7 +10325,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.disbursementEndDate The last date which disbursements occurred. In ISO 8601 format. Default: current date.
-     * @param {string=} params.disbursementStartDate The first date which disbursements occurred. In ISO 8601 format.
+     * @param {string} params.disbursementStartDate The first date which disbursements occurred. In ISO 8601 format.
      * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
@@ -10387,7 +10387,7 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId'],
+        requiredParams: ['merchantId', 'disbursementStartDate'],
         pathParams: ['merchantId'],
         context: this.getRoot()
       };
@@ -10414,7 +10414,7 @@ export namespace content_v2 {
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string=} params.transactionEndDate The last date in which transaction occurred. In ISO 8601 format. Default: current date.
-     * @param {string=} params.transactionStartDate The first date in which transaction occurred. In ISO 8601 format.
+     * @param {string} params.transactionStartDate The first date in which transaction occurred. In ISO 8601 format.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10474,7 +10474,8 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId', 'disbursementId'],
+        requiredParams:
+            ['merchantId', 'disbursementId', 'transactionStartDate'],
         pathParams: ['disbursementId', 'merchantId'],
         context: this.getRoot()
       };

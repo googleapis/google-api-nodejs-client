@@ -545,6 +545,15 @@ export namespace logging_v2 {
      * projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824
      */
     trace?: string;
+    /**
+     * Optional. The sampling decision of the trace associated with the log
+     * entry. True means that the trace resource name in the trace field was
+     * sampled for storage in a trace backend. False means that the trace was
+     * not sampled for storage when this log entry was written, or the sampling
+     * decision was unknown at the time. A non-sampled trace value is still
+     * useful as a request correlation identifier. The default is False.
+     */
+    traceSampled?: boolean;
   }
   /**
    * Additional information about a potentially long-running operation with

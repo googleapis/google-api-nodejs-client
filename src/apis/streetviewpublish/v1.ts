@@ -314,9 +314,12 @@ export namespace streetviewpublish_v1 {
    */
   export interface Schema$Pose {
     /**
-     * The estimated horizontal accuracy of this pose in meters with 68% (one
-     * standard deviation) confidence. For more information, see:
-     * https://developer.android.com/reference/android/location/Location#getAccuracy()
+     * The estimated horizontal accuracy of this pose in meters with 68%
+     * confidence (one standard deviation). For example, on Android, this value
+     * is available from this method:
+     * https://developer.android.com/reference/android/location/Location#getAccuracy().
+     * Other platforms have different methods of obtaining similar accuracy
+     * estimations.
      */
     accuracyMeters?: number;
     /**

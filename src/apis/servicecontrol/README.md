@@ -2,7 +2,7 @@
 
 # @google/servicecontrol
 
-> Google Service Control provides control plane functionality to managed services, such as logging, monitoring, and status checks.
+> Provides control plane functionality to managed services, such as logging, monitoring, and status checks.
 
 ## Installation
 

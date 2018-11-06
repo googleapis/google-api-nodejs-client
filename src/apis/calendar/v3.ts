@@ -3225,7 +3225,8 @@ export namespace calendar_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the deletion of the event.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3398,7 +3399,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
  * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
  * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
  * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
- * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
+ * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
+ * @param {string=} params.sendUpdates Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.
  * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
       * @param {().Event} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3625,7 +3627,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {string} params.calendarId Calendar identifier of the source calendar where the event currently is on.
      * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
      * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the change of the event's organizer.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3695,7 +3698,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      * @param {string} params.eventId Event identifier.
      * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the event update (for example, title changes, etc.).
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {().Event} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3763,7 +3767,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      *
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the creation of the new event.
      * @param {string} params.text The text describing the event to be created.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3834,7 +3839,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      * @param {string} params.eventId Event identifier.
      * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the event update (for example, title changes, etc.).
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {().Event} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3994,10 +4000,16 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     eventId?: string;
     /**
-     * Whether to send notifications about the deletion of the event. Optional.
-     * The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the deletion of the event. Note that some emails
+     * might still be sent even if you set the value to false. The default is
+     * false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the deletion of the event.
+     */
+    sendUpdates?: string;
   }
   export interface Params$Resource$Events$Get {
     /**
@@ -4094,10 +4106,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     maxAttendees?: number;
     /**
-     * Whether to send notifications about the creation of the new event.
-     * Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the creation of the new event. Note that some emails
+     * might still be sent even if you set the value to false. The default is
+     * false.
      */
     sendNotifications?: boolean;
+    /**
+     * Whether to send notifications about the creation of the new event. Note
+     * that some emails might still be sent. The default is false.
+     */
+    sendUpdates?: string;
     /**
      * Whether API client performing operation supports event attachments.
      * Optional. The default is False.
@@ -4331,10 +4350,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     eventId?: string;
     /**
-     * Whether to send notifications about the change of the event's organizer.
-     * Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the change of the event's organizer. Note that some
+     * emails might still be sent even if you set the value to false. The
+     * default is false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the change of the event's
+     * organizer.
+     */
+    sendUpdates?: string;
   }
   export interface Params$Resource$Events$Patch {
     /**
@@ -4376,10 +4402,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     maxAttendees?: number;
     /**
-     * Whether to send notifications about the event update (e.g. attendee's
-     * responses, title changes, etc.). Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the event update (for example, description changes,
+     * etc.). Note that some emails might still be sent even if you set the
+     * value to false. The default is false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the event update (for
+     * example, title changes, etc.).
+     */
+    sendUpdates?: string;
     /**
      * Whether API client performing operation supports event attachments.
      * Optional. The default is False.
@@ -4404,10 +4437,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     calendarId?: string;
     /**
-     * Whether to send notifications about the creation of the event. Optional.
-     * The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the creation of the event. Note that some emails
+     * might still be sent even if you set the value to false. The default is
+     * false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the creation of the new
+     * event.
+     */
+    sendUpdates?: string;
     /**
      * The text describing the event to be created.
      */
@@ -4453,10 +4493,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     maxAttendees?: number;
     /**
-     * Whether to send notifications about the event update (e.g. attendee's
-     * responses, title changes, etc.). Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the event update (for example, description changes,
+     * etc.). Note that some emails might still be sent even if you set the
+     * value to false. The default is false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the event update (for
+     * example, title changes, etc.).
+     */
+    sendUpdates?: string;
     /**
      * Whether API client performing operation supports event attachments.
      * Optional. The default is False.

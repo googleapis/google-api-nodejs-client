@@ -469,9 +469,12 @@ export namespace bigquerydatatransfer_v1 {
     displayName?: string;
     /**
      * The resource name of the transfer config. Transfer config names have the
-     * form `projects/{project_id}/transferConfigs/{config_id}`. Where
-     * `config_id` is usually a uuid, even though it is not guaranteed or
-     * required. The name is ignored when creating a transfer config.
+     * form of
+     * `projects/{project_id}/location/{region}/transferConfigs/{config_id}`.
+     * The name is automatically generated based on the config_id specified in
+     * CreateTransferConfigRequest along with project_id and region. If
+     * config_id is not provided, usually a uuid, even though it is not
+     * guaranteed or required, will be generated for config_id.
      */
     name?: string;
     /**
@@ -1667,7 +1670,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-     * @param {string} params.name The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
+     * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/location/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      * @param {string=} params.updateMask Required list of fields to be updated in this request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1928,9 +1931,12 @@ export namespace bigquerydatatransfer_v1 {
     authorizationCode?: string;
     /**
      * The resource name of the transfer config. Transfer config names have the
-     * form `projects/{project_id}/transferConfigs/{config_id}`. Where
-     * `config_id` is usually a uuid, even though it is not guaranteed or
-     * required. The name is ignored when creating a transfer config.
+     * form of
+     * `projects/{project_id}/location/{region}/transferConfigs/{config_id}`.
+     * The name is automatically generated based on the config_id specified in
+     * CreateTransferConfigRequest along with project_id and region. If
+     * config_id is not provided, usually a uuid, even though it is not
+     * guaranteed or required, will be generated for config_id.
      */
     name?: string;
     /**
@@ -2664,7 +2670,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-     * @param {string} params.name The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
+     * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/location/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      * @param {string=} params.updateMask Required list of fields to be updated in this request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2921,9 +2927,12 @@ export namespace bigquerydatatransfer_v1 {
     authorizationCode?: string;
     /**
      * The resource name of the transfer config. Transfer config names have the
-     * form `projects/{project_id}/transferConfigs/{config_id}`. Where
-     * `config_id` is usually a uuid, even though it is not guaranteed or
-     * required. The name is ignored when creating a transfer config.
+     * form of
+     * `projects/{project_id}/location/{region}/transferConfigs/{config_id}`.
+     * The name is automatically generated based on the config_id specified in
+     * CreateTransferConfigRequest along with project_id and region. If
+     * config_id is not provided, usually a uuid, even though it is not
+     * guaranteed or required, will be generated for config_id.
      */
     name?: string;
     /**

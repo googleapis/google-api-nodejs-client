@@ -1407,6 +1407,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$MapTask {
     /**
+     * Counter prefix that can be used to prefix counters. Not currently used in
+     * Dataflow.
+     */
+    counterPrefix?: string;
+    /**
      * The instructions in the MapTask.
      */
     instructions?: Schema$ParallelInstruction[];

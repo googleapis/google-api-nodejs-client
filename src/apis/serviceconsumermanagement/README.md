@@ -2,7 +2,7 @@
 
 # @google/serviceconsumermanagement
 
-> Provides management methods for configuring service producer resources on Google Cloud.
+> Manages the service consumers of a Service Infrastructure service.
 
 ## Installation
 

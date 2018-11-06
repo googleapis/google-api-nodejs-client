@@ -20,7 +20,6 @@
 const {google} = require('googleapis');
 const http = require('http');
 const url = require('url');
-const querystring = require('querystring');
 const opn = require('opn');
 const destroyer = require('server-destroy');
 const fs = require('fs');
@@ -54,12 +53,12 @@ class SampleClient {
       throw new Error(invalidRedirectUri);
     }
     const redirectUri = keys.redirect_uris[keys.redirect_uris.length - 1];
-    const parts = url.parse(redirectUri, false);
+    const parts = new url.URL(redirectUri);
     if (
       redirectUri.length === 0 ||
       parts.port !== '3000' ||
       parts.hostname !== 'localhost' ||
-      parts.path !== '/oauth2callback'
+      parts.pathname !== '/oauth2callback'
     ) {
       throw new Error(invalidRedirectUri);
     }
@@ -86,12 +85,12 @@ class SampleClient {
         .createServer(async (req, res) => {
           try {
             if (req.url.indexOf('/oauth2callback') > -1) {
-              const qs = querystring.parse(url.parse(req.url).query);
+              const qs = new url.URL(req.url).searchParams;
               res.end(
                 'Authentication successful! Please return to the console.'
               );
               server.destroy();
-              const {tokens} = await this.oAuth2Client.getToken(qs.code);
+              const {tokens} = await this.oAuth2Client.getToken(qs.get('code'));
               this.oAuth2Client.credentials = tokens;
               resolve(this.oAuth2Client);
             }

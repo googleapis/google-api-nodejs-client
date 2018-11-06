@@ -698,6 +698,10 @@ export namespace testing_v1 {
      * Output only. The set of supported iOS software versions.
      */
     versions?: Schema$IosVersion[];
+    /**
+     * Output only. The set of supported Xcode versions.
+     */
+    xcodeVersions?: Schema$XcodeVersion[];
   }
   /**
    * A list of iOS device configurations in which the test is to be executed.
@@ -786,6 +790,10 @@ export namespace testing_v1 {
      */
     minorVersion?: number;
     /**
+     * Output only. The available Xcode versions for this version.
+     */
+    supportedXcodeVersionIds?: string[];
+    /**
      * Output only. Tags for this dimension. Examples: &quot;default&quot;,
      * &quot;preview&quot;, &quot;deprecated&quot;
      */
@@ -806,6 +814,12 @@ export namespace testing_v1 {
      * ignored if the xctestrun field is specified.
      */
     testsZip?: Schema$FileReference;
+    /**
+     * Optional. The Xcode version that should be used for the test. Use the
+     * EnvironmentDiscoveryService to get supported options. Defaults to the
+     * latest Xcode version Firebase Test Lab supports.
+     */
+    xcodeVersion?: string;
     /**
      * Optional. An .xctestrun file that will override the .xctestrun file in
      * the tests zip. Because the .xctestrun file contains environment variables
@@ -1301,6 +1315,19 @@ export namespace testing_v1 {
      * Packet loss ratio (0.0 - 1.0)
      */
     packetLossRatio?: number;
+  }
+  /**
+   * An Xcode version that an iOS version is compatible with.
+   */
+  export interface Schema$XcodeVersion {
+    /**
+     * Output only. Tags for this Xcode version. Examples: &quot;default&quot;
+     */
+    tags?: string[];
+    /**
+     * Output only. The id for this version. Example: &quot;9.2&quot;
+     */
+    version?: string;
   }
 
 

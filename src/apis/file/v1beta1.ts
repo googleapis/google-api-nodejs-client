@@ -70,20 +70,6 @@ export namespace file_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * The sets of network addresses and DNS names for hosts to which a given
-   * export or share should be allowed or denied.
-   */
-  export interface Schema$ClientList {
-    /**
-     * DNS names of hosts, with optional wildcards.
-     */
-    hostNames?: string[];
-    /**
-     * IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4}.
-     */
-    ipAddresses?: string[];
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated
    * empty messages in your APIs. A typical example is to use it as the request
    * or the response type of an API method. For instance:      service Foo { rpc
@@ -91,45 +77,6 @@ export namespace file_v1beta1 {
    * representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
-  /**
-   * File share export specification.
-   */
-  export interface Schema$Export {
-    /**
-     * The clients which may connect.
-     */
-    allowedClients?: Schema$ClientList;
-    /**
-     * Writes may be completed when not yet on stable storage.
-     */
-    async?: boolean;
-    /**
-     * The clients which may not connect.
-     */
-    deniedClients?: Schema$ClientList;
-    /**
-     * Networks on which the export should appear. If none are specified, the
-     * default is all networks to which the instance is connected to.
-     */
-    networks?: Schema$NetworkConfig[];
-    /**
-     * Export rule for NFS
-     */
-    nfsExport?: Schema$NfsExport;
-    /**
-     * Path to export (either &quot;&quot; or of the form
-     * /file_share_name[/subdir]).
-     */
-    path?: string;
-    /**
-     * Whether the file share should be exported as read-only.
-     */
-    readOnly?: boolean;
-    /**
-     * Export rule for SMB
-     */
-    smbExport?: Schema$SmbExport;
-  }
   /**
    * File share configuration for the instance.
    */
@@ -140,28 +87,9 @@ export namespace file_v1beta1 {
      */
     capacityGb?: string;
     /**
-     * Delete requested. The file share will be deleted.
-     */
-    deleted?: boolean;
-    /**
-     * Service enabled.  When enabled, the instance exposes the exports to the
-     * user for mounting.
-     */
-    enabled?: boolean;
-    /**
-     * Exports. If protocols and exports are both zero-length, a default
-     * protocol of NFSV3 and a default export of &quot;*&quot; are provided, and
-     * enabled is set to true.
-     */
-    exports?: Schema$Export[];
-    /**
      * The name of the file share (must be 16 characters or less).
      */
     name?: string;
-    /**
-     * Protocols supported.
-     */
-    protocols?: string[];
   }
   /**
    * A Cloud Filestore instance.
@@ -189,21 +117,6 @@ export namespace file_v1beta1 {
      * Resource labels to represent user provided metadata.
      */
     labels?: any;
-    /**
-     * The logging service the instance should use to write logs. Currently
-     * available options:  * `logging.googleapis.com` - the Google Cloud Logging
-     * service. * `none` - no logs will be exported from the instance. * if left
-     * as an empty string,`logging.googleapis.com` will be used.
-     */
-    loggingService?: string;
-    /**
-     * The monitoring service the instance should use to write metrics.
-     * Currently available options:  * `monitoring.googleapis.com` - the Google
-     * Cloud Monitoring service. * `none` - no metrics will be exported from the
-     * instance. * if left as an empty string, `monitoring.googleapis.com` will
-     * be used.
-     */
-    monitoringService?: string;
     /**
      * Output only. The resource name of the instance, in the format
      * projects/{project_id}/locations/{location_id}/instances/{instance_id}.
@@ -336,43 +249,6 @@ export namespace file_v1beta1 {
      * other Cloud Filestore instances in the selected VPC network.
      */
     reservedIpRange?: string;
-    /**
-     * Output only. The name of the Google Compute Engine
-     * [subnetwork](/compute/docs/subnetworks) to which the instance is
-     * connected.
-     */
-    subnetwork?: string;
-  }
-  /**
-   * NfsExport specifies attributes of a given NFS export rule.
-   */
-  export interface Schema$NfsExport {
-    /**
-     * GID for anonymous or squashed GIDs.
-     */
-    anonymousGid?: string;
-    /**
-     * UID for anonymous or squashed UIDs.
-     */
-    anonymousUid?: string;
-    /**
-     * Network transport protocols to be enabled. The default is TCP.
-     */
-    protocols?: string[];
-    /**
-     * The mode of mapping of UIDs and GIDs (if any).
-     */
-    squash?: string;
-    /**
-     * If unauthenticated_locks_allowed is true, locking requests do not require
-     * authentication.
-     */
-    unauthenticatedLocksAllowed?: boolean;
-    /**
-     * If user_ports_allowed is true, client ports greater than or equal to 1024
-     * are allowed.
-     */
-    userPortsAllowed?: boolean;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -449,20 +325,6 @@ export namespace file_v1beta1 {
      * [Output only] Name of the verb executed by the operation.
      */
     verb?: string;
-  }
-  /**
-   * SmbExport defines attributes of a given SMB sharing rule.
-   */
-  export interface Schema$SmbExport {
-    /**
-     * If true, allow clients to see this share when browsing the instance for
-     * shares.
-     */
-    browsable?: boolean;
-    /**
-     * The published name of the share (if different from name).
-     */
-    fileShare?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for

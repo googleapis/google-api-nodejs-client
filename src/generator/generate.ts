@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import * as minimist from 'minimist';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 import {install} from 'source-map-support';
@@ -24,13 +25,16 @@ import {Generator} from './generator';
 // enable source map support
 install();
 
+const argv = minimist(process.argv.slice(2));
+const DEFAULT_DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';
+const discoveryUrl = argv['discovery-url'];
+
 const debug = true;
-const args = process.argv.slice(2);
 const gen = new Generator({debug, includePrivate: false});
 
 async function main() {
-  if (args.length) {
-    args.forEach(async url => {
+  if (!discoveryUrl && argv._.length > 0) {
+    argv._.forEach(async url => {
       await gen.generateAPI(url);
       console.log('Generated API for ' + url);
     });
@@ -39,7 +43,7 @@ async function main() {
     const apiPath = path.join(__dirname, '../../../src/apis');
     await util.promisify(rimraf)(apiPath);
     console.log('Generating APIs...');
-    await gen.generateAllAPIs();
+    await gen.generateAllAPIs(discoveryUrl || DEFAULT_DISCOVERY_URL);
     console.log('Finished generating APIs!');
   }
 }
