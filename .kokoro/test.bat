@@ -1,4 +1,4 @@
-@rem Copyright 2018 gRPC authors.
+@rem Copyright 2018 Google LLC. All rights reserved.
 @rem
 @rem Licensed under the Apache License, Version 2.0 (the "License");
 @rem you may not use this file except in compliance with the License.
@@ -17,8 +17,7 @@
 cd /d %~dp0
 cd ..
 
-call npm install -g npm@5 || goto :error
-
+call npm install -g npm@latest || goto :error
 call npm install || goto :error
 call npm run test || goto :error
 
