@@ -50,7 +50,9 @@ function getObjectType(item: SchemaItem): string {
     const fields = item.properties;
     const objectType =
         Object.keys(fields)
-            .map(field => `${cleanPropertyName(field)}?: ${getType(fields[field])};`)
+            .map(
+                field =>
+                    `${cleanPropertyName(field)}?: ${getType(fields[field])};`)
             .join(' ');
     return `{ ${objectType} }`;
   } else {
