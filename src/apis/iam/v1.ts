@@ -29,6 +29,57 @@ export namespace iam_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Identity and Access Management (IAM) API
    *
@@ -1026,7 +1077,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Iampolicies$Lintpolicy {
+  export interface Params$Resource$Iampolicies$Lintpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1038,7 +1090,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$LintPolicyRequest;
   }
-  export interface Params$Resource$Iampolicies$Queryauditableservices {
+  export interface Params$Resource$Iampolicies$Queryauditableservices extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1483,7 +1536,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Roles$Create {
+  export interface Params$Resource$Organizations$Roles$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1500,7 +1554,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Organizations$Roles$Delete {
+  export interface Params$Resource$Organizations$Roles$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1517,7 +1572,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Get {
+  export interface Params$Resource$Organizations$Roles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1530,7 +1586,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$List {
+  export interface Params$Resource$Organizations$Roles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1559,7 +1616,8 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Patch {
+  export interface Params$Resource$Organizations$Roles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1581,7 +1639,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Organizations$Roles$Undelete {
+  export interface Params$Resource$Organizations$Roles$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1694,7 +1753,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Permissions$Querytestablepermissions {
+  export interface Params$Resource$Permissions$Querytestablepermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2140,7 +2200,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Roles$Create {
+  export interface Params$Resource$Projects$Roles$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2157,7 +2218,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Projects$Roles$Delete {
+  export interface Params$Resource$Projects$Roles$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2174,7 +2236,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$Get {
+  export interface Params$Resource$Projects$Roles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2187,7 +2250,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$List {
+  export interface Params$Resource$Projects$Roles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2216,7 +2280,8 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Roles$Patch {
+  export interface Params$Resource$Projects$Roles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2238,7 +2303,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Projects$Roles$Undelete {
+  export interface Params$Resource$Projects$Roles$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2962,7 +3028,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Create {
+  export interface Params$Resource$Projects$Serviceaccounts$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2979,7 +3046,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Delete {
+  export interface Params$Resource$Projects$Serviceaccounts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2994,7 +3062,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Get {
+  export interface Params$Resource$Projects$Serviceaccounts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3009,7 +3078,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy {
+  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3021,7 +3091,8 @@ export namespace iam_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$List {
+  export interface Params$Resource$Projects$Serviceaccounts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3044,7 +3115,8 @@ export namespace iam_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy {
+  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3061,7 +3133,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signblob {
+  export interface Params$Resource$Projects$Serviceaccounts$Signblob extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3081,7 +3154,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SignBlobRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signjwt {
+  export interface Params$Resource$Projects$Serviceaccounts$Signjwt extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3101,7 +3175,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SignJwtRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions {
+  export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3118,7 +3193,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Update {
+  export interface Params$Resource$Projects$Serviceaccounts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3421,7 +3497,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3441,7 +3518,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountKeyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3456,7 +3534,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3476,7 +3555,8 @@ export namespace iam_v1 {
      */
     publicKeyType?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$List {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3716,7 +3796,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Roles$Get {
+  export interface Params$Resource$Roles$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3729,7 +3809,7 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Roles$List {
+  export interface Params$Resource$Roles$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3758,7 +3838,8 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Roles$Querygrantableroles {
+  export interface Params$Resource$Roles$Querygrantableroles extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

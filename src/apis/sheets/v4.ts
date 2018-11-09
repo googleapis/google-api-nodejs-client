@@ -29,6 +29,57 @@ export namespace sheets_v4 {
     version: 'v4';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Google Sheets API
    *
@@ -4938,7 +4989,8 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Batchupdate {
+  export interface Params$Resource$Spreadsheets$Batchupdate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4954,7 +5006,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchUpdateSpreadsheetRequest;
   }
-  export interface Params$Resource$Spreadsheets$Create {
+  export interface Params$Resource$Spreadsheets$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4966,7 +5019,7 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$Spreadsheet;
   }
-  export interface Params$Resource$Spreadsheets$Get {
+  export interface Params$Resource$Spreadsheets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4986,7 +5039,8 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
   }
-  export interface Params$Resource$Spreadsheets$Getbydatafilter {
+  export interface Params$Resource$Spreadsheets$Getbydatafilter extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5269,7 +5323,8 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Developermetadata$Get {
+  export interface Params$Resource$Spreadsheets$Developermetadata$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5284,7 +5339,8 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
   }
-  export interface Params$Resource$Spreadsheets$Developermetadata$Search {
+  export interface Params$Resource$Spreadsheets$Developermetadata$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5445,7 +5501,8 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Sheets$Copyto {
+  export interface Params$Resource$Spreadsheets$Sheets$Copyto extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6880,7 +6937,8 @@ export namespace sheets_v4 {
     }
   }
 
-  export interface Params$Resource$Spreadsheets$Values$Append {
+  export interface Params$Resource$Spreadsheets$Values$Append extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6927,7 +6985,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$ValueRange;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchclear {
+  export interface Params$Resource$Spreadsheets$Values$Batchclear extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6943,7 +7002,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchClearValuesRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchclearbydatafilter {
+  export interface Params$Resource$Spreadsheets$Values$Batchclearbydatafilter
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6959,7 +7019,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchClearValuesByDataFilterRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchget {
+  export interface Params$Resource$Spreadsheets$Values$Batchget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6993,7 +7054,8 @@ export namespace sheets_v4 {
      */
     valueRenderOption?: string;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchgetbydatafilter {
+  export interface Params$Resource$Spreadsheets$Values$Batchgetbydatafilter
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7009,7 +7071,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchGetValuesByDataFilterRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchupdate {
+  export interface Params$Resource$Spreadsheets$Values$Batchupdate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7025,7 +7088,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchUpdateValuesRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter {
+  export interface Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7041,7 +7105,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$BatchUpdateValuesByDataFilterRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Clear {
+  export interface Params$Resource$Spreadsheets$Values$Clear extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7061,7 +7126,8 @@ export namespace sheets_v4 {
      */
     requestBody?: Schema$ClearValuesRequest;
   }
-  export interface Params$Resource$Spreadsheets$Values$Get {
+  export interface Params$Resource$Spreadsheets$Values$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7095,7 +7161,8 @@ export namespace sheets_v4 {
      */
     valueRenderOption?: string;
   }
-  export interface Params$Resource$Spreadsheets$Values$Update {
+  export interface Params$Resource$Spreadsheets$Values$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

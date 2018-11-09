@@ -29,6 +29,57 @@ export namespace spanner_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Spanner API
    *
@@ -1927,7 +1978,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigs$Get {
+  export interface Params$Resource$Projects$Instanceconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1939,7 +1991,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$List {
+  export interface Params$Resource$Projects$Instanceconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2574,7 +2627,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Create {
+  export interface Params$Resource$Projects$Instances$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2591,7 +2645,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Delete {
+  export interface Params$Resource$Projects$Instances$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2603,7 +2658,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Get {
+  export interface Params$Resource$Projects$Instances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2615,7 +2671,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Getiampolicy {
+  export interface Params$Resource$Projects$Instances$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2634,7 +2691,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$List {
+  export interface Params$Resource$Projects$Instances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2670,7 +2728,8 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Patch {
+  export interface Params$Resource$Projects$Instances$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2689,7 +2748,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$UpdateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Setiampolicy {
+  export interface Params$Resource$Projects$Instances$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2708,7 +2768,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Testiampermissions {
+  export interface Params$Resource$Projects$Instances$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3385,7 +3446,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Create {
+  export interface Params$Resource$Projects$Instances$Databases$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3402,7 +3464,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase {
+  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3413,7 +3476,8 @@ export namespace spanner_v1 {
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3425,7 +3489,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getddl {
+  export interface Params$Resource$Projects$Instances$Databases$Getddl extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3436,7 +3501,8 @@ export namespace spanner_v1 {
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy {
+  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3455,7 +3521,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$List {
+  export interface Params$Resource$Projects$Instances$Databases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3477,7 +3544,8 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy {
+  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3496,7 +3564,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions {
+  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3515,7 +3584,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Updateddl {
+  export interface Params$Resource$Projects$Instances$Databases$Updateddl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3836,7 +3906,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3847,7 +3918,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3858,7 +3930,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3869,7 +3942,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$List {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4893,7 +4967,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4909,7 +4984,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4926,7 +5002,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4942,7 +5019,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateSessionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4953,7 +5031,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4969,7 +5048,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4985,7 +5065,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4996,7 +5077,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$List {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5026,7 +5108,8 @@ export namespace spanner_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5042,7 +5125,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionQueryRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5058,7 +5142,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5074,7 +5159,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5090,7 +5176,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5405,7 +5492,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Operations$Cancel {
+  export interface Params$Resource$Projects$Instances$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5416,7 +5504,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Delete {
+  export interface Params$Resource$Projects$Instances$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5427,7 +5516,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Get {
+  export interface Params$Resource$Projects$Instances$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5438,7 +5528,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$List {
+  export interface Params$Resource$Projects$Instances$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

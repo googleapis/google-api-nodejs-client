@@ -29,6 +29,40 @@ export namespace adsensehost_v4_1 {
     version: 'v4_1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * AdSense Host API
    *
@@ -546,7 +580,7 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -557,7 +591,7 @@ export namespace adsensehost_v4_1 {
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -717,7 +751,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Get {
+  export interface Params$Resource$Accounts$Adclients$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -732,7 +767,8 @@ export namespace adsensehost_v4_1 {
      */
     adClientId?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$List {
+  export interface Params$Resource$Accounts$Adclients$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1263,7 +1299,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$Delete {
+  export interface Params$Resource$Accounts$Adunits$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1282,7 +1319,8 @@ export namespace adsensehost_v4_1 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Get {
+  export interface Params$Resource$Accounts$Adunits$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1301,7 +1339,8 @@ export namespace adsensehost_v4_1 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Getadcode {
+  export interface Params$Resource$Accounts$Adunits$Getadcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1324,7 +1363,8 @@ export namespace adsensehost_v4_1 {
      */
     hostCustomChannelId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Insert {
+  export interface Params$Resource$Accounts$Adunits$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1344,7 +1384,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adunits$List {
+  export interface Params$Resource$Accounts$Adunits$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1374,7 +1415,8 @@ export namespace adsensehost_v4_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Patch {
+  export interface Params$Resource$Accounts$Adunits$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1398,7 +1440,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adunits$Update {
+  export interface Params$Resource$Accounts$Adunits$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1509,7 +1552,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Generate {
+  export interface Params$Resource$Accounts$Reports$Generate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1702,7 +1746,7 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Adclients$Get {
+  export interface Params$Resource$Adclients$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1713,7 +1757,7 @@ export namespace adsensehost_v4_1 {
      */
     adClientId?: string;
   }
-  export interface Params$Resource$Adclients$List {
+  export interface Params$Resource$Adclients$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1884,7 +1928,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Associationsessions$Start {
+  export interface Params$Resource$Associationsessions$Start extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1907,7 +1952,8 @@ export namespace adsensehost_v4_1 {
      */
     websiteUrl?: string;
   }
-  export interface Params$Resource$Associationsessions$Verify {
+  export interface Params$Resource$Associationsessions$Verify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2346,7 +2392,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Customchannels$Delete {
+  export interface Params$Resource$Customchannels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2361,7 +2408,8 @@ export namespace adsensehost_v4_1 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Customchannels$Get {
+  export interface Params$Resource$Customchannels$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2376,7 +2424,8 @@ export namespace adsensehost_v4_1 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Customchannels$Insert {
+  export interface Params$Resource$Customchannels$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2392,7 +2441,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$CustomChannel;
   }
-  export interface Params$Resource$Customchannels$List {
+  export interface Params$Resource$Customchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2414,7 +2464,8 @@ export namespace adsensehost_v4_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customchannels$Patch {
+  export interface Params$Resource$Customchannels$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2434,7 +2485,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$CustomChannel;
   }
-  export interface Params$Resource$Customchannels$Update {
+  export interface Params$Resource$Customchannels$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2539,7 +2591,7 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Reports$Generate {
+  export interface Params$Resource$Reports$Generate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2806,7 +2858,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Urlchannels$Delete {
+  export interface Params$Resource$Urlchannels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2821,7 +2874,8 @@ export namespace adsensehost_v4_1 {
      */
     urlChannelId?: string;
   }
-  export interface Params$Resource$Urlchannels$Insert {
+  export interface Params$Resource$Urlchannels$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2837,7 +2891,7 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$UrlChannel;
   }
-  export interface Params$Resource$Urlchannels$List {
+  export interface Params$Resource$Urlchannels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

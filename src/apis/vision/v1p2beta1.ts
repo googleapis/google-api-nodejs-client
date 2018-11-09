@@ -29,6 +29,57 @@ export namespace vision_v1p2beta1 {
     version: 'v1p2beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Vision API
    *
@@ -133,6 +184,10 @@ export namespace vision_v1p2beta1 {
      */
     logoAnnotations?: Schema$EntityAnnotation[];
     /**
+     * If present, product search has completed successfully.
+     */
+    productSearchResults?: Schema$ProductSearchResults;
+    /**
      * If present, safe-search annotation has completed successfully.
      */
     safeSearchAnnotation?: Schema$SafeSearchAnnotation;
@@ -163,6 +218,26 @@ export namespace vision_v1p2beta1 {
      * AsyncBatchAnnotateFilesRequest.
      */
     responses?: Schema$AsyncAnnotateFileResponse[];
+  }
+  /**
+   * Metadata for the batch operations such as the current state.  This is
+   * included in the `metadata` field of the `Operation` returned by the
+   * `GetOperation` call of the `google::longrunning::Operations` service.
+   */
+  export interface Schema$BatchOperationMetadata {
+    /**
+     * The time when the batch request is finished and
+     * google.longrunning.Operation.done is set to true.
+     */
+    endTime?: string;
+    /**
+     * The current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the batch request was submitted to the server.
+     */
+    submitTime?: string;
   }
   /**
    * Logical element on the page.
@@ -605,6 +680,11 @@ export namespace vision_v1p2beta1 {
      * If present, logo detection has completed successfully.
      */
     logoAnnotations?: Schema$GoogleCloudVisionV1p1beta1EntityAnnotation[];
+    /**
+     * If present, product search has completed successfully.
+     */
+    productSearchResults?:
+        Schema$GoogleCloudVisionV1p1beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
@@ -1100,6 +1180,112 @@ export namespace vision_v1p2beta1 {
     z?: number;
   }
   /**
+   * A Product contains ReferenceImages.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1Product {
+    /**
+     * User-provided metadata to be stored with this product. Must be at most
+     * 4096 characters long.
+     */
+    description?: string;
+    /**
+     * The user-provided name for this Product. Must not be empty. Must be at
+     * most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * The resource name of the product.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field
+     * is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The category for the product identified by the reference image. This
+     * should be either &quot;homegoods&quot;, &quot;apparel&quot;, or
+     * &quot;toys&quot;.  This field is immutable.
+     */
+    productCategory?: string;
+    /**
+     * Key-value pairs that can be attached to a product. At query time,
+     * constraints can be specified based on the product_labels.  Note that
+     * integer values can be provided as strings, e.g. &quot;1199&quot;. Only
+     * strings with integer values can match a range-based restriction which is
+     * to be supported soon.  Multiple values can be assigned to the same key.
+     * One product may have up to 100 product_labels.
+     */
+    productLabels?: Schema$GoogleCloudVisionV1p1beta1ProductKeyValue[];
+  }
+  /**
+   * A product label represented as a key-value pair.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductKeyValue {
+    /**
+     * The key of the label attached to the product. Cannot be empty and cannot
+     * exceed 128 bytes.
+     */
+    key?: string;
+    /**
+     * The value of the label attached to the product. Cannot be empty and
+     * cannot exceed 128 bytes.
+     */
+    value?: string;
+  }
+  /**
+   * Results for a product search request.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResults {
+    /**
+     * Timestamp of the index which provided these results. Changes made after
+     * this time are not reflected in the current results.
+     */
+    indexTime?: string;
+    /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?:
+        Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about a product.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsResult {
+    /**
+     * The resource name of the image from the product that is the closest match
+     * to the query.
+     */
+    image?: string;
+    /**
+     * The Product.
+     */
+    product?: Schema$GoogleCloudVisionV1p1beta1Product;
+    /**
+     * A confidence level on the match, ranging from 0 (no confidence) to 1
+     * (full confidence).
+     */
+    score?: number;
+  }
+  /**
    * A `Property` consists of a user-supplied name/value pair.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1Property {
@@ -1479,6 +1665,11 @@ export namespace vision_v1p2beta1 {
      * If present, logo detection has completed successfully.
      */
     logoAnnotations?: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
+    /**
+     * If present, product search has completed successfully.
+     */
+    productSearchResults?:
+        Schema$GoogleCloudVisionV1p2beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
@@ -1933,6 +2124,10 @@ export namespace vision_v1p2beta1 {
      */
     latLongRect?: Schema$GoogleCloudVisionV1p2beta1LatLongRect;
     /**
+     * Parameters for product search.
+     */
+    productSearchParams?: Schema$GoogleCloudVisionV1p2beta1ProductSearchParams;
+    /**
      * Parameters for web detection.
      */
     webDetectionParams?: Schema$GoogleCloudVisionV1p2beta1WebDetectionParams;
@@ -2161,6 +2356,143 @@ export namespace vision_v1p2beta1 {
      * Z coordinate (or depth).
      */
     z?: number;
+  }
+  /**
+   * A Product contains ReferenceImages.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1Product {
+    /**
+     * User-provided metadata to be stored with this product. Must be at most
+     * 4096 characters long.
+     */
+    description?: string;
+    /**
+     * The user-provided name for this Product. Must not be empty. Must be at
+     * most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * The resource name of the product.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field
+     * is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The category for the product identified by the reference image. This
+     * should be either &quot;homegoods&quot;, &quot;apparel&quot;, or
+     * &quot;toys&quot;.  This field is immutable.
+     */
+    productCategory?: string;
+    /**
+     * Key-value pairs that can be attached to a product. At query time,
+     * constraints can be specified based on the product_labels.  Note that
+     * integer values can be provided as strings, e.g. &quot;1199&quot;. Only
+     * strings with integer values can match a range-based restriction which is
+     * to be supported soon.  Multiple values can be assigned to the same key.
+     * One product may have up to 100 product_labels.
+     */
+    productLabels?: Schema$GoogleCloudVisionV1p2beta1ProductKeyValue[];
+  }
+  /**
+   * A product label represented as a key-value pair.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductKeyValue {
+    /**
+     * The key of the label attached to the product. Cannot be empty and cannot
+     * exceed 128 bytes.
+     */
+    key?: string;
+    /**
+     * The value of the label attached to the product. Cannot be empty and
+     * cannot exceed 128 bytes.
+     */
+    value?: string;
+  }
+  /**
+   * Parameters for a product search request.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchParams {
+    /**
+     * The bounding polygon around the area of interest in the image. Optional.
+     * If it is not specified, system discretion will be applied.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    /**
+     * The filtering expression. This can be used to restrict search results
+     * based on Product labels. We currently support an AND of OR of key-value
+     * expressions, where each expression within an OR must have the same key.
+     * For example, &quot;(color = red OR color = blue) AND brand = Google&quot;
+     * is acceptable, but not &quot;(color = red OR brand = Google)&quot; or
+     * &quot;color: red&quot;.
+     */
+    filter?: string;
+    /**
+     * The list of product categories to search in. Currently, we only consider
+     * the first category, and either &quot;homegoods&quot;,
+     * &quot;apparel&quot;, or &quot;toys&quot; should be specified.
+     */
+    productCategories?: string[];
+    /**
+     * The resource name of a ProductSet to be searched for similar images.
+     * Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
+     */
+    productSet?: string;
+  }
+  /**
+   * Results for a product search request.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResults {
+    /**
+     * Timestamp of the index which provided these results. Changes made after
+     * this time are not reflected in the current results.
+     */
+    indexTime?: string;
+    /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?:
+        Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about a product.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsResult {
+    /**
+     * The resource name of the image from the product that is the closest match
+     * to the query.
+     */
+    image?: string;
+    /**
+     * The Product.
+     */
+    product?: Schema$GoogleCloudVisionV1p2beta1Product;
+    /**
+     * A confidence level on the match, ranging from 0 (no confidence) to 1
+     * (full confidence).
+     */
+    score?: number;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -3149,6 +3481,28 @@ export namespace vision_v1p2beta1 {
      */
     indexTime?: string;
     /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?:
+        Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
+    /**
      * List of results, one for each product match.
      */
     results?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsResult[];
@@ -3495,6 +3849,20 @@ export namespace vision_v1p2beta1 {
     symbols?: Schema$GoogleCloudVisionV1p3beta1Symbol[];
   }
   /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$BoundingPoly;
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$Result[];
+  }
+  /**
    * If an image was produced from a file (e.g. a PDF), this message gives
    * information about the source of that image.
    */
@@ -3519,6 +3887,24 @@ export namespace vision_v1p2beta1 {
     dominantColors?: Schema$DominantColorsAnnotation;
   }
   /**
+   * Response message for the `ImportProductSets` method.  This message is
+   * returned by the google.longrunning.Operations.GetOperation method in the
+   * returned google.longrunning.Operation.response field.
+   */
+  export interface Schema$ImportProductSetsResponse {
+    /**
+     * The list of reference_images that are imported successfully.
+     */
+    referenceImages?: Schema$ReferenceImage[];
+    /**
+     * The rpc status for each ImportProductSet request, including both
+     * successes and errors.  The number of statuses here matches the number of
+     * lines in the csv file, and statuses[i] stores the success or failure
+     * status of processing the i-th line of the csv, starting from line 0.
+     */
+    statuses?: Schema$Status[];
+  }
+  /**
    * The desired input location and metadata.
    */
   export interface Schema$InputConfig {
@@ -3531,6 +3917,21 @@ export namespace vision_v1p2beta1 {
      * &quot;image/tiff&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
+  }
+  /**
+   * A product label represented as a key-value pair.
+   */
+  export interface Schema$KeyValue {
+    /**
+     * The key of the label attached to the product. Cannot be empty and cannot
+     * exceed 128 bytes.
+     */
+    key?: string;
+    /**
+     * The value of the label attached to the product. Cannot be empty and
+     * cannot exceed 128 bytes.
+     */
+    value?: string;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -3763,6 +4164,63 @@ export namespace vision_v1p2beta1 {
     z?: number;
   }
   /**
+   * A Product contains ReferenceImages.
+   */
+  export interface Schema$Product {
+    /**
+     * User-provided metadata to be stored with this product. Must be at most
+     * 4096 characters long.
+     */
+    description?: string;
+    /**
+     * The user-provided name for this Product. Must not be empty. Must be at
+     * most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * The resource name of the product.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field
+     * is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The category for the product identified by the reference image. This
+     * should be either &quot;homegoods&quot;, &quot;apparel&quot;, or
+     * &quot;toys&quot;.  This field is immutable.
+     */
+    productCategory?: string;
+    /**
+     * Key-value pairs that can be attached to a product. At query time,
+     * constraints can be specified based on the product_labels.  Note that
+     * integer values can be provided as strings, e.g. &quot;1199&quot;. Only
+     * strings with integer values can match a range-based restriction which is
+     * to be supported soon.  Multiple values can be assigned to the same key.
+     * One product may have up to 100 product_labels.
+     */
+    productLabels?: Schema$KeyValue[];
+  }
+  /**
+   * Results for a product search request.
+   */
+  export interface Schema$ProductSearchResults {
+    /**
+     * Timestamp of the index which provided these results. Changes made after
+     * this time are not reflected in the current results.
+     */
+    indexTime?: string;
+    /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?: Schema$GroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$Result[];
+  }
+  /**
    * A `Property` consists of a user-supplied name/value pair.
    */
   export interface Schema$Property {
@@ -3778,6 +4236,51 @@ export namespace vision_v1p2beta1 {
      * Value of the property.
      */
     value?: string;
+  }
+  /**
+   * A `ReferenceImage` represents a product image and its associated metadata,
+   * such as bounding boxes.
+   */
+  export interface Schema$ReferenceImage {
+    /**
+     * Bounding polygons around the areas of interest in the reference image.
+     * Optional. If this field is empty, the system will try to detect regions
+     * of interest. At most 10 bounding polygons will be used.  The provided
+     * shape is converted into a non-rotated rectangle. Once converted, the
+     * small edge of the rectangle must be greater than or equal to 300 pixels.
+     * The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     */
+    boundingPolys?: Schema$BoundingPoly[];
+    /**
+     * The resource name of the reference image.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     * This field is ignored when creating a reference image.
+     */
+    name?: string;
+    /**
+     * The Google Cloud Storage URI of the reference image.  The URI must start
+     * with `gs://`.  Required.
+     */
+    uri?: string;
+  }
+  /**
+   * Information about a product.
+   */
+  export interface Schema$Result {
+    /**
+     * The resource name of the image from the product that is the closest match
+     * to the query.
+     */
+    image?: string;
+    /**
+     * The Product.
+     */
+    product?: Schema$Product;
+    /**
+     * A confidence level on the match, ranging from 0 (no confidence) to 1
+     * (full confidence).
+     */
+    score?: number;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision
@@ -4161,7 +4664,8 @@ export namespace vision_v1p2beta1 {
     }
   }
 
-  export interface Params$Resource$Files$Asyncbatchannotate {
+  export interface Params$Resource$Files$Asyncbatchannotate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4267,7 +4771,7 @@ export namespace vision_v1p2beta1 {
     }
   }
 
-  export interface Params$Resource$Images$Annotate {
+  export interface Params$Resource$Images$Annotate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

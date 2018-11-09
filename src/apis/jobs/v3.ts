@@ -29,6 +29,57 @@ export namespace jobs_v3 {
     version: 'v3';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Talent Solution API
    *
@@ -906,8 +957,8 @@ export namespace jobs_v3 {
      * case insensitive match and `EMPTY([field_name])` to filter on the
      * existence of a key.  Boolean expressions (AND/OR/NOT) are supported up to
      * 3 levels of nesting (for example, &quot;((A AND B AND C) OR NOT D) AND
-     * E&quot;), a maximum of 50 comparisons or functions are allowed in the
-     * expression. The expression must be &lt; 3000 characters in length. Sample
+     * E&quot;), a maximum of 100 comparisons or functions are allowed in the
+     * expression. The expression must be &lt; 3000 bytes in length.  Sample
      * Query: `(LOWER(driving_license)=&quot;class \&quot;a\&quot;&quot; OR
      * EMPTY(driving_license)) AND driving_years &gt; 10`
      */
@@ -1046,7 +1097,7 @@ export namespace jobs_v3 {
      */
     postalAddress?: Schema$PostalAddress;
     /**
-     * Radius in meters of the job location. This value is derived from the
+     * Radius in miles of the job location. This value is derived from the
      * location bounding box in which a circle with the specified radius
      * centered from LatLng coves the area associated with the job location. For
      * example, currently, &quot;Mountain View, CA, USA&quot; has a radius
@@ -1658,7 +1709,8 @@ export namespace jobs_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.companyName Optional.  If provided, restricts completion to specified company.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
-     * @param {string=} params.languageCode Required.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with same language_code are returned.  For CompletionType.COMBINED type, only open jobs with same language_code or companies having open jobs with same language_code are returned.  The maximum number of allowed characters is 255.
+     * @param {string=} params.languageCode Deprecated. Use language_codes instead.  Optional.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with same language_code are returned.  For CompletionType.COMBINED type, only open jobs with same language_code or companies having open jobs with same language_code are returned.  The maximum number of allowed characters is 255.
+     * @param {string=} params.languageCodes Optional.  The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with same language_codes are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with same language_codes are returned.  For CompletionType.COMBINED type, only open jobs with same language_codes or companies having open jobs with same language_codes are returned.  The maximum number of allowed characters is 255.
      * @param {string} params.name Required.  Resource name of project the completion is performed within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {integer=} params.pageSize Required.  Completion result count.  The maximum allowed page size is 10.
      * @param {string=} params.query Required.  The query used to generate suggestions.  The maximum number of allowed characters is 255.
@@ -1725,7 +1777,8 @@ export namespace jobs_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Complete {
+  export interface Params$Resource$Projects$Complete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1738,9 +1791,10 @@ export namespace jobs_v3 {
      */
     companyName?: string;
     /**
-     * Required.  The language of the query. This is the BCP-47 language code,
-     * such as "en-US" or "sr-Latn". For more information, see [Tags for
-     * Identifying Languages](https://tools.ietf.org/html/bcp47).  For
+     * Deprecated. Use language_codes instead.  Optional.  The language of the
+     * query. This is the BCP-47 language code, such as "en-US" or "sr-Latn".
+     * For more information, see [Tags for Identifying
+     * Languages](https://tools.ietf.org/html/bcp47).  For
      * CompletionType.JOB_TITLE type, only open jobs with same language_code are
      * returned.  For CompletionType.COMPANY_NAME type, only companies having
      * open jobs with same language_code are returned.  For
@@ -1749,6 +1803,18 @@ export namespace jobs_v3 {
      * maximum number of allowed characters is 255.
      */
     languageCode?: string;
+    /**
+     * Optional.  The list of languages of the query. This is the BCP-47
+     * language code, such as "en-US" or "sr-Latn". For more information, see
+     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For
+     * CompletionType.JOB_TITLE type, only open jobs with same language_codes
+     * are returned.  For CompletionType.COMPANY_NAME type, only companies
+     * having open jobs with same language_codes are returned.  For
+     * CompletionType.COMBINED type, only open jobs with same language_codes or
+     * companies having open jobs with same language_codes are returned.  The
+     * maximum number of allowed characters is 255.
+     */
+    languageCodes?: string;
     /**
      * Required.  Resource name of project the completion is performed within.
      * The format is "projects/{project_id}", for example,
@@ -1856,7 +1922,8 @@ export namespace jobs_v3 {
 
     /**
      * jobs.projects.companies.delete
-     * @desc Deletes specified company.
+     * @desc Deletes specified company. Prerequisite: The company has no jobs
+     * associated with it.
      * @alias jobs.projects.companies.delete
      * @memberOf! ()
      *
@@ -2119,7 +2186,8 @@ export namespace jobs_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Companies$Create {
+  export interface Params$Resource$Projects$Companies$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2137,7 +2205,8 @@ export namespace jobs_v3 {
      */
     requestBody?: Schema$CreateCompanyRequest;
   }
-  export interface Params$Resource$Projects$Companies$Delete {
+  export interface Params$Resource$Projects$Companies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2150,7 +2219,8 @@ export namespace jobs_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Companies$Get {
+  export interface Params$Resource$Projects$Companies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2163,7 +2233,8 @@ export namespace jobs_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Companies$List {
+  export interface Params$Resource$Projects$Companies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2191,7 +2262,8 @@ export namespace jobs_v3 {
      */
     requireOpenJobs?: boolean;
   }
-  export interface Params$Resource$Projects$Companies$Patch {
+  export interface Params$Resource$Projects$Companies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2769,7 +2841,8 @@ export namespace jobs_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Batchdelete {
+  export interface Params$Resource$Projects$Jobs$Batchdelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2787,7 +2860,8 @@ export namespace jobs_v3 {
      */
     requestBody?: Schema$BatchDeleteJobsRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Create {
+  export interface Params$Resource$Projects$Jobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2805,7 +2879,8 @@ export namespace jobs_v3 {
      */
     requestBody?: Schema$CreateJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Delete {
+  export interface Params$Resource$Projects$Jobs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2818,7 +2893,8 @@ export namespace jobs_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Get {
+  export interface Params$Resource$Projects$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2831,7 +2907,8 @@ export namespace jobs_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List {
+  export interface Params$Resource$Projects$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2868,7 +2945,8 @@ export namespace jobs_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Patch {
+  export interface Params$Resource$Projects$Jobs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2889,7 +2967,8 @@ export namespace jobs_v3 {
      */
     requestBody?: Schema$UpdateJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Search {
+  export interface Params$Resource$Projects$Jobs$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2906,7 +2985,8 @@ export namespace jobs_v3 {
      */
     requestBody?: Schema$SearchJobsRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Searchforalert {
+  export interface Params$Resource$Projects$Jobs$Searchforalert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

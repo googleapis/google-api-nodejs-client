@@ -29,6 +29,57 @@ export namespace partners_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Google Partners API
    *
@@ -1484,7 +1535,7 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Analytics$List {
+  export interface Params$Resource$Analytics$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1619,7 +1670,8 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Clientmessages$Log {
+  export interface Params$Resource$Clientmessages$Log extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1809,7 +1861,7 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Get {
+  export interface Params$Resource$Companies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1874,7 +1926,7 @@ export namespace partners_v2 {
      */
     view?: string;
   }
-  export interface Params$Resource$Companies$List {
+  export interface Params$Resource$Companies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2092,7 +2144,8 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Leads$Create {
+  export interface Params$Resource$Companies$Leads$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2197,7 +2250,7 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Leads$List {
+  export interface Params$Resource$Leads$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2337,7 +2390,7 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Offers$List {
+  export interface Params$Resource$Offers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2468,7 +2521,8 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Offers$History$List {
+  export interface Params$Resource$Offers$History$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2603,7 +2657,7 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Userevents$Log {
+  export interface Params$Resource$Userevents$Log extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2924,7 +2978,8 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Users$Createcompanyrelation {
+  export interface Params$Resource$Users$Createcompanyrelation extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2972,7 +3027,8 @@ export namespace partners_v2 {
      */
     requestBody?: Schema$CompanyRelation;
   }
-  export interface Params$Resource$Users$Deletecompanyrelation {
+  export interface Params$Resource$Users$Deletecompanyrelation extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3015,7 +3071,7 @@ export namespace partners_v2 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Get {
+  export interface Params$Resource$Users$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3062,7 +3118,8 @@ export namespace partners_v2 {
      */
     userView?: string;
   }
-  export interface Params$Resource$Users$Updateprofile {
+  export interface Params$Resource$Users$Updateprofile extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3190,7 +3247,7 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$Userstates$List {
+  export interface Params$Resource$Userstates$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3465,7 +3522,8 @@ export namespace partners_v2 {
     }
   }
 
-  export interface Params$Resource$V2$Getpartnersstatus {
+  export interface Params$Resource$V2$Getpartnersstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3503,7 +3561,8 @@ export namespace partners_v2 {
      */
     'requestMetadata.userOverrides.userId'?: string;
   }
-  export interface Params$Resource$V2$Updatecompanies {
+  export interface Params$Resource$V2$Updatecompanies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3551,7 +3610,7 @@ export namespace partners_v2 {
      */
     requestBody?: Schema$Company;
   }
-  export interface Params$Resource$V2$Updateleads {
+  export interface Params$Resource$V2$Updateleads extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

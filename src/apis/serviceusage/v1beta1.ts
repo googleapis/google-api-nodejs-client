@@ -29,6 +29,57 @@ export namespace serviceusage_v1beta1 {
     version: 'v1beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Service Usage API
    *
@@ -289,6 +340,11 @@ export namespace serviceusage_v1beta1 {
      * value lower than this will be rejected.
      */
     minDeadline?: number;
+    /**
+     * The number of seconds to wait for the completion of a long running
+     * operation. The default is no deadline.
+     */
+    operationDeadline?: number;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -2342,7 +2398,7 @@ export namespace serviceusage_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2353,7 +2409,7 @@ export namespace serviceusage_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2734,7 +2790,8 @@ export namespace serviceusage_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Services$Batchenable {
+  export interface Params$Resource$Services$Batchenable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2752,7 +2809,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$BatchEnableServicesRequest;
   }
-  export interface Params$Resource$Services$Disable {
+  export interface Params$Resource$Services$Disable extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2771,7 +2828,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$DisableServiceRequest;
   }
-  export interface Params$Resource$Services$Enable {
+  export interface Params$Resource$Services$Enable extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2792,7 +2849,7 @@ export namespace serviceusage_v1beta1 {
      */
     requestBody?: Schema$EnableServiceRequest;
   }
-  export interface Params$Resource$Services$Get {
+  export interface Params$Resource$Services$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2806,7 +2863,7 @@ export namespace serviceusage_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Services$List {
+  export interface Params$Resource$Services$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

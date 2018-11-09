@@ -29,6 +29,57 @@ export namespace bigquerydatatransfer_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * BigQuery Data Transfer API
    *
@@ -844,7 +895,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Datasources$Checkvalidcreds {
+  export interface Params$Resource$Projects$Datasources$Checkvalidcreds extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -861,7 +913,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$CheckValidCredsRequest;
   }
-  export interface Params$Resource$Projects$Datasources$Get {
+  export interface Params$Resource$Projects$Datasources$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -873,7 +926,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Datasources$List {
+  export interface Params$Resource$Projects$Datasources$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1049,7 +1103,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1060,7 +1115,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1310,7 +1366,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds {
+  export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1327,7 +1384,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$CheckValidCredsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Datasources$Get {
+  export interface Params$Resource$Projects$Locations$Datasources$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1339,7 +1397,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasources$List {
+  export interface Params$Resource$Projects$Locations$Datasources$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1817,7 +1876,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Create {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1854,7 +1914,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Delete {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1866,7 +1927,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Get {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1878,7 +1940,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$List {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1906,7 +1969,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Patch {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1949,7 +2013,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2192,7 +2257,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2204,7 +2270,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2216,7 +2283,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2339,7 +2407,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List {
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2813,7 +2882,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Create {
+  export interface Params$Resource$Projects$Transferconfigs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2850,7 +2920,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Delete {
+  export interface Params$Resource$Projects$Transferconfigs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2862,7 +2933,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Get {
+  export interface Params$Resource$Projects$Transferconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2874,7 +2946,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$List {
+  export interface Params$Resource$Projects$Transferconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2902,7 +2975,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Patch {
+  export interface Params$Resource$Projects$Transferconfigs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2945,7 +3019,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     requestBody?: Schema$TransferConfig;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Scheduleruns {
+  export interface Params$Resource$Projects$Transferconfigs$Scheduleruns extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3180,7 +3255,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Delete {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3192,7 +3268,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Get {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3204,7 +3281,8 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Transferconfigs$Runs$List {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3325,7 +3403,8 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List {
+  export interface Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

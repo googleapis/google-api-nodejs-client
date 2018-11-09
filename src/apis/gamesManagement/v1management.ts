@@ -29,6 +29,40 @@ export namespace gamesManagement_v1management {
     version: 'v1management';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Play Game Services Management API
    *
@@ -742,7 +776,8 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Achievements$Reset {
+  export interface Params$Resource$Achievements$Reset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -753,19 +788,22 @@ export namespace gamesManagement_v1management {
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Resetall {
+  export interface Params$Resource$Achievements$Resetall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Achievements$Resetallforallplayers {
+  export interface Params$Resource$Achievements$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Achievements$Resetforallplayers {
+  export interface Params$Resource$Achievements$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -776,7 +814,8 @@ export namespace gamesManagement_v1management {
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Resetmultipleforallplayers {
+  export interface Params$Resource$Achievements$Resetmultipleforallplayers
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -874,7 +913,8 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Applications$Listhidden {
+  export interface Params$Resource$Applications$Listhidden extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1244,7 +1284,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Events$Reset {
+  export interface Params$Resource$Events$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1255,19 +1295,21 @@ export namespace gamesManagement_v1management {
      */
     eventId?: string;
   }
-  export interface Params$Resource$Events$Resetall {
+  export interface Params$Resource$Events$Resetall extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Events$Resetallforallplayers {
+  export interface Params$Resource$Events$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Events$Resetforallplayers {
+  export interface Params$Resource$Events$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1278,7 +1320,8 @@ export namespace gamesManagement_v1management {
      */
     eventId?: string;
   }
-  export interface Params$Resource$Events$Resetmultipleforallplayers {
+  export interface Params$Resource$Events$Resetmultipleforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1440,7 +1483,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Players$Hide {
+  export interface Params$Resource$Players$Hide extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1456,7 +1499,7 @@ export namespace gamesManagement_v1management {
      */
     playerId?: string;
   }
-  export interface Params$Resource$Players$Unhide {
+  export interface Params$Resource$Players$Unhide extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1817,7 +1860,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Quests$Reset {
+  export interface Params$Resource$Quests$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1828,19 +1871,21 @@ export namespace gamesManagement_v1management {
      */
     questId?: string;
   }
-  export interface Params$Resource$Quests$Resetall {
+  export interface Params$Resource$Quests$Resetall extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Quests$Resetallforallplayers {
+  export interface Params$Resource$Quests$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Quests$Resetforallplayers {
+  export interface Params$Resource$Quests$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1851,7 +1896,8 @@ export namespace gamesManagement_v1management {
      */
     questId?: string;
   }
-  export interface Params$Resource$Quests$Resetmultipleforallplayers {
+  export interface Params$Resource$Quests$Resetmultipleforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2007,13 +2053,14 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Rooms$Reset {
+  export interface Params$Resource$Rooms$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Rooms$Resetforallplayers {
+  export interface Params$Resource$Rooms$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2379,7 +2426,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Scores$Reset {
+  export interface Params$Resource$Scores$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2390,19 +2437,21 @@ export namespace gamesManagement_v1management {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Scores$Resetall {
+  export interface Params$Resource$Scores$Resetall extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Scores$Resetallforallplayers {
+  export interface Params$Resource$Scores$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Scores$Resetforallplayers {
+  export interface Params$Resource$Scores$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2413,7 +2462,8 @@ export namespace gamesManagement_v1management {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Scores$Resetmultipleforallplayers {
+  export interface Params$Resource$Scores$Resetmultipleforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2571,13 +2621,15 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Turnbasedmatches$Reset {
+  export interface Params$Resource$Turnbasedmatches$Reset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Turnbasedmatches$Resetforallplayers {
+  export interface Params$Resource$Turnbasedmatches$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -1,7 +1,7 @@
 {
-  "name": "@google/serviceuser",
+  "name": "@google/cloudsearch",
   "version": "0.1.0",
-  "description": "serviceuser",
+  "description": "cloudsearch",
   "main": "index.js",
   "types": "index.d.ts",
   "keywords": ["google"],

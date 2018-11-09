@@ -29,6 +29,40 @@ export namespace civicinfo_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Civic Information API
    *
@@ -657,6 +691,20 @@ export namespace civicinfo_v2 {
      */
     id?: string;
     /**
+     * Latitude of the location, in degrees north of the equator. Only some
+     * locations -- generally, ballot drop boxes for vote-by-mail elections --
+     * will have this set; for others, use a geocoding service like the Google
+     * Maps API to resolve the address to a geographic point.
+     */
+    latitude?: number;
+    /**
+     * Longitude of the location, in degrees east of the Prime Meridian. Only
+     * some locations -- generally, ballot drop boxes for vote-by-mail elections
+     * -- will have this set; for others, use a geocoding service like the
+     * Google Maps API to resolve the address to a geographic point.
+     */
+    longitude?: number;
+    /**
      * The name of the early vote site or drop off location. This field is not
      * populated for polling locations.
      */
@@ -1024,7 +1072,7 @@ export namespace civicinfo_v2 {
     }
   }
 
-  export interface Params$Resource$Divisions$Search {
+  export interface Params$Resource$Divisions$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1200,7 +1248,8 @@ export namespace civicinfo_v2 {
     }
   }
 
-  export interface Params$Resource$Elections$Electionquery {
+  export interface Params$Resource$Elections$Electionquery extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1212,7 +1261,8 @@ export namespace civicinfo_v2 {
      */
     requestBody?: Schema$ElectionsQueryRequest;
   }
-  export interface Params$Resource$Elections$Voterinfoquery {
+  export interface Params$Resource$Elections$Voterinfoquery extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1417,7 +1467,8 @@ export namespace civicinfo_v2 {
     }
   }
 
-  export interface Params$Resource$Representatives$Representativeinfobyaddress {
+  export interface Params$Resource$Representatives$Representativeinfobyaddress
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1451,7 +1502,8 @@ export namespace civicinfo_v2 {
      */
     requestBody?: Schema$RepresentativeInfoRequest;
   }
-  export interface Params$Resource$Representatives$Representativeinfobydivision {
+  export interface Params$Resource$Representatives$Representativeinfobydivision
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

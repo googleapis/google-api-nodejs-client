@@ -29,6 +29,40 @@ export namespace replicapoolupdater_v1beta1 {
     version: 'v1beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Compute Engine Instance Group Updater API
    *
@@ -919,7 +953,8 @@ export namespace replicapoolupdater_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Rollingupdates$Cancel {
+  export interface Params$Resource$Rollingupdates$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -938,7 +973,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Get {
+  export interface Params$Resource$Rollingupdates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -957,7 +993,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Insert {
+  export interface Params$Resource$Rollingupdates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -977,7 +1014,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     requestBody?: Schema$RollingUpdate;
   }
-  export interface Params$Resource$Rollingupdates$List {
+  export interface Params$Resource$Rollingupdates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1006,7 +1044,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Listinstanceupdates {
+  export interface Params$Resource$Rollingupdates$Listinstanceupdates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1039,7 +1078,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Pause {
+  export interface Params$Resource$Rollingupdates$Pause extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1058,7 +1098,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Resume {
+  export interface Params$Resource$Rollingupdates$Resume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1077,7 +1118,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Rollback {
+  export interface Params$Resource$Rollingupdates$Rollback extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1250,7 +1292,8 @@ export namespace replicapoolupdater_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Zoneoperations$Get {
+  export interface Params$Resource$Zoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1269,7 +1312,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$List {
+  export interface Params$Resource$Zoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

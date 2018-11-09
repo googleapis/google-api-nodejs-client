@@ -29,6 +29,40 @@ export namespace content_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Content API for Shopping
    *
@@ -96,7 +130,8 @@ export namespace content_v2 {
   }
 
   /**
-   * Account data.
+   * Account data. After the creation of a new account it may take a few minutes
+   * before it is fully operational.
    */
   export interface Schema$Account {
     /**
@@ -455,6 +490,10 @@ export namespace content_v2 {
      * Additional details about the issue.
      */
     detail?: string;
+    /**
+     * The URL of a web page to help resolving this issue.
+     */
+    documentation?: string;
     /**
      * Issue identifier.
      */
@@ -898,9 +937,40 @@ export namespace content_v2 {
      */
     services?: string[];
   }
+  export interface Schema$CustomAttribute {
+    /**
+     * The name of the attribute. Underscores will be replaced by spaces upon
+     * insertion.
+     */
+    name?: string;
+    /**
+     * The type of the attribute.
+     */
+    type?: string;
+    /**
+     * Free-form unit of the attribute. Unit can only be used for values of type
+     * int, float, or price.
+     */
+    unit?: string;
+    /**
+     * The value of the attribute.
+     */
+    value?: string;
+  }
   export interface Schema$CustomerReturnReason {
     description?: string;
     reasonCode?: string;
+  }
+  export interface Schema$CustomGroup {
+    /**
+     * The sub-attributes.
+     */
+    attributes?: Schema$CustomAttribute[];
+    /**
+     * The name of the group. Underscores will be replaced by spaces upon
+     * insertion.
+     */
+    name?: string;
   }
   export interface Schema$CutoffTime {
     /**
@@ -1536,9 +1606,38 @@ export namespace content_v2 {
      */
     availability?: string;
     /**
+     * Custom label 0 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel0?: string;
+    /**
+     * Custom label 1 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel1?: string;
+    /**
+     * Custom label 2 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel2?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel3?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel4?: string;
+    /**
      * Number and amount of installments to pay for an item. Brazil only.
      */
     installment?: Schema$Installment;
+    /**
+     * The instore product location. Supported only for local products.
+     */
+    instoreProductLocation?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#inventory&quot;.
@@ -1664,9 +1763,38 @@ export namespace content_v2 {
      */
     availability?: string;
     /**
+     * Custom label 0 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel0?: string;
+    /**
+     * Custom label 1 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel1?: string;
+    /**
+     * Custom label 2 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel2?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel3?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel4?: string;
+    /**
      * Number and amount of installments to pay for an item. Brazil only.
      */
     installment?: Schema$Installment;
+    /**
+     * The instore product location. Supported only for local products.
+     */
+    instoreProductLocation?: string;
     /**
      * Loyalty points that users receive after purchasing the item. Japan only.
      */
@@ -2413,7 +2541,9 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * Product data from the time of the order placement.
+     * Product data as seen by customer from the time of the order placement.
+     * Note that certain attributes values (e.g. title or gtin) might be
+     * reformatted and no longer match values submitted via product feed.
      */
     product?: Schema$OrderLineItemProduct;
     /**
@@ -2477,6 +2607,10 @@ export namespace content_v2 {
      */
     contentLanguage?: string;
     /**
+     * Associated fees at order creation time.
+     */
+    fees?: Schema$OrderLineItemProductFee[];
+    /**
      * Global Trade Item Number (GTIN) of the item.
      */
     gtin?: string;
@@ -2522,6 +2656,16 @@ export namespace content_v2 {
      * comprehensive list of variant attributes here.
      */
     variantAttributes?: Schema$OrderLineItemProductVariantAttribute[];
+  }
+  export interface Schema$OrderLineItemProductFee {
+    /**
+     * Amount of the fee.
+     */
+    amount?: Schema$Price;
+    /**
+     * Name of the fee.
+     */
+    name?: string;
   }
   export interface Schema$OrderLineItemProductVariantAttribute {
     /**
@@ -4404,11 +4548,11 @@ export namespace content_v2 {
      * &quot;text&quot;, &quot;value&quot;: &quot;regular&quot; }). This is
      * useful for submitting attributes not explicitly exposed by the API.
      */
-    customAttributes?: Schema$ProductCustomAttribute[];
+    customAttributes?: Schema$CustomAttribute[];
     /**
      * A list of custom (merchant-provided) custom attribute groups.
      */
-    customGroups?: Schema$ProductCustomGroup[];
+    customGroups?: Schema$CustomGroup[];
     /**
      * Custom label 0 for custom grouping of items in a Shopping campaign.
      */
@@ -4682,37 +4826,6 @@ export namespace content_v2 {
      * Whether the aspect is required, excluded or should be validated.
      */
     intention?: string;
-  }
-  export interface Schema$ProductCustomAttribute {
-    /**
-     * The name of the attribute. Underscores will be replaced by spaces upon
-     * insertion.
-     */
-    name?: string;
-    /**
-     * The type of the attribute.
-     */
-    type?: string;
-    /**
-     * Free-form unit of the attribute. Unit can only be used for values of type
-     * int, float, or price.
-     */
-    unit?: string;
-    /**
-     * The value of the attribute.
-     */
-    value?: string;
-  }
-  export interface Schema$ProductCustomGroup {
-    /**
-     * The sub-attributes.
-     */
-    attributes?: Schema$ProductCustomAttribute[];
-    /**
-     * The name of the group. Underscores will be replaced by spaces upon
-     * insertion.
-     */
-    name?: string;
   }
   export interface Schema$ProductDestination {
     /**
@@ -6370,13 +6483,15 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Authinfo {
+  export interface Params$Resource$Accounts$Authinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Accounts$Claimwebsite {
+  export interface Params$Resource$Accounts$Claimwebsite extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6399,7 +6514,8 @@ export namespace content_v2 {
      */
     overwrite?: boolean;
   }
-  export interface Params$Resource$Accounts$Custombatch {
+  export interface Params$Resource$Accounts$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6415,7 +6531,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccountsCustomBatchRequest;
   }
-  export interface Params$Resource$Accounts$Delete {
+  export interface Params$Resource$Accounts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6439,7 +6555,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6456,7 +6572,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accounts$Insert {
+  export interface Params$Resource$Accounts$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6476,7 +6592,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$Link {
+  export interface Params$Resource$Accounts$Link extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6498,7 +6614,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccountsLinkRequest;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6518,7 +6634,7 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Patch {
+  export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6544,7 +6660,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$Update {
+  export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6805,7 +6921,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Accountstatuses$Custombatch {
+  export interface Params$Resource$Accountstatuses$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6817,7 +6934,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccountstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Accountstatuses$Get {
+  export interface Params$Resource$Accountstatuses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6839,7 +6957,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accountstatuses$List {
+  export interface Params$Resource$Accountstatuses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7225,7 +7344,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Accounttax$Custombatch {
+  export interface Params$Resource$Accounttax$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7241,7 +7361,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccounttaxCustomBatchRequest;
   }
-  export interface Params$Resource$Accounttax$Get {
+  export interface Params$Resource$Accounttax$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7258,7 +7378,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accounttax$List {
+  export interface Params$Resource$Accounttax$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7278,7 +7398,7 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounttax$Patch {
+  export interface Params$Resource$Accounttax$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7304,7 +7424,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccountTax;
   }
-  export interface Params$Resource$Accounttax$Update {
+  export interface Params$Resource$Accounttax$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7891,7 +8012,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Datafeeds$Custombatch {
+  export interface Params$Resource$Datafeeds$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7907,7 +8029,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$DatafeedsCustomBatchRequest;
   }
-  export interface Params$Resource$Datafeeds$Delete {
+  export interface Params$Resource$Datafeeds$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7927,7 +8049,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Fetchnow {
+  export interface Params$Resource$Datafeeds$Fetchnow extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7947,7 +8070,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Get {
+  export interface Params$Resource$Datafeeds$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7963,7 +8086,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Insert {
+  export interface Params$Resource$Datafeeds$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7984,7 +8107,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Datafeed;
   }
-  export interface Params$Resource$Datafeeds$List {
+  export interface Params$Resource$Datafeeds$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8005,7 +8128,7 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Datafeeds$Patch {
+  export interface Params$Resource$Datafeeds$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8030,7 +8153,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Datafeed;
   }
-  export interface Params$Resource$Datafeeds$Update {
+  export interface Params$Resource$Datafeeds$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8292,7 +8415,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Datafeedstatuses$Custombatch {
+  export interface Params$Resource$Datafeedstatuses$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8304,7 +8428,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$DatafeedstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Datafeedstatuses$Get {
+  export interface Params$Resource$Datafeedstatuses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8334,7 +8459,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeedstatuses$List {
+  export interface Params$Resource$Datafeedstatuses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8517,7 +8643,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Inventory$Custombatch {
+  export interface Params$Resource$Inventory$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8533,7 +8660,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$InventoryCustomBatchRequest;
   }
-  export interface Params$Resource$Inventory$Set {
+  export interface Params$Resource$Inventory$Set extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9021,7 +9148,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which GMB access is requested.
-     * @param {string=} params.gmbEmail The email of the Google My Business account.
+     * @param {string} params.gmbEmail The email of the Google My Business account.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9082,7 +9209,7 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: ['merchantId', 'accountId', 'gmbEmail'],
         pathParams: ['accountId', 'merchantId'],
         context: this.getRoot()
       };
@@ -9187,10 +9314,10 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.contactEmail The email of the inventory verification contact.
-     * @param {string=} params.contactName The name of the inventory verification contact.
-     * @param {string=} params.country The country for which inventory verification is requested.
-     * @param {string=} params.language The language for which inventory verification is requested.
+     * @param {string} params.contactEmail The email of the inventory verification contact.
+     * @param {string} params.contactName The name of the inventory verification contact.
+     * @param {string} params.country The country for which inventory verification is requested.
+     * @param {string} params.language The language for which inventory verification is requested.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9252,7 +9379,10 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: [
+          'merchantId', 'accountId', 'contactEmail', 'contactName', 'country',
+          'language'
+        ],
         pathParams: ['accountId', 'merchantId'],
         context: this.getRoot()
       };
@@ -9276,7 +9406,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to retrieve accessible Google My Business accounts.
-     * @param {string=} params.country The country for which the POS data provider is selected.
+     * @param {string} params.country The country for which the POS data provider is selected.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {string=} params.posDataProviderId The ID of POS data provider.
      * @param {string=} params.posExternalAccountId The account ID by which this merchant is known to the POS data provider.
@@ -9339,7 +9469,7 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'merchantId'],
         context: this.getRoot()
       };
@@ -9424,7 +9554,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Liasettings$Custombatch {
+  export interface Params$Resource$Liasettings$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9440,7 +9571,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$LiasettingsCustomBatchRequest;
   }
-  export interface Params$Resource$Liasettings$Get {
+  export interface Params$Resource$Liasettings$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9457,7 +9588,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts {
+  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9475,7 +9607,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$List {
+  export interface Params$Resource$Liasettings$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9495,13 +9627,15 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Liasettings$Listposdataproviders {
+  export interface Params$Resource$Liasettings$Listposdataproviders extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Liasettings$Patch {
+  export interface Params$Resource$Liasettings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9527,7 +9661,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$LiaSettings;
   }
-  export interface Params$Resource$Liasettings$Requestgmbaccess {
+  export interface Params$Resource$Liasettings$Requestgmbaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9548,7 +9683,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Requestinventoryverification {
+  export interface Params$Resource$Liasettings$Requestinventoryverification
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9570,7 +9706,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Setinventoryverificationcontact {
+  export interface Params$Resource$Liasettings$Setinventoryverificationcontact
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9604,7 +9741,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Setposdataprovider {
+  export interface Params$Resource$Liasettings$Setposdataprovider extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9634,7 +9772,8 @@ export namespace content_v2 {
      */
     posExternalAccountId?: string;
   }
-  export interface Params$Resource$Liasettings$Update {
+  export interface Params$Resource$Liasettings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9837,7 +9976,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orderinvoices$Createchargeinvoice {
+  export interface Params$Resource$Orderinvoices$Createchargeinvoice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9858,7 +9998,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderinvoicesCreateChargeInvoiceRequest;
   }
-  export interface Params$Resource$Orderinvoices$Createrefundinvoice {
+  export interface Params$Resource$Orderinvoices$Createrefundinvoice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10218,7 +10359,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orderpayments$Notifyauthapproved {
+  export interface Params$Resource$Orderpayments$Notifyauthapproved extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10239,7 +10381,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderpaymentsNotifyAuthApprovedRequest;
   }
-  export interface Params$Resource$Orderpayments$Notifyauthdeclined {
+  export interface Params$Resource$Orderpayments$Notifyauthdeclined extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10260,7 +10403,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderpaymentsNotifyAuthDeclinedRequest;
   }
-  export interface Params$Resource$Orderpayments$Notifycharge {
+  export interface Params$Resource$Orderpayments$Notifycharge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10281,7 +10425,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderpaymentsNotifyChargeRequest;
   }
-  export interface Params$Resource$Orderpayments$Notifyrefund {
+  export interface Params$Resource$Orderpayments$Notifyrefund extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10403,7 +10548,7 @@ export namespace content_v2 {
 
     /**
      * content.orderreports.listtransactions
-     * @desc Retrieves a list of transactions for an disbursement from your
+     * @desc Retrieves a list of transactions for a disbursement from your
      * Merchant Center account.
      * @alias content.orderreports.listtransactions
      * @memberOf! ()
@@ -10489,7 +10634,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orderreports$Listdisbursements {
+  export interface Params$Resource$Orderreports$Listdisbursements extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10519,7 +10665,8 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Orderreports$Listtransactions {
+  export interface Params$Resource$Orderreports$Listtransactions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10703,7 +10850,7 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orderreturns$Get {
+  export interface Params$Resource$Orderreturns$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10719,7 +10866,8 @@ export namespace content_v2 {
      */
     returnId?: string;
   }
-  export interface Params$Resource$Orderreturns$List {
+  export interface Params$Resource$Orderreturns$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12472,7 +12620,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orders$Acknowledge {
+  export interface Params$Resource$Orders$Acknowledge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12493,7 +12642,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersAcknowledgeRequest;
   }
-  export interface Params$Resource$Orders$Advancetestorder {
+  export interface Params$Resource$Orders$Advancetestorder extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12509,7 +12659,7 @@ export namespace content_v2 {
      */
     orderId?: string;
   }
-  export interface Params$Resource$Orders$Cancel {
+  export interface Params$Resource$Orders$Cancel extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12530,7 +12680,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCancelRequest;
   }
-  export interface Params$Resource$Orders$Cancellineitem {
+  export interface Params$Resource$Orders$Cancellineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12551,7 +12702,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCancelLineItemRequest;
   }
-  export interface Params$Resource$Orders$Canceltestorderbycustomer {
+  export interface Params$Resource$Orders$Canceltestorderbycustomer extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12572,7 +12724,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCancelTestOrderByCustomerRequest;
   }
-  export interface Params$Resource$Orders$Createtestorder {
+  export interface Params$Resource$Orders$Createtestorder extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12589,7 +12742,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCreateTestOrderRequest;
   }
-  export interface Params$Resource$Orders$Createtestreturn {
+  export interface Params$Resource$Orders$Createtestreturn extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12610,7 +12764,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCreateTestReturnRequest;
   }
-  export interface Params$Resource$Orders$Custombatch {
+  export interface Params$Resource$Orders$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12622,7 +12777,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCustomBatchRequest;
   }
-  export interface Params$Resource$Orders$Get {
+  export interface Params$Resource$Orders$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12638,7 +12793,8 @@ export namespace content_v2 {
      */
     orderId?: string;
   }
-  export interface Params$Resource$Orders$Getbymerchantorderid {
+  export interface Params$Resource$Orders$Getbymerchantorderid extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12654,7 +12810,8 @@ export namespace content_v2 {
      */
     merchantOrderId?: string;
   }
-  export interface Params$Resource$Orders$Gettestordertemplate {
+  export interface Params$Resource$Orders$Gettestordertemplate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12674,7 +12831,8 @@ export namespace content_v2 {
      */
     templateName?: string;
   }
-  export interface Params$Resource$Orders$Instorerefundlineitem {
+  export interface Params$Resource$Orders$Instorerefundlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12695,7 +12853,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersInStoreRefundLineItemRequest;
   }
-  export interface Params$Resource$Orders$List {
+  export interface Params$Resource$Orders$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12751,7 +12909,7 @@ export namespace content_v2 {
      */
     statuses?: string;
   }
-  export interface Params$Resource$Orders$Refund {
+  export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12772,7 +12930,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersRefundRequest;
   }
-  export interface Params$Resource$Orders$Rejectreturnlineitem {
+  export interface Params$Resource$Orders$Rejectreturnlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12793,7 +12952,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersRejectReturnLineItemRequest;
   }
-  export interface Params$Resource$Orders$Returnlineitem {
+  export interface Params$Resource$Orders$Returnlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12814,7 +12974,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersReturnLineItemRequest;
   }
-  export interface Params$Resource$Orders$Returnrefundlineitem {
+  export interface Params$Resource$Orders$Returnrefundlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12835,7 +12996,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersReturnRefundLineItemRequest;
   }
-  export interface Params$Resource$Orders$Setlineitemmetadata {
+  export interface Params$Resource$Orders$Setlineitemmetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12856,7 +13018,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersSetLineItemMetadataRequest;
   }
-  export interface Params$Resource$Orders$Shiplineitems {
+  export interface Params$Resource$Orders$Shiplineitems extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12877,7 +13040,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersShipLineItemsRequest;
   }
-  export interface Params$Resource$Orders$Updatelineitemshippingdetails {
+  export interface Params$Resource$Orders$Updatelineitemshippingdetails extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12898,7 +13062,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersUpdateLineItemShippingDetailsRequest;
   }
-  export interface Params$Resource$Orders$Updatemerchantorderid {
+  export interface Params$Resource$Orders$Updatemerchantorderid extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12919,7 +13084,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersUpdateMerchantOrderIdRequest;
   }
-  export interface Params$Resource$Orders$Updateshipment {
+  export interface Params$Resource$Orders$Updateshipment extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13431,7 +13597,7 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Pos$Custombatch {
+  export interface Params$Resource$Pos$Custombatch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13447,7 +13613,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$PosCustomBatchRequest;
   }
-  export interface Params$Resource$Pos$Delete {
+  export interface Params$Resource$Pos$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13470,7 +13636,7 @@ export namespace content_v2 {
      */
     targetMerchantId?: string;
   }
-  export interface Params$Resource$Pos$Get {
+  export interface Params$Resource$Pos$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13489,7 +13655,7 @@ export namespace content_v2 {
      */
     targetMerchantId?: string;
   }
-  export interface Params$Resource$Pos$Insert {
+  export interface Params$Resource$Pos$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13513,7 +13679,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$PosStore;
   }
-  export interface Params$Resource$Pos$Inventory {
+  export interface Params$Resource$Pos$Inventory extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13537,7 +13703,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$PosInventoryRequest;
   }
-  export interface Params$Resource$Pos$List {
+  export interface Params$Resource$Pos$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13552,7 +13718,7 @@ export namespace content_v2 {
      */
     targetMerchantId?: string;
   }
-  export interface Params$Resource$Pos$Sale {
+  export interface Params$Resource$Pos$Sale extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13929,7 +14095,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Products$Custombatch {
+  export interface Params$Resource$Products$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13945,7 +14112,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ProductsCustomBatchRequest;
   }
-  export interface Params$Resource$Products$Delete {
+  export interface Params$Resource$Products$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13965,7 +14132,7 @@ export namespace content_v2 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Get {
+  export interface Params$Resource$Products$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13981,7 +14148,7 @@ export namespace content_v2 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Insert {
+  export interface Params$Resource$Products$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14002,7 +14169,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Product;
   }
-  export interface Params$Resource$Products$List {
+  export interface Params$Resource$Products$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14267,7 +14434,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Productstatuses$Custombatch {
+  export interface Params$Resource$Productstatuses$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14284,7 +14452,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ProductstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Productstatuses$Get {
+  export interface Params$Resource$Productstatuses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14310,7 +14479,8 @@ export namespace content_v2 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Productstatuses$List {
+  export interface Params$Resource$Productstatuses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14883,7 +15053,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Shippingsettings$Custombatch {
+  export interface Params$Resource$Shippingsettings$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14899,7 +15070,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ShippingsettingsCustomBatchRequest;
   }
-  export interface Params$Resource$Shippingsettings$Get {
+  export interface Params$Resource$Shippingsettings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14916,7 +15088,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedcarriers {
+  export interface Params$Resource$Shippingsettings$Getsupportedcarriers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14927,7 +15100,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedholidays {
+  export interface Params$Resource$Shippingsettings$Getsupportedholidays extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14938,7 +15112,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$List {
+  export interface Params$Resource$Shippingsettings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14958,7 +15133,8 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Shippingsettings$Patch {
+  export interface Params$Resource$Shippingsettings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14984,7 +15160,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ShippingSettings;
   }
-  export interface Params$Resource$Shippingsettings$Update {
+  export interface Params$Resource$Shippingsettings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

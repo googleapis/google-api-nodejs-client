@@ -29,6 +29,57 @@ export namespace dataflow_v1b3 {
     version: 'v1b3';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Dataflow API
    *
@@ -1127,6 +1178,15 @@ export namespace dataflow_v1b3 {
      * mutate it.
      */
     stageStates?: Schema$ExecutionStageState[];
+    /**
+     * The timestamp when the job was started (transitioned to
+     * JOB_STATE_PENDING). Flexible resource scheduling jobs are started with
+     * some delay after job creation, so start_time is unset before start and is
+     * updated when the job is started by the Cloud Dataflow service. For other
+     * jobs, start_time always equals to create_time and is immutable and set by
+     * the Cloud Dataflow service.
+     */
+    startTime?: string;
     /**
      * The top-level steps that constitute the entire job.
      */
@@ -2495,6 +2555,19 @@ export namespace dataflow_v1b3 {
     properties?: any;
   }
   /**
+   * Streaming appliance snapshot configuration.
+   */
+  export interface Schema$StreamingApplianceSnapshotConfig {
+    /**
+     * Indicates which endpoint is used to import appliance state.
+     */
+    importStateEndpoint?: string;
+    /**
+     * If set, indicates the snapshot id for the snapshot being performed.
+     */
+    snapshotId?: string;
+  }
+  /**
    * Configuration information for a single streaming computation.
    */
   export interface Schema$StreamingComputationConfig {
@@ -2585,6 +2658,10 @@ export namespace dataflow_v1b3 {
      * streaming computation workers.
      */
     receiveWorkPort?: number;
+    /**
+     * Configures streaming appliance snapshot.
+     */
+    snapshotConfig?: Schema$StreamingApplianceSnapshotConfig;
     /**
      * The global topology of the streaming Dataflow job.
      */
@@ -3491,7 +3568,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Workermessages {
+  export interface Params$Resource$Projects$Workermessages extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3943,7 +4021,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Aggregated {
+  export interface Params$Resource$Projects$Jobs$Aggregated extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3978,7 +4057,8 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Create {
+  export interface Params$Resource$Projects$Jobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4006,7 +4086,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Jobs$Get {
+  export interface Params$Resource$Projects$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4029,7 +4110,8 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Getmetrics {
+  export interface Params$Resource$Projects$Jobs$Getmetrics extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4053,7 +4135,8 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List {
+  export interface Params$Resource$Projects$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4088,7 +4171,8 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Update {
+  export interface Params$Resource$Projects$Jobs$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4269,7 +4353,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Debug$Getconfig {
+  export interface Params$Resource$Projects$Jobs$Debug$Getconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4289,7 +4374,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$GetDebugConfigRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Debug$Sendcapture {
+  export interface Params$Resource$Projects$Jobs$Debug$Sendcapture extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4399,7 +4485,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Messages$List {
+  export interface Params$Resource$Projects$Jobs$Messages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4607,7 +4694,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Workitems$Lease {
+  export interface Params$Resource$Projects$Jobs$Workitems$Lease extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4627,7 +4715,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$LeaseWorkItemRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus {
+  export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4744,7 +4833,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workermessages {
+  export interface Params$Resource$Projects$Locations$Workermessages extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5137,7 +5227,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Create {
+  export interface Params$Resource$Projects$Locations$Jobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5165,7 +5256,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get {
+  export interface Params$Resource$Projects$Locations$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5188,7 +5280,8 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Getmetrics {
+  export interface Params$Resource$Projects$Locations$Jobs$Getmetrics extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5212,7 +5305,8 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List {
+  export interface Params$Resource$Projects$Locations$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5247,7 +5341,8 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Update {
+  export interface Params$Resource$Projects$Locations$Jobs$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5435,7 +5530,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig {
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5459,7 +5555,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$GetDebugConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture {
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5575,7 +5672,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Messages$List {
+  export interface Params$Resource$Projects$Locations$Jobs$Messages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5789,7 +5887,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease {
+  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5813,7 +5912,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$LeaseWorkItemRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus {
+  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6063,7 +6163,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Templates$Create {
+  export interface Params$Resource$Projects$Locations$Templates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6083,7 +6184,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$CreateJobFromTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Templates$Get {
+  export interface Params$Resource$Projects$Locations$Templates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6107,7 +6209,8 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Templates$Launch {
+  export interface Params$Resource$Projects$Locations$Templates$Launch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6357,7 +6460,8 @@ export namespace dataflow_v1b3 {
     }
   }
 
-  export interface Params$Resource$Projects$Templates$Create {
+  export interface Params$Resource$Projects$Templates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6373,7 +6477,8 @@ export namespace dataflow_v1b3 {
      */
     requestBody?: Schema$CreateJobFromTemplateRequest;
   }
-  export interface Params$Resource$Projects$Templates$Get {
+  export interface Params$Resource$Projects$Templates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6397,7 +6502,8 @@ export namespace dataflow_v1b3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Templates$Launch {
+  export interface Params$Resource$Projects$Templates$Launch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,57 @@ export namespace vision_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Vision API
    *
@@ -55,6 +106,7 @@ export namespace vision_v1 {
     images: Resource$Images;
     locations: Resource$Locations;
     operations: Resource$Operations;
+    projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
@@ -65,6 +117,7 @@ export namespace vision_v1 {
       this.images = new Resource$Images(this);
       this.locations = new Resource$Locations(this);
       this.operations = new Resource$Operations(this);
+      this.projects = new Resource$Projects(this);
     }
 
     getRoot() {
@@ -72,6 +125,16 @@ export namespace vision_v1 {
     }
   }
 
+  /**
+   * Request message for the `AddProductToProductSet` method.
+   */
+  export interface Schema$AddProductToProductSetRequest {
+    /**
+     * The resource name for the Product to be added to this ProductSet.  Format
+     * is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     */
+    product?: string;
+  }
   /**
    * Response to a single file annotation request. A file may contain one or
    * more images, which individually have their own responses.
@@ -155,6 +218,10 @@ export namespace vision_v1 {
      */
     logoAnnotations?: Schema$EntityAnnotation[];
     /**
+     * If present, product search has completed successfully.
+     */
+    productSearchResults?: Schema$ProductSearchResults;
+    /**
      * If present, safe-search annotation has completed successfully.
      */
     safeSearchAnnotation?: Schema$SafeSearchAnnotation;
@@ -234,6 +301,26 @@ export namespace vision_v1 {
      * Individual responses to image annotation requests within the batch.
      */
     responses?: Schema$AnnotateImageResponse[];
+  }
+  /**
+   * Metadata for the batch operations such as the current state.  This is
+   * included in the `metadata` field of the `Operation` returned by the
+   * `GetOperation` call of the `google::longrunning::Operations` service.
+   */
+  export interface Schema$BatchOperationMetadata {
+    /**
+     * The time when the batch request is finished and
+     * google.longrunning.Operation.done is set to true.
+     */
+    endTime?: string;
+    /**
+     * The current state of the batch operation.
+     */
+    state?: string;
+    /**
+     * The time when the batch request was submitted to the server.
+     */
+    submitTime?: string;
   }
   /**
    * Logical element on the page.
@@ -724,6 +811,11 @@ export namespace vision_v1 {
      * If present, logo detection has completed successfully.
      */
     logoAnnotations?: Schema$GoogleCloudVisionV1p1beta1EntityAnnotation[];
+    /**
+     * If present, product search has completed successfully.
+     */
+    productSearchResults?:
+        Schema$GoogleCloudVisionV1p1beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
@@ -1219,6 +1311,112 @@ export namespace vision_v1 {
     z?: number;
   }
   /**
+   * A Product contains ReferenceImages.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1Product {
+    /**
+     * User-provided metadata to be stored with this product. Must be at most
+     * 4096 characters long.
+     */
+    description?: string;
+    /**
+     * The user-provided name for this Product. Must not be empty. Must be at
+     * most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * The resource name of the product.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field
+     * is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The category for the product identified by the reference image. This
+     * should be either &quot;homegoods&quot;, &quot;apparel&quot;, or
+     * &quot;toys&quot;.  This field is immutable.
+     */
+    productCategory?: string;
+    /**
+     * Key-value pairs that can be attached to a product. At query time,
+     * constraints can be specified based on the product_labels.  Note that
+     * integer values can be provided as strings, e.g. &quot;1199&quot;. Only
+     * strings with integer values can match a range-based restriction which is
+     * to be supported soon.  Multiple values can be assigned to the same key.
+     * One product may have up to 100 product_labels.
+     */
+    productLabels?: Schema$GoogleCloudVisionV1p1beta1ProductKeyValue[];
+  }
+  /**
+   * A product label represented as a key-value pair.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductKeyValue {
+    /**
+     * The key of the label attached to the product. Cannot be empty and cannot
+     * exceed 128 bytes.
+     */
+    key?: string;
+    /**
+     * The value of the label attached to the product. Cannot be empty and
+     * cannot exceed 128 bytes.
+     */
+    value?: string;
+  }
+  /**
+   * Results for a product search request.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResults {
+    /**
+     * Timestamp of the index which provided these results. Changes made after
+     * this time are not reflected in the current results.
+     */
+    indexTime?: string;
+    /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?:
+        Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about a product.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsResult {
+    /**
+     * The resource name of the image from the product that is the closest match
+     * to the query.
+     */
+    image?: string;
+    /**
+     * The Product.
+     */
+    product?: Schema$GoogleCloudVisionV1p1beta1Product;
+    /**
+     * A confidence level on the match, ranging from 0 (no confidence) to 1
+     * (full confidence).
+     */
+    score?: number;
+  }
+  /**
    * A `Property` consists of a user-supplied name/value pair.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1Property {
@@ -1580,6 +1778,11 @@ export namespace vision_v1 {
      * If present, logo detection has completed successfully.
      */
     logoAnnotations?: Schema$GoogleCloudVisionV1p2beta1EntityAnnotation[];
+    /**
+     * If present, product search has completed successfully.
+     */
+    productSearchResults?:
+        Schema$GoogleCloudVisionV1p2beta1ProductSearchResults;
     /**
      * If present, safe-search annotation has completed successfully.
      */
@@ -2091,6 +2294,112 @@ export namespace vision_v1 {
      * Z coordinate (or depth).
      */
     z?: number;
+  }
+  /**
+   * A Product contains ReferenceImages.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1Product {
+    /**
+     * User-provided metadata to be stored with this product. Must be at most
+     * 4096 characters long.
+     */
+    description?: string;
+    /**
+     * The user-provided name for this Product. Must not be empty. Must be at
+     * most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * The resource name of the product.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field
+     * is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The category for the product identified by the reference image. This
+     * should be either &quot;homegoods&quot;, &quot;apparel&quot;, or
+     * &quot;toys&quot;.  This field is immutable.
+     */
+    productCategory?: string;
+    /**
+     * Key-value pairs that can be attached to a product. At query time,
+     * constraints can be specified based on the product_labels.  Note that
+     * integer values can be provided as strings, e.g. &quot;1199&quot;. Only
+     * strings with integer values can match a range-based restriction which is
+     * to be supported soon.  Multiple values can be assigned to the same key.
+     * One product may have up to 100 product_labels.
+     */
+    productLabels?: Schema$GoogleCloudVisionV1p2beta1ProductKeyValue[];
+  }
+  /**
+   * A product label represented as a key-value pair.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductKeyValue {
+    /**
+     * The key of the label attached to the product. Cannot be empty and cannot
+     * exceed 128 bytes.
+     */
+    key?: string;
+    /**
+     * The value of the label attached to the product. Cannot be empty and
+     * cannot exceed 128 bytes.
+     */
+    value?: string;
+  }
+  /**
+   * Results for a product search request.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResults {
+    /**
+     * Timestamp of the index which provided these results. Changes made after
+     * this time are not reflected in the current results.
+     */
+    indexTime?: string;
+    /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?:
+        Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about a product.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsResult {
+    /**
+     * The resource name of the image from the product that is the closest match
+     * to the query.
+     */
+    image?: string;
+    /**
+     * The Product.
+     */
+    product?: Schema$GoogleCloudVisionV1p2beta1Product;
+    /**
+     * A confidence level on the match, ranging from 0 (no confidence) to 1
+     * (full confidence).
+     */
+    score?: number;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -3070,6 +3379,28 @@ export namespace vision_v1 {
      */
     indexTime?: string;
     /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?:
+        Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsResult[];
+  }
+  /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
+    /**
      * List of results, one for each product match.
      */
     results?: Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsResult[];
@@ -3416,6 +3747,20 @@ export namespace vision_v1 {
     symbols?: Schema$GoogleCloudVisionV1p3beta1Symbol[];
   }
   /**
+   * Information about the products similar to a single product in a query
+   * image.
+   */
+  export interface Schema$GroupedResult {
+    /**
+     * The bounding polygon around the product detected in the query image.
+     */
+    boundingPoly?: Schema$BoundingPoly;
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$Result[];
+  }
+  /**
    * Client image to perform Google Cloud Vision API tasks over.
    */
   export interface Schema$Image {
@@ -3471,6 +3816,10 @@ export namespace vision_v1 {
      */
     latLongRect?: Schema$LatLongRect;
     /**
+     * Parameters for product search.
+     */
+    productSearchParams?: Schema$ProductSearchParams;
+    /**
      * Parameters for web detection.
      */
     webDetectionParams?: Schema$WebDetectionParams;
@@ -3513,6 +3862,86 @@ export namespace vision_v1 {
     imageUri?: string;
   }
   /**
+   * The Google Cloud Storage location for a csv file which preserves a list of
+   * ImportProductSetRequests in each line.
+   */
+  export interface Schema$ImportProductSetsGcsSource {
+    /**
+     * The Google Cloud Storage URI of the input csv file.  The URI must start
+     * with `gs://`.  The format of the input csv file should be one image per
+     * line. In each line, there are 8 columns.  1.  image-uri 2.  image-id 3.
+     * product-set-id 4.  product-id 5.  product-category 6.
+     * product-display-name 7.  labels 8.  bounding-poly  The `image-uri`,
+     * `product-set-id`, `product-id`, and `product-category` columns are
+     * required. All other columns are optional.  If the `ProductSet` or
+     * `Product` specified by the `product-set-id` and `product-id` values does
+     * not exist, then the system will create a new `ProductSet` or `Product`
+     * for the image. In this case, the `product-display-name` column refers to
+     * display_name, the `product-category` column refers to product_category,
+     * and the `labels` column refers to product_labels.  The `image-id` column
+     * is optional but must be unique if provided. If it is empty, the system
+     * will automatically assign a unique id to the image.  The
+     * `product-display-name` column is optional. If it is empty, the system
+     * sets the display_name field for the product to a space (&quot; &quot;).
+     * You can update the `display_name` later by using the API.  If a `Product`
+     * with the specified `product-id` already exists, then the system ignores
+     * the `product-display-name`, `product-category`, and `labels` columns. The
+     * `labels` column (optional) is a line containing a list of comma-separated
+     * key-value pairs, in the following format:
+     * &quot;key_1=value_1,key_2=value_2,...,key_n=value_n&quot;  The
+     * `bounding-poly` column (optional) identifies one region of interest from
+     * the image in the same manner as `CreateReferenceImage`. If you do not
+     * specify the `bounding-poly` column, then the system will try to detect
+     * regions of interest automatically.  At most one `bounding-poly` column is
+     * allowed per line. If the image contains multiple regions of interest, add
+     * a line to the CSV file that includes the same product information, and
+     * the `bounding-poly` values for each region of interest.  The
+     * `bounding-poly` column must contain an even number of comma-separated
+     * numbers, in the format &quot;p1_x,p1_y,p2_x,p2_y,...,pn_x,pn_y&quot;. Use
+     * non-negative integers for absolute bounding polygons, and float values in
+     * [0, 1] for normalized bounding polygons.  The system will resize the
+     * image if the image resolution is too large to process (larger than 20MP).
+     */
+    csvFileUri?: string;
+  }
+  /**
+   * The input content for the `ImportProductSets` method.
+   */
+  export interface Schema$ImportProductSetsInputConfig {
+    /**
+     * The Google Cloud Storage location for a csv file which preserves a list
+     * of ImportProductSetRequests in each line.
+     */
+    gcsSource?: Schema$ImportProductSetsGcsSource;
+  }
+  /**
+   * Request message for the `ImportProductSets` method.
+   */
+  export interface Schema$ImportProductSetsRequest {
+    /**
+     * The input content for the list of requests.
+     */
+    inputConfig?: Schema$ImportProductSetsInputConfig;
+  }
+  /**
+   * Response message for the `ImportProductSets` method.  This message is
+   * returned by the google.longrunning.Operations.GetOperation method in the
+   * returned google.longrunning.Operation.response field.
+   */
+  export interface Schema$ImportProductSetsResponse {
+    /**
+     * The list of reference_images that are imported successfully.
+     */
+    referenceImages?: Schema$ReferenceImage[];
+    /**
+     * The rpc status for each ImportProductSet request, including both
+     * successes and errors.  The number of statuses here matches the number of
+     * lines in the csv file, and statuses[i] stores the success or failure
+     * status of processing the i-th line of the csv, starting from line 0.
+     */
+    statuses?: Schema$Status[];
+  }
+  /**
    * The desired input location and metadata.
    */
   export interface Schema$InputConfig {
@@ -3525,6 +3954,21 @@ export namespace vision_v1 {
      * &quot;image/tiff&quot; are supported. Wildcards are not supported.
      */
     mimeType?: string;
+  }
+  /**
+   * A product label represented as a key-value pair.
+   */
+  export interface Schema$KeyValue {
+    /**
+     * The key of the label attached to the product. Cannot be empty and cannot
+     * exceed 128 bytes.
+     */
+    key?: string;
+    /**
+     * The value of the label attached to the product. Cannot be empty and
+     * cannot exceed 128 bytes.
+     */
+    value?: string;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -3581,6 +4025,65 @@ export namespace vision_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Response message for the `ListProductSets` method.
+   */
+  export interface Schema$ListProductSetsResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
+     */
+    nextPageToken?: string;
+    /**
+     * List of ProductSets.
+     */
+    productSets?: Schema$ProductSet[];
+  }
+  /**
+   * Response message for the `ListProductsInProductSet` method.
+   */
+  export interface Schema$ListProductsInProductSetResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
+     */
+    nextPageToken?: string;
+    /**
+     * The list of Products.
+     */
+    products?: Schema$Product[];
+  }
+  /**
+   * Response message for the `ListProducts` method.
+   */
+  export interface Schema$ListProductsResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
+     */
+    nextPageToken?: string;
+    /**
+     * List of products.
+     */
+    products?: Schema$Product[];
+  }
+  /**
+   * Response message for the `ListReferenceImages` method.
+   */
+  export interface Schema$ListReferenceImagesResponse {
+    /**
+     * The next_page_token returned from a previous List request, if any.
+     */
+    nextPageToken?: string;
+    /**
+     * The maximum number of items to return. Default 10, maximum 100.
+     */
+    pageSize?: number;
+    /**
+     * The list of reference images.
+     */
+    referenceImages?: Schema$ReferenceImage[];
   }
   /**
    * Set of detected objects with bounding boxes.
@@ -3783,6 +4286,124 @@ export namespace vision_v1 {
     z?: number;
   }
   /**
+   * A Product contains ReferenceImages.
+   */
+  export interface Schema$Product {
+    /**
+     * User-provided metadata to be stored with this product. Must be at most
+     * 4096 characters long.
+     */
+    description?: string;
+    /**
+     * The user-provided name for this Product. Must not be empty. Must be at
+     * most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * The resource name of the product.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field
+     * is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The category for the product identified by the reference image. This
+     * should be either &quot;homegoods&quot;, &quot;apparel&quot;, or
+     * &quot;toys&quot;.  This field is immutable.
+     */
+    productCategory?: string;
+    /**
+     * Key-value pairs that can be attached to a product. At query time,
+     * constraints can be specified based on the product_labels.  Note that
+     * integer values can be provided as strings, e.g. &quot;1199&quot;. Only
+     * strings with integer values can match a range-based restriction which is
+     * to be supported soon.  Multiple values can be assigned to the same key.
+     * One product may have up to 100 product_labels.
+     */
+    productLabels?: Schema$KeyValue[];
+  }
+  /**
+   * Parameters for a product search request.
+   */
+  export interface Schema$ProductSearchParams {
+    /**
+     * The bounding polygon around the area of interest in the image. Optional.
+     * If it is not specified, system discretion will be applied.
+     */
+    boundingPoly?: Schema$BoundingPoly;
+    /**
+     * The filtering expression. This can be used to restrict search results
+     * based on Product labels. We currently support an AND of OR of key-value
+     * expressions, where each expression within an OR must have the same key.
+     * For example, &quot;(color = red OR color = blue) AND brand = Google&quot;
+     * is acceptable, but not &quot;(color = red OR brand = Google)&quot; or
+     * &quot;color: red&quot;.
+     */
+    filter?: string;
+    /**
+     * The list of product categories to search in. Currently, we only consider
+     * the first category, and either &quot;homegoods&quot;,
+     * &quot;apparel&quot;, or &quot;toys&quot; should be specified.
+     */
+    productCategories?: string[];
+    /**
+     * The resource name of a ProductSet to be searched for similar images.
+     * Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
+     */
+    productSet?: string;
+  }
+  /**
+   * Results for a product search request.
+   */
+  export interface Schema$ProductSearchResults {
+    /**
+     * Timestamp of the index which provided these results. Changes made after
+     * this time are not reflected in the current results.
+     */
+    indexTime?: string;
+    /**
+     * List of results grouped by products detected in the query image. Each
+     * entry corresponds to one bounding polygon in the query image, and
+     * contains the matching products specific to that region. There may be
+     * duplicate product matches in the union of all the per-product results.
+     */
+    productGroupedResults?: Schema$GroupedResult[];
+    /**
+     * List of results, one for each product match.
+     */
+    results?: Schema$Result[];
+  }
+  /**
+   * A ProductSet contains Products. A ProductSet can contain a maximum of 1
+   * million reference images. If the limit is exceeded, periodic indexing will
+   * fail.
+   */
+  export interface Schema$ProductSet {
+    /**
+     * The user-provided name for this ProductSet. Must not be empty. Must be at
+     * most 4096 characters long.
+     */
+    displayName?: string;
+    /**
+     * Output only. If there was an error with indexing the product set, the
+     * field is populated.  This field is ignored when creating a ProductSet.
+     */
+    indexError?: Schema$Status;
+    /**
+     * Output only. The time at which this ProductSet was last indexed. Query
+     * results will reflect all updates before this time. If this ProductSet has
+     * never been indexed, this field is 0.  This field is ignored when creating
+     * a ProductSet.
+     */
+    indexTime?: string;
+    /**
+     * The resource name of the ProductSet.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.  This
+     * field is ignored when creating a ProductSet.
+     */
+    name?: string;
+  }
+  /**
    * A `Property` consists of a user-supplied name/value pair.
    */
   export interface Schema$Property {
@@ -3798,6 +4419,61 @@ export namespace vision_v1 {
      * Value of the property.
      */
     value?: string;
+  }
+  /**
+   * A `ReferenceImage` represents a product image and its associated metadata,
+   * such as bounding boxes.
+   */
+  export interface Schema$ReferenceImage {
+    /**
+     * Bounding polygons around the areas of interest in the reference image.
+     * Optional. If this field is empty, the system will try to detect regions
+     * of interest. At most 10 bounding polygons will be used.  The provided
+     * shape is converted into a non-rotated rectangle. Once converted, the
+     * small edge of the rectangle must be greater than or equal to 300 pixels.
+     * The aspect ratio must be 1:4 or less (i.e. 1:3 is ok; 1:5 is not).
+     */
+    boundingPolys?: Schema$BoundingPoly[];
+    /**
+     * The resource name of the reference image.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     * This field is ignored when creating a reference image.
+     */
+    name?: string;
+    /**
+     * The Google Cloud Storage URI of the reference image.  The URI must start
+     * with `gs://`.  Required.
+     */
+    uri?: string;
+  }
+  /**
+   * Request message for the `RemoveProductFromProductSet` method.
+   */
+  export interface Schema$RemoveProductFromProductSetRequest {
+    /**
+     * The resource name for the Product to be removed from this ProductSet.
+     * Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     */
+    product?: string;
+  }
+  /**
+   * Information about a product.
+   */
+  export interface Schema$Result {
+    /**
+     * The resource name of the image from the product that is the closest match
+     * to the query.
+     */
+    image?: string;
+    /**
+     * The Product.
+     */
+    product?: Schema$Product;
+    /**
+     * A confidence level on the match, ranging from 0 (no confidence) to 1
+     * (full confidence).
+     */
+    score?: number;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision
@@ -4190,7 +4866,8 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Files$Asyncbatchannotate {
+  export interface Params$Resource$Files$Asyncbatchannotate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4341,7 +5018,7 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Images$Annotate {
+  export interface Params$Resource$Images$Annotate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4446,7 +5123,8 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Operations$Get {
+  export interface Params$Resource$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4752,7 +5430,8 @@ export namespace vision_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4768,7 +5447,8 @@ export namespace vision_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete {
+  export interface Params$Resource$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4779,7 +5459,7 @@ export namespace vision_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4790,7 +5470,7 @@ export namespace vision_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4810,6 +5490,1714 @@ export namespace vision_v1 {
     pageSize?: number;
     /**
      * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
+
+  export class Resource$Projects {
+    root: Vision;
+    locations: Resource$Projects$Locations;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.locations = new Resource$Projects$Locations(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+  }
+
+
+  export class Resource$Projects$Locations {
+    root: Vision;
+    products: Resource$Projects$Locations$Products;
+    productSets: Resource$Projects$Locations$Productsets;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.products = new Resource$Projects$Locations$Products(root);
+      this.productSets = new Resource$Projects$Locations$Productsets(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+  }
+
+
+  export class Resource$Projects$Locations$Products {
+    root: Vision;
+    referenceImages: Resource$Projects$Locations$Products$Referenceimages;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.referenceImages =
+          new Resource$Projects$Locations$Products$Referenceimages(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vision.projects.locations.products.create
+     * @desc Creates and returns a new product resource.  Possible errors:  *
+     * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096
+     * characters. * Returns INVALID_ARGUMENT if description is longer than 4096
+     * characters. * Returns INVALID_ARGUMENT if product_category is missing or
+     * invalid.
+     * @alias vision.projects.locations.products.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {string=} params.productId A user-supplied resource id for this Product. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
+     * @param {().Product} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Projects$Locations$Products$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Product>;
+    create(
+        params: Params$Resource$Projects$Locations$Products$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Product>,
+        callback: BodyResponseCallback<Schema$Product>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Products$Create,
+        callback: BodyResponseCallback<Schema$Product>): void;
+    create(callback: BodyResponseCallback<Schema$Product>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Products$Create|
+        BodyResponseCallback<Schema$Product>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
+        callback?: BodyResponseCallback<Schema$Product>):
+        void|AxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Products$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/products')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Product>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Product>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.products.delete
+     * @desc Permanently deletes a product and its reference images.  Metadata
+     * of the product and all its images will be deleted right away, but search
+     * queries against ProductSets containing the product may still work until
+     * all related caches are refreshed.  Possible errors:  * Returns NOT_FOUND
+     * if the product does not exist.
+     * @alias vision.projects.locations.products.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of product to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Locations$Products$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Projects$Locations$Products$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Products$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Products$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Products$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.products.get
+     * @desc Gets information associated with a Product.  Possible errors:  *
+     * Returns NOT_FOUND if the Product does not exist.
+     * @alias vision.projects.locations.products.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the Product to get.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Locations$Products$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Product>;
+    get(params: Params$Resource$Projects$Locations$Products$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Product>,
+        callback: BodyResponseCallback<Schema$Product>): void;
+    get(params: Params$Resource$Projects$Locations$Products$Get,
+        callback: BodyResponseCallback<Schema$Product>): void;
+    get(callback: BodyResponseCallback<Schema$Product>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Products$Get|
+        BodyResponseCallback<Schema$Product>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
+        callback?: BodyResponseCallback<Schema$Product>):
+        void|AxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Products$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Product>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Product>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.products.list
+     * @desc Lists products in an unspecified order.  Possible errors:  *
+     * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+     * @alias vision.projects.locations.products.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
+     * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
+     * @param {string} params.parent The project OR ProductSet from which Products should be listed.  Format: `projects/PROJECT_ID/locations/LOC_ID`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Locations$Products$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListProductsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Products$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListProductsResponse>,
+        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Products$List,
+        callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Products$List|
+        BodyResponseCallback<Schema$ListProductsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListProductsResponse>,
+        callback?: BodyResponseCallback<Schema$ListProductsResponse>):
+        void|AxiosPromise<Schema$ListProductsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Products$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/products')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListProductsResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.products.patch
+     * @desc Makes changes to a Product resource. Only the `display_name`,
+     * `description`, and `labels` fields can be updated right now.  If labels
+     * are updated, the change will not be reflected in queries until the next
+     * index time.  Possible errors:  * Returns NOT_FOUND if the Product does
+     * not exist. * Returns INVALID_ARGUMENT if display_name is present in
+     * update_mask but is   missing from the request or longer than 4096
+     * characters. * Returns INVALID_ARGUMENT if description is present in
+     * update_mask but is   longer than 4096 characters. * Returns
+     * INVALID_ARGUMENT if product_category is present in update_mask.
+     * @alias vision.projects.locations.products.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
+     * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.
+     * @param {().Product} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Locations$Products$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Product>;
+    patch(
+        params: Params$Resource$Projects$Locations$Products$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Product>,
+        callback: BodyResponseCallback<Schema$Product>): void;
+    patch(
+        params: Params$Resource$Projects$Locations$Products$Patch,
+        callback: BodyResponseCallback<Schema$Product>): void;
+    patch(callback: BodyResponseCallback<Schema$Product>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Products$Patch|
+        BodyResponseCallback<Schema$Product>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
+        callback?: BodyResponseCallback<Schema$Product>):
+        void|AxiosPromise<Schema$Product> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Products$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Product>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Product>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Products$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which the Product should be created.  Format is
+     * `projects/PROJECT_ID/locations/LOC_ID`.
+     */
+    parent?: string;
+    /**
+     * A user-supplied resource id for this Product. If set, the server will
+     * attempt to use this value as the resource id. If it is already in use, an
+     * error is returned with code ALREADY_EXISTS. Must be at most 128
+     * characters long. It cannot contain the character `/`.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Product;
+  }
+  export interface Params$Resource$Projects$Locations$Products$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of product to delete.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Products$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the Product to get.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Products$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of items to return. Default 10, maximum 100.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * The project OR ProductSet from which Products should be listed.  Format:
+     * `projects/PROJECT_ID/locations/LOC_ID`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Products$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the product.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field
+     * is ignored when creating a product.
+     */
+    name?: string;
+    /**
+     * The FieldMask that specifies which fields to update. If update_mask isn't
+     * specified, all mutable fields are to be updated. Valid mask paths include
+     * `product_labels`, `display_name`, and `description`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Product;
+  }
+
+  export class Resource$Projects$Locations$Products$Referenceimages {
+    root: Vision;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vision.projects.locations.products.referenceImages.create
+     * @desc Creates and returns a new ReferenceImage resource.  The
+     * `bounding_poly` field is optional. If `bounding_poly` is not specified,
+     * the system will try to detect regions of interest in the image that are
+     * compatible with the product_category on the parent product. If it is
+     * specified, detection is ALWAYS skipped. The system converts polygons into
+     * non-rotated rectangles.  Note that the pipeline will resize the image if
+     * the image resolution is too large to process (above 50MP).  Possible
+     * errors:  * Returns INVALID_ARGUMENT if the image_uri is missing or longer
+     * than 4096   characters. * Returns INVALID_ARGUMENT if the product does
+     * not exist. * Returns INVALID_ARGUMENT if bounding_poly is not provided,
+     * and nothing   compatible with the parent product's product_category is
+     * detected. * Returns INVALID_ARGUMENT if bounding_poly contains more than
+     * 10 polygons.
+     * @alias vision.projects.locations.products.referenceImages.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     * @param {string=} params.referenceImageId A user-supplied resource id for the ReferenceImage to be added. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
+     * @param {().ReferenceImage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+        options?: MethodOptions): AxiosPromise<Schema$ReferenceImage>;
+    create(
+        params:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$ReferenceImage>,
+        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+    create(
+        params:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Create,
+        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+    create(callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Create|
+        BodyResponseCallback<Schema$ReferenceImage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReferenceImage>,
+        callback?: BodyResponseCallback<Schema$ReferenceImage>):
+        void|AxiosPromise<Schema$ReferenceImage> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Referenceimages$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Products$Referenceimages$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/referenceImages')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReferenceImage>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReferenceImage>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.products.referenceImages.delete
+     * @desc Permanently deletes a reference image.  The image metadata will be
+     * deleted right away, but search queries against ProductSets containing the
+     * image may still work until all related caches are refreshed.  The actual
+     * image files are not deleted from Google Cloud Storage.  Possible errors:
+     * * Returns NOT_FOUND if the reference image does not exist.
+     * @alias vision.projects.locations.products.referenceImages.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the reference image to delete.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.products.referenceImages.get
+     * @desc Gets information associated with a ReferenceImage.  Possible
+     * errors:  * Returns NOT_FOUND if the specified image does not exist.
+     * @alias vision.projects.locations.products.referenceImages.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the ReferenceImage to get.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+        options?: MethodOptions): AxiosPromise<Schema$ReferenceImage>;
+    get(params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ReferenceImage>,
+        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+    get(params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
+        callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+    get(callback: BodyResponseCallback<Schema$ReferenceImage>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$Get|
+        BodyResponseCallback<Schema$ReferenceImage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReferenceImage>,
+        callback?: BodyResponseCallback<Schema$ReferenceImage>):
+        void|AxiosPromise<Schema$ReferenceImage> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Referenceimages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Products$Referenceimages$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReferenceImage>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReferenceImage>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.products.referenceImages.list
+     * @desc Lists reference images.  Possible errors:  * Returns NOT_FOUND if
+     * the parent product does not exist. * Returns INVALID_ARGUMENT if the
+     * page_size is greater than 100, or less   than 1.
+     * @alias vision.projects.locations.products.referenceImages.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
+     * @param {string=} params.pageToken A token identifying a page of results to be returned. This is the value of `nextPageToken` returned in a previous reference image list request.  Defaults to the first page if not specified.
+     * @param {string} params.parent Resource name of the product containing the reference images.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListReferenceImagesResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Products$Referenceimages$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListReferenceImagesResponse>,
+        callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
+        void;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Products$Referenceimages$List,
+        callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Products$Referenceimages$List|
+        BodyResponseCallback<Schema$ListReferenceImagesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListReferenceImagesResponse>,
+        callback?: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
+        void|AxiosPromise<Schema$ListReferenceImagesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Products$Referenceimages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Products$Referenceimages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/referenceImages')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReferenceImagesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListReferenceImagesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Create
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the product in which to create the reference image.
+     * Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     */
+    parent?: string;
+    /**
+     * A user-supplied resource id for the ReferenceImage to be added. If set,
+     * the server will attempt to use this value as the resource id. If it is
+     * already in use, an error is returned with code ALREADY_EXISTS. Must be at
+     * most 128 characters long. It cannot contain the character `/`.
+     */
+    referenceImageId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReferenceImage;
+  }
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Delete
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the reference image to delete.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$Get
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the ReferenceImage to get.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Products$Referenceimages$List
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of items to return. Default 10, maximum 100.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results to be returned. This is the value
+     * of `nextPageToken` returned in a previous reference image list request.
+     * Defaults to the first page if not specified.
+     */
+    pageToken?: string;
+    /**
+     * Resource name of the product containing the reference images.  Format is
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     */
+    parent?: string;
+  }
+
+
+
+  export class Resource$Projects$Locations$Productsets {
+    root: Vision;
+    products: Resource$Projects$Locations$Productsets$Products;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.products =
+          new Resource$Projects$Locations$Productsets$Products(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vision.projects.locations.productSets.addProduct
+     * @desc Adds a Product to the specified ProductSet. If the Product is
+     * already present, no change is made.  One Product can be added to at most
+     * 100 ProductSets.  Possible errors:  * Returns NOT_FOUND if the Product or
+     * the ProductSet doesn't exist.
+     * @alias vision.projects.locations.productSets.addProduct
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {().AddProductToProductSetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addProduct(
+        params?: Params$Resource$Projects$Locations$Productsets$Addproduct,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    addProduct(
+        params: Params$Resource$Projects$Locations$Productsets$Addproduct,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    addProduct(
+        params: Params$Resource$Projects$Locations$Productsets$Addproduct,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    addProduct(callback: BodyResponseCallback<Schema$Empty>): void;
+    addProduct(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Productsets$Addproduct|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$Addproduct;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Productsets$Addproduct;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:addProduct')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.productSets.create
+     * @desc Creates and returns a new ProductSet resource.  Possible errors:  *
+     * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
+     * 4096 characters.
+     * @alias vision.projects.locations.productSets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param {string=} params.productSetId A user-supplied resource id for this ProductSet. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
+     * @param {().ProductSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Projects$Locations$Productsets$Create,
+        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+    create(
+        params: Params$Resource$Projects$Locations$Productsets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
+        callback: BodyResponseCallback<Schema$ProductSet>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Productsets$Create,
+        callback: BodyResponseCallback<Schema$ProductSet>): void;
+    create(callback: BodyResponseCallback<Schema$ProductSet>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Productsets$Create|
+        BodyResponseCallback<Schema$ProductSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProductSet>,
+        callback?: BodyResponseCallback<Schema$ProductSet>):
+        void|AxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/productSets')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductSet>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ProductSet>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.productSets.delete
+     * @desc Permanently deletes a ProductSet. All Products and ReferenceImages
+     * in the ProductSet will be deleted.  The actual image files are not
+     * deleted from Google Cloud Storage.  Possible errors:  * Returns NOT_FOUND
+     * if the ProductSet does not exist.
+     * @alias vision.projects.locations.productSets.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the ProductSet to delete.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Locations$Productsets$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Projects$Locations$Productsets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Productsets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Productsets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.productSets.get
+     * @desc Gets information associated with a ProductSet.  Possible errors:  *
+     * Returns NOT_FOUND if the ProductSet does not exist.
+     * @alias vision.projects.locations.productSets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the ProductSet to get.  Format is: `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Locations$Productsets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+    get(params: Params$Resource$Projects$Locations$Productsets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
+        callback: BodyResponseCallback<Schema$ProductSet>): void;
+    get(params: Params$Resource$Projects$Locations$Productsets$Get,
+        callback: BodyResponseCallback<Schema$ProductSet>): void;
+    get(callback: BodyResponseCallback<Schema$ProductSet>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Get|
+        BodyResponseCallback<Schema$ProductSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProductSet>,
+        callback?: BodyResponseCallback<Schema$ProductSet>):
+        void|AxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductSet>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ProductSet>(parameters);
+      }
+    }
+
+
+/**
+ * vision.projects.locations.productSets.import
+ * @desc Asynchronous API that imports a list of reference images to specified
+ * product sets based on a list of image information.  The
+ * google.longrunning.Operation API can be used to keep track of the progress
+ * and results of the request. `Operation.metadata` contains
+ * `BatchOperationMetadata`. (progress) `Operation.response` contains
+ * `ImportProductSetsResponse`. (results)  The input source of this method is a
+ * csv file on Google Cloud Storage. For the format of the csv file please see
+ * ImportProductSetsGcsSource.csv_file_uri.
+ * @alias vision.projects.locations.productSets.import
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.parent The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+ * @param {().ImportProductSetsRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+import(params?: Params$Resource$Projects$Locations$Productsets$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params: Params$Resource$Projects$Locations$Productsets$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
+import(params: Params$Resource$Projects$Locations$Productsets$Import, callback: BodyResponseCallback<Schema$Operation>): void;
+import(callback: BodyResponseCallback<Schema$Operation>): void;
+import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Productsets$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+
+                                                                                                                                                                                                                                                                                               if(typeof paramsOrCallback === 'function') {
+    callback = paramsOrCallback;
+    params = {} as Params$Resource$Projects$Locations$Productsets$Import;
+    options = {};
+                                                                                                                                                                                                                                                                                               }
+
+                                                                                                                                                                                                                                                                                               if(typeof optionsOrCallback === 'function') {
+    callback = optionsOrCallback;
+    options = {};
+                                                                                                                                                                                                                                                                                               }
+
+                                                                                                                                                                                                                                                                                               const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.getRoot()}; if(callback) {
+    createAPIRequest<Schema$Operation>(parameters, callback);
+                                                                                                                                                                                                                                                                                               } else {
+    return createAPIRequest<Schema$Operation>(parameters);
+                                                                                                                                                                                                                                                                                               }}
+
+
+    /**
+ * vision.projects.locations.productSets.list
+ * @desc Lists ProductSets in an unspecified order.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is greater than 100, or less   than 1.
+ * @alias vision.projects.locations.productSets.list
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
+ * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
+ * @param {string} params.parent The project from which ProductSets should be listed.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+    list(params?: Params$Resource$Projects$Locations$Productsets$List, options?: MethodOptions): AxiosPromise<Schema$ListProductSetsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Productsets$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListProductSetsResponse>,
+        callback: BodyResponseCallback<Schema$ListProductSetsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Productsets$List,
+        callback: BodyResponseCallback<Schema$ListProductSetsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListProductSetsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$List|
+        BodyResponseCallback<Schema$ListProductSetsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListProductSetsResponse>,
+        callback?: BodyResponseCallback<Schema$ListProductSetsResponse>):
+        void|AxiosPromise<Schema$ListProductSetsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Productsets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/productSets')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProductSetsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListProductSetsResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.productSets.patch
+     * @desc Makes changes to a ProductSet resource. Only display_name can be
+     * updated currently.  Possible errors:  * Returns NOT_FOUND if the
+     * ProductSet does not exist. * Returns INVALID_ARGUMENT if display_name is
+     * present in update_mask but   missing from the request or longer than 4096
+     * characters.
+     * @alias vision.projects.locations.productSets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.  This field is ignored when creating a ProductSet.
+     * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask path is `display_name`.
+     * @param {().ProductSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Locations$Productsets$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+    patch(
+        params: Params$Resource$Projects$Locations$Productsets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
+        callback: BodyResponseCallback<Schema$ProductSet>): void;
+    patch(
+        params: Params$Resource$Projects$Locations$Productsets$Patch,
+        callback: BodyResponseCallback<Schema$ProductSet>): void;
+    patch(callback: BodyResponseCallback<Schema$ProductSet>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Patch|
+        BodyResponseCallback<Schema$ProductSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ProductSet>,
+        callback?: BodyResponseCallback<Schema$ProductSet>):
+        void|AxiosPromise<Schema$ProductSet> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Productsets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductSet>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ProductSet>(parameters);
+      }
+    }
+
+
+    /**
+     * vision.projects.locations.productSets.removeProduct
+     * @desc Removes a Product from the specified ProductSet.  Possible errors:
+     * * Returns NOT_FOUND If the Product is not found under the ProductSet.
+     * @alias vision.projects.locations.productSets.removeProduct
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {().RemoveProductFromProductSetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeProduct(
+        params?: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    removeProduct(
+        params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    removeProduct(
+        params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    removeProduct(callback: BodyResponseCallback<Schema$Empty>): void;
+    removeProduct(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Productsets$Removeproduct|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$Removeproduct;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Productsets$Removeproduct;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:removeProduct')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Productsets$Addproduct
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name for the ProductSet to modify.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddProductToProductSetRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Productsets$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which the ProductSet should be created.  Format is
+     * `projects/PROJECT_ID/locations/LOC_ID`.
+     */
+    parent?: string;
+    /**
+     * A user-supplied resource id for this ProductSet. If set, the server will
+     * attempt to use this value as the resource id. If it is already in use, an
+     * error is returned with code ALREADY_EXISTS. Must be at most 128
+     * characters long. It cannot contain the character `/`.
+     */
+    productSetId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProductSet;
+  }
+  export interface Params$Resource$Projects$Locations$Productsets$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the ProductSet to delete.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Productsets$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the ProductSet to get.  Format is:
+     * `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Productsets$Import extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which the ProductSets should be imported.  Format is
+     * `projects/PROJECT_ID/locations/LOC_ID`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportProductSetsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Productsets$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of items to return. Default 10, maximum 100.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * The project from which ProductSets should be listed.  Format is
+     * `projects/PROJECT_ID/locations/LOC_ID`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Productsets$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the ProductSet.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.  This
+     * field is ignored when creating a ProductSet.
+     */
+    name?: string;
+    /**
+     * The FieldMask that specifies which fields to update. If update_mask isn't
+     * specified, all mutable fields are to be updated. Valid mask path is
+     * `display_name`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProductSet;
+  }
+  export interface Params$Resource$Projects$Locations$Productsets$Removeproduct
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name for the ProductSet to modify.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveProductFromProductSetRequest;
+  }
+
+  export class Resource$Projects$Locations$Productsets$Products {
+    root: Vision;
+    constructor(root: Vision) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vision.projects.locations.productSets.products.list
+     * @desc Lists the Products in a ProductSet, in an unspecified order. If the
+     * ProductSet does not exist, the products field of the response will be
+     * empty.  Possible errors:  * Returns INVALID_ARGUMENT if page_size is
+     * greater than 100 or less than 1.
+     * @alias vision.projects.locations.productSets.products.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The ProductSet resource for which to retrieve Products.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
+     * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Locations$Productsets$Products$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListProductsInProductSetResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Productsets$Products$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
+        callback:
+            BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
+        void;
+    list(
+        params: Params$Resource$Projects$Locations$Productsets$Products$List,
+        callback:
+            BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Productsets$Products$List|
+        BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
+        callback?:
+            BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
+        void|AxiosPromise<Schema$ListProductsInProductSetResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Productsets$Products$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Productsets$Products$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/products')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProductsInProductSetResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListProductsInProductSetResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Productsets$Products$List
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ProductSet resource for which to retrieve Products.  Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     */
+    name?: string;
+    /**
+     * The maximum number of items to return. Default 10, maximum 100.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token returned from a previous List request, if any.
      */
     pageToken?: string;
   }

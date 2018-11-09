@@ -29,6 +29,40 @@ export namespace toolresults_v1beta3 {
     version: 'v1beta3';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Cloud Tool Results API
    *
@@ -1543,7 +1577,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Getsettings {
+  export interface Params$Resource$Projects$Getsettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1554,7 +1589,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Initializesettings {
+  export interface Params$Resource$Projects$Initializesettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1798,7 +1834,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Create {
+  export interface Params$Resource$Projects$Histories$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1819,7 +1856,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$History;
   }
-  export interface Params$Resource$Projects$Histories$Get {
+  export interface Params$Resource$Projects$Histories$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1834,7 +1872,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$List {
+  export interface Params$Resource$Projects$Histories$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2024,7 +2063,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.list
-     * @desc Lists Histories for a given Project.  The executions are sorted by
+     * @desc Lists Executions for a given History.  The executions are sorted by
      * creation_time in descending order. The execution_id key will be used to
      * order the executions with the same creation_time.  May return any of the
      * following canonical error codes:  - PERMISSION_DENIED - if the user is
@@ -2178,7 +2217,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2203,7 +2243,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Execution;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2222,7 +2263,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$List {
+  export interface Params$Resource$Projects$Histories$Executions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2247,7 +2289,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Patch {
+  export interface Params$Resource$Projects$Histories$Executions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2445,7 +2488,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2468,7 +2512,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Clusters$List {
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2990,7 +3035,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3019,7 +3065,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3042,7 +3089,8 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3065,7 +3113,8 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3093,7 +3142,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3126,7 +3176,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3248,7 +3299,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3546,7 +3598,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3574,7 +3627,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$PerfSampleSeries;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3601,7 +3655,8 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3836,7 +3891,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3868,7 +3924,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$BatchCreatePerfSamplesRequest;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4008,7 +4065,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

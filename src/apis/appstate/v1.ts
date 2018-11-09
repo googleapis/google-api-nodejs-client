@@ -29,6 +29,40 @@ export namespace appstate_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google App State API
    *
@@ -482,7 +516,7 @@ export namespace appstate_v1 {
     }
   }
 
-  export interface Params$Resource$States$Clear {
+  export interface Params$Resource$States$Clear extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -498,7 +532,7 @@ export namespace appstate_v1 {
      */
     stateKey?: number;
   }
-  export interface Params$Resource$States$Delete {
+  export interface Params$Resource$States$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -509,7 +543,7 @@ export namespace appstate_v1 {
      */
     stateKey?: number;
   }
-  export interface Params$Resource$States$Get {
+  export interface Params$Resource$States$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -520,7 +554,7 @@ export namespace appstate_v1 {
      */
     stateKey?: number;
   }
-  export interface Params$Resource$States$List {
+  export interface Params$Resource$States$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -531,7 +565,7 @@ export namespace appstate_v1 {
      */
     includeData?: boolean;
   }
-  export interface Params$Resource$States$Update {
+  export interface Params$Resource$States$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,10 +29,61 @@ export namespace script_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Apps Script API
    *
-   * An API for managing and executing Google Apps Script projects.
+   * Manages and executes Google Apps Script projects.
    *
    * @example
    * const {google} = require('googleapis');
@@ -859,7 +910,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Processes$List {
+  export interface Params$Resource$Processes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -921,7 +972,8 @@ export namespace script_v1 {
      */
     'userProcessFilter.userAccessLevels'?: string;
   }
-  export interface Params$Resource$Processes$Listscriptprocesses {
+  export interface Params$Resource$Processes$Listscriptprocesses extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1328,7 +1380,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Create {
+  export interface Params$Resource$Projects$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1340,7 +1392,7 @@ export namespace script_v1 {
      */
     requestBody?: Schema$CreateProjectRequest;
   }
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1351,7 +1403,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Getcontent {
+  export interface Params$Resource$Projects$Getcontent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1367,7 +1420,8 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Getmetrics {
+  export interface Params$Resource$Projects$Getmetrics extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1386,7 +1440,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Updatecontent {
+  export interface Params$Resource$Projects$Updatecontent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1756,7 +1811,8 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Deployments$Create {
+  export interface Params$Resource$Projects$Deployments$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1772,7 +1828,8 @@ export namespace script_v1 {
      */
     requestBody?: Schema$DeploymentConfig;
   }
-  export interface Params$Resource$Projects$Deployments$Delete {
+  export interface Params$Resource$Projects$Deployments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1787,7 +1844,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Get {
+  export interface Params$Resource$Projects$Deployments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1802,7 +1860,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$List {
+  export interface Params$Resource$Projects$Deployments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1822,7 +1881,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Update {
+  export interface Params$Resource$Projects$Deployments$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2058,7 +2118,8 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Versions$Create {
+  export interface Params$Resource$Projects$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2074,7 +2135,8 @@ export namespace script_v1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Projects$Versions$Get {
+  export interface Params$Resource$Projects$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2089,7 +2151,8 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Versions$List {
+  export interface Params$Resource$Projects$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2126,14 +2189,18 @@ export namespace script_v1 {
 
     /**
      * script.scripts.run
-     * @desc Runs a function in an Apps Script project. The project must be
-     * deployed for use with the Apps Script API.  This method requires
+     * @desc Runs a function in an Apps Script project. The script project must
+     * be deployed for use with the Apps Script API and the calling application
+     * must share the same Cloud Platform project.  This method requires
      * authorization with an OAuth 2.0 token that includes at least one of the
      * scopes listed in the [Authorization](#authorization) section; script
      * projects that do not require authorization cannot be executed through
      * this API. To find the correct scopes to include in the authentication
      * token, open the project in the script editor, then select **File >
-     * Project properties** and click the **Scopes** tab.
+     * Project properties** and click the **Scopes** tab.  The error `403,
+     * PERMISSION_DENIED: The caller does not have permission` indicates that
+     * the Cloud Platform project used to authorize the request is not the same
+     * as the one used by the script.
      * @alias script.scripts.run
      * @memberOf! ()
      *
@@ -2194,7 +2261,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Scripts$Run {
+  export interface Params$Resource$Scripts$Run extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

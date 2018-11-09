@@ -29,6 +29,57 @@ export namespace dlp_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Data Loss Prevention (DLP) API
    *
@@ -163,6 +214,11 @@ export namespace dlp_v2 {
    * Options defining BigQuery table and row identifiers.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryOptions {
+    /**
+     * References to fields excluded from scanning. This allows you to skip
+     * inspection of entire columns which you know have no findings.
+     */
+    excludedFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
      * References to fields uniquely identifying rows within the table. Nested
      * fields in the format, like `person.birthdate.year`, are allowed.
@@ -415,7 +471,8 @@ export namespace dlp_v2 {
     filesLimitPercent?: number;
     /**
      * List of file type groups to include in the scan. If empty, all files are
-     * scanned and available data format processors are applied.
+     * scanned and available data format processors are applied. In addition,
+     * the binary content of the selected files is always scanned as well.
      */
     fileTypes?: string[];
     sampleMethod?: string;
@@ -861,7 +918,7 @@ export namespace dlp_v2 {
     upperBoundDays?: number;
   }
   /**
-   * Message for a date time object.
+   * Message for a date time object. e.g. 2018-01-01, 5th August.
    */
   export interface Schema$GooglePrivacyDlpV2DateTime {
     /**
@@ -1444,7 +1501,8 @@ export namespace dlp_v2 {
      * Name of the information type. Either a name of your choosing when
      * creating a CustomInfoType, or one of the names listed at
      * https://cloud.google.com/dlp/docs/infotypes-reference when specifying a
-     * built-in type.
+     * built-in type. InfoType names should conform to the pattern
+     * [a-zA-Z0-9_]{1,64}.
      */
     name?: string;
   }
@@ -1739,7 +1797,7 @@ export namespace dlp_v2 {
     displayName?: string;
     /**
      * A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automaticaly being paused. Will
+     * errors may result in the JobTrigger automatically being paused. Will
      * return the last 100 errors. Whenever the JobTrigger is modified this list
      * will be cleared. Output only field.
      */
@@ -1777,7 +1835,7 @@ export namespace dlp_v2 {
     /**
      * Optional message indicating that multiple rows might be associated to a
      * single individual. If the same entity_id is associated to multiple
-     * quasi-identifier tuples over distict rows, we consider the entire
+     * quasi-identifier tuples over distinct rows, we consider the entire
      * collection of tuples as the composite quasi-identifier. This collection
      * is a multiset: the order in which the different tuples appear in the
      * dataset is ignored, but their frequency is taken into account.  Important
@@ -2236,8 +2294,9 @@ export namespace dlp_v2 {
      * derived from the `Finding` object. If appending to an existing table, any
      * columns from the predefined schema that are missing will be added. No
      * columns in the existing table will be deleted.  If unspecified, then all
-     * available columns will be used for a new table, and no changes will be
-     * made to an existing table.
+     * available columns will be used for a new table or an (existing) table
+     * with no schema, and no changes will be made to an existing table that has
+     * a schema.
      */
     outputSchema?: string;
     /**
@@ -2410,6 +2469,9 @@ export namespace dlp_v2 {
    * Message for infoType-dependent details parsed from quote.
    */
   export interface Schema$GooglePrivacyDlpV2QuoteInfo {
+    /**
+     * The date time indicated by the quote.
+     */
     dateTime?: Schema$GooglePrivacyDlpV2DateTime;
   }
   /**
@@ -3296,7 +3358,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Infotypes$List {
+  export interface Params$Resource$Infotypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3738,7 +3800,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Deidentifytemplates$Create {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3755,7 +3818,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Delete {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3768,7 +3832,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Get {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3781,7 +3846,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$List {
+  export interface Params$Resource$Organizations$Deidentifytemplates$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3814,7 +3880,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Patch {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4229,7 +4296,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Inspecttemplates$Create {
+  export interface Params$Resource$Organizations$Inspecttemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4246,7 +4314,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Delete {
+  export interface Params$Resource$Organizations$Inspecttemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4259,7 +4328,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Get {
+  export interface Params$Resource$Organizations$Inspecttemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4272,7 +4342,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$List {
+  export interface Params$Resource$Organizations$Inspecttemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4305,7 +4376,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Patch {
+  export interface Params$Resource$Organizations$Inspecttemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4723,7 +4795,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Storedinfotypes$Create {
+  export interface Params$Resource$Organizations$Storedinfotypes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4740,7 +4813,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Delete {
+  export interface Params$Resource$Organizations$Storedinfotypes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4753,7 +4827,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Get {
+  export interface Params$Resource$Organizations$Storedinfotypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4766,7 +4841,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$List {
+  export interface Params$Resource$Organizations$Storedinfotypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4799,7 +4875,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Patch {
+  export interface Params$Resource$Organizations$Storedinfotypes$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5104,7 +5181,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Content$Deidentify {
+  export interface Params$Resource$Projects$Content$Deidentify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5120,7 +5198,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Inspect {
+  export interface Params$Resource$Projects$Content$Inspect extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5136,7 +5215,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2InspectContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Reidentify {
+  export interface Params$Resource$Projects$Content$Reidentify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5551,7 +5631,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Deidentifytemplates$Create {
+  export interface Params$Resource$Projects$Deidentifytemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5568,7 +5649,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Delete {
+  export interface Params$Resource$Projects$Deidentifytemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5581,7 +5663,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Get {
+  export interface Params$Resource$Projects$Deidentifytemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5594,7 +5677,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$List {
+  export interface Params$Resource$Projects$Deidentifytemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5627,7 +5711,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Patch {
+  export interface Params$Resource$Projects$Deidentifytemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6026,7 +6111,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Dlpjobs$Cancel {
+  export interface Params$Resource$Projects$Dlpjobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6042,7 +6128,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CancelDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Create {
+  export interface Params$Resource$Projects$Dlpjobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6058,7 +6145,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Delete {
+  export interface Params$Resource$Projects$Dlpjobs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6069,7 +6157,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Get {
+  export interface Params$Resource$Projects$Dlpjobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6080,7 +6169,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$List {
+  export interface Params$Resource$Projects$Dlpjobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6230,7 +6320,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Image$Redact {
+  export interface Params$Resource$Projects$Image$Redact extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6641,7 +6732,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Inspecttemplates$Create {
+  export interface Params$Resource$Projects$Inspecttemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6658,7 +6750,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Delete {
+  export interface Params$Resource$Projects$Inspecttemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6671,7 +6764,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Get {
+  export interface Params$Resource$Projects$Inspecttemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6684,7 +6778,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$List {
+  export interface Params$Resource$Projects$Inspecttemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6717,7 +6812,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Patch {
+  export interface Params$Resource$Projects$Inspecttemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7117,7 +7213,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobtriggers$Create {
+  export interface Params$Resource$Projects$Jobtriggers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7133,7 +7230,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Delete {
+  export interface Params$Resource$Projects$Jobtriggers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7145,7 +7243,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Get {
+  export interface Params$Resource$Projects$Jobtriggers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7157,7 +7256,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$List {
+  export interface Params$Resource$Projects$Jobtriggers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7189,7 +7289,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Patch {
+  export interface Params$Resource$Projects$Jobtriggers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7606,7 +7707,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Storedinfotypes$Create {
+  export interface Params$Resource$Projects$Storedinfotypes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7623,7 +7725,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Delete {
+  export interface Params$Resource$Projects$Storedinfotypes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7636,7 +7739,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Get {
+  export interface Params$Resource$Projects$Storedinfotypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7649,7 +7753,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$List {
+  export interface Params$Resource$Projects$Storedinfotypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7682,7 +7787,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Patch {
+  export interface Params$Resource$Projects$Storedinfotypes$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

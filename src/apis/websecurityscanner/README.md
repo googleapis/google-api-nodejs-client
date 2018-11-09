@@ -2,7 +2,7 @@
 
 # @google/websecurityscanner
 
-> Web Security Scanner API (under development).
+> Scans your Compute and App Engine apps for common web vulnerabilities.
 
 ## Installation
 

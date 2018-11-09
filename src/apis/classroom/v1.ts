@@ -29,6 +29,57 @@ export namespace classroom_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Google Classroom API
    *
@@ -1736,7 +1787,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Create {
+  export interface Params$Resource$Courses$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1748,7 +1799,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Course;
   }
-  export interface Params$Resource$Courses$Delete {
+  export interface Params$Resource$Courses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1760,7 +1811,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Get {
+  export interface Params$Resource$Courses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1772,7 +1823,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$List {
+  export interface Params$Resource$Courses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1810,7 +1861,7 @@ export namespace classroom_v1 {
      */
     teacherId?: string;
   }
-  export interface Params$Resource$Courses$Patch {
+  export interface Params$Resource$Courses$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1838,7 +1889,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Course;
   }
-  export interface Params$Resource$Courses$Update {
+  export interface Params$Resource$Courses$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2089,7 +2140,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Aliases$Create {
+  export interface Params$Resource$Courses$Aliases$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2106,7 +2158,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseAlias;
   }
-  export interface Params$Resource$Courses$Aliases$Delete {
+  export interface Params$Resource$Courses$Aliases$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2122,7 +2175,8 @@ export namespace classroom_v1 {
      */
     courseId?: string;
   }
-  export interface Params$Resource$Courses$Aliases$List {
+  export interface Params$Resource$Courses$Aliases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2611,7 +2665,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Announcements$Create {
+  export interface Params$Resource$Courses$Announcements$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2628,7 +2683,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Announcement;
   }
-  export interface Params$Resource$Courses$Announcements$Delete {
+  export interface Params$Resource$Courses$Announcements$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2645,7 +2701,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Get {
+  export interface Params$Resource$Courses$Announcements$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2661,7 +2718,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$List {
+  export interface Params$Resource$Courses$Announcements$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2698,7 +2756,8 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Modifyassignees {
+  export interface Params$Resource$Courses$Announcements$Modifyassignees extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2719,7 +2778,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyAnnouncementAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Announcements$Patch {
+  export interface Params$Resource$Courses$Announcements$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3226,7 +3286,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Create {
+  export interface Params$Resource$Courses$Coursework$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3243,7 +3304,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseWork;
   }
-  export interface Params$Resource$Courses$Coursework$Delete {
+  export interface Params$Resource$Courses$Coursework$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3260,7 +3322,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Get {
+  export interface Params$Resource$Courses$Coursework$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3276,7 +3339,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$List {
+  export interface Params$Resource$Courses$Coursework$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3314,7 +3378,8 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Modifyassignees {
+  export interface Params$Resource$Courses$Coursework$Modifyassignees extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3335,7 +3400,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyCourseWorkAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Patch {
+  export interface Params$Resource$Courses$Coursework$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3978,7 +4044,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3998,7 +4065,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$List {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4046,7 +4114,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4071,7 +4140,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyAttachmentsRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4103,7 +4173,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$StudentSubmission;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4128,7 +4199,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ReclaimStudentSubmissionRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4153,7 +4225,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ReturnStudentSubmissionRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4480,7 +4553,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Students$Create {
+  export interface Params$Resource$Courses$Students$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4504,7 +4578,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Student;
   }
-  export interface Params$Resource$Courses$Students$Delete {
+  export interface Params$Resource$Courses$Students$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4522,7 +4597,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$Get {
+  export interface Params$Resource$Courses$Students$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4540,7 +4616,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$List {
+  export interface Params$Resource$Courses$Students$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4864,7 +4941,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Teachers$Create {
+  export interface Params$Resource$Courses$Teachers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4881,7 +4959,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Teacher;
   }
-  export interface Params$Resource$Courses$Teachers$Delete {
+  export interface Params$Resource$Courses$Teachers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4899,7 +4978,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$Get {
+  export interface Params$Resource$Courses$Teachers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4917,7 +4997,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$List {
+  export interface Params$Resource$Courses$Teachers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5309,7 +5390,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Invitations$Accept {
+  export interface Params$Resource$Invitations$Accept extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5320,7 +5402,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$Create {
+  export interface Params$Resource$Invitations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5332,7 +5415,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Invitation;
   }
-  export interface Params$Resource$Invitations$Delete {
+  export interface Params$Resource$Invitations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5343,7 +5427,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$Get {
+  export interface Params$Resource$Invitations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5354,7 +5438,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$List {
+  export interface Params$Resource$Invitations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5552,7 +5636,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Registrations$Create {
+  export interface Params$Resource$Registrations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5564,7 +5649,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Registration;
   }
-  export interface Params$Resource$Registrations$Delete {
+  export interface Params$Resource$Registrations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5659,7 +5745,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Get {
+  export interface Params$Resource$Userprofiles$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6034,7 +6120,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Create {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6050,7 +6137,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$GuardianInvitation;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Get {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6065,7 +6153,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$List {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6104,7 +6193,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Patch {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6385,7 +6475,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Guardians$Delete {
+  export interface Params$Resource$Userprofiles$Guardians$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6402,7 +6493,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$Get {
+  export interface Params$Resource$Userprofiles$Guardians$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6419,7 +6511,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$List {
+  export interface Params$Resource$Userprofiles$Guardians$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

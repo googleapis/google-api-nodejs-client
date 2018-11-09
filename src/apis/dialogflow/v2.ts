@@ -29,11 +29,62 @@ export namespace dialogflow_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Dialogflow API
    *
-   * An end-to-end development suite for conversational interfaces (e.g.,
-   * chatbots, voice-powered apps and devices).
+   * Builds conversational interfaces (for example, chatbots, and voice-powered
+   * apps and devices).
    *
    * @example
    * const {google} = require('googleapis');
@@ -325,6 +376,27 @@ export namespace dialogflow_v2 {
     parameters?: any;
   }
   /**
+   * Represents a notification sent to Cloud Pub/Sub subscribers for
+   * conversation lifecycle events.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationEvent {
+    /**
+     * Required. The unique identifier of the conversation this notification
+     * refers to. Format: `projects/&lt;Project
+     * ID&gt;/conversations/&lt;Conversation ID&gt;`.
+     */
+    conversation?: string;
+    /**
+     * Optional. More detailed information about an error. Only set for type
+     * UNRECOVERABLE_ERROR_IN_PHONE_CALL.
+     */
+    errorStatus?: Schema$GoogleRpcStatus;
+    /**
+     * Required. The type of the event that this notification refers to.
+     */
+    type?: string;
+  }
+  /**
    * Represents an entity type. Entity types serve as a tool for extracting
    * parameter values from natural language queries.
    */
@@ -335,7 +407,7 @@ export namespace dialogflow_v2 {
      */
     autoExpansionMode?: string;
     /**
-     * Required. The name of the entity.
+     * Required. The name of the entity type.
      */
     displayName?: string;
     /**
@@ -415,6 +487,21 @@ export namespace dialogflow_v2 {
      * only if `agent_uri` is specified in `ExportAgentRequest`.
      */
     agentUri?: string;
+  }
+  /**
+   * Represents a notification sent to Cloud Pub/Sub subscribers for agent
+   * assistant events in a specific conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent {
+    /**
+     * Required. The conversation this notification refers to. Format:
+     * `projects/&lt;Project ID&gt;/conversations/&lt;Conversation ID&gt;`.
+     */
+    conversation?: string;
+    /**
+     * Required. The type of the event that this notification refers to.
+     */
+    type?: string;
   }
   /**
    * Represents an intent. Intents convert a number of user expressions or
@@ -1279,7 +1366,9 @@ export namespace dialogflow_v2 {
     /**
      * The unique identifier of detectIntent request session. Can be used to
      * identify end-user inside webhook implementation. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment
+     * ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;`.
      */
     session?: string;
   }
@@ -1339,7 +1428,7 @@ export namespace dialogflow_v2 {
     /**
      * Optional. The number of conversational query requests after which the
      * context expires. If set to `0` (the default) the context expires
-     * immediately. Contexts expire automatically after 10 minutes even if there
+     * immediately. Contexts expire automatically after 20 minutes even if there
      * are no matching queries.
      */
     lifespanCount?: number;
@@ -1393,8 +1482,7 @@ export namespace dialogflow_v2 {
      */
     responseId?: string;
     /**
-     * Specifies the status of the webhook request. `webhook_status` is never
-     * populated in webhook requests.
+     * Specifies the status of the webhook request.
      */
     webhookStatus?: Schema$GoogleRpcStatus;
   }
@@ -1409,7 +1497,7 @@ export namespace dialogflow_v2 {
      */
     autoExpansionMode?: string;
     /**
-     * Required. The name of the entity.
+     * Required. The name of the entity type.
      */
     displayName?: string;
     /**
@@ -2248,9 +2336,9 @@ export namespace dialogflow_v2 {
      */
     resetContexts?: boolean;
     /**
-     * Optional. The collection of session entity types to replace or extend
-     * developer entities with for this query only. The entity synonyms apply to
-     * all languages.
+     * Optional. Additional session entity types to replace or extend developer
+     * entity types with. The entity synonyms apply to all languages and persist
+     * for the session of this query.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2SessionEntityType[];
     /**
@@ -2406,7 +2494,9 @@ export namespace dialogflow_v2 {
     /**
      * Required. The unique identifier of this session entity type. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
-     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.
+     * ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.  `&lt;Entity Type
+     * Display Name&gt;` must be the display name of an existing entity type in
+     * the same agent that will be overridden or supplemented.
      */
     name?: string;
   }
@@ -2454,7 +2544,9 @@ export namespace dialogflow_v2 {
     /**
      * The unique identifier of detectIntent request session. Can be used to
      * identify end-user inside webhook implementation. Format:
-     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`, or
+     * `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment
+     * ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;`.
      */
     session?: string;
   }
@@ -2710,7 +2802,8 @@ export namespace dialogflow_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getagent {
+  export interface Params$Resource$Projects$Getagent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3084,7 +3177,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Export {
+  export interface Params$Resource$Projects$Agent$Export extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3101,7 +3195,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ExportAgentRequest;
   }
-  export interface Params$Resource$Projects$Agent$Import {
+  export interface Params$Resource$Projects$Agent$Import extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3118,7 +3213,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2ImportAgentRequest;
   }
-  export interface Params$Resource$Projects$Agent$Restore {
+  export interface Params$Resource$Projects$Agent$Restore extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3135,7 +3231,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2RestoreAgentRequest;
   }
-  export interface Params$Resource$Projects$Agent$Search {
+  export interface Params$Resource$Projects$Agent$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3157,7 +3254,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Train {
+  export interface Params$Resource$Projects$Agent$Train extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3723,7 +3821,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Entitytypes$Batchdelete {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Batchdelete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3740,7 +3839,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Batchupdate {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Batchupdate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3757,7 +3857,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Create {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3781,7 +3882,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2EntityType;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Delete {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3793,7 +3895,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Get {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3812,7 +3915,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$List {
+  export interface Params$Resource$Projects$Agent$Entitytypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3841,7 +3945,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Patch {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4123,7 +4228,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4140,7 +4246,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchCreateEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4157,7 +4264,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate {
+  export interface Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4713,7 +4821,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Intents$Batchdelete {
+  export interface Params$Resource$Projects$Agent$Intents$Batchdelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4730,7 +4839,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchDeleteIntentsRequest;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Batchupdate {
+  export interface Params$Resource$Projects$Agent$Intents$Batchupdate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4747,7 +4857,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateIntentsRequest;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Create {
+  export interface Params$Resource$Projects$Agent$Intents$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4776,7 +4887,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Intent;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Delete {
+  export interface Params$Resource$Projects$Agent$Intents$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4789,7 +4901,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Get {
+  export interface Params$Resource$Projects$Agent$Intents$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4813,7 +4926,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Intents$List {
+  export interface Params$Resource$Projects$Agent$Intents$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4847,7 +4961,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Intents$Patch {
+  export interface Params$Resource$Projects$Agent$Intents$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5048,7 +5163,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Sessions$Deletecontexts {
+  export interface Params$Resource$Projects$Agent$Sessions$Deletecontexts
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5060,7 +5176,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Detectintent {
+  export interface Params$Resource$Projects$Agent$Sessions$Detectintent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5095,7 +5212,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.sessions.contexts.create
-     * @desc Creates a context.
+     * @desc Creates a context.  If the specified context already exists,
+     * overrides the context.
      * @alias dialogflow.projects.agent.sessions.contexts.create
      * @memberOf! ()
      *
@@ -5462,7 +5580,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Create {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5479,7 +5598,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2Context;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Delete {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5491,7 +5611,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Get {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5503,7 +5624,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$List {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5525,7 +5647,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Patch {
+  export interface Params$Resource$Projects$Agent$Sessions$Contexts$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5563,7 +5686,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * dialogflow.projects.agent.sessions.entityTypes.create
-     * @desc Creates a session entity type.
+     * @desc Creates a session entity type.  If the specified session entity
+     * type already exists, overrides the session entity type.
      * @alias dialogflow.projects.agent.sessions.entityTypes.create
      * @memberOf! ()
      *
@@ -5871,7 +5995,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2SessionEntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5942,7 +6066,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Create {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5959,7 +6084,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5972,7 +6098,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Get {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5984,7 +6111,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$List {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6006,7 +6134,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch {
+  export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6015,7 +6144,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
-     * Type Display Name>`.
+     * Type Display Name>`.  `<Entity Type Display Name>` must be the display
+     * name of an existing entity type in the same agent that will be overridden
+     * or supplemented.
      */
     name?: string;
     /**
@@ -6113,7 +6244,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get {
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

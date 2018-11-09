@@ -29,6 +29,57 @@ export namespace adexchangebuyer2_v2beta1 {
     version: 'v2beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Ad Exchange Buyer API II
    *
@@ -1028,6 +1079,12 @@ export namespace adexchangebuyer2_v2beta1 {
      * Interpreted relative to Pacific time zone.
      */
     absoluteDateRange?: Schema$AbsoluteDateRange;
+    /**
+     * The set of dimensions along which to break down the response; may be
+     * empty. If multiple dimensions are requested, the breakdown is along the
+     * Cartesian product of the requested dimensions.
+     */
+    breakdownDimensions?: string[];
     /**
      * The ID of the creative on which to filter; optional. This field may be
      * set only for a filter set that accesses account-level troubleshooting
@@ -2177,6 +2234,11 @@ export namespace adexchangebuyer2_v2beta1 {
    */
   export interface Schema$RowDimensions {
     /**
+     * The publisher identifier for this row, if a breakdown by
+     * BreakdownDimension.PUBLISHER_IDENTIFIER was requested.
+     */
+    publisherIdentifier?: string;
+    /**
      * The time interval that this row represents.
      */
     timeInterval?: Schema$TimeInterval;
@@ -2763,7 +2825,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Clients$Create {
+  export interface Params$Resource$Accounts$Clients$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2780,7 +2843,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Client;
   }
-  export interface Params$Resource$Accounts$Clients$Get {
+  export interface Params$Resource$Accounts$Clients$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2795,7 +2859,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     clientAccountId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$List {
+  export interface Params$Resource$Accounts$Clients$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2823,7 +2888,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     partnerClientId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Update {
+  export interface Params$Resource$Accounts$Clients$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3085,7 +3151,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Clients$Invitations$Create {
+  export interface Params$Resource$Accounts$Clients$Invitations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3106,7 +3173,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$ClientUserInvitation;
   }
-  export interface Params$Resource$Accounts$Clients$Invitations$Get {
+  export interface Params$Resource$Accounts$Clients$Invitations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3126,7 +3194,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     invitationId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Invitations$List {
+  export interface Params$Resource$Accounts$Clients$Invitations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3387,7 +3456,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Clients$Users$Get {
+  export interface Params$Resource$Accounts$Clients$Users$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3407,7 +3477,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Users$List {
+  export interface Params$Resource$Accounts$Clients$Users$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3438,7 +3509,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Clients$Users$Update {
+  export interface Params$Resource$Accounts$Clients$Users$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3901,7 +3973,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Creatives$Create {
+  export interface Params$Resource$Accounts$Creatives$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3923,7 +3996,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Accounts$Creatives$Get {
+  export interface Params$Resource$Accounts$Creatives$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3938,7 +4012,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativeId?: string;
   }
-  export interface Params$Resource$Accounts$Creatives$List {
+  export interface Params$Resource$Accounts$Creatives$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3976,7 +4051,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Accounts$Creatives$Stopwatching {
+  export interface Params$Resource$Accounts$Creatives$Stopwatching extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3997,7 +4073,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$StopWatchingCreativeRequest;
   }
-  export interface Params$Resource$Accounts$Creatives$Update {
+  export interface Params$Resource$Accounts$Creatives$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4019,7 +4096,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Accounts$Creatives$Watch {
+  export interface Params$Resource$Accounts$Creatives$Watch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4278,7 +4356,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Creatives$Dealassociations$Add {
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$Add
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4298,7 +4377,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$AddDealAssociationRequest;
   }
-  export interface Params$Resource$Accounts$Creatives$Dealassociations$List {
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4338,7 +4418,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Accounts$Creatives$Dealassociations$Remove {
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$Remove
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4449,7 +4530,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Finalizedproposals$List {
+  export interface Params$Resource$Accounts$Finalizedproposals$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4632,7 +4714,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Products$Get {
+  export interface Params$Resource$Accounts$Products$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4647,7 +4730,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Accounts$Products$List {
+  export interface Params$Resource$Accounts$Products$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5428,7 +5512,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Proposals$Accept {
+  export interface Params$Resource$Accounts$Proposals$Accept extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5448,7 +5533,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$AcceptProposalRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Addnote {
+  export interface Params$Resource$Accounts$Proposals$Addnote extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5468,7 +5554,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$AddNoteRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Cancelnegotiation {
+  export interface Params$Resource$Accounts$Proposals$Cancelnegotiation extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5488,7 +5575,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$CancelNegotiationRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Completesetup {
+  export interface Params$Resource$Accounts$Proposals$Completesetup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5508,7 +5596,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$CompleteSetupRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Create {
+  export interface Params$Resource$Accounts$Proposals$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5524,7 +5613,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$Proposal;
   }
-  export interface Params$Resource$Accounts$Proposals$Get {
+  export interface Params$Resource$Accounts$Proposals$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5539,7 +5629,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     proposalId?: string;
   }
-  export interface Params$Resource$Accounts$Proposals$List {
+  export interface Params$Resource$Accounts$Proposals$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5570,7 +5661,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Proposals$Pause {
+  export interface Params$Resource$Accounts$Proposals$Pause extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5590,7 +5682,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$PauseProposalRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Resume {
+  export interface Params$Resource$Accounts$Proposals$Resume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5610,7 +5703,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$ResumeProposalRequest;
   }
-  export interface Params$Resource$Accounts$Proposals$Update {
+  export interface Params$Resource$Accounts$Proposals$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5788,7 +5882,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Publisherprofiles$Get {
+  export interface Params$Resource$Accounts$Publisherprofiles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5803,7 +5898,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     publisherProfileId?: string;
   }
-  export interface Params$Resource$Accounts$Publisherprofiles$List {
+  export interface Params$Resource$Accounts$Publisherprofiles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5942,7 +6038,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Creatives$Delete {
+  export interface Params$Resource$Bidders$Accounts$Creatives$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6276,7 +6373,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Create {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6303,7 +6401,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$FilterSet;
   }
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Delete {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6319,7 +6418,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Get {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6335,7 +6435,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Accounts$Filtersets$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6448,7 +6549,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6574,7 +6676,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6707,7 +6810,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6836,7 +6940,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6959,7 +7064,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7089,7 +7195,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7227,7 +7334,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7363,7 +7471,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7480,7 +7589,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7611,7 +7721,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List {
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7950,7 +8061,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Create {
+  export interface Params$Resource$Bidders$Filtersets$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7977,7 +8089,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     requestBody?: Schema$FilterSet;
   }
-  export interface Params$Resource$Bidders$Filtersets$Delete {
+  export interface Params$Resource$Bidders$Filtersets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7993,7 +8106,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Filtersets$Get {
+  export interface Params$Resource$Bidders$Filtersets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8009,7 +8123,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Bidders$Filtersets$List {
+  export interface Params$Resource$Bidders$Filtersets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8120,7 +8235,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List {
+  export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8242,7 +8358,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List {
+  export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8372,7 +8489,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List {
+  export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8497,7 +8615,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8617,7 +8736,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbids$List {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8743,7 +8863,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8877,7 +8998,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Details$List {
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Details$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9009,7 +9131,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List {
+  export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9124,7 +9247,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Losingbids$List {
+  export interface Params$Resource$Bidders$Filtersets$Losingbids$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9251,7 +9375,8 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List {
+  export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

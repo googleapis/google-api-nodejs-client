@@ -29,11 +29,61 @@ export namespace appengine_v1beta4 {
     version: 'v1beta4';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * App Engine Admin API
    *
-   * The App Engine Admin API enables developers to provision and manage their
-   * App Engine applications.
+   * Provisions and manages developers&#39; App Engine applications.
    *
    * @example
    * const {google} = require('googleapis');
@@ -1670,7 +1720,7 @@ export namespace appengine_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Apps$Create {
+  export interface Params$Resource$Apps$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1682,7 +1732,7 @@ export namespace appengine_v1beta4 {
      */
     requestBody?: Schema$Application;
   }
-  export interface Params$Resource$Apps$Get {
+  export interface Params$Resource$Apps$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1701,7 +1751,7 @@ export namespace appengine_v1beta4 {
      */
     ensureResourcesExist?: boolean;
   }
-  export interface Params$Resource$Apps$Patch {
+  export interface Params$Resource$Apps$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1868,7 +1918,8 @@ export namespace appengine_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Apps$Locations$Get {
+  export interface Params$Resource$Apps$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1883,7 +1934,8 @@ export namespace appengine_v1beta4 {
      */
     locationsId?: string;
   }
-  export interface Params$Resource$Apps$Locations$List {
+  export interface Params$Resource$Apps$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2191,7 +2243,8 @@ export namespace appengine_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Apps$Modules$Delete {
+  export interface Params$Resource$Apps$Modules$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2207,7 +2260,7 @@ export namespace appengine_v1beta4 {
      */
     modulesId?: string;
   }
-  export interface Params$Resource$Apps$Modules$Get {
+  export interface Params$Resource$Apps$Modules$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2223,7 +2276,8 @@ export namespace appengine_v1beta4 {
      */
     modulesId?: string;
   }
-  export interface Params$Resource$Apps$Modules$List {
+  export interface Params$Resource$Apps$Modules$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2242,7 +2296,8 @@ export namespace appengine_v1beta4 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Apps$Modules$Patch {
+  export interface Params$Resource$Apps$Modules$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2668,7 +2723,8 @@ export namespace appengine_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Apps$Modules$Versions$Create {
+  export interface Params$Resource$Apps$Modules$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2689,7 +2745,8 @@ export namespace appengine_v1beta4 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Apps$Modules$Versions$Delete {
+  export interface Params$Resource$Apps$Modules$Versions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2709,7 +2766,8 @@ export namespace appengine_v1beta4 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Modules$Versions$Get {
+  export interface Params$Resource$Apps$Modules$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2733,7 +2791,8 @@ export namespace appengine_v1beta4 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Modules$Versions$List {
+  export interface Params$Resource$Apps$Modules$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2761,7 +2820,8 @@ export namespace appengine_v1beta4 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Modules$Versions$Patch {
+  export interface Params$Resource$Apps$Modules$Versions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3098,7 +3158,8 @@ export namespace appengine_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Apps$Modules$Versions$Instances$Debug {
+  export interface Params$Resource$Apps$Modules$Versions$Instances$Debug extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3127,7 +3188,8 @@ export namespace appengine_v1beta4 {
      */
     requestBody?: Schema$DebugInstanceRequest;
   }
-  export interface Params$Resource$Apps$Modules$Versions$Instances$Delete {
+  export interface Params$Resource$Apps$Modules$Versions$Instances$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3151,7 +3213,8 @@ export namespace appengine_v1beta4 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Modules$Versions$Instances$Get {
+  export interface Params$Resource$Apps$Modules$Versions$Instances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3175,7 +3238,8 @@ export namespace appengine_v1beta4 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Modules$Versions$Instances$List {
+  export interface Params$Resource$Apps$Modules$Versions$Instances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3364,7 +3428,8 @@ export namespace appengine_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Apps$Operations$Get {
+  export interface Params$Resource$Apps$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3379,7 +3444,8 @@ export namespace appengine_v1beta4 {
      */
     operationsId?: string;
   }
-  export interface Params$Resource$Apps$Operations$List {
+  export interface Params$Resource$Apps$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,57 @@ export namespace firestore_v1beta1 {
     version: 'v1beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Firestore API
    *
@@ -1534,7 +1585,8 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Exportdocuments {
+  export interface Params$Resource$Projects$Databases$Exportdocuments extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1551,7 +1603,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta1ExportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Importdocuments {
+  export interface Params$Resource$Projects$Databases$Importdocuments extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2491,7 +2544,8 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Documents$Batchget {
+  export interface Params$Resource$Projects$Databases$Documents$Batchget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2508,7 +2562,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$BatchGetDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Begintransaction {
+  export interface Params$Resource$Projects$Databases$Documents$Begintransaction
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2525,7 +2580,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Commit {
+  export interface Params$Resource$Projects$Databases$Documents$Commit extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2542,7 +2598,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Createdocument {
+  export interface Params$Resource$Projects$Databases$Documents$Createdocument
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2575,7 +2632,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$Document;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Delete {
+  export interface Params$Resource$Projects$Databases$Documents$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2597,7 +2655,8 @@ export namespace firestore_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Get {
+  export interface Params$Resource$Projects$Databases$Documents$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2623,7 +2682,8 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$List {
+  export interface Params$Resource$Projects$Databases$Documents$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2678,7 +2738,8 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Listcollectionids {
+  export interface Params$Resource$Projects$Databases$Documents$Listcollectionids
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2697,7 +2758,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$ListCollectionIdsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Listen {
+  export interface Params$Resource$Projects$Databases$Documents$Listen extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2714,7 +2776,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$ListenRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Patch {
+  export interface Params$Resource$Projects$Databases$Documents$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2751,7 +2814,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$Document;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Rollback {
+  export interface Params$Resource$Projects$Databases$Documents$Rollback extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2768,7 +2832,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Runquery {
+  export interface Params$Resource$Projects$Databases$Documents$Runquery extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2788,7 +2853,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$RunQueryRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Write {
+  export interface Params$Resource$Projects$Databases$Documents$Write extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3119,7 +3185,8 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Indexes$Create {
+  export interface Params$Resource$Projects$Databases$Indexes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3136,7 +3203,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta1Index;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$Delete {
+  export interface Params$Resource$Projects$Databases$Indexes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3148,7 +3216,8 @@ export namespace firestore_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$Get {
+  export interface Params$Resource$Projects$Databases$Indexes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3160,7 +3229,8 @@ export namespace firestore_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$List {
+  export interface Params$Resource$Projects$Databases$Indexes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,40 @@ export namespace youtubeAnalytics_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * YouTube Analytics API
    *
@@ -352,7 +386,8 @@ export namespace youtubeAnalytics_v1 {
     }
   }
 
-  export interface Params$Resource$Groupitems$Delete {
+  export interface Params$Resource$Groupitems$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -377,7 +412,8 @@ export namespace youtubeAnalytics_v1 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Groupitems$Insert {
+  export interface Params$Resource$Groupitems$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -402,7 +438,7 @@ export namespace youtubeAnalytics_v1 {
      */
     requestBody?: Schema$GroupItem;
   }
-  export interface Params$Resource$Groupitems$List {
+  export interface Params$Resource$Groupitems$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -706,7 +742,7 @@ export namespace youtubeAnalytics_v1 {
     }
   }
 
-  export interface Params$Resource$Groups$Delete {
+  export interface Params$Resource$Groups$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -731,7 +767,7 @@ export namespace youtubeAnalytics_v1 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Groups$Insert {
+  export interface Params$Resource$Groups$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -756,7 +792,7 @@ export namespace youtubeAnalytics_v1 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Groups$List {
+  export interface Params$Resource$Groups$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -793,7 +829,7 @@ export namespace youtubeAnalytics_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Groups$Update {
+  export interface Params$Resource$Groups$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -907,7 +943,7 @@ export namespace youtubeAnalytics_v1 {
     }
   }
 
-  export interface Params$Resource$Reports$Query {
+  export interface Params$Resource$Reports$Query extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

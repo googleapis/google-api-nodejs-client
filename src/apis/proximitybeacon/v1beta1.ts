@@ -29,6 +29,57 @@ export namespace proximitybeacon_v1beta1 {
     version: 'v1beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Proximity Beacon API
    *
@@ -665,7 +716,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beaconinfo$Getforobserved {
+  export interface Params$Resource$Beaconinfo$Getforobserved extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1282,7 +1334,7 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beacons$Activate {
+  export interface Params$Resource$Beacons$Activate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1304,7 +1356,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Deactivate {
+  export interface Params$Resource$Beacons$Deactivate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1326,7 +1379,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Decommission {
+  export interface Params$Resource$Beacons$Decommission extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1348,7 +1402,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Delete {
+  export interface Params$Resource$Beacons$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1369,7 +1423,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Get {
+  export interface Params$Resource$Beacons$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1391,7 +1445,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$List {
+  export interface Params$Resource$Beacons$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1465,7 +1519,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     q?: string;
   }
-  export interface Params$Resource$Beacons$Register {
+  export interface Params$Resource$Beacons$Register extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1483,7 +1537,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     requestBody?: Schema$Beacon;
   }
-  export interface Params$Resource$Beacons$Update {
+  export interface Params$Resource$Beacons$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1845,7 +1899,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beacons$Attachments$Batchdelete {
+  export interface Params$Resource$Beacons$Attachments$Batchdelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1875,7 +1930,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Attachments$Create {
+  export interface Params$Resource$Beacons$Attachments$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1902,7 +1958,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     requestBody?: Schema$BeaconAttachment;
   }
-  export interface Params$Resource$Beacons$Attachments$Delete {
+  export interface Params$Resource$Beacons$Attachments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1922,7 +1979,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Attachments$List {
+  export interface Params$Resource$Beacons$Attachments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2045,7 +2103,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beacons$Diagnostics$List {
+  export interface Params$Resource$Beacons$Diagnostics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2235,7 +2294,7 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$List {
+  export interface Params$Resource$Namespaces$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2246,7 +2305,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Namespaces$Update {
+  export interface Params$Resource$Namespaces$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2363,7 +2423,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$V1beta1$Geteidparams {
+  export interface Params$Resource$V1beta1$Geteidparams extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -2,7 +2,7 @@
 
 # @google/adexperiencereport
 
-> View Ad Experience Report data, and get a list of sites that have a significant number of annoying ads.
+> Views Ad Experience Report data, and gets a list of sites that have a significant number of annoying ads.
 
 ## Installation
 

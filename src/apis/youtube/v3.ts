@@ -29,6 +29,40 @@ export namespace youtube_v3 {
     version: 'v3';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * YouTube Data API
    *
@@ -5108,7 +5142,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Activities$Insert {
+  export interface Params$Resource$Activities$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5126,7 +5161,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Activity;
   }
-  export interface Params$Resource$Activities$List {
+  export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5565,7 +5600,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Captions$Delete {
+  export interface Params$Resource$Captions$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5596,7 +5631,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Captions$Download {
+  export interface Params$Resource$Captions$Download extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5641,7 +5677,7 @@ export namespace youtube_v3 {
      */
     tlang?: string;
   }
-  export interface Params$Resource$Captions$Insert {
+  export interface Params$Resource$Captions$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5701,7 +5737,7 @@ export namespace youtube_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Captions$List {
+  export interface Params$Resource$Captions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5742,7 +5778,7 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Captions$Update {
+  export interface Params$Resource$Captions$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5900,7 +5936,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelbanners$Insert {
+  export interface Params$Resource$Channelbanners$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6109,7 +6146,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channels$List {
+  export interface Params$Resource$Channels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6190,7 +6227,7 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Channels$Update {
+  export interface Params$Resource$Channels$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6521,7 +6558,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelsections$Delete {
+  export interface Params$Resource$Channelsections$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6547,7 +6585,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Channelsections$Insert {
+  export interface Params$Resource$Channelsections$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6598,7 +6637,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$ChannelSection;
   }
-  export interface Params$Resource$Channelsections$List {
+  export interface Params$Resource$Channelsections$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6657,7 +6697,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Channelsections$Update {
+  export interface Params$Resource$Channelsections$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7102,7 +7143,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Comments$Delete {
+  export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7114,7 +7155,7 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Comments$Insert {
+  export interface Params$Resource$Comments$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7132,7 +7173,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Comment;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7175,7 +7216,8 @@ export namespace youtube_v3 {
      */
     textFormat?: string;
   }
-  export interface Params$Resource$Comments$Markasspam {
+  export interface Params$Resource$Comments$Markasspam extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7187,7 +7229,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Comments$Setmoderationstatus {
+  export interface Params$Resource$Comments$Setmoderationstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7210,7 +7253,7 @@ export namespace youtube_v3 {
      */
     moderationStatus?: string;
   }
-  export interface Params$Resource$Comments$Update {
+  export interface Params$Resource$Comments$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7460,7 +7503,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Commentthreads$Insert {
+  export interface Params$Resource$Commentthreads$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7478,7 +7522,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$CommentThread;
   }
-  export interface Params$Resource$Commentthreads$List {
+  export interface Params$Resource$Commentthreads$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7551,7 +7596,8 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Commentthreads$Update {
+  export interface Params$Resource$Commentthreads$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7658,7 +7704,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Guidecategories$List {
+  export interface Params$Resource$Guidecategories$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7771,7 +7818,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$I18nlanguages$List {
+  export interface Params$Resource$I18nlanguages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7870,7 +7918,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$I18nregions$List {
+  export interface Params$Resource$I18nregions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8410,7 +8458,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livebroadcasts$Bind {
+  export interface Params$Resource$Livebroadcasts$Bind extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8467,7 +8516,8 @@ export namespace youtube_v3 {
      */
     streamId?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Control {
+  export interface Params$Resource$Livebroadcasts$Control extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8542,7 +8592,8 @@ export namespace youtube_v3 {
      */
     walltime?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Delete {
+  export interface Params$Resource$Livebroadcasts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8586,7 +8637,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Insert {
+  export interface Params$Resource$Livebroadcasts$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8638,7 +8690,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveBroadcast;
   }
-  export interface Params$Resource$Livebroadcasts$List {
+  export interface Params$Resource$Livebroadcasts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8718,7 +8771,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Transition {
+  export interface Params$Resource$Livebroadcasts$Transition extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8776,7 +8830,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Update {
+  export interface Params$Resource$Livebroadcasts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8983,7 +9038,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatbans$Delete {
+  export interface Params$Resource$Livechatbans$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8995,7 +9051,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatbans$Insert {
+  export interface Params$Resource$Livechatbans$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9239,7 +9296,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatmessages$Delete {
+  export interface Params$Resource$Livechatmessages$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9251,7 +9309,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmessages$Insert {
+  export interface Params$Resource$Livechatmessages$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9269,7 +9328,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatMessage;
   }
-  export interface Params$Resource$Livechatmessages$List {
+  export interface Params$Resource$Livechatmessages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9537,7 +9597,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatmoderators$Delete {
+  export interface Params$Resource$Livechatmoderators$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9549,7 +9610,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmoderators$Insert {
+  export interface Params$Resource$Livechatmoderators$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9568,7 +9630,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatModerator;
   }
-  export interface Params$Resource$Livechatmoderators$List {
+  export interface Params$Resource$Livechatmoderators$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9893,7 +9956,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livestreams$Delete {
+  export interface Params$Resource$Livestreams$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9937,7 +10001,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livestreams$Insert {
+  export interface Params$Resource$Livestreams$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9988,7 +10053,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveStream;
   }
-  export interface Params$Resource$Livestreams$List {
+  export interface Params$Resource$Livestreams$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10057,7 +10122,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livestreams$Update {
+  export interface Params$Resource$Livestreams$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10406,7 +10472,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlistitems$Delete {
+  export interface Params$Resource$Playlistitems$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10432,7 +10499,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlistitems$Insert {
+  export interface Params$Resource$Playlistitems$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10463,7 +10531,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$PlaylistItem;
   }
-  export interface Params$Resource$Playlistitems$List {
+  export interface Params$Resource$Playlistitems$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10522,7 +10591,8 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Playlistitems$Update {
+  export interface Params$Resource$Playlistitems$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10852,7 +10922,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlists$Delete {
+  export interface Params$Resource$Playlists$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10878,7 +10948,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlists$Insert {
+  export interface Params$Resource$Playlists$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10928,7 +10998,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Playlist;
   }
-  export interface Params$Resource$Playlists$List {
+  export interface Params$Resource$Playlists$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11009,7 +11079,7 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Playlists$Update {
+  export interface Params$Resource$Playlists$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11158,7 +11228,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Search$List {
+  export interface Params$Resource$Search$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11467,7 +11537,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Sponsors$List {
+  export interface Params$Resource$Sponsors$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11719,7 +11789,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Delete {
+  export interface Params$Resource$Subscriptions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11732,7 +11803,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert {
+  export interface Params$Resource$Subscriptions$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11750,7 +11822,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List {
+  export interface Params$Resource$Subscriptions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11937,7 +12010,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Superchatevents$List {
+  export interface Params$Resource$Superchatevents$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12055,7 +12129,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Thumbnails$Set {
+  export interface Params$Resource$Thumbnails$Set extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12190,7 +12264,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videoabusereportreasons$List {
+  export interface Params$Resource$Videoabusereportreasons$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12295,7 +12370,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videocategories$List {
+  export interface Params$Resource$Videocategories$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12821,7 +12897,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videos$Delete {
+  export interface Params$Resource$Videos$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12847,7 +12923,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Videos$Getrating {
+  export interface Params$Resource$Videos$Getrating extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12873,7 +12949,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Videos$Insert {
+  export interface Params$Resource$Videos$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12962,7 +13038,7 @@ export namespace youtube_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Videos$List {
+  export interface Params$Resource$Videos$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13064,7 +13140,7 @@ export namespace youtube_v3 {
      */
     videoCategoryId?: string;
   }
-  export interface Params$Resource$Videos$Rate {
+  export interface Params$Resource$Videos$Rate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13080,7 +13156,8 @@ export namespace youtube_v3 {
      */
     rating?: string;
   }
-  export interface Params$Resource$Videos$Reportabuse {
+  export interface Params$Resource$Videos$Reportabuse extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13105,7 +13182,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$VideoAbuseReport;
   }
-  export interface Params$Resource$Videos$Update {
+  export interface Params$Resource$Videos$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13295,7 +13372,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Watermarks$Set {
+  export interface Params$Resource$Watermarks$Set extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13340,7 +13417,7 @@ export namespace youtube_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Watermarks$Unset {
+  export interface Params$Resource$Watermarks$Unset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

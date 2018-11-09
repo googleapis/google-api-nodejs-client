@@ -29,6 +29,40 @@ export namespace deploymentmanager_alpha {
     version: 'alpha';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Cloud Deployment Manager Alpha API
    *
@@ -1898,7 +1932,8 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Compositetypes$Delete {
+  export interface Params$Resource$Compositetypes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1913,7 +1948,8 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Get {
+  export interface Params$Resource$Compositetypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1928,7 +1964,8 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Insert {
+  export interface Params$Resource$Compositetypes$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1944,7 +1981,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$CompositeType;
   }
-  export interface Params$Resource$Compositetypes$List {
+  export interface Params$Resource$Compositetypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1998,7 +2036,8 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Compositetypes$Patch {
+  export interface Params$Resource$Compositetypes$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2018,7 +2057,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$CompositeType;
   }
-  export interface Params$Resource$Compositetypes$Update {
+  export interface Params$Resource$Compositetypes$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2838,7 +2878,8 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Deployments$Cancelpreview {
+  export interface Params$Resource$Deployments$Cancelpreview extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2858,7 +2899,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
-  export interface Params$Resource$Deployments$Delete {
+  export interface Params$Resource$Deployments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2877,7 +2919,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Get {
+  export interface Params$Resource$Deployments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2892,7 +2934,8 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Getiampolicy {
+  export interface Params$Resource$Deployments$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2907,7 +2950,8 @@ export namespace deploymentmanager_alpha {
      */
     resource?: string;
   }
-  export interface Params$Resource$Deployments$Insert {
+  export interface Params$Resource$Deployments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2937,7 +2981,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$List {
+  export interface Params$Resource$Deployments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2991,7 +3035,8 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Patch {
+  export interface Params$Resource$Deployments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3032,7 +3077,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$Setiampolicy {
+  export interface Params$Resource$Deployments$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3052,7 +3098,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Deployments$Stop {
+  export interface Params$Resource$Deployments$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3072,7 +3118,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$DeploymentsStopRequest;
   }
-  export interface Params$Resource$Deployments$Testiampermissions {
+  export interface Params$Resource$Deployments$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3092,7 +3139,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Deployments$Update {
+  export interface Params$Resource$Deployments$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3285,7 +3333,7 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Manifests$Get {
+  export interface Params$Resource$Manifests$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3304,7 +3352,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Manifests$List {
+  export interface Params$Resource$Manifests$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3513,7 +3561,7 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3528,7 +3576,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3734,7 +3782,7 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Resources$Get {
+  export interface Params$Resource$Resources$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3753,7 +3801,7 @@ export namespace deploymentmanager_alpha {
      */
     resource?: string;
   }
-  export interface Params$Resource$Resources$List {
+  export interface Params$Resource$Resources$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4400,7 +4448,8 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Typeproviders$Delete {
+  export interface Params$Resource$Typeproviders$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4415,7 +4464,8 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Get {
+  export interface Params$Resource$Typeproviders$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4430,7 +4480,8 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Gettype {
+  export interface Params$Resource$Typeproviders$Gettype extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4449,7 +4500,8 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Insert {
+  export interface Params$Resource$Typeproviders$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4465,7 +4517,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$TypeProvider;
   }
-  export interface Params$Resource$Typeproviders$List {
+  export interface Params$Resource$Typeproviders$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4519,7 +4572,8 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Typeproviders$Listtypes {
+  export interface Params$Resource$Typeproviders$Listtypes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4577,7 +4631,8 @@ export namespace deploymentmanager_alpha {
      */
     typeProvider?: string;
   }
-  export interface Params$Resource$Typeproviders$Patch {
+  export interface Params$Resource$Typeproviders$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4597,7 +4652,8 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$TypeProvider;
   }
-  export interface Params$Resource$Typeproviders$Update {
+  export interface Params$Resource$Typeproviders$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5038,7 +5094,7 @@ export namespace deploymentmanager_alpha {
     }
   }
 
-  export interface Params$Resource$Types$Delete {
+  export interface Params$Resource$Types$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5053,7 +5109,7 @@ export namespace deploymentmanager_alpha {
      */
     type?: string;
   }
-  export interface Params$Resource$Types$Get {
+  export interface Params$Resource$Types$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5068,7 +5124,7 @@ export namespace deploymentmanager_alpha {
      */
     type?: string;
   }
-  export interface Params$Resource$Types$Insert {
+  export interface Params$Resource$Types$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5084,7 +5140,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$Type;
   }
-  export interface Params$Resource$Types$List {
+  export interface Params$Resource$Types$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5138,7 +5194,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Types$Patch {
+  export interface Params$Resource$Types$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5158,7 +5214,7 @@ export namespace deploymentmanager_alpha {
      */
     requestBody?: Schema$Type;
   }
-  export interface Params$Resource$Types$Update {
+  export interface Params$Resource$Types$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

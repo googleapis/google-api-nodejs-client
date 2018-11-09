@@ -2,7 +2,7 @@
 
 # @google/poly
 
-> The Poly API provides read-only access to assets hosted on poly.google.com.
+> The Poly API provides read access to assets hosted on poly.google.com to all, and upload access to poly.google.com for whitelisted accounts.
 
 ## Installation
 

@@ -29,10 +29,61 @@ export namespace genomics_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Genomics API
    *
-   * Upload, process, query, and search Genomics data in the cloud.
+   * Uploads, processes, queries, and searches Genomics data in the cloud.
    *
    * @example
    * const {google} = require('googleapis');
@@ -3099,7 +3150,8 @@ export namespace genomics_v1 {
     }
   }
 
-  export interface Params$Resource$Annotations$Batchcreate {
+  export interface Params$Resource$Annotations$Batchcreate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3111,7 +3163,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$BatchCreateAnnotationsRequest;
   }
-  export interface Params$Resource$Annotations$Create {
+  export interface Params$Resource$Annotations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3123,7 +3176,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$Annotation;
   }
-  export interface Params$Resource$Annotations$Delete {
+  export interface Params$Resource$Annotations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3134,7 +3188,7 @@ export namespace genomics_v1 {
      */
     annotationId?: string;
   }
-  export interface Params$Resource$Annotations$Get {
+  export interface Params$Resource$Annotations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3145,7 +3199,8 @@ export namespace genomics_v1 {
      */
     annotationId?: string;
   }
-  export interface Params$Resource$Annotations$Search {
+  export interface Params$Resource$Annotations$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3157,7 +3212,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$SearchAnnotationsRequest;
   }
-  export interface Params$Resource$Annotations$Update {
+  export interface Params$Resource$Annotations$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3832,7 +3888,8 @@ export namespace genomics_v1 {
     }
   }
 
-  export interface Params$Resource$Annotationsets$Create {
+  export interface Params$Resource$Annotationsets$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3844,7 +3901,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$AnnotationSet;
   }
-  export interface Params$Resource$Annotationsets$Delete {
+  export interface Params$Resource$Annotationsets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3855,7 +3913,8 @@ export namespace genomics_v1 {
      */
     annotationSetId?: string;
   }
-  export interface Params$Resource$Annotationsets$Get {
+  export interface Params$Resource$Annotationsets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3866,7 +3925,8 @@ export namespace genomics_v1 {
      */
     annotationSetId?: string;
   }
-  export interface Params$Resource$Annotationsets$Search {
+  export interface Params$Resource$Annotationsets$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3878,7 +3938,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$SearchAnnotationSetsRequest;
   }
-  export interface Params$Resource$Annotationsets$Update {
+  export interface Params$Resource$Annotationsets$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4518,7 +4579,7 @@ export namespace genomics_v1 {
     }
   }
 
-  export interface Params$Resource$Callsets$Create {
+  export interface Params$Resource$Callsets$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4530,7 +4591,7 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$CallSet;
   }
-  export interface Params$Resource$Callsets$Delete {
+  export interface Params$Resource$Callsets$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4541,7 +4602,7 @@ export namespace genomics_v1 {
      */
     callSetId?: string;
   }
-  export interface Params$Resource$Callsets$Get {
+  export interface Params$Resource$Callsets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4552,7 +4613,7 @@ export namespace genomics_v1 {
      */
     callSetId?: string;
   }
-  export interface Params$Resource$Callsets$Patch {
+  export interface Params$Resource$Callsets$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4574,7 +4635,7 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$CallSet;
   }
-  export interface Params$Resource$Callsets$Search {
+  export interface Params$Resource$Callsets$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5723,7 +5784,7 @@ export namespace genomics_v1 {
     }
   }
 
-  export interface Params$Resource$Datasets$Create {
+  export interface Params$Resource$Datasets$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5735,7 +5796,7 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$Delete {
+  export interface Params$Resource$Datasets$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5746,7 +5807,7 @@ export namespace genomics_v1 {
      */
     datasetId?: string;
   }
-  export interface Params$Resource$Datasets$Get {
+  export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5757,7 +5818,8 @@ export namespace genomics_v1 {
      */
     datasetId?: string;
   }
-  export interface Params$Resource$Datasets$Getiampolicy {
+  export interface Params$Resource$Datasets$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5774,7 +5836,7 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Datasets$List {
+  export interface Params$Resource$Datasets$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5796,7 +5858,7 @@ export namespace genomics_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Patch {
+  export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5818,7 +5880,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$Setiampolicy {
+  export interface Params$Resource$Datasets$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5835,7 +5898,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Datasets$Testiampermissions {
+  export interface Params$Resource$Datasets$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5852,7 +5916,8 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Datasets$Undelete {
+  export interface Params$Resource$Datasets$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6264,7 +6329,8 @@ export namespace genomics_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6280,7 +6346,7 @@ export namespace genomics_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6291,7 +6357,7 @@ export namespace genomics_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7076,7 +7142,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     }
   }
 
-  export interface Params$Resource$Readgroupsets$Delete {
+  export interface Params$Resource$Readgroupsets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7088,7 +7155,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     readGroupSetId?: string;
   }
-  export interface Params$Resource$Readgroupsets$Export {
+  export interface Params$Resource$Readgroupsets$Export extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7105,7 +7173,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     requestBody?: Schema$ExportReadGroupSetRequest;
   }
-  export interface Params$Resource$Readgroupsets$Get {
+  export interface Params$Resource$Readgroupsets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7116,7 +7185,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     readGroupSetId?: string;
   }
-  export interface Params$Resource$Readgroupsets$Import {
+  export interface Params$Resource$Readgroupsets$Import extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7128,7 +7198,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     requestBody?: Schema$ImportReadGroupSetsRequest;
   }
-  export interface Params$Resource$Readgroupsets$Patch {
+  export interface Params$Resource$Readgroupsets$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7151,7 +7222,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     requestBody?: Schema$ReadGroupSet;
   }
-  export interface Params$Resource$Readgroupsets$Search {
+  export interface Params$Resource$Readgroupsets$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7331,7 +7403,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     }
   }
 
-  export interface Params$Resource$Readgroupsets$Coveragebuckets$List {
+  export interface Params$Resource$Readgroupsets$Coveragebuckets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7538,7 +7611,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     }
   }
 
-  export interface Params$Resource$Reads$Search {
+  export interface Params$Resource$Reads$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7819,7 +7892,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     }
   }
 
-  export interface Params$Resource$References$Get {
+  export interface Params$Resource$References$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7830,7 +7903,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     referenceId?: string;
   }
-  export interface Params$Resource$References$Search {
+  export interface Params$Resource$References$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7992,7 +8066,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     }
   }
 
-  export interface Params$Resource$References$Bases$List {
+  export interface Params$Resource$References$Bases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8299,7 +8374,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     }
   }
 
-  export interface Params$Resource$Referencesets$Get {
+  export interface Params$Resource$Referencesets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8310,7 +8386,8 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     referenceSetId?: string;
   }
-  export interface Params$Resource$Referencesets$Search {
+  export interface Params$Resource$Referencesets$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9149,7 +9226,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     }
   }
 
-  export interface Params$Resource$Variants$Create {
+  export interface Params$Resource$Variants$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9161,7 +9238,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$Variant;
   }
-  export interface Params$Resource$Variants$Delete {
+  export interface Params$Resource$Variants$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9172,7 +9249,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     variantId?: string;
   }
-  export interface Params$Resource$Variants$Get {
+  export interface Params$Resource$Variants$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9183,7 +9260,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     variantId?: string;
   }
-  export interface Params$Resource$Variants$Import {
+  export interface Params$Resource$Variants$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9195,7 +9272,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$ImportVariantsRequest;
   }
-  export interface Params$Resource$Variants$Merge {
+  export interface Params$Resource$Variants$Merge extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9207,7 +9284,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$MergeVariantsRequest;
   }
-  export interface Params$Resource$Variants$Patch {
+  export interface Params$Resource$Variants$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9229,7 +9306,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$Variant;
   }
-  export interface Params$Resource$Variants$Search {
+  export interface Params$Resource$Variants$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10007,7 +10084,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     }
   }
 
-  export interface Params$Resource$Variantsets$Create {
+  export interface Params$Resource$Variantsets$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10019,7 +10097,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$VariantSet;
   }
-  export interface Params$Resource$Variantsets$Delete {
+  export interface Params$Resource$Variantsets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10030,7 +10109,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     variantSetId?: string;
   }
-  export interface Params$Resource$Variantsets$Export {
+  export interface Params$Resource$Variantsets$Export extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10047,7 +10127,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$ExportVariantSetRequest;
   }
-  export interface Params$Resource$Variantsets$Get {
+  export interface Params$Resource$Variantsets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10058,7 +10138,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     variantSetId?: string;
   }
-  export interface Params$Resource$Variantsets$Patch {
+  export interface Params$Resource$Variantsets$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10080,7 +10161,8 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$VariantSet;
   }
-  export interface Params$Resource$Variantsets$Search {
+  export interface Params$Resource$Variantsets$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
