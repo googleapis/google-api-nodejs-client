@@ -19,6 +19,6 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "googleapis-common": "^0.2.0"
+    "googleapis-common": "^0.4.0"
   }
 }
