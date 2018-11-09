@@ -20,36 +20,6 @@
   ],
   "repository": "google/google-api-nodejs-client",
   "name": "googleapis",
-  "contributors": [
-    {
-      "email": "jbd@google.com",
-      "name": "Burcu Dogan"
-    },
-    {
-      "email": "jasonall@google.com",
-      "name": "Jason Allor"
-    },
-    {
-      "email": "jason.dobry@gmail.com",
-      "name": "Jason Dobry"
-    },
-    {
-      "email": "ryanseys@google.com",
-      "name": "Ryan Seys"
-    },
-    {
-      "email": "tbetbetbe@google.com",
-      "name": "Tim Emiola"
-    },
-    {
-      "email": "beckwith@google.com",
-      "name": "Justin Beckwith"
-    },
-    {
-      "email": "fenster@google.com",
-      "name": "Alexander Fenster"
-    }
-  ],
   "version": "34.0.0",
   "scripts": {
     "pretest": "npm run compile",
