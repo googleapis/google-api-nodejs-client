@@ -48,7 +48,7 @@ function getObjectType(item: SchemaItem): string {
     return `{ [key: string]: ${valueType}; }`;
   } else if (item.properties) {
     const fields = item.properties;
-    // TODO: remove this once property with sprcial cha is removed
+    // TODO: remove this once property with special char is removed
     if (Object.keys(fields).filter(k => k.indexOf('-') > -1).length > 0) {
       return `{ [key: string]: any; }`;
     }
