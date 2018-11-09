@@ -29,6 +29,40 @@ export namespace admin_datatransfer_v1 {
     version: 'datatransfer_v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Admin Data Transfer API
    *
@@ -356,7 +390,7 @@ export namespace admin_datatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Applications$Get {
+  export interface Params$Resource$Applications$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -367,7 +401,8 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string;
   }
-  export interface Params$Resource$Applications$List {
+  export interface Params$Resource$Applications$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -602,7 +637,7 @@ export namespace admin_datatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transfers$Get {
+  export interface Params$Resource$Transfers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -614,7 +649,7 @@ export namespace admin_datatransfer_v1 {
      */
     dataTransferId?: string;
   }
-  export interface Params$Resource$Transfers$Insert {
+  export interface Params$Resource$Transfers$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -626,7 +661,7 @@ export namespace admin_datatransfer_v1 {
      */
     requestBody?: Schema$DataTransfer;
   }
-  export interface Params$Resource$Transfers$List {
+  export interface Params$Resource$Transfers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

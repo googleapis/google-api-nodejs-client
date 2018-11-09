@@ -29,6 +29,57 @@ export namespace container_v1beta1 {
     version: 'v1beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Kubernetes Engine API
    *
@@ -2325,7 +2376,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List {
+  export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2511,7 +2563,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getserverconfig {
+  export interface Params$Resource$Projects$Locations$Getserverconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2535,7 +2588,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3756,7 +3810,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation {
+  export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3773,7 +3828,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Create {
+  export interface Params$Resource$Projects$Locations$Clusters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3790,7 +3846,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Delete {
+  export interface Params$Resource$Projects$Locations$Clusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3819,7 +3876,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Get {
+  export interface Params$Resource$Projects$Locations$Clusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3848,7 +3906,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$List {
+  export interface Params$Resource$Projects$Locations$Clusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3874,7 +3933,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setaddons {
+  export interface Params$Resource$Projects$Locations$Clusters$Setaddons extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3891,7 +3951,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetAddonsConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3908,7 +3969,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLegacyAbacRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlocations {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlocations
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3925,7 +3987,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLocationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlogging {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlogging
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3942,7 +4005,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLoggingServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3960,7 +4024,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMaintenancePolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3977,7 +4042,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMasterAuthRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3994,7 +4060,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMonitoringServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy {
+  export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4011,7 +4078,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNetworkPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels {
+  export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4028,7 +4096,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Startiprotation {
+  export interface Params$Resource$Projects$Locations$Clusters$Startiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4045,7 +4114,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$StartIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Update {
+  export interface Params$Resource$Projects$Locations$Clusters$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4062,7 +4132,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$UpdateClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Updatemaster {
+  export interface Params$Resource$Projects$Locations$Clusters$Updatemaster
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4730,7 +4801,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4747,7 +4819,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4782,7 +4855,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4817,7 +4891,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$List {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4846,7 +4921,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4864,7 +4940,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4882,7 +4959,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4900,7 +4978,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolManagementRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4918,7 +4997,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolSizeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5153,7 +5233,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5170,7 +5251,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5199,7 +5281,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List {
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5314,7 +5397,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Getserverconfig {
+  export interface Params$Resource$Projects$Zones$Getserverconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6594,7 +6678,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Clusters$Addons {
+  export interface Params$Resource$Projects$Zones$Clusters$Addons extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6623,7 +6708,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetAddonsConfigRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation {
+  export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6652,7 +6738,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Create {
+  export interface Params$Resource$Projects$Zones$Clusters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6676,7 +6763,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateClusterRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Delete {
+  export interface Params$Resource$Projects$Zones$Clusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6705,7 +6793,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Get {
+  export interface Params$Resource$Projects$Zones$Clusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6734,7 +6823,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Legacyabac {
+  export interface Params$Resource$Projects$Zones$Clusters$Legacyabac extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6763,7 +6853,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLegacyAbacRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$List {
+  export interface Params$Resource$Projects$Zones$Clusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6789,7 +6880,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Locations {
+  export interface Params$Resource$Projects$Zones$Clusters$Locations extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6818,7 +6910,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLocationsRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Logging {
+  export interface Params$Resource$Projects$Zones$Clusters$Logging extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6847,7 +6940,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLoggingServiceRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Master {
+  export interface Params$Resource$Projects$Zones$Clusters$Master extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6876,7 +6970,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$UpdateMasterRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Monitoring {
+  export interface Params$Resource$Projects$Zones$Clusters$Monitoring extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6905,7 +7000,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMonitoringServiceRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels {
+  export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6934,7 +7030,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLabelsRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy {
+  export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6960,7 +7057,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMaintenancePolicyRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth {
+  export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6989,7 +7087,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMasterAuthRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy {
+  export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7018,7 +7117,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNetworkPolicyRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Startiprotation {
+  export interface Params$Resource$Projects$Zones$Clusters$Startiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7047,7 +7147,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$StartIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Update {
+  export interface Params$Resource$Projects$Zones$Clusters$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7755,7 +7856,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7789,7 +7891,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7818,7 +7921,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7853,7 +7957,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7888,7 +7993,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$List {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7917,7 +8023,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7951,7 +8058,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7985,7 +8093,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolManagementRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8019,7 +8128,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolSizeRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8278,7 +8388,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Operations$Cancel {
+  export interface Params$Resource$Projects$Zones$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8307,7 +8418,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Operations$Get {
+  export interface Params$Resource$Projects$Zones$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8336,7 +8448,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Operations$List {
+  export interface Params$Resource$Projects$Zones$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

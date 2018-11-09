@@ -29,6 +29,40 @@ export namespace fusiontables_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Fusion Tables API
    *
@@ -1060,7 +1094,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Column$Delete {
+  export interface Params$Resource$Column$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1075,7 +1109,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Column$Get {
+  export interface Params$Resource$Column$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1090,7 +1124,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Column$Insert {
+  export interface Params$Resource$Column$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1106,7 +1140,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Column;
   }
-  export interface Params$Resource$Column$List {
+  export interface Params$Resource$Column$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1125,7 +1159,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Column$Patch {
+  export interface Params$Resource$Column$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1145,7 +1179,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Column;
   }
-  export interface Params$Resource$Column$Update {
+  export interface Params$Resource$Column$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1312,7 +1346,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Query$Sql {
+  export interface Params$Resource$Query$Sql extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1333,7 +1367,7 @@ export namespace fusiontables_v2 {
      */
     typed?: boolean;
   }
-  export interface Params$Resource$Query$Sqlget {
+  export interface Params$Resource$Query$Sqlget extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1765,7 +1799,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Style$Delete {
+  export interface Params$Resource$Style$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1780,7 +1814,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Style$Get {
+  export interface Params$Resource$Style$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1795,7 +1829,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Style$Insert {
+  export interface Params$Resource$Style$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1811,7 +1845,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$StyleSetting;
   }
-  export interface Params$Resource$Style$List {
+  export interface Params$Resource$Style$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1830,7 +1864,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Style$Patch {
+  export interface Params$Resource$Style$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1850,7 +1884,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$StyleSetting;
   }
-  export interface Params$Resource$Style$Update {
+  export interface Params$Resource$Style$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2631,7 +2665,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Table$Copy {
+  export interface Params$Resource$Table$Copy extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2646,7 +2680,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Delete {
+  export interface Params$Resource$Table$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2657,7 +2691,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Get {
+  export interface Params$Resource$Table$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2668,7 +2702,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Importrows {
+  export interface Params$Resource$Table$Importrows extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2723,7 +2757,8 @@ export namespace fusiontables_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Table$Importtable {
+  export interface Params$Resource$Table$Importtable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2760,7 +2795,7 @@ export namespace fusiontables_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Table$Insert {
+  export interface Params$Resource$Table$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2772,7 +2807,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Table$List {
+  export interface Params$Resource$Table$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2787,7 +2822,7 @@ export namespace fusiontables_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Table$Patch {
+  export interface Params$Resource$Table$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2809,7 +2844,8 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Table$Refetchsheet {
+  export interface Params$Resource$Table$Refetchsheet extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2820,7 +2856,8 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Replacerows {
+  export interface Params$Resource$Table$Replacerows extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2876,7 +2913,7 @@ export namespace fusiontables_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Table$Update {
+  export interface Params$Resource$Table$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3108,7 +3145,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Task$Delete {
+  export interface Params$Resource$Task$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3123,7 +3160,7 @@ export namespace fusiontables_v2 {
      */
     taskId?: string;
   }
-  export interface Params$Resource$Task$Get {
+  export interface Params$Resource$Task$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3138,7 +3175,7 @@ export namespace fusiontables_v2 {
      */
     taskId?: string;
   }
-  export interface Params$Resource$Task$List {
+  export interface Params$Resource$Task$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3569,7 +3606,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Template$Delete {
+  export interface Params$Resource$Template$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3584,7 +3621,7 @@ export namespace fusiontables_v2 {
      */
     templateId?: number;
   }
-  export interface Params$Resource$Template$Get {
+  export interface Params$Resource$Template$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3599,7 +3636,7 @@ export namespace fusiontables_v2 {
      */
     templateId?: number;
   }
-  export interface Params$Resource$Template$Insert {
+  export interface Params$Resource$Template$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3615,7 +3652,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Template;
   }
-  export interface Params$Resource$Template$List {
+  export interface Params$Resource$Template$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3634,7 +3671,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Template$Patch {
+  export interface Params$Resource$Template$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3654,7 +3691,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Template;
   }
-  export interface Params$Resource$Template$Update {
+  export interface Params$Resource$Template$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

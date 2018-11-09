@@ -29,6 +29,57 @@ export namespace vault_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * G Suite Vault API
    *
@@ -527,6 +578,20 @@ export namespace vault_v1 {
     nextPageToken?: string;
   }
   /**
+   * Definition of the response for method ListSaveQuery.
+   */
+  export interface Schema$ListSavedQueriesResponse {
+    /**
+     * Page token to retrieve the next page of results in the list. If this is
+     * empty, then there are no more saved queries to list.
+     */
+    nextPageToken?: string;
+    /**
+     * List of output saved queries.
+     */
+    savedQueries?: Schema$SavedQuery[];
+  }
+  /**
    * The options for mail export.
    */
   export interface Schema$MailExportOptions {
@@ -534,6 +599,10 @@ export namespace vault_v1 {
      * The export file format.
      */
     exportFormat?: string;
+    /**
+     * Set to true to export confidential mode content
+     */
+    showConfidentialModeContent?: boolean;
   }
   /**
    * Mail search advanced options
@@ -713,6 +782,34 @@ export namespace vault_v1 {
     matter?: Schema$Matter;
   }
   /**
+   * Definition of the saved query.
+   */
+  export interface Schema$SavedQuery {
+    /**
+     * Output only. The server generated timestamp at which saved query was
+     * created.
+     */
+    createTime?: string;
+    /**
+     * Name of the saved query.
+     */
+    displayName?: string;
+    /**
+     * Output only. The matter id of the associated matter. The server does not
+     * look at this field during create and always uses matter id in the URL.
+     */
+    matterId?: string;
+    /**
+     * The underlying Query object which contains all the information of the
+     * saved query.
+     */
+    query?: Schema$Query;
+    /**
+     * A unique identifier for the saved query.
+     */
+    savedQueryId?: string;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for
    * different programming environments, including REST APIs and RPC APIs. It is
    * used by [gRPC](https://github.com/grpc). The error model is designed to be:
@@ -799,11 +896,13 @@ export namespace vault_v1 {
     root: Vault;
     exports: Resource$Matters$Exports;
     holds: Resource$Matters$Holds;
+    savedQueries: Resource$Matters$Savedqueries;
     constructor(root: Vault) {
       this.root = root;
       this.getRoot.bind(this);
       this.exports = new Resource$Matters$Exports(root);
       this.holds = new Resource$Matters$Holds(root);
+      this.savedQueries = new Resource$Matters$Savedqueries(root);
     }
 
     getRoot() {
@@ -1471,7 +1570,8 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Addpermissions {
+  export interface Params$Resource$Matters$Addpermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1487,7 +1587,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$AddMatterPermissionsRequest;
   }
-  export interface Params$Resource$Matters$Close {
+  export interface Params$Resource$Matters$Close extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1503,7 +1603,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$CloseMatterRequest;
   }
-  export interface Params$Resource$Matters$Create {
+  export interface Params$Resource$Matters$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1515,7 +1615,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$Matter;
   }
-  export interface Params$Resource$Matters$Delete {
+  export interface Params$Resource$Matters$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1526,7 +1626,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Get {
+  export interface Params$Resource$Matters$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1541,7 +1641,7 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$List {
+  export interface Params$Resource$Matters$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1566,7 +1666,8 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Removepermissions {
+  export interface Params$Resource$Matters$Removepermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1582,7 +1683,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$RemoveMatterPermissionsRequest;
   }
-  export interface Params$Resource$Matters$Reopen {
+  export interface Params$Resource$Matters$Reopen extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1598,7 +1699,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$ReopenMatterRequest;
   }
-  export interface Params$Resource$Matters$Undelete {
+  export interface Params$Resource$Matters$Undelete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1614,7 +1715,7 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$UndeleteMatterRequest;
   }
-  export interface Params$Resource$Matters$Update {
+  export interface Params$Resource$Matters$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1909,7 +2010,8 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Exports$Create {
+  export interface Params$Resource$Matters$Exports$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1925,7 +2027,8 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$Export;
   }
-  export interface Params$Resource$Matters$Exports$Delete {
+  export interface Params$Resource$Matters$Exports$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1940,7 +2043,8 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Exports$Get {
+  export interface Params$Resource$Matters$Exports$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1955,7 +2059,8 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Exports$List {
+  export interface Params$Resource$Matters$Exports$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2482,7 +2587,8 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Holds$Addheldaccounts {
+  export interface Params$Resource$Matters$Holds$Addheldaccounts extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2502,7 +2608,8 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$AddHeldAccountsRequest;
   }
-  export interface Params$Resource$Matters$Holds$Create {
+  export interface Params$Resource$Matters$Holds$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2518,7 +2625,8 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$Hold;
   }
-  export interface Params$Resource$Matters$Holds$Delete {
+  export interface Params$Resource$Matters$Holds$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2533,7 +2641,8 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Holds$Get {
+  export interface Params$Resource$Matters$Holds$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2552,7 +2661,8 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Holds$List {
+  export interface Params$Resource$Matters$Holds$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2577,7 +2687,8 @@ export namespace vault_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Matters$Holds$Removeheldaccounts {
+  export interface Params$Resource$Matters$Holds$Removeheldaccounts extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2597,7 +2708,8 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$RemoveHeldAccountsRequest;
   }
-  export interface Params$Resource$Matters$Holds$Update {
+  export interface Params$Resource$Matters$Holds$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2844,7 +2956,8 @@ export namespace vault_v1 {
     }
   }
 
-  export interface Params$Resource$Matters$Holds$Accounts$Create {
+  export interface Params$Resource$Matters$Holds$Accounts$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2864,7 +2977,8 @@ export namespace vault_v1 {
      */
     requestBody?: Schema$HeldAccount;
   }
-  export interface Params$Resource$Matters$Holds$Accounts$Delete {
+  export interface Params$Resource$Matters$Holds$Accounts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2883,7 +2997,8 @@ export namespace vault_v1 {
      */
     matterId?: string;
   }
-  export interface Params$Resource$Matters$Holds$Accounts$List {
+  export interface Params$Resource$Matters$Holds$Accounts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2897,5 +3012,366 @@ export namespace vault_v1 {
      * The matter ID.
      */
     matterId?: string;
+  }
+
+
+
+  export class Resource$Matters$Savedqueries {
+    root: Vault;
+    constructor(root: Vault) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * vault.matters.savedQueries.create
+     * @desc Creates a saved query.
+     * @alias vault.matters.savedQueries.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be created.
+     * @param {().SavedQuery} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Matters$Savedqueries$Create,
+        options?: MethodOptions): AxiosPromise<Schema$SavedQuery>;
+    create(
+        params: Params$Resource$Matters$Savedqueries$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$SavedQuery>,
+        callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    create(
+        params: Params$Resource$Matters$Savedqueries$Create,
+        callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    create(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Matters$Savedqueries$Create|
+        BodyResponseCallback<Schema$SavedQuery>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SavedQuery>,
+        callback?: BodyResponseCallback<Schema$SavedQuery>):
+        void|AxiosPromise<Schema$SavedQuery> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Matters$Savedqueries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Savedqueries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/matters/{matterId}/savedQueries')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['matterId'],
+        pathParams: ['matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+
+    /**
+     * vault.matters.savedQueries.delete
+     * @desc Deletes a saved query by Id.
+     * @alias vault.matters.savedQueries.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be deleted.
+     * @param {string} params.savedQueryId Id of the saved query to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Matters$Savedqueries$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Matters$Savedqueries$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Matters$Savedqueries$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Matters$Savedqueries$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Matters$Savedqueries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Savedqueries$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/v1/matters/{matterId}/savedQueries/{savedQueryId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['matterId', 'savedQueryId'],
+        pathParams: ['matterId', 'savedQueryId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * vault.matters.savedQueries.get
+     * @desc Retrieves a saved query by Id.
+     * @alias vault.matters.savedQueries.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be retrieved.
+     * @param {string} params.savedQueryId Id of the saved query to be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Matters$Savedqueries$Get,
+        options?: MethodOptions): AxiosPromise<Schema$SavedQuery>;
+    get(params: Params$Resource$Matters$Savedqueries$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$SavedQuery>,
+        callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(params: Params$Resource$Matters$Savedqueries$Get,
+        callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(callback: BodyResponseCallback<Schema$SavedQuery>): void;
+    get(paramsOrCallback?: Params$Resource$Matters$Savedqueries$Get|
+        BodyResponseCallback<Schema$SavedQuery>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SavedQuery>,
+        callback?: BodyResponseCallback<Schema$SavedQuery>):
+        void|AxiosPromise<Schema$SavedQuery> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Matters$Savedqueries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Savedqueries$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/v1/matters/{matterId}/savedQueries/{savedQueryId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['matterId', 'savedQueryId'],
+        pathParams: ['matterId', 'savedQueryId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SavedQuery>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SavedQuery>(parameters);
+      }
+    }
+
+
+    /**
+     * vault.matters.savedQueries.list
+     * @desc Lists saved queries within a matter. An empty page token in
+     * ListSavedQueriesResponse denotes no more saved queries to list.
+     * @alias vault.matters.savedQueries.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.matterId The matter id of the parent matter for which the saved queries are to be retrieved.
+     * @param {integer=} params.pageSize The maximum number of saved queries to return.
+     * @param {string=} params.pageToken The pagination token as returned in the previous response. An empty token means start from the beginning.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Matters$Savedqueries$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListSavedQueriesResponse>;
+    list(
+        params: Params$Resource$Matters$Savedqueries$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+    list(
+        params: Params$Resource$Matters$Savedqueries$List,
+        callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSavedQueriesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Matters$Savedqueries$List|
+        BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListSavedQueriesResponse>,
+        callback?: BodyResponseCallback<Schema$ListSavedQueriesResponse>):
+        void|AxiosPromise<Schema$ListSavedQueriesResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Matters$Savedqueries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Matters$Savedqueries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/matters/{matterId}/savedQueries')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['matterId'],
+        pathParams: ['matterId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSavedQueriesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListSavedQueriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Matters$Savedqueries$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The matter id of the parent matter for which the saved query is to be
+     * created.
+     */
+    matterId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SavedQuery;
+  }
+  export interface Params$Resource$Matters$Savedqueries$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The matter id of the parent matter for which the saved query is to be
+     * deleted.
+     */
+    matterId?: string;
+    /**
+     * Id of the saved query to be deleted.
+     */
+    savedQueryId?: string;
+  }
+  export interface Params$Resource$Matters$Savedqueries$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The matter id of the parent matter for which the saved query is to be
+     * retrieved.
+     */
+    matterId?: string;
+    /**
+     * Id of the saved query to be retrieved.
+     */
+    savedQueryId?: string;
+  }
+  export interface Params$Resource$Matters$Savedqueries$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The matter id of the parent matter for which the saved queries are to be
+     * retrieved.
+     */
+    matterId?: string;
+    /**
+     * The maximum number of saved queries to return.
+     */
+    pageSize?: number;
+    /**
+     * The pagination token as returned in the previous response. An empty token
+     * means start from the beginning.
+     */
+    pageToken?: string;
   }
 }

@@ -29,10 +29,62 @@ export namespace videointelligence_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Video Intelligence API
    *
-   * Cloud Video Intelligence API.
+   * Detects objects, explicit content, and scene changes in videos. It also
+   * specifies the region for annotation and transcribes speech to text.
    *
    * @example
    * const {google} = require('googleapis');
@@ -184,6 +236,47 @@ export namespace videointelligence_v1 {
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
   }
   /**
+   * Alternative hypotheses (a.k.a. n-best list).
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative {
+    /**
+     * The confidence estimate between 0.0 and 1.0. A higher number indicates an
+     * estimated greater likelihood that the recognized words are correct. This
+     * field is typically provided only for the top hypothesis, and only for
+     * `is_final=true` results. Clients should not rely on the `confidence`
+     * field as it is not guaranteed to be accurate or consistent. The default
+     * of 0.0 is a sentinel value indicating `confidence` was not set.
+     */
+    confidence?: number;
+    /**
+     * Transcript text representing the words that the user spoke.
+     */
+    transcript?: string;
+    /**
+     * A list of word-specific information for each recognized word.
+     */
+    words?: Schema$GoogleCloudVideointelligenceV1beta2_WordInfo[];
+  }
+  /**
+   * A speech recognition result corresponding to a portion of the audio.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_SpeechTranscription {
+    /**
+     * May contain one or more recognition hypotheses (up to the maximum
+     * specified in `max_alternatives`).  These alternatives are ordered in
+     * terms of accuracy, with the top (first) alternative being the most
+     * probable, as ranked by the recognizer.
+     */
+    alternatives?:
+        Schema$GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative[];
+    /**
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag of the language in this result. This language code was
+     * detected to have the most likelihood of being spoken in the audio.
+     */
+    languageCode?: string;
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
@@ -247,6 +340,11 @@ export namespace videointelligence_v1 {
      */
     shotLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
+    /**
+     * Speech transcription.
+     */
+    speechTranscriptions?:
+        Schema$GoogleCloudVideointelligenceV1beta2_SpeechTranscription[];
   }
   /**
    * Video segment.
@@ -262,6 +360,48 @@ export namespace videointelligence_v1 {
      * start of the segment (inclusive).
      */
     startTimeOffset?: string;
+  }
+  /**
+   * Word-specific information for recognized words. Word information is only
+   * included in the response when certain request parameters are set, such as
+   * `enable_word_time_offsets`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_WordInfo {
+    /**
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative. This field is
+     * not guaranteed to be accurate and users should not rely on it to be
+     * always provided. The default of 0.0 is a sentinel value indicating
+     * `confidence` was not set.
+     */
+    confidence?: number;
+    /**
+     * Time offset relative to the beginning of the audio, and corresponding to
+     * the end of the spoken word. This field is only set if
+     * `enable_word_time_offsets=true` and only in the top hypothesis. This is
+     * an experimental feature and the accuracy of the time offset can vary.
+     */
+    endTime?: string;
+    /**
+     * Output only. A distinct integer value is assigned for every speaker
+     * within the audio. This field specifies which one of those speakers was
+     * detected to have spoken this word. Value ranges from 1 up to
+     * diarization_speaker_count, and is only set if speaker diarization is
+     * enabled.
+     */
+    speakerTag?: number;
+    /**
+     * Time offset relative to the beginning of the audio, and corresponding to
+     * the start of the spoken word. This field is only set if
+     * `enable_word_time_offsets=true` and only in the top hypothesis. This is
+     * an experimental feature and the accuracy of the time offset can vary.
+     */
+    startTime?: string;
+    /**
+     * The word corresponding to this set of information.
+     */
+    word?: string;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the
@@ -415,6 +555,12 @@ export namespace videointelligence_v1 {
      */
     alternatives?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
+    /**
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag of the language in this result. This language code was
+     * detected to have the most likelihood of being spoken in the audio.
+     */
+    languageCode?: string;
   }
   /**
    * Annotation progress for a single video.
@@ -751,20 +897,52 @@ export namespace videointelligence_v1 {
     timeOffset?: string;
   }
   /**
+   * Alternative hypotheses (a.k.a. n-best list).
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative {
+    /**
+     * The confidence estimate between 0.0 and 1.0. A higher number indicates an
+     * estimated greater likelihood that the recognized words are correct. This
+     * field is typically provided only for the top hypothesis, and only for
+     * `is_final=true` results. Clients should not rely on the `confidence`
+     * field as it is not guaranteed to be accurate or consistent. The default
+     * of 0.0 is a sentinel value indicating `confidence` was not set.
+     */
+    confidence?: number;
+    /**
+     * Transcript text representing the words that the user spoke.
+     */
+    transcript?: string;
+    /**
+     * A list of word-specific information for each recognized word.
+     */
+    words?: Schema$GoogleCloudVideointelligenceV1p2beta1_WordInfo[];
+  }
+  /**
+   * A speech recognition result corresponding to a portion of the audio.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechTranscription {
+    /**
+     * May contain one or more recognition hypotheses (up to the maximum
+     * specified in `max_alternatives`).  These alternatives are ordered in
+     * terms of accuracy, with the top (first) alternative being the most
+     * probable, as ranked by the recognizer.
+     */
+    alternatives?:
+        Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative[];
+    /**
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag of the language in this result. This language code was
+     * detected to have the most likelihood of being spoken in the audio.
+     */
+    languageCode?: string;
+  }
+  /**
    * Annotations related to one detected OCR text snippet. This will contain the
    * corresponding text, confidence value, and frame level information for each
    * detection.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_TextAnnotation {
-    /**
-     * Confidence for the track of detected text. It is calculated as the
-     * highest over all frames where OCR detected text appears.
-     */
-    confidence?: number;
-    /**
-     * Information related to the frames where OCR detected text appears.
-     */
-    frames?: Schema$GoogleCloudVideointelligenceV1p2beta1_TextFrame[];
     /**
      * All video segments where OCR detected text appears.
      */
@@ -794,6 +972,15 @@ export namespace videointelligence_v1 {
    * Video segment level annotation results for text detection.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_TextSegment {
+    /**
+     * Confidence for the track of detected text. It is calculated as the
+     * highest over all frames where OCR detected text appears.
+     */
+    confidence?: number;
+    /**
+     * Information related to the frames where OCR detected text appears.
+     */
+    frames?: Schema$GoogleCloudVideointelligenceV1p2beta1_TextFrame[];
     /**
      * Video segment where a text snippet was detected.
      */
@@ -870,6 +1057,11 @@ export namespace videointelligence_v1 {
     shotLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
+     * Speech transcription.
+     */
+    speechTranscriptions?:
+        Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechTranscription[];
+    /**
      * OCR text detection and tracking. Annotations for list of detected text
      * snippets. Each will have list of frame information associated with it.
      */
@@ -890,6 +1082,48 @@ export namespace videointelligence_v1 {
      * start of the segment (inclusive).
      */
     startTimeOffset?: string;
+  }
+  /**
+   * Word-specific information for recognized words. Word information is only
+   * included in the response when certain request parameters are set, such as
+   * `enable_word_time_offsets`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_WordInfo {
+    /**
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative. This field is
+     * not guaranteed to be accurate and users should not rely on it to be
+     * always provided. The default of 0.0 is a sentinel value indicating
+     * `confidence` was not set.
+     */
+    confidence?: number;
+    /**
+     * Time offset relative to the beginning of the audio, and corresponding to
+     * the end of the spoken word. This field is only set if
+     * `enable_word_time_offsets=true` and only in the top hypothesis. This is
+     * an experimental feature and the accuracy of the time offset can vary.
+     */
+    endTime?: string;
+    /**
+     * Output only. A distinct integer value is assigned for every speaker
+     * within the audio. This field specifies which one of those speakers was
+     * detected to have spoken this word. Value ranges from 1 up to
+     * diarization_speaker_count, and is only set if speaker diarization is
+     * enabled.
+     */
+    speakerTag?: number;
+    /**
+     * Time offset relative to the beginning of the audio, and corresponding to
+     * the start of the spoken word. This field is only set if
+     * `enable_word_time_offsets=true` and only in the top hypothesis. This is
+     * an experimental feature and the accuracy of the time offset can vary.
+     */
+    startTime?: string;
+    /**
+     * The word corresponding to this set of information.
+     */
+    word?: string;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the
@@ -1101,6 +1335,132 @@ export namespace videointelligence_v1 {
     model?: string;
   }
   /**
+   * Provides &quot;hints&quot; to the speech recognizer to favor specific words
+   * and phrases in the results.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_SpeechContext {
+    /**
+     * *Optional* A list of strings containing words and phrases
+     * &quot;hints&quot; so that the speech recognition is more likely to
+     * recognize them. This can be used to improve the accuracy for specific
+     * words and phrases, for example, if specific commands are typically spoken
+     * by the user. This can also be used to add additional words to the
+     * vocabulary of the recognizer. See [usage
+     * limits](https://cloud.google.com/speech/limits#content).
+     */
+    phrases?: string[];
+  }
+  /**
+   * Alternative hypotheses (a.k.a. n-best list).
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative {
+    /**
+     * The confidence estimate between 0.0 and 1.0. A higher number indicates an
+     * estimated greater likelihood that the recognized words are correct. This
+     * field is typically provided only for the top hypothesis, and only for
+     * `is_final=true` results. Clients should not rely on the `confidence`
+     * field as it is not guaranteed to be accurate or consistent. The default
+     * of 0.0 is a sentinel value indicating `confidence` was not set.
+     */
+    confidence?: number;
+    /**
+     * Transcript text representing the words that the user spoke.
+     */
+    transcript?: string;
+    /**
+     * A list of word-specific information for each recognized word.
+     */
+    words?: Schema$GoogleCloudVideointelligenceV1_WordInfo[];
+  }
+  /**
+   * A speech recognition result corresponding to a portion of the audio.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_SpeechTranscription {
+    /**
+     * May contain one or more recognition hypotheses (up to the maximum
+     * specified in `max_alternatives`).  These alternatives are ordered in
+     * terms of accuracy, with the top (first) alternative being the most
+     * probable, as ranked by the recognizer.
+     */
+    alternatives?:
+        Schema$GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative[];
+    /**
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag of the language in this result. This language code was
+     * detected to have the most likelihood of being spoken in the audio.
+     */
+    languageCode?: string;
+  }
+  /**
+   * Config for SPEECH_TRANSCRIPTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_SpeechTranscriptionConfig {
+    /**
+     * *Optional* For file formats, such as MXF or MKV, supporting multiple
+     * audio tracks, specify up to two tracks. Default: track 0.
+     */
+    audioTracks?: number[];
+    /**
+     * *Optional* If set, specifies the estimated number of speakers in the
+     * conversation. If not set, defaults to &#39;2&#39;. Ignored unless
+     * enable_speaker_diarization is set to true.
+     */
+    diarizationSpeakerCount?: number;
+    /**
+     * *Optional* If &#39;true&#39;, adds punctuation to recognition result
+     * hypotheses. This feature is only available in select languages. Setting
+     * this for requests in other languages has no effect at all. The default
+     * &#39;false&#39; value does not add punctuation to result hypotheses.
+     * NOTE: &quot;This is currently offered as an experimental service,
+     * complimentary to all users. In the future this may be exclusively
+     * available as a premium feature.&quot;
+     */
+    enableAutomaticPunctuation?: boolean;
+    /**
+     * *Optional* If &#39;true&#39;, enables speaker detection for each
+     * recognized word in the top alternative of the recognition result using a
+     * speaker_tag provided in the WordInfo. Note: When this is true, we send
+     * all the words from the beginning of the audio for the top alternative in
+     * every consecutive responses. This is done in order to improve our speaker
+     * tags as our models learn to identify the speakers in the conversation
+     * over time.
+     */
+    enableSpeakerDiarization?: boolean;
+    /**
+     * *Optional* If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     */
+    enableWordConfidence?: boolean;
+    /**
+     * *Optional* If set to `true`, the server will attempt to filter out
+     * profanities, replacing all but the initial character in each filtered
+     * word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted,
+     * profanities won&#39;t be filtered out.
+     */
+    filterProfanity?: boolean;
+    /**
+     * *Required* The language of the supplied audio as a
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     * Example: &quot;en-US&quot;. See [Language
+     * Support](https://cloud.google.com/speech/docs/languages) for a list of
+     * the currently supported language codes.
+     */
+    languageCode?: string;
+    /**
+     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Specifically, the maximum number of `SpeechRecognitionAlternative`
+     * messages within each `SpeechTranscription`. The server may return fewer
+     * than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1`
+     * will return a maximum of one. If omitted, will return a maximum of one.
+     */
+    maxAlternatives?: number;
+    /**
+     * *Optional* A means to provide context to assist the speech recognition.
+     */
+    speechContexts?: Schema$GoogleCloudVideointelligenceV1_SpeechContext[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
@@ -1164,6 +1524,11 @@ export namespace videointelligence_v1 {
      */
     shotLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
+    /**
+     * Speech transcription.
+     */
+    speechTranscriptions?:
+        Schema$GoogleCloudVideointelligenceV1_SpeechTranscription[];
   }
   /**
    * Video context and/or feature-specific parameters.
@@ -1190,6 +1555,11 @@ export namespace videointelligence_v1 {
      */
     shotChangeDetectionConfig?:
         Schema$GoogleCloudVideointelligenceV1_ShotChangeDetectionConfig;
+    /**
+     * Config for SPEECH_TRANSCRIPTION.
+     */
+    speechTranscriptionConfig?:
+        Schema$GoogleCloudVideointelligenceV1_SpeechTranscriptionConfig;
   }
   /**
    * Video segment.
@@ -1205,6 +1575,48 @@ export namespace videointelligence_v1 {
      * start of the segment (inclusive).
      */
     startTimeOffset?: string;
+  }
+  /**
+   * Word-specific information for recognized words. Word information is only
+   * included in the response when certain request parameters are set, such as
+   * `enable_word_time_offsets`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_WordInfo {
+    /**
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative. This field is
+     * not guaranteed to be accurate and users should not rely on it to be
+     * always provided. The default of 0.0 is a sentinel value indicating
+     * `confidence` was not set.
+     */
+    confidence?: number;
+    /**
+     * Time offset relative to the beginning of the audio, and corresponding to
+     * the end of the spoken word. This field is only set if
+     * `enable_word_time_offsets=true` and only in the top hypothesis. This is
+     * an experimental feature and the accuracy of the time offset can vary.
+     */
+    endTime?: string;
+    /**
+     * Output only. A distinct integer value is assigned for every speaker
+     * within the audio. This field specifies which one of those speakers was
+     * detected to have spoken this word. Value ranges from 1 up to
+     * diarization_speaker_count, and is only set if speaker diarization is
+     * enabled.
+     */
+    speakerTag?: number;
+    /**
+     * Time offset relative to the beginning of the audio, and corresponding to
+     * the start of the spoken word. This field is only set if
+     * `enable_word_time_offsets=true` and only in the top hypothesis. This is
+     * an experimental feature and the accuracy of the time offset can vary.
+     */
+    startTime?: string;
+    /**
+     * The word corresponding to this set of information.
+     */
+    word?: string;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1638,7 +2050,8 @@ export namespace videointelligence_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1654,7 +2067,8 @@ export namespace videointelligence_v1 {
      */
     requestBody?: Schema$GoogleLongrunning_CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete {
+  export interface Params$Resource$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1665,7 +2079,7 @@ export namespace videointelligence_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1676,7 +2090,7 @@ export namespace videointelligence_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1788,7 +2202,7 @@ export namespace videointelligence_v1 {
     }
   }
 
-  export interface Params$Resource$Videos$Annotate {
+  export interface Params$Resource$Videos$Annotate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

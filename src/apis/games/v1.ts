@@ -29,6 +29,40 @@ export namespace games_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Play Game Services API
    *
@@ -3010,7 +3044,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Achievementdefinitions$List {
+  export interface Params$Resource$Achievementdefinitions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3508,7 +3543,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Achievements$Increment {
+  export interface Params$Resource$Achievements$Increment extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3529,7 +3565,8 @@ export namespace games_v1 {
      */
     stepsToIncrement?: number;
   }
-  export interface Params$Resource$Achievements$List {
+  export interface Params$Resource$Achievements$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3560,7 +3597,8 @@ export namespace games_v1 {
      */
     state?: string;
   }
-  export interface Params$Resource$Achievements$Reveal {
+  export interface Params$Resource$Achievements$Reveal extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3571,7 +3609,8 @@ export namespace games_v1 {
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Setstepsatleast {
+  export interface Params$Resource$Achievements$Setstepsatleast extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3586,7 +3625,8 @@ export namespace games_v1 {
      */
     steps?: number;
   }
-  export interface Params$Resource$Achievements$Unlock {
+  export interface Params$Resource$Achievements$Unlock extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3601,7 +3641,8 @@ export namespace games_v1 {
      */
     builtinGameId?: string;
   }
-  export interface Params$Resource$Achievements$Updatemultiple {
+  export interface Params$Resource$Achievements$Updatemultiple extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3835,7 +3876,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Applications$Get {
+  export interface Params$Resource$Applications$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3854,7 +3895,8 @@ export namespace games_v1 {
      */
     platformType?: string;
   }
-  export interface Params$Resource$Applications$Played {
+  export interface Params$Resource$Applications$Played extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3865,7 +3907,8 @@ export namespace games_v1 {
      */
     builtinGameId?: string;
   }
-  export interface Params$Resource$Applications$Verify {
+  export interface Params$Resource$Applications$Verify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4103,7 +4146,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Events$Listbyplayer {
+  export interface Params$Resource$Events$Listbyplayer extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4124,7 +4168,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Events$Listdefinitions {
+  export interface Params$Resource$Events$Listdefinitions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4145,7 +4190,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Events$Record {
+  export interface Params$Resource$Events$Record extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4307,7 +4352,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Leaderboards$Get {
+  export interface Params$Resource$Leaderboards$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4322,7 +4367,8 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Leaderboards$List {
+  export interface Params$Resource$Leaderboards$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4499,13 +4545,15 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Metagame$Getmetagameconfig {
+  export interface Params$Resource$Metagame$Getmetagameconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Metagame$Listcategoriesbyplayer {
+  export interface Params$Resource$Metagame$Listcategoriesbyplayer extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4680,7 +4728,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Players$Get {
+  export interface Params$Resource$Players$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4696,7 +4744,7 @@ export namespace games_v1 {
      */
     playerId?: string;
   }
-  export interface Params$Resource$Players$List {
+  export interface Params$Resource$Players$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4864,7 +4912,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Pushtokens$Remove {
+  export interface Params$Resource$Pushtokens$Remove extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4876,7 +4925,8 @@ export namespace games_v1 {
      */
     requestBody?: Schema$PushTokenId;
   }
-  export interface Params$Resource$Pushtokens$Update {
+  export interface Params$Resource$Pushtokens$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4972,7 +5022,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Questmilestones$Claim {
+  export interface Params$Resource$Questmilestones$Claim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5141,7 +5192,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Quests$Accept {
+  export interface Params$Resource$Quests$Accept extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5156,7 +5207,7 @@ export namespace games_v1 {
      */
     questId?: string;
   }
-  export interface Params$Resource$Quests$List {
+  export interface Params$Resource$Quests$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5263,7 +5314,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Revisions$Check {
+  export interface Params$Resource$Revisions$Check extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5819,7 +5870,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Rooms$Create {
+  export interface Params$Resource$Rooms$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5835,7 +5886,7 @@ export namespace games_v1 {
      */
     requestBody?: Schema$RoomCreateRequest;
   }
-  export interface Params$Resource$Rooms$Decline {
+  export interface Params$Resource$Rooms$Decline extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5850,7 +5901,7 @@ export namespace games_v1 {
      */
     roomId?: string;
   }
-  export interface Params$Resource$Rooms$Dismiss {
+  export interface Params$Resource$Rooms$Dismiss extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5861,7 +5912,7 @@ export namespace games_v1 {
      */
     roomId?: string;
   }
-  export interface Params$Resource$Rooms$Get {
+  export interface Params$Resource$Rooms$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5876,7 +5927,7 @@ export namespace games_v1 {
      */
     roomId?: string;
   }
-  export interface Params$Resource$Rooms$Join {
+  export interface Params$Resource$Rooms$Join extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5896,7 +5947,7 @@ export namespace games_v1 {
      */
     requestBody?: Schema$RoomJoinRequest;
   }
-  export interface Params$Resource$Rooms$Leave {
+  export interface Params$Resource$Rooms$Leave extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5916,7 +5967,7 @@ export namespace games_v1 {
      */
     requestBody?: Schema$RoomLeaveRequest;
   }
-  export interface Params$Resource$Rooms$List {
+  export interface Params$Resource$Rooms$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5937,7 +5988,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Rooms$Reportstatus {
+  export interface Params$Resource$Rooms$Reportstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6342,7 +6394,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Scores$Get {
+  export interface Params$Resource$Scores$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6382,7 +6434,7 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$List {
+  export interface Params$Resource$Scores$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6415,7 +6467,8 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$Listwindow {
+  export interface Params$Resource$Scores$Listwindow extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6460,7 +6513,7 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$Submit {
+  export interface Params$Resource$Scores$Submit extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6490,7 +6543,8 @@ export namespace games_v1 {
      */
     scoreTag?: string;
   }
-  export interface Params$Resource$Scores$Submitmultiple {
+  export interface Params$Resource$Scores$Submitmultiple extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6652,7 +6706,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Snapshots$Get {
+  export interface Params$Resource$Snapshots$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6667,7 +6721,7 @@ export namespace games_v1 {
      */
     snapshotId?: string;
   }
-  export interface Params$Resource$Snapshots$List {
+  export interface Params$Resource$Snapshots$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7605,7 +7659,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Turnbasedmatches$Cancel {
+  export interface Params$Resource$Turnbasedmatches$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7616,7 +7671,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Create {
+  export interface Params$Resource$Turnbasedmatches$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7632,7 +7688,8 @@ export namespace games_v1 {
      */
     requestBody?: Schema$TurnBasedMatchCreateRequest;
   }
-  export interface Params$Resource$Turnbasedmatches$Decline {
+  export interface Params$Resource$Turnbasedmatches$Decline extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7647,7 +7704,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Dismiss {
+  export interface Params$Resource$Turnbasedmatches$Dismiss extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7658,7 +7716,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Finish {
+  export interface Params$Resource$Turnbasedmatches$Finish extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7678,7 +7737,8 @@ export namespace games_v1 {
      */
     requestBody?: Schema$TurnBasedMatchResults;
   }
-  export interface Params$Resource$Turnbasedmatches$Get {
+  export interface Params$Resource$Turnbasedmatches$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7697,7 +7757,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Join {
+  export interface Params$Resource$Turnbasedmatches$Join extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7712,7 +7773,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Leave {
+  export interface Params$Resource$Turnbasedmatches$Leave extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7727,7 +7789,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Leaveturn {
+  export interface Params$Resource$Turnbasedmatches$Leaveturn extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7753,7 +7816,8 @@ export namespace games_v1 {
      */
     pendingParticipantId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$List {
+  export interface Params$Resource$Turnbasedmatches$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7788,7 +7852,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Rematch {
+  export interface Params$Resource$Turnbasedmatches$Rematch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7809,7 +7874,8 @@ export namespace games_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Sync {
+  export interface Params$Resource$Turnbasedmatches$Sync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7844,7 +7910,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Taketurn {
+  export interface Params$Resource$Turnbasedmatches$Taketurn extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

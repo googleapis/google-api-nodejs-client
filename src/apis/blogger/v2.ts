@@ -29,6 +29,40 @@ export namespace blogger_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Blogger API
    *
@@ -422,7 +456,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Blogs$Get {
+  export interface Params$Resource$Blogs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -583,7 +617,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -602,7 +636,7 @@ export namespace blogger_v2 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -774,7 +808,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Pages$Get {
+  export interface Params$Resource$Pages$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -789,7 +823,7 @@ export namespace blogger_v2 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Pages$List {
+  export interface Params$Resource$Pages$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -948,7 +982,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Posts$Get {
+  export interface Params$Resource$Posts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -963,7 +997,7 @@ export namespace blogger_v2 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Posts$List {
+  export interface Params$Resource$Posts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1067,7 +1101,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Users$Get {
+  export interface Params$Resource$Users$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1155,7 +1189,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Users$Blogs$List {
+  export interface Params$Resource$Users$Blogs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -2,7 +2,7 @@
 
 # @google/iamcredentials
 
-> IAM Service Account Credentials API
+> Creates short-lived, limited-privilege credentials for IAM service accounts.
 
 ## Installation
 

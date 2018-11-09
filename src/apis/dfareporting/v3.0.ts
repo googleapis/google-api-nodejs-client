@@ -29,6 +29,40 @@ export namespace dfareporting_v3_0 {
     version: 'v3_0';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * DCM/DFA Reporting And Trafficking API
    *
@@ -7606,7 +7640,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Accountactiveadsummaries$Get {
+  export interface Params$Resource$Accountactiveadsummaries$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7782,7 +7817,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Accountpermissiongroups$Get {
+  export interface Params$Resource$Accountpermissiongroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7797,7 +7833,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountpermissiongroups$List {
+  export interface Params$Resource$Accountpermissiongroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7964,7 +8001,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Accountpermissions$Get {
+  export interface Params$Resource$Accountpermissions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7979,7 +8017,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountpermissions$List {
+  export interface Params$Resource$Accountpermissions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8275,7 +8314,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8290,7 +8329,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8335,7 +8374,7 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Accounts$Patch {
+  export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8355,7 +8394,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$Update {
+  export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8751,7 +8790,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Accountuserprofiles$Get {
+  export interface Params$Resource$Accountuserprofiles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8766,7 +8806,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountuserprofiles$Insert {
+  export interface Params$Resource$Accountuserprofiles$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8782,7 +8823,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$AccountUserProfile;
   }
-  export interface Params$Resource$Accountuserprofiles$List {
+  export interface Params$Resource$Accountuserprofiles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8835,7 +8877,8 @@ export namespace dfareporting_v3_0 {
      */
     userRoleId?: string;
   }
-  export interface Params$Resource$Accountuserprofiles$Patch {
+  export interface Params$Resource$Accountuserprofiles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8855,7 +8898,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$AccountUserProfile;
   }
-  export interface Params$Resource$Accountuserprofiles$Update {
+  export interface Params$Resource$Accountuserprofiles$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9233,7 +9277,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Ads$Get {
+  export interface Params$Resource$Ads$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9248,7 +9292,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Ads$Insert {
+  export interface Params$Resource$Ads$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9264,7 +9308,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Ad;
   }
-  export interface Params$Resource$Ads$List {
+  export interface Params$Resource$Ads$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9380,7 +9424,7 @@ export namespace dfareporting_v3_0 {
      */
     type?: string;
   }
-  export interface Params$Resource$Ads$Patch {
+  export interface Params$Resource$Ads$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9400,7 +9444,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Ad;
   }
-  export interface Params$Resource$Ads$Update {
+  export interface Params$Resource$Ads$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9859,7 +9903,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Advertisergroups$Delete {
+  export interface Params$Resource$Advertisergroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9874,7 +9919,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisergroups$Get {
+  export interface Params$Resource$Advertisergroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9889,7 +9935,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisergroups$Insert {
+  export interface Params$Resource$Advertisergroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9905,7 +9952,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$AdvertiserGroup;
   }
-  export interface Params$Resource$Advertisergroups$List {
+  export interface Params$Resource$Advertisergroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9946,7 +9994,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Advertisergroups$Patch {
+  export interface Params$Resource$Advertisergroups$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9966,7 +10015,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$AdvertiserGroup;
   }
-  export interface Params$Resource$Advertisergroups$Update {
+  export interface Params$Resource$Advertisergroups$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10363,7 +10413,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Advertiserlandingpages$Get {
+  export interface Params$Resource$Advertiserlandingpages$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10378,7 +10429,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertiserlandingpages$Insert {
+  export interface Params$Resource$Advertiserlandingpages$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10394,7 +10446,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$LandingPage;
   }
-  export interface Params$Resource$Advertiserlandingpages$List {
+  export interface Params$Resource$Advertiserlandingpages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10448,7 +10501,8 @@ export namespace dfareporting_v3_0 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Advertiserlandingpages$Patch {
+  export interface Params$Resource$Advertiserlandingpages$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10468,7 +10522,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$LandingPage;
   }
-  export interface Params$Resource$Advertiserlandingpages$Update {
+  export interface Params$Resource$Advertiserlandingpages$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10851,7 +10906,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Advertisers$Get {
+  export interface Params$Resource$Advertisers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10866,7 +10921,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisers$Insert {
+  export interface Params$Resource$Advertisers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10882,7 +10938,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Advertiser;
   }
-  export interface Params$Resource$Advertisers$List {
+  export interface Params$Resource$Advertisers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10948,7 +11004,8 @@ export namespace dfareporting_v3_0 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Advertisers$Patch {
+  export interface Params$Resource$Advertisers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10968,7 +11025,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Advertiser;
   }
-  export interface Params$Resource$Advertisers$Update {
+  export interface Params$Resource$Advertisers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11065,7 +11123,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Browsers$List {
+  export interface Params$Resource$Browsers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11251,7 +11309,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Campaigncreativeassociations$Insert {
+  export interface Params$Resource$Campaigncreativeassociations$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11271,7 +11330,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$CampaignCreativeAssociation;
   }
-  export interface Params$Resource$Campaigncreativeassociations$List {
+  export interface Params$Resource$Campaigncreativeassociations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11656,7 +11716,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Campaigns$Get {
+  export interface Params$Resource$Campaigns$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11671,7 +11731,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Campaigns$Insert {
+  export interface Params$Resource$Campaigns$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11687,7 +11747,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Campaign;
   }
-  export interface Params$Resource$Campaigns$List {
+  export interface Params$Resource$Campaigns$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11758,7 +11818,7 @@ export namespace dfareporting_v3_0 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Campaigns$Patch {
+  export interface Params$Resource$Campaigns$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11778,7 +11838,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Campaign;
   }
-  export interface Params$Resource$Campaigns$Update {
+  export interface Params$Resource$Campaigns$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11950,7 +12010,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Changelogs$Get {
+  export interface Params$Resource$Changelogs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11965,7 +12025,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Changelogs$List {
+  export interface Params$Resource$Changelogs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12111,7 +12171,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Cities$List {
+  export interface Params$Resource$Cities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12292,7 +12352,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Connectiontypes$Get {
+  export interface Params$Resource$Connectiontypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12307,7 +12368,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Connectiontypes$List {
+  export interface Params$Resource$Connectiontypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12761,7 +12823,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Contentcategories$Delete {
+  export interface Params$Resource$Contentcategories$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12776,7 +12839,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Contentcategories$Get {
+  export interface Params$Resource$Contentcategories$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12791,7 +12855,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Contentcategories$Insert {
+  export interface Params$Resource$Contentcategories$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12807,7 +12872,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$ContentCategory;
   }
-  export interface Params$Resource$Contentcategories$List {
+  export interface Params$Resource$Contentcategories$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12848,7 +12914,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Contentcategories$Patch {
+  export interface Params$Resource$Contentcategories$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12868,7 +12935,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$ContentCategory;
   }
-  export interface Params$Resource$Contentcategories$Update {
+  export interface Params$Resource$Contentcategories$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13054,7 +13122,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Conversions$Batchinsert {
+  export interface Params$Resource$Conversions$Batchinsert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13070,7 +13139,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$ConversionsBatchInsertRequest;
   }
-  export interface Params$Resource$Conversions$Batchupdate {
+  export interface Params$Resource$Conversions$Batchupdate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13231,7 +13301,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Countries$Get {
+  export interface Params$Resource$Countries$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13246,7 +13316,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Countries$List {
+  export interface Params$Resource$Countries$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13350,7 +13420,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Creativeassets$Insert {
+  export interface Params$Resource$Creativeassets$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13826,7 +13897,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Creativefields$Delete {
+  export interface Params$Resource$Creativefields$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13841,7 +13913,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefields$Get {
+  export interface Params$Resource$Creativefields$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13856,7 +13929,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefields$Insert {
+  export interface Params$Resource$Creativefields$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13872,7 +13946,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$CreativeField;
   }
-  export interface Params$Resource$Creativefields$List {
+  export interface Params$Resource$Creativefields$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13917,7 +13992,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativefields$Patch {
+  export interface Params$Resource$Creativefields$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13937,7 +14013,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$CreativeField;
   }
-  export interface Params$Resource$Creativefields$Update {
+  export interface Params$Resource$Creativefields$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14404,7 +14481,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Creativefieldvalues$Delete {
+  export interface Params$Resource$Creativefieldvalues$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14423,7 +14501,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Get {
+  export interface Params$Resource$Creativefieldvalues$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14442,7 +14521,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Insert {
+  export interface Params$Resource$Creativefieldvalues$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14462,7 +14542,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$CreativeFieldValue;
   }
-  export interface Params$Resource$Creativefieldvalues$List {
+  export interface Params$Resource$Creativefieldvalues$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14502,7 +14583,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Patch {
+  export interface Params$Resource$Creativefieldvalues$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14526,7 +14608,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$CreativeFieldValue;
   }
-  export interface Params$Resource$Creativefieldvalues$Update {
+  export interface Params$Resource$Creativefieldvalues$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14920,7 +15003,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Creativegroups$Get {
+  export interface Params$Resource$Creativegroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14935,7 +15019,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativegroups$Insert {
+  export interface Params$Resource$Creativegroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14951,7 +15036,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$CreativeGroup;
   }
-  export interface Params$Resource$Creativegroups$List {
+  export interface Params$Resource$Creativegroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15000,7 +15086,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativegroups$Patch {
+  export interface Params$Resource$Creativegroups$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15020,7 +15107,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$CreativeGroup;
   }
-  export interface Params$Resource$Creativegroups$Update {
+  export interface Params$Resource$Creativegroups$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15397,7 +15485,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Creatives$Get {
+  export interface Params$Resource$Creatives$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15412,7 +15500,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creatives$Insert {
+  export interface Params$Resource$Creatives$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15428,7 +15516,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Creatives$List {
+  export interface Params$Resource$Creatives$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15511,7 +15599,7 @@ export namespace dfareporting_v3_0 {
      */
     types?: string;
   }
-  export interface Params$Resource$Creatives$Patch {
+  export interface Params$Resource$Creatives$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15531,7 +15619,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Creatives$Update {
+  export interface Params$Resource$Creatives$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15633,7 +15721,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Dimensionvalues$Query {
+  export interface Params$Resource$Dimensionvalues$Query extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15826,7 +15915,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Directorysitecontacts$Get {
+  export interface Params$Resource$Directorysitecontacts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15841,7 +15931,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Directorysitecontacts$List {
+  export interface Params$Resource$Directorysitecontacts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16125,7 +16216,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Directorysites$Get {
+  export interface Params$Resource$Directorysites$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16140,7 +16232,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Directorysites$Insert {
+  export interface Params$Resource$Directorysites$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16156,7 +16249,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$DirectorySite;
   }
-  export interface Params$Resource$Directorysites$List {
+  export interface Params$Resource$Directorysites$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16471,7 +16565,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Dynamictargetingkeys$Delete {
+  export interface Params$Resource$Dynamictargetingkeys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16497,7 +16592,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Dynamictargetingkeys$Insert {
+  export interface Params$Resource$Dynamictargetingkeys$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16513,7 +16609,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$DynamicTargetingKey;
   }
-  export interface Params$Resource$Dynamictargetingkeys$List {
+  export interface Params$Resource$Dynamictargetingkeys$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16961,7 +17058,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Eventtags$Delete {
+  export interface Params$Resource$Eventtags$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16976,7 +17073,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Eventtags$Get {
+  export interface Params$Resource$Eventtags$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16991,7 +17088,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Eventtags$Insert {
+  export interface Params$Resource$Eventtags$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17007,7 +17104,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$EventTag;
   }
-  export interface Params$Resource$Eventtags$List {
+  export interface Params$Resource$Eventtags$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17078,7 +17175,7 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Eventtags$Patch {
+  export interface Params$Resource$Eventtags$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17098,7 +17195,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$EventTag;
   }
-  export interface Params$Resource$Eventtags$Update {
+  export interface Params$Resource$Eventtags$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17262,7 +17359,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Files$Get {
+  export interface Params$Resource$Files$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17277,7 +17374,7 @@ export namespace dfareporting_v3_0 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Files$List {
+  export interface Params$Resource$Files$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17840,7 +17937,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Floodlightactivities$Delete {
+  export interface Params$Resource$Floodlightactivities$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17855,7 +17953,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Generatetag {
+  export interface Params$Resource$Floodlightactivities$Generatetag extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17870,7 +17969,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Get {
+  export interface Params$Resource$Floodlightactivities$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17885,7 +17985,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Insert {
+  export interface Params$Resource$Floodlightactivities$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17901,7 +18002,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$FloodlightActivity;
   }
-  export interface Params$Resource$Floodlightactivities$List {
+  export interface Params$Resource$Floodlightactivities$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17981,7 +18083,8 @@ export namespace dfareporting_v3_0 {
      */
     tagString?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Patch {
+  export interface Params$Resource$Floodlightactivities$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18001,7 +18104,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$FloodlightActivity;
   }
-  export interface Params$Resource$Floodlightactivities$Update {
+  export interface Params$Resource$Floodlightactivities$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18405,7 +18509,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Floodlightactivitygroups$Get {
+  export interface Params$Resource$Floodlightactivitygroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18420,7 +18525,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Insert {
+  export interface Params$Resource$Floodlightactivitygroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18436,7 +18542,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$FloodlightActivityGroup;
   }
-  export interface Params$Resource$Floodlightactivitygroups$List {
+  export interface Params$Resource$Floodlightactivitygroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18497,7 +18604,8 @@ export namespace dfareporting_v3_0 {
      */
     type?: string;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Patch {
+  export interface Params$Resource$Floodlightactivitygroups$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18517,7 +18625,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$FloodlightActivityGroup;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Update {
+  export interface Params$Resource$Floodlightactivitygroups$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18840,7 +18949,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Floodlightconfigurations$Get {
+  export interface Params$Resource$Floodlightconfigurations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18855,7 +18965,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightconfigurations$List {
+  export interface Params$Resource$Floodlightconfigurations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18871,7 +18982,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightconfigurations$Patch {
+  export interface Params$Resource$Floodlightconfigurations$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18891,7 +19003,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$FloodlightConfiguration;
   }
-  export interface Params$Resource$Floodlightconfigurations$Update {
+  export interface Params$Resource$Floodlightconfigurations$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19072,7 +19185,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Inventoryitems$Get {
+  export interface Params$Resource$Inventoryitems$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19091,7 +19205,8 @@ export namespace dfareporting_v3_0 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Inventoryitems$List {
+  export interface Params$Resource$Inventoryitems$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19223,7 +19338,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Languages$List {
+  export interface Params$Resource$Languages$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19314,7 +19429,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Metros$List {
+  export interface Params$Resource$Metros$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19478,7 +19593,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Mobilecarriers$Get {
+  export interface Params$Resource$Mobilecarriers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19493,7 +19609,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Mobilecarriers$List {
+  export interface Params$Resource$Mobilecarriers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19660,7 +19777,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Operatingsystems$Get {
+  export interface Params$Resource$Operatingsystems$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19675,7 +19793,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Operatingsystems$List {
+  export interface Params$Resource$Operatingsystems$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19847,7 +19966,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Operatingsystemversions$Get {
+  export interface Params$Resource$Operatingsystemversions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19862,7 +19982,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Operatingsystemversions$List {
+  export interface Params$Resource$Operatingsystemversions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20038,7 +20159,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Orderdocuments$Get {
+  export interface Params$Resource$Orderdocuments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20057,7 +20179,8 @@ export namespace dfareporting_v3_0 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Orderdocuments$List {
+  export interface Params$Resource$Orderdocuments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20269,7 +20392,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Orders$Get {
+  export interface Params$Resource$Orders$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20288,7 +20411,7 @@ export namespace dfareporting_v3_0 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Orders$List {
+  export interface Params$Resource$Orders$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20722,7 +20845,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Placementgroups$Get {
+  export interface Params$Resource$Placementgroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20737,7 +20861,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementgroups$Insert {
+  export interface Params$Resource$Placementgroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20753,7 +20878,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$PlacementGroup;
   }
-  export interface Params$Resource$Placementgroups$List {
+  export interface Params$Resource$Placementgroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20861,7 +20987,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Placementgroups$Patch {
+  export interface Params$Resource$Placementgroups$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20881,7 +21008,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$PlacementGroup;
   }
-  export interface Params$Resource$Placementgroups$Update {
+  export interface Params$Resource$Placementgroups$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21351,7 +21479,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Placements$Generatetags {
+  export interface Params$Resource$Placements$Generatetags extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21375,7 +21504,7 @@ export namespace dfareporting_v3_0 {
      */
     tagFormats?: string;
   }
-  export interface Params$Resource$Placements$Get {
+  export interface Params$Resource$Placements$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21390,7 +21519,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placements$Insert {
+  export interface Params$Resource$Placements$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21406,7 +21536,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Placement;
   }
-  export interface Params$Resource$Placements$List {
+  export interface Params$Resource$Placements$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21523,7 +21653,7 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Placements$Patch {
+  export interface Params$Resource$Placements$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21543,7 +21673,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Placement;
   }
-  export interface Params$Resource$Placements$Update {
+  export interface Params$Resource$Placements$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22004,7 +22135,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Placementstrategies$Delete {
+  export interface Params$Resource$Placementstrategies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22019,7 +22151,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementstrategies$Get {
+  export interface Params$Resource$Placementstrategies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22034,7 +22167,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementstrategies$Insert {
+  export interface Params$Resource$Placementstrategies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22050,7 +22184,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$PlacementStrategy;
   }
-  export interface Params$Resource$Placementstrategies$List {
+  export interface Params$Resource$Placementstrategies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22092,7 +22227,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Placementstrategies$Patch {
+  export interface Params$Resource$Placementstrategies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22112,7 +22248,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$PlacementStrategy;
   }
-  export interface Params$Resource$Placementstrategies$Update {
+  export interface Params$Resource$Placementstrategies$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22278,7 +22415,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Platformtypes$Get {
+  export interface Params$Resource$Platformtypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22293,7 +22431,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Platformtypes$List {
+  export interface Params$Resource$Platformtypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22450,7 +22589,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Postalcodes$Get {
+  export interface Params$Resource$Postalcodes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22465,7 +22604,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Postalcodes$List {
+  export interface Params$Resource$Postalcodes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22628,7 +22767,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22643,7 +22782,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Projects$List {
+  export interface Params$Resource$Projects$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22767,7 +22906,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Regions$List {
+  export interface Params$Resource$Regions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23155,7 +23294,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Remarketinglists$Get {
+  export interface Params$Resource$Remarketinglists$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23170,7 +23310,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Remarketinglists$Insert {
+  export interface Params$Resource$Remarketinglists$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23186,7 +23327,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$RemarketingList;
   }
-  export interface Params$Resource$Remarketinglists$List {
+  export interface Params$Resource$Remarketinglists$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23235,7 +23377,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Remarketinglists$Patch {
+  export interface Params$Resource$Remarketinglists$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23255,7 +23398,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$RemarketingList;
   }
-  export interface Params$Resource$Remarketinglists$Update {
+  export interface Params$Resource$Remarketinglists$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23496,7 +23640,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Remarketinglistshares$Get {
+  export interface Params$Resource$Remarketinglistshares$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23511,7 +23656,8 @@ export namespace dfareporting_v3_0 {
      */
     remarketingListId?: string;
   }
-  export interface Params$Resource$Remarketinglistshares$Patch {
+  export interface Params$Resource$Remarketinglistshares$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23531,7 +23677,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$RemarketingListShare;
   }
-  export interface Params$Resource$Remarketinglistshares$Update {
+  export interface Params$Resource$Remarketinglistshares$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24033,7 +24180,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Reports$Delete {
+  export interface Params$Resource$Reports$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24048,7 +24195,7 @@ export namespace dfareporting_v3_0 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Get {
+  export interface Params$Resource$Reports$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24063,7 +24210,7 @@ export namespace dfareporting_v3_0 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Insert {
+  export interface Params$Resource$Reports$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24079,7 +24226,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Report;
   }
-  export interface Params$Resource$Reports$List {
+  export interface Params$Resource$Reports$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24110,7 +24257,7 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Reports$Patch {
+  export interface Params$Resource$Reports$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24130,7 +24277,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Report;
   }
-  export interface Params$Resource$Reports$Run {
+  export interface Params$Resource$Reports$Run extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24149,7 +24296,7 @@ export namespace dfareporting_v3_0 {
      */
     synchronous?: boolean;
   }
-  export interface Params$Resource$Reports$Update {
+  export interface Params$Resource$Reports$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24254,7 +24401,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Reports$Compatiblefields$Query {
+  export interface Params$Resource$Reports$Compatiblefields$Query extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24422,7 +24570,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Reports$Files$Get {
+  export interface Params$Resource$Reports$Files$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24441,7 +24590,8 @@ export namespace dfareporting_v3_0 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Files$List {
+  export interface Params$Resource$Reports$Files$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24831,7 +24981,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Sites$Get {
+  export interface Params$Resource$Sites$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24846,7 +24996,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Sites$Insert {
+  export interface Params$Resource$Sites$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24862,7 +25012,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Site;
   }
-  export interface Params$Resource$Sites$List {
+  export interface Params$Resource$Sites$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24940,7 +25090,7 @@ export namespace dfareporting_v3_0 {
      */
     unmappedSite?: boolean;
   }
-  export interface Params$Resource$Sites$Patch {
+  export interface Params$Resource$Sites$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24960,7 +25110,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Site;
   }
-  export interface Params$Resource$Sites$Update {
+  export interface Params$Resource$Sites$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25192,7 +25342,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Sizes$Get {
+  export interface Params$Resource$Sizes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25207,7 +25357,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Sizes$Insert {
+  export interface Params$Resource$Sizes$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25223,7 +25373,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Size;
   }
-  export interface Params$Resource$Sizes$List {
+  export interface Params$Resource$Sizes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25611,7 +25761,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Subaccounts$Get {
+  export interface Params$Resource$Subaccounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25626,7 +25776,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Subaccounts$Insert {
+  export interface Params$Resource$Subaccounts$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25642,7 +25793,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Subaccount;
   }
-  export interface Params$Resource$Subaccounts$List {
+  export interface Params$Resource$Subaccounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25683,7 +25834,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Subaccounts$Patch {
+  export interface Params$Resource$Subaccounts$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25703,7 +25855,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$Subaccount;
   }
-  export interface Params$Resource$Subaccounts$Update {
+  export interface Params$Resource$Subaccounts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25887,7 +26040,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Targetableremarketinglists$Get {
+  export interface Params$Resource$Targetableremarketinglists$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25902,7 +26056,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Targetableremarketinglists$List {
+  export interface Params$Resource$Targetableremarketinglists$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26323,7 +26478,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Targetingtemplates$Get {
+  export interface Params$Resource$Targetingtemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26338,7 +26494,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Targetingtemplates$Insert {
+  export interface Params$Resource$Targetingtemplates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26354,7 +26511,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$TargetingTemplate;
   }
-  export interface Params$Resource$Targetingtemplates$List {
+  export interface Params$Resource$Targetingtemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26399,7 +26557,8 @@ export namespace dfareporting_v3_0 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Targetingtemplates$Patch {
+  export interface Params$Resource$Targetingtemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26419,7 +26578,8 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$TargetingTemplate;
   }
-  export interface Params$Resource$Targetingtemplates$Update {
+  export interface Params$Resource$Targetingtemplates$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26576,7 +26736,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Get {
+  export interface Params$Resource$Userprofiles$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26587,7 +26747,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userprofiles$List {
+  export interface Params$Resource$Userprofiles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26754,7 +26915,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Userrolepermissiongroups$Get {
+  export interface Params$Resource$Userrolepermissiongroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26769,7 +26931,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userrolepermissiongroups$List {
+  export interface Params$Resource$Userrolepermissiongroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26939,7 +27102,8 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Userrolepermissions$Get {
+  export interface Params$Resource$Userrolepermissions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26954,7 +27118,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userrolepermissions$List {
+  export interface Params$Resource$Userrolepermissions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27389,7 +27554,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Userroles$Delete {
+  export interface Params$Resource$Userroles$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27404,7 +27569,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userroles$Get {
+  export interface Params$Resource$Userroles$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27419,7 +27584,7 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userroles$Insert {
+  export interface Params$Resource$Userroles$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27435,7 +27600,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$UserRole;
   }
-  export interface Params$Resource$Userroles$List {
+  export interface Params$Resource$Userroles$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27485,7 +27650,7 @@ export namespace dfareporting_v3_0 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Userroles$Patch {
+  export interface Params$Resource$Userroles$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27505,7 +27670,7 @@ export namespace dfareporting_v3_0 {
      */
     requestBody?: Schema$UserRole;
   }
-  export interface Params$Resource$Userroles$Update {
+  export interface Params$Resource$Userroles$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27668,7 +27833,7 @@ export namespace dfareporting_v3_0 {
     }
   }
 
-  export interface Params$Resource$Videoformats$Get {
+  export interface Params$Resource$Videoformats$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27683,7 +27848,8 @@ export namespace dfareporting_v3_0 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Videoformats$List {
+  export interface Params$Resource$Videoformats$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

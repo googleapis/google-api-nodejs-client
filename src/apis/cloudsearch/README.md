@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/serviceuser
+# @google/cloudsearch
 
-> Enables services that service consumers want to use on Google Cloud Platform, lists the available or enabled services, or disables services that service consumers no longer use.
+> Cloud Search provides cloud-based search capabilities over G Suite data. The Cloud Search API allows indexing of non-G Suite data into Cloud Search.
 
 ## Installation
 
 ```sh
-$ npm install @google/serviceuser
+$ npm install @google/cloudsearch
 ```
 
 ## Usage

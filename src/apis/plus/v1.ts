@@ -29,6 +29,40 @@ export namespace plus_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google+ API
    *
@@ -747,7 +781,7 @@ export namespace plus_v1 {
     }
   }
 
-  export interface Params$Resource$Activities$Get {
+  export interface Params$Resource$Activities$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -758,7 +792,7 @@ export namespace plus_v1 {
      */
     activityId?: string;
   }
-  export interface Params$Resource$Activities$List {
+  export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -786,7 +820,8 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Activities$Search {
+  export interface Params$Resource$Activities$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -962,7 +997,7 @@ export namespace plus_v1 {
     }
   }
 
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -973,7 +1008,7 @@ export namespace plus_v1 {
      */
     commentId?: string;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1285,7 +1320,7 @@ export namespace plus_v1 {
     }
   }
 
-  export interface Params$Resource$People$Get {
+  export interface Params$Resource$People$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1297,7 +1332,7 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$People$List {
+  export interface Params$Resource$People$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1329,7 +1364,8 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$People$Listbyactivity {
+  export interface Params$Resource$People$Listbyactivity extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1356,7 +1392,7 @@ export namespace plus_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$People$Search {
+  export interface Params$Resource$People$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

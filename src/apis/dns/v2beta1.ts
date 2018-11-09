@@ -29,6 +29,40 @@ export namespace dns_v2beta1 {
     version: 'v2beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Cloud DNS API
    *
@@ -1008,7 +1042,7 @@ export namespace dns_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Changes$Create {
+  export interface Params$Resource$Changes$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1035,7 +1069,7 @@ export namespace dns_v2beta1 {
      */
     requestBody?: Schema$Change;
   }
-  export interface Params$Resource$Changes$Get {
+  export interface Params$Resource$Changes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1062,7 +1096,7 @@ export namespace dns_v2beta1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Changes$List {
+  export interface Params$Resource$Changes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1378,7 +1412,7 @@ export namespace dns_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Dnskeys$Get {
+  export interface Params$Resource$Dnskeys$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1410,7 +1444,7 @@ export namespace dns_v2beta1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Dnskeys$List {
+  export interface Params$Resource$Dnskeys$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1737,7 +1771,8 @@ export namespace dns_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Managedzoneoperations$Get {
+  export interface Params$Resource$Managedzoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1762,7 +1797,8 @@ export namespace dns_v2beta1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzoneoperations$List {
+  export interface Params$Resource$Managedzoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2586,7 +2622,8 @@ export namespace dns_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Managedzones$Create {
+  export interface Params$Resource$Managedzones$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2608,7 +2645,8 @@ export namespace dns_v2beta1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Delete {
+  export interface Params$Resource$Managedzones$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2630,7 +2668,7 @@ export namespace dns_v2beta1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Get {
+  export interface Params$Resource$Managedzones$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2652,7 +2690,8 @@ export namespace dns_v2beta1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$List {
+  export interface Params$Resource$Managedzones$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2677,7 +2716,8 @@ export namespace dns_v2beta1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Patch {
+  export interface Params$Resource$Managedzones$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2704,7 +2744,8 @@ export namespace dns_v2beta1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Update {
+  export interface Params$Resource$Managedzones$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2860,7 +2901,7 @@ export namespace dns_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3043,7 +3084,8 @@ export namespace dns_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Resourcerecordsets$List {
+  export interface Params$Resource$Resourcerecordsets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

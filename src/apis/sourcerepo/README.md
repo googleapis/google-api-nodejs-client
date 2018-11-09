@@ -2,7 +2,7 @@
 
 # @google/sourcerepo
 
-> Access source code repositories hosted by Google.
+> Accesses source code repositories hosted by Google.
 
 ## Installation
 

@@ -29,6 +29,57 @@ export namespace logging_v2beta1 {
     version: 'v2beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Stackdriver Logging API
    *
@@ -49,10 +100,8 @@ export namespace logging_v2beta1 {
     google?: GoogleConfigurable;
     root = this;
 
-    billingAccounts: Resource$Billingaccounts;
     entries: Resource$Entries;
     monitoredResourceDescriptors: Resource$Monitoredresourcedescriptors;
-    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -60,11 +109,9 @@ export namespace logging_v2beta1 {
       this.google = google;
       this.getRoot.bind(this);
 
-      this.billingAccounts = new Resource$Billingaccounts(this);
       this.entries = new Resource$Entries(this);
       this.monitoredResourceDescriptors =
           new Resource$Monitoredresourcedescriptors(this);
-      this.organizations = new Resource$Organizations(this);
       this.projects = new Resource$Projects(this);
     }
 
@@ -360,23 +407,6 @@ export namespace logging_v2beta1 {
     nextPageToken?: string;
   }
   /**
-   * Result returned from ListLogs.
-   */
-  export interface Schema$ListLogsResponse {
-    /**
-     * A list of log names. For example, &quot;projects/my-project/syslog&quot;
-     * or
-     * &quot;organizations/123/cloudresourcemanager.googleapis.com%2Factivity&quot;.
-     */
-    logNames?: string[];
-    /**
-     * If there might be more results than those appearing in this response,
-     * then nextPageToken is included. To get the next set of results, call this
-     * method again using the value of nextPageToken as pageToken.
-     */
-    nextPageToken?: string;
-  }
-  /**
    * Result returned from ListMonitoredResourceDescriptors.
    */
   export interface Schema$ListMonitoredResourceDescriptorsResponse {
@@ -623,6 +653,7 @@ export namespace logging_v2beta1 {
     bucketOptions?: Schema$BucketOptions;
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      */
     description?: string;
     /**
@@ -720,10 +751,6 @@ export namespace logging_v2beta1 {
      */
     destination?: string;
     /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    endTime?: string;
-    /**
      * Optional. An advanced logs filter. The only exported log entries are
      * those that are in the resource owning the sink and that match the filter.
      * For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND
@@ -759,10 +786,6 @@ export namespace logging_v2beta1 {
      * entries. The v2 format is used by default and cannot be changed.
      */
     outputVersionFormat?: string;
-    /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    startTime?: string;
     /**
      * Output only. An IAM identity&amp;mdash;a service account or
      * group&amp;mdash;under which Logging writes the exported log entries to
@@ -1247,350 +1270,6 @@ export namespace logging_v2beta1 {
   export interface Schema$WriteLogEntriesResponse {}
 
 
-  export class Resource$Billingaccounts {
-    root: Logging;
-    logs: Resource$Billingaccounts$Logs;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.logs = new Resource$Billingaccounts$Logs(root);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-  }
-
-
-  export class Resource$Billingaccounts$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * logging.billingAccounts.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it
-     * receives new entries. Log entries written shortly before the delete
-     * operation might not be deleted.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example,
-     * "projects/my-project-id/logs/syslog",
-     *     //
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more
-     *     // information about log names, see LogEntry.
-     *     logName: 'billingAccounts/my-billing-account/logs/my-log',  // TODO:
-     * Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   logging.billingAccounts.logs.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.billingAccounts.logs.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Billingaccounts$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    delete(
-        params: Params$Resource$Billingaccounts$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        params: Params$Resource$Billingaccounts$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Logs$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Logs$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+logName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['logName'],
-        pathParams: ['logName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-
-    /**
-     * logging.billingAccounts.logs.list
-     * @desc Lists the logs in projects, organizations, folders, or billing
-     * accounts. Only logs that have entries are listed.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     parent: 'billingAccounts/my-billing-account',  // TODO: Update
-     * placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var logNamesPage = response['logNames'];
-     *     if (!logNamesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < logNamesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       logging.billingAccounts.logs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   logging.billingAccounts.logs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.billingAccounts.logs.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Billingaccounts$Logs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
-    list(
-        params: Params$Resource$Billingaccounts$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        params: Params$Resource$Billingaccounts$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Logs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Logs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLogsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Billingaccounts$Logs$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The resource name of the log to delete:
-     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
-     * example, "projects/my-project-id/logs/syslog",
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more information about log names, see LogEntry.
-     */
-    logName?: string;
-  }
-  export interface Params$Resource$Billingaccounts$Logs$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of nextPageToken in the
-     * response indicates that more results might be available.
-     */
-    pageSize?: number;
-    /**
-     * Optional. If present, then retrieve the next batch of results from the
-     * preceding call to this method. pageToken must be the value of
-     * nextPageToken from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
-     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
-     * "folders/[FOLDER_ID]"
-     */
-    parent?: string;
-  }
-
-
-
   export class Resource$Entries {
     root: Logging;
     constructor(root: Logging) {
@@ -1862,7 +1541,7 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Entries$List {
+  export interface Params$Resource$Entries$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1874,7 +1553,7 @@ export namespace logging_v2beta1 {
      */
     requestBody?: Schema$ListLogEntriesRequest;
   }
-  export interface Params$Resource$Entries$Write {
+  export interface Params$Resource$Entries$Write extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2040,7 +1719,8 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Monitoredresourcedescriptors$List {
+  export interface Params$Resource$Monitoredresourcedescriptors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2060,361 +1740,15 @@ export namespace logging_v2beta1 {
      */
     pageToken?: string;
   }
-
-
-  export class Resource$Organizations {
-    root: Logging;
-    logs: Resource$Organizations$Logs;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.logs = new Resource$Organizations$Logs(root);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-  }
-
-
-  export class Resource$Organizations$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * logging.organizations.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it
-     * receives new entries. Log entries written shortly before the delete
-     * operation might not be deleted.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example,
-     * "projects/my-project-id/logs/syslog",
-     *     //
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more
-     *     // information about log names, see LogEntry.
-     *     logName: 'organizations/my-organization/logs/my-log',  // TODO:
-     * Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   logging.organizations.logs.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.organizations.logs.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Organizations$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    delete(
-        params: Params$Resource$Organizations$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        params: Params$Resource$Organizations$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Organizations$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Logs$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+logName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['logName'],
-        pathParams: ['logName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-
-    /**
-     * logging.organizations.logs.list
-     * @desc Lists the logs in projects, organizations, folders, or billing
-     * accounts. Only logs that have entries are listed.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     parent: 'organizations/my-organization',  // TODO: Update placeholder
-     * value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var logNamesPage = response['logNames'];
-     *     if (!logNamesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < logNamesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       logging.organizations.logs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   logging.organizations.logs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.organizations.logs.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Organizations$Logs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
-    list(
-        params: Params$Resource$Organizations$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        params: Params$Resource$Organizations$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Organizations$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Logs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLogsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Logs$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The resource name of the log to delete:
-     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
-     * example, "projects/my-project-id/logs/syslog",
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more information about log names, see LogEntry.
-     */
-    logName?: string;
-  }
-  export interface Params$Resource$Organizations$Logs$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of nextPageToken in the
-     * response indicates that more results might be available.
-     */
-    pageSize?: number;
-    /**
-     * Optional. If present, then retrieve the next batch of results from the
-     * preceding call to this method. pageToken must be the value of
-     * nextPageToken from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
-     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
-     * "folders/[FOLDER_ID]"
-     */
-    parent?: string;
-  }
-
 
 
   export class Resource$Projects {
     root: Logging;
-    logs: Resource$Projects$Logs;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
     constructor(root: Logging) {
       this.root = root;
       this.getRoot.bind(this);
-      this.logs = new Resource$Projects$Logs(root);
       this.metrics = new Resource$Projects$Metrics(root);
       this.sinks = new Resource$Projects$Sinks(root);
     }
@@ -2422,332 +1756,6 @@ export namespace logging_v2beta1 {
     getRoot() {
       return this.root;
     }
-  }
-
-
-  export class Resource$Projects$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * logging.projects.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it
-     * receives new entries. Log entries written shortly before the delete
-     * operation might not be deleted.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example,
-     * "projects/my-project-id/logs/syslog",
-     *     //
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more
-     *     // information about log names, see LogEntry.
-     *     logName: 'projects/my-project/logs/my-log',  // TODO: Update
-     * placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   logging.projects.logs.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.projects.logs.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Projects$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    delete(
-        params: Params$Resource$Projects$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        params: Params$Resource$Projects$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Projects$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Logs$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+logName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['logName'],
-        pathParams: ['logName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-
-    /**
-     * logging.projects.logs.list
-     * @desc Lists the logs in projects, organizations, folders, or billing
-     * accounts. Only logs that have entries are listed.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     parent: 'projects/my-project',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var logNamesPage = response['logNames'];
-     *     if (!logNamesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < logNamesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       logging.projects.logs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   logging.projects.logs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.projects.logs.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(params?: Params$Resource$Projects$Logs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogsResponse>;
-    list(
-        params: Params$Resource$Projects$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        params: Params$Resource$Projects$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Projects$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Logs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLogsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Logs$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The resource name of the log to delete:
-     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
-     * example, "projects/my-project-id/logs/syslog",
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more information about log names, see LogEntry.
-     */
-    logName?: string;
-  }
-  export interface Params$Resource$Projects$Logs$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of nextPageToken in the
-     * response indicates that more results might be available.
-     */
-    pageSize?: number;
-    /**
-     * Optional. If present, then retrieve the next batch of results from the
-     * preceding call to this method. pageToken must be the value of
-     * nextPageToken from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
-     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
-     * "folders/[FOLDER_ID]"
-     */
-    parent?: string;
   }
 
 
@@ -3396,7 +2404,8 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Metrics$Create {
+  export interface Params$Resource$Projects$Metrics$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3413,7 +2422,8 @@ export namespace logging_v2beta1 {
      */
     requestBody?: Schema$LogMetric;
   }
-  export interface Params$Resource$Projects$Metrics$Delete {
+  export interface Params$Resource$Projects$Metrics$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3425,7 +2435,8 @@ export namespace logging_v2beta1 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Get {
+  export interface Params$Resource$Projects$Metrics$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3437,7 +2448,8 @@ export namespace logging_v2beta1 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$List {
+  export interface Params$Resource$Projects$Metrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3462,7 +2474,8 @@ export namespace logging_v2beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Update {
+  export interface Params$Resource$Projects$Metrics$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4153,7 +3166,8 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sinks$Create {
+  export interface Params$Resource$Projects$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4185,7 +3199,8 @@ export namespace logging_v2beta1 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Delete {
+  export interface Params$Resource$Projects$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4202,7 +3217,8 @@ export namespace logging_v2beta1 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Get {
+  export interface Params$Resource$Projects$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4218,7 +3234,8 @@ export namespace logging_v2beta1 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$List {
+  export interface Params$Resource$Projects$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4244,7 +3261,8 @@ export namespace logging_v2beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Update {
+  export interface Params$Resource$Projects$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

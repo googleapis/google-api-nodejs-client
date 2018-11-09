@@ -29,6 +29,57 @@ export namespace firebaserules_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Firebase Rules API
    *
@@ -559,7 +610,7 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Test {
+  export interface Params$Resource$Projects$Test extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1022,7 +1073,8 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Releases$Create {
+  export interface Params$Resource$Projects$Releases$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1039,7 +1091,8 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Releases$Delete {
+  export interface Params$Resource$Projects$Releases$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1051,7 +1104,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Get {
+  export interface Params$Resource$Projects$Releases$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1063,7 +1117,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Getexecutable {
+  export interface Params$Resource$Projects$Releases$Getexecutable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1080,7 +1135,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$List {
+  export interface Params$Resource$Projects$Releases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1124,7 +1180,8 @@ export namespace firebaserules_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Releases$Patch {
+  export interface Params$Resource$Projects$Releases$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1430,7 +1487,8 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Rulesets$Create {
+  export interface Params$Resource$Projects$Rulesets$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1447,7 +1505,8 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Ruleset;
   }
-  export interface Params$Resource$Projects$Rulesets$Delete {
+  export interface Params$Resource$Projects$Rulesets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1459,7 +1518,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$Get {
+  export interface Params$Resource$Projects$Rulesets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1471,7 +1531,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$List {
+  export interface Params$Resource$Projects$Rulesets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

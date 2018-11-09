@@ -29,6 +29,40 @@ export namespace identitytoolkit_v3 {
     version: 'v3';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Identity Toolkit API
    *
@@ -3030,7 +3064,8 @@ export namespace identitytoolkit_v3 {
     }
   }
 
-  export interface Params$Resource$Relyingparty$Createauthuri {
+  export interface Params$Resource$Relyingparty$Createauthuri extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3042,7 +3077,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest;
   }
-  export interface Params$Resource$Relyingparty$Deleteaccount {
+  export interface Params$Resource$Relyingparty$Deleteaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3054,7 +3090,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDeleteAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Downloadaccount {
+  export interface Params$Resource$Relyingparty$Downloadaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3066,7 +3103,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Emaillinksignin {
+  export interface Params$Resource$Relyingparty$Emaillinksignin extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3078,7 +3116,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyEmailLinkSigninRequest;
   }
-  export interface Params$Resource$Relyingparty$Getaccountinfo {
+  export interface Params$Resource$Relyingparty$Getaccountinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3090,7 +3129,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Getoobconfirmationcode {
+  export interface Params$Resource$Relyingparty$Getoobconfirmationcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3102,7 +3142,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$Relyingparty;
   }
-  export interface Params$Resource$Relyingparty$Getprojectconfig {
+  export interface Params$Resource$Relyingparty$Getprojectconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3117,19 +3158,22 @@ export namespace identitytoolkit_v3 {
      */
     projectNumber?: string;
   }
-  export interface Params$Resource$Relyingparty$Getpublickeys {
+  export interface Params$Resource$Relyingparty$Getpublickeys extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Relyingparty$Getrecaptchaparam {
+  export interface Params$Resource$Relyingparty$Getrecaptchaparam extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Relyingparty$Resetpassword {
+  export interface Params$Resource$Relyingparty$Resetpassword extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3141,7 +3185,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyResetPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Sendverificationcode {
+  export interface Params$Resource$Relyingparty$Sendverificationcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3153,7 +3198,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySendVerificationCodeRequest;
   }
-  export interface Params$Resource$Relyingparty$Setaccountinfo {
+  export interface Params$Resource$Relyingparty$Setaccountinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3165,7 +3211,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Setprojectconfig {
+  export interface Params$Resource$Relyingparty$Setprojectconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3177,7 +3224,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetProjectConfigRequest;
   }
-  export interface Params$Resource$Relyingparty$Signoutuser {
+  export interface Params$Resource$Relyingparty$Signoutuser extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3189,7 +3237,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignOutUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Signupnewuser {
+  export interface Params$Resource$Relyingparty$Signupnewuser extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3201,7 +3250,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignupNewUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Uploadaccount {
+  export interface Params$Resource$Relyingparty$Uploadaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3213,7 +3263,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyUploadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyassertion {
+  export interface Params$Resource$Relyingparty$Verifyassertion extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3225,7 +3276,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifycustomtoken {
+  export interface Params$Resource$Relyingparty$Verifycustomtoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3237,7 +3289,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyCustomTokenRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifypassword {
+  export interface Params$Resource$Relyingparty$Verifypassword extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3249,7 +3302,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyphonenumber {
+  export interface Params$Resource$Relyingparty$Verifyphonenumber extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

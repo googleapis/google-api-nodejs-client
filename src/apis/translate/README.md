@@ -2,7 +2,7 @@
 
 # @google/translate
 
-> The Google Cloud Translation API lets websites and programs integrate with Google Translate programmatically.
+> Integrates text translation into your website or application.
 
 ## Installation
 

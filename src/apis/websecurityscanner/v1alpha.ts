@@ -29,10 +29,61 @@ export namespace websecurityscanner_v1alpha {
     version: 'v1alpha';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Web Security Scanner API
    *
-   * Web Security Scanner API (under development).
+   * Scans your Compute and App Engine apps for common web vulnerabilities.
    *
    * @example
    * const {google} = require('googleapis');
@@ -940,7 +991,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Create {
+  export interface Params$Resource$Projects$Scanconfigs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -957,7 +1009,8 @@ export namespace websecurityscanner_v1alpha {
      */
     requestBody?: Schema$ScanConfig;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Delete {
+  export interface Params$Resource$Projects$Scanconfigs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -969,7 +1022,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Get {
+  export interface Params$Resource$Projects$Scanconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -981,7 +1035,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$List {
+  export interface Params$Resource$Projects$Scanconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1005,7 +1060,8 @@ export namespace websecurityscanner_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Patch {
+  export interface Params$Resource$Projects$Scanconfigs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1029,7 +1085,8 @@ export namespace websecurityscanner_v1alpha {
      */
     requestBody?: Schema$ScanConfig;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Start {
+  export interface Params$Resource$Projects$Scanconfigs$Start extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1269,7 +1326,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Get {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1282,7 +1340,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1306,7 +1365,8 @@ export namespace websecurityscanner_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Stop {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Stop extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1410,7 +1470,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1587,7 +1648,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1600,7 +1662,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1726,7 +1789,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

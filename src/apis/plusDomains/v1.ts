@@ -29,6 +29,40 @@ export namespace plusDomains_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google+ Domains API
    *
@@ -968,7 +1002,7 @@ export namespace plusDomains_v1 {
     }
   }
 
-  export interface Params$Resource$Activities$Get {
+  export interface Params$Resource$Activities$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -979,7 +1013,8 @@ export namespace plusDomains_v1 {
      */
     activityId?: string;
   }
-  export interface Params$Resource$Activities$Insert {
+  export interface Params$Resource$Activities$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1002,7 +1037,7 @@ export namespace plusDomains_v1 {
      */
     requestBody?: Schema$Activity;
   }
-  export interface Params$Resource$Activities$List {
+  export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1111,7 +1146,7 @@ export namespace plusDomains_v1 {
     }
   }
 
-  export interface Params$Resource$Audiences$List {
+  export interface Params$Resource$Audiences$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1672,7 +1707,8 @@ export namespace plusDomains_v1 {
     }
   }
 
-  export interface Params$Resource$Circles$Addpeople {
+  export interface Params$Resource$Circles$Addpeople extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1691,7 +1727,7 @@ export namespace plusDomains_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Circles$Get {
+  export interface Params$Resource$Circles$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1702,7 +1738,7 @@ export namespace plusDomains_v1 {
      */
     circleId?: string;
   }
-  export interface Params$Resource$Circles$Insert {
+  export interface Params$Resource$Circles$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1719,7 +1755,7 @@ export namespace plusDomains_v1 {
      */
     requestBody?: Schema$Circle;
   }
-  export interface Params$Resource$Circles$List {
+  export interface Params$Resource$Circles$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1743,7 +1779,7 @@ export namespace plusDomains_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Circles$Patch {
+  export interface Params$Resource$Circles$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1759,7 +1795,7 @@ export namespace plusDomains_v1 {
      */
     requestBody?: Schema$Circle;
   }
-  export interface Params$Resource$Circles$Remove {
+  export interface Params$Resource$Circles$Remove extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1770,7 +1806,8 @@ export namespace plusDomains_v1 {
      */
     circleId?: string;
   }
-  export interface Params$Resource$Circles$Removepeople {
+  export interface Params$Resource$Circles$Removepeople extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1789,7 +1826,7 @@ export namespace plusDomains_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Circles$Update {
+  export interface Params$Resource$Circles$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2015,7 +2052,7 @@ export namespace plusDomains_v1 {
     }
   }
 
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2026,7 +2063,7 @@ export namespace plusDomains_v1 {
      */
     commentId?: string;
   }
-  export interface Params$Resource$Comments$Insert {
+  export interface Params$Resource$Comments$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2042,7 +2079,7 @@ export namespace plusDomains_v1 {
      */
     requestBody?: Schema$Comment;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2159,7 +2196,7 @@ export namespace plusDomains_v1 {
     }
   }
 
-  export interface Params$Resource$Media$Insert {
+  export interface Params$Resource$Media$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2481,7 +2518,7 @@ export namespace plusDomains_v1 {
     }
   }
 
-  export interface Params$Resource$People$Get {
+  export interface Params$Resource$People$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2493,7 +2530,7 @@ export namespace plusDomains_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$People$List {
+  export interface Params$Resource$People$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2525,7 +2562,8 @@ export namespace plusDomains_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$People$Listbyactivity {
+  export interface Params$Resource$People$Listbyactivity extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2552,7 +2590,8 @@ export namespace plusDomains_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$People$Listbycircle {
+  export interface Params$Resource$People$Listbycircle extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,57 @@ export namespace cloudiot_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud IoT API
    *
@@ -1326,7 +1377,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Create {
+  export interface Params$Resource$Projects$Locations$Registries$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1343,7 +1395,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$DeviceRegistry;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Delete {
+  export interface Params$Resource$Projects$Locations$Registries$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1355,7 +1408,8 @@ export namespace cloudiot_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Get {
+  export interface Params$Resource$Projects$Locations$Registries$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1367,7 +1421,8 @@ export namespace cloudiot_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Registries$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1384,7 +1439,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registries$List {
+  export interface Params$Resource$Projects$Locations$Registries$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1409,7 +1465,8 @@ export namespace cloudiot_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Patch {
+  export interface Params$Resource$Projects$Locations$Registries$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1434,7 +1491,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$DeviceRegistry;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Registries$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1451,7 +1509,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Registries$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2001,7 +2060,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Devices$Create {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2019,7 +2079,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$Device;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Devices$Delete {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2033,7 +2094,8 @@ export namespace cloudiot_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Devices$Get {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2052,7 +2114,8 @@ export namespace cloudiot_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Devices$List {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2093,7 +2156,8 @@ export namespace cloudiot_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2112,7 +2176,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$ModifyCloudToDeviceConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Devices$Patch {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2139,7 +2204,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$Device;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2256,7 +2322,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Devices$Configversions$List {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Configversions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2365,7 +2432,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Devices$States$List {
+  export interface Params$Resource$Projects$Locations$Registries$Devices$States$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2631,7 +2699,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2648,7 +2717,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2665,7 +2735,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3090,7 +3161,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Get {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3109,7 +3181,8 @@ export namespace cloudiot_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$List {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3150,7 +3223,8 @@ export namespace cloudiot_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3169,7 +3243,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$ModifyCloudToDeviceConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3196,7 +3271,8 @@ export namespace cloudiot_v1 {
      */
     requestBody?: Schema$Device;
   }
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3315,7 +3391,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3424,7 +3501,8 @@ export namespace cloudiot_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List {
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

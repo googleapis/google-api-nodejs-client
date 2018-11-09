@@ -53,6 +53,7 @@ import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
 import * as cloudprofiler from './cloudprofiler';
 import * as cloudresourcemanager from './cloudresourcemanager';
+import * as cloudsearch from './cloudsearch';
 import * as cloudshell from './cloudshell';
 import * as cloudtasks from './cloudtasks';
 import * as cloudtrace from './cloudtrace';
@@ -127,7 +128,6 @@ import * as servicecontrol from './servicecontrol';
 import * as servicemanagement from './servicemanagement';
 import * as servicenetworking from './servicenetworking';
 import * as serviceusage from './serviceusage';
-import * as serviceuser from './serviceuser';
 import * as sheets from './sheets';
 import * as siteVerification from './siteVerification';
 import * as slides from './slides';
@@ -201,6 +201,7 @@ export const APIS: APIList = {
   cloudkms: cloudkms.VERSIONS,
   cloudprofiler: cloudprofiler.VERSIONS,
   cloudresourcemanager: cloudresourcemanager.VERSIONS,
+  cloudsearch: cloudsearch.VERSIONS,
   cloudshell: cloudshell.VERSIONS,
   cloudtasks: cloudtasks.VERSIONS,
   cloudtrace: cloudtrace.VERSIONS,
@@ -275,7 +276,6 @@ export const APIS: APIList = {
   servicemanagement: servicemanagement.VERSIONS,
   servicenetworking: servicenetworking.VERSIONS,
   serviceusage: serviceusage.VERSIONS,
-  serviceuser: serviceuser.VERSIONS,
   sheets: sheets.VERSIONS,
   siteVerification: siteVerification.VERSIONS,
   slides: slides.VERSIONS,
@@ -346,6 +346,7 @@ export class GeneratedAPIs {
   cloudkms = cloudkms.cloudkms;
   cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
+  cloudsearch = cloudsearch.cloudsearch;
   cloudshell = cloudshell.cloudshell;
   cloudtasks = cloudtasks.cloudtasks;
   cloudtrace = cloudtrace.cloudtrace;
@@ -421,7 +422,6 @@ export class GeneratedAPIs {
   servicemanagement = servicemanagement.servicemanagement;
   servicenetworking = servicenetworking.servicenetworking;
   serviceusage = serviceusage.serviceusage;
-  serviceuser = serviceuser.serviceuser;
   sheets = sheets.sheets;
   siteVerification = siteVerification.siteVerification;
   slides = slides.slides;
@@ -489,6 +489,7 @@ export class GeneratedAPIs {
     this.cloudkms = this.cloudkms.bind(this);
     this.cloudprofiler = this.cloudprofiler.bind(this);
     this.cloudresourcemanager = this.cloudresourcemanager.bind(this);
+    this.cloudsearch = this.cloudsearch.bind(this);
     this.cloudshell = this.cloudshell.bind(this);
     this.cloudtasks = this.cloudtasks.bind(this);
     this.cloudtrace = this.cloudtrace.bind(this);
@@ -563,7 +564,6 @@ export class GeneratedAPIs {
     this.servicemanagement = this.servicemanagement.bind(this);
     this.servicenetworking = this.servicenetworking.bind(this);
     this.serviceusage = this.serviceusage.bind(this);
-    this.serviceuser = this.serviceuser.bind(this);
     this.sheets = this.sheets.bind(this);
     this.siteVerification = this.siteVerification.bind(this);
     this.slides = this.slides.bind(this);

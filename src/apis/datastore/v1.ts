@@ -29,6 +29,57 @@ export namespace datastore_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Datastore API
    *
@@ -1910,7 +1961,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     }
   }
 
-  export interface Params$Resource$Projects$Allocateids {
+  export interface Params$Resource$Projects$Allocateids extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1926,7 +1978,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$AllocateIdsRequest;
   }
-  export interface Params$Resource$Projects$Begintransaction {
+  export interface Params$Resource$Projects$Begintransaction extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1942,7 +1995,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Commit {
+  export interface Params$Resource$Projects$Commit extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1958,7 +2011,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Export {
+  export interface Params$Resource$Projects$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1974,7 +2027,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$GoogleDatastoreAdminV1ExportEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Import {
+  export interface Params$Resource$Projects$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1990,7 +2043,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$GoogleDatastoreAdminV1ImportEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Lookup {
+  export interface Params$Resource$Projects$Lookup extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2006,7 +2059,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$LookupRequest;
   }
-  export interface Params$Resource$Projects$Reserveids {
+  export interface Params$Resource$Projects$Reserveids extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2022,7 +2076,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$ReserveIdsRequest;
   }
-  export interface Params$Resource$Projects$Rollback {
+  export interface Params$Resource$Projects$Rollback extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2038,7 +2093,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Runquery {
+  export interface Params$Resource$Projects$Runquery extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2216,7 +2272,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     }
   }
 
-  export interface Params$Resource$Projects$Indexes$Get {
+  export interface Params$Resource$Projects$Indexes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2231,7 +2288,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Indexes$List {
+  export interface Params$Resource$Projects$Indexes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2567,7 +2625,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel {
+  export interface Params$Resource$Projects$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2578,7 +2637,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Delete {
+  export interface Params$Resource$Projects$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2589,7 +2649,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get {
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2600,7 +2661,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List {
+  export interface Params$Resource$Projects$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

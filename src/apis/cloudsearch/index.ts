@@ -14,16 +14,16 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
-import {serviceuser_v1} from './v1';
+import {cloudsearch_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': serviceuser_v1.Serviceuser,
+  'v1': cloudsearch_v1.Cloudsearch,
 };
 
-export function serviceuser(version: 'v1'): serviceuser_v1.Serviceuser;
-export function serviceuser(options: serviceuser_v1.Options):
-    serviceuser_v1.Serviceuser;
-export function serviceuser<T = serviceuser_v1.Serviceuser>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|serviceuser_v1.Options) {
-  return getAPI<T>('serviceuser', versionOrOptions, VERSIONS, this);
+export function cloudsearch(version: 'v1'): cloudsearch_v1.Cloudsearch;
+export function cloudsearch(options: cloudsearch_v1.Options):
+    cloudsearch_v1.Cloudsearch;
+export function cloudsearch<T = cloudsearch_v1.Cloudsearch>(
+    this: GoogleConfigurable, versionOrOptions: 'v1'|cloudsearch_v1.Options) {
+  return getAPI<T>('cloudsearch', versionOrOptions, VERSIONS, this);
 }

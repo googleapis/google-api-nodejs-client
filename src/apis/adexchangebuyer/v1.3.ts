@@ -29,6 +29,40 @@ export namespace adexchangebuyer_v1_3 {
     version: 'v1_3';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Ad Exchange Buyer API
    *
@@ -935,7 +969,7 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -946,13 +980,13 @@ export namespace adexchangebuyer_v1_3 {
      */
     id?: number;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Accounts$Patch {
+  export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -968,7 +1002,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$Update {
+  export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1126,7 +1160,7 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Billinginfo$Get {
+  export interface Params$Resource$Billinginfo$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1137,7 +1171,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     accountId?: number;
   }
-  export interface Params$Resource$Billinginfo$List {
+  export interface Params$Resource$Billinginfo$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1358,7 +1392,7 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Budget$Get {
+  export interface Params$Resource$Budget$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1373,7 +1407,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     billingId?: string;
   }
-  export interface Params$Resource$Budget$Patch {
+  export interface Params$Resource$Budget$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1393,7 +1427,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     requestBody?: Schema$Budget;
   }
-  export interface Params$Resource$Budget$Update {
+  export interface Params$Resource$Budget$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1626,7 +1660,7 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Creatives$Get {
+  export interface Params$Resource$Creatives$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1641,7 +1675,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     buyerCreativeId?: string;
   }
-  export interface Params$Resource$Creatives$Insert {
+  export interface Params$Resource$Creatives$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1653,7 +1687,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Creatives$List {
+  export interface Params$Resource$Creatives$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1824,7 +1858,7 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Directdeals$Get {
+  export interface Params$Resource$Directdeals$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1835,7 +1869,7 @@ export namespace adexchangebuyer_v1_3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Directdeals$List {
+  export interface Params$Resource$Directdeals$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1927,7 +1961,8 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Performancereport$List {
+  export interface Params$Resource$Performancereport$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2387,7 +2422,8 @@ export namespace adexchangebuyer_v1_3 {
     }
   }
 
-  export interface Params$Resource$Pretargetingconfig$Delete {
+  export interface Params$Resource$Pretargetingconfig$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2402,7 +2438,8 @@ export namespace adexchangebuyer_v1_3 {
      */
     configId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Get {
+  export interface Params$Resource$Pretargetingconfig$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2417,7 +2454,8 @@ export namespace adexchangebuyer_v1_3 {
      */
     configId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Insert {
+  export interface Params$Resource$Pretargetingconfig$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2433,7 +2471,8 @@ export namespace adexchangebuyer_v1_3 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Pretargetingconfig$List {
+  export interface Params$Resource$Pretargetingconfig$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2444,7 +2483,8 @@ export namespace adexchangebuyer_v1_3 {
      */
     accountId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Patch {
+  export interface Params$Resource$Pretargetingconfig$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2464,7 +2504,8 @@ export namespace adexchangebuyer_v1_3 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Pretargetingconfig$Update {
+  export interface Params$Resource$Pretargetingconfig$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

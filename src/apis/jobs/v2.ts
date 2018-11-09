@@ -29,6 +29,57 @@ export namespace jobs_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Talent Solution API
    *
@@ -856,8 +907,8 @@ export namespace jobs_v2 {
     query?: Schema$JobQuery;
     /**
      * Meta information, such as `user_id`, collected from the job searcher or
-     * other entity conducting the job search, which is used to improve the
-     * search quality of the service. Users determine identifier values, which
+     * other entity conducting a job search, is used to improve the
+     * service&#39;s search quality. Users determine identifier values, which
      * must be unique and consist.
      */
     requestMetadata?: Schema$RequestMetadata;
@@ -1118,7 +1169,9 @@ export namespace jobs_v2 {
     expiryDate?: Schema$Date;
     /**
      * Deprecated. Always use compensation_info.  Optional.  Job compensation
-     * information.  This field replaces compensation_info.
+     * information.  This field replaces compensation_info. Only
+     * CompensationInfo.entries or extended_compensation_info can be set,
+     * otherwise an exception is thrown.
      */
     extendedCompensationInfo?: Schema$ExtendedCompensationInfo;
     /**
@@ -1318,8 +1371,8 @@ export namespace jobs_v2 {
      * EMPTY(&lt;field_name&gt;) to filter on the existence of a key.  Boolean
      * expressions (AND/OR/NOT) are supported up to 3 levels of nesting (For
      * example, &quot;((A AND B AND C) OR NOT D) AND E&quot;), and there can be
-     * a maximum of 50 comparisons/functions in the expression. The expression
-     * must be &lt; 3000 characters in length.  Sample Query: (key1 =
+     * a maximum of 100 comparisons/functions in the expression. The expression
+     * must be &lt; 3000 bytes in length.  Sample Query: (key1 =
      * &quot;TEST&quot; OR LOWER(key1)=&quot;test&quot; OR NOT EMPTY(key1)) AND
      * key2 &gt; 100
      */
@@ -2032,7 +2085,7 @@ export namespace jobs_v2 {
     query?: Schema$JobQuery;
     /**
      * Required.  The meta information collected about the job searcher, used to
-     * improve the search quality of the service.. The identifiers, (such as
+     * improve the search quality of the service. The identifiers, (such as
      * `user_id`) are provided by users, and must be unique and consistent.
      */
     requestMetadata?: Schema$RequestMetadata;
@@ -2501,7 +2554,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Create {
+  export interface Params$Resource$Companies$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2513,7 +2566,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$Company;
   }
-  export interface Params$Resource$Companies$Delete {
+  export interface Params$Resource$Companies$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2525,7 +2578,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Companies$Get {
+  export interface Params$Resource$Companies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2537,7 +2590,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Companies$List {
+  export interface Params$Resource$Companies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2559,7 +2612,7 @@ export namespace jobs_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Companies$Patch {
+  export interface Params$Resource$Companies$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2674,7 +2727,8 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Jobs$List {
+  export interface Params$Resource$Companies$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3399,7 +3453,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Jobs$Batchdelete {
+  export interface Params$Resource$Jobs$Batchdelete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3411,7 +3465,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$BatchDeleteJobsRequest;
   }
-  export interface Params$Resource$Jobs$Create {
+  export interface Params$Resource$Jobs$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3423,7 +3477,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$CreateJobRequest;
   }
-  export interface Params$Resource$Jobs$Delete {
+  export interface Params$Resource$Jobs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3442,7 +3496,8 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Jobs$Deletebyfilter {
+  export interface Params$Resource$Jobs$Deletebyfilter extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3454,7 +3509,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$DeleteJobsByFilterRequest;
   }
-  export interface Params$Resource$Jobs$Get {
+  export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3466,7 +3521,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Jobs$Histogram {
+  export interface Params$Resource$Jobs$Histogram extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3478,7 +3533,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$GetHistogramRequest;
   }
-  export interface Params$Resource$Jobs$List {
+  export interface Params$Resource$Jobs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3510,7 +3565,7 @@ export namespace jobs_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Jobs$Patch {
+  export interface Params$Resource$Jobs$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3528,7 +3583,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$UpdateJobRequest;
   }
-  export interface Params$Resource$Jobs$Search {
+  export interface Params$Resource$Jobs$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3540,7 +3595,8 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$SearchJobsRequest;
   }
-  export interface Params$Resource$Jobs$Searchforalert {
+  export interface Params$Resource$Jobs$Searchforalert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3638,7 +3694,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$V2$Complete {
+  export interface Params$Resource$V2$Complete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

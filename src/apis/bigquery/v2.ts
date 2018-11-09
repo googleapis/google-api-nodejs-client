@@ -29,6 +29,40 @@ export namespace bigquery_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * BigQuery API
    *
@@ -1003,6 +1037,11 @@ export namespace bigquery_v2 {
      */
     quote?: string;
     /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
      * [Optional] The schema for the destination table. The schema can be
      * omitted if the destination table already exists, or if you&#39;re loading
      * data from Google Cloud Datastore.
@@ -1059,9 +1098,16 @@ export namespace bigquery_v2 {
      */
     sourceUris?: string[];
     /**
-     * Time-based partitioning specification for the destination table.
+     * Time-based partitioning specification for the destination table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
+    /**
+     * [Optional] If sourceFormat is set to &quot;AVRO&quot;, indicates whether
+     * to enable interpreting logical types into their corresponding types (ie.
+     * TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     */
+    useAvroLogicalTypes?: boolean;
     /**
      * [Optional] Specifies the action that occurs if the destination table
      * already exists. The following values are supported: WRITE_TRUNCATE: If
@@ -1161,6 +1207,11 @@ export namespace bigquery_v2 {
      */
     queryParameters?: Schema$QueryParameter[];
     /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
      * Allows the schema of the destination table to be updated as a side effect
      * of the query job. Schema update options are supported in two cases: when
      * writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE
@@ -1180,7 +1231,8 @@ export namespace bigquery_v2 {
      */
     tableDefinitions?: any;
     /**
-     * Time-based partitioning specification for the destination table.
+     * Time-based partitioning specification for the destination table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
@@ -1283,9 +1335,8 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * The geographic location of the job. Required except for US and EU. See
-     * details at
-     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * The geographic location of the job. See details at
+     * https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -1757,6 +1808,18 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string;
   }
+  export interface Schema$RangePartitioning {
+    /**
+     * [Experimental] [Required] The table is partitioned by this field. The
+     * field must be a top-level NULLABLE/REQUIRED field. The only supported
+     * type is INTEGER/INT64.
+     */
+    field?: string;
+    /**
+     * [Experimental] [Required] Defines the ranges for range partitioning.
+     */
+    range?: any;
+  }
   export interface Schema$Streamingbuffer {
     /**
      * [Output-only] A lower-bound estimate of the number of bytes currently in
@@ -1777,8 +1840,8 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Table {
     /**
-     * [Beta] Clustering specification for the table. Must be specified with
-     * time-based partitioning, data in the table will be first partitioned and
+     * [Experimental] Clustering specification for the table. Must be specified
+     * with partitioning, data in the table will be first partitioned and
      * subsequently clustered.
      */
     clustering?: Schema$Clustering;
@@ -1864,10 +1927,27 @@ export namespace bigquery_v2 {
      */
     numLongTermBytes?: string;
     /**
+     * [Output-only] [Experimental] The physical size of this table in bytes,
+     * excluding any data in the streaming buffer. This includes compression and
+     * storage used for time travel.
+     */
+    numPhysicalBytes?: string;
+    /**
      * [Output-only] The number of rows of data in this table, excluding any
      * data in the streaming buffer.
      */
     numRows?: string;
+    /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
+     * [Experimental] [Optional] If set to true, queries over this table require
+     * a partition filter that can be used for partition elimination to be
+     * specified.
+     */
+    requirePartitionFilter?: boolean;
     /**
      * [Optional] Describes the schema of this table.
      */
@@ -1887,7 +1967,8 @@ export namespace bigquery_v2 {
      */
     tableReference?: Schema$TableReference;
     /**
-     * Time-based partitioning specification for this table.
+     * Time-based partitioning specification for this table. Only one of
+     * timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
@@ -2912,7 +2993,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Datasets$Delete {
+  export interface Params$Resource$Datasets$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2932,7 +3013,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Get {
+  export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2947,7 +3028,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Insert {
+  export interface Params$Resource$Datasets$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2963,7 +3044,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$List {
+  export interface Params$Resource$Datasets$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2995,7 +3076,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Patch {
+  export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3015,7 +3096,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$Update {
+  export interface Params$Resource$Datasets$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3841,7 +3922,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Jobs$Cancel {
+  export interface Params$Resource$Jobs$Cancel extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3862,7 +3943,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Get {
+  export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3883,7 +3964,8 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Getqueryresults {
+  export interface Params$Resource$Jobs$Getqueryresults extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3923,7 +4005,7 @@ export namespace bigquery_v2 {
      */
     timeoutMs?: number;
   }
-  export interface Params$Resource$Jobs$Insert {
+  export interface Params$Resource$Jobs$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3954,7 +4036,7 @@ export namespace bigquery_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Jobs$List {
+  export interface Params$Resource$Jobs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3996,7 +4078,7 @@ export namespace bigquery_v2 {
      */
     stateFilter?: string;
   }
-  export interface Params$Resource$Jobs$Query {
+  export interface Params$Resource$Jobs$Query extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4281,7 +4363,8 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getserviceaccount {
+  export interface Params$Resource$Projects$Getserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4292,7 +4375,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$List {
+  export interface Params$Resource$Projects$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4610,7 +4693,8 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tabledata$Insertall {
+  export interface Params$Resource$Tabledata$Insertall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4634,7 +4718,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$TableDataInsertAllRequest;
   }
-  export interface Params$Resource$Tabledata$List {
+  export interface Params$Resource$Tabledata$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5476,7 +5560,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tables$Delete {
+  export interface Params$Resource$Tables$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5495,7 +5579,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Tables$Get {
+  export interface Params$Resource$Tables$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5519,7 +5603,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Tables$Insert {
+  export interface Params$Resource$Tables$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5539,7 +5623,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Tables$List {
+  export interface Params$Resource$Tables$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5563,7 +5647,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Tables$Patch {
+  export interface Params$Resource$Tables$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5587,7 +5671,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Tables$Update {
+  export interface Params$Resource$Tables$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

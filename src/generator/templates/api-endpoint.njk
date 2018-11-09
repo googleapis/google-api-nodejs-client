@@ -40,6 +40,15 @@ export interface Options extends GlobalOptions {
   version: '{{api.version|replace('\.', '_')}}';
 }
 
+interface StandardParameters {
+  {% for pname, p in api.parameters|dictsort %}
+  /**
+    * {{ p.description|oneLine|cleanComments|safe }}
+    */
+  {{ pname|cleanPropertyName|safe }}?: {{ p.type }};
+  {% endfor %}
+}
+
 /**
  * {{ api.title }}
  *
@@ -82,15 +91,6 @@ export class {{ Name }} {
   getRoot() {
     return this.root;
   }
-
-interface StandardParameters {
-  {% for pname, p in api.parameters|dictsort %}
-  /**
-    * {{ p.description|oneLine|cleanComments|safe }}
-    */
-  {{ pname|getSafeParamName }}?: {{ p.type }};
-  {% endfor %}
-}
 
 {% if api.methods %}
   {% for mname, m in api.methods|dictsort %}

@@ -29,6 +29,40 @@ export namespace androidenterprise_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Play EMM API
    *
@@ -140,7 +174,7 @@ export namespace androidenterprise_v1 {
      */
     permission?: string[];
     /**
-     * Options for displaying the Play Search page.
+     * Options for displaying the managed Play Search apps page.
      */
     playSearch?: Schema$AdministratorWebTokenSpecPlaySearch;
     /**
@@ -148,7 +182,7 @@ export namespace androidenterprise_v1 {
      */
     privateApps?: Schema$AdministratorWebTokenSpecPrivateApps;
     /**
-     * Options for displaying the Store Builder page.
+     * Options for displaying the Organize apps page.
      */
     storeBuilder?: Schema$AdministratorWebTokenSpecStoreBuilder;
     /**
@@ -162,7 +196,7 @@ export namespace androidenterprise_v1 {
      */
     approveApps?: boolean;
     /**
-     * Whether the Play Search page is displayed. Default is true.
+     * Whether the managed Play Search apps page is displayed. Default is true.
      */
     enabled?: boolean;
   }
@@ -174,7 +208,7 @@ export namespace androidenterprise_v1 {
   }
   export interface Schema$AdministratorWebTokenSpecStoreBuilder {
     /**
-     * Whether the Store Builder page is displayed. Default is true.
+     * Whether the Organize apps page is displayed. Default is true.
      */
     enabled?: boolean;
   }
@@ -333,10 +367,19 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$AppVersion {
     /**
-     * The track that this app was published in. For example if track is
-     * &quot;alpha&quot;, this is an alpha version of the app.
+     * True if this version is a production APK.
+     */
+    isProduction?: boolean;
+    /**
+     * Deprecated, use trackId instead.
      */
     track?: string;
+    /**
+     * Track ids that the app version is published in. Replaces the track field
+     * (deprecated), but doesn&#39;t include the production track (see
+     * isProduction instead).
+     */
+    trackId?: string[];
     /**
      * Unique increasing identifier for the app version.
      */
@@ -1143,6 +1186,10 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$Product {
     /**
+     * The tracks visible to the enterprise.
+     */
+    appTracks?: Schema$TrackInfo[];
+    /**
      * App versions currently available for this product.
      */
     appVersion?: Schema$AppVersion[];
@@ -1155,7 +1202,7 @@ export namespace androidenterprise_v1 {
      */
     availableCountries?: string[];
     /**
-     * The tracks that are visible to the enterprise.
+     * Deprecated, use appTracks instead.
      */
     availableTracks?: string[];
     /**
@@ -1325,21 +1372,13 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
     /**
-     * Grants visibility to the specified track(s) of the product to the device.
-     * The track available to the device is based on the following order of
-     * preference: alpha, beta, production. For example, if an app has a prod
-     * version, a beta version and an alpha version and the enterprise has been
-     * granted visibility to both the alpha and beta tracks, if tracks is
-     * {&quot;beta&quot;, &quot;production&quot;} then the beta version of the
-     * app is made available to the device. If there are no app versions in the
-     * specified track adding the &quot;alpha&quot; and &quot;beta&quot; values
-     * to the list of tracks will have no effect. Note that the enterprise
-     * requires access to alpha and/or beta tracks before users can be granted
-     * visibility to apps in those tracks.  The allowed sets are: {} (considered
-     * equivalent to {&quot;production&quot;}) {&quot;production&quot;}
-     * {&quot;beta&quot;, &quot;production&quot;} {&quot;alpha&quot;,
-     * &quot;beta&quot;, &quot;production&quot;} The order of elements is not
-     * relevant. Any other set of tracks will be rejected with an error.
+     * Grants the device visibility to the specified product release track(s),
+     * identified by trackIds. The list of release tracks of a product can be
+     * obtained by calling Products.Get.
+     */
+    trackIds?: string[];
+    /**
+     * Deprecated. Use trackIds instead.
      */
     tracks?: string[];
   }
@@ -1461,22 +1500,12 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
     /**
-     * Grants visibility to the specified track(s) of the product to the user.
-     * The track available to the user is based on the following order of
-     * preference: alpha, beta, production. For example, if an app has a prod
-     * version, a beta version and an alpha version and the enterprise has been
-     * granted visibility to both the alpha and beta tracks, if tracks is
-     * {&quot;beta&quot;, &quot;production&quot;} the user will be able to
-     * install the app and they will get the beta version of the app. If there
-     * are no app versions in the specified track adding the &quot;alpha&quot;
-     * and &quot;beta&quot; values to the list of tracks will have no effect.
-     * Note that the enterprise requires access to alpha and/or beta tracks
-     * before users can be granted visibility to apps in those tracks.  The
-     * allowed sets are: {} (considered equivalent to {&quot;production&quot;})
-     * {&quot;production&quot;} {&quot;beta&quot;, &quot;production&quot;}
-     * {&quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot;} The order
-     * of elements is not relevant. Any other set of tracks will be rejected
-     * with an error.
+     * Grants the user visibility to the specified product track(s), identified
+     * by trackIds.
+     */
+    trackIds?: string[];
+    /**
+     * Deprecated. Use trackIds instead.
      */
     tracks?: string[];
   }
@@ -1680,6 +1709,22 @@ export namespace androidenterprise_v1 {
   export interface Schema$TokenPagination {
     nextPageToken?: string;
     previousPageToken?: string;
+  }
+  /**
+   * Id to name association of a track.
+   */
+  export interface Schema$TrackInfo {
+    /**
+     * A modifiable name for a track. This is the visible name in the play
+     * developer console.
+     */
+    trackAlias?: string;
+    /**
+     * Unmodifiable, unique track identifier. This identifier is the
+     * releaseTrackId in the url of the play developer console page that
+     * displays the track information.
+     */
+    trackId?: string;
   }
   /**
    * A Users resource represents an account associated with an enterprise. The
@@ -2231,7 +2276,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Devices$Get {
+  export interface Params$Resource$Devices$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2250,7 +2295,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Devices$Getstate {
+  export interface Params$Resource$Devices$Getstate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2269,7 +2314,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Devices$List {
+  export interface Params$Resource$Devices$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2284,7 +2329,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Devices$Patch {
+  export interface Params$Resource$Devices$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2314,7 +2359,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Device;
   }
-  export interface Params$Resource$Devices$Setstate {
+  export interface Params$Resource$Devices$Setstate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2338,7 +2383,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$DeviceState;
   }
-  export interface Params$Resource$Devices$Update {
+  export interface Params$Resource$Devices$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3542,7 +3587,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Acknowledgenotificationset {
+  export interface Params$Resource$Enterprises$Acknowledgenotificationset
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3554,7 +3600,8 @@ export namespace androidenterprise_v1 {
      */
     notificationSetId?: string;
   }
-  export interface Params$Resource$Enterprises$Completesignup {
+  export interface Params$Resource$Enterprises$Completesignup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3569,7 +3616,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseToken?: string;
   }
-  export interface Params$Resource$Enterprises$Createwebtoken {
+  export interface Params$Resource$Enterprises$Createwebtoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3585,7 +3633,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$AdministratorWebTokenSpec;
   }
-  export interface Params$Resource$Enterprises$Enroll {
+  export interface Params$Resource$Enterprises$Enroll extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3601,7 +3650,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Enterprise;
   }
-  export interface Params$Resource$Enterprises$Generatesignupurl {
+  export interface Params$Resource$Enterprises$Generatesignupurl extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3618,7 +3668,7 @@ export namespace androidenterprise_v1 {
      */
     callbackUrl?: string;
   }
-  export interface Params$Resource$Enterprises$Get {
+  export interface Params$Resource$Enterprises$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3629,7 +3679,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Getandroiddevicepolicyconfig {
+  export interface Params$Resource$Enterprises$Getandroiddevicepolicyconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3640,7 +3691,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Getserviceaccount {
+  export interface Params$Resource$Enterprises$Getserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3655,7 +3707,8 @@ export namespace androidenterprise_v1 {
      */
     keyType?: string;
   }
-  export interface Params$Resource$Enterprises$Getstorelayout {
+  export interface Params$Resource$Enterprises$Getstorelayout extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3666,7 +3719,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$List {
+  export interface Params$Resource$Enterprises$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3677,7 +3730,8 @@ export namespace androidenterprise_v1 {
      */
     domain?: string;
   }
-  export interface Params$Resource$Enterprises$Pullnotificationset {
+  export interface Params$Resource$Enterprises$Pullnotificationset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3694,7 +3748,8 @@ export namespace androidenterprise_v1 {
      */
     requestMode?: string;
   }
-  export interface Params$Resource$Enterprises$Sendtestpushnotification {
+  export interface Params$Resource$Enterprises$Sendtestpushnotification extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3705,7 +3760,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Setaccount {
+  export interface Params$Resource$Enterprises$Setaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3721,7 +3777,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$EnterpriseAccount;
   }
-  export interface Params$Resource$Enterprises$Setandroiddevicepolicyconfig {
+  export interface Params$Resource$Enterprises$Setandroiddevicepolicyconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3737,7 +3794,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$AndroidDevicePolicyConfig;
   }
-  export interface Params$Resource$Enterprises$Setstorelayout {
+  export interface Params$Resource$Enterprises$Setstorelayout extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3753,7 +3811,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreLayout;
   }
-  export interface Params$Resource$Enterprises$Unenroll {
+  export interface Params$Resource$Enterprises$Unenroll extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4129,7 +4188,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Entitlements$Delete {
+  export interface Params$Resource$Entitlements$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4149,7 +4209,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$Get {
+  export interface Params$Resource$Entitlements$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4169,7 +4229,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$List {
+  export interface Params$Resource$Entitlements$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4184,7 +4245,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$Patch {
+  export interface Params$Resource$Entitlements$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4216,7 +4278,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Entitlement;
   }
-  export interface Params$Resource$Entitlements$Update {
+  export interface Params$Resource$Entitlements$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4400,7 +4463,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Grouplicenses$Get {
+  export interface Params$Resource$Grouplicenses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4416,7 +4480,8 @@ export namespace androidenterprise_v1 {
      */
     groupLicenseId?: string;
   }
-  export interface Params$Resource$Grouplicenses$List {
+  export interface Params$Resource$Grouplicenses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4519,7 +4584,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Grouplicenseusers$List {
+  export interface Params$Resource$Grouplicenseusers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4900,7 +4966,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Installs$Delete {
+  export interface Params$Resource$Installs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4924,7 +4990,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Installs$Get {
+  export interface Params$Resource$Installs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4948,7 +5014,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Installs$List {
+  export interface Params$Resource$Installs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4967,7 +5033,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Installs$Patch {
+  export interface Params$Resource$Installs$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4996,7 +5062,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Install;
   }
-  export interface Params$Resource$Installs$Update {
+  export interface Params$Resource$Installs$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5435,7 +5501,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsfordevice$Delete {
+  export interface Params$Resource$Managedconfigurationsfordevice$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5459,7 +5526,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Get {
+  export interface Params$Resource$Managedconfigurationsfordevice$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5483,7 +5551,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$List {
+  export interface Params$Resource$Managedconfigurationsfordevice$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5502,7 +5571,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Patch {
+  export interface Params$Resource$Managedconfigurationsfordevice$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5531,7 +5601,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ManagedConfiguration;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Update {
+  export interface Params$Resource$Managedconfigurationsfordevice$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5952,7 +6023,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsforuser$Delete {
+  export interface Params$Resource$Managedconfigurationsforuser$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5972,7 +6044,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Get {
+  export interface Params$Resource$Managedconfigurationsforuser$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5992,7 +6065,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$List {
+  export interface Params$Resource$Managedconfigurationsforuser$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6007,7 +6081,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Patch {
+  export interface Params$Resource$Managedconfigurationsforuser$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6032,7 +6107,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ManagedConfiguration;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Update {
+  export interface Params$Resource$Managedconfigurationsforuser$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6150,7 +6226,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationssettings$List {
+  export interface Params$Resource$Managedconfigurationssettings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6245,7 +6322,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Permissions$Get {
+  export interface Params$Resource$Permissions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6791,7 +6868,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Products$Approve {
+  export interface Params$Resource$Products$Approve extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6811,7 +6888,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ProductsApproveRequest;
   }
-  export interface Params$Resource$Products$Generateapprovalurl {
+  export interface Params$Resource$Products$Generateapprovalurl extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6831,7 +6909,7 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Get {
+  export interface Params$Resource$Products$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6850,7 +6928,8 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getapprestrictionsschema {
+  export interface Params$Resource$Products$Getapprestrictionsschema extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6869,7 +6948,8 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getpermissions {
+  export interface Params$Resource$Products$Getpermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6884,7 +6964,7 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$List {
+  export interface Params$Resource$Products$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6927,7 +7007,8 @@ export namespace androidenterprise_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Products$Unapprove {
+  export interface Params$Resource$Products$Unapprove extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7182,7 +7263,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Serviceaccountkeys$Delete {
+  export interface Params$Resource$Serviceaccountkeys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7197,7 +7279,8 @@ export namespace androidenterprise_v1 {
      */
     keyId?: string;
   }
-  export interface Params$Resource$Serviceaccountkeys$Insert {
+  export interface Params$Resource$Serviceaccountkeys$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7213,7 +7296,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ServiceAccountKey;
   }
-  export interface Params$Resource$Serviceaccountkeys$List {
+  export interface Params$Resource$Serviceaccountkeys$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7668,7 +7752,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutclusters$Delete {
+  export interface Params$Resource$Storelayoutclusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7687,7 +7772,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Get {
+  export interface Params$Resource$Storelayoutclusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7706,7 +7792,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Insert {
+  export interface Params$Resource$Storelayoutclusters$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7726,7 +7813,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreCluster;
   }
-  export interface Params$Resource$Storelayoutclusters$List {
+  export interface Params$Resource$Storelayoutclusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7741,7 +7829,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Patch {
+  export interface Params$Resource$Storelayoutclusters$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7765,7 +7854,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreCluster;
   }
-  export interface Params$Resource$Storelayoutclusters$Update {
+  export interface Params$Resource$Storelayoutclusters$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8226,7 +8316,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutpages$Delete {
+  export interface Params$Resource$Storelayoutpages$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8241,7 +8332,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Get {
+  export interface Params$Resource$Storelayoutpages$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8256,7 +8348,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Insert {
+  export interface Params$Resource$Storelayoutpages$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8272,7 +8365,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StorePage;
   }
-  export interface Params$Resource$Storelayoutpages$List {
+  export interface Params$Resource$Storelayoutpages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8283,7 +8377,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Patch {
+  export interface Params$Resource$Storelayoutpages$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8303,7 +8398,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StorePage;
   }
-  export interface Params$Resource$Storelayoutpages$Update {
+  export interface Params$Resource$Storelayoutpages$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9182,7 +9278,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Delete {
+  export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9197,7 +9293,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generateauthenticationtoken {
+  export interface Params$Resource$Users$Generateauthenticationtoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9212,7 +9309,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generatetoken {
+  export interface Params$Resource$Users$Generatetoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9227,7 +9325,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Get {
+  export interface Params$Resource$Users$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9242,7 +9340,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Getavailableproductset {
+  export interface Params$Resource$Users$Getavailableproductset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9257,7 +9356,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Insert {
+  export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9273,7 +9372,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$List {
+  export interface Params$Resource$Users$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9288,7 +9387,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Users$Patch {
+  export interface Params$Resource$Users$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9308,7 +9407,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$Revokedeviceaccess {
+  export interface Params$Resource$Users$Revokedeviceaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9323,7 +9423,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Revoketoken {
+  export interface Params$Resource$Users$Revoketoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9338,7 +9439,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Setavailableproductset {
+  export interface Params$Resource$Users$Setavailableproductset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9358,7 +9460,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ProductSet;
   }
-  export interface Params$Resource$Users$Update {
+  export interface Params$Resource$Users$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

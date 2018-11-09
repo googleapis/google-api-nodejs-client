@@ -2,7 +2,7 @@
 
 # @google/cloudresourcemanager
 
-> The Google Cloud Resource Manager API provides methods for creating, reading, and updating project metadata.
+> Creates, reads, and updates metadata for Google Cloud Platform resource containers.
 
 ## Installation
 

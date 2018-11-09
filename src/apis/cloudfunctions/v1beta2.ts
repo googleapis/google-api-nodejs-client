@@ -29,6 +29,57 @@ export namespace cloudfunctions_v1beta2 {
     version: 'v1beta2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Functions API
    *
@@ -154,7 +205,8 @@ export namespace cloudfunctions_v1beta2 {
      * organization. The format of this field is either
      * `projects/{project}/global/networks/{network}` or `{network}`, where
      * {project} is a project id where the network is defined, and {network} is
-     * the short name of the network.  See [the VPC
+     * the short name of the network.  This field is mutually exclusive with
+     * `vpc_connector` and will be replaced by it.  See [the VPC
      * documentation](https://cloud.google.com/compute/docs/vpc) for more
      * information on connecting Cloud projects.  This feature is currently in
      * alpha, available only for whitelisted users.
@@ -215,6 +267,17 @@ export namespace cloudfunctions_v1beta2 {
      * deployment attempt results in a new version of a function being created.
      */
     versionId?: string;
+    /**
+     * The VPC Network Connector that this cloud function can connect to. It can
+     * be either the fully-qualified URI, or the short name of the network
+     * connector resource. The format of this field is
+     * `projects/x/locations/x/connectors/x  This field is mutually exclusive
+     * with `network` field and will eventually replace it.  See [the VPC
+     * documentation](https://cloud.google.com/compute/docs/vpc) for more
+     * information on connecting Cloud projects.  This feature is currently in
+     * alpha, available only for whitelisted users.
+     */
+    vpcConnector?: string;
   }
   /**
    * Describes EventTrigger, used to request events be sent from another
@@ -725,7 +788,7 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -736,7 +799,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -862,7 +925,8 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1480,7 +1544,8 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Functions$Call {
+  export interface Params$Resource$Projects$Locations$Functions$Call extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1496,7 +1561,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$CallFunctionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Create {
+  export interface Params$Resource$Projects$Locations$Functions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1513,7 +1579,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$CloudFunction;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Delete {
+  export interface Params$Resource$Projects$Locations$Functions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1524,7 +1591,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl {
+  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1541,7 +1609,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$GenerateDownloadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl {
+  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1558,7 +1627,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$GenerateUploadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Get {
+  export interface Params$Resource$Projects$Locations$Functions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1569,7 +1639,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$List {
+  export interface Params$Resource$Projects$Locations$Functions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1592,7 +1663,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Update {
+  export interface Params$Resource$Projects$Locations$Functions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,40 @@ export namespace compute_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Compute Engine API
    *
@@ -999,14 +1033,21 @@ export namespace compute_v1 {
      */
     description?: string;
     /**
-     * The fully-qualified URL of a Instance Group resource. This instance group
-     * defines the list of instances that serve traffic. Member virtual machine
-     * instances from each instance group must live in the same zone as the
-     * instance group itself. No two backends in a backend service are allowed
-     * to use same Instance Group resource.  Note that you must specify an
-     * Instance Group resource using the fully-qualified URL, rather than a
+     * The fully-qualified URL of an Instance Group or Network Endpoint Group
+     * resource. In case of instance group this defines the list of instances
+     * that serve traffic. Member virtual machine instances from each instance
+     * group must live in the same zone as the instance group itself. No two
+     * backends in a backend service are allowed to use same Instance Group
+     * resource.  For Network Endpoint Groups this defines list of endpoints.
+     * All endpoints of Network Endpoint Group must be hosted on instances
+     * located in the same zone as the Network Endpoint Group.  Backend service
+     * can not contain mix of Instance Group and Network Endpoint Group
+     * backends.  Note that you must specify an Instance Group or Network
+     * Endpoint Group resource using the fully-qualified URL, rather than a
      * partial URL.  When the BackendService has load balancing scheme INTERNAL,
      * the instance group must be within the same region as the BackendService.
+     * Network Endpoint Groups are not supported for INTERNAL load balancing
+     * scheme.
      */
     group?: string;
     /**
@@ -1335,6 +1376,10 @@ export namespace compute_v1 {
     signedUrlKeyNames?: string[];
   }
   export interface Schema$BackendServiceGroupHealth {
+    /**
+     * Health state of the backend instances or endpoints in requested instance
+     * or network endpoint group, determined based on configured health checks.
+     */
     healthStatus?: Schema$HealthStatus[];
     /**
      * [Output Only] Type of resource. Always compute#backendServiceGroupHealth
@@ -3700,6 +3745,12 @@ export namespace compute_v1 {
      * are scheduled to be restarted or are currently being restarted.
      */
     restarting?: number;
+    /**
+     * [Output Only] The number of instances in the managed instance group that
+     * are being verified. See the managedInstances[].currentAction property in
+     * the listManagedInstances method documentation.
+     */
+    verifying?: number;
   }
   export interface Schema$InstanceGroupManagerAggregatedList {
     /**
@@ -4646,6 +4697,77 @@ export namespace compute_v1 {
     googleDemarcId?: string;
   }
   /**
+   * Diagnostics information about interconnect, contains detailed and current
+   * technical information about Google?s side of the connection.
+   */
+  export interface Schema$InterconnectDiagnostics {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing individual
+     * neighbors currently seen by the Google router in the ARP cache for the
+     * Interconnect. This will be empty when the Interconnect is not bundled.
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * A list of InterconnectDiagnostics.LinkStatus objects, describing the
+     * status for each link on the Interconnect.
+     */
+    links?: Schema$InterconnectDiagnosticsLinkStatus[];
+    /**
+     * The MAC address of the Interconnect&#39;s bundle interface.
+     */
+    macAddress?: string;
+  }
+  /**
+   * Describing the ARP neighbor entries seen on this link
+   */
+  export interface Schema$InterconnectDiagnosticsARPEntry {
+    /**
+     * The IP address of this ARP neighbor.
+     */
+    ipAddress?: string;
+    /**
+     * The MAC address of this ARP neighbor.
+     */
+    macAddress?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkLACPStatus {
+    /**
+     * System ID of the port on Google?s side of the LACP exchange.
+     */
+    googleSystemId?: string;
+    /**
+     * System ID of the port on the neighbor?s side of the LACP exchange.
+     */
+    neighborSystemId?: string;
+    state?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    state?: string;
+    /**
+     * Value of the current optical power, read in dBm.
+     */
+    value?: number;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkStatus {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP
+     * neighbor entries seen on this link. This will be empty if the link is
+     * bundled
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * The unique ID for this link assigned during turn up by Google.
+     */
+    circuitId?: string;
+    /**
+     * The Demarc address assigned by Google and provided in the LoA.
+     */
+    googleDemarc?: string;
+    lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+  }
+  /**
    * Response to the list request, and contains a list of interconnects.
    */
   export interface Schema$InterconnectList {
@@ -4851,6 +4973,12 @@ export namespace compute_v1 {
      * this enum have been deprecated in favor of the unprefixed values.
      */
     state?: string;
+  }
+  /**
+   * Response for the InterconnectsGetDiagnosticsRequest.
+   */
+  export interface Schema$InterconnectsGetDiagnosticsResponse {
+    result?: Schema$InterconnectDiagnostics;
   }
   /**
    * A license resource.
@@ -5700,7 +5828,7 @@ export namespace compute_v1 {
      * with RFC1035. Specifically, the name must be 1-63 characters long and
      * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
      * first character must be a lowercase letter, and all following characters
-     * must be a dash, lowercase letter, or digit, except the last charaicter,
+     * must be a dash, lowercase letter, or digit, except the last character,
      * which cannot be a dash.
      */
     name?: string;
@@ -6170,12 +6298,19 @@ export namespace compute_v1 {
   export interface Schema$PathMatcher {
     /**
      * The full or partial URL to the BackendService resource. This will be used
-     * if none of the pathRules defined by this PathMatcher is matched by the
-     * URL&#39;s path portion. For example, the following are all valid URLs to
-     * a BackendService resource:   -
+     * if none of the pathRules or routeRules defined by this PathMatcher are
+     * matched. For example, the following are all valid URLs to a
+     * BackendService resource:   -
      * https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService
      * - compute/v1/projects/project/global/backendServices/backendService  -
-     * global/backendServices/backendService
+     * global/backendServices/backendService   Use defaultService instead of
+     * defaultRouteAction when simple routing to a backend service is desired
+     * and other advanced capabilities like traffic splitting and URL rewrites
+     * are not required. Only one of defaultService, defaultRouteAction or
+     * defaultUrlRedirect must be set. Authorization requires one or more of the
+     * following Google IAM permissions on the specified resource
+     * default_service:   - compute.backendBuckets.use  -
+     * compute.backendServices.use
      */
     defaultService?: string;
     /**
@@ -6188,7 +6323,13 @@ export namespace compute_v1 {
      */
     name?: string;
     /**
-     * The list of path rules.
+     * The list of path rules. Use this list instead of routeRules when routing
+     * based on simple path matching is all that&#39;s required. The order by
+     * which path rules are specified does not matter. Matches are always done
+     * on the longest-path-first basis. For example: a pathRule with a path
+     * /a/b/c/* will match before /a/b/* irrespective of the order in which
+     * those paths appear in this list. Only one of pathRules or routeRules must
+     * be set.
      */
     pathRules?: Schema$PathRule[];
   }
@@ -6205,7 +6346,11 @@ export namespace compute_v1 {
      */
     paths?: string[];
     /**
-     * The URL of the BackendService resource if this rule is matched.
+     * The URL of the backend service resource if this rule is matched. Use
+     * service instead of routeAction when simple routing to a backend service
+     * is desired and other advanced capabilities like traffic splitting and
+     * rewrites are not required. Only one of service, routeAction or
+     * urlRedirect should must be set.
      */
     service?: string;
   }
@@ -6724,8 +6869,8 @@ export namespace compute_v1 {
   }
   export interface Schema$ResourceGroupReference {
     /**
-     * A URI referencing one of the instance groups listed in the backend
-     * service.
+     * A URI referencing one of the instance groups or network endpoint groups
+     * listed in the backend service.
      */
     group?: string;
   }
@@ -6917,6 +7062,10 @@ export namespace compute_v1 {
      * dash.
      */
     name?: string;
+    /**
+     * A list of Nat services created in this router.
+     */
+    nats?: Schema$RouterNat[];
     /**
      * URI of the network to which this router belongs.
      */
@@ -7135,6 +7284,92 @@ export namespace compute_v1 {
      */
     warning?: any;
   }
+  /**
+   * Represents a Nat resource. It enables the VMs within the specified
+   * subnetworks to access Internet without external IP addresses. It specifies
+   * a list of subnetworks (and the ranges within) that want to use NAT.
+   * Customers can also provide the external IPs that would be used for NAT. GCP
+   * would auto-allocate ephemeral IPs if no external IPs are provided.
+   */
+  export interface Schema$RouterNat {
+    /**
+     * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
+     */
+    icmpIdleTimeoutSec?: number;
+    /**
+     * Minimum number of ports allocated to a VM from this NAT config. If not
+     * set, a default number of ports is allocated to a VM. This gets rounded up
+     * to the nearest power of 2. Eg. if the value of this field is 50, at least
+     * 64 ports will be allocated to a VM.
+     */
+    minPortsPerVm?: number;
+    /**
+     * Unique name of this Nat service. The name must be 1-63 characters long
+     * and comply with RFC1035.
+     */
+    name?: string;
+    /**
+     * Specify the NatIpAllocateOption. If it is AUTO_ONLY, then nat_ip should
+     * be empty.
+     */
+    natIpAllocateOption?: string;
+    /**
+     * A list of URLs of the IP resources used for this Nat service. These IPs
+     * must be valid static external IP addresses assigned to the project.
+     * max_length is subject to change post alpha.
+     */
+    natIps?: string[];
+    /**
+     * Specify the Nat option. If this field contains
+     * ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES,
+     * then there should not be any other Router.Nat section in any Router for
+     * this network in this region.
+     */
+    sourceSubnetworkIpRangesToNat?: string;
+    /**
+     * A list of Subnetwork resources whose traffic should be translated by NAT
+     * Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the
+     * SubnetworkIpRangeToNatOption above.
+     */
+    subnetworks?: Schema$RouterNatSubnetworkToNat[];
+    /**
+     * Timeout (in seconds) for TCP established connections. Defaults to 1200s
+     * if not set.
+     */
+    tcpEstablishedIdleTimeoutSec?: number;
+    /**
+     * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if
+     * not set.
+     */
+    tcpTransitoryIdleTimeoutSec?: number;
+    /**
+     * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
+     */
+    udpIdleTimeoutSec?: number;
+  }
+  /**
+   * Defines the IP ranges that want to use NAT for a subnetwork.
+   */
+  export interface Schema$RouterNatSubnetworkToNat {
+    /**
+     * URL for the subnetwork resource to use NAT.
+     */
+    name?: string;
+    /**
+     * A list of the secondary ranges of the Subnetwork that are allowed to use
+     * NAT. This can be populated only if
+     * &quot;LIST_OF_SECONDARY_IP_RANGES&quot; is one of the values in
+     * source_ip_ranges_to_nat.
+     */
+    secondaryIpRangeNames?: string[];
+    /**
+     * Specify the options for NAT ranges in the Subnetwork. All usages of
+     * single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only
+     * valid option with multiple values is: [&quot;PRIMARY_IP_RANGE&quot;,
+     * &quot;LIST_OF_SECONDARY_IP_RANGES&quot;] Default: [ALL_IP_RANGES]
+     */
+    sourceIpRangesToNat?: string[];
+  }
   export interface Schema$RoutersPreviewResponse {
     /**
      * Preview of given router.
@@ -7162,6 +7397,7 @@ export namespace compute_v1 {
      */
     bestRoutesForRouter?: Schema$Route[];
     bgpPeerStatus?: Schema$RouterStatusBgpPeerStatus[];
+    natStatus?: Schema$RouterStatusNatStatus[];
     /**
      * URI of the network to which this router belongs.
      */
@@ -7209,6 +7445,40 @@ export namespace compute_v1 {
      * Time this session has been up, in seconds. Format: 145
      */
     uptimeSeconds?: string;
+  }
+  /**
+   * Status of a NAT contained in this router.
+   */
+  export interface Schema$RouterStatusNatStatus {
+    /**
+     * A list of IPs auto-allocated for NAT. Example: [&quot;1.1.1.1&quot;,
+     * &quot;129.2.16.89&quot;]
+     */
+    autoAllocatedNatIps?: string[];
+    /**
+     * The number of extra IPs to allocate. This will be greater than 0 only if
+     * user-specified IPs are NOT enough to allow all configured VMs to use NAT.
+     * This value is meaningful only when auto-allocation of NAT IPs is *not*
+     * used.
+     */
+    minExtraNatIpsNeeded?: number;
+    /**
+     * Unique name of this NAT.
+     */
+    name?: string;
+    /**
+     * Number of VM endpoints (i.e., Nics) that can use NAT.
+     */
+    numVmEndpointsWithNatMappings?: number;
+    /**
+     * A list of fully qualified URLs of reserved IP address resources.
+     */
+    userAllocatedNatIpResources?: string[];
+    /**
+     * A list of IPs user-allocated for NAT. They will be raw IP strings like
+     * &quot;179.12.26.133&quot;.
+     */
+    userAllocatedNatIps?: string[];
   }
   export interface Schema$RouterStatusResponse {
     /**
@@ -8230,8 +8500,9 @@ export namespace compute_v1 {
     selfLink?: string;
     /**
      * URLs to SslCertificate resources that are used to authenticate
-     * connections between users and the load balancer. Currently, exactly one
-     * SSL certificate must be specified.
+     * connections between users and the load balancer. At least one SSL
+     * certificate must be specified. Currently, you may specify up to 15 SSL
+     * certificates.
      */
     sslCertificates?: string[];
     /**
@@ -8504,7 +8775,7 @@ export namespace compute_v1 {
      */
     selfLink?: string;
     /**
-     * Sesssion affinity option, must be one of the following values: NONE:
+     * Session affinity option, must be one of the following values: NONE:
      * Connections from the same client IP may go to any instance in the pool.
      * CLIENT_IP: Connections from the same client IP will go to the same
      * instance in the pool while that instance remains healthy.
@@ -8703,8 +8974,8 @@ export namespace compute_v1 {
     service?: string;
     /**
      * URLs to SslCertificate resources that are used to authenticate
-     * connections to Backends. Currently exactly one SSL certificate must be
-     * specified.
+     * connections to Backends. At least one SSL certificate must be specified.
+     * Currently, you may specify up to 15 SSL certificates.
      */
     sslCertificates?: string[];
     /**
@@ -9046,7 +9317,11 @@ export namespace compute_v1 {
      */
     creationTimestamp?: string;
     /**
-     * The URL of the BackendService resource if none of the hostRules match.
+     * The URL of the backendService resource if none of the hostRules match.
+     * Use defaultService instead of defaultRouteAction when simple routing to a
+     * backendService is desired and other advanced capabilities like traffic
+     * splitting and rewrites are not required. Only one of defaultService,
+     * defaultRouteAction or defaultUrlRedirect should must be set.
      */
     defaultService?: string;
     /**
@@ -9276,6 +9551,78 @@ export namespace compute_v1 {
      * should conform to Cloud Storage object naming conventions.
      */
     reportNamePrefix?: string;
+  }
+  /**
+   * Contain information of Nat mapping for a VM endpoint (i.e., NIC).
+   */
+  export interface Schema$VmEndpointNatMappings {
+    /**
+     * Name of the VM instance which the endpoint belongs to
+     */
+    instanceName?: string;
+    interfaceNatMappings?: Schema$VmEndpointNatMappingsInterfaceNatMappings[];
+  }
+  /**
+   * Contain information of Nat mapping for an interface of this endpoint.
+   */
+  export interface Schema$VmEndpointNatMappingsInterfaceNatMappings {
+    /**
+     * A list of all IP:port-range mappings assigned to this interface. These
+     * ranges are inclusive, that is, both the first and the last ports can be
+     * used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;,
+     * &quot;1.1.1.1:2234-2234&quot;].
+     */
+    natIpPortRanges?: string[];
+    /**
+     * Total number of ports across all NAT IPs allocated to this interface. It
+     * equals to the aggregated port number in the field nat_ip_port_ranges.
+     */
+    numTotalNatPorts?: number;
+    /**
+     * Alias IP range for this interface endpoint. It will be a private (RFC
+     * 1918) IP range. Examples: &quot;10.33.4.55/32&quot;, or
+     * &quot;192.168.5.0/24&quot;.
+     */
+    sourceAliasIpRange?: string;
+    /**
+     * Primary IP of the VM for this NIC.
+     */
+    sourceVirtualIp?: string;
+  }
+  /**
+   * Contains a list of VmEndpointNatMappings.
+   */
+  export interface Schema$VmEndpointNatMappingsList {
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of resource. Always compute#vmEndpointNatMappingsList
+     * for lists of Nat mappings of VM endpoints.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] A list of Nat mapping information of VM endpoints.
+     */
+    result?: Schema$VmEndpointNatMappings[];
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: any;
   }
   /**
    * VPN tunnel resource. (== resource_for beta.vpnTunnels ==) (== resource_for
@@ -10017,7 +10364,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Acceleratortypes$Aggregatedlist {
+  export interface Params$Resource$Acceleratortypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10071,7 +10419,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Acceleratortypes$Get {
+  export interface Params$Resource$Acceleratortypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10090,7 +10439,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Acceleratortypes$List {
+  export interface Params$Resource$Acceleratortypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10827,7 +11177,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Addresses$Aggregatedlist {
+  export interface Params$Resource$Addresses$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10881,7 +11232,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Addresses$Delete {
+  export interface Params$Resource$Addresses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10913,7 +11264,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Addresses$Get {
+  export interface Params$Resource$Addresses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10932,7 +11283,7 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Addresses$Insert {
+  export interface Params$Resource$Addresses$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10965,7 +11316,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Address;
   }
-  export interface Params$Resource$Addresses$List {
+  export interface Params$Resource$Addresses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11978,7 +12329,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Autoscalers$Aggregatedlist {
+  export interface Params$Resource$Autoscalers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12032,7 +12384,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Autoscalers$Delete {
+  export interface Params$Resource$Autoscalers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12064,7 +12417,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Get {
+  export interface Params$Resource$Autoscalers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12083,7 +12436,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Insert {
+  export interface Params$Resource$Autoscalers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12116,7 +12470,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Autoscalers$List {
+  export interface Params$Resource$Autoscalers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12174,7 +12528,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Patch {
+  export interface Params$Resource$Autoscalers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12211,7 +12566,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Autoscalers$Update {
+  export interface Params$Resource$Autoscalers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13199,7 +13555,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Backendbuckets$Addsignedurlkey {
+  export interface Params$Resource$Backendbuckets$Addsignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13233,7 +13590,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SignedUrlKey;
   }
-  export interface Params$Resource$Backendbuckets$Delete {
+  export interface Params$Resource$Backendbuckets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13261,7 +13619,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendbuckets$Deletesignedurlkey {
+  export interface Params$Resource$Backendbuckets$Deletesignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13294,7 +13653,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendbuckets$Get {
+  export interface Params$Resource$Backendbuckets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13309,7 +13669,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendbuckets$Insert {
+  export interface Params$Resource$Backendbuckets$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13338,7 +13699,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$BackendBucket;
   }
-  export interface Params$Resource$Backendbuckets$List {
+  export interface Params$Resource$Backendbuckets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13392,7 +13754,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendbuckets$Patch {
+  export interface Params$Resource$Backendbuckets$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13425,7 +13788,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$BackendBucket;
   }
-  export interface Params$Resource$Backendbuckets$Update {
+  export interface Params$Resource$Backendbuckets$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14771,7 +15135,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Backendservices$Addsignedurlkey {
+  export interface Params$Resource$Backendservices$Addsignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14805,7 +15170,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SignedUrlKey;
   }
-  export interface Params$Resource$Backendservices$Aggregatedlist {
+  export interface Params$Resource$Backendservices$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14859,7 +15225,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Delete {
+  export interface Params$Resource$Backendservices$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14887,7 +15254,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendservices$Deletesignedurlkey {
+  export interface Params$Resource$Backendservices$Deletesignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14920,7 +15288,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendservices$Get {
+  export interface Params$Resource$Backendservices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14935,7 +15304,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Gethealth {
+  export interface Params$Resource$Backendservices$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14956,7 +15326,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ResourceGroupReference;
   }
-  export interface Params$Resource$Backendservices$Insert {
+  export interface Params$Resource$Backendservices$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14985,7 +15356,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Backendservices$List {
+  export interface Params$Resource$Backendservices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15039,7 +15411,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Patch {
+  export interface Params$Resource$Backendservices$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15072,7 +15445,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Backendservices$Setsecuritypolicy {
+  export interface Params$Resource$Backendservices$Setsecuritypolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15106,7 +15480,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SecurityPolicyReference;
   }
-  export interface Params$Resource$Backendservices$Update {
+  export interface Params$Resource$Backendservices$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16229,7 +16604,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Disks$Aggregatedlist {
+  export interface Params$Resource$Disks$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16283,7 +16659,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Disks$Createsnapshot {
+  export interface Params$Resource$Disks$Createsnapshot extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16324,7 +16701,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Snapshot;
   }
-  export interface Params$Resource$Disks$Delete {
+  export interface Params$Resource$Disks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16356,7 +16733,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Get {
+  export interface Params$Resource$Disks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16375,7 +16752,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Insert {
+  export interface Params$Resource$Disks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16412,7 +16789,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Disk;
   }
-  export interface Params$Resource$Disks$List {
+  export interface Params$Resource$Disks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16470,7 +16847,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Resize {
+  export interface Params$Resource$Disks$Resize extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16507,7 +16884,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$DisksResizeRequest;
   }
-  export interface Params$Resource$Disks$Setlabels {
+  export interface Params$Resource$Disks$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16964,7 +17341,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Disktypes$Aggregatedlist {
+  export interface Params$Resource$Disktypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17018,7 +17396,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Disktypes$Get {
+  export interface Params$Resource$Disktypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17037,7 +17415,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disktypes$List {
+  export interface Params$Resource$Disktypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17883,7 +18261,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Firewalls$Delete {
+  export interface Params$Resource$Firewalls$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17911,7 +18289,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Firewalls$Get {
+  export interface Params$Resource$Firewalls$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17926,7 +18304,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Firewalls$Insert {
+  export interface Params$Resource$Firewalls$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17955,7 +18333,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Firewall;
   }
-  export interface Params$Resource$Firewalls$List {
+  export interface Params$Resource$Firewalls$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18009,7 +18387,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Firewalls$Patch {
+  export interface Params$Resource$Firewalls$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18042,7 +18420,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Firewall;
   }
-  export interface Params$Resource$Firewalls$Update {
+  export interface Params$Resource$Firewalls$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18910,7 +19288,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Forwardingrules$Aggregatedlist {
+  export interface Params$Resource$Forwardingrules$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18964,7 +19343,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Forwardingrules$Delete {
+  export interface Params$Resource$Forwardingrules$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18996,7 +19376,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Forwardingrules$Get {
+  export interface Params$Resource$Forwardingrules$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19015,7 +19396,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Forwardingrules$Insert {
+  export interface Params$Resource$Forwardingrules$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19048,7 +19430,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Forwardingrules$List {
+  export interface Params$Resource$Forwardingrules$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19106,7 +19489,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Forwardingrules$Settarget {
+  export interface Params$Resource$Forwardingrules$Settarget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19668,7 +20052,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Globaladdresses$Delete {
+  export interface Params$Resource$Globaladdresses$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19696,7 +20081,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Globaladdresses$Get {
+  export interface Params$Resource$Globaladdresses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19711,7 +20097,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaladdresses$Insert {
+  export interface Params$Resource$Globaladdresses$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19740,7 +20127,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Address;
   }
-  export interface Params$Resource$Globaladdresses$List {
+  export interface Params$Resource$Globaladdresses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20459,7 +20847,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Globalforwardingrules$Delete {
+  export interface Params$Resource$Globalforwardingrules$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20487,7 +20876,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Get {
+  export interface Params$Resource$Globalforwardingrules$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20502,7 +20892,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Insert {
+  export interface Params$Resource$Globalforwardingrules$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20531,7 +20922,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Globalforwardingrules$List {
+  export interface Params$Resource$Globalforwardingrules$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20585,7 +20977,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Settarget {
+  export interface Params$Resource$Globalforwardingrules$Settarget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21156,7 +21549,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Globaloperations$Aggregatedlist {
+  export interface Params$Resource$Globaloperations$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21210,7 +21604,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$Delete {
+  export interface Params$Resource$Globaloperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21225,7 +21620,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$Get {
+  export interface Params$Resource$Globaloperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21240,7 +21636,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$List {
+  export interface Params$Resource$Globaloperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22093,7 +22490,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Healthchecks$Delete {
+  export interface Params$Resource$Healthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22121,7 +22519,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Healthchecks$Get {
+  export interface Params$Resource$Healthchecks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22136,7 +22534,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Healthchecks$Insert {
+  export interface Params$Resource$Healthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22165,7 +22564,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Healthchecks$List {
+  export interface Params$Resource$Healthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22219,7 +22619,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Healthchecks$Patch {
+  export interface Params$Resource$Healthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22252,7 +22653,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Healthchecks$Update {
+  export interface Params$Resource$Healthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23091,7 +23493,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Httphealthchecks$Delete {
+  export interface Params$Resource$Httphealthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23119,7 +23522,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Get {
+  export interface Params$Resource$Httphealthchecks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23134,7 +23538,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Insert {
+  export interface Params$Resource$Httphealthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23163,7 +23568,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$HttpHealthCheck;
   }
-  export interface Params$Resource$Httphealthchecks$List {
+  export interface Params$Resource$Httphealthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23217,7 +23623,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Patch {
+  export interface Params$Resource$Httphealthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23250,7 +23657,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$HttpHealthCheck;
   }
-  export interface Params$Resource$Httphealthchecks$Update {
+  export interface Params$Resource$Httphealthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24090,7 +24498,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Httpshealthchecks$Delete {
+  export interface Params$Resource$Httpshealthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24118,7 +24527,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Get {
+  export interface Params$Resource$Httpshealthchecks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24133,7 +24543,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Insert {
+  export interface Params$Resource$Httpshealthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24162,7 +24573,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$HttpsHealthCheck;
   }
-  export interface Params$Resource$Httpshealthchecks$List {
+  export interface Params$Resource$Httpshealthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24216,7 +24628,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Patch {
+  export interface Params$Resource$Httpshealthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24249,7 +24662,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$HttpsHealthCheck;
   }
-  export interface Params$Resource$Httpshealthchecks$Update {
+  export interface Params$Resource$Httpshealthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25195,7 +25609,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Images$Delete {
+  export interface Params$Resource$Images$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25223,7 +25637,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Images$Deprecate {
+  export interface Params$Resource$Images$Deprecate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25256,7 +25670,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$DeprecationStatus;
   }
-  export interface Params$Resource$Images$Get {
+  export interface Params$Resource$Images$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25271,7 +25685,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Getfromfamily {
+  export interface Params$Resource$Images$Getfromfamily extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25286,7 +25701,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Insert {
+  export interface Params$Resource$Images$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25319,7 +25734,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Image;
   }
-  export interface Params$Resource$Images$List {
+  export interface Params$Resource$Images$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25373,7 +25788,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Setlabels {
+  export interface Params$Resource$Images$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25409,19 +25824,19 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.abandonInstances
-     * @desc Schedules a group action to remove the specified instances from the
-     * managed instance group. Abandoning an instance does not delete the
-     * instance, but it does remove the instance from any target pools that are
-     * applied by the managed instance group. This method reduces the targetSize
-     * of the managed instance group by the number of instances that you
-     * abandon. This operation is marked as DONE when the action is scheduled
-     * even if the instances have not yet been removed from the group. You must
-     * separately verify the status of the abandoning action with the
-     * listmanagedinstances method.  If the group is part of a backend service
-     * that has enabled connection draining, it can take up to 60 seconds after
-     * the connection draining duration has elapsed before the VM instance is
-     * removed or deleted.  You can specify a maximum of 1000 instances with
-     * this method per request.
+     * @desc Flags the specified instances to be removed from the managed
+     * instance group. Abandoning an instance does not delete the instance, but
+     * it does remove the instance from any target pools that are applied by the
+     * managed instance group. This method reduces the targetSize of the managed
+     * instance group by the number of instances that you abandon. This
+     * operation is marked as DONE when the action is scheduled even if the
+     * instances have not yet been removed from the group. You must separately
+     * verify the status of the abandoning action with the listmanagedinstances
+     * method.  If the group is part of a backend service that has enabled
+     * connection draining, it can take up to 60 seconds after the connection
+     * draining duration has elapsed before the VM instance is removed or
+     * deleted.  You can specify a maximum of 1000 instances with this method
+     * per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25844,11 +26259,11 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.deleteInstances
-     * @desc Schedules a group action to delete the specified instances in the
-     * managed instance group. The instances are also removed from any target
-     * pools of which they were a member. This method reduces the targetSize of
-     * the managed instance group by the number of instances that you delete.
-     * This operation is marked as DONE when the action is scheduled even if the
+     * @desc Flags the specified instances in the managed instance group for
+     * immediate deletion. The instances are also removed from any target pools
+     * of which they were a member. This method reduces the targetSize of the
+     * managed instance group by the number of instances that you delete. This
+     * operation is marked as DONE when the action is scheduled even if the
      * instances are still being deleted. You must separately verify the status
      * of the deleting action with the listmanagedinstances method.  If the
      * group is part of a backend service that has enabled connection draining,
@@ -26121,14 +26536,13 @@ export namespace compute_v1 {
     /**
      * compute.instanceGroupManagers.insert
      * @desc Creates a managed instance group using the information that you
-     * specify in the request. After the group is created, it schedules an
-     * action to create instances in the group using the specified instance
-     * template. This operation is marked as DONE when the group is created even
-     * if the instances in the group have not yet been created. You must
-     * separately verify the status of the individual instances with the
-     * listmanagedinstances method.  A managed instance group can have up to
-     * 1000 VM instances per group. Please contact Cloud Support if you need an
-     * increase in this limit.
+     * specify in the request. After the group is created, instances in the
+     * group are created using the specified instance template. This operation
+     * is marked as DONE when the group is created even if the instances in the
+     * group have not yet been created. You must separately verify the status of
+     * the individual instances with the listmanagedinstances method.  A managed
+     * instance group can have up to 1000 VM instances per group. Please contact
+     * Cloud Support if you need an increase in this limit.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -26557,16 +26971,16 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.recreateInstances
-     * @desc Schedules a group action to recreate the specified instances in the
-     * managed instance group. The instances are deleted and recreated using the
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately recreated. The instances are deleted and recreated using the
      * current instance template for the managed instance group. This operation
-     * is marked as DONE when the action is scheduled even if the instances have
-     * not yet been recreated. You must separately verify the status of the
-     * recreating action with the listmanagedinstances method.  If the group is
-     * part of a backend service that has enabled connection draining, it can
-     * take up to 60 seconds after the connection draining duration has elapsed
-     * before the VM instance is removed or deleted.  You can specify a maximum
-     * of 1000 instances with this method per request.
+     * is marked as DONE when the flag is set even if the instances have not yet
+     * been recreated. You must separately verify the status of the recreating
+     * action with the listmanagedinstances method.  If the group is part of a
+     * backend service that has enabled connection draining, it can take up to
+     * 60 seconds after the connection draining duration has elapsed before the
+     * VM instance is removed or deleted.  You can specify a maximum of 1000
+     * instances with this method per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -26708,10 +27122,15 @@ export namespace compute_v1 {
      * marked DONE when the resize actions are scheduled even if the group has
      * not yet added or deleted any instances. You must separately verify the
      * status of the creating or deleting actions with the listmanagedinstances
-     * method.  If the group is part of a backend service that has enabled
-     * connection draining, it can take up to 60 seconds after the connection
-     * draining duration has elapsed before the VM instance is removed or
-     * deleted.
+     * method.  When resizing down, the instance group arbitrarily chooses the
+     * order in which VMs are deleted. The group takes into account some VM
+     * attributes when making the selection including:  + The status of the VM
+     * instance. + The health of the VM instance. + The instance template
+     * version the VM is based on. + For regional managed instance groups, the
+     * location of the VM instance.  This list is subject to change.  If the
+     * group is part of a backend service that has enabled connection draining,
+     * it can take up to 60 seconds after the connection draining duration has
+     * elapsed before the VM instance is removed or deleted.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27128,7 +27547,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Instancegroupmanagers$Abandoninstances {
+  export interface Params$Resource$Instancegroupmanagers$Abandoninstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27165,7 +27585,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupManagersAbandonInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Aggregatedlist {
+  export interface Params$Resource$Instancegroupmanagers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27219,7 +27640,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Delete {
+  export interface Params$Resource$Instancegroupmanagers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27251,7 +27673,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Deleteinstances {
+  export interface Params$Resource$Instancegroupmanagers$Deleteinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27288,7 +27711,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupManagersDeleteInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Get {
+  export interface Params$Resource$Instancegroupmanagers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27307,7 +27731,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Insert {
+  export interface Params$Resource$Instancegroupmanagers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27340,7 +27765,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Instancegroupmanagers$List {
+  export interface Params$Resource$Instancegroupmanagers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27398,7 +27824,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Listmanagedinstances {
+  export interface Params$Resource$Instancegroupmanagers$Listmanagedinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27460,7 +27887,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Recreateinstances {
+  export interface Params$Resource$Instancegroupmanagers$Recreateinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27497,7 +27925,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupManagersRecreateInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Resize {
+  export interface Params$Resource$Instancegroupmanagers$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27536,7 +27965,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate {
+  export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27573,7 +28003,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Settargetpools {
+  export interface Params$Resource$Instancegroupmanagers$Settargetpools extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28883,7 +29314,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Instancegroups$Addinstances {
+  export interface Params$Resource$Instancegroups$Addinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28920,7 +29352,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupsAddInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Aggregatedlist {
+  export interface Params$Resource$Instancegroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28974,7 +29407,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancegroups$Delete {
+  export interface Params$Resource$Instancegroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29006,7 +29440,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Get {
+  export interface Params$Resource$Instancegroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29025,7 +29460,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Insert {
+  export interface Params$Resource$Instancegroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29058,7 +29494,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroup;
   }
-  export interface Params$Resource$Instancegroups$List {
+  export interface Params$Resource$Instancegroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29116,7 +29553,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Listinstances {
+  export interface Params$Resource$Instancegroups$Listinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29184,7 +29622,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupsListInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Removeinstances {
+  export interface Params$Resource$Instancegroups$Removeinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29222,7 +29661,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupsRemoveInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Setnamedports {
+  export interface Params$Resource$Instancegroups$Setnamedports extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30632,7 +31072,8 @@ export namespace compute_v1 {
     /**
      * compute.instances.listReferrers
      * @desc Retrieves the list of referrers to instances contained within the
-     * specified zone.
+     * specified zone. For more information, read Viewing Referrers to VM
+     * Instances.
      * @alias compute.instances.listReferrers
      * @memberOf! ()
      *
@@ -32067,8 +32508,8 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setTags
-     * @desc Sets tags for the specified instance to the data included in the
-     * request.
+     * @desc Sets network tags for the specified instance to the data included
+     * in the request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32827,7 +33268,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Instances$Addaccessconfig {
+  export interface Params$Resource$Instances$Addaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -32868,7 +33310,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$AccessConfig;
   }
-  export interface Params$Resource$Instances$Aggregatedlist {
+  export interface Params$Resource$Instances$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -32922,7 +33365,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Attachdisk {
+  export interface Params$Resource$Instances$Attachdisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -32964,7 +33408,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$AttachedDisk;
   }
-  export interface Params$Resource$Instances$Delete {
+  export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -32996,7 +33440,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Deleteaccessconfig {
+  export interface Params$Resource$Instances$Deleteaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33036,7 +33481,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Detachdisk {
+  export interface Params$Resource$Instances$Detachdisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33072,7 +33518,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Get {
+  export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33091,7 +33537,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getserialportoutput {
+  export interface Params$Resource$Instances$Getserialportoutput extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33122,7 +33569,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Insert {
+  export interface Params$Resource$Instances$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33164,7 +33611,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Instances$List {
+  export interface Params$Resource$Instances$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33222,7 +33669,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Listreferrers {
+  export interface Params$Resource$Instances$Listreferrers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33285,7 +33733,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Reset {
+  export interface Params$Resource$Instances$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33317,7 +33765,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setdeletionprotection {
+  export interface Params$Resource$Instances$Setdeletionprotection extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33353,7 +33802,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setdiskautodelete {
+  export interface Params$Resource$Instances$Setdiskautodelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33393,7 +33843,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setlabels {
+  export interface Params$Resource$Instances$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33430,7 +33881,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstancesSetLabelsRequest;
   }
-  export interface Params$Resource$Instances$Setmachineresources {
+  export interface Params$Resource$Instances$Setmachineresources extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33467,7 +33919,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstancesSetMachineResourcesRequest;
   }
-  export interface Params$Resource$Instances$Setmachinetype {
+  export interface Params$Resource$Instances$Setmachinetype extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33504,7 +33957,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstancesSetMachineTypeRequest;
   }
-  export interface Params$Resource$Instances$Setmetadata {
+  export interface Params$Resource$Instances$Setmetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33541,7 +33995,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Metadata;
   }
-  export interface Params$Resource$Instances$Setmincpuplatform {
+  export interface Params$Resource$Instances$Setmincpuplatform extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33578,7 +34033,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstancesSetMinCpuPlatformRequest;
   }
-  export interface Params$Resource$Instances$Setscheduling {
+  export interface Params$Resource$Instances$Setscheduling extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33615,7 +34071,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Scheduling;
   }
-  export interface Params$Resource$Instances$Setserviceaccount {
+  export interface Params$Resource$Instances$Setserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33652,7 +34109,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
-  export interface Params$Resource$Instances$Settags {
+  export interface Params$Resource$Instances$Settags extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33689,7 +34147,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Tags;
   }
-  export interface Params$Resource$Instances$Simulatemaintenanceevent {
+  export interface Params$Resource$Instances$Simulatemaintenanceevent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33708,7 +34167,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Start {
+  export interface Params$Resource$Instances$Start extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33740,7 +34199,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Startwithencryptionkey {
+  export interface Params$Resource$Instances$Startwithencryptionkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33777,7 +34237,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstancesStartWithEncryptionKeyRequest;
   }
-  export interface Params$Resource$Instances$Stop {
+  export interface Params$Resource$Instances$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33809,7 +34269,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Updateaccessconfig {
+  export interface Params$Resource$Instances$Updateaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33850,7 +34311,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$AccessConfig;
   }
-  export interface Params$Resource$Instances$Updatenetworkinterface {
+  export interface Params$Resource$Instances$Updatenetworkinterface extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34430,7 +34892,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Instancetemplates$Delete {
+  export interface Params$Resource$Instancetemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34458,7 +34921,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Instancetemplates$Get {
+  export interface Params$Resource$Instancetemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34473,7 +34937,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancetemplates$Insert {
+  export interface Params$Resource$Instancetemplates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34502,7 +34967,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceTemplate;
   }
-  export interface Params$Resource$Instancetemplates$List {
+  export interface Params$Resource$Instancetemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35338,7 +35804,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Interconnectattachments$Aggregatedlist {
+  export interface Params$Resource$Interconnectattachments$Aggregatedlist
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35392,7 +35859,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Delete {
+  export interface Params$Resource$Interconnectattachments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35424,7 +35892,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Get {
+  export interface Params$Resource$Interconnectattachments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35443,7 +35912,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Insert {
+  export interface Params$Resource$Interconnectattachments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35476,7 +35946,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InterconnectAttachment;
   }
-  export interface Params$Resource$Interconnectattachments$List {
+  export interface Params$Resource$Interconnectattachments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35534,7 +36005,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Patch {
+  export interface Params$Resource$Interconnectattachments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35851,7 +36323,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Interconnectlocations$Get {
+  export interface Params$Resource$Interconnectlocations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35866,7 +36339,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnectlocations$List {
+  export interface Params$Resource$Interconnectlocations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36180,6 +36654,88 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Interconnect>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Interconnect>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.interconnects.getDiagnostics
+     * @desc Returns the interconnectDiagnostics for the specified interconnect.
+     * @alias compute.interconnects.getDiagnostics
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect resource to query.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getDiagnostics(
+        params?: Params$Resource$Interconnects$Getdiagnostics,
+        options?: MethodOptions):
+        AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse>;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        paramsOrCallback?: Params$Resource$Interconnects$Getdiagnostics|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void|AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Interconnects$Getdiagnostics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Interconnects$Getdiagnostics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/interconnects/{interconnect}/getDiagnostics')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters);
       }
     }
 
@@ -36586,7 +37142,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Interconnects$Delete {
+  export interface Params$Resource$Interconnects$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36614,7 +37171,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Interconnects$Get {
+  export interface Params$Resource$Interconnects$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36629,7 +37187,24 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnects$Insert {
+  export interface Params$Resource$Interconnects$Getdiagnostics extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the interconnect resource to query.
+     */
+    interconnect?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Interconnects$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36658,7 +37233,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Interconnect;
   }
-  export interface Params$Resource$Interconnects$List {
+  export interface Params$Resource$Interconnects$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36712,7 +37288,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnects$Patch {
+  export interface Params$Resource$Interconnects$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36833,7 +37410,7 @@ export namespace compute_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -36898,7 +37475,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Licensecodes$Get {
+  export interface Params$Resource$Licensecodes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36913,7 +37490,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Licensecodes$Testiampermissions {
+  export interface Params$Resource$Licensecodes$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36924,7 +37502,7 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -37284,7 +37862,7 @@ export namespace compute_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -37349,7 +37927,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Licenses$Delete {
+  export interface Params$Resource$Licenses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37377,7 +37955,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Licenses$Get {
+  export interface Params$Resource$Licenses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37392,7 +37970,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Licenses$Insert {
+  export interface Params$Resource$Licenses$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37421,7 +37999,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$License;
   }
-  export interface Params$Resource$Licenses$List {
+  export interface Params$Resource$Licenses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37475,7 +38053,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Licenses$Testiampermissions {
+  export interface Params$Resource$Licenses$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37486,7 +38065,7 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -37920,7 +38499,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Machinetypes$Aggregatedlist {
+  export interface Params$Resource$Machinetypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37974,7 +38554,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Machinetypes$Get {
+  export interface Params$Resource$Machinetypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37993,7 +38573,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Machinetypes$List {
+  export interface Params$Resource$Machinetypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39094,7 +39675,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Networks$Addpeering {
+  export interface Params$Resource$Networks$Addpeering extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39127,7 +39709,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$NetworksAddPeeringRequest;
   }
-  export interface Params$Resource$Networks$Delete {
+  export interface Params$Resource$Networks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39155,7 +39737,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Networks$Get {
+  export interface Params$Resource$Networks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39170,7 +39752,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Networks$Insert {
+  export interface Params$Resource$Networks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39199,7 +39781,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Network;
   }
-  export interface Params$Resource$Networks$List {
+  export interface Params$Resource$Networks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39253,7 +39835,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Networks$Patch {
+  export interface Params$Resource$Networks$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39286,7 +39868,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Network;
   }
-  export interface Params$Resource$Networks$Removepeering {
+  export interface Params$Resource$Networks$Removepeering extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39319,7 +39902,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$NetworksRemovePeeringRequest;
   }
-  export interface Params$Resource$Networks$Switchtocustommode {
+  export interface Params$Resource$Networks$Switchtocustommode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40013,7 +40597,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Nodegroups$Addnodes {
+  export interface Params$Resource$Nodegroups$Addnodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40050,7 +40635,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$NodeGroupsAddNodesRequest;
   }
-  export interface Params$Resource$Nodegroups$Aggregatedlist {
+  export interface Params$Resource$Nodegroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40104,7 +40690,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodegroups$Delete {
+  export interface Params$Resource$Nodegroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40136,7 +40723,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Deletenodes {
+  export interface Params$Resource$Nodegroups$Deletenodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40173,7 +40761,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$NodeGroupsDeleteNodesRequest;
   }
-  export interface Params$Resource$Nodegroups$Get {
+  export interface Params$Resource$Nodegroups$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40192,7 +40780,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Insert {
+  export interface Params$Resource$Nodegroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40229,7 +40818,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$NodeGroup;
   }
-  export interface Params$Resource$Nodegroups$List {
+  export interface Params$Resource$Nodegroups$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40287,7 +40876,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Listnodes {
+  export interface Params$Resource$Nodegroups$Listnodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40349,7 +40939,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Setnodetemplate {
+  export interface Params$Resource$Nodegroups$Setnodetemplate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40766,7 +41357,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Nodetemplates$Aggregatedlist {
+  export interface Params$Resource$Nodetemplates$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40820,7 +41412,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodetemplates$Delete {
+  export interface Params$Resource$Nodetemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40852,7 +41445,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Nodetemplates$Get {
+  export interface Params$Resource$Nodetemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40871,7 +41465,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Nodetemplates$Insert {
+  export interface Params$Resource$Nodetemplates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40904,7 +41499,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$NodeTemplate;
   }
-  export interface Params$Resource$Nodetemplates$List {
+  export interface Params$Resource$Nodetemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41187,7 +41783,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Nodetypes$Aggregatedlist {
+  export interface Params$Resource$Nodetypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41241,7 +41838,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodetypes$Get {
+  export interface Params$Resource$Nodetypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41260,7 +41857,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodetypes$List {
+  export interface Params$Resource$Nodetypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42929,7 +43526,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Disablexpnhost {
+  export interface Params$Resource$Projects$Disablexpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42953,7 +43551,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Disablexpnresource {
+  export interface Params$Resource$Projects$Disablexpnresource extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42982,7 +43581,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ProjectsDisableXpnResourceRequest;
   }
-  export interface Params$Resource$Projects$Enablexpnhost {
+  export interface Params$Resource$Projects$Enablexpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43006,7 +43606,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Enablexpnresource {
+  export interface Params$Resource$Projects$Enablexpnresource extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43035,7 +43636,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ProjectsEnableXpnResourceRequest;
   }
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43046,7 +43647,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Getxpnhost {
+  export interface Params$Resource$Projects$Getxpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43057,7 +43659,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Getxpnresources {
+  export interface Params$Resource$Projects$Getxpnresources extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43111,7 +43714,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Listxpnhosts {
+  export interface Params$Resource$Projects$Listxpnhosts extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43170,7 +43774,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ProjectsListXpnHostsRequest;
   }
-  export interface Params$Resource$Projects$Movedisk {
+  export interface Params$Resource$Projects$Movedisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43199,7 +43804,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$DiskMoveRequest;
   }
-  export interface Params$Resource$Projects$Moveinstance {
+  export interface Params$Resource$Projects$Moveinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43228,7 +43834,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceMoveRequest;
   }
-  export interface Params$Resource$Projects$Setcommoninstancemetadata {
+  export interface Params$Resource$Projects$Setcommoninstancemetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43257,7 +43864,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Metadata;
   }
-  export interface Params$Resource$Projects$Setdefaultnetworktier {
+  export interface Params$Resource$Projects$Setdefaultnetworktier extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43286,7 +43894,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ProjectsSetDefaultNetworkTierRequest;
   }
-  export interface Params$Resource$Projects$Setusageexportbucket {
+  export interface Params$Resource$Projects$Setusageexportbucket extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44137,7 +44746,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regionautoscalers$Delete {
+  export interface Params$Resource$Regionautoscalers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44169,7 +44779,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Get {
+  export interface Params$Resource$Regionautoscalers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44188,7 +44799,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Insert {
+  export interface Params$Resource$Regionautoscalers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44221,7 +44833,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Regionautoscalers$List {
+  export interface Params$Resource$Regionautoscalers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44279,7 +44892,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Patch {
+  export interface Params$Resource$Regionautoscalers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44316,7 +44930,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Regionautoscalers$Update {
+  export interface Params$Resource$Regionautoscalers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45329,7 +45944,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regionbackendservices$Delete {
+  export interface Params$Resource$Regionbackendservices$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45361,7 +45977,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Get {
+  export interface Params$Resource$Regionbackendservices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45380,7 +45997,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Gethealth {
+  export interface Params$Resource$Regionbackendservices$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45404,7 +46022,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$ResourceGroupReference;
   }
-  export interface Params$Resource$Regionbackendservices$Insert {
+  export interface Params$Resource$Regionbackendservices$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45437,7 +46056,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Regionbackendservices$List {
+  export interface Params$Resource$Regionbackendservices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45495,7 +46115,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Patch {
+  export interface Params$Resource$Regionbackendservices$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45532,7 +46153,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Regionbackendservices$Update {
+  export interface Params$Resource$Regionbackendservices$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46128,7 +46750,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regioncommitments$Aggregatedlist {
+  export interface Params$Resource$Regioncommitments$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46182,7 +46805,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Regioncommitments$Get {
+  export interface Params$Resource$Regioncommitments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46201,7 +46825,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioncommitments$Insert {
+  export interface Params$Resource$Regioncommitments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46234,7 +46859,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Commitment;
   }
-  export interface Params$Resource$Regioncommitments$List {
+  export interface Params$Resource$Regioncommitments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46818,7 +47444,7 @@ export namespace compute_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -46883,7 +47509,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regiondisks$Createsnapshot {
+  export interface Params$Resource$Regiondisks$Createsnapshot extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46920,7 +47547,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Snapshot;
   }
-  export interface Params$Resource$Regiondisks$Delete {
+  export interface Params$Resource$Regiondisks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46952,7 +47580,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regiondisks$Get {
+  export interface Params$Resource$Regiondisks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46971,7 +47599,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisks$Insert {
+  export interface Params$Resource$Regiondisks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47008,7 +47637,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Disk;
   }
-  export interface Params$Resource$Regiondisks$List {
+  export interface Params$Resource$Regiondisks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47066,7 +47695,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisks$Resize {
+  export interface Params$Resource$Regiondisks$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47103,7 +47733,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionDisksResizeRequest;
   }
-  export interface Params$Resource$Regiondisks$Setlabels {
+  export interface Params$Resource$Regiondisks$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47140,7 +47771,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Regiondisks$Testiampermissions {
+  export interface Params$Resource$Regiondisks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47155,7 +47787,7 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -47319,7 +47951,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regiondisktypes$Get {
+  export interface Params$Resource$Regiondisktypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47338,7 +47971,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisktypes$List {
+  export interface Params$Resource$Regiondisktypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47412,7 +48046,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.abandonInstances
-     * @desc Schedules a group action to remove the specified instances from the
+     * @desc Flags the specified instances to be immediately removed from the
      * managed instance group. Abandoning an instance does not delete the
      * instance, but it does remove the instance from any target pools that are
      * applied by the managed instance group. This method reduces the targetSize
@@ -47692,17 +48326,18 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.deleteInstances
-     * @desc Schedules a group action to delete the specified instances in the
-     * managed instance group. The instances are also removed from any target
-     * pools of which they were a member. This method reduces the targetSize of
-     * the managed instance group by the number of instances that you delete.
-     * This operation is marked as DONE when the action is scheduled even if the
-     * instances are still being deleted. You must separately verify the status
-     * of the deleting action with the listmanagedinstances method.  If the
-     * group is part of a backend service that has enabled connection draining,
-     * it can take up to 60 seconds after the connection draining duration has
-     * elapsed before the VM instance is removed or deleted.  You can specify a
-     * maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately deleted. The instances are also removed from any target pools
+     * of which they were a member. This method reduces the targetSize of the
+     * managed instance group by the number of instances that you delete. The
+     * deleteInstances operation is marked DONE if the deleteInstances request
+     * is successful. The underlying actions take additional time. You must
+     * separately verify the status of the deleting action with the
+     * listmanagedinstances method.  If the group is part of a backend service
+     * that has enabled connection draining, it can take up to 60 seconds after
+     * the connection draining duration has elapsed before the VM instance is
+     * removed or deleted.  You can specify a maximum of 1000 instances with
+     * this method per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -47967,13 +48602,12 @@ export namespace compute_v1 {
     /**
      * compute.regionInstanceGroupManagers.insert
      * @desc Creates a managed instance group using the information that you
-     * specify in the request. After the group is created, it schedules an
-     * action to create instances in the group using the specified instance
-     * template. This operation is marked as DONE when the group is created even
-     * if the instances in the group have not yet been created. You must
-     * separately verify the status of the individual instances with the
-     * listmanagedinstances method.  A regional managed instance group can
-     * contain up to 2000 instances.
+     * specify in the request. After the group is created, instances in the
+     * group are created using the specified instance template. This operation
+     * is marked as DONE when the group is created even if the instances in the
+     * group have not yet been created. You must separately verify the status of
+     * the individual instances with the listmanagedinstances method.  A
+     * regional managed instance group can contain up to 2000 instances.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48406,16 +49040,16 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.recreateInstances
-     * @desc Schedules a group action to recreate the specified instances in the
-     * managed instance group. The instances are deleted and recreated using the
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately recreated. The instances are deleted and recreated using the
      * current instance template for the managed instance group. This operation
-     * is marked as DONE when the action is scheduled even if the instances have
-     * not yet been recreated. You must separately verify the status of the
-     * recreating action with the listmanagedinstances method.  If the group is
-     * part of a backend service that has enabled connection draining, it can
-     * take up to 60 seconds after the connection draining duration has elapsed
-     * before the VM instance is removed or deleted.  You can specify a maximum
-     * of 1000 instances with this method per request.
+     * is marked as DONE when the flag is set even if the instances have not yet
+     * been recreated. You must separately verify the status of the recreating
+     * action with the listmanagedinstances method.  If the group is part of a
+     * backend service that has enabled connection draining, it can take up to
+     * 60 seconds after the connection draining duration has elapsed before the
+     * VM instance is removed or deleted.  You can specify a maximum of 1000
+     * instances with this method per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48552,17 +49186,16 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.resize
-     * @desc Changes the intended size for the managed instance group. If you
-     * increase the size, the group schedules actions to create new instances
-     * using the current instance template. If you decrease the size, the group
-     * schedules delete actions on one or more instances. The resize operation
-     * is marked DONE when the resize actions are scheduled even if the group
-     * has not yet added or deleted any instances. You must separately verify
-     * the status of the creating or deleting actions with the
-     * listmanagedinstances method.  If the group is part of a backend service
-     * that has enabled connection draining, it can take up to 60 seconds after
-     * the connection draining duration has elapsed before the VM instance is
-     * removed or deleted.
+     * @desc Changes the intended size of the managed instance group. If you
+     * increase the size, the group creates new instances using the current
+     * instance template. If you decrease the size, the group deletes one or
+     * more instances.  The resize operation is marked DONE if the resize
+     * request is successful. The underlying actions take additional time. You
+     * must separately verify the status of the creating or deleting actions
+     * with the listmanagedinstances method.  If the group is part of a backend
+     * service that has enabled connection draining, it can take up to 60
+     * seconds after the connection draining duration has elapsed before the VM
+     * instance is removed or deleted.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48971,7 +49604,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regioninstancegroupmanagers$Abandoninstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Abandoninstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49008,7 +49642,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionInstanceGroupManagersAbandonInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Delete {
+  export interface Params$Resource$Regioninstancegroupmanagers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49040,7 +49675,8 @@ export namespace compute_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Deleteinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Deleteinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49077,7 +49713,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionInstanceGroupManagersDeleteInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Get {
+  export interface Params$Resource$Regioninstancegroupmanagers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49096,7 +49733,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Insert {
+  export interface Params$Resource$Regioninstancegroupmanagers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49129,7 +49767,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$List {
+  export interface Params$Resource$Regioninstancegroupmanagers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49187,7 +49826,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49249,7 +49889,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49286,7 +49927,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionInstanceGroupManagersRecreateRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Resize {
+  export interface Params$Resource$Regioninstancegroupmanagers$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49322,7 +49964,8 @@ export namespace compute_v1 {
      */
     size?: number;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate {
+  export interface Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49359,7 +50002,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionInstanceGroupManagersSetTemplateRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Settargetpools {
+  export interface Params$Resource$Regioninstancegroupmanagers$Settargetpools
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49985,7 +50629,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regioninstancegroups$Get {
+  export interface Params$Resource$Regioninstancegroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50004,7 +50649,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroups$List {
+  export interface Params$Resource$Regioninstancegroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50062,7 +50708,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroups$Listinstances {
+  export interface Params$Resource$Regioninstancegroups$Listinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50130,7 +50777,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionInstanceGroupsListInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroups$Setnamedports {
+  export interface Params$Resource$Regioninstancegroups$Setnamedports extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50577,7 +51225,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regionoperations$Delete {
+  export interface Params$Resource$Regionoperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50596,7 +51245,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionoperations$Get {
+  export interface Params$Resource$Regionoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50615,7 +51265,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionoperations$List {
+  export interface Params$Resource$Regionoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50942,7 +51593,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Regions$Get {
+  export interface Params$Resource$Regions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50957,7 +51608,7 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Regions$List {
+  export interface Params$Resource$Regions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51416,6 +52067,85 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Router>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Router>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.routers.getNatMappingInfo
+     * @desc Retrieves runtime Nat mapping information of VM endpoints.
+     * @alias compute.routers.getNatMappingInfo
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query for Nat Mapping information of VM endpoints.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getNatMappingInfo(
+        params?: Params$Resource$Routers$Getnatmappinginfo,
+        options?: MethodOptions):
+        AxiosPromise<Schema$VmEndpointNatMappingsList>;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        paramsOrCallback?: Params$Resource$Routers$Getnatmappinginfo|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback?: BodyResponseCallback<Schema$VmEndpointNatMappingsList>):
+        void|AxiosPromise<Schema$VmEndpointNatMappingsList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Routers$Getnatmappinginfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Getnatmappinginfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$VmEndpointNatMappingsList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VmEndpointNatMappingsList>(parameters);
       }
     }
 
@@ -52234,7 +52964,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Routers$Aggregatedlist {
+  export interface Params$Resource$Routers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52288,7 +53019,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Routers$Delete {
+  export interface Params$Resource$Routers$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52320,7 +53051,7 @@ export namespace compute_v1 {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Get {
+  export interface Params$Resource$Routers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52339,7 +53070,72 @@ export namespace compute_v1 {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Getrouterstatus {
+  export interface Params$Resource$Routers$Getnatmappinginfo extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the Router resource to query for Nat Mapping information of VM
+     * endpoints.
+     */
+    router?: string;
+  }
+  export interface Params$Resource$Routers$Getrouterstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52358,7 +53154,7 @@ export namespace compute_v1 {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Insert {
+  export interface Params$Resource$Routers$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52391,7 +53187,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$List {
+  export interface Params$Resource$Routers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52449,7 +53245,7 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Routers$Patch {
+  export interface Params$Resource$Routers$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52486,7 +53282,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$Preview {
+  export interface Params$Resource$Routers$Preview extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52510,7 +53306,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$Update {
+  export interface Params$Resource$Routers$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53066,7 +53862,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Routes$Delete {
+  export interface Params$Resource$Routes$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53094,7 +53890,7 @@ export namespace compute_v1 {
      */
     route?: string;
   }
-  export interface Params$Resource$Routes$Get {
+  export interface Params$Resource$Routes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53109,7 +53905,7 @@ export namespace compute_v1 {
      */
     route?: string;
   }
-  export interface Params$Resource$Routes$Insert {
+  export interface Params$Resource$Routes$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53138,7 +53934,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Route;
   }
-  export interface Params$Resource$Routes$List {
+  export interface Params$Resource$Routes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53844,7 +54640,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Securitypolicies$Addrule {
+  export interface Params$Resource$Securitypolicies$Addrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53864,7 +54661,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SecurityPolicyRule;
   }
-  export interface Params$Resource$Securitypolicies$Delete {
+  export interface Params$Resource$Securitypolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53892,7 +54690,8 @@ export namespace compute_v1 {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Get {
+  export interface Params$Resource$Securitypolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53907,7 +54706,8 @@ export namespace compute_v1 {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Getrule {
+  export interface Params$Resource$Securitypolicies$Getrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53926,7 +54726,8 @@ export namespace compute_v1 {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Insert {
+  export interface Params$Resource$Securitypolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53955,7 +54756,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SecurityPolicy;
   }
-  export interface Params$Resource$Securitypolicies$List {
+  export interface Params$Resource$Securitypolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54009,7 +54811,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Securitypolicies$Patch {
+  export interface Params$Resource$Securitypolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54042,7 +54845,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SecurityPolicy;
   }
-  export interface Params$Resource$Securitypolicies$Patchrule {
+  export interface Params$Resource$Securitypolicies$Patchrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54066,7 +54870,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SecurityPolicyRule;
   }
-  export interface Params$Resource$Securitypolicies$Removerule {
+  export interface Params$Resource$Securitypolicies$Removerule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54617,7 +55422,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Snapshots$Delete {
+  export interface Params$Resource$Snapshots$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54645,7 +55450,7 @@ export namespace compute_v1 {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Snapshots$Get {
+  export interface Params$Resource$Snapshots$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54660,7 +55465,7 @@ export namespace compute_v1 {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Snapshots$List {
+  export interface Params$Resource$Snapshots$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54714,7 +55519,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Snapshots$Setlabels {
+  export interface Params$Resource$Snapshots$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55267,7 +56073,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Sslcertificates$Delete {
+  export interface Params$Resource$Sslcertificates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55295,7 +56102,8 @@ export namespace compute_v1 {
      */
     sslCertificate?: string;
   }
-  export interface Params$Resource$Sslcertificates$Get {
+  export interface Params$Resource$Sslcertificates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55310,7 +56118,8 @@ export namespace compute_v1 {
      */
     sslCertificate?: string;
   }
-  export interface Params$Resource$Sslcertificates$Insert {
+  export interface Params$Resource$Sslcertificates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55339,7 +56148,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SslCertificate;
   }
-  export interface Params$Resource$Sslcertificates$List {
+  export interface Params$Resource$Sslcertificates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55843,7 +56653,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Sslpolicies$Delete {
+  export interface Params$Resource$Sslpolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55872,7 +56683,7 @@ export namespace compute_v1 {
      */
     sslPolicy?: string;
   }
-  export interface Params$Resource$Sslpolicies$Get {
+  export interface Params$Resource$Sslpolicies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55888,7 +56699,8 @@ export namespace compute_v1 {
      */
     sslPolicy?: string;
   }
-  export interface Params$Resource$Sslpolicies$Insert {
+  export interface Params$Resource$Sslpolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55917,7 +56729,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SslPolicy;
   }
-  export interface Params$Resource$Sslpolicies$List {
+  export interface Params$Resource$Sslpolicies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55971,7 +56783,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslpolicies$Listavailablefeatures {
+  export interface Params$Resource$Sslpolicies$Listavailablefeatures extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56025,7 +56838,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslpolicies$Patch {
+  export interface Params$Resource$Sslpolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57173,7 +57987,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Subnetworks$Aggregatedlist {
+  export interface Params$Resource$Subnetworks$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57227,7 +58042,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Subnetworks$Delete {
+  export interface Params$Resource$Subnetworks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57259,7 +58075,8 @@ export namespace compute_v1 {
      */
     subnetwork?: string;
   }
-  export interface Params$Resource$Subnetworks$Expandipcidrrange {
+  export interface Params$Resource$Subnetworks$Expandipcidrrange extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57296,7 +58113,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SubnetworksExpandIpCidrRangeRequest;
   }
-  export interface Params$Resource$Subnetworks$Get {
+  export interface Params$Resource$Subnetworks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57315,7 +58132,8 @@ export namespace compute_v1 {
      */
     subnetwork?: string;
   }
-  export interface Params$Resource$Subnetworks$Insert {
+  export interface Params$Resource$Subnetworks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57348,7 +58166,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Subnetwork;
   }
-  export interface Params$Resource$Subnetworks$List {
+  export interface Params$Resource$Subnetworks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57406,7 +58224,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Subnetworks$Listusable {
+  export interface Params$Resource$Subnetworks$Listusable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57460,7 +58279,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Subnetworks$Patch {
+  export interface Params$Resource$Subnetworks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57497,7 +58317,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Subnetwork;
   }
-  export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess {
+  export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58200,7 +59021,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Targethttpproxies$Delete {
+  export interface Params$Resource$Targethttpproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58228,7 +59050,8 @@ export namespace compute_v1 {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Get {
+  export interface Params$Resource$Targethttpproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58243,7 +59066,8 @@ export namespace compute_v1 {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Insert {
+  export interface Params$Resource$Targethttpproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58272,7 +59096,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetHttpProxy;
   }
-  export interface Params$Resource$Targethttpproxies$List {
+  export interface Params$Resource$Targethttpproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58326,7 +59151,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Seturlmap {
+  export interface Params$Resource$Targethttpproxies$Seturlmap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59305,7 +60131,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Targethttpsproxies$Delete {
+  export interface Params$Resource$Targethttpsproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59333,7 +60160,8 @@ export namespace compute_v1 {
      */
     targetHttpsProxy?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Get {
+  export interface Params$Resource$Targethttpsproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59348,7 +60176,8 @@ export namespace compute_v1 {
      */
     targetHttpsProxy?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Insert {
+  export interface Params$Resource$Targethttpsproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59377,7 +60206,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetHttpsProxy;
   }
-  export interface Params$Resource$Targethttpsproxies$List {
+  export interface Params$Resource$Targethttpsproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59431,7 +60261,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Setquicoverride {
+  export interface Params$Resource$Targethttpsproxies$Setquicoverride extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59465,7 +60296,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetHttpsProxiesSetQuicOverrideRequest;
   }
-  export interface Params$Resource$Targethttpsproxies$Setsslcertificates {
+  export interface Params$Resource$Targethttpsproxies$Setsslcertificates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59499,7 +60331,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetHttpsProxiesSetSslCertificatesRequest;
   }
-  export interface Params$Resource$Targethttpsproxies$Setsslpolicy {
+  export interface Params$Resource$Targethttpsproxies$Setsslpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59533,7 +60366,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$SslPolicyReference;
   }
-  export interface Params$Resource$Targethttpsproxies$Seturlmap {
+  export interface Params$Resource$Targethttpsproxies$Seturlmap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60264,7 +61098,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Targetinstances$Aggregatedlist {
+  export interface Params$Resource$Targetinstances$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60318,7 +61153,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetinstances$Delete {
+  export interface Params$Resource$Targetinstances$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60350,7 +61186,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Get {
+  export interface Params$Resource$Targetinstances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60369,7 +61206,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Insert {
+  export interface Params$Resource$Targetinstances$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60402,7 +61240,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetInstance;
   }
-  export interface Params$Resource$Targetinstances$List {
+  export interface Params$Resource$Targetinstances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61965,7 +62804,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Targetpools$Addhealthcheck {
+  export interface Params$Resource$Targetpools$Addhealthcheck extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62002,7 +62842,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetPoolsAddHealthCheckRequest;
   }
-  export interface Params$Resource$Targetpools$Addinstance {
+  export interface Params$Resource$Targetpools$Addinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62039,7 +62880,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetPoolsAddInstanceRequest;
   }
-  export interface Params$Resource$Targetpools$Aggregatedlist {
+  export interface Params$Resource$Targetpools$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62093,7 +62935,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetpools$Delete {
+  export interface Params$Resource$Targetpools$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62125,7 +62968,7 @@ export namespace compute_v1 {
      */
     targetPool?: string;
   }
-  export interface Params$Resource$Targetpools$Get {
+  export interface Params$Resource$Targetpools$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62144,7 +62987,8 @@ export namespace compute_v1 {
      */
     targetPool?: string;
   }
-  export interface Params$Resource$Targetpools$Gethealth {
+  export interface Params$Resource$Targetpools$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62168,7 +63012,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstanceReference;
   }
-  export interface Params$Resource$Targetpools$Insert {
+  export interface Params$Resource$Targetpools$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62201,7 +63046,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetPool;
   }
-  export interface Params$Resource$Targetpools$List {
+  export interface Params$Resource$Targetpools$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62259,7 +63104,8 @@ export namespace compute_v1 {
      */
     region?: string;
   }
-  export interface Params$Resource$Targetpools$Removehealthcheck {
+  export interface Params$Resource$Targetpools$Removehealthcheck extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62296,7 +63142,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetPoolsRemoveHealthCheckRequest;
   }
-  export interface Params$Resource$Targetpools$Removeinstance {
+  export interface Params$Resource$Targetpools$Removeinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62333,7 +63180,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetPoolsRemoveInstanceRequest;
   }
-  export interface Params$Resource$Targetpools$Setbackup {
+  export interface Params$Resource$Targetpools$Setbackup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63375,7 +64223,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Targetsslproxies$Delete {
+  export interface Params$Resource$Targetsslproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63403,7 +64252,8 @@ export namespace compute_v1 {
      */
     targetSslProxy?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Get {
+  export interface Params$Resource$Targetsslproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63418,7 +64268,8 @@ export namespace compute_v1 {
      */
     targetSslProxy?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Insert {
+  export interface Params$Resource$Targetsslproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63447,7 +64298,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetSslProxy;
   }
-  export interface Params$Resource$Targetsslproxies$List {
+  export interface Params$Resource$Targetsslproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63501,7 +64353,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Setbackendservice {
+  export interface Params$Resource$Targetsslproxies$Setbackendservice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63535,7 +64388,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetSslProxiesSetBackendServiceRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setproxyheader {
+  export interface Params$Resource$Targetsslproxies$Setproxyheader extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63568,7 +64422,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetSslProxiesSetProxyHeaderRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setsslcertificates {
+  export interface Params$Resource$Targetsslproxies$Setsslcertificates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63602,7 +64457,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetSslProxiesSetSslCertificatesRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setsslpolicy {
+  export interface Params$Resource$Targetsslproxies$Setsslpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64431,7 +65287,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Targettcpproxies$Delete {
+  export interface Params$Resource$Targettcpproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64459,7 +65316,8 @@ export namespace compute_v1 {
      */
     targetTcpProxy?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Get {
+  export interface Params$Resource$Targettcpproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64474,7 +65332,8 @@ export namespace compute_v1 {
      */
     targetTcpProxy?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Insert {
+  export interface Params$Resource$Targettcpproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64503,7 +65362,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetTcpProxy;
   }
-  export interface Params$Resource$Targettcpproxies$List {
+  export interface Params$Resource$Targettcpproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64557,7 +65417,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Setbackendservice {
+  export interface Params$Resource$Targettcpproxies$Setbackendservice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64591,7 +65452,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetTcpProxiesSetBackendServiceRequest;
   }
-  export interface Params$Resource$Targettcpproxies$Setproxyheader {
+  export interface Params$Resource$Targettcpproxies$Setproxyheader extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65324,7 +66186,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Targetvpngateways$Aggregatedlist {
+  export interface Params$Resource$Targetvpngateways$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65378,7 +66241,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Delete {
+  export interface Params$Resource$Targetvpngateways$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65410,7 +66274,8 @@ export namespace compute_v1 {
      */
     targetVpnGateway?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Get {
+  export interface Params$Resource$Targetvpngateways$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65429,7 +66294,8 @@ export namespace compute_v1 {
      */
     targetVpnGateway?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Insert {
+  export interface Params$Resource$Targetvpngateways$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65462,7 +66328,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$TargetVpnGateway;
   }
-  export interface Params$Resource$Targetvpngateways$List {
+  export interface Params$Resource$Targetvpngateways$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66571,7 +67438,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Urlmaps$Delete {
+  export interface Params$Resource$Urlmaps$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66599,7 +67466,7 @@ export namespace compute_v1 {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Urlmaps$Get {
+  export interface Params$Resource$Urlmaps$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66614,7 +67481,7 @@ export namespace compute_v1 {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Urlmaps$Insert {
+  export interface Params$Resource$Urlmaps$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66643,7 +67510,8 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Invalidatecache {
+  export interface Params$Resource$Urlmaps$Invalidatecache extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66676,7 +67544,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$CacheInvalidationRule;
   }
-  export interface Params$Resource$Urlmaps$List {
+  export interface Params$Resource$Urlmaps$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66730,7 +67598,7 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Urlmaps$Patch {
+  export interface Params$Resource$Urlmaps$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66763,7 +67631,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Update {
+  export interface Params$Resource$Urlmaps$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66796,7 +67664,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Validate {
+  export interface Params$Resource$Urlmaps$Validate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67501,7 +68369,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Vpntunnels$Aggregatedlist {
+  export interface Params$Resource$Vpntunnels$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67555,7 +68424,8 @@ export namespace compute_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Vpntunnels$Delete {
+  export interface Params$Resource$Vpntunnels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67587,7 +68457,7 @@ export namespace compute_v1 {
      */
     vpnTunnel?: string;
   }
-  export interface Params$Resource$Vpntunnels$Get {
+  export interface Params$Resource$Vpntunnels$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67606,7 +68476,8 @@ export namespace compute_v1 {
      */
     vpnTunnel?: string;
   }
-  export interface Params$Resource$Vpntunnels$Insert {
+  export interface Params$Resource$Vpntunnels$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67639,7 +68510,7 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$VpnTunnel;
   }
-  export interface Params$Resource$Vpntunnels$List {
+  export interface Params$Resource$Vpntunnels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68104,7 +68975,8 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Zoneoperations$Delete {
+  export interface Params$Resource$Zoneoperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68123,7 +68995,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$Get {
+  export interface Params$Resource$Zoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68142,7 +69015,8 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$List {
+  export interface Params$Resource$Zoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68468,7 +69342,7 @@ export namespace compute_v1 {
     }
   }
 
-  export interface Params$Resource$Zones$Get {
+  export interface Params$Resource$Zones$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68483,7 +69357,7 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zones$List {
+  export interface Params$Resource$Zones$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

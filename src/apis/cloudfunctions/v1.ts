@@ -29,6 +29,57 @@ export namespace cloudfunctions_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Functions API
    *
@@ -67,6 +118,94 @@ export namespace cloudfunctions_v1 {
   }
 
   /**
+   * Specifies the audit configuration for a service. The configuration
+   * determines which permission types are logged, and what identities, if any,
+   * are exempted from logging. An AuditConfig must have one or more
+   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
+   * specific service, the union of the two AuditConfigs is used for that
+   * service: the log_types specified in each AuditConfig are enabled, and the
+   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
+   * multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {
+   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
+   * [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
+   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
+   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
+   * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] },
+   * {           &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
+   * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
+   * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
+   * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
+   * &quot;user:bar@gmail.com&quot;               ]             }           ] }
+   * ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE and
+   * ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
+   * and bar@gmail.com from DATA_WRITE logging.
+   */
+  export interface Schema$AuditConfig {
+    /**
+     * The configuration for logging of each type of permission.
+     */
+    auditLogConfigs?: Schema$AuditLogConfig[];
+    /**
+     * Specifies a service that will be enabled for audit logging. For example,
+     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
+     * special value that covers all services.
+     */
+    service?: string;
+  }
+  /**
+   * Provides the configuration for logging a type of permissions. Example: {
+   * &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;:
+   * &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [
+   * &quot;user:foo@gmail.com&quot;           ]         },         {
+   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This
+   * enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while
+   * exempting foo@gmail.com from DATA_READ logging.
+   */
+  export interface Schema$AuditLogConfig {
+    /**
+     * Specifies the identities that do not cause logging for this type of
+     * permission. Follows the same format of Binding.members.
+     */
+    exemptedMembers?: string[];
+    /**
+     * The log type that this config enables.
+     */
+    logType?: string;
+  }
+  /**
+   * Associates `members` with a `role`.
+   */
+  export interface Schema$Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
+     * Specifies the identities requesting access for a Cloud Platform resource.
+     * `members` can have the following values:  * `allUsers`: A special
+     * identifier that represents anyone who is    on the internet; with or
+     * without a Google account.  * `allAuthenticatedUsers`: A special
+     * identifier that represents anyone    who is authenticated with a Google
+     * account or a service account.  * `user:{emailid}`: An email address that
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
+     * `google.com` or `example.com`.
+     */
+    members?: string[];
+    /**
+     * Role that is assigned to `members`. For example, `roles/viewer`,
+     * `roles/editor`, or `roles/owner`.
+     */
+    role?: string;
+  }
+  /**
    * Request for the `CallFunction` method.
    */
   export interface Schema$CallFunctionRequest {
@@ -97,6 +236,7 @@ export namespace cloudfunctions_v1 {
   /**
    * Describes a Cloud Function that contains user computation executed in
    * response to an event. It encapsulate function and triggers configurations.
+   * LINT.IfChange
    */
   export interface Schema$CloudFunction {
     /**
@@ -152,7 +292,8 @@ export namespace cloudfunctions_v1 {
      * organization. The format of this field is either
      * `projects/{project}/global/networks/{network}` or `{network}`, where
      * {project} is a project id where the network is defined, and {network} is
-     * the short name of the network.  See [the VPC
+     * the short name of the network.  This field is mutually exclusive with
+     * `vpc_connector` and will be replaced by it.  See [the VPC
      * documentation](https://cloud.google.com/compute/docs/vpc) for more
      * information on connecting Cloud projects.  This feature is currently in
      * alpha, available only for whitelisted users.
@@ -200,6 +341,17 @@ export namespace cloudfunctions_v1 {
      * deployment attempt results in a new version of a function being created.
      */
     versionId?: string;
+    /**
+     * The VPC Network Connector that this cloud function can connect to. It can
+     * be either the fully-qualified URI, or the short name of the network
+     * connector resource. The format of this field is
+     * `projects/x/locations/x/connectors/x  This field is mutually exclusive
+     * with `network` field and will eventually replace it.  See [the VPC
+     * documentation](https://cloud.google.com/compute/docs/vpc) for more
+     * information on connecting Cloud projects.  This feature is currently in
+     * alpha, available only for whitelisted users.
+     */
+    vpcConnector?: string;
   }
   /**
    * Describes EventTrigger, used to request events be sent from another
@@ -245,6 +397,35 @@ export namespace cloudfunctions_v1 {
      * the `google.storage` namespace.
      */
     service?: string;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * Describes the policy in case of function&#39;s execution failure. If empty,
@@ -464,12 +645,78 @@ export namespace cloudfunctions_v1 {
     versionId?: string;
   }
   /**
+   * Defines an Identity and Access Management (IAM) policy. It is used to
+   * specify access control policies for Cloud Platform resources.   A `Policy`
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
+   * a `role`, where the members can be user accounts, Google groups, Google
+   * domains, and service accounts. A `role` is a named list of permissions
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
+   * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
+   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
+   * &quot;domain:google.com&quot;,
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
+   */
+  export interface Schema$Policy {
+    /**
+     * Specifies cloud audit logging configuration for this policy.
+     */
+    auditConfigs?: Schema$AuditConfig[];
+    /**
+     * Associates a list of `members` to a `role`. `bindings` with no members
+     * will result in an error.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a policy from overwriting each other. It
+     * is strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform policy updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
+     * systems are expected to put that etag in the request to `setIamPolicy` to
+     * ensure that their change will be applied to the same version of the
+     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
+     * existing policy is overwritten blindly.
+     */
+    etag?: string;
+    /**
+     * Deprecated.
+     */
+    version?: number;
+  }
+  /**
    * Describes the retry policy in case of function&#39;s execution failure. A
    * function execution will be retried on any failure. A failed execution will
    * be retried up to 7 days with an exponential backoff (capped at 10 seconds).
    * Retried execution is charged as any other execution.
    */
   export interface Schema$Retry {}
+  /**
+   * Request message for `SetIamPolicy` method.
+   */
+  export interface Schema$SetIamPolicyRequest {
+    /**
+     * REQUIRED: The complete policy to be applied to the `resource`. The size
+     * of the policy is limited to a few 10s of KB. An empty policy is a valid
+     * policy but certain Cloud Platform services (such as Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
+    /**
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
+     * Only the fields in the mask will be modified. If no mask is provided, the
+     * following default mask is used: paths: &quot;bindings, etag&quot; This
+     * field is only used by Cloud IAM.
+     */
+    updateMask?: string;
+  }
   /**
    * Describes SourceRepository, used to represent parameters related to source
    * repository where a function is hosted.
@@ -547,6 +794,28 @@ export namespace cloudfunctions_v1 {
      * google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
+  }
+  /**
+   * Request message for `TestIamPermissions` method.
+   */
+  export interface Schema$TestIamPermissionsRequest {
+    /**
+     * The set of permissions to check for the `resource`. Permissions with
+     * wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
+     * For more information see [IAM
+     * Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     */
+    permissions?: string[];
+  }
+  /**
+   * Response message for `TestIamPermissions` method.
+   */
+  export interface Schema$TestIamPermissionsResponse {
+    /**
+     * A subset of `TestPermissionsRequest.permissions` that the caller is
+     * allowed.
+     */
+    permissions?: string[];
   }
 
 
@@ -703,7 +972,7 @@ export namespace cloudfunctions_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -714,7 +983,7 @@ export namespace cloudfunctions_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -840,7 +1109,8 @@ export namespace cloudfunctions_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1319,6 +1589,76 @@ export namespace cloudfunctions_v1 {
 
 
     /**
+     * cloudfunctions.projects.locations.functions.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias cloudfunctions.projects.locations.functions.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Projects$Locations$Functions$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Projects$Locations$Functions$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Locations$Functions$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Functions$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Functions$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Functions$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * cloudfunctions.projects.locations.functions.list
      * @desc Returns a list of functions that belong to the requested project.
      * @alias cloudfunctions.projects.locations.functions.list
@@ -1456,9 +1796,164 @@ export namespace cloudfunctions_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * cloudfunctions.projects.locations.functions.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias cloudfunctions.projects.locations.functions.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Projects$Locations$Functions$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Projects$Locations$Functions$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Locations$Functions$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Functions$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Functions$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Functions$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudfunctions.projects.locations.functions.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
+     * be used for building permission-aware UIs and command-line tools, not for
+     * authorization checking. This operation may "fail open" without warning.
+     * @alias cloudfunctions.projects.locations.functions.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Functions$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Projects$Locations$Functions$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params: Params$Resource$Projects$Locations$Functions$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Functions$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Functions$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Functions$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
   }
 
-  export interface Params$Resource$Projects$Locations$Functions$Call {
+  export interface Params$Resource$Projects$Locations$Functions$Call extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1474,7 +1969,8 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$CallFunctionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Create {
+  export interface Params$Resource$Projects$Locations$Functions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1491,7 +1987,8 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$CloudFunction;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Delete {
+  export interface Params$Resource$Projects$Locations$Functions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1502,7 +1999,8 @@ export namespace cloudfunctions_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl {
+  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1519,7 +2017,8 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$GenerateDownloadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl {
+  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1536,7 +2035,8 @@ export namespace cloudfunctions_v1 {
      */
     requestBody?: Schema$GenerateUploadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Get {
+  export interface Params$Resource$Projects$Locations$Functions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1547,7 +2047,21 @@ export namespace cloudfunctions_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$List {
+  export interface Params$Resource$Projects$Locations$Functions$Getiampolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1570,7 +2084,8 @@ export namespace cloudfunctions_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Patch {
+  export interface Params$Resource$Projects$Locations$Functions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1590,5 +2105,41 @@ export namespace cloudfunctions_v1 {
      * Request body metadata
      */
     requestBody?: Schema$CloudFunction;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Setiampolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Functions$Testiampermissions
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 }

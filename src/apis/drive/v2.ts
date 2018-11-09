@@ -29,6 +29,40 @@ export namespace drive_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Drive API
    *
@@ -766,6 +800,11 @@ export namespace drive_v2 {
      * A short description of the file.
      */
     description?: string;
+    /**
+     * Short lived download URL for the file. This field is only populated for
+     * files with content stored in Drive; it is not populated for Google Docs
+     * or shortcut files.
+     */
     downloadUrl?: string;
     /**
      * Deprecated: use capabilities/canEdit.
@@ -1655,7 +1694,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$About$Get {
+  export interface Params$Resource$About$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1818,7 +1857,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Apps$Get {
+  export interface Params$Resource$Apps$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1829,7 +1868,7 @@ export namespace drive_v2 {
      */
     appId?: string;
   }
-  export interface Params$Resource$Apps$List {
+  export interface Params$Resource$Apps$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2151,7 +2190,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Changes$Get {
+  export interface Params$Resource$Changes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2170,7 +2209,8 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Changes$Getstartpagetoken {
+  export interface Params$Resource$Changes$Getstartpagetoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2186,7 +2226,7 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Changes$List {
+  export interface Params$Resource$Changes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2245,7 +2285,7 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Changes$Watch {
+  export interface Params$Resource$Changes$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2386,7 +2426,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Channels$Stop {
+  export interface Params$Resource$Channels$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2675,7 +2715,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Children$Delete {
+  export interface Params$Resource$Children$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2690,7 +2730,7 @@ export namespace drive_v2 {
      */
     folderId?: string;
   }
-  export interface Params$Resource$Children$Get {
+  export interface Params$Resource$Children$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2705,7 +2745,7 @@ export namespace drive_v2 {
      */
     folderId?: string;
   }
-  export interface Params$Resource$Children$Insert {
+  export interface Params$Resource$Children$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2725,7 +2765,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$ChildReference;
   }
-  export interface Params$Resource$Children$List {
+  export interface Params$Resource$Children$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3165,7 +3205,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Comments$Delete {
+  export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3180,7 +3220,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
   }
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3200,7 +3240,7 @@ export namespace drive_v2 {
      */
     includeDeleted?: boolean;
   }
-  export interface Params$Resource$Comments$Insert {
+  export interface Params$Resource$Comments$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3216,7 +3256,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Comment;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3248,7 +3288,7 @@ export namespace drive_v2 {
      */
     updatedMin?: string;
   }
-  export interface Params$Resource$Comments$Patch {
+  export interface Params$Resource$Comments$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3268,7 +3308,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Comment;
   }
-  export interface Params$Resource$Comments$Update {
+  export interface Params$Resource$Comments$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4286,7 +4326,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Files$Copy {
+  export interface Params$Resource$Files$Copy extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4337,7 +4377,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$File;
   }
-  export interface Params$Resource$Files$Delete {
+  export interface Params$Resource$Files$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4352,13 +4392,13 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Emptytrash {
+  export interface Params$Resource$Files$Emptytrash extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Files$Export {
+  export interface Params$Resource$Files$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4373,7 +4413,8 @@ export namespace drive_v2 {
      */
     mimeType?: string;
   }
-  export interface Params$Resource$Files$Generateids {
+  export interface Params$Resource$Files$Generateids extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4389,7 +4430,7 @@ export namespace drive_v2 {
      */
     space?: string;
   }
-  export interface Params$Resource$Files$Get {
+  export interface Params$Resource$Files$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4423,7 +4464,7 @@ export namespace drive_v2 {
      */
     updateViewedDate?: boolean;
   }
-  export interface Params$Resource$Files$Insert {
+  export interface Params$Resource$Files$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4489,7 +4530,7 @@ export namespace drive_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Files$List {
+  export interface Params$Resource$Files$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4555,7 +4596,7 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Files$Patch {
+  export interface Params$Resource$Files$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4640,7 +4681,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$File;
   }
-  export interface Params$Resource$Files$Touch {
+  export interface Params$Resource$Files$Touch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4655,7 +4696,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Trash {
+  export interface Params$Resource$Files$Trash extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4670,7 +4711,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Untrash {
+  export interface Params$Resource$Files$Untrash extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4685,7 +4726,7 @@ export namespace drive_v2 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Update {
+  export interface Params$Resource$Files$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4785,7 +4826,7 @@ export namespace drive_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Files$Watch {
+  export interface Params$Resource$Files$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5097,7 +5138,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Parents$Delete {
+  export interface Params$Resource$Parents$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5112,7 +5153,7 @@ export namespace drive_v2 {
      */
     parentId?: string;
   }
-  export interface Params$Resource$Parents$Get {
+  export interface Params$Resource$Parents$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5127,7 +5168,7 @@ export namespace drive_v2 {
      */
     parentId?: string;
   }
-  export interface Params$Resource$Parents$Insert {
+  export interface Params$Resource$Parents$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5147,7 +5188,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$ParentReference;
   }
-  export interface Params$Resource$Parents$List {
+  export interface Params$Resource$Parents$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5662,7 +5703,8 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Permissions$Delete {
+  export interface Params$Resource$Permissions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5687,7 +5729,7 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Get {
+  export interface Params$Resource$Permissions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5712,7 +5754,8 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Getidforemail {
+  export interface Params$Resource$Permissions$Getidforemail extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5723,7 +5766,8 @@ export namespace drive_v2 {
      */
     email?: string;
   }
-  export interface Params$Resource$Permissions$Insert {
+  export interface Params$Resource$Permissions$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5758,7 +5802,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Permission;
   }
-  export interface Params$Resource$Permissions$List {
+  export interface Params$Resource$Permissions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5790,7 +5834,8 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Patch {
+  export interface Params$Resource$Permissions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5829,7 +5874,8 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Permission;
   }
-  export interface Params$Resource$Permissions$Update {
+  export interface Params$Resource$Permissions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6281,7 +6327,8 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Properties$Delete {
+  export interface Params$Resource$Properties$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6300,7 +6347,7 @@ export namespace drive_v2 {
      */
     visibility?: string;
   }
-  export interface Params$Resource$Properties$Get {
+  export interface Params$Resource$Properties$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6319,7 +6366,8 @@ export namespace drive_v2 {
      */
     visibility?: string;
   }
-  export interface Params$Resource$Properties$Insert {
+  export interface Params$Resource$Properties$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6335,7 +6383,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Property;
   }
-  export interface Params$Resource$Properties$List {
+  export interface Params$Resource$Properties$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6346,7 +6394,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
   }
-  export interface Params$Resource$Properties$Patch {
+  export interface Params$Resource$Properties$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6371,7 +6419,8 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Property;
   }
-  export interface Params$Resource$Properties$Update {
+  export interface Params$Resource$Properties$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6542,7 +6591,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Realtime$Get {
+  export interface Params$Resource$Realtime$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6559,7 +6608,7 @@ export namespace drive_v2 {
      */
     revision?: number;
   }
-  export interface Params$Resource$Realtime$Update {
+  export interface Params$Resource$Realtime$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7020,7 +7069,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Replies$Delete {
+  export interface Params$Resource$Replies$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7039,7 +7088,7 @@ export namespace drive_v2 {
      */
     replyId?: string;
   }
-  export interface Params$Resource$Replies$Get {
+  export interface Params$Resource$Replies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7062,7 +7111,7 @@ export namespace drive_v2 {
      */
     replyId?: string;
   }
-  export interface Params$Resource$Replies$Insert {
+  export interface Params$Resource$Replies$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7082,7 +7131,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$CommentReply;
   }
-  export interface Params$Resource$Replies$List {
+  export interface Params$Resource$Replies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7113,7 +7162,7 @@ export namespace drive_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Replies$Patch {
+  export interface Params$Resource$Replies$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7137,7 +7186,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$CommentReply;
   }
-  export interface Params$Resource$Replies$Update {
+  export interface Params$Resource$Replies$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7500,7 +7549,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Revisions$Delete {
+  export interface Params$Resource$Revisions$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7515,7 +7564,7 @@ export namespace drive_v2 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Revisions$Get {
+  export interface Params$Resource$Revisions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7530,7 +7579,7 @@ export namespace drive_v2 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Revisions$List {
+  export interface Params$Resource$Revisions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7550,7 +7599,7 @@ export namespace drive_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Revisions$Patch {
+  export interface Params$Resource$Revisions$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7570,7 +7619,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Revision;
   }
-  export interface Params$Resource$Revisions$Update {
+  export interface Params$Resource$Revisions$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7935,7 +7984,8 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Teamdrives$Delete {
+  export interface Params$Resource$Teamdrives$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7946,7 +7996,7 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Teamdrives$Get {
+  export interface Params$Resource$Teamdrives$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7963,7 +8013,8 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Insert {
+  export interface Params$Resource$Teamdrives$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7983,7 +8034,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$TeamDrive;
   }
-  export interface Params$Resource$Teamdrives$List {
+  export interface Params$Resource$Teamdrives$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8008,7 +8059,8 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Update {
+  export interface Params$Resource$Teamdrives$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,57 @@ export namespace dataproc_v1beta2 {
     version: 'v1beta2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Dataproc API
    *
@@ -723,6 +774,12 @@ export namespace dataproc_v1beta2 {
      */
     hiveJob?: Schema$HiveJob;
     /**
+     * Output only. A UUID that uniquely identifies a job within the project
+     * over time. This is in contrast to a user-settable reference.job_id that
+     * may be reused over time.
+     */
+    jobUuid?: string;
+    /**
      * Optional. The labels to associate with this job. Label keys must contain
      * 1 to 63 characters, and must conform to RFC 1035
      * (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but,
@@ -758,6 +815,10 @@ export namespace dataproc_v1beta2 {
      * Job is a Spark job.
      */
     sparkJob?: Schema$SparkJob;
+    /**
+     * Job is a SparkR job.
+     */
+    sparkRJob?: Schema$SparkRJob;
     /**
      * Job is a SparkSql job.
      */
@@ -1351,6 +1412,45 @@ export namespace dataproc_v1beta2 {
     properties?: any;
   }
   /**
+   * A Cloud Dataproc job for running Apache SparkR
+   * (https://spark.apache.org/docs/latest/sparkr.html) applications on YARN.
+   */
+  export interface Schema$SparkRJob {
+    /**
+     * Optional. HCFS URIs of archives to be extracted in the working directory
+     * of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz,
+     * .tgz, and .zip.
+     */
+    archiveUris?: string[];
+    /**
+     * Optional. The arguments to pass to the driver. Do not include arguments,
+     * such as --conf, that can be set as job properties, since a collision may
+     * occur that causes an incorrect job submission.
+     */
+    args?: string[];
+    /**
+     * Optional. HCFS URIs of files to be copied to the working directory of R
+     * drivers and distributed tasks. Useful for naively parallel tasks.
+     */
+    fileUris?: string[];
+    /**
+     * Optional. The runtime log config for job execution.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
+     * Required. The HCFS URI of the main R file to use as the driver. Must be a
+     * .R file.
+     */
+    mainRFileUri?: string;
+    /**
+     * Optional. A mapping of property names to values, used to configure
+     * SparkR. Properties that conflict with values set by the Cloud Dataproc
+     * API may be overwritten. Can include properties set in
+     * /etc/spark/conf/spark-defaults.conf and classes in user code.
+     */
+    properties?: any;
+  }
+  /**
    * A Cloud Dataproc job for running Apache Spark SQL
    * (http://spark.apache.org/sql/) queries.
    */
@@ -1472,27 +1572,31 @@ export namespace dataproc_v1beta2 {
      * field path is similar in syntax to a google.protobuf.FieldMask. For
      * example, a field path that references the zone field of a workflow
      * template&#39;s cluster selector would be specified as
-     * &lt;code&gt;placement.clusterSelector.zone&lt;/code&gt;.Also, field paths
-     * can reference fields using the following syntax: Values in maps can be
-     * referenced by key. Examples&lt;br&gt; labels&#39;key&#39;
-     * placement.clusterSelector.clusterLabels&#39;key&#39;
+     * placement.clusterSelector.zone.Also, field paths can reference fields
+     * using the following syntax: Values in maps can be referenced by key:
+     * labels&#39;key&#39; placement.clusterSelector.clusterLabels&#39;key&#39;
      * placement.managedCluster.labels&#39;key&#39;
      * placement.clusterSelector.clusterLabels&#39;key&#39;
-     * jobsstep-id.labels&#39;key&#39; Jobs in the jobs list can be referenced
-     * by step-id. Examples:&lt;br&gt; jobsstep-id.hadoopJob.mainJarFileUri
-     * jobsstep-id.hiveJob.queryFileUri jobsstep-id.pySparkJob.mainPythonFileUri
-     * jobsstep-id.hadoopJob.jarFileUris0 jobsstep-id.hadoopJob.archiveUris0
-     * jobsstep-id.hadoopJob.fileUris0 jobsstep-id.pySparkJob.pythonFileUris0
-     * Items in repeated fields can be referenced by a zero-based index.
-     * Example:&lt;br&gt; jobsstep-id.sparkJob.args0 Other examples:
-     * jobsstep-id.hadoopJob.properties&#39;key&#39; jobsstep-id.hadoopJob.args0
-     * jobsstep-id.hiveJob.scriptVariables&#39;key&#39;
-     * jobsstep-id.hadoopJob.mainJarFileUri placement.clusterSelector.zoneIt may
-     * not be possible to parameterize maps and repeated fields in their
-     * entirety since only individual map values and individual items in
-     * repeated fields can be referenced. For example, the following field paths
-     * are invalid: placement.clusterSelector.clusterLabels
-     * jobsstep-id.sparkJob.args
+     * jobs&#39;step-id&#39;.labels&#39;key&#39; Jobs in the jobs list can be
+     * referenced by step-id: jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
+     * jobs&#39;step-id&#39;.hiveJob.queryFileUri
+     * jobs&#39;step-id&#39;.pySparkJob.mainPythonFileUri
+     * jobs&#39;step-id&#39;.hadoopJob.jarFileUris0
+     * jobs&#39;step-id&#39;.hadoopJob.archiveUris0
+     * jobs&#39;step-id&#39;.hadoopJob.fileUris0
+     * jobs&#39;step-id&#39;.pySparkJob.pythonFileUris0 Items in repeated fields
+     * can be referenced by a zero-based index:
+     * jobs&#39;step-id&#39;.sparkJob.args0 Other examples:
+     * jobs&#39;step-id&#39;.hadoopJob.properties&#39;key&#39;
+     * jobs&#39;step-id&#39;.hadoopJob.args0
+     * jobs&#39;step-id&#39;.hiveJob.scriptVariables&#39;key&#39;
+     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
+     * placement.clusterSelector.zoneIt may not be possible to parameterize maps
+     * and repeated fields in their entirety since only individual map values
+     * and individual items in repeated fields can be referenced. For example,
+     * the following field paths are invalid:
+     * placement.clusterSelector.clusterLabels
+     * jobs&#39;step-id&#39;.sparkJob.args
      */
     fields?: string[];
     /**
@@ -2512,7 +2616,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2530,7 +2635,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2549,7 +2655,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2568,7 +2675,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2580,7 +2688,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2598,7 +2707,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2629,7 +2739,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$List {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2651,7 +2762,8 @@ export namespace dataproc_v1beta2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2668,7 +2780,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2685,7 +2798,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3389,7 +3503,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Clusters$Create {
+  export interface Params$Resource$Projects$Regions$Clusters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3421,7 +3536,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Delete {
+  export interface Params$Resource$Projects$Regions$Clusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3457,7 +3573,8 @@ export namespace dataproc_v1beta2 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Diagnose {
+  export interface Params$Resource$Projects$Regions$Clusters$Diagnose extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3482,7 +3599,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$DiagnoseClusterRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Get {
+  export interface Params$Resource$Projects$Regions$Clusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3502,7 +3620,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3514,7 +3633,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$List {
+  export interface Params$Resource$Projects$Regions$Clusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3553,7 +3673,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Patch {
+  export interface Params$Resource$Projects$Regions$Clusters$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3625,7 +3746,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3642,7 +3764,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4314,7 +4437,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Jobs$Cancel {
+  export interface Params$Resource$Projects$Regions$Jobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4339,7 +4463,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Delete {
+  export interface Params$Resource$Projects$Regions$Jobs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4359,7 +4484,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Get {
+  export interface Params$Resource$Projects$Regions$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4379,7 +4505,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4391,7 +4518,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$List {
+  export interface Params$Resource$Projects$Regions$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4437,7 +4565,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Patch {
+  export interface Params$Resource$Projects$Regions$Jobs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4471,7 +4600,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4488,7 +4618,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Submit {
+  export interface Params$Resource$Projects$Regions$Jobs$Submit extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4509,7 +4640,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SubmitJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5042,7 +5174,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Operations$Cancel {
+  export interface Params$Resource$Projects$Regions$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5053,7 +5186,8 @@ export namespace dataproc_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Delete {
+  export interface Params$Resource$Projects$Regions$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5064,7 +5198,8 @@ export namespace dataproc_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Get {
+  export interface Params$Resource$Projects$Regions$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5075,7 +5210,8 @@ export namespace dataproc_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5087,7 +5223,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$List {
+  export interface Params$Resource$Projects$Regions$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5110,7 +5247,8 @@ export namespace dataproc_v1beta2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5127,7 +5265,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5894,7 +6033,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5912,7 +6052,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5931,7 +6072,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5950,7 +6092,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5962,7 +6105,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5980,7 +6124,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6011,7 +6156,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$List {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6033,7 +6179,8 @@ export namespace dataproc_v1beta2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6050,7 +6197,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6067,7 +6215,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
