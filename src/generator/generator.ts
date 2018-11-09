@@ -42,13 +42,30 @@ export interface GeneratorOptions {
   includePrivate?: boolean;
 }
 
+function getObjectType(item: SchemaItem): string {
+  if (item.additionalProperties) {
+    const valueType = getType(item.additionalProperties);
+    return `{ [key: string]: ${valueType} }`;
+  } else if (item.properties) {
+    const fields = item.properties;
+    const objectType = Object.keys(fields)
+      .map(field => ` ${field}?:${getType(fields[field])}`)
+      .join(',');
+    return `{${objectType} }`;
+  } else {
+    return 'any';
+  }
+}
+
 function getType(item: SchemaItem): string {
+  if (item.$ref) {
+    return `Schema${item.$ref}`;
+  }
   switch (item.type) {
     case 'integer':
       return 'number';
     case 'object':
-      // TODO: This can be improved with an inline type.
-      return 'any';
+      return getObjectType(item);
     case 'array':
       const innerType = getType(item.items!);
       return `${innerType}[]`;
