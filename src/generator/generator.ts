@@ -48,13 +48,9 @@ function getObjectType(item: SchemaItem): string {
     return `{ [key: string]: ${valueType}; }`;
   } else if (item.properties) {
     const fields = item.properties;
-    // TODO: remove this once property with special char is removed
-    if (Object.keys(fields).filter(k => k.indexOf('-') > -1).length > 0) {
-      return `{ [key: string]: any; }`;
-    }
     const objectType =
         Object.keys(fields)
-            .map(field => `${field}?: ${getType(fields[field])};`)
+            .map(field => `${cleanPropertyName(field)}?: ${getType(fields[field])};`)
             .join(' ');
     return `{ ${objectType} }`;
   } else {
@@ -67,6 +63,11 @@ function isSimpleType(type: string): boolean {
     return false;
   }
   return true;
+}
+
+function cleanPropertyName(prop: string) {
+  const match = prop.match(/[-@.]/g);
+  return match ? `'${prop}'` : prop;
 }
 
 function getType(item: SchemaItem): string {
@@ -134,11 +135,6 @@ export class Generator {
     return param;
   }
 
-  private cleanPropertyName(prop: string) {
-    const match = prop.match(/[-@.]/g);
-    return match ? `'${prop}'` : prop;
-  }
-
   private hasResourceParam(method: SchemaMethod) {
     return method.parameters && method.parameters['resource'];
   }
@@ -158,7 +154,7 @@ export class Generator {
     this.env.addFilter('buildurl', buildurl);
     this.env.addFilter('oneLine', this.oneLine);
     this.env.addFilter('getType', getType);
-    this.env.addFilter('cleanPropertyName', this.cleanPropertyName);
+    this.env.addFilter('cleanPropertyName', cleanPropertyName);
     this.env.addFilter('cleanComments', this.cleanComments);
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
