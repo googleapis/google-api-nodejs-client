@@ -45,16 +45,28 @@ export interface GeneratorOptions {
 function getObjectType(item: SchemaItem): string {
   if (item.additionalProperties) {
     const valueType = getType(item.additionalProperties);
-    return `{ [key: string]: ${valueType} }`;
+    return `{ [key: string]: ${valueType}; }`;
   } else if (item.properties) {
     const fields = item.properties;
-    const objectType = Object.keys(fields)
-      .map(field => ` ${field}?:${getType(fields[field])}`)
-      .join(',');
-    return `{${objectType} }`;
+    // TODO: remove this once property with sprcial cha is removed
+    if (Object.keys(fields).filter(k => k.indexOf('-') > -1).length > 0) {
+      return `{ [key: string]: any; }`;
+    }
+    const objectType =
+        Object.keys(fields)
+            .map(field => `${field}?: ${getType(fields[field])};`)
+            .join(' ');
+    return `{ ${objectType} }`;
   } else {
     return 'any';
   }
+}
+
+function isSimpleType(type: string): boolean {
+  if (type.indexOf('{') > -1) {
+    return false;
+  }
+  return true;
 }
 
 function getType(item: SchemaItem): string {
@@ -68,7 +80,11 @@ function getType(item: SchemaItem): string {
       return getObjectType(item);
     case 'array':
       const innerType = getType(item.items!);
-      return `${innerType}[]`;
+      if (isSimpleType(innerType)) {
+        return `${innerType}[]`;
+      } else {
+        return `Array<${innerType}>`;
+      }
     default:
       return item.type!;
   }
