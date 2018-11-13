@@ -74,7 +74,7 @@ function cleanPropertyName(prop: string) {
 
 function getType(item: SchemaItem): string {
   if (item.$ref) {
-    return `Schema${item.$ref}`;
+    return `Schema$${item.$ref}`;
   }
   switch (item.type) {
     case 'integer':
