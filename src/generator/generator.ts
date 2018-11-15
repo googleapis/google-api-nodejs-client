@@ -42,16 +42,52 @@ export interface GeneratorOptions {
   includePrivate?: boolean;
 }
 
+function getObjectType(item: SchemaItem): string {
+  if (item.additionalProperties) {
+    const valueType = getType(item.additionalProperties);
+    return `{ [key: string]: ${valueType}; }`;
+  } else if (item.properties) {
+    const fields = item.properties;
+    const objectType =
+        Object.keys(fields)
+            .map(
+                field =>
+                    `${cleanPropertyName(field)}?: ${getType(fields[field])};`)
+            .join(' ');
+    return `{ ${objectType} }`;
+  } else {
+    return 'any';
+  }
+}
+
+function isSimpleType(type: string): boolean {
+  if (type.indexOf('{') > -1) {
+    return false;
+  }
+  return true;
+}
+
+function cleanPropertyName(prop: string) {
+  const match = prop.match(/[-@.]/g);
+  return match ? `'${prop}'` : prop;
+}
+
 function getType(item: SchemaItem): string {
+  if (item.$ref) {
+    return `Schema$${item.$ref}`;
+  }
   switch (item.type) {
     case 'integer':
       return 'number';
     case 'object':
-      // TODO: This can be improved with an inline type.
-      return 'any';
+      return getObjectType(item);
     case 'array':
       const innerType = getType(item.items!);
-      return `${innerType}[]`;
+      if (isSimpleType(innerType)) {
+        return `${innerType}[]`;
+      } else {
+        return `Array<${innerType}>`;
+      }
     default:
       return item.type!;
   }
@@ -101,11 +137,6 @@ export class Generator {
     return param;
   }
 
-  private cleanPropertyName(prop: string) {
-    const match = prop.match(/[-@.]/g);
-    return match ? `'${prop}'` : prop;
-  }
-
   private hasResourceParam(method: SchemaMethod) {
     return method.parameters && method.parameters['resource'];
   }
@@ -125,7 +156,7 @@ export class Generator {
     this.env.addFilter('buildurl', buildurl);
     this.env.addFilter('oneLine', this.oneLine);
     this.env.addFilter('getType', getType);
-    this.env.addFilter('cleanPropertyName', this.cleanPropertyName);
+    this.env.addFilter('cleanPropertyName', cleanPropertyName);
     this.env.addFilter('cleanComments', this.cleanComments);
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
