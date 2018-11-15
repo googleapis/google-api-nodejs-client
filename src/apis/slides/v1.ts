@@ -29,10 +29,61 @@ export namespace slides_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Google Slides API
    *
-   * An API for creating and editing Google Slides presentations.
+   * Reads and writes Google Slides presentations.
    *
    * @example
    * const {google} = require('googleapis');
@@ -1956,7 +2007,7 @@ export namespace slides_v1 {
   export interface Schema$Shadow {
     /**
      * The alignment point of the shadow, that sets the origin for translate,
-     * scale and skew of the shadow.
+     * scale and skew of the shadow. This property is read-only.
      */
     alignment?: string;
     /**
@@ -1981,7 +2032,8 @@ export namespace slides_v1 {
      */
     propertyState?: string;
     /**
-     * Whether the shadow should rotate with the shape.
+     * Whether the shadow should rotate with the shape. This property is
+     * read-only.
      */
     rotateWithShape?: boolean;
     /**
@@ -1990,7 +2042,7 @@ export namespace slides_v1 {
      */
     transform?: Schema$AffineTransform;
     /**
-     * The type of the shadow.
+     * The type of the shadow. This property is read-only.
      */
     type?: string;
   }
@@ -3378,7 +3430,8 @@ export namespace slides_v1 {
     }
   }
 
-  export interface Params$Resource$Presentations$Batchupdate {
+  export interface Params$Resource$Presentations$Batchupdate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3394,7 +3447,8 @@ export namespace slides_v1 {
      */
     requestBody?: Schema$BatchUpdatePresentationRequest;
   }
-  export interface Params$Resource$Presentations$Create {
+  export interface Params$Resource$Presentations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3406,7 +3460,8 @@ export namespace slides_v1 {
      */
     requestBody?: Schema$Presentation;
   }
-  export interface Params$Resource$Presentations$Get {
+  export interface Params$Resource$Presentations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3569,7 +3624,8 @@ export namespace slides_v1 {
     }
   }
 
-  export interface Params$Resource$Presentations$Pages$Get {
+  export interface Params$Resource$Presentations$Pages$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3584,7 +3640,8 @@ export namespace slides_v1 {
      */
     presentationId?: string;
   }
-  export interface Params$Resource$Presentations$Pages$Getthumbnail {
+  export interface Params$Resource$Presentations$Pages$Getthumbnail extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

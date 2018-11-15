@@ -29,6 +29,40 @@ export namespace blogger_v3 {
     version: 'v3';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Blogger API
    *
@@ -733,7 +767,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Blogs$Get {
+  export interface Params$Resource$Blogs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -753,7 +787,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Blogs$Getbyurl {
+  export interface Params$Resource$Blogs$Getbyurl extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -769,7 +803,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Blogs$Listbyuser {
+  export interface Params$Resource$Blogs$Listbyuser extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -881,7 +915,8 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Bloguserinfos$Get {
+  export interface Params$Resource$Bloguserinfos$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1404,7 +1439,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Comments$Approve {
+  export interface Params$Resource$Comments$Approve extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1423,7 +1458,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Comments$Delete {
+  export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1442,7 +1477,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1468,7 +1503,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1512,7 +1547,8 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Comments$Listbyblog {
+  export interface Params$Resource$Comments$Listbyblog extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1547,7 +1583,8 @@ export namespace blogger_v3 {
      */
     status?: string;
   }
-  export interface Params$Resource$Comments$Markasspam {
+  export interface Params$Resource$Comments$Markasspam extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1566,7 +1603,8 @@ export namespace blogger_v3 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Comments$Removecontent {
+  export interface Params$Resource$Comments$Removecontent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2130,7 +2168,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Pages$Delete {
+  export interface Params$Resource$Pages$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2145,7 +2183,7 @@ export namespace blogger_v3 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Pages$Get {
+  export interface Params$Resource$Pages$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2164,7 +2202,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Pages$Insert {
+  export interface Params$Resource$Pages$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2184,7 +2222,7 @@ export namespace blogger_v3 {
      */
     requestBody?: Schema$Page;
   }
-  export interface Params$Resource$Pages$List {
+  export interface Params$Resource$Pages$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2216,7 +2254,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Pages$Patch {
+  export interface Params$Resource$Pages$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2246,7 +2284,7 @@ export namespace blogger_v3 {
      */
     requestBody?: Schema$Page;
   }
-  export interface Params$Resource$Pages$Publish {
+  export interface Params$Resource$Pages$Publish extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2261,7 +2299,7 @@ export namespace blogger_v3 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Pages$Revert {
+  export interface Params$Resource$Pages$Revert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2276,7 +2314,7 @@ export namespace blogger_v3 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Pages$Update {
+  export interface Params$Resource$Pages$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2383,7 +2421,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Pageviews$Get {
+  export interface Params$Resource$Pageviews$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3095,7 +3133,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Posts$Delete {
+  export interface Params$Resource$Posts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3110,7 +3148,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Posts$Get {
+  export interface Params$Resource$Posts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3144,7 +3182,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Posts$Getbypath {
+  export interface Params$Resource$Posts$Getbypath extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3168,7 +3206,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Posts$Insert {
+  export interface Params$Resource$Posts$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3198,7 +3236,7 @@ export namespace blogger_v3 {
      */
     requestBody?: Schema$Post;
   }
-  export interface Params$Resource$Posts$List {
+  export interface Params$Resource$Posts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3252,7 +3290,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Posts$Patch {
+  export interface Params$Resource$Posts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3296,7 +3334,7 @@ export namespace blogger_v3 {
      */
     requestBody?: Schema$Post;
   }
-  export interface Params$Resource$Posts$Publish {
+  export interface Params$Resource$Posts$Publish extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3318,7 +3356,7 @@ export namespace blogger_v3 {
      */
     publishDate?: string;
   }
-  export interface Params$Resource$Posts$Revert {
+  export interface Params$Resource$Posts$Revert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3333,7 +3371,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Posts$Search {
+  export interface Params$Resource$Posts$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3358,7 +3396,7 @@ export namespace blogger_v3 {
      */
     q?: string;
   }
-  export interface Params$Resource$Posts$Update {
+  export interface Params$Resource$Posts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3563,7 +3601,8 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Postuserinfos$Get {
+  export interface Params$Resource$Postuserinfos$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3587,7 +3626,8 @@ export namespace blogger_v3 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Postuserinfos$List {
+  export interface Params$Resource$Postuserinfos$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3715,7 +3755,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Users$Get {
+  export interface Params$Resource$Users$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,65 @@ export namespace translate_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * OAuth bearer token.
+     */
+    bearer_token?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Pretty-print response.
+     */
+    pp?: boolean;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters. Overrides userIp if both are provided.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Google Cloud Translation API
    *
@@ -331,7 +390,8 @@ export namespace translate_v2 {
     }
   }
 
-  export interface Params$Resource$Detections$Detect {
+  export interface Params$Resource$Detections$Detect extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -343,7 +403,7 @@ export namespace translate_v2 {
      */
     requestBody?: Schema$DetectLanguageRequest;
   }
-  export interface Params$Resource$Detections$List {
+  export interface Params$Resource$Detections$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -436,7 +496,7 @@ export namespace translate_v2 {
     }
   }
 
-  export interface Params$Resource$Languages$List {
+  export interface Params$Resource$Languages$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -607,7 +667,8 @@ export namespace translate_v2 {
     }
   }
 
-  export interface Params$Resource$Translations$List {
+  export interface Params$Resource$Translations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -646,7 +707,8 @@ export namespace translate_v2 {
      */
     target?: string;
   }
-  export interface Params$Resource$Translations$Translate {
+  export interface Params$Resource$Translations$Translate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -17,7 +17,6 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const url = require('url');
-const querystring = require('querystring');
 const opn = require('opn');
 const destroyer = require('server-destroy');
 
@@ -61,10 +60,10 @@ async function authenticate(scopes) {
       .createServer(async (req, res) => {
         try {
           if (req.url.indexOf('/oauth2callback') > -1) {
-            const qs = querystring.parse(url.parse(req.url).query);
+            const qs = new url.URL(req.url).searchParams;
             res.end('Authentication successful! Please return to the console.');
             server.destroy();
-            const {tokens} = await oauth2Client.getToken(qs.code);
+            const {tokens} = await oauth2Client.getToken(qs.get('code'));
             oauth2Client.credentials = tokens;
             resolve(oauth2Client);
           }

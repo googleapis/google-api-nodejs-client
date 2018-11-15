@@ -29,6 +29,57 @@ export namespace servicenetworking_v1beta {
     version: 'v1beta';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Service Networking API
    *
@@ -103,6 +154,14 @@ export namespace servicenetworking_v1beta {
      * new subnetwork.
      */
     region?: string;
+    /**
+     * Optional. The starting address of a range. The address must be a valid
+     * IPv4 address in the x.x.x.x format. This value combined with the IP
+     * prefix range is the CIDR range for the subnet. The range must be within
+     * the allocated range that is assigned to the private connection. If the
+     * CIDR range isn&#39;t available, the call fails.
+     */
+    requestedAddress?: string;
     /**
      * Required. Name for the new subnetwork. Must be a legal
      * [subnetwork](compute/docs/reference/rest/v1/subnetworks) name.
@@ -335,6 +394,11 @@ export namespace servicenetworking_v1beta {
      * value lower than this will be rejected.
      */
     minDeadline?: number;
+    /**
+     * The number of seconds to wait for the completion of a long running
+     * operation. The default is no deadline.
+     */
+    operationDeadline?: number;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1867,6 +1931,11 @@ export namespace servicenetworking_v1beta {
      * Subnetwork name. See https://cloud.google.com/compute/docs/vpc/
      */
     name?: string;
+    /**
+     * Shared VPC host project network peered with consumer network. For
+     * example: projects/1234321/global/networks/host-network
+     */
+    network?: string;
   }
   /**
    * Define a parameter&#39;s name and location. The parameter may be passed as
@@ -2098,7 +2167,7 @@ export namespace servicenetworking_v1beta {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2201,7 +2270,8 @@ export namespace servicenetworking_v1beta {
     }
   }
 
-  export interface Params$Resource$Services$Addsubnetwork {
+  export interface Params$Resource$Services$Addsubnetwork extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2383,7 +2453,8 @@ export namespace servicenetworking_v1beta {
     }
   }
 
-  export interface Params$Resource$Services$Connections$Create {
+  export interface Params$Resource$Services$Connections$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2401,7 +2472,8 @@ export namespace servicenetworking_v1beta {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Services$Connections$List {
+  export interface Params$Resource$Services$Connections$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

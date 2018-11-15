@@ -29,6 +29,57 @@ export namespace iap_v1beta1 {
     version: 'v1beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Identity-Aware Proxy API
    *
@@ -527,7 +578,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -544,7 +596,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -561,7 +614,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_tunnel$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -817,7 +871,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -834,7 +889,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -851,7 +907,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1116,7 +1173,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1133,7 +1191,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1150,7 +1209,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1404,7 +1464,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_web$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1421,7 +1482,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1438,7 +1500,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_web$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1694,7 +1757,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_web$Services$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1711,7 +1775,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1728,7 +1793,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_web$Services$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1989,7 +2055,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2006,7 +2073,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2023,7 +2091,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

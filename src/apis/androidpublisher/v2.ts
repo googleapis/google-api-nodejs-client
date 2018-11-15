@@ -29,6 +29,40 @@ export namespace androidpublisher_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Play Developer API
    *
@@ -1330,7 +1364,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Commit {
+  export interface Params$Resource$Edits$Commit extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1346,7 +1380,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Delete {
+  export interface Params$Resource$Edits$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1362,7 +1396,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Get {
+  export interface Params$Resource$Edits$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1378,7 +1412,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Insert {
+  export interface Params$Resource$Edits$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1395,7 +1429,7 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$AppEdit;
   }
-  export interface Params$Resource$Edits$Validate {
+  export interface Params$Resource$Edits$Validate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1854,7 +1888,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Apklistings$Delete {
+  export interface Params$Resource$Edits$Apklistings$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1881,7 +1916,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$Deleteall {
+  export interface Params$Resource$Edits$Apklistings$Deleteall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1902,7 +1938,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$Get {
+  export interface Params$Resource$Edits$Apklistings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1929,7 +1966,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$List {
+  export interface Params$Resource$Edits$Apklistings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1950,7 +1988,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$Patch {
+  export interface Params$Resource$Edits$Apklistings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1982,7 +2021,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$ApkListing;
   }
-  export interface Params$Resource$Edits$Apklistings$Update {
+  export interface Params$Resource$Edits$Apklistings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2252,7 +2292,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Apks$Addexternallyhosted {
+  export interface Params$Resource$Edits$Apks$Addexternallyhosted extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2273,7 +2314,7 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$ApksAddExternallyHostedRequest;
   }
-  export interface Params$Resource$Edits$Apks$List {
+  export interface Params$Resource$Edits$Apks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2289,7 +2330,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apks$Upload {
+  export interface Params$Resource$Edits$Apks$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2485,7 +2527,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Bundles$List {
+  export interface Params$Resource$Edits$Bundles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2501,7 +2544,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Bundles$Upload {
+  export interface Params$Resource$Edits$Bundles$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2648,7 +2692,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Deobfuscationfiles$Upload {
+  export interface Params$Resource$Edits$Deobfuscationfiles$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2912,7 +2957,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Details$Get {
+  export interface Params$Resource$Edits$Details$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2928,7 +2974,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Details$Patch {
+  export interface Params$Resource$Edits$Details$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2949,7 +2996,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$AppDetails;
   }
-  export interface Params$Resource$Edits$Details$Update {
+  export interface Params$Resource$Edits$Details$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3295,7 +3343,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Expansionfiles$Get {
+  export interface Params$Resource$Edits$Expansionfiles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3320,37 +3369,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Patch {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The version code of the APK whose Expansion File configuration is being
-     * read or modified.
-     */
-    apkVersionCode?: number;
-    /**
-     * Unique identifier for this edit.
-     */
-    editId?: string;
-    /**
-     *
-     */
-    expansionFileType?: string;
-    /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
-     */
-    packageName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ExpansionFile;
-  }
-  export interface Params$Resource$Edits$Expansionfiles$Update {
+  export interface Params$Resource$Edits$Expansionfiles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3380,7 +3400,39 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$ExpansionFile;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Upload {
+  export interface Params$Resource$Edits$Expansionfiles$Update extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The version code of the APK whose Expansion File configuration is being
+     * read or modified.
+     */
+    apkVersionCode?: number;
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     *
+     */
+    expansionFileType?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExpansionFile;
+  }
+  export interface Params$Resource$Edits$Expansionfiles$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3734,7 +3786,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Images$Delete {
+  export interface Params$Resource$Edits$Images$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3765,7 +3818,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Deleteall {
+  export interface Params$Resource$Edits$Images$Deleteall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3791,7 +3845,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$List {
+  export interface Params$Resource$Edits$Images$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3817,7 +3872,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Upload {
+  export interface Params$Resource$Edits$Images$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4289,7 +4345,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Listings$Delete {
+  export interface Params$Resource$Edits$Listings$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4310,7 +4367,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Deleteall {
+  export interface Params$Resource$Edits$Listings$Deleteall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4326,7 +4384,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Get {
+  export interface Params$Resource$Edits$Listings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4347,7 +4406,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$List {
+  export interface Params$Resource$Edits$Listings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4363,7 +4423,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Patch {
+  export interface Params$Resource$Edits$Listings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4389,7 +4450,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$Listing;
   }
-  export interface Params$Resource$Edits$Listings$Update {
+  export interface Params$Resource$Edits$Listings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4634,7 +4696,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Testers$Get {
+  export interface Params$Resource$Edits$Testers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4655,7 +4718,8 @@ export namespace androidpublisher_v2 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Testers$Patch {
+  export interface Params$Resource$Edits$Testers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4681,7 +4745,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$Testers;
   }
-  export interface Params$Resource$Edits$Testers$Update {
+  export interface Params$Resource$Edits$Testers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5002,7 +5067,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Tracks$Get {
+  export interface Params$Resource$Edits$Tracks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5022,7 +5087,8 @@ export namespace androidpublisher_v2 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Tracks$List {
+  export interface Params$Resource$Edits$Tracks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5038,7 +5104,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Tracks$Patch {
+  export interface Params$Resource$Edits$Tracks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5063,7 +5130,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$Track;
   }
-  export interface Params$Resource$Edits$Tracks$Update {
+  export interface Params$Resource$Edits$Tracks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5528,7 +5596,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Inappproducts$Delete {
+  export interface Params$Resource$Inappproducts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5544,7 +5613,8 @@ export namespace androidpublisher_v2 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Get {
+  export interface Params$Resource$Inappproducts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5559,7 +5629,8 @@ export namespace androidpublisher_v2 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Insert {
+  export interface Params$Resource$Inappproducts$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5581,7 +5652,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$List {
+  export interface Params$Resource$Inappproducts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5605,7 +5677,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Inappproducts$Patch {
+  export interface Params$Resource$Inappproducts$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5632,7 +5705,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$Update {
+  export interface Params$Resource$Inappproducts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5740,7 +5814,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Orders$Refund {
+  export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5864,7 +5938,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Purchases$Products$Get {
+  export interface Params$Resource$Purchases$Products$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6263,7 +6338,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Purchases$Subscriptions$Cancel {
+  export interface Params$Resource$Purchases$Subscriptions$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6284,7 +6360,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Defer {
+  export interface Params$Resource$Purchases$Subscriptions$Defer extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6310,7 +6387,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$SubscriptionPurchasesDeferRequest;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Get {
+  export interface Params$Resource$Purchases$Subscriptions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6331,7 +6409,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Refund {
+  export interface Params$Resource$Purchases$Subscriptions$Refund extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6352,7 +6431,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Revoke {
+  export interface Params$Resource$Purchases$Subscriptions$Revoke extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6467,7 +6547,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Purchases$Voidedpurchases$List {
+  export interface Params$Resource$Purchases$Voidedpurchases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6730,7 +6811,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Reviews$Get {
+  export interface Params$Resource$Reviews$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6750,7 +6831,7 @@ export namespace androidpublisher_v2 {
      */
     translationLanguage?: string;
   }
-  export interface Params$Resource$Reviews$List {
+  export interface Params$Resource$Reviews$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6778,7 +6859,7 @@ export namespace androidpublisher_v2 {
      */
     translationLanguage?: string;
   }
-  export interface Params$Resource$Reviews$Reply {
+  export interface Params$Resource$Reviews$Reply extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

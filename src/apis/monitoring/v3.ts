@@ -29,6 +29,57 @@ export namespace monitoring_v3 {
     version: 'v3';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Stackdriver Monitoring API
    *
@@ -51,7 +102,10 @@ export namespace monitoring_v3 {
     google?: GoogleConfigurable;
     root = this;
 
+    metricDescriptors: Resource$Metricdescriptors;
+    monitoredResourceDescriptors: Resource$Monitoredresourcedescriptors;
     projects: Resource$Projects;
+    timeSeries: Resource$Timeseries;
     uptimeCheckIps: Resource$Uptimecheckips;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -59,7 +113,11 @@ export namespace monitoring_v3 {
       this.google = google;
       this.getRoot.bind(this);
 
+      this.metricDescriptors = new Resource$Metricdescriptors(this);
+      this.monitoredResourceDescriptors =
+          new Resource$Monitoredresourcedescriptors(this);
       this.projects = new Resource$Projects(this);
+      this.timeSeries = new Resource$Timeseries(this);
       this.uptimeCheckIps = new Resource$Uptimecheckips(this);
     }
 
@@ -383,13 +441,12 @@ export namespace monitoring_v3 {
     name?: string;
   }
   /**
-   * Used to perform string matching. Currently, this matches on the exact
-   * content. In the future, it can be expanded to allow for regular expressions
-   * and more complex matching.
+   * Used to perform string matching. It allows substring and regular
+   * expressions, together with their negations.
    */
   export interface Schema$ContentMatcher {
     /**
-     * String content to match (max 1024 bytes)
+     * String or regex content to match (max 1024 bytes)
      */
     content?: string;
   }
@@ -791,8 +848,8 @@ export namespace monitoring_v3 {
     useSsl?: boolean;
   }
   /**
-   * Nimbus InternalCheckers. The API currently only allows reading of internal
-   * checkers, creation of internal checkers is a manual process.
+   * An internal checker allows uptime checks to run on private/internal GCP
+   * resources.
    */
   export interface Schema$InternalChecker {
     /**
@@ -808,9 +865,9 @@ export namespace monitoring_v3 {
     gcpZone?: string;
     /**
      * A unique resource name for this InternalChecker. The format
-     * is:projects/[PROJECT_ID]/internalCheckers/[CHECKER_ID].PROJECT_ID is the
-     * GCP project ID where the internal resource lives. Not necessarily the
-     * same as the project_id for the config.
+     * is:projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID].PROJECT_ID
+     * is the stackdriver workspace project for the uptime check config
+     * associated with the internal checker.
      */
     name?: string;
     /**
@@ -818,6 +875,11 @@ export namespace monitoring_v3 {
      * internal resource lives (ex: &quot;default&quot;).
      */
     network?: string;
+    /**
+     * The GCP project_id where the internal checker lives. Not necessary the
+     * same as the workspace project.
+     */
+    peerProjectId?: string;
   }
   /**
    * A description of a label.
@@ -1837,12 +1899,16 @@ export namespace monitoring_v3 {
     httpCheck?: Schema$HttpCheck;
     /**
      * The internal checkers that this check will egress from. If is_internal is
-     * true and this list is empty, the check will egress from all
+     * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      */
     internalCheckers?: Schema$InternalChecker[];
     /**
-     * Denotes whether this is a check that egresses from InternalCheckers.
+     * If this is true, then checks are made only from the
+     * &#39;internal_checkers&#39;. If it is false, then checks are made only
+     * from the &#39;selected_regions&#39;. It is an error to provide
+     * &#39;selected_regions&#39; when is_internal is true, or to provide
+     * &#39;internal_checkers&#39; when is_internal is false.
      */
     isInternal?: boolean;
     /**
@@ -1872,7 +1938,8 @@ export namespace monitoring_v3 {
      */
     resourceGroup?: Schema$ResourceGroup;
     /**
-     * The list of regions from which the check will be run. If this field is
+     * The list of regions from which the check will be run. Some regions
+     * contain one location, and others contain more than one. If this field is
      * specified, enough regions to include a minimum of 3 locations must be
      * provided, or an error message is returned. Not specifying this field will
      * result in uptime checks running from all regions.
@@ -1926,6 +1993,579 @@ export namespace monitoring_v3 {
      * any assumptions regarding the structure or format of the code).
      */
     code?: string;
+  }
+
+
+  export class Resource$Metricdescriptors {
+    root: Monitoring;
+    constructor(root: Monitoring) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * monitoring.metricDescriptors.create
+     * @desc Creates a new metric descriptor. User-created metric descriptors
+     * define custom metrics.
+     * @alias monitoring.metricDescriptors.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
+     * @param {().MetricDescriptor} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Metricdescriptors$Create,
+        options?: MethodOptions): AxiosPromise<Schema$MetricDescriptor>;
+    create(
+        params: Params$Resource$Metricdescriptors$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    create(
+        params: Params$Resource$Metricdescriptors$Create,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    create(callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Metricdescriptors$Create|
+        BodyResponseCallback<Schema$MetricDescriptor>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MetricDescriptor>,
+        callback?: BodyResponseCallback<Schema$MetricDescriptor>):
+        void|AxiosPromise<Schema$MetricDescriptor> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Metricdescriptors$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metricdescriptors$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}/metricDescriptors')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MetricDescriptor>(parameters);
+      }
+    }
+
+
+    /**
+     * monitoring.metricDescriptors.delete
+     * @desc Deletes a metric descriptor. Only user-created custom metrics can
+     * be deleted.
+     * @alias monitoring.metricDescriptors.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The metric descriptor on which to execute the request. The format is "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An example of {metric_id} is: "custom.googleapis.com/my_test_metric".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Metricdescriptors$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Metricdescriptors$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Metricdescriptors$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Metricdescriptors$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Metricdescriptors$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metricdescriptors$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * monitoring.metricDescriptors.get
+     * @desc Gets a single metric descriptor. This method does not require a
+     * Stackdriver account.
+     * @alias monitoring.metricDescriptors.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The metric descriptor on which to execute the request. The format is "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An example value of {metric_id} is "compute.googleapis.com/instance/disk/read_bytes_count".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Metricdescriptors$Get,
+        options?: MethodOptions): AxiosPromise<Schema$MetricDescriptor>;
+    get(params: Params$Resource$Metricdescriptors$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    get(params: Params$Resource$Metricdescriptors$Get,
+        callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    get(callback: BodyResponseCallback<Schema$MetricDescriptor>): void;
+    get(paramsOrCallback?: Params$Resource$Metricdescriptors$Get|
+        BodyResponseCallback<Schema$MetricDescriptor>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MetricDescriptor>,
+        callback?: BodyResponseCallback<Schema$MetricDescriptor>):
+        void|AxiosPromise<Schema$MetricDescriptor> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Metricdescriptors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metricdescriptors$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MetricDescriptor>(parameters);
+      }
+    }
+
+
+    /**
+     * monitoring.metricDescriptors.list
+     * @desc Lists metric descriptors that match a filter. This method does not
+     * require a Stackdriver account.
+     * @alias monitoring.metricDescriptors.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics: metric.type = starts_with("custom.googleapis.com/")
+     * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
+     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
+     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Metricdescriptors$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListMetricDescriptorsResponse>;
+    list(
+        params: Params$Resource$Metricdescriptors$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+        callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+        void;
+    list(
+        params: Params$Resource$Metricdescriptors$List,
+        callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Metricdescriptors$List|
+        BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+        callback?: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+        void|AxiosPromise<Schema$ListMetricDescriptorsResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Metricdescriptors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Metricdescriptors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}/metricDescriptors')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMetricDescriptorsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListMetricDescriptorsResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Metricdescriptors$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MetricDescriptor;
+  }
+  export interface Params$Resource$Metricdescriptors$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The metric descriptor on which to execute the request. The format is
+     * "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An
+     * example of {metric_id} is: "custom.googleapis.com/my_test_metric".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Metricdescriptors$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The metric descriptor on which to execute the request. The format is
+     * "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An
+     * example value of {metric_id} is
+     * "compute.googleapis.com/instance/disk/read_bytes_count".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Metricdescriptors$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If this field is empty, all custom and system-defined metric descriptors
+     * are returned. Otherwise, the filter specifies which metric descriptors
+     * are to be returned. For example, the following filter matches all custom
+     * metrics: metric.type = starts_with("custom.googleapis.com/")
+     */
+    filter?: string;
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * A positive number that is the maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+  }
+
+
+  export class Resource$Monitoredresourcedescriptors {
+    root: Monitoring;
+    constructor(root: Monitoring) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * monitoring.monitoredResourceDescriptors.get
+     * @desc Gets a single monitored resource descriptor. This method does not
+     * require a Stackdriver account.
+     * @alias monitoring.monitoredResourceDescriptors.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The monitored resource descriptor to get. The format is "projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}". The {resource_type} is a predefined type, such as cloudsql_database.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Monitoredresourcedescriptors$Get,
+        options?: MethodOptions):
+        AxiosPromise<Schema$MonitoredResourceDescriptor>;
+    get(params: Params$Resource$Monitoredresourcedescriptors$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+        callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+        void;
+    get(params: Params$Resource$Monitoredresourcedescriptors$Get,
+        callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+        void;
+    get(callback: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Monitoredresourcedescriptors$Get|
+        BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+        callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+        void|AxiosPromise<Schema$MonitoredResourceDescriptor> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Monitoredresourcedescriptors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monitoredresourcedescriptors$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$MonitoredResourceDescriptor>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MonitoredResourceDescriptor>(parameters);
+      }
+    }
+
+
+    /**
+     * monitoring.monitoredResourceDescriptors.list
+     * @desc Lists monitored resource descriptors that match a filter. This
+     * method does not require a Stackdriver account.
+     * @alias monitoring.monitoredResourceDescriptors.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter An optional filter describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id
+     * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
+     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
+     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Monitoredresourcedescriptors$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+    list(
+        params: Params$Resource$Monitoredresourcedescriptors$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+        callback: BodyResponseCallback<
+            Schema$ListMonitoredResourceDescriptorsResponse>): void;
+    list(
+        params: Params$Resource$Monitoredresourcedescriptors$List,
+        callback: BodyResponseCallback<
+            Schema$ListMonitoredResourceDescriptorsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListMonitoredResourceDescriptorsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Monitoredresourcedescriptors$List|
+        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+        callback?: BodyResponseCallback<
+            Schema$ListMonitoredResourceDescriptorsResponse>):
+        void|AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Monitoredresourcedescriptors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monitoredresourcedescriptors$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}/monitoredResourceDescriptors')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$ListMonitoredResourceDescriptorsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Monitoredresourcedescriptors$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The monitored resource descriptor to get. The format is
+     * "projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}".
+     * The {resource_type} is a predefined type, such as cloudsql_database.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Monitoredresourcedescriptors$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An optional filter describing the descriptors to be returned. The filter
+     * can reference the descriptor's type and labels. For example, the
+     * following filter returns only Google Compute Engine descriptors that have
+     * an id label: resource.type = starts_with("gce_") AND resource.label:id
+     */
+    filter?: string;
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * A positive number that is the maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
   }
 
 
@@ -2318,7 +2958,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Alertpolicies$Create {
+  export interface Params$Resource$Projects$Alertpolicies$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2340,7 +2981,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$AlertPolicy;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Delete {
+  export interface Params$Resource$Projects$Alertpolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2353,7 +2995,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Get {
+  export interface Params$Resource$Projects$Alertpolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2365,7 +3008,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$List {
+  export interface Params$Resource$Projects$Alertpolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2402,7 +3046,8 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Patch {
+  export interface Params$Resource$Projects$Alertpolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2581,7 +3226,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Collectdtimeseries$Create {
+  export interface Params$Resource$Projects$Collectdtimeseries$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3195,7 +3841,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Create {
+  export interface Params$Resource$Projects$Groups$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3216,7 +3863,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Groups$Delete {
+  export interface Params$Resource$Projects$Groups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3228,7 +3876,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$Get {
+  export interface Params$Resource$Projects$Groups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3240,7 +3889,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$List {
+  export interface Params$Resource$Projects$Groups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3283,7 +3933,8 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Groups$Update {
+  export interface Params$Resource$Projects$Groups$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3447,7 +4098,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Members$List {
+  export interface Params$Resource$Projects$Groups$Members$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3969,7 +4621,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Metricdescriptors$Create {
+  export interface Params$Resource$Projects$Metricdescriptors$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3986,7 +4639,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$MetricDescriptor;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Delete {
+  export interface Params$Resource$Projects$Metricdescriptors$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3999,7 +4653,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Get {
+  export interface Params$Resource$Projects$Metricdescriptors$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4013,7 +4668,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$List {
+  export interface Params$Resource$Projects$Metricdescriptors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4311,7 +4967,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get {
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4324,7 +4981,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Monitoredresourcedescriptors$List {
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4521,7 +5179,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationchanneldescriptors$Get {
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4533,7 +5192,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchanneldescriptors$List {
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5172,7 +5832,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationchannels$Create {
+  export interface Params$Resource$Projects$Notificationchannels$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5193,7 +5854,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$NotificationChannel;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Delete {
+  export interface Params$Resource$Projects$Notificationchannels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5212,7 +5874,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Get {
+  export interface Params$Resource$Projects$Notificationchannels$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5224,7 +5887,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Getverificationcode {
+  export interface Params$Resource$Projects$Notificationchannels$Getverificationcode
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5242,7 +5906,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$GetNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$List {
+  export interface Params$Resource$Projects$Notificationchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5281,7 +5946,8 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Patch {
+  export interface Params$Resource$Projects$Notificationchannels$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5303,7 +5969,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$NotificationChannel;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode {
+  export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5319,7 +5986,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$SendNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Verify {
+  export interface Params$Resource$Projects$Notificationchannels$Verify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5599,7 +6267,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Timeseries$Create {
+  export interface Params$Resource$Projects$Timeseries$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5616,7 +6285,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$CreateTimeSeriesRequest;
   }
-  export interface Params$Resource$Projects$Timeseries$List {
+  export interface Params$Resource$Projects$Timeseries$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6076,7 +6746,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Create {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6093,7 +6764,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$UptimeCheckConfig;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6105,7 +6777,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Get {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6117,7 +6790,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$List {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6142,7 +6816,8 @@ export namespace monitoring_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6170,6 +6845,285 @@ export namespace monitoring_v3 {
     requestBody?: Schema$UptimeCheckConfig;
   }
 
+
+
+  export class Resource$Timeseries {
+    root: Monitoring;
+    constructor(root: Monitoring) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * monitoring.timeSeries.create
+     * @desc Creates or adds data to one or more time series. The response is
+     * empty if all time series in the request were written. If any time series
+     * could not be written, a corresponding failure message is included in the
+     * error response.
+     * @alias monitoring.timeSeries.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
+     * @param {().CreateTimeSeriesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(params?: Params$Resource$Timeseries$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
+    create(
+        params: Params$Resource$Timeseries$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    create(
+        params: Params$Resource$Timeseries$Create,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    create(callback: BodyResponseCallback<Schema$Empty>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Timeseries$Create|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Timeseries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Timeseries$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}/timeSeries')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * monitoring.timeSeries.list
+     * @desc Lists time series that match a filter. This method does not require
+     * a Stackdriver account.
+     * @alias monitoring.timeSeries.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.aggregation.alignmentPeriod The alignment period for per-time series alignment. If present, alignmentPeriod must be at least 60 seconds. After per-time series alignment, each time series will contain data points only on the period boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE, then this field is ignored. If perSeriesAligner is specified and does not equal ALIGN_NONE, then this field must be defined; otherwise an error is returned.
+     * @param {string=} params.aggregation.crossSeriesReducer The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+     * @param {string=} params.aggregation.groupByFields The set of fields to preserve when crossSeriesReducer is specified. The groupByFields determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The crossSeriesReducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in groupByFields are aggregated away. If groupByFields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If crossSeriesReducer is not defined, this field is ignored.
+     * @param {string=} params.aggregation.perSeriesAligner The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+     * @param {string=} params.filter A monitoring filter that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND     metric.label.instance_name = "my-instance-name"
+     * @param {string=} params.interval.endTime Required. The end of the time interval.
+     * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+     * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
+     * @param {string=} params.orderBy Unsupported: must be left blank. The points in each time series are returned in reverse time order.
+     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
+     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     * @param {string=} params.view Specifies which information is returned about the time series.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Timeseries$List, options?: MethodOptions):
+        AxiosPromise<Schema$ListTimeSeriesResponse>;
+    list(
+        params: Params$Resource$Timeseries$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+        callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+    list(
+        params: Params$Resource$Timeseries$List,
+        callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Timeseries$List|
+        BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+        callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>):
+        void|AxiosPromise<Schema$ListTimeSeriesResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Timeseries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Timeseries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3/{+name}/timeSeries')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTimeSeriesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListTimeSeriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Timeseries$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateTimeSeriesRequest;
+  }
+  export interface Params$Resource$Timeseries$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The alignment period for per-time series alignment. If present,
+     * alignmentPeriod must be at least 60 seconds. After per-time series
+     * alignment, each time series will contain data points only on the period
+     * boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE,
+     * then this field is ignored. If perSeriesAligner is specified and does not
+     * equal ALIGN_NONE, then this field must be defined; otherwise an error is
+     * returned.
+     */
+    'aggregation.alignmentPeriod'?: string;
+    /**
+     * The approach to be used to combine time series. Not all reducer functions
+     * may be applied to all time series, depending on the metric type and the
+     * value type of the original time series. Reduction may change the metric
+     * type of value type of the time series.Time series data must be aligned in
+     * order to perform cross-time series reduction. If crossSeriesReducer is
+     * specified, then perSeriesAligner must be specified and not equal
+     * ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is
+     * returned.
+     */
+    'aggregation.crossSeriesReducer'?: string;
+    /**
+     * The set of fields to preserve when crossSeriesReducer is specified. The
+     * groupByFields determine how the time series are partitioned into subsets
+     * prior to applying the aggregation function. Each subset contains time
+     * series that have the same value for each of the grouping fields. Each
+     * individual time series is a member of exactly one subset. The
+     * crossSeriesReducer is applied to each subset of time series. It is not
+     * possible to reduce across different resource types, so this field
+     * implicitly contains resource.type. Fields not specified in groupByFields
+     * are aggregated away. If groupByFields is not specified and all the time
+     * series have the same resource type, then the time series are aggregated
+     * into a single output time series. If crossSeriesReducer is not defined,
+     * this field is ignored.
+     */
+    'aggregation.groupByFields'?: string;
+    /**
+     * The approach to be used to align individual time series. Not all
+     * alignment functions may be applied to all time series, depending on the
+     * metric type and value type of the original time series. Alignment may
+     * change the metric type or the value type of the time series.Time series
+     * data must be aligned in order to perform cross-time series reduction. If
+     * crossSeriesReducer is specified, then perSeriesAligner must be specified
+     * and not equal ALIGN_NONE and alignmentPeriod must be specified;
+     * otherwise, an error is returned.
+     */
+    'aggregation.perSeriesAligner'?: string;
+    /**
+     * A monitoring filter that specifies which time series should be returned.
+     * The filter must specify a single metric type, and can additionally
+     * specify metric labels and other information. For example: metric.type =
+     * "compute.googleapis.com/instance/cpu/usage_time" AND
+     * metric.label.instance_name = "my-instance-name"
+     */
+    filter?: string;
+    /**
+     * Required. The end of the time interval.
+     */
+    'interval.endTime'?: string;
+    /**
+     * Optional. The beginning of the time interval. The default value for the
+     * start time is the end time. The start time must not be later than the end
+     * time.
+     */
+    'interval.startTime'?: string;
+    /**
+     * The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
+     */
+    name?: string;
+    /**
+     * Unsupported: must be left blank. The points in each time series are
+     * returned in reverse time order.
+     */
+    orderBy?: string;
+    /**
+     * A positive number that is the maximum number of results to return. If
+     * page_size is empty or more than 100,000 results, the effective page_size
+     * is 100,000 results. If view is set to FULL, this is the maximum number of
+     * Points returned. If view is set to HEADERS, this is the maximum number of
+     * TimeSeries returned.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value
+     * returned by a previous call to this method. Using this field causes the
+     * method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+    /**
+     * Specifies which information is returned about the time series.
+     */
+    view?: string;
+  }
 
 
   export class Resource$Uptimecheckips {
@@ -6256,7 +7210,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Uptimecheckips$List {
+  export interface Params$Resource$Uptimecheckips$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

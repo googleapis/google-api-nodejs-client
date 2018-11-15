@@ -2,7 +2,7 @@
 
 # @google/genomics
 
-> Upload, process, query, and search Genomics data in the cloud.
+> Uploads, processes, queries, and searches Genomics data in the cloud.
 
 ## Installation
 

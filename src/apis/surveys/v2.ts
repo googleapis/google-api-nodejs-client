@@ -29,6 +29,40 @@ export namespace surveys_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Surveys API
    *
@@ -479,7 +513,7 @@ export namespace surveys_v2 {
     }
   }
 
-  export interface Params$Resource$Results$Get {
+  export interface Params$Resource$Results$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -965,7 +999,7 @@ export namespace surveys_v2 {
     }
   }
 
-  export interface Params$Resource$Surveys$Delete {
+  export interface Params$Resource$Surveys$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -976,7 +1010,7 @@ export namespace surveys_v2 {
      */
     surveyUrlId?: string;
   }
-  export interface Params$Resource$Surveys$Get {
+  export interface Params$Resource$Surveys$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -987,7 +1021,7 @@ export namespace surveys_v2 {
      */
     surveyUrlId?: string;
   }
-  export interface Params$Resource$Surveys$Insert {
+  export interface Params$Resource$Surveys$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -999,7 +1033,7 @@ export namespace surveys_v2 {
      */
     requestBody?: Schema$Survey;
   }
-  export interface Params$Resource$Surveys$List {
+  export interface Params$Resource$Surveys$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1018,7 +1052,7 @@ export namespace surveys_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Surveys$Start {
+  export interface Params$Resource$Surveys$Start extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1034,7 +1068,7 @@ export namespace surveys_v2 {
      */
     requestBody?: Schema$SurveysStartRequest;
   }
-  export interface Params$Resource$Surveys$Stop {
+  export interface Params$Resource$Surveys$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1045,7 +1079,7 @@ export namespace surveys_v2 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Surveys$Update {
+  export interface Params$Resource$Surveys$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

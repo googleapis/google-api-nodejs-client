@@ -29,6 +29,40 @@ export namespace storage_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Cloud Storage JSON API
    *
@@ -1582,7 +1616,8 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Bucketaccesscontrols$Delete {
+  export interface Params$Resource$Bucketaccesscontrols$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1603,7 +1638,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Get {
+  export interface Params$Resource$Bucketaccesscontrols$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1624,7 +1660,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Insert {
+  export interface Params$Resource$Bucketaccesscontrols$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1645,7 +1682,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$BucketAccessControl;
   }
-  export interface Params$Resource$Bucketaccesscontrols$List {
+  export interface Params$Resource$Bucketaccesscontrols$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1661,7 +1699,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Patch {
+  export interface Params$Resource$Bucketaccesscontrols$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1687,7 +1726,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$BucketAccessControl;
   }
-  export interface Params$Resource$Bucketaccesscontrols$Update {
+  export interface Params$Resource$Bucketaccesscontrols$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2410,9 +2450,9 @@ export namespace storage_v1 {
 
     /**
      * storage.buckets.patch
-     * @desc Updates a bucket. Changes to the bucket will be readable
+     * @desc Patches a bucket. Changes to the bucket will be readable
      * immediately after writing, but configuration changes may take time to
-     * propagate. This method supports patch semantics.
+     * propagate.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2932,7 +2972,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Buckets$Delete {
+  export interface Params$Resource$Buckets$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2957,7 +2997,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Get {
+  export interface Params$Resource$Buckets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2987,7 +3027,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Getiampolicy {
+  export interface Params$Resource$Buckets$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3003,7 +3044,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Insert {
+  export interface Params$Resource$Buckets$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3037,7 +3078,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Bucket;
   }
-  export interface Params$Resource$Buckets$List {
+  export interface Params$Resource$Buckets$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3070,7 +3111,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Lockretentionpolicy {
+  export interface Params$Resource$Buckets$Lockretentionpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3091,7 +3133,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Patch {
+  export interface Params$Resource$Buckets$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3134,7 +3176,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Bucket;
   }
-  export interface Params$Resource$Buckets$Setiampolicy {
+  export interface Params$Resource$Buckets$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3155,7 +3198,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Policy;
   }
-  export interface Params$Resource$Buckets$Testiampermissions {
+  export interface Params$Resource$Buckets$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3175,7 +3219,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Buckets$Update {
+  export interface Params$Resource$Buckets$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3346,7 +3390,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Channels$Stop {
+  export interface Params$Resource$Channels$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4131,7 +4175,8 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Defaultobjectaccesscontrols$Delete {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4152,7 +4197,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Get {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4173,7 +4219,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Insert {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4194,7 +4241,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$List {
+  export interface Params$Resource$Defaultobjectaccesscontrols$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4220,7 +4268,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Patch {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4246,7 +4295,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Defaultobjectaccesscontrols$Update {
+  export interface Params$Resource$Defaultobjectaccesscontrols$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4775,7 +4825,8 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Notifications$Delete {
+  export interface Params$Resource$Notifications$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4795,7 +4846,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Notifications$Get {
+  export interface Params$Resource$Notifications$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4815,7 +4867,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Notifications$Insert {
+  export interface Params$Resource$Notifications$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4836,7 +4889,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Notification;
   }
-  export interface Params$Resource$Notifications$List {
+  export interface Params$Resource$Notifications$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5671,7 +5725,8 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Objectaccesscontrols$Delete {
+  export interface Params$Resource$Objectaccesscontrols$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5702,7 +5757,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Get {
+  export interface Params$Resource$Objectaccesscontrols$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5733,7 +5789,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Insert {
+  export interface Params$Resource$Objectaccesscontrols$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5764,7 +5821,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Objectaccesscontrols$List {
+  export interface Params$Resource$Objectaccesscontrols$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5790,7 +5848,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objectaccesscontrols$Patch {
+  export interface Params$Resource$Objectaccesscontrols$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5826,7 +5885,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ObjectAccessControl;
   }
-  export interface Params$Resource$Objectaccesscontrols$Update {
+  export interface Params$Resource$Objectaccesscontrols$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7699,7 +7759,7 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Objects$Compose {
+  export interface Params$Resource$Objects$Compose extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7748,7 +7808,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$ComposeRequest;
   }
-  export interface Params$Resource$Objects$Copy {
+  export interface Params$Resource$Objects$Copy extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7842,7 +7902,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Object;
   }
-  export interface Params$Resource$Objects$Delete {
+  export interface Params$Resource$Objects$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7891,7 +7951,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objects$Get {
+  export interface Params$Resource$Objects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7944,7 +8004,8 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objects$Getiampolicy {
+  export interface Params$Resource$Objects$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7970,7 +8031,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objects$Insert {
+  export interface Params$Resource$Objects$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8061,7 +8122,7 @@ export namespace storage_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Objects$List {
+  export interface Params$Resource$Objects$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8115,7 +8176,7 @@ export namespace storage_v1 {
      */
     versions?: boolean;
   }
-  export interface Params$Resource$Objects$Patch {
+  export interface Params$Resource$Objects$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8176,7 +8237,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Object;
   }
-  export interface Params$Resource$Objects$Rewrite {
+  export interface Params$Resource$Objects$Rewrite extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8296,7 +8357,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Object;
   }
-  export interface Params$Resource$Objects$Setiampolicy {
+  export interface Params$Resource$Objects$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8327,7 +8389,8 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Policy;
   }
-  export interface Params$Resource$Objects$Testiampermissions {
+  export interface Params$Resource$Objects$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8357,7 +8420,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
   }
-  export interface Params$Resource$Objects$Update {
+  export interface Params$Resource$Objects$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8419,7 +8482,7 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Object;
   }
-  export interface Params$Resource$Objects$Watchall {
+  export interface Params$Resource$Objects$Watchall extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8625,7 +8688,8 @@ export namespace storage_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccount$Get {
+  export interface Params$Resource$Projects$Serviceaccount$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

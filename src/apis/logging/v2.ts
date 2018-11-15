@@ -29,6 +29,57 @@ export namespace logging_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Stackdriver Logging API
    *
@@ -681,6 +732,7 @@ export namespace logging_v2 {
     bucketOptions?: Schema$BucketOptions;
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      */
     description?: string;
     /**
@@ -778,10 +830,6 @@ export namespace logging_v2 {
      */
     destination?: string;
     /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    endTime?: string;
-    /**
      * Optional. An advanced logs filter. The only exported log entries are
      * those that are in the resource owning the sink and that match the filter.
      * For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND
@@ -817,10 +865,6 @@ export namespace logging_v2 {
      * entries. The v2 format is used by default and cannot be changed.
      */
     outputVersionFormat?: string;
-    /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    startTime?: string;
     /**
      * Output only. An IAM identity&amp;mdash;a service account or
      * group&amp;mdash;under which Logging writes the exported log entries to
@@ -1671,7 +1715,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Exclusions$Create {
+  export interface Params$Resource$Billingaccounts$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1690,7 +1735,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Delete {
+  export interface Params$Resource$Billingaccounts$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1706,7 +1752,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Get {
+  export interface Params$Resource$Billingaccounts$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1722,7 +1769,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$List {
+  export interface Params$Resource$Billingaccounts$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1748,7 +1796,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Patch {
+  export interface Params$Resource$Billingaccounts$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1929,7 +1978,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Logs$Delete {
+  export interface Params$Resource$Billingaccounts$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1947,7 +1997,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Logs$List {
+  export interface Params$Resource$Billingaccounts$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2396,7 +2447,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Sinks$Create {
+  export interface Params$Resource$Billingaccounts$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2428,7 +2480,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Delete {
+  export interface Params$Resource$Billingaccounts$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2445,7 +2498,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Get {
+  export interface Params$Resource$Billingaccounts$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2461,7 +2515,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$List {
+  export interface Params$Resource$Billingaccounts$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2487,7 +2542,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Patch {
+  export interface Params$Resource$Billingaccounts$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2533,7 +2589,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Update {
+  export interface Params$Resource$Billingaccounts$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2731,7 +2788,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Entries$List {
+  export interface Params$Resource$Entries$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2743,7 +2800,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$ListLogEntriesRequest;
   }
-  export interface Params$Resource$Entries$Write {
+  export interface Params$Resource$Entries$Write extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3097,7 +3154,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Exclusions$Create {
+  export interface Params$Resource$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3116,7 +3174,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Exclusions$Delete {
+  export interface Params$Resource$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3132,7 +3191,7 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Exclusions$Get {
+  export interface Params$Resource$Exclusions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3148,7 +3207,7 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Exclusions$List {
+  export interface Params$Resource$Exclusions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3174,7 +3233,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Exclusions$Patch {
+  export interface Params$Resource$Exclusions$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3572,7 +3631,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Exclusions$Create {
+  export interface Params$Resource$Folders$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3591,7 +3651,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Folders$Exclusions$Delete {
+  export interface Params$Resource$Folders$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3607,7 +3668,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Get {
+  export interface Params$Resource$Folders$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3623,7 +3685,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$List {
+  export interface Params$Resource$Folders$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3649,7 +3712,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Patch {
+  export interface Params$Resource$Folders$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3829,7 +3893,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Logs$Delete {
+  export interface Params$Resource$Folders$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3847,7 +3912,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Folders$Logs$List {
+  export interface Params$Resource$Folders$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4295,7 +4361,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Sinks$Create {
+  export interface Params$Resource$Folders$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4327,7 +4394,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Delete {
+  export interface Params$Resource$Folders$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4344,7 +4412,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Get {
+  export interface Params$Resource$Folders$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4360,7 +4429,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$List {
+  export interface Params$Resource$Folders$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4386,7 +4456,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Patch {
+  export interface Params$Resource$Folders$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4432,7 +4503,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Update {
+  export interface Params$Resource$Folders$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4626,7 +4698,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Logs$Delete {
+  export interface Params$Resource$Logs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4644,7 +4716,7 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Logs$List {
+  export interface Params$Resource$Logs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4760,7 +4832,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Monitoredresourcedescriptors$List {
+  export interface Params$Resource$Monitoredresourcedescriptors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5148,7 +5221,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Exclusions$Create {
+  export interface Params$Resource$Organizations$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5167,7 +5241,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Organizations$Exclusions$Delete {
+  export interface Params$Resource$Organizations$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5183,7 +5258,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Get {
+  export interface Params$Resource$Organizations$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5199,7 +5275,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$List {
+  export interface Params$Resource$Organizations$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5225,7 +5302,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Patch {
+  export interface Params$Resource$Organizations$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5406,7 +5484,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Logs$Delete {
+  export interface Params$Resource$Organizations$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5424,7 +5503,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Organizations$Logs$List {
+  export interface Params$Resource$Organizations$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5873,7 +5953,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sinks$Create {
+  export interface Params$Resource$Organizations$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5905,7 +5986,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Delete {
+  export interface Params$Resource$Organizations$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5922,7 +6004,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Get {
+  export interface Params$Resource$Organizations$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5938,7 +6021,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$List {
+  export interface Params$Resource$Organizations$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5964,7 +6048,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Patch {
+  export interface Params$Resource$Organizations$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6010,7 +6095,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Update {
+  export interface Params$Resource$Organizations$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6427,7 +6513,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Exclusions$Create {
+  export interface Params$Resource$Projects$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6446,7 +6533,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Projects$Exclusions$Delete {
+  export interface Params$Resource$Projects$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6462,7 +6550,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Get {
+  export interface Params$Resource$Projects$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6478,7 +6567,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$List {
+  export interface Params$Resource$Projects$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6504,7 +6594,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Patch {
+  export interface Params$Resource$Projects$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6684,7 +6775,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Logs$Delete {
+  export interface Params$Resource$Projects$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6702,7 +6794,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Projects$Logs$List {
+  export interface Params$Resource$Projects$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7077,7 +7170,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Metrics$Create {
+  export interface Params$Resource$Projects$Metrics$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7094,7 +7188,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogMetric;
   }
-  export interface Params$Resource$Projects$Metrics$Delete {
+  export interface Params$Resource$Projects$Metrics$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7106,7 +7201,8 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Get {
+  export interface Params$Resource$Projects$Metrics$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7118,7 +7214,8 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$List {
+  export interface Params$Resource$Projects$Metrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7143,7 +7240,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Update {
+  export interface Params$Resource$Projects$Metrics$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7585,7 +7683,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Sinks$Create {
+  export interface Params$Resource$Projects$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7617,7 +7716,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Delete {
+  export interface Params$Resource$Projects$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7634,7 +7734,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Get {
+  export interface Params$Resource$Projects$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7650,7 +7751,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$List {
+  export interface Params$Resource$Projects$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7676,7 +7778,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Patch {
+  export interface Params$Resource$Projects$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7722,7 +7825,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Update {
+  export interface Params$Resource$Projects$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8112,7 +8216,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Sinks$Create {
+  export interface Params$Resource$Sinks$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8144,7 +8248,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Sinks$Delete {
+  export interface Params$Resource$Sinks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8161,7 +8265,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Sinks$Get {
+  export interface Params$Resource$Sinks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8177,7 +8281,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Sinks$List {
+  export interface Params$Resource$Sinks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8203,7 +8307,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Sinks$Update {
+  export interface Params$Resource$Sinks$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

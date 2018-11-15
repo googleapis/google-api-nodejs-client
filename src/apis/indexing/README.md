@@ -2,7 +2,7 @@
 
 # @google/indexing
 
-> The Indexing API allows developers to share the life cycle of a Web Document with Google.
+> Notifies Google when your web pages change.
 
 ## Installation
 

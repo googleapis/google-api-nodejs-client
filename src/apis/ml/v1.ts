@@ -29,6 +29,57 @@ export namespace ml_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Machine Learning Engine
    *
@@ -1445,7 +1496,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getconfig {
+  export interface Params$Resource$Projects$Getconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1456,7 +1508,7 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Predict {
+  export interface Params$Resource$Projects$Predict extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2056,7 +2108,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Cancel {
+  export interface Params$Resource$Projects$Jobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2072,7 +2125,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Create {
+  export interface Params$Resource$Projects$Jobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2088,7 +2142,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Job;
   }
-  export interface Params$Resource$Projects$Jobs$Get {
+  export interface Params$Resource$Projects$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2099,7 +2154,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Getiampolicy {
+  export interface Params$Resource$Projects$Jobs$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2111,7 +2167,8 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List {
+  export interface Params$Resource$Projects$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2146,7 +2203,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Patch {
+  export interface Params$Resource$Projects$Jobs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2176,7 +2234,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Job;
   }
-  export interface Params$Resource$Projects$Jobs$Setiampolicy {
+  export interface Params$Resource$Projects$Jobs$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2193,7 +2252,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Testiampermissions {
+  export interface Params$Resource$Projects$Jobs$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2368,7 +2428,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2379,7 +2440,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3010,7 +3072,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Create {
+  export interface Params$Resource$Projects$Models$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3026,7 +3089,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Delete {
+  export interface Params$Resource$Projects$Models$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3037,7 +3101,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Get {
+  export interface Params$Resource$Projects$Models$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3048,7 +3113,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Getiampolicy {
+  export interface Params$Resource$Projects$Models$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3060,7 +3126,8 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Models$List {
+  export interface Params$Resource$Projects$Models$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3088,7 +3155,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Patch {
+  export interface Params$Resource$Projects$Models$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3115,7 +3183,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Setiampolicy {
+  export interface Params$Resource$Projects$Models$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3132,7 +3201,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Models$Testiampermissions {
+  export interface Params$Resource$Projects$Models$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3623,7 +3693,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Versions$Create {
+  export interface Params$Resource$Projects$Models$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3639,7 +3710,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Delete {
+  export interface Params$Resource$Projects$Models$Versions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3652,7 +3724,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Get {
+  export interface Params$Resource$Projects$Models$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3663,7 +3736,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$List {
+  export interface Params$Resource$Projects$Models$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3691,7 +3765,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Patch {
+  export interface Params$Resource$Projects$Models$Versions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3717,7 +3792,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Setdefault {
+  export interface Params$Resource$Projects$Models$Versions$Setdefault extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4053,7 +4129,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel {
+  export interface Params$Resource$Projects$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4064,7 +4141,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Delete {
+  export interface Params$Resource$Projects$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4075,7 +4153,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get {
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4086,7 +4165,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List {
+  export interface Params$Resource$Projects$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

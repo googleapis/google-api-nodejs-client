@@ -29,6 +29,40 @@ export namespace calendar_v3 {
     version: 'v3';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Calendar API
    *
@@ -1665,7 +1699,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Acl$Delete {
+  export interface Params$Resource$Acl$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1682,7 +1716,7 @@ export namespace calendar_v3 {
      */
     ruleId?: string;
   }
-  export interface Params$Resource$Acl$Get {
+  export interface Params$Resource$Acl$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1699,7 +1733,7 @@ export namespace calendar_v3 {
      */
     ruleId?: string;
   }
-  export interface Params$Resource$Acl$Insert {
+  export interface Params$Resource$Acl$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1722,7 +1756,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$AclRule;
   }
-  export interface Params$Resource$Acl$List {
+  export interface Params$Resource$Acl$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1763,7 +1797,7 @@ export namespace calendar_v3 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Acl$Patch {
+  export interface Params$Resource$Acl$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1791,7 +1825,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$AclRule;
   }
-  export interface Params$Resource$Acl$Update {
+  export interface Params$Resource$Acl$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1819,7 +1853,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$AclRule;
   }
-  export interface Params$Resource$Acl$Watch {
+  export interface Params$Resource$Acl$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2354,7 +2388,8 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Calendarlist$Delete {
+  export interface Params$Resource$Calendarlist$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2367,7 +2402,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendarlist$Get {
+  export interface Params$Resource$Calendarlist$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2380,7 +2415,8 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendarlist$Insert {
+  export interface Params$Resource$Calendarlist$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2399,7 +2435,8 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$List {
+  export interface Params$Resource$Calendarlist$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2446,7 +2483,8 @@ export namespace calendar_v3 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Calendarlist$Patch {
+  export interface Params$Resource$Calendarlist$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2471,7 +2509,8 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Update {
+  export interface Params$Resource$Calendarlist$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2496,7 +2535,8 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Watch {
+  export interface Params$Resource$Calendarlist$Watch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2946,7 +2986,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Calendars$Clear {
+  export interface Params$Resource$Calendars$Clear extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2959,7 +2999,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendars$Delete {
+  export interface Params$Resource$Calendars$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2972,7 +3012,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendars$Get {
+  export interface Params$Resource$Calendars$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2985,7 +3025,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendars$Insert {
+  export interface Params$Resource$Calendars$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2997,7 +3037,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$Calendar;
   }
-  export interface Params$Resource$Calendars$Patch {
+  export interface Params$Resource$Calendars$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3015,7 +3055,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$Calendar;
   }
-  export interface Params$Resource$Calendars$Update {
+  export interface Params$Resource$Calendars$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3110,7 +3150,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Channels$Stop {
+  export interface Params$Resource$Channels$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3196,7 +3236,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Colors$Get {
+  export interface Params$Resource$Colors$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3983,7 +4023,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     }
   }
 
-  export interface Params$Resource$Events$Delete {
+  export interface Params$Resource$Events$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4011,7 +4051,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     sendUpdates?: string;
   }
-  export interface Params$Resource$Events$Get {
+  export interface Params$Resource$Events$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4048,7 +4088,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     timeZone?: string;
   }
-  export interface Params$Resource$Events$Import {
+  export interface Params$Resource$Events$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4079,7 +4119,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Insert {
+  export interface Params$Resource$Events$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4128,7 +4168,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Instances {
+  export interface Params$Resource$Events$Instances extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4197,7 +4237,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     timeZone?: string;
   }
-  export interface Params$Resource$Events$List {
+  export interface Params$Resource$Events$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4329,7 +4369,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     updatedMin?: string;
   }
-  export interface Params$Resource$Events$Move {
+  export interface Params$Resource$Events$Move extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4362,7 +4402,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     sendUpdates?: string;
   }
-  export interface Params$Resource$Events$Patch {
+  export interface Params$Resource$Events$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4424,7 +4464,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Quickadd {
+  export interface Params$Resource$Events$Quickadd extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4453,7 +4493,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     text?: string;
   }
-  export interface Params$Resource$Events$Update {
+  export interface Params$Resource$Events$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4515,7 +4555,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Watch {
+  export interface Params$Resource$Events$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4731,7 +4771,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     }
   }
 
-  export interface Params$Resource$Freebusy$Query {
+  export interface Params$Resource$Freebusy$Query extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4951,7 +4991,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     }
   }
 
-  export interface Params$Resource$Settings$Get {
+  export interface Params$Resource$Settings$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4962,7 +5002,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     setting?: string;
   }
-  export interface Params$Resource$Settings$List {
+  export interface Params$Resource$Settings$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4989,7 +5029,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Settings$Watch {
+  export interface Params$Resource$Settings$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,57 @@ export namespace sourcerepo_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Source Repositories API
    *
@@ -570,7 +621,8 @@ export namespace sourcerepo_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getconfig {
+  export interface Params$Resource$Projects$Getconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -582,7 +634,8 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updateconfig {
+  export interface Params$Resource$Projects$Updateconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1153,7 +1206,8 @@ export namespace sourcerepo_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Repos$Create {
+  export interface Params$Resource$Projects$Repos$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1170,7 +1224,8 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$Repo;
   }
-  export interface Params$Resource$Projects$Repos$Delete {
+  export interface Params$Resource$Projects$Repos$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1182,7 +1237,8 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Repos$Get {
+  export interface Params$Resource$Projects$Repos$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1194,7 +1250,8 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Repos$Getiampolicy {
+  export interface Params$Resource$Projects$Repos$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1206,7 +1263,8 @@ export namespace sourcerepo_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Repos$List {
+  export interface Params$Resource$Projects$Repos$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1229,7 +1287,8 @@ export namespace sourcerepo_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Repos$Patch {
+  export interface Params$Resource$Projects$Repos$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1246,7 +1305,8 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$UpdateRepoRequest;
   }
-  export interface Params$Resource$Projects$Repos$Setiampolicy {
+  export interface Params$Resource$Projects$Repos$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1263,7 +1323,8 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Repos$Testiampermissions {
+  export interface Params$Resource$Projects$Repos$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

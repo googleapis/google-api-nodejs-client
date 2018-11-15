@@ -29,6 +29,40 @@ export namespace dns_v1beta2 {
     version: 'v1beta2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Cloud DNS API
    *
@@ -323,6 +357,16 @@ export namespace dns_v1beta2 {
      * ManagedZones. Most users will leave this field unset.
      */
     nameServerSet?: string;
+    /**
+     * For privately visible zones, the set of GCP resources that the zone is
+     * visible from.
+     */
+    privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
+    /**
+     * The zone&#39;s visibility: public zones are exposed to the Internet,
+     * while private zones are visible only to GCP resources.
+     */
+    visibility?: string;
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     /**
@@ -367,6 +411,30 @@ export namespace dns_v1beta2 {
      * The operation resources.
      */
     operations?: Schema$Operation[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePrivateVisibilityConfig&quot;.
+     */
+    kind?: string;
+    /**
+     * The list of GCE private network IDs that can see this zone.
+     */
+    networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePrivateVisibilityConfigNetwork&quot;.
+     */
+    kind?: string;
+    /**
+     * The fully qualified URL of the GCE private network to bind to. This
+     * should be formatted like
+     * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     */
+    networkUrl?: string;
   }
   export interface Schema$ManagedZonesListResponse {
     header?: Schema$ResponseHeader;
@@ -502,6 +570,16 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of managed zones in the project.
      */
     managedZones?: number;
+    /**
+     * Maximum allowed number of managed zones which can be attached to a
+     * network.
+     */
+    managedZonesPerNetwork?: number;
+    /**
+     * Maximum allowed number of networks to which a privately scoped zone can
+     * be attached.
+     */
+    networksPerManagedZone?: number;
     /**
      * Maximum allowed number of ResourceRecords per ResourceRecordSet.
      */
@@ -816,7 +894,7 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Changes$Create {
+  export interface Params$Resource$Changes$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -843,7 +921,7 @@ export namespace dns_v1beta2 {
      */
     requestBody?: Schema$Change;
   }
-  export interface Params$Resource$Changes$Get {
+  export interface Params$Resource$Changes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -870,7 +948,7 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Changes$List {
+  export interface Params$Resource$Changes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1056,7 +1134,7 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Dnskeys$Get {
+  export interface Params$Resource$Dnskeys$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1088,7 +1166,7 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Dnskeys$List {
+  export interface Params$Resource$Dnskeys$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1286,7 +1364,8 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Managedzoneoperations$Get {
+  export interface Params$Resource$Managedzoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1311,7 +1390,8 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzoneoperations$List {
+  export interface Params$Resource$Managedzoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1771,7 +1851,8 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Managedzones$Create {
+  export interface Params$Resource$Managedzones$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1793,7 +1874,8 @@ export namespace dns_v1beta2 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Delete {
+  export interface Params$Resource$Managedzones$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1815,7 +1897,7 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Get {
+  export interface Params$Resource$Managedzones$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1837,7 +1919,8 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$List {
+  export interface Params$Resource$Managedzones$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1862,7 +1945,8 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Patch {
+  export interface Params$Resource$Managedzones$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1889,7 +1973,8 @@ export namespace dns_v1beta2 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Update {
+  export interface Params$Resource$Managedzones$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1992,7 +2077,7 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2105,7 +2190,8 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Resourcerecordsets$List {
+  export interface Params$Resource$Resourcerecordsets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

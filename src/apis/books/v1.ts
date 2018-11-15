@@ -29,6 +29,40 @@ export namespace books_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Books API
    *
@@ -1027,7 +1061,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Bookshelves$Get {
+  export interface Params$Resource$Bookshelves$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1046,7 +1080,7 @@ export namespace books_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Bookshelves$List {
+  export interface Params$Resource$Bookshelves$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1146,7 +1180,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Bookshelves$Volumes$List {
+  export interface Params$Resource$Bookshelves$Volumes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1399,7 +1434,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Cloudloading$Addbook {
+  export interface Params$Resource$Cloudloading$Addbook extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1423,7 +1459,8 @@ export namespace books_v1 {
      */
     upload_client_token?: string;
   }
-  export interface Params$Resource$Cloudloading$Deletebook {
+  export interface Params$Resource$Cloudloading$Deletebook extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1434,7 +1471,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Cloudloading$Updatebook {
+  export interface Params$Resource$Cloudloading$Updatebook extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1526,7 +1564,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Dictionary$Listofflinemetadata {
+  export interface Params$Resource$Dictionary$Listofflinemetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1754,7 +1793,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Familysharing$Getfamilyinfo {
+  export interface Params$Resource$Familysharing$Getfamilyinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1765,7 +1805,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Familysharing$Share {
+  export interface Params$Resource$Familysharing$Share extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1784,7 +1825,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Familysharing$Unshare {
+  export interface Params$Resource$Familysharing$Unshare extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1956,7 +1998,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Get {
+  export interface Params$Resource$Layers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1979,7 +2021,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Layers$List {
+  export interface Params$Resource$Layers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2174,7 +2216,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Annotationdata$Get {
+  export interface Params$Resource$Layers$Annotationdata$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2224,7 +2267,8 @@ export namespace books_v1 {
      */
     w?: number;
   }
-  export interface Params$Resource$Layers$Annotationdata$List {
+  export interface Params$Resource$Layers$Annotationdata$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2453,7 +2497,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Volumeannotations$Get {
+  export interface Params$Resource$Layers$Volumeannotations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2481,7 +2526,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Layers$Volumeannotations$List {
+  export interface Params$Resource$Layers$Volumeannotations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2920,13 +2966,15 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Myconfig$Getusersettings {
+  export interface Params$Resource$Myconfig$Getusersettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Myconfig$Releasedownloadaccess {
+  export interface Params$Resource$Myconfig$Releasedownloadaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2949,7 +2997,8 @@ export namespace books_v1 {
      */
     volumeIds?: string;
   }
-  export interface Params$Resource$Myconfig$Requestaccess {
+  export interface Params$Resource$Myconfig$Requestaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2981,7 +3030,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Myconfig$Syncvolumelicenses {
+  export interface Params$Resource$Myconfig$Syncvolumelicenses extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3020,7 +3070,8 @@ export namespace books_v1 {
      */
     volumeIds?: string;
   }
-  export interface Params$Resource$Myconfig$Updateusersettings {
+  export interface Params$Resource$Myconfig$Updateusersettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3415,7 +3466,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Annotations$Delete {
+  export interface Params$Resource$Mylibrary$Annotations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3430,7 +3482,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Insert {
+  export interface Params$Resource$Mylibrary$Annotations$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3459,7 +3512,8 @@ export namespace books_v1 {
      */
     requestBody?: Schema$Annotation;
   }
-  export interface Params$Resource$Mylibrary$Annotations$List {
+  export interface Params$Resource$Mylibrary$Annotations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3509,7 +3563,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Summary {
+  export interface Params$Resource$Mylibrary$Annotations$Summary extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3524,7 +3579,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Update {
+  export interface Params$Resource$Mylibrary$Annotations$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3967,7 +4023,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume {
+  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3990,7 +4047,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes {
+  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4005,7 +4063,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Get {
+  export interface Params$Resource$Mylibrary$Bookshelves$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4020,7 +4079,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$List {
+  export interface Params$Resource$Mylibrary$Bookshelves$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4031,7 +4091,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume {
+  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4055,7 +4116,8 @@ export namespace books_v1 {
      */
     volumePosition?: number;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume {
+  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4164,7 +4226,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List {
+  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4357,7 +4420,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Readingpositions$Get {
+  export interface Params$Resource$Mylibrary$Readingpositions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4376,7 +4440,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Readingpositions$Setposition {
+  export interface Params$Resource$Mylibrary$Readingpositions$Setposition
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4490,7 +4555,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Notification$Get {
+  export interface Params$Resource$Notification$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4660,7 +4725,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Onboarding$Listcategories {
+  export interface Params$Resource$Onboarding$Listcategories extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4672,7 +4738,8 @@ export namespace books_v1 {
      */
     locale?: string;
   }
-  export interface Params$Resource$Onboarding$Listcategoryvolumes {
+  export interface Params$Resource$Onboarding$Listcategoryvolumes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4780,7 +4847,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Personalizedstream$Get {
+  export interface Params$Resource$Personalizedstream$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5021,7 +5089,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Promooffer$Accept {
+  export interface Params$Resource$Promooffer$Accept extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5060,7 +5129,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Promooffer$Dismiss {
+  export interface Params$Resource$Promooffer$Dismiss extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5095,7 +5165,7 @@ export namespace books_v1 {
      */
     serial?: string;
   }
-  export interface Params$Resource$Promooffer$Get {
+  export interface Params$Resource$Promooffer$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5203,7 +5273,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Series$Get {
+  export interface Params$Resource$Series$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5292,7 +5362,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Series$Membership$Get {
+  export interface Params$Resource$Series$Membership$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5478,7 +5549,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Get {
+  export interface Params$Resource$Volumes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5513,7 +5584,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Volumes$List {
+  export interface Params$Resource$Volumes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5660,7 +5731,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Associated$List {
+  export interface Params$Resource$Volumes$Associated$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5775,7 +5847,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Mybooks$List {
+  export interface Params$Resource$Volumes$Mybooks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5975,7 +6048,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Recommended$List {
+  export interface Params$Resource$Volumes$Recommended$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5996,7 +6070,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Volumes$Recommended$Rate {
+  export interface Params$Resource$Volumes$Recommended$Rate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6105,7 +6180,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Useruploaded$List {
+  export interface Params$Resource$Volumes$Useruploaded$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

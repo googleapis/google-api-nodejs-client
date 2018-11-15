@@ -29,6 +29,57 @@ export namespace oslogin_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud OS Login API
    *
@@ -191,6 +242,8 @@ export namespace oslogin_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The unique ID for the user in format `users/{user}`.
+     * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
+     * @param {string=} params.systemId A system ID for filtering the results of the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -328,7 +381,8 @@ export namespace oslogin_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Getloginprofile {
+  export interface Params$Resource$Users$Getloginprofile extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -338,8 +392,17 @@ export namespace oslogin_v1 {
      * The unique ID for the user in format `users/{user}`.
      */
     name?: string;
+    /**
+     * The project ID of the Google Cloud Platform project.
+     */
+    projectId?: string;
+    /**
+     * A system ID for filtering the results of the request.
+     */
+    systemId?: string;
   }
-  export interface Params$Resource$Users$Importsshpublickey {
+  export interface Params$Resource$Users$Importsshpublickey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -437,7 +500,8 @@ export namespace oslogin_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Projects$Delete {
+  export interface Params$Resource$Users$Projects$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -660,7 +724,8 @@ export namespace oslogin_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Sshpublickeys$Delete {
+  export interface Params$Resource$Users$Sshpublickeys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -673,7 +738,8 @@ export namespace oslogin_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Get {
+  export interface Params$Resource$Users$Sshpublickeys$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -686,7 +752,8 @@ export namespace oslogin_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Patch {
+  export interface Params$Resource$Users$Sshpublickeys$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

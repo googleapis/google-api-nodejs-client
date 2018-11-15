@@ -29,6 +29,40 @@ export namespace adexchangebuyer_v1_4 {
     version: 'v1_4';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Ad Exchange Buyer API
    *
@@ -2026,7 +2060,7 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2037,13 +2071,13 @@ export namespace adexchangebuyer_v1_4 {
      */
     id?: number;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Accounts$Patch {
+  export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2063,7 +2097,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$Update {
+  export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2225,7 +2259,7 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Billinginfo$Get {
+  export interface Params$Resource$Billinginfo$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2236,7 +2270,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     accountId?: number;
   }
-  export interface Params$Resource$Billinginfo$List {
+  export interface Params$Resource$Billinginfo$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2457,7 +2491,7 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Budget$Get {
+  export interface Params$Resource$Budget$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2472,7 +2506,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     billingId?: string;
   }
-  export interface Params$Resource$Budget$Patch {
+  export interface Params$Resource$Budget$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2492,7 +2526,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$Budget;
   }
-  export interface Params$Resource$Budget$Update {
+  export interface Params$Resource$Budget$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2934,7 +2968,8 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Creatives$Adddeal {
+  export interface Params$Resource$Creatives$Adddeal extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2953,7 +2988,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     dealId?: string;
   }
-  export interface Params$Resource$Creatives$Get {
+  export interface Params$Resource$Creatives$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2968,7 +3003,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     buyerCreativeId?: string;
   }
-  export interface Params$Resource$Creatives$Insert {
+  export interface Params$Resource$Creatives$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2980,7 +3015,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$Creative;
   }
-  export interface Params$Resource$Creatives$List {
+  export interface Params$Resource$Creatives$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3017,7 +3052,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Creatives$Listdeals {
+  export interface Params$Resource$Creatives$Listdeals extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3032,7 +3068,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     buyerCreativeId?: string;
   }
-  export interface Params$Resource$Creatives$Removedeal {
+  export interface Params$Resource$Creatives$Removedeal extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3349,7 +3386,8 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Marketplacedeals$Delete {
+  export interface Params$Resource$Marketplacedeals$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3365,7 +3403,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$DeleteOrderDealsRequest;
   }
-  export interface Params$Resource$Marketplacedeals$Insert {
+  export interface Params$Resource$Marketplacedeals$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3381,7 +3420,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$AddOrderDealsRequest;
   }
-  export interface Params$Resource$Marketplacedeals$List {
+  export interface Params$Resource$Marketplacedeals$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3397,7 +3437,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     proposalId?: string;
   }
-  export interface Params$Resource$Marketplacedeals$Update {
+  export interface Params$Resource$Marketplacedeals$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3567,7 +3608,8 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Marketplacenotes$Insert {
+  export interface Params$Resource$Marketplacenotes$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3583,7 +3625,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$AddOrderNotesRequest;
   }
-  export interface Params$Resource$Marketplacenotes$List {
+  export interface Params$Resource$Marketplacenotes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3684,7 +3727,8 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Marketplaceprivateauction$Updateproposal {
+  export interface Params$Resource$Marketplaceprivateauction$Updateproposal
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3786,7 +3830,8 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Performancereport$List {
+  export interface Params$Resource$Performancereport$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4246,7 +4291,8 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Pretargetingconfig$Delete {
+  export interface Params$Resource$Pretargetingconfig$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4261,7 +4307,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     configId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Get {
+  export interface Params$Resource$Pretargetingconfig$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4276,7 +4323,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     configId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Insert {
+  export interface Params$Resource$Pretargetingconfig$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4292,7 +4340,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Pretargetingconfig$List {
+  export interface Params$Resource$Pretargetingconfig$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4303,7 +4352,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     accountId?: string;
   }
-  export interface Params$Resource$Pretargetingconfig$Patch {
+  export interface Params$Resource$Pretargetingconfig$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4323,7 +4373,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$PretargetingConfig;
   }
-  export interface Params$Resource$Pretargetingconfig$Update {
+  export interface Params$Resource$Pretargetingconfig$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4483,7 +4534,7 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Products$Get {
+  export interface Params$Resource$Products$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4494,7 +4545,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Search {
+  export interface Params$Resource$Products$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4917,7 +4968,7 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Proposals$Get {
+  export interface Params$Resource$Proposals$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4928,7 +4979,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     proposalId?: string;
   }
-  export interface Params$Resource$Proposals$Insert {
+  export interface Params$Resource$Proposals$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4940,7 +4991,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$CreateOrdersRequest;
   }
-  export interface Params$Resource$Proposals$Patch {
+  export interface Params$Resource$Proposals$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4968,7 +5019,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     requestBody?: Schema$Proposal;
   }
-  export interface Params$Resource$Proposals$Search {
+  export interface Params$Resource$Proposals$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4979,7 +5030,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     pqlQuery?: string;
   }
-  export interface Params$Resource$Proposals$Setupcomplete {
+  export interface Params$Resource$Proposals$Setupcomplete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4990,7 +5042,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     proposalId?: string;
   }
-  export interface Params$Resource$Proposals$Update {
+  export interface Params$Resource$Proposals$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5105,7 +5157,7 @@ export namespace adexchangebuyer_v1_4 {
     }
   }
 
-  export interface Params$Resource$Pubprofiles$List {
+  export interface Params$Resource$Pubprofiles$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

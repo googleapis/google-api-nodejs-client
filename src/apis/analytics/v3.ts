@@ -29,6 +29,40 @@ export namespace analytics_v3 {
     version: 'v3';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Analytics API
    *
@@ -2749,7 +2783,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Data$Ga$Get {
+  export interface Params$Resource$Data$Ga$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2903,7 +2937,7 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Data$Mcf$Get {
+  export interface Params$Resource$Data$Mcf$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3043,7 +3077,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Data$Realtime$Get {
+  export interface Params$Resource$Data$Realtime$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3218,7 +3253,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accounts$List {
+  export interface Params$Resource$Management$Accounts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3317,7 +3353,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accountsummaries$List {
+  export interface Params$Resource$Management$Accountsummaries$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3628,7 +3665,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accountuserlinks$Delete {
+  export interface Params$Resource$Management$Accountuserlinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3643,7 +3681,8 @@ export namespace analytics_v3 {
      */
     linkId?: string;
   }
-  export interface Params$Resource$Management$Accountuserlinks$Insert {
+  export interface Params$Resource$Management$Accountuserlinks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3659,7 +3698,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Accountuserlinks$List {
+  export interface Params$Resource$Management$Accountuserlinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3679,7 +3719,8 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Accountuserlinks$Update {
+  export interface Params$Resource$Management$Accountuserlinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3782,7 +3823,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Clientid$Hashclientid {
+  export interface Params$Resource$Management$Clientid$Hashclientid extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3880,7 +3922,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Customdatasources$List {
+  export interface Params$Resource$Management$Customdatasources$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4275,7 +4318,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Customdimensions$Get {
+  export interface Params$Resource$Management$Customdimensions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4294,7 +4338,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Customdimensions$Insert {
+  export interface Params$Resource$Management$Customdimensions$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4314,7 +4359,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomDimension;
   }
-  export interface Params$Resource$Management$Customdimensions$List {
+  export interface Params$Resource$Management$Customdimensions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4338,7 +4384,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Customdimensions$Patch {
+  export interface Params$Resource$Management$Customdimensions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4367,7 +4414,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomDimension;
   }
-  export interface Params$Resource$Management$Customdimensions$Update {
+  export interface Params$Resource$Management$Customdimensions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4767,7 +4815,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Custommetrics$Get {
+  export interface Params$Resource$Management$Custommetrics$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4786,7 +4835,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Custommetrics$Insert {
+  export interface Params$Resource$Management$Custommetrics$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4806,7 +4856,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomMetric;
   }
-  export interface Params$Resource$Management$Custommetrics$List {
+  export interface Params$Resource$Management$Custommetrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4830,7 +4881,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Custommetrics$Patch {
+  export interface Params$Resource$Management$Custommetrics$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4859,7 +4911,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomMetric;
   }
-  export interface Params$Resource$Management$Custommetrics$Update {
+  export interface Params$Resource$Management$Custommetrics$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5336,7 +5389,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Experiments$Delete {
+  export interface Params$Resource$Management$Experiments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5359,7 +5413,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Get {
+  export interface Params$Resource$Management$Experiments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5382,7 +5437,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Insert {
+  export interface Params$Resource$Management$Experiments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5406,7 +5462,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Experiment;
   }
-  export interface Params$Resource$Management$Experiments$List {
+  export interface Params$Resource$Management$Experiments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5434,7 +5491,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Patch {
+  export interface Params$Resource$Management$Experiments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5462,7 +5520,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Experiment;
   }
-  export interface Params$Resource$Management$Experiments$Update {
+  export interface Params$Resource$Management$Experiments$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5915,7 +5974,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Filters$Delete {
+  export interface Params$Resource$Management$Filters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5930,7 +5990,8 @@ export namespace analytics_v3 {
      */
     filterId?: string;
   }
-  export interface Params$Resource$Management$Filters$Get {
+  export interface Params$Resource$Management$Filters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5945,7 +6006,8 @@ export namespace analytics_v3 {
      */
     filterId?: string;
   }
-  export interface Params$Resource$Management$Filters$Insert {
+  export interface Params$Resource$Management$Filters$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5961,7 +6023,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Management$Filters$List {
+  export interface Params$Resource$Management$Filters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5981,7 +6044,8 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Filters$Patch {
+  export interface Params$Resource$Management$Filters$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6001,7 +6065,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Management$Filters$Update {
+  export interface Params$Resource$Management$Filters$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6389,7 +6454,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Goals$Get {
+  export interface Params$Resource$Management$Goals$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6412,7 +6478,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Goals$Insert {
+  export interface Params$Resource$Management$Goals$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6436,7 +6503,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Goal;
   }
-  export interface Params$Resource$Management$Goals$List {
+  export interface Params$Resource$Management$Goals$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6469,7 +6537,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Goals$Patch {
+  export interface Params$Resource$Management$Goals$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6497,7 +6566,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Goal;
   }
-  export interface Params$Resource$Management$Goals$Update {
+  export interface Params$Resource$Management$Goals$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6969,7 +7039,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profilefilterlinks$Delete {
+  export interface Params$Resource$Management$Profilefilterlinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6992,7 +7063,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Get {
+  export interface Params$Resource$Management$Profilefilterlinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7015,7 +7087,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Insert {
+  export interface Params$Resource$Management$Profilefilterlinks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7039,7 +7112,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$ProfileFilterLink;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$List {
+  export interface Params$Resource$Management$Profilefilterlinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7070,7 +7144,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Patch {
+  export interface Params$Resource$Management$Profilefilterlinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7098,7 +7173,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$ProfileFilterLink;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Update {
+  export interface Params$Resource$Management$Profilefilterlinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7559,7 +7635,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profiles$Delete {
+  export interface Params$Resource$Management$Profiles$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7578,7 +7655,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Get {
+  export interface Params$Resource$Management$Profiles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7597,7 +7675,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Insert {
+  export interface Params$Resource$Management$Profiles$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7617,7 +7696,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Management$Profiles$List {
+  export interface Params$Resource$Management$Profiles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7645,7 +7725,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Patch {
+  export interface Params$Resource$Management$Profiles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7669,7 +7750,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Management$Profiles$Update {
+  export interface Params$Resource$Management$Profiles$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7996,7 +8078,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profileuserlinks$Delete {
+  export interface Params$Resource$Management$Profileuserlinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8019,7 +8102,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profileuserlinks$Insert {
+  export interface Params$Resource$Management$Profileuserlinks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8043,7 +8127,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Profileuserlinks$List {
+  export interface Params$Resource$Management$Profileuserlinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8075,7 +8160,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profileuserlinks$Update {
+  export interface Params$Resource$Management$Profileuserlinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8546,7 +8632,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Remarketingaudience$Delete {
+  export interface Params$Resource$Management$Remarketingaudience$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8565,7 +8652,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Get {
+  export interface Params$Resource$Management$Remarketingaudience$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8584,7 +8672,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Insert {
+  export interface Params$Resource$Management$Remarketingaudience$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8604,7 +8693,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$RemarketingAudience;
   }
-  export interface Params$Resource$Management$Remarketingaudience$List {
+  export interface Params$Resource$Management$Remarketingaudience$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8632,7 +8722,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Patch {
+  export interface Params$Resource$Management$Remarketingaudience$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8656,7 +8747,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$RemarketingAudience;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Update {
+  export interface Params$Resource$Management$Remarketingaudience$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8761,7 +8853,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Segments$List {
+  export interface Params$Resource$Management$Segments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9078,7 +9171,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Unsampledreports$Delete {
+  export interface Params$Resource$Management$Unsampledreports$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9101,7 +9195,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Unsampledreports$Get {
+  export interface Params$Resource$Management$Unsampledreports$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9124,7 +9219,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Unsampledreports$Insert {
+  export interface Params$Resource$Management$Unsampledreports$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9148,7 +9244,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$UnsampledReport;
   }
-  export interface Params$Resource$Management$Unsampledreports$List {
+  export interface Params$Resource$Management$Unsampledreports$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9481,7 +9578,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Uploads$Deleteuploaddata {
+  export interface Params$Resource$Management$Uploads$Deleteuploaddata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9505,7 +9603,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$AnalyticsDataimportDeleteUploadDataRequest;
   }
-  export interface Params$Resource$Management$Uploads$Get {
+  export interface Params$Resource$Management$Uploads$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9528,7 +9627,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Uploads$List {
+  export interface Params$Resource$Management$Uploads$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9556,7 +9656,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Uploads$Uploaddata {
+  export interface Params$Resource$Management$Uploads$Uploaddata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9957,7 +10058,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Webproperties$Get {
+  export interface Params$Resource$Management$Webproperties$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9972,7 +10074,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webproperties$Insert {
+  export interface Params$Resource$Management$Webproperties$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9988,7 +10091,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Webproperty;
   }
-  export interface Params$Resource$Management$Webproperties$List {
+  export interface Params$Resource$Management$Webproperties$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10010,7 +10114,8 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Webproperties$Patch {
+  export interface Params$Resource$Management$Webproperties$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10030,7 +10135,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Webproperty;
   }
-  export interface Params$Resource$Management$Webproperties$Update {
+  export interface Params$Resource$Management$Webproperties$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10501,7 +10607,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Delete {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10520,7 +10627,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Get {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10539,7 +10647,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Insert {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Insert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10559,7 +10668,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityAdWordsLink;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$List {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10584,7 +10694,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Patch {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10608,7 +10719,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityAdWordsLink;
   }
-  export interface Params$Resource$Management$Webpropertyadwordslinks$Update {
+  export interface Params$Resource$Management$Webpropertyadwordslinks$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10933,7 +11045,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Webpropertyuserlinks$Delete {
+  export interface Params$Resource$Management$Webpropertyuserlinks$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10952,7 +11065,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyuserlinks$Insert {
+  export interface Params$Resource$Management$Webpropertyuserlinks$Insert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10972,7 +11086,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Webpropertyuserlinks$List {
+  export interface Params$Resource$Management$Webpropertyuserlinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10998,7 +11113,8 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webpropertyuserlinks$Update {
+  export interface Params$Resource$Management$Webpropertyuserlinks$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11118,7 +11234,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Metadata$Columns$List {
+  export interface Params$Resource$Metadata$Columns$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11281,7 +11398,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Provisioning$Createaccountticket {
+  export interface Params$Resource$Provisioning$Createaccountticket extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11293,7 +11411,8 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$AccountTicket;
   }
-  export interface Params$Resource$Provisioning$Createaccounttree {
+  export interface Params$Resource$Provisioning$Createaccounttree extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11404,7 +11523,8 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert {
+  export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

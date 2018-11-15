@@ -29,6 +29,40 @@ export namespace adsense_v1_4 {
     version: 'v1_4';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * AdSense Management API
    *
@@ -761,7 +795,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -776,7 +810,7 @@ export namespace adsense_v1_4 {
      */
     tree?: boolean;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -945,7 +979,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Getadcode {
+  export interface Params$Resource$Accounts$Adclients$Getadcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -960,7 +995,8 @@ export namespace adsense_v1_4 {
      */
     adClientId?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$List {
+  export interface Params$Resource$Accounts$Adclients$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1208,7 +1244,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$Get {
+  export interface Params$Resource$Accounts$Adunits$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1227,7 +1264,8 @@ export namespace adsense_v1_4 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Getadcode {
+  export interface Params$Resource$Accounts$Adunits$Getadcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1246,7 +1284,8 @@ export namespace adsense_v1_4 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$List {
+  export interface Params$Resource$Accounts$Adunits$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1362,7 +1401,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$Customchannels$List {
+  export interface Params$Resource$Accounts$Adunits$Customchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1542,7 +1582,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Alerts$Delete {
+  export interface Params$Resource$Accounts$Alerts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1557,7 +1598,8 @@ export namespace adsense_v1_4 {
      */
     alertId?: string;
   }
-  export interface Params$Resource$Accounts$Alerts$List {
+  export interface Params$Resource$Accounts$Alerts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1731,7 +1773,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customchannels$Get {
+  export interface Params$Resource$Accounts$Customchannels$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1750,7 +1793,8 @@ export namespace adsense_v1_4 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Accounts$Customchannels$List {
+  export interface Params$Resource$Accounts$Customchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1862,7 +1906,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customchannels$Adunits$List {
+  export interface Params$Resource$Accounts$Customchannels$Adunits$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1977,7 +2022,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Payments$List {
+  export interface Params$Resource$Accounts$Payments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2092,7 +2138,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Generate {
+  export interface Params$Resource$Accounts$Reports$Generate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2317,7 +2364,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Saved$Generate {
+  export interface Params$Resource$Accounts$Reports$Saved$Generate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2345,7 +2393,8 @@ export namespace adsense_v1_4 {
      */
     startIndex?: number;
   }
-  export interface Params$Resource$Accounts$Reports$Saved$List {
+  export interface Params$Resource$Accounts$Reports$Saved$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2518,7 +2567,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Savedadstyles$Get {
+  export interface Params$Resource$Accounts$Savedadstyles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2533,7 +2583,8 @@ export namespace adsense_v1_4 {
      */
     savedAdStyleId?: string;
   }
-  export interface Params$Resource$Accounts$Savedadstyles$List {
+  export interface Params$Resource$Accounts$Savedadstyles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2642,7 +2693,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Accounts$Urlchannels$List {
+  export interface Params$Resource$Accounts$Urlchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2749,7 +2801,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Adclients$List {
+  export interface Params$Resource$Adclients$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2983,7 +3035,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Adunits$Get {
+  export interface Params$Resource$Adunits$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2998,7 +3050,8 @@ export namespace adsense_v1_4 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Adunits$Getadcode {
+  export interface Params$Resource$Adunits$Getadcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3013,7 +3066,7 @@ export namespace adsense_v1_4 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Adunits$List {
+  export interface Params$Resource$Adunits$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3124,7 +3177,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Adunits$Customchannels$List {
+  export interface Params$Resource$Adunits$Customchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3293,7 +3347,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Alerts$Delete {
+  export interface Params$Resource$Alerts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3304,7 +3358,7 @@ export namespace adsense_v1_4 {
      */
     alertId?: string;
   }
-  export interface Params$Resource$Alerts$List {
+  export interface Params$Resource$Alerts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3469,7 +3523,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Customchannels$Get {
+  export interface Params$Resource$Customchannels$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3484,7 +3539,8 @@ export namespace adsense_v1_4 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Customchannels$List {
+  export interface Params$Resource$Customchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3591,7 +3647,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Customchannels$Adunits$List {
+  export interface Params$Resource$Customchannels$Adunits$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3719,7 +3776,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Metadata$Dimensions$List {
+  export interface Params$Resource$Metadata$Dimensions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3805,7 +3863,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Metadata$Metrics$List {
+  export interface Params$Resource$Metadata$Metrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3889,7 +3948,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Payments$List {
+  export interface Params$Resource$Payments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3997,7 +4056,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Reports$Generate {
+  export interface Params$Resource$Reports$Generate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4216,7 +4275,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Reports$Saved$Generate {
+  export interface Params$Resource$Reports$Saved$Generate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4240,7 +4300,8 @@ export namespace adsense_v1_4 {
      */
     startIndex?: number;
   }
-  export interface Params$Resource$Reports$Saved$List {
+  export interface Params$Resource$Reports$Saved$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4403,7 +4464,8 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Savedadstyles$Get {
+  export interface Params$Resource$Savedadstyles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4414,7 +4476,8 @@ export namespace adsense_v1_4 {
      */
     savedAdStyleId?: string;
   }
-  export interface Params$Resource$Savedadstyles$List {
+  export interface Params$Resource$Savedadstyles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4515,7 +4578,7 @@ export namespace adsense_v1_4 {
     }
   }
 
-  export interface Params$Resource$Urlchannels$List {
+  export interface Params$Resource$Urlchannels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

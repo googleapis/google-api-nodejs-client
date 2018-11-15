@@ -29,6 +29,57 @@ export namespace binaryauthorization_v1beta1 {
     version: 'v1beta1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Binary Authorization API
    *
@@ -540,7 +591,8 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getpolicy {
+  export interface Params$Resource$Projects$Getpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -552,7 +604,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatepolicy {
+  export interface Params$Resource$Projects$Updatepolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1142,7 +1195,8 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Attestors$Create {
+  export interface Params$Resource$Projects$Attestors$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1162,7 +1216,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$Attestor;
   }
-  export interface Params$Resource$Projects$Attestors$Delete {
+  export interface Params$Resource$Projects$Attestors$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1174,7 +1229,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Get {
+  export interface Params$Resource$Projects$Attestors$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1186,7 +1242,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Getiampolicy {
+  export interface Params$Resource$Projects$Attestors$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1198,7 +1255,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Attestors$List {
+  export interface Params$Resource$Projects$Attestors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1221,7 +1279,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Setiampolicy {
+  export interface Params$Resource$Projects$Attestors$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1238,7 +1297,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Testiampermissions {
+  export interface Params$Resource$Projects$Attestors$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1255,7 +1315,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Update {
+  export interface Params$Resource$Projects$Attestors$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1505,7 +1566,8 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Policy$Getiampolicy {
+  export interface Params$Resource$Projects$Policy$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1517,7 +1579,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Policy$Setiampolicy {
+  export interface Params$Resource$Projects$Policy$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1534,7 +1597,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Policy$Testiampermissions {
+  export interface Params$Resource$Projects$Policy$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,40 @@ export namespace tagmanager_v2 {
     version: 'v2';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Tag Manager API
    *
@@ -1805,7 +1839,7 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1816,7 +1850,7 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1827,7 +1861,7 @@ export namespace tagmanager_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Update {
+  export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2204,7 +2238,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Create {
+  export interface Params$Resource$Accounts$Containers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2220,7 +2255,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Container;
   }
-  export interface Params$Resource$Accounts$Containers$Delete {
+  export interface Params$Resource$Accounts$Containers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2232,7 +2268,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Get {
+  export interface Params$Resource$Accounts$Containers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2244,7 +2281,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$List {
+  export interface Params$Resource$Accounts$Containers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2259,7 +2297,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Update {
+  export interface Params$Resource$Accounts$Containers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2772,7 +2811,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Environments$Create {
+  export interface Params$Resource$Accounts$Containers$Environments$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2789,7 +2829,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Delete {
+  export interface Params$Resource$Accounts$Containers$Environments$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2801,7 +2842,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Get {
+  export interface Params$Resource$Accounts$Containers$Environments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2813,7 +2855,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$List {
+  export interface Params$Resource$Accounts$Containers$Environments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2829,7 +2872,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Patch {
+  export interface Params$Resource$Accounts$Containers$Environments$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2851,7 +2895,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Reauthorize {
+  export interface Params$Resource$Accounts$Containers$Environments$Reauthorize
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2868,7 +2913,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Update {
+  export interface Params$Resource$Accounts$Containers$Environments$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3383,7 +3429,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Versions$Delete {
+  export interface Params$Resource$Accounts$Containers$Versions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3395,7 +3442,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Get {
+  export interface Params$Resource$Accounts$Containers$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3412,7 +3460,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Live {
+  export interface Params$Resource$Accounts$Containers$Versions$Live extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3424,7 +3473,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Publish {
+  export interface Params$Resource$Accounts$Containers$Versions$Publish extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3441,7 +3491,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Set_latest {
+  export interface Params$Resource$Accounts$Containers$Versions$Set_latest
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3453,7 +3504,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Undelete {
+  export interface Params$Resource$Accounts$Containers$Versions$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3465,7 +3517,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Update {
+  export interface Params$Resource$Accounts$Containers$Versions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3648,7 +3701,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Version_headers$Latest {
+  export interface Params$Resource$Accounts$Containers$Version_headers$Latest
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3660,7 +3714,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Version_headers$List {
+  export interface Params$Resource$Accounts$Containers$Version_headers$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4556,7 +4611,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Create {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4573,7 +4629,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Workspace;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Create_version {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Create_version
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4590,7 +4647,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$CreateContainerVersionRequestVersionOptions;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Delete {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4602,7 +4660,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Get {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4614,7 +4673,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Getproposal {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Getproposal
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4626,7 +4686,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4638,7 +4699,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$List {
+  export interface Params$Resource$Accounts$Containers$Workspaces$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4654,7 +4716,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4666,7 +4729,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4688,7 +4752,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Entity;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Sync {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Sync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4700,7 +4765,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Update {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4722,7 +4788,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Workspace;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Updateproposal {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Updateproposal
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5073,7 +5140,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5089,7 +5157,8 @@ export namespace tagmanager_v2 {
      */
     type?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5105,7 +5174,8 @@ export namespace tagmanager_v2 {
      */
     type?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5121,7 +5191,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5708,7 +5779,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5725,7 +5797,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Folder;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5737,7 +5810,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5753,7 +5827,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5765,7 +5840,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5781,7 +5857,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5810,7 +5887,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Folder;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Revert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5827,7 +5905,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6000,7 +6079,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Proposal$Create {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Proposal$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6017,7 +6097,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$CreateWorkspaceProposalRequest;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6451,7 +6532,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6468,7 +6550,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Tag;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6480,7 +6563,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6492,7 +6576,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6508,7 +6593,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6525,7 +6611,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6973,7 +7060,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6990,7 +7078,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Trigger;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7002,7 +7091,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7014,7 +7104,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7030,7 +7121,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7047,7 +7139,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7499,7 +7592,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7516,7 +7610,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$Variable;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7528,7 +7623,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7540,7 +7636,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7556,7 +7653,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7573,7 +7671,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update {
+  export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7950,7 +8049,8 @@ export namespace tagmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$User_permissions$Create {
+  export interface Params$Resource$Accounts$User_permissions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7966,7 +8066,8 @@ export namespace tagmanager_v2 {
      */
     requestBody?: Schema$UserPermission;
   }
-  export interface Params$Resource$Accounts$User_permissions$Delete {
+  export interface Params$Resource$Accounts$User_permissions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7978,7 +8079,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$Get {
+  export interface Params$Resource$Accounts$User_permissions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7990,7 +8092,8 @@ export namespace tagmanager_v2 {
      */
     path?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$List {
+  export interface Params$Resource$Accounts$User_permissions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8005,7 +8108,8 @@ export namespace tagmanager_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$User_permissions$Update {
+  export interface Params$Resource$Accounts$User_permissions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,40 @@ export namespace sqladmin_v1beta4 {
     version: 'v1beta4';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Cloud SQL Admin API
    *
@@ -100,6 +134,19 @@ export namespace sqladmin_v1beta4 {
      * The whitelisted value for the access control list.
      */
     value?: string;
+  }
+  /**
+   * An Admin API warning message.
+   */
+  export interface Schema$ApiWarning {
+    /**
+     * Code to uniquely identify the warning type.
+     */
+    code?: string;
+    /**
+     * The warning message.
+     */
+    message?: string;
   }
   /**
    * Database instance backup configuration.
@@ -744,6 +791,10 @@ export namespace sqladmin_v1beta4 {
      * this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
+    /**
+     * List of warnings that ocurred while handling the request.
+     */
+    warnings?: Schema$ApiWarning[];
   }
   /**
    * Instances ListServerCas response.
@@ -801,7 +852,10 @@ export namespace sqladmin_v1beta4 {
      */
     ipv4Enabled?: boolean;
     /**
-     * Reserved for future use.
+     * The resource link for the VPC network from which the Cloud SQL instance
+     * is accessible for private IP. For example,
+     * /projects/myProject/global/networks/default. This setting can be updated,
+     * but it cannot be removed after it is set.
      */
     privateNetwork?: string;
     /**
@@ -855,7 +909,7 @@ export namespace sqladmin_v1beta4 {
   }
   /**
    * Maintenance window. This specifies when a v2 Cloud SQL instance should
-   * preferably be restarted for system maintenance puruposes.
+   * preferably be restarted for system maintenance purposes.
    */
   export interface Schema$MaintenanceWindow {
     /**
@@ -1771,7 +1825,8 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Backupruns$Delete {
+  export interface Params$Resource$Backupruns$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1791,7 +1846,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Get {
+  export interface Params$Resource$Backupruns$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1810,7 +1865,8 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Insert {
+  export interface Params$Resource$Backupruns$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1830,7 +1886,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$BackupRun;
   }
-  export interface Params$Resource$Backupruns$List {
+  export interface Params$Resource$Backupruns$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2284,7 +2340,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Databases$Delete {
+  export interface Params$Resource$Databases$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2303,7 +2359,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Get {
+  export interface Params$Resource$Databases$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2322,7 +2378,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Insert {
+  export interface Params$Resource$Databases$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2342,7 +2398,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Databases$List {
+  export interface Params$Resource$Databases$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2357,7 +2413,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Patch {
+  export interface Params$Resource$Databases$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2381,7 +2437,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Databases$Update {
+  export interface Params$Resource$Databases$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2484,7 +2540,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Flags$List {
+  export interface Params$Resource$Flags$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3961,7 +4017,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Instances$Addserverca {
+  export interface Params$Resource$Instances$Addserverca extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3976,7 +4033,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Clone {
+  export interface Params$Resource$Instances$Clone extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3997,7 +4054,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesCloneRequest;
   }
-  export interface Params$Resource$Instances$Delete {
+  export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4012,7 +4069,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Demotemaster {
+  export interface Params$Resource$Instances$Demotemaster extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4032,7 +4090,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesDemoteMasterRequest;
   }
-  export interface Params$Resource$Instances$Export {
+  export interface Params$Resource$Instances$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4052,7 +4110,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesExportRequest;
   }
-  export interface Params$Resource$Instances$Failover {
+  export interface Params$Resource$Instances$Failover extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4072,7 +4131,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesFailoverRequest;
   }
-  export interface Params$Resource$Instances$Get {
+  export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4087,7 +4146,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Import {
+  export interface Params$Resource$Instances$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4107,7 +4166,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesImportRequest;
   }
-  export interface Params$Resource$Instances$Insert {
+  export interface Params$Resource$Instances$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4124,7 +4183,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$List {
+  export interface Params$Resource$Instances$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4149,7 +4208,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Listservercas {
+  export interface Params$Resource$Instances$Listservercas extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4164,7 +4224,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Patch {
+  export interface Params$Resource$Instances$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4184,7 +4244,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$Promotereplica {
+  export interface Params$Resource$Instances$Promotereplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4199,7 +4260,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Resetsslconfig {
+  export interface Params$Resource$Instances$Resetsslconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4214,7 +4276,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restart {
+  export interface Params$Resource$Instances$Restart extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4229,7 +4292,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restorebackup {
+  export interface Params$Resource$Instances$Restorebackup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4249,7 +4313,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
   }
-  export interface Params$Resource$Instances$Rotateserverca {
+  export interface Params$Resource$Instances$Rotateserverca extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4269,7 +4334,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRotateServerCaRequest;
   }
-  export interface Params$Resource$Instances$Startreplica {
+  export interface Params$Resource$Instances$Startreplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4284,7 +4350,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Stopreplica {
+  export interface Params$Resource$Instances$Stopreplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4299,7 +4366,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Truncatelog {
+  export interface Params$Resource$Instances$Truncatelog extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4319,7 +4387,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesTruncateLogRequest;
   }
-  export interface Params$Resource$Instances$Update {
+  export interface Params$Resource$Instances$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4488,7 +4556,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4503,7 +4571,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4892,7 +4960,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Sslcerts$Createephemeral {
+  export interface Params$Resource$Sslcerts$Createephemeral extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4912,7 +4981,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$SslCertsCreateEphemeralRequest;
   }
-  export interface Params$Resource$Sslcerts$Delete {
+  export interface Params$Resource$Sslcerts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4931,7 +5000,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     sha1Fingerprint?: string;
   }
-  export interface Params$Resource$Sslcerts$Get {
+  export interface Params$Resource$Sslcerts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4950,7 +5019,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     sha1Fingerprint?: string;
   }
-  export interface Params$Resource$Sslcerts$Insert {
+  export interface Params$Resource$Sslcerts$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4970,7 +5039,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$SslCertsInsertRequest;
   }
-  export interface Params$Resource$Sslcerts$List {
+  export interface Params$Resource$Sslcerts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5065,7 +5134,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Tiers$List {
+  export interface Params$Resource$Tiers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5368,7 +5437,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Users$Delete {
+  export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5391,7 +5460,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Users$Insert {
+  export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5411,7 +5480,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$List {
+  export interface Params$Resource$Users$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5426,7 +5495,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Users$Update {
+  export interface Params$Resource$Users$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

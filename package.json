@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "google-auth-library": "^2.0.0",
-    "googleapis-common": "^0.3.0"
+    "googleapis-common": "^0.4.0"
   },
   "files": [
     "LICENSE",
@@ -20,37 +20,7 @@
   ],
   "repository": "google/google-api-nodejs-client",
   "name": "googleapis",
-  "contributors": [
-    {
-      "email": "jbd@google.com",
-      "name": "Burcu Dogan"
-    },
-    {
-      "email": "jasonall@google.com",
-      "name": "Jason Allor"
-    },
-    {
-      "email": "jason.dobry@gmail.com",
-      "name": "Jason Dobry"
-    },
-    {
-      "email": "ryanseys@google.com",
-      "name": "Ryan Seys"
-    },
-    {
-      "email": "tbetbetbe@google.com",
-      "name": "Tim Emiola"
-    },
-    {
-      "email": "beckwith@google.com",
-      "name": "Justin Beckwith"
-    },
-    {
-      "email": "fenster@google.com",
-      "name": "Alexander Fenster"
-    }
-  ],
-  "version": "34.0.0",
+  "version": "35.0.0",
   "scripts": {
     "pretest": "npm run compile",
     "prepare": "npm run compile",
@@ -107,7 +77,7 @@
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "gts": "^0.8.0",
+    "gts": "^0.9.0",
     "hard-rejection": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
     "js-green-licenses": "^0.5.0",

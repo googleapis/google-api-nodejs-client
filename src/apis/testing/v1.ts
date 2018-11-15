@@ -29,6 +29,57 @@ export namespace testing_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Testing API
    *
@@ -242,6 +293,12 @@ export namespace testing_v1 {
      */
     id?: string;
     /**
+     * True if and only if tests with this model are recorded by stitching
+     * together screenshots. See use_low_spec_video_recording in device config.
+     * @OutputOnly
+     */
+    lowFpsVideoRecording?: boolean;
+    /**
      * The manufacturer of this device. @OutputOnly
      */
     manufacturer?: string;
@@ -282,11 +339,6 @@ export namespace testing_v1 {
      * &quot;preview&quot;, &quot;deprecated&quot;
      */
     tags?: string[];
-    /**
-     * True if and only if tests with this model DO NOT have video output. See
-     * also TestSpecification.disable_video_recording @OutputOnly
-     */
-    videoRecordingNotSupported?: boolean;
   }
   /**
    * A test of an android application that explores the application on a virtual
@@ -1025,12 +1077,6 @@ export namespace testing_v1 {
      * progress_messages. @OutputOnly
      */
     progressMessages?: string[];
-    /**
-     * Indicates that video will not be recorded for this execution either
-     * because the user chose to disable it or the device does not support it.
-     * See AndroidModel.video_recording_not_supported @OutputOnly
-     */
-    videoRecordingDisabled?: boolean;
   }
   /**
    * A description of a test environment.
@@ -1413,7 +1459,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Applicationdetailservice$Getapkdetails {
+  export interface Params$Resource$Applicationdetailservice$Getapkdetails
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1674,7 +1721,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Testmatrices$Cancel {
+  export interface Params$Resource$Projects$Testmatrices$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1689,7 +1737,8 @@ export namespace testing_v1 {
      */
     testMatrixId?: string;
   }
-  export interface Params$Resource$Projects$Testmatrices$Create {
+  export interface Params$Resource$Projects$Testmatrices$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1711,7 +1760,8 @@ export namespace testing_v1 {
      */
     requestBody?: Schema$TestMatrix;
   }
-  export interface Params$Resource$Projects$Testmatrices$Get {
+  export interface Params$Resource$Projects$Testmatrices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1809,7 +1859,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Testenvironmentcatalog$Get {
+  export interface Params$Resource$Testenvironmentcatalog$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

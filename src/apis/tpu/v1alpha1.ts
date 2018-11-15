@@ -29,6 +29,57 @@ export namespace tpu_v1alpha1 {
     version: 'v1alpha1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud TPU API
    *
@@ -123,6 +174,10 @@ export namespace tpu_v1alpha1 {
      * The listed nodes.
      */
     nodes?: Schema$Node[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[];
   }
   /**
    * The response message for Operations.ListOperations.
@@ -610,7 +665,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -621,7 +677,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -800,7 +857,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get {
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -811,7 +869,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$List {
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1323,7 +1382,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Nodes$Create {
+  export interface Params$Resource$Projects$Locations$Nodes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1343,7 +1403,8 @@ export namespace tpu_v1alpha1 {
      */
     requestBody?: Schema$Node;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Delete {
+  export interface Params$Resource$Projects$Locations$Nodes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1354,7 +1415,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Get {
+  export interface Params$Resource$Projects$Locations$Nodes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1365,7 +1427,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$List {
+  export interface Params$Resource$Projects$Locations$Nodes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1384,7 +1447,8 @@ export namespace tpu_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Reimage {
+  export interface Params$Resource$Projects$Locations$Nodes$Reimage extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1400,7 +1464,8 @@ export namespace tpu_v1alpha1 {
      */
     requestBody?: Schema$ReimageNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Start {
+  export interface Params$Resource$Projects$Locations$Nodes$Start extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1416,7 +1481,8 @@ export namespace tpu_v1alpha1 {
      */
     requestBody?: Schema$StartNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Stop {
+  export interface Params$Resource$Projects$Locations$Nodes$Stop extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1733,7 +1799,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1744,7 +1811,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1755,7 +1823,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1766,7 +1835,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List {
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1948,7 +2018,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get {
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1959,7 +2030,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$List {
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -29,6 +29,40 @@ export namespace compute_beta {
     version: 'beta';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Compute Engine API
    *
@@ -1135,14 +1169,21 @@ export namespace compute_beta {
      */
     description?: string;
     /**
-     * The fully-qualified URL of a Instance Group resource. This instance group
-     * defines the list of instances that serve traffic. Member virtual machine
-     * instances from each instance group must live in the same zone as the
-     * instance group itself. No two backends in a backend service are allowed
-     * to use same Instance Group resource.  Note that you must specify an
-     * Instance Group resource using the fully-qualified URL, rather than a
+     * The fully-qualified URL of an Instance Group or Network Endpoint Group
+     * resource. In case of instance group this defines the list of instances
+     * that serve traffic. Member virtual machine instances from each instance
+     * group must live in the same zone as the instance group itself. No two
+     * backends in a backend service are allowed to use same Instance Group
+     * resource.  For Network Endpoint Groups this defines list of endpoints.
+     * All endpoints of Network Endpoint Group must be hosted on instances
+     * located in the same zone as the Network Endpoint Group.  Backend service
+     * can not contain mix of Instance Group and Network Endpoint Group
+     * backends.  Note that you must specify an Instance Group or Network
+     * Endpoint Group resource using the fully-qualified URL, rather than a
      * partial URL.  When the BackendService has load balancing scheme INTERNAL,
      * the instance group must be within the same region as the BackendService.
+     * Network Endpoint Groups are not supported for INTERNAL load balancing
+     * scheme.
      */
     group?: string;
     /**
@@ -1491,6 +1532,10 @@ export namespace compute_beta {
     signedUrlKeyNames?: string[];
   }
   export interface Schema$BackendServiceGroupHealth {
+    /**
+     * Health state of the backend instances or endpoints in requested instance
+     * or network endpoint group, determined based on configured health checks.
+     */
     healthStatus?: Schema$HealthStatus[];
     /**
      * [Output Only] Type of resource. Always compute#backendServiceGroupHealth
@@ -2638,6 +2683,15 @@ export namespace compute_beta {
    */
   export interface Schema$ForwardingRule {
     /**
+     * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. This
+     * field cannot be used with port or portRange fields.  When the load
+     * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
+     * to allow packets addressed to any ports will be forwarded to the backends
+     * configured with this forwarding rule.
+     */
+    allPorts?: boolean;
+    /**
      * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
@@ -3772,6 +3826,7 @@ export namespace compute_beta {
      * instance.
      */
     guestAccelerators?: Schema$AcceleratorConfig[];
+    hostname?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
@@ -4405,7 +4460,7 @@ export namespace compute_beta {
      * instances initiated by this resize request only once. If there is an
      * error during creation, the managed instance group does not retry create
      * this instance, and we will decrease the targetSize of the request
-     * instead. If the flag is false, the group attemps to recreate each
+     * instead. If the flag is false, the group attempts to recreate each
      * instance continuously until it succeeds.  This flag matters only in the
      * first attempt of creation of an instance. After an instance is
      * successfully created while this flag is enabled, the instance behaves the
@@ -4786,6 +4841,23 @@ export namespace compute_beta {
      * The URL for a specific instance.
      */
     instance?: string;
+  }
+  export interface Schema$InstancesResumeRequest {
+    /**
+     * Array of disks associated with this instance that are protected with a
+     * customer-supplied encryption key.  In order to resume the instance, the
+     * disk url and its corresponding key must be provided.  If the disk is not
+     * protected with a customer-supplied encryption key it should not be
+     * specified.
+     */
+    disks?: Schema$CustomerEncryptionKeyProtectedDisk[];
+    /**
+     * Decrypts data associated with an instance that is protected with a
+     * customer-supplied encryption key.  If the instance you are starting is
+     * protected with a customer-supplied encryption key, the correct key must
+     * be provided otherwise the instance resume will not succeed.
+     */
+    instanceEncryptionKey?: Schema$CustomerEncryptionKey;
   }
   export interface Schema$InstancesScopedList {
     /**
@@ -5876,7 +5948,11 @@ export namespace compute_beta {
   export interface Schema$LogConfigDataAccessOptions {
     /**
      * Whether Gin logging should happen in a fail-closed manner at the caller.
-     * This is relevant only in the LocalIAM implementation, for now.
+     * This is relevant only in the LocalIAM implementation, for now.  NOTE:
+     * Logging to Gin in a fail-closed manner is currently unsupported while
+     * work is being done to satisfy the requirements of go/345. Currently,
+     * setting LOG_FAIL_CLOSED mode will have no effect, but still exists
+     * because there is active work being done to support it (b/115874152).
      */
     logMode?: string;
   }
@@ -6852,7 +6928,7 @@ export namespace compute_beta {
      * with RFC1035. Specifically, the name must be 1-63 characters long and
      * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
      * first character must be a lowercase letter, and all following characters
-     * must be a dash, lowercase letter, or digit, except the last charaicter,
+     * must be a dash, lowercase letter, or digit, except the last character,
      * which cannot be a dash.
      */
     name?: string;
@@ -7322,12 +7398,19 @@ export namespace compute_beta {
   export interface Schema$PathMatcher {
     /**
      * The full or partial URL to the BackendService resource. This will be used
-     * if none of the pathRules defined by this PathMatcher is matched by the
-     * URL&#39;s path portion. For example, the following are all valid URLs to
-     * a BackendService resource:   -
+     * if none of the pathRules or routeRules defined by this PathMatcher are
+     * matched. For example, the following are all valid URLs to a
+     * BackendService resource:   -
      * https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService
      * - compute/v1/projects/project/global/backendServices/backendService  -
-     * global/backendServices/backendService
+     * global/backendServices/backendService   Use defaultService instead of
+     * defaultRouteAction when simple routing to a backend service is desired
+     * and other advanced capabilities like traffic splitting and URL rewrites
+     * are not required. Only one of defaultService, defaultRouteAction or
+     * defaultUrlRedirect must be set. Authorization requires one or more of the
+     * following Google IAM permissions on the specified resource
+     * default_service:   - compute.backendBuckets.use  -
+     * compute.backendServices.use
      */
     defaultService?: string;
     /**
@@ -7340,7 +7423,13 @@ export namespace compute_beta {
      */
     name?: string;
     /**
-     * The list of path rules.
+     * The list of path rules. Use this list instead of routeRules when routing
+     * based on simple path matching is all that&#39;s required. The order by
+     * which path rules are specified does not matter. Matches are always done
+     * on the longest-path-first basis. For example: a pathRule with a path
+     * /a/b/c/* will match before /a/b/* irrespective of the order in which
+     * those paths appear in this list. Only one of pathRules or routeRules must
+     * be set.
      */
     pathRules?: Schema$PathRule[];
   }
@@ -7357,7 +7446,11 @@ export namespace compute_beta {
      */
     paths?: string[];
     /**
-     * The URL of the BackendService resource if this rule is matched.
+     * The URL of the backend service resource if this rule is matched. Use
+     * service instead of routeAction when simple routing to a backend service
+     * is desired and other advanced capabilities like traffic splitting and
+     * rewrites are not required. Only one of service, routeAction or
+     * urlRedirect should must be set.
      */
     service?: string;
   }
@@ -7981,8 +8074,8 @@ export namespace compute_beta {
   }
   export interface Schema$ResourceGroupReference {
     /**
-     * A URI referencing one of the instance groups listed in the backend
-     * service.
+     * A URI referencing one of the instance groups or network endpoint groups
+     * listed in the backend service.
      */
     group?: string;
   }
@@ -8070,7 +8163,7 @@ export namespace compute_beta {
   /**
    * A backup schedule policy specifies when and how frequently snapshots are to
    * be created for the target disk. Also specifies how many and how long these
-   * automatically created snapshot should be retained.
+   * scheduled snapshots should be retained.
    */
   export interface Schema$ResourcePolicyBackupSchedulePolicy {
     /**
@@ -8084,20 +8177,25 @@ export namespace compute_beta {
      */
     schedule?: Schema$ResourcePolicyBackupSchedulePolicySchedule;
     /**
-     * Properties with which snapshots are created such as lables, encryption
+     * Properties with which snapshots are created such as labels, encryption
      * keys.
      */
     snapshotProperties?:
         Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties;
   }
   /**
-   * Policy for retention of automatically created snapshots.
+   * Policy for retention of scheduled snapshots.
    */
   export interface Schema$ResourcePolicyBackupSchedulePolicyRetentionPolicy {
     /**
      * Maximum age of the snapshot that is allowed to be kept.
      */
     maxRetentionDays?: number;
+    /**
+     * Specifies the behavior to apply to scheduled snapshots when the source
+     * disk is deleted.
+     */
+    onSourceDiskDelete?: string;
   }
   /**
    * A schedule for disks where the schedueled operations are performed.
@@ -8108,7 +8206,7 @@ export namespace compute_beta {
     weeklySchedule?: Schema$ResourcePolicyWeeklyCycle;
   }
   /**
-   * Specified snapshot properties for automatic snapshots created by this
+   * Specified snapshot properties for scheduled snapshots created by this
    * policy.
    */
   export interface Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties {
@@ -8117,15 +8215,10 @@ export namespace compute_beta {
      */
     guestFlush?: boolean;
     /**
-     * Labels to apply to automatic snapshots. These can be later modified by
+     * Labels to apply to scheduled snapshots. These can be later modified by
      * the setLabels method. Label values may be empty.
      */
     labels?: any;
-    /**
-     * GCS bucket storage location of the auto snapshot (regional or
-     * multi-regional).
-     */
-    storageLocations?: string[];
   }
   /**
    * Time window specified for daily operations.
@@ -8142,7 +8235,7 @@ export namespace compute_beta {
     duration?: string;
     /**
      * Time within the window to start the operations. It must be in format
-     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-00] GMT.
      */
     startTime?: string;
   }
@@ -8161,7 +8254,7 @@ export namespace compute_beta {
     hoursInCycle?: number;
     /**
      * Time within the window to start the operations. It must be in format
-     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-00] GMT.
      */
     startTime?: string;
   }
@@ -8219,7 +8312,7 @@ export namespace compute_beta {
     duration?: string;
     /**
      * Time within the window to start the operations. It must be in format
-     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-00] GMT.
      */
     startTime?: string;
   }
@@ -8284,6 +8377,17 @@ export namespace compute_beta {
      * projects/&lt;project-id&gt;/global/gateways/default-internet-gateway
      */
     nextHopGateway?: string;
+    /**
+     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that
+     * should handle matching packets. You can only specify the forwarding rule
+     * as a partial or full URL. For example, the following are all valid URLs:
+     * -
+     * https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     * - regions/region/forwardingRules/forwardingRule  Note that this can only
+     * be used when the destination_range is a public (non-RFC 1918) IP CIDR
+     * range.
+     */
+    nextHopIlb?: string;
     /**
      * The URL to an instance that should handle matching packets. You can
      * specify this as a full or partial URL. For example:
@@ -9087,10 +9191,6 @@ export namespace compute_beta {
      */
     expr?: Schema$Expr;
     /**
-     * CIDR IP address range.
-     */
-    srcIpRanges?: string[];
-    /**
      * Preconfigured versioned expression. If this field is specified, config
      * must also be specified. Available preconfigured expressions along with
      * their requirements are: SRC_IPS_V1 - must specify the corresponding
@@ -9220,7 +9320,7 @@ export namespace compute_beta {
    */
   export interface Schema$Snapshot {
     /**
-     * [Output Only] Set to true if snapshots are autoamtically by applying
+     * [Output Only] Set to true if snapshots are automatically by applying
      * resource policy on the target disk.
      */
     autoCreated?: boolean;
@@ -10060,8 +10160,9 @@ export namespace compute_beta {
     selfLink?: string;
     /**
      * URLs to SslCertificate resources that are used to authenticate
-     * connections between users and the load balancer. Currently, exactly one
-     * SSL certificate must be specified.
+     * connections between users and the load balancer. At least one SSL
+     * certificate must be specified. Currently, you may specify up to 15 SSL
+     * certificates.
      */
     sslCertificates?: string[];
     /**
@@ -10334,7 +10435,7 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * Sesssion affinity option, must be one of the following values: NONE:
+     * Session affinity option, must be one of the following values: NONE:
      * Connections from the same client IP may go to any instance in the pool.
      * CLIENT_IP: Connections from the same client IP will go to the same
      * instance in the pool while that instance remains healthy.
@@ -10533,8 +10634,8 @@ export namespace compute_beta {
     service?: string;
     /**
      * URLs to SslCertificate resources that are used to authenticate
-     * connections to Backends. Currently exactly one SSL certificate must be
-     * specified.
+     * connections to Backends. At least one SSL certificate must be specified.
+     * Currently, you may specify up to 15 SSL certificates.
      */
     sslCertificates?: string[];
     /**
@@ -10903,7 +11004,11 @@ export namespace compute_beta {
      */
     creationTimestamp?: string;
     /**
-     * The URL of the BackendService resource if none of the hostRules match.
+     * The URL of the backendService resource if none of the hostRules match.
+     * Use defaultService instead of defaultRouteAction when simple routing to a
+     * backendService is desired and other advanced capabilities like traffic
+     * splitting and rewrites are not required. Only one of defaultService,
+     * defaultRouteAction or defaultUrlRedirect should must be set.
      */
     defaultService?: string;
     /**
@@ -12008,7 +12113,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Acceleratortypes$Aggregatedlist {
+  export interface Params$Resource$Acceleratortypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12062,7 +12168,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Acceleratortypes$Get {
+  export interface Params$Resource$Acceleratortypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12081,7 +12188,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Acceleratortypes$List {
+  export interface Params$Resource$Acceleratortypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13029,7 +13137,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13094,7 +13202,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Addresses$Aggregatedlist {
+  export interface Params$Resource$Addresses$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13148,7 +13257,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Addresses$Delete {
+  export interface Params$Resource$Addresses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13180,7 +13289,7 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Addresses$Get {
+  export interface Params$Resource$Addresses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13199,7 +13308,7 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Addresses$Insert {
+  export interface Params$Resource$Addresses$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13232,7 +13341,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Address;
   }
-  export interface Params$Resource$Addresses$List {
+  export interface Params$Resource$Addresses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13290,7 +13399,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Addresses$Setlabels {
+  export interface Params$Resource$Addresses$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13327,7 +13437,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Addresses$Testiampermissions {
+  export interface Params$Resource$Addresses$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13342,7 +13453,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -14240,7 +14351,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14441,7 +14552,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Autoscalers$Aggregatedlist {
+  export interface Params$Resource$Autoscalers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14495,7 +14607,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Autoscalers$Delete {
+  export interface Params$Resource$Autoscalers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14527,7 +14640,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Get {
+  export interface Params$Resource$Autoscalers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14546,7 +14659,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Insert {
+  export interface Params$Resource$Autoscalers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14579,7 +14693,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Autoscalers$List {
+  export interface Params$Resource$Autoscalers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14637,7 +14751,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Patch {
+  export interface Params$Resource$Autoscalers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14674,7 +14789,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Autoscalers$Testiampermissions {
+  export interface Params$Resource$Autoscalers$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14685,7 +14801,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -14698,7 +14814,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Autoscalers$Update {
+  export interface Params$Resource$Autoscalers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15686,7 +15803,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Backendbuckets$Addsignedurlkey {
+  export interface Params$Resource$Backendbuckets$Addsignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15720,7 +15838,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SignedUrlKey;
   }
-  export interface Params$Resource$Backendbuckets$Delete {
+  export interface Params$Resource$Backendbuckets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15748,7 +15867,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendbuckets$Deletesignedurlkey {
+  export interface Params$Resource$Backendbuckets$Deletesignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15781,7 +15901,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendbuckets$Get {
+  export interface Params$Resource$Backendbuckets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15796,7 +15917,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendbuckets$Insert {
+  export interface Params$Resource$Backendbuckets$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15825,7 +15947,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$BackendBucket;
   }
-  export interface Params$Resource$Backendbuckets$List {
+  export interface Params$Resource$Backendbuckets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15879,7 +16002,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendbuckets$Patch {
+  export interface Params$Resource$Backendbuckets$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15912,7 +16036,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$BackendBucket;
   }
-  export interface Params$Resource$Backendbuckets$Update {
+  export interface Params$Resource$Backendbuckets$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17248,7 +17373,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17451,7 +17576,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Backendservices$Addsignedurlkey {
+  export interface Params$Resource$Backendservices$Addsignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17485,7 +17611,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SignedUrlKey;
   }
-  export interface Params$Resource$Backendservices$Aggregatedlist {
+  export interface Params$Resource$Backendservices$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17539,7 +17666,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Delete {
+  export interface Params$Resource$Backendservices$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17567,7 +17695,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendservices$Deletesignedurlkey {
+  export interface Params$Resource$Backendservices$Deletesignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17600,7 +17729,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendservices$Get {
+  export interface Params$Resource$Backendservices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17615,7 +17745,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Gethealth {
+  export interface Params$Resource$Backendservices$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17636,7 +17767,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ResourceGroupReference;
   }
-  export interface Params$Resource$Backendservices$Insert {
+  export interface Params$Resource$Backendservices$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17665,7 +17797,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Backendservices$List {
+  export interface Params$Resource$Backendservices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17719,7 +17852,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Patch {
+  export interface Params$Resource$Backendservices$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17752,7 +17886,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Backendservices$Setsecuritypolicy {
+  export interface Params$Resource$Backendservices$Setsecuritypolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17786,7 +17921,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SecurityPolicyReference;
   }
-  export interface Params$Resource$Backendservices$Testiampermissions {
+  export interface Params$Resource$Backendservices$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17797,7 +17933,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -17806,7 +17942,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Backendservices$Update {
+  export interface Params$Resource$Backendservices$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18471,7 +18608,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -19025,7 +19162,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().ZoneSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19295,7 +19432,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19361,7 +19498,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Disks$Addresourcepolicies {
+  export interface Params$Resource$Disks$Addresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19398,7 +19536,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$DisksAddResourcePoliciesRequest;
   }
-  export interface Params$Resource$Disks$Aggregatedlist {
+  export interface Params$Resource$Disks$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19452,7 +19591,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Disks$Createsnapshot {
+  export interface Params$Resource$Disks$Createsnapshot extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19493,7 +19633,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Snapshot;
   }
-  export interface Params$Resource$Disks$Delete {
+  export interface Params$Resource$Disks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19525,7 +19665,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Get {
+  export interface Params$Resource$Disks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19544,7 +19684,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Getiampolicy {
+  export interface Params$Resource$Disks$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19555,7 +19696,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -19563,7 +19704,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Insert {
+  export interface Params$Resource$Disks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19600,7 +19741,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Disk;
   }
-  export interface Params$Resource$Disks$List {
+  export interface Params$Resource$Disks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19658,7 +19799,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Removeresourcepolicies {
+  export interface Params$Resource$Disks$Removeresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19695,7 +19837,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$DisksRemoveResourcePoliciesRequest;
   }
-  export interface Params$Resource$Disks$Resize {
+  export interface Params$Resource$Disks$Resize extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19732,7 +19874,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$DisksResizeRequest;
   }
-  export interface Params$Resource$Disks$Setiampolicy {
+  export interface Params$Resource$Disks$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19743,7 +19886,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -19756,7 +19899,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ZoneSetPolicyRequest;
   }
-  export interface Params$Resource$Disks$Setlabels {
+  export interface Params$Resource$Disks$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19793,7 +19936,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ZoneSetLabelsRequest;
   }
-  export interface Params$Resource$Disks$Testiampermissions {
+  export interface Params$Resource$Disks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19804,7 +19948,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -20237,7 +20381,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Disktypes$Aggregatedlist {
+  export interface Params$Resource$Disktypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20291,7 +20436,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Disktypes$Get {
+  export interface Params$Resource$Disktypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20310,7 +20455,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disktypes$List {
+  export interface Params$Resource$Disktypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21092,7 +21237,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -21291,7 +21436,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Firewalls$Delete {
+  export interface Params$Resource$Firewalls$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21319,7 +21464,7 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Firewalls$Get {
+  export interface Params$Resource$Firewalls$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21334,7 +21479,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Firewalls$Insert {
+  export interface Params$Resource$Firewalls$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21363,7 +21508,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Firewall;
   }
-  export interface Params$Resource$Firewalls$List {
+  export interface Params$Resource$Firewalls$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21417,7 +21562,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Firewalls$Patch {
+  export interface Params$Resource$Firewalls$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21450,7 +21595,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Firewall;
   }
-  export interface Params$Resource$Firewalls$Testiampermissions {
+  export interface Params$Resource$Firewalls$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21461,7 +21607,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -21470,7 +21616,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Firewalls$Update {
+  export interface Params$Resource$Firewalls$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22546,7 +22692,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -22611,7 +22757,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Forwardingrules$Aggregatedlist {
+  export interface Params$Resource$Forwardingrules$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22665,7 +22812,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Forwardingrules$Delete {
+  export interface Params$Resource$Forwardingrules$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22697,7 +22845,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Forwardingrules$Get {
+  export interface Params$Resource$Forwardingrules$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22716,7 +22865,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Forwardingrules$Insert {
+  export interface Params$Resource$Forwardingrules$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22749,7 +22899,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Forwardingrules$List {
+  export interface Params$Resource$Forwardingrules$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22807,7 +22958,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Forwardingrules$Setlabels {
+  export interface Params$Resource$Forwardingrules$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22844,7 +22996,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Forwardingrules$Settarget {
+  export interface Params$Resource$Forwardingrules$Settarget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22881,7 +23034,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetReference;
   }
-  export interface Params$Resource$Forwardingrules$Testiampermissions {
+  export interface Params$Resource$Forwardingrules$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22896,7 +23050,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -23632,7 +23786,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -23697,7 +23851,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Globaladdresses$Delete {
+  export interface Params$Resource$Globaladdresses$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23725,7 +23880,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Globaladdresses$Get {
+  export interface Params$Resource$Globaladdresses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23740,7 +23896,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaladdresses$Insert {
+  export interface Params$Resource$Globaladdresses$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23769,7 +23926,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Address;
   }
-  export interface Params$Resource$Globaladdresses$List {
+  export interface Params$Resource$Globaladdresses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23823,7 +23981,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaladdresses$Setlabels {
+  export interface Params$Resource$Globaladdresses$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23843,7 +24002,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Globaladdresses$Testiampermissions {
+  export interface Params$Resource$Globaladdresses$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23854,7 +24014,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -24724,7 +24884,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24790,7 +24950,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Globalforwardingrules$Delete {
+  export interface Params$Resource$Globalforwardingrules$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24818,7 +24979,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Get {
+  export interface Params$Resource$Globalforwardingrules$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24833,7 +24995,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Insert {
+  export interface Params$Resource$Globalforwardingrules$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24862,7 +25025,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Globalforwardingrules$List {
+  export interface Params$Resource$Globalforwardingrules$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24916,7 +25080,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Setlabels {
+  export interface Params$Resource$Globalforwardingrules$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24936,7 +25101,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Globalforwardingrules$Settarget {
+  export interface Params$Resource$Globalforwardingrules$Settarget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24969,7 +25135,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetReference;
   }
-  export interface Params$Resource$Globalforwardingrules$Testiampermissions {
+  export interface Params$Resource$Globalforwardingrules$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -24980,7 +25147,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -25527,7 +25694,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Globaloperations$Aggregatedlist {
+  export interface Params$Resource$Globaloperations$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25581,7 +25749,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$Delete {
+  export interface Params$Resource$Globaloperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25596,7 +25765,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$Get {
+  export interface Params$Resource$Globaloperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25611,7 +25781,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$List {
+  export interface Params$Resource$Globaloperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26395,7 +26566,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -26595,7 +26766,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Healthchecks$Delete {
+  export interface Params$Resource$Healthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26623,7 +26795,7 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Healthchecks$Get {
+  export interface Params$Resource$Healthchecks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26638,7 +26810,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Healthchecks$Insert {
+  export interface Params$Resource$Healthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26667,7 +26840,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Healthchecks$List {
+  export interface Params$Resource$Healthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26721,7 +26895,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Healthchecks$Patch {
+  export interface Params$Resource$Healthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26754,7 +26929,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Healthchecks$Testiampermissions {
+  export interface Params$Resource$Healthchecks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26765,7 +26941,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -26774,7 +26950,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Healthchecks$Update {
+  export interface Params$Resource$Healthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27543,7 +27720,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -27744,7 +27921,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Httphealthchecks$Delete {
+  export interface Params$Resource$Httphealthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27772,7 +27950,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Get {
+  export interface Params$Resource$Httphealthchecks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27787,7 +27966,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Insert {
+  export interface Params$Resource$Httphealthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27816,7 +27996,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$HttpHealthCheck;
   }
-  export interface Params$Resource$Httphealthchecks$List {
+  export interface Params$Resource$Httphealthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27870,7 +28051,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Patch {
+  export interface Params$Resource$Httphealthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27903,7 +28085,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$HttpHealthCheck;
   }
-  export interface Params$Resource$Httphealthchecks$Testiampermissions {
+  export interface Params$Resource$Httphealthchecks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -27914,7 +28097,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -27923,7 +28106,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Httphealthchecks$Update {
+  export interface Params$Resource$Httphealthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28693,7 +28877,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -28894,7 +29078,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Httpshealthchecks$Delete {
+  export interface Params$Resource$Httpshealthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28922,7 +29107,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Get {
+  export interface Params$Resource$Httpshealthchecks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28937,7 +29123,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Insert {
+  export interface Params$Resource$Httpshealthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28966,7 +29153,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$HttpsHealthCheck;
   }
-  export interface Params$Resource$Httpshealthchecks$List {
+  export interface Params$Resource$Httpshealthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29020,7 +29208,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Patch {
+  export interface Params$Resource$Httpshealthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29053,7 +29242,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$HttpsHealthCheck;
   }
-  export interface Params$Resource$Httpshealthchecks$Testiampermissions {
+  export interface Params$Resource$Httpshealthchecks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29064,7 +29254,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -29073,7 +29263,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Httpshealthchecks$Update {
+  export interface Params$Resource$Httpshealthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29631,7 +29822,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -29967,7 +30158,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -30228,7 +30419,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -30293,7 +30484,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Images$Delete {
+  export interface Params$Resource$Images$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30321,7 +30512,7 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Images$Deprecate {
+  export interface Params$Resource$Images$Deprecate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30354,7 +30545,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$DeprecationStatus;
   }
-  export interface Params$Resource$Images$Get {
+  export interface Params$Resource$Images$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30369,7 +30560,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Getfromfamily {
+  export interface Params$Resource$Images$Getfromfamily extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30384,7 +30576,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Getiampolicy {
+  export interface Params$Resource$Images$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30395,11 +30588,11 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Images$Insert {
+  export interface Params$Resource$Images$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30432,7 +30625,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Image;
   }
-  export interface Params$Resource$Images$List {
+  export interface Params$Resource$Images$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30486,7 +30679,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Setiampolicy {
+  export interface Params$Resource$Images$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30497,7 +30691,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -30506,7 +30700,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Images$Setlabels {
+  export interface Params$Resource$Images$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30526,7 +30720,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Images$Testiampermissions {
+  export interface Params$Resource$Images$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30537,7 +30732,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -30562,19 +30757,19 @@ export namespace compute_beta {
 
     /**
      * compute.instanceGroupManagers.abandonInstances
-     * @desc Schedules a group action to remove the specified instances from the
-     * managed instance group. Abandoning an instance does not delete the
-     * instance, but it does remove the instance from any target pools that are
-     * applied by the managed instance group. This method reduces the targetSize
-     * of the managed instance group by the number of instances that you
-     * abandon. This operation is marked as DONE when the action is scheduled
-     * even if the instances have not yet been removed from the group. You must
-     * separately verify the status of the abandoning action with the
-     * listmanagedinstances method.  If the group is part of a backend service
-     * that has enabled connection draining, it can take up to 60 seconds after
-     * the connection draining duration has elapsed before the VM instance is
-     * removed or deleted.  You can specify a maximum of 1000 instances with
-     * this method per request.
+     * @desc Flags the specified instances to be removed from the managed
+     * instance group. Abandoning an instance does not delete the instance, but
+     * it does remove the instance from any target pools that are applied by the
+     * managed instance group. This method reduces the targetSize of the managed
+     * instance group by the number of instances that you abandon. This
+     * operation is marked as DONE when the action is scheduled even if the
+     * instances have not yet been removed from the group. You must separately
+     * verify the status of the abandoning action with the listmanagedinstances
+     * method.  If the group is part of a backend service that has enabled
+     * connection draining, it can take up to 60 seconds after the connection
+     * draining duration has elapsed before the VM instance is removed or
+     * deleted.  You can specify a maximum of 1000 instances with this method
+     * per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30997,11 +31192,11 @@ export namespace compute_beta {
 
     /**
      * compute.instanceGroupManagers.deleteInstances
-     * @desc Schedules a group action to delete the specified instances in the
-     * managed instance group. The instances are also removed from any target
-     * pools of which they were a member. This method reduces the targetSize of
-     * the managed instance group by the number of instances that you delete.
-     * This operation is marked as DONE when the action is scheduled even if the
+     * @desc Flags the specified instances in the managed instance group for
+     * immediate deletion. The instances are also removed from any target pools
+     * of which they were a member. This method reduces the targetSize of the
+     * managed instance group by the number of instances that you delete. This
+     * operation is marked as DONE when the action is scheduled even if the
      * instances are still being deleted. You must separately verify the status
      * of the deleting action with the listmanagedinstances method.  If the
      * group is part of a backend service that has enabled connection draining,
@@ -31274,14 +31469,13 @@ export namespace compute_beta {
     /**
      * compute.instanceGroupManagers.insert
      * @desc Creates a managed instance group using the information that you
-     * specify in the request. After the group is created, it schedules an
-     * action to create instances in the group using the specified instance
-     * template. This operation is marked as DONE when the group is created even
-     * if the instances in the group have not yet been created. You must
-     * separately verify the status of the individual instances with the
-     * listmanagedinstances method.  A managed instance group can have up to
-     * 1000 VM instances per group. Please contact Cloud Support if you need an
-     * increase in this limit.
+     * specify in the request. After the group is created, instances in the
+     * group are created using the specified instance template. This operation
+     * is marked as DONE when the group is created even if the instances in the
+     * group have not yet been created. You must separately verify the status of
+     * the individual instances with the listmanagedinstances method.  A managed
+     * instance group can have up to 1000 VM instances per group. Please contact
+     * Cloud Support if you need an increase in this limit.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31873,16 +32067,16 @@ export namespace compute_beta {
 
     /**
      * compute.instanceGroupManagers.recreateInstances
-     * @desc Schedules a group action to recreate the specified instances in the
-     * managed instance group. The instances are deleted and recreated using the
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately recreated. The instances are deleted and recreated using the
      * current instance template for the managed instance group. This operation
-     * is marked as DONE when the action is scheduled even if the instances have
-     * not yet been recreated. You must separately verify the status of the
-     * recreating action with the listmanagedinstances method.  If the group is
-     * part of a backend service that has enabled connection draining, it can
-     * take up to 60 seconds after the connection draining duration has elapsed
-     * before the VM instance is removed or deleted.  You can specify a maximum
-     * of 1000 instances with this method per request.
+     * is marked as DONE when the flag is set even if the instances have not yet
+     * been recreated. You must separately verify the status of the recreating
+     * action with the listmanagedinstances method.  If the group is part of a
+     * backend service that has enabled connection draining, it can take up to
+     * 60 seconds after the connection draining duration has elapsed before the
+     * VM instance is removed or deleted.  You can specify a maximum of 1000
+     * instances with this method per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32024,10 +32218,15 @@ export namespace compute_beta {
      * marked DONE when the resize actions are scheduled even if the group has
      * not yet added or deleted any instances. You must separately verify the
      * status of the creating or deleting actions with the listmanagedinstances
-     * method.  If the group is part of a backend service that has enabled
-     * connection draining, it can take up to 60 seconds after the connection
-     * draining duration has elapsed before the VM instance is removed or
-     * deleted.
+     * method.  When resizing down, the instance group arbitrarily chooses the
+     * order in which VMs are deleted. The group takes into account some VM
+     * attributes when making the selection including:  + The status of the VM
+     * instance. + The health of the VM instance. + The instance template
+     * version the VM is based on. + For regional managed instance groups, the
+     * location of the VM instance.  This list is subject to change.  If the
+     * group is part of a backend service that has enabled connection draining,
+     * it can take up to 60 seconds after the connection draining duration has
+     * elapsed before the VM instance is removed or deleted.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32797,7 +32996,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33007,7 +33206,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Instancegroupmanagers$Abandoninstances {
+  export interface Params$Resource$Instancegroupmanagers$Abandoninstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33044,7 +33244,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersAbandonInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Aggregatedlist {
+  export interface Params$Resource$Instancegroupmanagers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33098,7 +33299,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Delete {
+  export interface Params$Resource$Instancegroupmanagers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33130,7 +33332,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Deleteinstances {
+  export interface Params$Resource$Instancegroupmanagers$Deleteinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33167,7 +33370,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersDeleteInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Get {
+  export interface Params$Resource$Instancegroupmanagers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33186,7 +33390,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Insert {
+  export interface Params$Resource$Instancegroupmanagers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33219,7 +33424,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Instancegroupmanagers$List {
+  export interface Params$Resource$Instancegroupmanagers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33277,7 +33483,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Listmanagedinstances {
+  export interface Params$Resource$Instancegroupmanagers$Listmanagedinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33339,7 +33546,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Patch {
+  export interface Params$Resource$Instancegroupmanagers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33376,7 +33584,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Instancegroupmanagers$Recreateinstances {
+  export interface Params$Resource$Instancegroupmanagers$Recreateinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33413,7 +33622,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersRecreateInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Resize {
+  export interface Params$Resource$Instancegroupmanagers$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33452,7 +33662,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Resizeadvanced {
+  export interface Params$Resource$Instancegroupmanagers$Resizeadvanced extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33489,7 +33700,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersResizeAdvancedRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Setautohealingpolicies {
+  export interface Params$Resource$Instancegroupmanagers$Setautohealingpolicies
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33526,7 +33738,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersSetAutoHealingRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate {
+  export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33563,7 +33776,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Settargetpools {
+  export interface Params$Resource$Instancegroupmanagers$Settargetpools extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33600,7 +33814,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersSetTargetPoolsRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Testiampermissions {
+  export interface Params$Resource$Instancegroupmanagers$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33611,7 +33826,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -33624,7 +33839,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Update {
+  export interface Params$Resource$Instancegroupmanagers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35004,7 +35220,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35070,7 +35286,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Instancegroups$Addinstances {
+  export interface Params$Resource$Instancegroups$Addinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35107,7 +35324,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupsAddInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Aggregatedlist {
+  export interface Params$Resource$Instancegroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35161,7 +35379,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancegroups$Delete {
+  export interface Params$Resource$Instancegroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35193,7 +35412,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Get {
+  export interface Params$Resource$Instancegroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35212,7 +35432,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Insert {
+  export interface Params$Resource$Instancegroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35245,7 +35466,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroup;
   }
-  export interface Params$Resource$Instancegroups$List {
+  export interface Params$Resource$Instancegroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35303,7 +35525,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Listinstances {
+  export interface Params$Resource$Instancegroups$Listinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35371,7 +35594,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupsListInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Removeinstances {
+  export interface Params$Resource$Instancegroups$Removeinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35409,7 +35633,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupsRemoveInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Setnamedports {
+  export interface Params$Resource$Instancegroups$Setnamedports extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35446,7 +35671,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupsSetNamedPortsRequest;
   }
-  export interface Params$Resource$Instancegroups$Testiampermissions {
+  export interface Params$Resource$Instancegroups$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35457,7 +35683,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -36519,7 +36745,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -37060,7 +37286,8 @@ export namespace compute_beta {
     /**
      * compute.instances.listReferrers
      * @desc Retrieves the list of referrers to instances contained within the
-     * specified zone.
+     * specified zone. For more information, read Viewing Referrers to VM
+     * Instances.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -37322,6 +37549,78 @@ export namespace compute_beta {
               url:
                   (rootUrl +
                    '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/reset')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.resume
+     * @desc Resumes an instance that was suspended using the
+     * instances().suspend method.
+     * @alias compute.instances.resume
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to resume.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().InstancesResumeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resume(params?: Params$Resource$Instances$Resume, options?: MethodOptions):
+        AxiosPromise<Schema$Operation>;
+    resume(
+        params: Params$Resource$Instances$Resume,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+        params: Params$Resource$Instances$Resume,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+        paramsOrCallback?: Params$Resource$Instances$Resume|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Instances$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/resume')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -37619,7 +37918,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().ZoneSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38718,8 +39017,8 @@ export namespace compute_beta {
 
     /**
      * compute.instances.setTags
-     * @desc Sets tags for the specified instance to the data included in the
-     * request.
+     * @desc Sets network tags for the specified instance to the data included
+     * in the request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -39326,6 +39625,84 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.suspend
+     * @desc This method suspends a running instance, saving its state to
+     * persistent storage, and allows you to resume the instance at a later
+     * time. Suspended instances incur reduced per-minute, virtual machine usage
+     * charges while they are suspended. Any resources the virtual machine is
+     * using, such as persistent disks and static IP addresses, will continue to
+     * be charged until they are deleted.
+     * @alias compute.instances.suspend
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.discardLocalSsd If true, discard the contents of any attached localSSD partitions. Default value is false (== preserve localSSD data).
+     * @param {string} params.instance Name of the instance resource to suspend.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    suspend(
+        params?: Params$Resource$Instances$Suspend,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    suspend(
+        params: Params$Resource$Instances$Suspend,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    suspend(
+        params: Params$Resource$Instances$Suspend,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    suspend(callback: BodyResponseCallback<Schema$Operation>): void;
+    suspend(
+        paramsOrCallback?: Params$Resource$Instances$Suspend|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Suspend;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Suspend;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/suspend')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource.
      * @example
@@ -39396,7 +39773,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39823,7 +40200,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Instances$Addaccessconfig {
+  export interface Params$Resource$Instances$Addaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39864,7 +40242,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$AccessConfig;
   }
-  export interface Params$Resource$Instances$Aggregatedlist {
+  export interface Params$Resource$Instances$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39918,7 +40297,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Attachdisk {
+  export interface Params$Resource$Instances$Attachdisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39960,7 +40340,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$AttachedDisk;
   }
-  export interface Params$Resource$Instances$Delete {
+  export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39992,7 +40372,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Deleteaccessconfig {
+  export interface Params$Resource$Instances$Deleteaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40032,7 +40413,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Detachdisk {
+  export interface Params$Resource$Instances$Detachdisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40068,7 +40450,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Get {
+  export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40087,7 +40469,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getguestattributes {
+  export interface Params$Resource$Instances$Getguestattributes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40114,7 +40497,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getiampolicy {
+  export interface Params$Resource$Instances$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40125,7 +40509,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -40133,7 +40517,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getserialportoutput {
+  export interface Params$Resource$Instances$Getserialportoutput extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40164,7 +40549,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getshieldedvmidentity {
+  export interface Params$Resource$Instances$Getshieldedvmidentity extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40183,7 +40569,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Insert {
+  export interface Params$Resource$Instances$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40225,7 +40611,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Instances$List {
+  export interface Params$Resource$Instances$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40283,7 +40669,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Listreferrers {
+  export interface Params$Resource$Instances$Listreferrers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40346,7 +40733,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Reset {
+  export interface Params$Resource$Instances$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40378,7 +40765,45 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setdeletionprotection {
+  export interface Params$Resource$Instances$Resume extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the instance resource to resume.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesResumeRequest;
+  }
+  export interface Params$Resource$Instances$Setdeletionprotection extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40414,7 +40839,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setdiskautodelete {
+  export interface Params$Resource$Instances$Setdiskautodelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40454,7 +40880,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setiampolicy {
+  export interface Params$Resource$Instances$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40465,7 +40892,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -40478,7 +40905,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ZoneSetPolicyRequest;
   }
-  export interface Params$Resource$Instances$Setlabels {
+  export interface Params$Resource$Instances$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40515,7 +40943,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetLabelsRequest;
   }
-  export interface Params$Resource$Instances$Setmachineresources {
+  export interface Params$Resource$Instances$Setmachineresources extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40552,7 +40981,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetMachineResourcesRequest;
   }
-  export interface Params$Resource$Instances$Setmachinetype {
+  export interface Params$Resource$Instances$Setmachinetype extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40589,7 +41019,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetMachineTypeRequest;
   }
-  export interface Params$Resource$Instances$Setmetadata {
+  export interface Params$Resource$Instances$Setmetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40626,7 +41057,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Metadata;
   }
-  export interface Params$Resource$Instances$Setmincpuplatform {
+  export interface Params$Resource$Instances$Setmincpuplatform extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40663,7 +41095,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetMinCpuPlatformRequest;
   }
-  export interface Params$Resource$Instances$Setscheduling {
+  export interface Params$Resource$Instances$Setscheduling extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40700,7 +41133,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Scheduling;
   }
-  export interface Params$Resource$Instances$Setserviceaccount {
+  export interface Params$Resource$Instances$Setserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40737,7 +41171,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
-  export interface Params$Resource$Instances$Setshieldedvmintegritypolicy {
+  export interface Params$Resource$Instances$Setshieldedvmintegritypolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40774,7 +41209,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ShieldedVmIntegrityPolicy;
   }
-  export interface Params$Resource$Instances$Settags {
+  export interface Params$Resource$Instances$Settags extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40811,7 +41247,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Tags;
   }
-  export interface Params$Resource$Instances$Simulatemaintenanceevent {
+  export interface Params$Resource$Instances$Simulatemaintenanceevent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40830,7 +41267,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Start {
+  export interface Params$Resource$Instances$Start extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40862,7 +41299,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Startwithencryptionkey {
+  export interface Params$Resource$Instances$Startwithencryptionkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40899,7 +41337,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesStartWithEncryptionKeyRequest;
   }
-  export interface Params$Resource$Instances$Stop {
+  export interface Params$Resource$Instances$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40931,7 +41369,46 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Testiampermissions {
+  export interface Params$Resource$Instances$Suspend extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If true, discard the contents of any attached localSSD partitions.
+     * Default value is false (== preserve localSSD data).
+     */
+    discardLocalSsd?: boolean;
+    /**
+     * Name of the instance resource to suspend.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40942,7 +41419,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -40955,7 +41432,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Instances$Updateaccessconfig {
+  export interface Params$Resource$Instances$Updateaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40996,7 +41474,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$AccessConfig;
   }
-  export interface Params$Resource$Instances$Updatenetworkinterface {
+  export interface Params$Resource$Instances$Updatenetworkinterface extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41037,7 +41516,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworkInterface;
   }
-  export interface Params$Resource$Instances$Updateshieldedvmconfig {
+  export interface Params$Resource$Instances$Updateshieldedvmconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41351,7 +41831,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -41692,7 +42172,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -41820,7 +42300,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -41885,7 +42365,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Instancetemplates$Delete {
+  export interface Params$Resource$Instancetemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41913,7 +42394,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Instancetemplates$Get {
+  export interface Params$Resource$Instancetemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41928,7 +42410,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancetemplates$Getiampolicy {
+  export interface Params$Resource$Instancetemplates$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41939,11 +42422,12 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Instancetemplates$Insert {
+  export interface Params$Resource$Instancetemplates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41972,7 +42456,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceTemplate;
   }
-  export interface Params$Resource$Instancetemplates$List {
+  export interface Params$Resource$Instancetemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42026,7 +42511,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancetemplates$Setiampolicy {
+  export interface Params$Resource$Instancetemplates$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42037,7 +42523,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -42046,7 +42532,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Instancetemplates$Testiampermissions {
+  export interface Params$Resource$Instancetemplates$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42057,7 +42544,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -42992,7 +43479,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -43059,7 +43546,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Interconnectattachments$Aggregatedlist {
+  export interface Params$Resource$Interconnectattachments$Aggregatedlist
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43113,7 +43601,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Delete {
+  export interface Params$Resource$Interconnectattachments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43145,7 +43634,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Get {
+  export interface Params$Resource$Interconnectattachments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43164,7 +43654,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Insert {
+  export interface Params$Resource$Interconnectattachments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43197,7 +43688,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InterconnectAttachment;
   }
-  export interface Params$Resource$Interconnectattachments$List {
+  export interface Params$Resource$Interconnectattachments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43255,7 +43747,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Patch {
+  export interface Params$Resource$Interconnectattachments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43292,7 +43785,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InterconnectAttachment;
   }
-  export interface Params$Resource$Interconnectattachments$Setlabels {
+  export interface Params$Resource$Interconnectattachments$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43329,7 +43823,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Interconnectattachments$Testiampermissions {
+  export interface Params$Resource$Interconnectattachments$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43344,7 +43839,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -43633,7 +44128,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Interconnectlocations$Get {
+  export interface Params$Resource$Interconnectlocations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43648,7 +44144,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnectlocations$List {
+  export interface Params$Resource$Interconnectlocations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44588,7 +45085,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -44653,7 +45150,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Interconnects$Delete {
+  export interface Params$Resource$Interconnects$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44681,7 +45179,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Interconnects$Get {
+  export interface Params$Resource$Interconnects$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44696,7 +45195,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnects$Getdiagnostics {
+  export interface Params$Resource$Interconnects$Getdiagnostics extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44711,7 +45211,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnects$Insert {
+  export interface Params$Resource$Interconnects$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44740,7 +45241,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Interconnect;
   }
-  export interface Params$Resource$Interconnects$List {
+  export interface Params$Resource$Interconnects$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44794,7 +45296,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnects$Patch {
+  export interface Params$Resource$Interconnects$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44827,7 +45330,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Interconnect;
   }
-  export interface Params$Resource$Interconnects$Setlabels {
+  export interface Params$Resource$Interconnects$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44847,7 +45351,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Interconnects$Testiampermissions {
+  export interface Params$Resource$Interconnects$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44858,7 +45363,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -44947,7 +45452,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Licensecodes$Get {
+  export interface Params$Resource$Licensecodes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45309,7 +45814,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Licenses$Delete {
+  export interface Params$Resource$Licenses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45337,7 +45842,7 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Licenses$Get {
+  export interface Params$Resource$Licenses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45352,7 +45857,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Licenses$Insert {
+  export interface Params$Resource$Licenses$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45381,7 +45886,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$License;
   }
-  export interface Params$Resource$Licenses$List {
+  export interface Params$Resource$Licenses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45861,7 +46366,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Machinetypes$Aggregatedlist {
+  export interface Params$Resource$Machinetypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45915,7 +46421,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Machinetypes$Get {
+  export interface Params$Resource$Machinetypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45934,7 +46440,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Machinetypes$List {
+  export interface Params$Resource$Machinetypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46635,7 +47142,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -46702,7 +47209,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Networkendpointgroups$Aggregatedlist {
+  export interface Params$Resource$Networkendpointgroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46756,7 +47264,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Attachnetworkendpoints {
+  export interface Params$Resource$Networkendpointgroups$Attachnetworkendpoints
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46795,7 +47304,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworkEndpointGroupsAttachEndpointsRequest;
   }
-  export interface Params$Resource$Networkendpointgroups$Delete {
+  export interface Params$Resource$Networkendpointgroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46829,7 +47339,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Detachnetworkendpoints {
+  export interface Params$Resource$Networkendpointgroups$Detachnetworkendpoints
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46868,7 +47379,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworkEndpointGroupsDetachEndpointsRequest;
   }
-  export interface Params$Resource$Networkendpointgroups$Get {
+  export interface Params$Resource$Networkendpointgroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46888,7 +47400,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Insert {
+  export interface Params$Resource$Networkendpointgroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46922,7 +47435,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworkEndpointGroup;
   }
-  export interface Params$Resource$Networkendpointgroups$List {
+  export interface Params$Resource$Networkendpointgroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46981,7 +47495,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Listnetworkendpoints {
+  export interface Params$Resource$Networkendpointgroups$Listnetworkendpoints
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47050,7 +47565,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworkEndpointGroupsListEndpointsRequest;
   }
-  export interface Params$Resource$Networkendpointgroups$Testiampermissions {
+  export interface Params$Resource$Networkendpointgroups$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47061,7 +47577,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -48190,7 +48706,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -48255,7 +48771,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Networks$Addpeering {
+  export interface Params$Resource$Networks$Addpeering extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48288,7 +48805,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworksAddPeeringRequest;
   }
-  export interface Params$Resource$Networks$Delete {
+  export interface Params$Resource$Networks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48316,7 +48833,7 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Networks$Get {
+  export interface Params$Resource$Networks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48331,7 +48848,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Networks$Insert {
+  export interface Params$Resource$Networks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48360,7 +48877,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Network;
   }
-  export interface Params$Resource$Networks$List {
+  export interface Params$Resource$Networks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48414,7 +48931,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Networks$Patch {
+  export interface Params$Resource$Networks$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48447,7 +48964,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Network;
   }
-  export interface Params$Resource$Networks$Removepeering {
+  export interface Params$Resource$Networks$Removepeering extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48480,7 +48998,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworksRemovePeeringRequest;
   }
-  export interface Params$Resource$Networks$Switchtocustommode {
+  export interface Params$Resource$Networks$Switchtocustommode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48508,7 +49027,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Networks$Testiampermissions {
+  export interface Params$Resource$Networks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48519,7 +49039,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -48911,7 +49431,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -49201,7 +49721,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().ZoneSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -49345,7 +49865,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -49411,7 +49931,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Nodegroups$Addnodes {
+  export interface Params$Resource$Nodegroups$Addnodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49448,7 +49969,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NodeGroupsAddNodesRequest;
   }
-  export interface Params$Resource$Nodegroups$Aggregatedlist {
+  export interface Params$Resource$Nodegroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49502,7 +50024,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodegroups$Delete {
+  export interface Params$Resource$Nodegroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49534,7 +50057,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Deletenodes {
+  export interface Params$Resource$Nodegroups$Deletenodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49571,7 +50095,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NodeGroupsDeleteNodesRequest;
   }
-  export interface Params$Resource$Nodegroups$Get {
+  export interface Params$Resource$Nodegroups$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49590,7 +50114,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Getiampolicy {
+  export interface Params$Resource$Nodegroups$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49601,7 +50126,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -49609,7 +50134,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Insert {
+  export interface Params$Resource$Nodegroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49646,7 +50172,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NodeGroup;
   }
-  export interface Params$Resource$Nodegroups$List {
+  export interface Params$Resource$Nodegroups$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49704,7 +50230,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Listnodes {
+  export interface Params$Resource$Nodegroups$Listnodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49766,7 +50293,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Setiampolicy {
+  export interface Params$Resource$Nodegroups$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49777,7 +50305,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -49790,7 +50318,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ZoneSetPolicyRequest;
   }
-  export interface Params$Resource$Nodegroups$Setnodetemplate {
+  export interface Params$Resource$Nodegroups$Setnodetemplate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49827,7 +50356,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NodeGroupsSetNodeTemplateRequest;
   }
-  export interface Params$Resource$Nodegroups$Testiampermissions {
+  export interface Params$Resource$Nodegroups$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49838,7 +50368,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -50094,7 +50624,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -50312,7 +50842,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().RegionSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -50383,7 +50913,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -50448,7 +50978,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Nodetemplates$Aggregatedlist {
+  export interface Params$Resource$Nodetemplates$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50502,7 +51033,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodetemplates$Delete {
+  export interface Params$Resource$Nodetemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50534,7 +51066,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Nodetemplates$Get {
+  export interface Params$Resource$Nodetemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50553,7 +51086,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Nodetemplates$Getiampolicy {
+  export interface Params$Resource$Nodetemplates$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50568,11 +51102,12 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Nodetemplates$Insert {
+  export interface Params$Resource$Nodetemplates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50605,7 +51140,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NodeTemplate;
   }
-  export interface Params$Resource$Nodetemplates$List {
+  export interface Params$Resource$Nodetemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50663,7 +51199,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Nodetemplates$Setiampolicy {
+  export interface Params$Resource$Nodetemplates$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50678,7 +51215,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -50687,7 +51224,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetPolicyRequest;
   }
-  export interface Params$Resource$Nodetemplates$Testiampermissions {
+  export interface Params$Resource$Nodetemplates$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50702,7 +51240,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -50936,7 +51474,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Nodetypes$Aggregatedlist {
+  export interface Params$Resource$Nodetypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50990,7 +51529,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodetypes$Get {
+  export interface Params$Resource$Nodetypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51009,7 +51548,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodetypes$List {
+  export interface Params$Resource$Nodetypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52680,7 +53219,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Projects$Disablexpnhost {
+  export interface Params$Resource$Projects$Disablexpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52704,7 +53244,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Disablexpnresource {
+  export interface Params$Resource$Projects$Disablexpnresource extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52733,7 +53274,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ProjectsDisableXpnResourceRequest;
   }
-  export interface Params$Resource$Projects$Enablexpnhost {
+  export interface Params$Resource$Projects$Enablexpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52757,7 +53299,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Enablexpnresource {
+  export interface Params$Resource$Projects$Enablexpnresource extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52786,7 +53329,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ProjectsEnableXpnResourceRequest;
   }
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52797,7 +53340,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Getxpnhost {
+  export interface Params$Resource$Projects$Getxpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52808,7 +53352,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Getxpnresources {
+  export interface Params$Resource$Projects$Getxpnresources extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52862,7 +53407,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Listxpnhosts {
+  export interface Params$Resource$Projects$Listxpnhosts extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52921,7 +53467,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ProjectsListXpnHostsRequest;
   }
-  export interface Params$Resource$Projects$Movedisk {
+  export interface Params$Resource$Projects$Movedisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52950,7 +53497,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$DiskMoveRequest;
   }
-  export interface Params$Resource$Projects$Moveinstance {
+  export interface Params$Resource$Projects$Moveinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52979,7 +53527,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceMoveRequest;
   }
-  export interface Params$Resource$Projects$Setcommoninstancemetadata {
+  export interface Params$Resource$Projects$Setcommoninstancemetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53008,7 +53557,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Metadata;
   }
-  export interface Params$Resource$Projects$Setdefaultnetworktier {
+  export interface Params$Resource$Projects$Setdefaultnetworktier extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53037,7 +53587,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ProjectsSetDefaultNetworkTierRequest;
   }
-  export interface Params$Resource$Projects$Setusageexportbucket {
+  export interface Params$Resource$Projects$Setusageexportbucket extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53822,7 +54373,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -54023,7 +54574,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regionautoscalers$Delete {
+  export interface Params$Resource$Regionautoscalers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54055,7 +54607,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Get {
+  export interface Params$Resource$Regionautoscalers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54074,7 +54627,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Insert {
+  export interface Params$Resource$Regionautoscalers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54107,7 +54661,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Regionautoscalers$List {
+  export interface Params$Resource$Regionautoscalers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54165,7 +54720,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Patch {
+  export interface Params$Resource$Regionautoscalers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54202,7 +54758,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Regionautoscalers$Testiampermissions {
+  export interface Params$Resource$Regionautoscalers$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54217,7 +54774,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -54226,7 +54783,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regionautoscalers$Update {
+  export interface Params$Resource$Regionautoscalers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55167,7 +55725,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -55375,7 +55933,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regionbackendservices$Delete {
+  export interface Params$Resource$Regionbackendservices$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55407,7 +55966,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Get {
+  export interface Params$Resource$Regionbackendservices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55426,7 +55986,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Gethealth {
+  export interface Params$Resource$Regionbackendservices$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55450,7 +56011,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ResourceGroupReference;
   }
-  export interface Params$Resource$Regionbackendservices$Insert {
+  export interface Params$Resource$Regionbackendservices$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55483,7 +56045,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Regionbackendservices$List {
+  export interface Params$Resource$Regionbackendservices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55541,7 +56104,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Patch {
+  export interface Params$Resource$Regionbackendservices$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55578,7 +56142,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Regionbackendservices$Testiampermissions {
+  export interface Params$Resource$Regionbackendservices$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55593,7 +56158,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -55602,7 +56167,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regionbackendservices$Update {
+  export interface Params$Resource$Regionbackendservices$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56198,7 +56764,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regioncommitments$Aggregatedlist {
+  export interface Params$Resource$Regioncommitments$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56252,7 +56819,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Regioncommitments$Get {
+  export interface Params$Resource$Regioncommitments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56271,7 +56839,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioncommitments$Insert {
+  export interface Params$Resource$Regioncommitments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56304,7 +56873,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Commitment;
   }
-  export interface Params$Resource$Regioncommitments$List {
+  export interface Params$Resource$Regioncommitments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57037,7 +57607,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -57102,7 +57672,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regiondisks$Addresourcepolicies {
+  export interface Params$Resource$Regiondisks$Addresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57139,7 +57710,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionDisksAddResourcePoliciesRequest;
   }
-  export interface Params$Resource$Regiondisks$Createsnapshot {
+  export interface Params$Resource$Regiondisks$Createsnapshot extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57176,7 +57748,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Snapshot;
   }
-  export interface Params$Resource$Regiondisks$Delete {
+  export interface Params$Resource$Regiondisks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57208,7 +57781,7 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regiondisks$Get {
+  export interface Params$Resource$Regiondisks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57227,7 +57800,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisks$Insert {
+  export interface Params$Resource$Regiondisks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57264,7 +57838,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Disk;
   }
-  export interface Params$Resource$Regiondisks$List {
+  export interface Params$Resource$Regiondisks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57322,7 +57896,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisks$Removeresourcepolicies {
+  export interface Params$Resource$Regiondisks$Removeresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57359,7 +57934,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionDisksRemoveResourcePoliciesRequest;
   }
-  export interface Params$Resource$Regiondisks$Resize {
+  export interface Params$Resource$Regiondisks$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57396,7 +57972,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionDisksResizeRequest;
   }
-  export interface Params$Resource$Regiondisks$Setlabels {
+  export interface Params$Resource$Regiondisks$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57433,7 +58010,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Regiondisks$Testiampermissions {
+  export interface Params$Resource$Regiondisks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57448,7 +58026,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -57613,7 +58191,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regiondisktypes$Get {
+  export interface Params$Resource$Regiondisktypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57632,7 +58211,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisktypes$List {
+  export interface Params$Resource$Regiondisktypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57706,7 +58286,7 @@ export namespace compute_beta {
 
     /**
      * compute.regionInstanceGroupManagers.abandonInstances
-     * @desc Schedules a group action to remove the specified instances from the
+     * @desc Flags the specified instances to be immediately removed from the
      * managed instance group. Abandoning an instance does not delete the
      * instance, but it does remove the instance from any target pools that are
      * applied by the managed instance group. This method reduces the targetSize
@@ -57986,17 +58566,18 @@ export namespace compute_beta {
 
     /**
      * compute.regionInstanceGroupManagers.deleteInstances
-     * @desc Schedules a group action to delete the specified instances in the
-     * managed instance group. The instances are also removed from any target
-     * pools of which they were a member. This method reduces the targetSize of
-     * the managed instance group by the number of instances that you delete.
-     * This operation is marked as DONE when the action is scheduled even if the
-     * instances are still being deleted. You must separately verify the status
-     * of the deleting action with the listmanagedinstances method.  If the
-     * group is part of a backend service that has enabled connection draining,
-     * it can take up to 60 seconds after the connection draining duration has
-     * elapsed before the VM instance is removed or deleted.  You can specify a
-     * maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately deleted. The instances are also removed from any target pools
+     * of which they were a member. This method reduces the targetSize of the
+     * managed instance group by the number of instances that you delete. The
+     * deleteInstances operation is marked DONE if the deleteInstances request
+     * is successful. The underlying actions take additional time. You must
+     * separately verify the status of the deleting action with the
+     * listmanagedinstances method.  If the group is part of a backend service
+     * that has enabled connection draining, it can take up to 60 seconds after
+     * the connection draining duration has elapsed before the VM instance is
+     * removed or deleted.  You can specify a maximum of 1000 instances with
+     * this method per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -58261,13 +58842,12 @@ export namespace compute_beta {
     /**
      * compute.regionInstanceGroupManagers.insert
      * @desc Creates a managed instance group using the information that you
-     * specify in the request. After the group is created, it schedules an
-     * action to create instances in the group using the specified instance
-     * template. This operation is marked as DONE when the group is created even
-     * if the instances in the group have not yet been created. You must
-     * separately verify the status of the individual instances with the
-     * listmanagedinstances method.  A regional managed instance group can
-     * contain up to 2000 instances.
+     * specify in the request. After the group is created, instances in the
+     * group are created using the specified instance template. This operation
+     * is marked as DONE when the group is created even if the instances in the
+     * group have not yet been created. You must separately verify the status of
+     * the individual instances with the listmanagedinstances method.  A
+     * regional managed instance group can contain up to 2000 instances.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -58861,16 +59441,16 @@ export namespace compute_beta {
 
     /**
      * compute.regionInstanceGroupManagers.recreateInstances
-     * @desc Schedules a group action to recreate the specified instances in the
-     * managed instance group. The instances are deleted and recreated using the
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately recreated. The instances are deleted and recreated using the
      * current instance template for the managed instance group. This operation
-     * is marked as DONE when the action is scheduled even if the instances have
-     * not yet been recreated. You must separately verify the status of the
-     * recreating action with the listmanagedinstances method.  If the group is
-     * part of a backend service that has enabled connection draining, it can
-     * take up to 60 seconds after the connection draining duration has elapsed
-     * before the VM instance is removed or deleted.  You can specify a maximum
-     * of 1000 instances with this method per request.
+     * is marked as DONE when the flag is set even if the instances have not yet
+     * been recreated. You must separately verify the status of the recreating
+     * action with the listmanagedinstances method.  If the group is part of a
+     * backend service that has enabled connection draining, it can take up to
+     * 60 seconds after the connection draining duration has elapsed before the
+     * VM instance is removed or deleted.  You can specify a maximum of 1000
+     * instances with this method per request.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59007,17 +59587,16 @@ export namespace compute_beta {
 
     /**
      * compute.regionInstanceGroupManagers.resize
-     * @desc Changes the intended size for the managed instance group. If you
-     * increase the size, the group schedules actions to create new instances
-     * using the current instance template. If you decrease the size, the group
-     * schedules delete actions on one or more instances. The resize operation
-     * is marked DONE when the resize actions are scheduled even if the group
-     * has not yet added or deleted any instances. You must separately verify
-     * the status of the creating or deleting actions with the
-     * listmanagedinstances method.  If the group is part of a backend service
-     * that has enabled connection draining, it can take up to 60 seconds after
-     * the connection draining duration has elapsed before the VM instance is
-     * removed or deleted.
+     * @desc Changes the intended size of the managed instance group. If you
+     * increase the size, the group creates new instances using the current
+     * instance template. If you decrease the size, the group deletes one or
+     * more instances.  The resize operation is marked DONE if the resize
+     * request is successful. The underlying actions take additional time. You
+     * must separately verify the status of the creating or deleting actions
+     * with the listmanagedinstances method.  If the group is part of a backend
+     * service that has enabled connection draining, it can take up to 60
+     * seconds after the connection draining duration has elapsed before the VM
+     * instance is removed or deleted.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59638,7 +60217,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -59846,7 +60425,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regioninstancegroupmanagers$Abandoninstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Abandoninstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59883,7 +60463,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupManagersAbandonInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Delete {
+  export interface Params$Resource$Regioninstancegroupmanagers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59915,7 +60496,8 @@ export namespace compute_beta {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Deleteinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Deleteinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59952,7 +60534,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupManagersDeleteInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Get {
+  export interface Params$Resource$Regioninstancegroupmanagers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59971,7 +60554,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Insert {
+  export interface Params$Resource$Regioninstancegroupmanagers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60004,7 +60588,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$List {
+  export interface Params$Resource$Regioninstancegroupmanagers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60062,7 +60647,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60124,7 +60710,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Patch {
+  export interface Params$Resource$Regioninstancegroupmanagers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60161,7 +60748,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60198,7 +60786,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupManagersRecreateRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Resize {
+  export interface Params$Resource$Regioninstancegroupmanagers$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60234,7 +60823,8 @@ export namespace compute_beta {
      */
     size?: number;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies {
+  export interface Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60271,7 +60861,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupManagersSetAutoHealingRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate {
+  export interface Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60308,7 +60899,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupManagersSetTemplateRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Settargetpools {
+  export interface Params$Resource$Regioninstancegroupmanagers$Settargetpools
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60345,7 +60937,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupManagersSetTargetPoolsRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Testiampermissions {
+  export interface Params$Resource$Regioninstancegroupmanagers$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60360,7 +60953,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -60369,7 +60962,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Update {
+  export interface Params$Resource$Regioninstancegroupmanagers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61065,7 +61659,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -61131,7 +61725,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regioninstancegroups$Get {
+  export interface Params$Resource$Regioninstancegroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61150,7 +61745,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroups$List {
+  export interface Params$Resource$Regioninstancegroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61208,7 +61804,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroups$Listinstances {
+  export interface Params$Resource$Regioninstancegroups$Listinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61276,7 +61873,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupsListInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroups$Setnamedports {
+  export interface Params$Resource$Regioninstancegroups$Setnamedports extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61314,7 +61912,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionInstanceGroupsSetNamedPortsRequest;
   }
-  export interface Params$Resource$Regioninstancegroups$Testiampermissions {
+  export interface Params$Resource$Regioninstancegroups$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61329,7 +61928,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -61747,7 +62346,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regionoperations$Delete {
+  export interface Params$Resource$Regionoperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61766,7 +62366,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionoperations$Get {
+  export interface Params$Resource$Regionoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61785,7 +62386,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionoperations$List {
+  export interface Params$Resource$Regionoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62113,7 +62715,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Regions$Get {
+  export interface Params$Resource$Regions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62128,7 +62730,7 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Regions$List {
+  export interface Params$Resource$Regions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62572,7 +63174,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -62637,7 +63239,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Resourcepolicies$Aggregatedlist {
+  export interface Params$Resource$Resourcepolicies$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62691,7 +63294,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Delete {
+  export interface Params$Resource$Resourcepolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62723,7 +63327,8 @@ export namespace compute_beta {
      */
     resourcePolicy?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Get {
+  export interface Params$Resource$Resourcepolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62742,7 +63347,8 @@ export namespace compute_beta {
      */
     resourcePolicy?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Insert {
+  export interface Params$Resource$Resourcepolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62775,7 +63381,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$ResourcePolicy;
   }
-  export interface Params$Resource$Resourcepolicies$List {
+  export interface Params$Resource$Resourcepolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62833,7 +63440,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Testiampermissions {
+  export interface Params$Resource$Resourcepolicies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62848,7 +63456,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -64094,7 +64702,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -64296,7 +64904,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Routers$Aggregatedlist {
+  export interface Params$Resource$Routers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64350,7 +64959,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Routers$Delete {
+  export interface Params$Resource$Routers$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64382,7 +64991,7 @@ export namespace compute_beta {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Get {
+  export interface Params$Resource$Routers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64401,7 +65010,8 @@ export namespace compute_beta {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Getnatmappinginfo {
+  export interface Params$Resource$Routers$Getnatmappinginfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64464,7 +65074,8 @@ export namespace compute_beta {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Getrouterstatus {
+  export interface Params$Resource$Routers$Getrouterstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64483,7 +65094,7 @@ export namespace compute_beta {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Insert {
+  export interface Params$Resource$Routers$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64516,7 +65127,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$List {
+  export interface Params$Resource$Routers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64574,7 +65185,7 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Routers$Patch {
+  export interface Params$Resource$Routers$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64611,7 +65222,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$Preview {
+  export interface Params$Resource$Routers$Preview extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64635,7 +65246,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$Testiampermissions {
+  export interface Params$Resource$Routers$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64650,7 +65262,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -64659,7 +65271,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Routers$Update {
+  export interface Params$Resource$Routers$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65283,7 +65895,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -65348,7 +65960,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Routes$Delete {
+  export interface Params$Resource$Routes$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65376,7 +65988,7 @@ export namespace compute_beta {
      */
     route?: string;
   }
-  export interface Params$Resource$Routes$Get {
+  export interface Params$Resource$Routes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65391,7 +66003,7 @@ export namespace compute_beta {
      */
     route?: string;
   }
-  export interface Params$Resource$Routes$Insert {
+  export interface Params$Resource$Routes$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65420,7 +66032,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Route;
   }
-  export interface Params$Resource$Routes$List {
+  export interface Params$Resource$Routes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65474,7 +66086,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Routes$Testiampermissions {
+  export interface Params$Resource$Routes$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65485,7 +66098,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -66683,7 +67296,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -66748,7 +67361,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Securitypolicies$Addrule {
+  export interface Params$Resource$Securitypolicies$Addrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66772,7 +67386,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SecurityPolicyRule;
   }
-  export interface Params$Resource$Securitypolicies$Delete {
+  export interface Params$Resource$Securitypolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66800,7 +67415,8 @@ export namespace compute_beta {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Get {
+  export interface Params$Resource$Securitypolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66815,7 +67431,8 @@ export namespace compute_beta {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Getrule {
+  export interface Params$Resource$Securitypolicies$Getrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66834,7 +67451,8 @@ export namespace compute_beta {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Insert {
+  export interface Params$Resource$Securitypolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66867,7 +67485,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SecurityPolicy;
   }
-  export interface Params$Resource$Securitypolicies$List {
+  export interface Params$Resource$Securitypolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66921,7 +67540,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets {
+  export interface Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66975,7 +67595,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Securitypolicies$Patch {
+  export interface Params$Resource$Securitypolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67008,7 +67629,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SecurityPolicy;
   }
-  export interface Params$Resource$Securitypolicies$Patchrule {
+  export interface Params$Resource$Securitypolicies$Patchrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67036,7 +67658,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SecurityPolicyRule;
   }
-  export interface Params$Resource$Securitypolicies$Removerule {
+  export interface Params$Resource$Securitypolicies$Removerule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67055,7 +67678,8 @@ export namespace compute_beta {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Setlabels {
+  export interface Params$Resource$Securitypolicies$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67075,7 +67699,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Securitypolicies$Testiampermissions {
+  export interface Params$Resource$Securitypolicies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67086,7 +67711,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -67368,7 +67993,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -67575,7 +68200,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -67837,7 +68462,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -67902,7 +68527,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Snapshots$Delete {
+  export interface Params$Resource$Snapshots$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67930,7 +68555,7 @@ export namespace compute_beta {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Snapshots$Get {
+  export interface Params$Resource$Snapshots$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67945,7 +68570,8 @@ export namespace compute_beta {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Snapshots$Getiampolicy {
+  export interface Params$Resource$Snapshots$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67956,11 +68582,11 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Snapshots$List {
+  export interface Params$Resource$Snapshots$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68014,7 +68640,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Snapshots$Setiampolicy {
+  export interface Params$Resource$Snapshots$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68025,7 +68652,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -68034,7 +68661,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Snapshots$Setlabels {
+  export interface Params$Resource$Snapshots$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68054,7 +68682,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Snapshots$Testiampermissions {
+  export interface Params$Resource$Snapshots$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68065,7 +68694,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -68673,7 +69302,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -68738,7 +69367,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Sslcertificates$Delete {
+  export interface Params$Resource$Sslcertificates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68766,7 +69396,8 @@ export namespace compute_beta {
      */
     sslCertificate?: string;
   }
-  export interface Params$Resource$Sslcertificates$Get {
+  export interface Params$Resource$Sslcertificates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68781,7 +69412,8 @@ export namespace compute_beta {
      */
     sslCertificate?: string;
   }
-  export interface Params$Resource$Sslcertificates$Insert {
+  export interface Params$Resource$Sslcertificates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68810,7 +69442,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SslCertificate;
   }
-  export interface Params$Resource$Sslcertificates$List {
+  export interface Params$Resource$Sslcertificates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68864,7 +69497,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslcertificates$Testiampermissions {
+  export interface Params$Resource$Sslcertificates$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68875,7 +69509,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -69342,7 +69976,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -69407,7 +70041,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Sslpolicies$Delete {
+  export interface Params$Resource$Sslpolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69436,7 +70071,7 @@ export namespace compute_beta {
      */
     sslPolicy?: string;
   }
-  export interface Params$Resource$Sslpolicies$Get {
+  export interface Params$Resource$Sslpolicies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69452,7 +70087,8 @@ export namespace compute_beta {
      */
     sslPolicy?: string;
   }
-  export interface Params$Resource$Sslpolicies$Insert {
+  export interface Params$Resource$Sslpolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69481,7 +70117,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SslPolicy;
   }
-  export interface Params$Resource$Sslpolicies$List {
+  export interface Params$Resource$Sslpolicies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69535,7 +70171,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslpolicies$Listavailablefeatures {
+  export interface Params$Resource$Sslpolicies$Listavailablefeatures extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69589,7 +70226,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslpolicies$Patch {
+  export interface Params$Resource$Sslpolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69623,7 +70261,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SslPolicy;
   }
-  export interface Params$Resource$Sslpolicies$Testiampermissions {
+  export interface Params$Resource$Sslpolicies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69634,7 +70273,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -70258,7 +70897,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -70889,7 +71528,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().RegionSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -71157,7 +71796,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -71222,7 +71861,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Subnetworks$Aggregatedlist {
+  export interface Params$Resource$Subnetworks$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71276,7 +71916,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Subnetworks$Delete {
+  export interface Params$Resource$Subnetworks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71308,7 +71949,8 @@ export namespace compute_beta {
      */
     subnetwork?: string;
   }
-  export interface Params$Resource$Subnetworks$Expandipcidrrange {
+  export interface Params$Resource$Subnetworks$Expandipcidrrange extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71345,7 +71987,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SubnetworksExpandIpCidrRangeRequest;
   }
-  export interface Params$Resource$Subnetworks$Get {
+  export interface Params$Resource$Subnetworks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71364,7 +72006,8 @@ export namespace compute_beta {
      */
     subnetwork?: string;
   }
-  export interface Params$Resource$Subnetworks$Getiampolicy {
+  export interface Params$Resource$Subnetworks$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71379,11 +72022,12 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Subnetworks$Insert {
+  export interface Params$Resource$Subnetworks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71416,7 +72060,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Subnetwork;
   }
-  export interface Params$Resource$Subnetworks$List {
+  export interface Params$Resource$Subnetworks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71474,7 +72118,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Subnetworks$Listusable {
+  export interface Params$Resource$Subnetworks$Listusable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71528,7 +72173,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Subnetworks$Patch {
+  export interface Params$Resource$Subnetworks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71565,7 +72211,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Subnetwork;
   }
-  export interface Params$Resource$Subnetworks$Setiampolicy {
+  export interface Params$Resource$Subnetworks$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71580,7 +72227,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -71589,7 +72236,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetPolicyRequest;
   }
-  export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess {
+  export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71626,7 +72274,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SubnetworksSetPrivateIpGoogleAccessRequest;
   }
-  export interface Params$Resource$Subnetworks$Testiampermissions {
+  export interface Params$Resource$Subnetworks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -71641,7 +72290,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -72382,7 +73031,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -72447,7 +73096,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Targethttpproxies$Delete {
+  export interface Params$Resource$Targethttpproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -72475,7 +73125,8 @@ export namespace compute_beta {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Get {
+  export interface Params$Resource$Targethttpproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -72490,7 +73141,8 @@ export namespace compute_beta {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Insert {
+  export interface Params$Resource$Targethttpproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -72519,7 +73171,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetHttpProxy;
   }
-  export interface Params$Resource$Targethttpproxies$List {
+  export interface Params$Resource$Targethttpproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -72573,7 +73226,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Seturlmap {
+  export interface Params$Resource$Targethttpproxies$Seturlmap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -72606,7 +73260,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$UrlMapReference;
   }
-  export interface Params$Resource$Targethttpproxies$Testiampermissions {
+  export interface Params$Resource$Targethttpproxies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -72617,7 +73272,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -73640,7 +74295,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -73706,7 +74361,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Targethttpsproxies$Delete {
+  export interface Params$Resource$Targethttpsproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73734,7 +74390,8 @@ export namespace compute_beta {
      */
     targetHttpsProxy?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Get {
+  export interface Params$Resource$Targethttpsproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73749,7 +74406,8 @@ export namespace compute_beta {
      */
     targetHttpsProxy?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Insert {
+  export interface Params$Resource$Targethttpsproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73778,7 +74436,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetHttpsProxy;
   }
-  export interface Params$Resource$Targethttpsproxies$List {
+  export interface Params$Resource$Targethttpsproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73832,7 +74491,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Setquicoverride {
+  export interface Params$Resource$Targethttpsproxies$Setquicoverride extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73866,7 +74526,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetHttpsProxiesSetQuicOverrideRequest;
   }
-  export interface Params$Resource$Targethttpsproxies$Setsslcertificates {
+  export interface Params$Resource$Targethttpsproxies$Setsslcertificates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73900,7 +74561,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetHttpsProxiesSetSslCertificatesRequest;
   }
-  export interface Params$Resource$Targethttpsproxies$Setsslpolicy {
+  export interface Params$Resource$Targethttpsproxies$Setsslpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73934,7 +74596,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SslPolicyReference;
   }
-  export interface Params$Resource$Targethttpsproxies$Seturlmap {
+  export interface Params$Resource$Targethttpsproxies$Seturlmap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73967,7 +74630,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$UrlMapReference;
   }
-  export interface Params$Resource$Targethttpsproxies$Testiampermissions {
+  export interface Params$Resource$Targethttpsproxies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -73978,7 +74642,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -74755,7 +75419,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -74821,7 +75485,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Targetinstances$Aggregatedlist {
+  export interface Params$Resource$Targetinstances$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -74875,7 +75540,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetinstances$Delete {
+  export interface Params$Resource$Targetinstances$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -74907,7 +75573,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Get {
+  export interface Params$Resource$Targetinstances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -74926,7 +75593,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Insert {
+  export interface Params$Resource$Targetinstances$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -74959,7 +75627,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetInstance;
   }
-  export interface Params$Resource$Targetinstances$List {
+  export interface Params$Resource$Targetinstances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -75017,7 +75686,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Testiampermissions {
+  export interface Params$Resource$Targetinstances$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -75028,7 +75698,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -76616,7 +77286,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -76681,7 +77351,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Targetpools$Addhealthcheck {
+  export interface Params$Resource$Targetpools$Addhealthcheck extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76718,7 +77389,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetPoolsAddHealthCheckRequest;
   }
-  export interface Params$Resource$Targetpools$Addinstance {
+  export interface Params$Resource$Targetpools$Addinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76755,7 +77427,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetPoolsAddInstanceRequest;
   }
-  export interface Params$Resource$Targetpools$Aggregatedlist {
+  export interface Params$Resource$Targetpools$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76809,7 +77482,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetpools$Delete {
+  export interface Params$Resource$Targetpools$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76841,7 +77515,7 @@ export namespace compute_beta {
      */
     targetPool?: string;
   }
-  export interface Params$Resource$Targetpools$Get {
+  export interface Params$Resource$Targetpools$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76860,7 +77534,8 @@ export namespace compute_beta {
      */
     targetPool?: string;
   }
-  export interface Params$Resource$Targetpools$Gethealth {
+  export interface Params$Resource$Targetpools$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76884,7 +77559,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceReference;
   }
-  export interface Params$Resource$Targetpools$Insert {
+  export interface Params$Resource$Targetpools$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76917,7 +77593,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetPool;
   }
-  export interface Params$Resource$Targetpools$List {
+  export interface Params$Resource$Targetpools$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -76975,7 +77651,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Targetpools$Removehealthcheck {
+  export interface Params$Resource$Targetpools$Removehealthcheck extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -77012,7 +77689,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetPoolsRemoveHealthCheckRequest;
   }
-  export interface Params$Resource$Targetpools$Removeinstance {
+  export interface Params$Resource$Targetpools$Removeinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -77049,7 +77727,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetPoolsRemoveInstanceRequest;
   }
-  export interface Params$Resource$Targetpools$Setbackup {
+  export interface Params$Resource$Targetpools$Setbackup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -77090,7 +77769,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetReference;
   }
-  export interface Params$Resource$Targetpools$Testiampermissions {
+  export interface Params$Resource$Targetpools$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -77105,7 +77785,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -78181,7 +78861,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -78246,7 +78926,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Targetsslproxies$Delete {
+  export interface Params$Resource$Targetsslproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78274,7 +78955,8 @@ export namespace compute_beta {
      */
     targetSslProxy?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Get {
+  export interface Params$Resource$Targetsslproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78289,7 +78971,8 @@ export namespace compute_beta {
      */
     targetSslProxy?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Insert {
+  export interface Params$Resource$Targetsslproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78318,7 +79001,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetSslProxy;
   }
-  export interface Params$Resource$Targetsslproxies$List {
+  export interface Params$Resource$Targetsslproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78372,7 +79056,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Setbackendservice {
+  export interface Params$Resource$Targetsslproxies$Setbackendservice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78406,7 +79091,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetSslProxiesSetBackendServiceRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setproxyheader {
+  export interface Params$Resource$Targetsslproxies$Setproxyheader extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78439,7 +79125,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetSslProxiesSetProxyHeaderRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setsslcertificates {
+  export interface Params$Resource$Targetsslproxies$Setsslcertificates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78473,7 +79160,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetSslProxiesSetSslCertificatesRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setsslpolicy {
+  export interface Params$Resource$Targetsslproxies$Setsslpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78507,7 +79195,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$SslPolicyReference;
   }
-  export interface Params$Resource$Targetsslproxies$Testiampermissions {
+  export interface Params$Resource$Targetsslproxies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -78518,7 +79207,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -79322,7 +80011,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Targettcpproxies$Delete {
+  export interface Params$Resource$Targettcpproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -79350,7 +80040,8 @@ export namespace compute_beta {
      */
     targetTcpProxy?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Get {
+  export interface Params$Resource$Targettcpproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -79365,7 +80056,8 @@ export namespace compute_beta {
      */
     targetTcpProxy?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Insert {
+  export interface Params$Resource$Targettcpproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -79394,7 +80086,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetTcpProxy;
   }
-  export interface Params$Resource$Targettcpproxies$List {
+  export interface Params$Resource$Targettcpproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -79448,7 +80141,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Setbackendservice {
+  export interface Params$Resource$Targettcpproxies$Setbackendservice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -79482,7 +80176,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetTcpProxiesSetBackendServiceRequest;
   }
-  export interface Params$Resource$Targettcpproxies$Setproxyheader {
+  export interface Params$Resource$Targettcpproxies$Setproxyheader extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80359,7 +81054,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -80424,7 +81119,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Targetvpngateways$Aggregatedlist {
+  export interface Params$Resource$Targetvpngateways$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80478,7 +81174,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Delete {
+  export interface Params$Resource$Targetvpngateways$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80510,7 +81207,8 @@ export namespace compute_beta {
      */
     targetVpnGateway?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Get {
+  export interface Params$Resource$Targetvpngateways$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80529,7 +81227,8 @@ export namespace compute_beta {
      */
     targetVpnGateway?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Insert {
+  export interface Params$Resource$Targetvpngateways$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80562,7 +81261,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TargetVpnGateway;
   }
-  export interface Params$Resource$Targetvpngateways$List {
+  export interface Params$Resource$Targetvpngateways$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80620,7 +81320,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Setlabels {
+  export interface Params$Resource$Targetvpngateways$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80657,7 +81358,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Targetvpngateways$Testiampermissions {
+  export interface Params$Resource$Targetvpngateways$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -80672,7 +81374,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -81534,7 +82236,7 @@ export namespace compute_beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -81865,7 +82567,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Urlmaps$Delete {
+  export interface Params$Resource$Urlmaps$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -81893,7 +82595,7 @@ export namespace compute_beta {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Urlmaps$Get {
+  export interface Params$Resource$Urlmaps$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -81908,7 +82610,7 @@ export namespace compute_beta {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Urlmaps$Insert {
+  export interface Params$Resource$Urlmaps$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -81937,7 +82639,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Invalidatecache {
+  export interface Params$Resource$Urlmaps$Invalidatecache extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -81970,7 +82673,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$CacheInvalidationRule;
   }
-  export interface Params$Resource$Urlmaps$List {
+  export interface Params$Resource$Urlmaps$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -82024,7 +82727,7 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Urlmaps$Patch {
+  export interface Params$Resource$Urlmaps$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -82057,7 +82760,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Testiampermissions {
+  export interface Params$Resource$Urlmaps$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -82068,7 +82772,7 @@ export namespace compute_beta {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -82077,7 +82781,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Urlmaps$Update {
+  export interface Params$Resource$Urlmaps$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -82110,7 +82814,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Validate {
+  export interface Params$Resource$Urlmaps$Validate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -82959,7 +83663,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -83024,7 +83728,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Vpntunnels$Aggregatedlist {
+  export interface Params$Resource$Vpntunnels$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83078,7 +83783,8 @@ export namespace compute_beta {
      */
     project?: string;
   }
-  export interface Params$Resource$Vpntunnels$Delete {
+  export interface Params$Resource$Vpntunnels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83110,7 +83816,7 @@ export namespace compute_beta {
      */
     vpnTunnel?: string;
   }
-  export interface Params$Resource$Vpntunnels$Get {
+  export interface Params$Resource$Vpntunnels$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83129,7 +83835,8 @@ export namespace compute_beta {
      */
     vpnTunnel?: string;
   }
-  export interface Params$Resource$Vpntunnels$Insert {
+  export interface Params$Resource$Vpntunnels$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83162,7 +83869,7 @@ export namespace compute_beta {
      */
     requestBody?: Schema$VpnTunnel;
   }
-  export interface Params$Resource$Vpntunnels$List {
+  export interface Params$Resource$Vpntunnels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83220,7 +83927,8 @@ export namespace compute_beta {
      */
     region?: string;
   }
-  export interface Params$Resource$Vpntunnels$Setlabels {
+  export interface Params$Resource$Vpntunnels$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83257,7 +83965,8 @@ export namespace compute_beta {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Vpntunnels$Testiampermissions {
+  export interface Params$Resource$Vpntunnels$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83272,7 +83981,7 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -83688,7 +84397,8 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Zoneoperations$Delete {
+  export interface Params$Resource$Zoneoperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83707,7 +84417,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$Get {
+  export interface Params$Resource$Zoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -83726,7 +84437,8 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$List {
+  export interface Params$Resource$Zoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -84052,7 +84764,7 @@ export namespace compute_beta {
     }
   }
 
-  export interface Params$Resource$Zones$Get {
+  export interface Params$Resource$Zones$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -84067,7 +84779,7 @@ export namespace compute_beta {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zones$List {
+  export interface Params$Resource$Zones$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

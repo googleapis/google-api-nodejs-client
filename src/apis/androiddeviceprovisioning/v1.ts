@@ -29,6 +29,57 @@ export namespace androiddeviceprovisioning_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Android Device Provisioning Partner API
    *
@@ -964,7 +1015,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$List {
+  export interface Params$Resource$Customers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1341,7 +1392,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Configurations$Create {
+  export interface Params$Resource$Customers$Configurations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1358,7 +1410,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$Configuration;
   }
-  export interface Params$Resource$Customers$Configurations$Delete {
+  export interface Params$Resource$Customers$Configurations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1371,7 +1424,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Configurations$Get {
+  export interface Params$Resource$Customers$Configurations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1383,7 +1437,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Configurations$List {
+  export interface Params$Resource$Customers$Configurations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1395,7 +1450,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Configurations$Patch {
+  export interface Params$Resource$Customers$Configurations$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1782,7 +1838,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Devices$Applyconfiguration {
+  export interface Params$Resource$Customers$Devices$Applyconfiguration extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1799,7 +1856,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CustomerApplyConfigurationRequest;
   }
-  export interface Params$Resource$Customers$Devices$Get {
+  export interface Params$Resource$Customers$Devices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1811,7 +1869,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Devices$List {
+  export interface Params$Resource$Customers$Devices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1832,7 +1891,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Devices$Removeconfiguration {
+  export interface Params$Resource$Customers$Devices$Removeconfiguration extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1849,7 +1909,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CustomerRemoveConfigurationRequest;
   }
-  export interface Params$Resource$Customers$Devices$Unclaim {
+  export interface Params$Resource$Customers$Devices$Unclaim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1949,7 +2010,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Dpcs$List {
+  export interface Params$Resource$Customers$Dpcs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2040,7 +2102,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2089,7 +2151,8 @@ export namespace androiddeviceprovisioning_v1 {
      * @desc Creates a customer for zero-touch enrollment. After the method
      * returns successfully, admin and owner roles can manage devices and EMM
      * configs by calling API methods or using their zero-touch enrollment
-     * portal. The API doesn't notify the customer that they have access.
+     * portal. The customer receives an email that welcomes them to zero-touch
+     * enrollment and explains how to sign into the portal.
      * @alias androiddeviceprovisioning.partners.customers.create
      * @memberOf! ()
      *
@@ -2228,7 +2291,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Customers$Create {
+  export interface Params$Resource$Partners$Customers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2245,7 +2309,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CreateCustomerRequest;
   }
-  export interface Params$Resource$Partners$Customers$List {
+  export interface Params$Resource$Partners$Customers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2929,7 +2994,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Devices$Claim {
+  export interface Params$Resource$Partners$Devices$Claim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2945,7 +3011,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$ClaimDeviceRequest;
   }
-  export interface Params$Resource$Partners$Devices$Claimasync {
+  export interface Params$Resource$Partners$Devices$Claimasync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2961,7 +3028,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$ClaimDevicesRequest;
   }
-  export interface Params$Resource$Partners$Devices$Findbyidentifier {
+  export interface Params$Resource$Partners$Devices$Findbyidentifier extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2977,7 +3045,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$FindDevicesByDeviceIdentifierRequest;
   }
-  export interface Params$Resource$Partners$Devices$Findbyowner {
+  export interface Params$Resource$Partners$Devices$Findbyowner extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2993,7 +3062,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$FindDevicesByOwnerRequest;
   }
-  export interface Params$Resource$Partners$Devices$Get {
+  export interface Params$Resource$Partners$Devices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3005,7 +3075,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Partners$Devices$Metadata {
+  export interface Params$Resource$Partners$Devices$Metadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3026,7 +3097,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UpdateDeviceMetadataRequest;
   }
-  export interface Params$Resource$Partners$Devices$Unclaim {
+  export interface Params$Resource$Partners$Devices$Unclaim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3042,7 +3114,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UnclaimDeviceRequest;
   }
-  export interface Params$Resource$Partners$Devices$Unclaimasync {
+  export interface Params$Resource$Partners$Devices$Unclaimasync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3058,7 +3131,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UnclaimDevicesRequest;
   }
-  export interface Params$Resource$Partners$Devices$Updatemetadataasync {
+  export interface Params$Resource$Partners$Devices$Updatemetadataasync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3160,7 +3234,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Vendors$List {
+  export interface Params$Resource$Partners$Vendors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3268,7 +3343,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Vendors$Customers$List {
+  export interface Params$Resource$Partners$Vendors$Customers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

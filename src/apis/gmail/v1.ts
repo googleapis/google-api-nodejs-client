@@ -29,6 +29,40 @@ export namespace gmail_v1 {
     version: 'v1';
   }
 
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Gmail API
    *
@@ -1146,7 +1180,7 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Getprofile {
+  export interface Params$Resource$Users$Getprofile extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1158,7 +1192,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Stop {
+  export interface Params$Resource$Users$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1170,7 +1204,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Watch {
+  export interface Params$Resource$Users$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1617,7 +1651,8 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Drafts$Create {
+  export interface Params$Resource$Users$Drafts$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1649,7 +1684,8 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Drafts$Delete {
+  export interface Params$Resource$Users$Drafts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1665,7 +1701,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Drafts$Get {
+  export interface Params$Resource$Users$Drafts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1685,7 +1721,8 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Drafts$List {
+  export interface Params$Resource$Users$Drafts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1715,7 +1752,8 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Drafts$Send {
+  export interface Params$Resource$Users$Drafts$Send extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1747,7 +1785,8 @@ export namespace gmail_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Drafts$Update {
+  export interface Params$Resource$Users$Drafts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1869,7 +1908,8 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$History$List {
+  export interface Params$Resource$Users$History$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2322,7 +2362,8 @@ export namespace gmail_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Labels$Create {
+  export interface Params$Resource$Users$Labels$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2339,7 +2380,8 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Label;
   }
-  export interface Params$Resource$Users$Labels$Delete {
+  export interface Params$Resource$Users$Labels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2355,7 +2397,7 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Labels$Get {
+  export interface Params$Resource$Users$Labels$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2371,7 +2413,8 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Labels$List {
+  export interface Params$Resource$Users$Labels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2383,7 +2426,8 @@ export namespace gmail_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Labels$Patch {
+  export interface Params$Resource$Users$Labels$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2404,7 +2448,8 @@ export namespace gmail_v1 {
      */
     requestBody?: Schema$Label;
   }
-  export interface Params$Resource$Users$Labels$Update {
+  export interface Params$Resource$Users$Labels$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3170,7 +3215,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Messages$Batchdelete {
+  export interface Params$Resource$Users$Messages$Batchdelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3187,7 +3233,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$BatchDeleteMessagesRequest;
   }
-  export interface Params$Resource$Users$Messages$Batchmodify {
+  export interface Params$Resource$Users$Messages$Batchmodify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3204,7 +3251,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$BatchModifyMessagesRequest;
   }
-  export interface Params$Resource$Users$Messages$Delete {
+  export interface Params$Resource$Users$Messages$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3220,7 +3268,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Get {
+  export interface Params$Resource$Users$Messages$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3244,7 +3293,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Import {
+  export interface Params$Resource$Users$Messages$Import extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3295,7 +3345,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$Insert {
+  export interface Params$Resource$Users$Messages$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3336,7 +3387,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$List {
+  export interface Params$Resource$Users$Messages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3373,7 +3425,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Modify {
+  export interface Params$Resource$Users$Messages$Modify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3394,7 +3447,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$ModifyMessageRequest;
   }
-  export interface Params$Resource$Users$Messages$Send {
+  export interface Params$Resource$Users$Messages$Send extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3426,7 +3480,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       body?: any;
     };
   }
-  export interface Params$Resource$Users$Messages$Trash {
+  export interface Params$Resource$Users$Messages$Trash extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3442,7 +3497,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Messages$Untrash {
+  export interface Params$Resource$Users$Messages$Untrash extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3538,7 +3594,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Messages$Attachments$Get {
+  export interface Params$Resource$Users$Messages$Attachments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4130,7 +4187,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Getautoforwarding {
+  export interface Params$Resource$Users$Settings$Getautoforwarding extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4142,7 +4200,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getimap {
+  export interface Params$Resource$Users$Settings$Getimap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4154,7 +4213,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getpop {
+  export interface Params$Resource$Users$Settings$Getpop extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4166,7 +4226,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Getvacation {
+  export interface Params$Resource$Users$Settings$Getvacation extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4178,7 +4239,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Updateautoforwarding {
+  export interface Params$Resource$Users$Settings$Updateautoforwarding extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4195,7 +4257,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$AutoForwarding;
   }
-  export interface Params$Resource$Users$Settings$Updateimap {
+  export interface Params$Resource$Users$Settings$Updateimap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4212,7 +4275,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$ImapSettings;
   }
-  export interface Params$Resource$Users$Settings$Updatepop {
+  export interface Params$Resource$Users$Settings$Updatepop extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4229,7 +4293,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$PopSettings;
   }
-  export interface Params$Resource$Users$Settings$Updatevacation {
+  export interface Params$Resource$Users$Settings$Updatevacation extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4546,7 +4611,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Delegates$Create {
+  export interface Params$Resource$Users$Settings$Delegates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4563,7 +4629,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$Delegate;
   }
-  export interface Params$Resource$Users$Settings$Delegates$Delete {
+  export interface Params$Resource$Users$Settings$Delegates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4579,7 +4646,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Delegates$Get {
+  export interface Params$Resource$Users$Settings$Delegates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4596,7 +4664,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Delegates$List {
+  export interface Params$Resource$Users$Settings$Delegates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4885,7 +4954,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Filters$Create {
+  export interface Params$Resource$Users$Settings$Filters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4902,7 +4972,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Users$Settings$Filters$Delete {
+  export interface Params$Resource$Users$Settings$Filters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4918,7 +4989,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Filters$Get {
+  export interface Params$Resource$Users$Settings$Filters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4934,7 +5006,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Filters$List {
+  export interface Params$Resource$Users$Settings$Filters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5254,7 +5327,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$Create {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5271,7 +5345,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$ForwardingAddress;
   }
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$Delete {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5287,7 +5362,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$Get {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5303,7 +5379,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Forwardingaddresses$List {
+  export interface Params$Resource$Users$Settings$Forwardingaddresses$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5825,7 +5902,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Sendas$Create {
+  export interface Params$Resource$Users$Settings$Sendas$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5842,7 +5920,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Delete {
+  export interface Params$Resource$Users$Settings$Sendas$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5858,7 +5937,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Get {
+  export interface Params$Resource$Users$Settings$Sendas$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5874,7 +5954,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$List {
+  export interface Params$Resource$Users$Settings$Sendas$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5886,28 +5967,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Patch {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The send-as alias to be updated.
-     */
-    sendAsEmail?: string;
-    /**
-     * User's email address. The special value "me" can be used to indicate the
-     * authenticated user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SendAs;
-  }
-  export interface Params$Resource$Users$Settings$Sendas$Update {
+  export interface Params$Resource$Users$Settings$Sendas$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5928,7 +5989,30 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$SendAs;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Verify {
+  export interface Params$Resource$Users$Settings$Sendas$Update extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The send-as alias to be updated.
+     */
+    sendAsEmail?: string;
+    /**
+     * User's email address. The special value "me" can be used to indicate the
+     * authenticated user.
+     */
+    userId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendAs;
+  }
+  export interface Params$Resource$Users$Settings$Sendas$Verify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6310,7 +6394,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6331,7 +6416,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6352,7 +6438,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6374,7 +6461,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$SmimeInfo;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6391,7 +6479,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault {
+  export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6833,7 +6922,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     }
   }
 
-  export interface Params$Resource$Users$Threads$Delete {
+  export interface Params$Resource$Users$Threads$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6849,7 +6939,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Get {
+  export interface Params$Resource$Users$Threads$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6873,7 +6964,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$List {
+  export interface Params$Resource$Users$Threads$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6909,7 +7001,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Modify {
+  export interface Params$Resource$Users$Threads$Modify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6930,7 +7023,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     requestBody?: Schema$ModifyThreadRequest;
   }
-  export interface Params$Resource$Users$Threads$Trash {
+  export interface Params$Resource$Users$Threads$Trash extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6946,7 +7040,8 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Threads$Untrash {
+  export interface Params$Resource$Users$Threads$Untrash extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
