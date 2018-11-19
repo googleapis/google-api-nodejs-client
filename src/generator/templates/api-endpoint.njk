@@ -45,7 +45,7 @@ interface StandardParameters {
   /**
     * {{ p.description|oneLine|cleanComments|safe }}
     */
-  {{ pname|cleanPropertyName|safe }}?: {{ p.type }};
+  {{ pname|cleanPropertyName|safe }}?: {{ p.type }}{% if p.repeated %}[]{% endif %};
   {% endfor %}
 }
 
@@ -142,7 +142,7 @@ export interface Schema${{ schema.id }} {
         /**
          * {{ p.description|oneLine|cleanComments|safe }}
          */
-        {{ pname|getSafeParamName }}?: {{ p.type }};
+        {{ pname|getSafeParamName }}?: {{ p.type }}{% if p.repeated %}[]{% endif %};
         {% endfor %}
       {% endif %}
 
