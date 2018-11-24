@@ -141,7 +141,7 @@ const oauth2Client = new google.auth.OAuth2(
   YOUR_REDIRECT_URL
 );
 
-// generate a url that asks permissions for Google+ and Google Calendar scopes
+// generate a url that asks permissions for Google and Google Calendar scopes
 const scopes = [
   'https://www.googleapis.com/auth/plus.me',
   'https://www.googleapis.com/auth/calendar'
@@ -201,7 +201,7 @@ oauth2client.setCredentials({
 Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API.
 
 ### Using API keys
-You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
+You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google API service to retrieve a person's profile given a userId:
 
 ``` js
 const {google} = require('googleapis');
