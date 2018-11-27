@@ -60,7 +60,8 @@ async function authenticate(scopes) {
       .createServer(async (req, res) => {
         try {
           if (req.url.indexOf('/oauth2callback') > -1) {
-            const qs = new url.URL(req.url).searchParams;
+            const qs = new url.URL(req.url, 'http://localhost:3000')
+              .searchParams;
             res.end('Authentication successful! Please return to the console.');
             server.destroy();
             const {tokens} = await oauth2Client.getToken(qs.get('code'));
