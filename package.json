@@ -97,6 +97,6 @@
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.5",
     "tmp": "^0.0.33",
-    "typescript": "~3.1.0"
+    "typescript": "~3.2.0"
   }
 }
