@@ -4,6 +4,7 @@ These samples allow you to list, download, and upload files from Google Drive.
 
 ## Running the samples
 
+### **Note: Node.js version 8 or greater is requared to run samples.**
 Set the following values in `oauth2.keys.json` (up one directory):
 
 * `client_id`
