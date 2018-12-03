@@ -3,7 +3,7 @@
 # Google APIs Node.js Client
 
 [![Release Level][releaselevelimg]][releaselevel]
-[![CircleCI][circleimg]][circle]
+[![npm version](https://img.shields.io/npm/v/googleapis.svg)](https://www.npmjs.org/package/googleapis)
 [![npm version][npmimg]][npm]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
@@ -543,3 +543,4 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [codecov]: https://codecov.io/github/googleapis/google-api-nodejs-client?branch=master
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
 [downloads]: https://nodei.co/npm/googleapis/
+
