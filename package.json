@@ -29,15 +29,14 @@
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
     "lint": "gts check && eslint 'samples/**/*.js'",
-    "compile": "tsc -v && tsc -p . && copyfiles src/apis/**/README.md src/apis/**/package.json build",
+    "compile": "tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
     "codecov": "nyc report && codecov -f .coverage/*.json",
-    "fix": "eslint --fix 'samples/**/*.js' && prettier --write samples/**/*.js && gts fix",
+    "fix": "eslint --fix '**/*.js' && gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
-    "postgenerate": "npm run fix",
-    "prettier": "prettier --write samples/**/*.js"
+    "postgenerate": "npm run fix"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -72,7 +71,6 @@
     "assert-rejects": "^1.0.0",
     "axios": "^0.18.0",
     "codecov": "^3.0.2",
-    "copyfiles": "^2.0.0",
     "eslint": "^5.6.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-node": "^8.0.0",
