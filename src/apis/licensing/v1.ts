@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace licensing_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace licensing_v1 {
    * @param {object=} options Options for Licensing
    */
   export class Licensing {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     licenseAssignments: Resource$Licenseassignments;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.licenseAssignments = new Resource$Licenseassignments(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.licenseAssignments = new Resource$Licenseassignments();
     }
   }
 
@@ -169,15 +161,7 @@ export namespace licensing_v1 {
 
 
   export class Resource$Licenseassignments {
-    root: Licensing;
-    constructor(root: Licensing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -239,7 +223,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -306,7 +290,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -376,7 +360,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId'],
         pathParams: ['productId', 'skuId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -448,7 +432,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'customerId'],
         pathParams: ['productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -523,7 +507,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'customerId'],
         pathParams: ['productId', 'skuId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -595,7 +579,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -667,7 +651,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);

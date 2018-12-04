@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace alertcenter_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace alertcenter_v1beta1 {
    * @param {object=} options Options for Alertcenter
    */
   export class Alertcenter {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     alerts: Resource$Alerts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.alerts = new Resource$Alerts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.alerts = new Resource$Alerts();
     }
   }
 
@@ -574,16 +566,9 @@ export namespace alertcenter_v1beta1 {
 
 
   export class Resource$Alerts {
-    root: Alertcenter;
     feedback: Resource$Alerts$Feedback;
-    constructor(root: Alertcenter) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.feedback = new Resource$Alerts$Feedback(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.feedback = new Resource$Alerts$Feedback();
     }
 
 
@@ -646,7 +631,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -708,7 +693,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Alert>(parameters, callback);
@@ -776,7 +761,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertsResponse>(parameters, callback);
@@ -862,15 +847,7 @@ export namespace alertcenter_v1beta1 {
   }
 
   export class Resource$Alerts$Feedback {
-    root: Alertcenter;
-    constructor(root: Alertcenter) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -932,7 +909,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AlertFeedback>(parameters, callback);
@@ -1003,7 +980,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertFeedbackResponse>(

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace customsearch_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace customsearch_v1 {
    * @param {object=} options Options for Customsearch
    */
   export class Customsearch {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     cse: Resource$Cse;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.cse = new Resource$Cse(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.cse = new Resource$Cse();
     }
   }
 
@@ -194,16 +186,9 @@ export namespace customsearch_v1 {
 
 
   export class Resource$Cse {
-    root: Customsearch;
     siterestrict: Resource$Cse$Siterestrict;
-    constructor(root: Customsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.siterestrict = new Resource$Cse$Siterestrict(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.siterestrict = new Resource$Cse$Siterestrict();
     }
 
 
@@ -291,7 +276,7 @@ export namespace customsearch_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);
@@ -449,15 +434,7 @@ export namespace customsearch_v1 {
   }
 
   export class Resource$Cse$Siterestrict {
-    root: Customsearch;
-    constructor(root: Customsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -548,7 +525,7 @@ export namespace customsearch_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace pubsub_v1beta1a {
   export interface Options extends GlobalOptions {
     version: 'v1beta1a';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,24 +99,14 @@ export namespace pubsub_v1beta1a {
    * @param {object=} options Options for Pubsub
    */
   export class Pubsub {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     subscriptions: Resource$Subscriptions;
     topics: Resource$Topics;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.subscriptions = new Resource$Subscriptions(this);
-      this.topics = new Resource$Topics(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.subscriptions = new Resource$Subscriptions();
+      this.topics = new Resource$Topics();
     }
   }
 
@@ -454,15 +446,7 @@ export namespace pubsub_v1beta1a {
 
 
   export class Resource$Subscriptions {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -525,7 +509,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -596,7 +580,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -664,7 +648,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -727,7 +711,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -797,7 +781,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
@@ -865,7 +849,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -935,7 +919,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1005,7 +989,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PullResponse>(parameters, callback);
@@ -1075,7 +1059,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PullBatchResponse>(parameters, callback);
@@ -1211,15 +1195,7 @@ export namespace pubsub_v1beta1a {
 
 
   export class Resource$Topics {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1275,7 +1251,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -1341,7 +1317,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1405,7 +1381,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -1471,7 +1447,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(parameters, callback);
@@ -1536,7 +1512,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1606,7 +1582,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublishBatchResponse>(parameters, callback);

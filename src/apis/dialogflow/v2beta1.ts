@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace dialogflow_v2beta1 {
   export interface Options extends GlobalOptions {
     version: 'v2beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace dialogflow_v2beta1 {
    * @param {object=} options Options for Dialogflow
    */
   export class Dialogflow {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -2965,22 +2957,15 @@ export namespace dialogflow_v2beta1 {
 
 
   export class Resource$Projects {
-    root: Dialogflow;
     agent: Resource$Projects$Agent;
     environments: Resource$Projects$Environments;
     knowledgeBases: Resource$Projects$Knowledgebases;
     operations: Resource$Projects$Operations;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.agent = new Resource$Projects$Agent(root);
-      this.environments = new Resource$Projects$Environments(root);
-      this.knowledgeBases = new Resource$Projects$Knowledgebases(root);
-      this.operations = new Resource$Projects$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.agent = new Resource$Projects$Agent();
+      this.environments = new Resource$Projects$Environments();
+      this.knowledgeBases = new Resource$Projects$Knowledgebases();
+      this.operations = new Resource$Projects$Operations();
     }
 
 
@@ -3050,7 +3035,7 @@ export namespace dialogflow_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Agent>(
@@ -3077,24 +3062,17 @@ export namespace dialogflow_v2beta1 {
   }
 
   export class Resource$Projects$Agent {
-    root: Dialogflow;
     entityTypes: Resource$Projects$Agent$Entitytypes;
     environments: Resource$Projects$Agent$Environments;
     intents: Resource$Projects$Agent$Intents;
     knowledgeBases: Resource$Projects$Agent$Knowledgebases;
     sessions: Resource$Projects$Agent$Sessions;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.entityTypes = new Resource$Projects$Agent$Entitytypes(root);
-      this.environments = new Resource$Projects$Agent$Environments(root);
-      this.intents = new Resource$Projects$Agent$Intents(root);
-      this.knowledgeBases = new Resource$Projects$Agent$Knowledgebases(root);
-      this.sessions = new Resource$Projects$Agent$Sessions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.entityTypes = new Resource$Projects$Agent$Entitytypes();
+      this.environments = new Resource$Projects$Agent$Environments();
+      this.intents = new Resource$Projects$Agent$Intents();
+      this.knowledgeBases = new Resource$Projects$Agent$Knowledgebases();
+      this.sessions = new Resource$Projects$Agent$Sessions();
     }
 
 
@@ -3162,7 +3140,7 @@ export namespace dialogflow_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3207,7 +3185,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     options = {};
                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                                                   const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2beta1/{+parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                                                                                                   const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2beta1/{+parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context}; if(callback) {
     createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
                                                                                                                                                                                                                                                                                                                                                    } else {
     return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3274,7 +3252,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3355,7 +3333,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -3432,7 +3410,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3540,16 +3518,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
   }
 
   export class Resource$Projects$Agent$Entitytypes {
-    root: Dialogflow;
     entities: Resource$Projects$Agent$Entitytypes$Entities;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.entities = new Resource$Projects$Agent$Entitytypes$Entities(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.entities = new Resource$Projects$Agent$Entitytypes$Entities();
     }
 
 
@@ -3619,7 +3590,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3697,7 +3668,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3773,7 +3744,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -3841,7 +3812,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -3910,7 +3881,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -3991,7 +3962,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -4070,7 +4041,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EntityType>(
@@ -4240,15 +4211,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
   }
 
   export class Resource$Projects$Agent$Entitytypes$Entities {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4319,7 +4282,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -4399,7 +4362,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -4480,7 +4443,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -4549,54 +4512,30 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Agent$Environments {
-    root: Dialogflow;
     users: Resource$Projects$Agent$Environments$Users;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.users = new Resource$Projects$Agent$Environments$Users(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.users = new Resource$Projects$Agent$Environments$Users();
     }
   }
 
 
   export class Resource$Projects$Agent$Environments$Users {
-    root: Dialogflow;
     sessions: Resource$Projects$Agent$Environments$Users$Sessions;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.sessions =
-          new Resource$Projects$Agent$Environments$Users$Sessions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.sessions = new Resource$Projects$Agent$Environments$Users$Sessions();
     }
   }
 
 
   export class Resource$Projects$Agent$Environments$Users$Sessions {
-    root: Dialogflow;
     contexts: Resource$Projects$Agent$Environments$Users$Sessions$Contexts;
     entityTypes:
         Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.contexts =
-          new Resource$Projects$Agent$Environments$Users$Sessions$Contexts(
-              root);
+          new Resource$Projects$Agent$Environments$Users$Sessions$Contexts();
       this.entityTypes =
-          new Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes(
-              root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes();
     }
 
 
@@ -4664,7 +4603,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -4748,7 +4687,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -4805,15 +4744,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
   }
 
   export class Resource$Projects$Agent$Environments$Users$Sessions$Contexts {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4891,7 +4822,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -4965,7 +4896,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5041,7 +4972,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -5125,7 +5056,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -5212,7 +5143,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -5336,15 +5267,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5419,7 +5342,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
@@ -5493,7 +5416,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5568,7 +5491,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
@@ -5658,7 +5581,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -5743,7 +5666,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
@@ -5872,15 +5795,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Agent$Intents {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5948,7 +5863,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -6024,7 +5939,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -6104,7 +6019,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -6173,7 +6088,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -6246,7 +6161,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -6326,7 +6241,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -6408,7 +6323,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Intent>(
@@ -6598,17 +6513,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Agent$Knowledgebases {
-    root: Dialogflow;
     documents: Resource$Projects$Agent$Knowledgebases$Documents;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.documents =
-          new Resource$Projects$Agent$Knowledgebases$Documents(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.documents = new Resource$Projects$Agent$Knowledgebases$Documents();
     }
 
 
@@ -6676,7 +6583,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
@@ -6745,7 +6652,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -6813,7 +6720,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
@@ -6895,7 +6802,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -6973,7 +6880,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
@@ -7084,15 +6991,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
   }
 
   export class Resource$Projects$Agent$Knowledgebases$Documents {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7161,7 +7060,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -7236,7 +7135,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -7310,7 +7209,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
@@ -7390,7 +7289,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -7470,7 +7369,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -7551,7 +7450,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -7676,18 +7575,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Agent$Sessions {
-    root: Dialogflow;
     contexts: Resource$Projects$Agent$Sessions$Contexts;
     entityTypes: Resource$Projects$Agent$Sessions$Entitytypes;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.contexts = new Resource$Projects$Agent$Sessions$Contexts(root);
-      this.entityTypes = new Resource$Projects$Agent$Sessions$Entitytypes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.contexts = new Resource$Projects$Agent$Sessions$Contexts();
+      this.entityTypes = new Resource$Projects$Agent$Sessions$Entitytypes();
     }
 
 
@@ -7750,7 +7642,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -7829,7 +7721,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -7886,15 +7778,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
   }
 
   export class Resource$Projects$Agent$Sessions$Contexts {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7967,7 +7851,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -8036,7 +7920,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -8107,7 +7991,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -8186,7 +8070,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -8268,7 +8152,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -8392,15 +8276,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Agent$Sessions$Entitytypes {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8471,7 +8347,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
@@ -8541,7 +8417,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -8611,7 +8487,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
@@ -8696,7 +8572,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -8777,7 +8653,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SessionEntityType>(
@@ -8906,48 +8782,27 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Environments {
-    root: Dialogflow;
     users: Resource$Projects$Environments$Users;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.users = new Resource$Projects$Environments$Users(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.users = new Resource$Projects$Environments$Users();
     }
   }
 
 
   export class Resource$Projects$Environments$Users {
-    root: Dialogflow;
     conversations: Resource$Projects$Environments$Users$Conversations;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.conversations =
-          new Resource$Projects$Environments$Users$Conversations(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Environments$Users$Conversations();
     }
   }
 
 
   export class Resource$Projects$Environments$Users$Conversations {
-    root: Dialogflow;
     contexts: Resource$Projects$Environments$Users$Conversations$Contexts;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.contexts =
-          new Resource$Projects$Environments$Users$Conversations$Contexts(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Environments$Users$Conversations$Contexts();
     }
 
 
@@ -9015,7 +8870,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -9043,15 +8898,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
   }
 
   export class Resource$Projects$Environments$Users$Conversations$Contexts {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9129,7 +8976,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -9203,7 +9050,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -9279,7 +9126,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -9362,7 +9209,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -9449,7 +9296,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Context>(
@@ -9574,16 +9421,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Knowledgebases {
-    root: Dialogflow;
     documents: Resource$Projects$Knowledgebases$Documents;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.documents = new Resource$Projects$Knowledgebases$Documents(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.documents = new Resource$Projects$Knowledgebases$Documents();
     }
 
 
@@ -9651,7 +9491,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
@@ -9720,7 +9560,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -9788,7 +9628,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
@@ -9870,7 +9710,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -9948,7 +9788,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
@@ -10059,15 +9899,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
   }
 
   export class Resource$Projects$Knowledgebases$Documents {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -10135,7 +9967,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -10209,7 +10041,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -10282,7 +10114,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
@@ -10361,7 +10193,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -10440,7 +10272,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -10520,7 +10352,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -10645,15 +10477,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
 
   export class Resource$Projects$Operations {
-    root: Dialogflow;
-    constructor(root: Dialogflow) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -10715,7 +10539,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace appsactivity_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace appsactivity_v1 {
    * @param {object=} options Options for Appsactivity
    */
   export class Appsactivity {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     activities: Resource$Activities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.activities = new Resource$Activities();
     }
   }
 
@@ -325,15 +317,7 @@ export namespace appsactivity_v1 {
 
 
   export class Resource$Activities {
-    root: Appsactivity;
-    constructor(root: Appsactivity) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -403,7 +387,7 @@ export namespace appsactivity_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListActivitiesResponse>(parameters, callback);

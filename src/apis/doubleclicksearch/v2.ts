@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace doubleclicksearch_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,26 +82,16 @@ export namespace doubleclicksearch_v2 {
    * @param {object=} options Options for Doubleclicksearch
    */
   export class Doubleclicksearch {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     conversion: Resource$Conversion;
     reports: Resource$Reports;
     savedColumns: Resource$Savedcolumns;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.conversion = new Resource$Conversion(this);
-      this.reports = new Resource$Reports(this);
-      this.savedColumns = new Resource$Savedcolumns(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.conversion = new Resource$Conversion();
+      this.reports = new Resource$Reports();
+      this.savedColumns = new Resource$Savedcolumns();
     }
   }
 
@@ -621,15 +613,7 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Conversion {
-    root: Doubleclicksearch;
-    constructor(root: Doubleclicksearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -700,7 +684,7 @@ export namespace doubleclicksearch_v2 {
           'startDate', 'startRow'
         ],
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -766,7 +750,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -842,7 +826,7 @@ export namespace doubleclicksearch_v2 {
           'startDate', 'startRow'
         ],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -908,7 +892,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -983,7 +967,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
@@ -1131,15 +1115,7 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Reports {
-    root: Doubleclicksearch;
-    constructor(root: Doubleclicksearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1197,7 +1173,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1258,7 +1234,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['reportId'],
         pathParams: ['reportId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1324,7 +1300,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['reportId', 'reportFragment'],
         pathParams: ['reportFragment', 'reportId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1388,7 +1364,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1451,15 +1427,7 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Savedcolumns {
-    root: Doubleclicksearch;
-    constructor(root: Doubleclicksearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1521,7 +1489,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['agencyId', 'advertiserId'],
         pathParams: ['advertiserId', 'agencyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedColumnList>(parameters, callback);

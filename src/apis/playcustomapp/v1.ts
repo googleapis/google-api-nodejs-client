@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace playcustomapp_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace playcustomapp_v1 {
    * @param {object=} options Options for Playcustomapp
    */
   export class Playcustomapp {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
     }
   }
 
@@ -114,30 +106,15 @@ export namespace playcustomapp_v1 {
 
 
   export class Resource$Accounts {
-    root: Playcustomapp;
     customApps: Resource$Accounts$Customapps;
-    constructor(root: Playcustomapp) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.customApps = new Resource$Accounts$Customapps(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.customApps = new Resource$Accounts$Customapps();
     }
   }
 
 
   export class Resource$Accounts$Customapps {
-    root: Playcustomapp;
-    constructor(root: Playcustomapp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -204,7 +181,7 @@ export namespace playcustomapp_v1 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['account'],
         pathParams: ['account'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomApp>(parameters, callback);

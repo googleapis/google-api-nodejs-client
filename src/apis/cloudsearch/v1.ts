@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudsearch_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,10 +99,6 @@ export namespace cloudsearch_v1 {
    * @param {object=} options Options for Cloudsearch
    */
   export class Cloudsearch {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     debug: Resource$Debug;
     indexing: Resource$Indexing;
     media: Resource$Media;
@@ -110,21 +108,15 @@ export namespace cloudsearch_v1 {
     stats: Resource$Stats;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.debug = new Resource$Debug(this);
-      this.indexing = new Resource$Indexing(this);
-      this.media = new Resource$Media(this);
-      this.operations = new Resource$Operations(this);
-      this.query = new Resource$Query(this);
-      this.settings = new Resource$Settings(this);
-      this.stats = new Resource$Stats(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.debug = new Resource$Debug();
+      this.indexing = new Resource$Indexing();
+      this.media = new Resource$Media();
+      this.operations = new Resource$Operations();
+      this.query = new Resource$Query();
+      this.settings = new Resource$Settings();
+      this.stats = new Resource$Stats();
     }
   }
 
@@ -2571,48 +2563,27 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Debug {
-    root: Cloudsearch;
     datasources: Resource$Debug$Datasources;
     identitysources: Resource$Debug$Identitysources;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.datasources = new Resource$Debug$Datasources(root);
-      this.identitysources = new Resource$Debug$Identitysources(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.datasources = new Resource$Debug$Datasources();
+      this.identitysources = new Resource$Debug$Identitysources();
     }
   }
 
 
   export class Resource$Debug$Datasources {
-    root: Cloudsearch;
     items: Resource$Debug$Datasources$Items;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.items = new Resource$Debug$Datasources$Items(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.items = new Resource$Debug$Datasources$Items();
     }
   }
 
 
   export class Resource$Debug$Datasources$Items {
-    root: Cloudsearch;
     unmappedids: Resource$Debug$Datasources$Items$Unmappedids;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.unmappedids = new Resource$Debug$Datasources$Items$Unmappedids(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.unmappedids = new Resource$Debug$Datasources$Items$Unmappedids();
     }
 
 
@@ -2676,7 +2647,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CheckAccessResponse>(parameters, callback);
@@ -2752,7 +2723,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
@@ -2805,15 +2776,7 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Debug$Datasources$Items$Unmappedids {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2882,7 +2845,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -2924,32 +2887,17 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Debug$Identitysources {
-    root: Cloudsearch;
     items: Resource$Debug$Identitysources$Items;
     unmappedids: Resource$Debug$Identitysources$Unmappedids;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.items = new Resource$Debug$Identitysources$Items(root);
-      this.unmappedids = new Resource$Debug$Identitysources$Unmappedids(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.items = new Resource$Debug$Identitysources$Items();
+      this.unmappedids = new Resource$Debug$Identitysources$Unmappedids();
     }
   }
 
 
   export class Resource$Debug$Identitysources$Items {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3026,7 +2974,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
@@ -3075,15 +3023,7 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Debug$Identitysources$Unmappedids {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3153,7 +3093,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -3199,31 +3139,17 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Indexing {
-    root: Cloudsearch;
     datasources: Resource$Indexing$Datasources;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.datasources = new Resource$Indexing$Datasources(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.datasources = new Resource$Indexing$Datasources();
     }
   }
 
 
   export class Resource$Indexing$Datasources {
-    root: Cloudsearch;
     items: Resource$Indexing$Datasources$Items;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.items = new Resource$Indexing$Datasources$Items(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.items = new Resource$Indexing$Datasources$Items();
     }
 
 
@@ -3285,7 +3211,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3352,7 +3278,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Schema>(parameters, callback);
@@ -3420,7 +3346,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3485,15 +3411,7 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Indexing$Datasources$Items {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3557,7 +3475,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3628,7 +3546,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3692,7 +3610,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Item>(parameters, callback);
@@ -3762,7 +3680,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3834,7 +3752,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListItemsResponse>(parameters, callback);
@@ -3910,7 +3828,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PollItemsResponse>(parameters, callback);
@@ -3977,7 +3895,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Item>(parameters, callback);
@@ -4047,7 +3965,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4117,7 +4035,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UploadItemRef>(parameters, callback);
@@ -4337,15 +4255,7 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Media {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4415,7 +4325,7 @@ export namespace cloudsearch_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Media>(parameters, callback);
@@ -4460,15 +4370,7 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Operations {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4524,7 +4426,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4548,16 +4450,9 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Query {
-    root: Cloudsearch;
     sources: Resource$Query$Sources;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.sources = new Resource$Query$Sources(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.sources = new Resource$Query$Sources();
     }
 
 
@@ -4618,7 +4513,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(parameters, callback);
@@ -4683,7 +4578,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SuggestResponse>(parameters, callback);
@@ -4719,15 +4614,7 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Query$Sources {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4792,7 +4679,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListQuerySourcesResponse>(parameters, callback);
@@ -4842,32 +4729,17 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Settings {
-    root: Cloudsearch;
     datasources: Resource$Settings$Datasources;
     searchapplications: Resource$Settings$Searchapplications;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.datasources = new Resource$Settings$Datasources(root);
-      this.searchapplications = new Resource$Settings$Searchapplications(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.datasources = new Resource$Settings$Datasources();
+      this.searchapplications = new Resource$Settings$Searchapplications();
     }
   }
 
 
   export class Resource$Settings$Datasources {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4927,7 +4799,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4995,7 +4867,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5059,7 +4931,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -5129,7 +5001,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourceResponse>(parameters, callback);
@@ -5197,7 +5069,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5297,15 +5169,7 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Settings$Searchapplications {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5365,7 +5229,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5433,7 +5297,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5497,7 +5361,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchApplication>(parameters, callback);
@@ -5571,7 +5435,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSearchApplicationsResponse>(
@@ -5642,7 +5506,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5710,7 +5574,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5831,16 +5695,9 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Stats {
-    root: Cloudsearch;
     index: Resource$Stats$Index;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.index = new Resource$Stats$Index(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.index = new Resource$Stats$Index();
     }
 
 
@@ -5908,7 +5765,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
@@ -5953,30 +5810,15 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Stats$Index {
-    root: Cloudsearch;
     datasources: Resource$Stats$Index$Datasources;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.datasources = new Resource$Stats$Index$Datasources(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.datasources = new Resource$Stats$Index$Datasources();
     }
   }
 
 
   export class Resource$Stats$Index$Datasources {
-    root: Cloudsearch;
-    constructor(root: Cloudsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6044,7 +5886,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(

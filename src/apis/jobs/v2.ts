@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace jobs_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,26 +99,16 @@ export namespace jobs_v2 {
    * @param {object=} options Options for Jobs
    */
   export class Jobs {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     companies: Resource$Companies;
     jobs: Resource$Jobs;
     v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.companies = new Resource$Companies(this);
-      this.jobs = new Resource$Jobs(this);
-      this.v2 = new Resource$V2(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.companies = new Resource$Companies();
+      this.jobs = new Resource$Jobs();
+      this.v2 = new Resource$V2();
     }
   }
 
@@ -2218,16 +2210,9 @@ export namespace jobs_v2 {
 
 
   export class Resource$Companies {
-    root: Jobs;
     jobs: Resource$Companies$Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.jobs = new Resource$Companies$Jobs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.jobs = new Resource$Companies$Jobs();
     }
 
 
@@ -2284,7 +2269,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2347,7 +2332,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2407,7 +2392,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2475,7 +2460,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompaniesResponse>(parameters, callback);
@@ -2542,7 +2527,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2641,15 +2626,7 @@ export namespace jobs_v2 {
   }
 
   export class Resource$Companies$Jobs {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2715,7 +2692,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['companyName'],
         pathParams: ['companyName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompanyJobsResponse>(parameters, callback);
@@ -2770,15 +2747,7 @@ export namespace jobs_v2 {
 
 
   export class Resource$Jobs {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2836,7 +2805,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2900,7 +2869,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -2965,7 +2934,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3034,7 +3003,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3095,7 +3064,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3169,7 +3138,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetHistogramResponse>(parameters, callback);
@@ -3236,7 +3205,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3301,7 +3270,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3367,7 +3336,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3441,7 +3410,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3609,15 +3578,7 @@ export namespace jobs_v2 {
 
 
   export class Resource$V2 {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3682,7 +3643,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CompleteQueryResponse>(parameters, callback);

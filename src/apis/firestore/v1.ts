@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace firestore_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace firestore_v1 {
    * @param {object=} options Options for Firestore
    */
   export class Firestore {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -647,36 +639,22 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects {
-    root: Firestore;
     databases: Resource$Projects$Databases;
     locations: Resource$Projects$Locations;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.databases = new Resource$Projects$Databases(root);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.databases = new Resource$Projects$Databases();
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Databases {
-    root: Firestore;
     collectionGroups: Resource$Projects$Databases$Collectiongroups;
     operations: Resource$Projects$Databases$Operations;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.collectionGroups =
-          new Resource$Projects$Databases$Collectiongroups(root);
-      this.operations = new Resource$Projects$Databases$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Databases$Collectiongroups();
+      this.operations = new Resource$Projects$Databases$Operations();
     }
 
 
@@ -751,7 +729,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -831,7 +809,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -880,34 +858,17 @@ export namespace firestore_v1 {
   }
 
   export class Resource$Projects$Databases$Collectiongroups {
-    root: Firestore;
     fields: Resource$Projects$Databases$Collectiongroups$Fields;
     indexes: Resource$Projects$Databases$Collectiongroups$Indexes;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.fields =
-          new Resource$Projects$Databases$Collectiongroups$Fields(root);
-      this.indexes =
-          new Resource$Projects$Databases$Collectiongroups$Indexes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.fields = new Resource$Projects$Databases$Collectiongroups$Fields();
+      this.indexes = new Resource$Projects$Databases$Collectiongroups$Indexes();
     }
   }
 
 
   export class Resource$Projects$Databases$Collectiongroups$Fields {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -969,7 +930,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1Field>(
@@ -1053,7 +1014,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1ListFieldsResponse>(
@@ -1142,7 +1103,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1238,15 +1199,7 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects$Databases$Collectiongroups$Indexes {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1320,7 +1273,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1391,7 +1344,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1461,7 +1414,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1Index>(
@@ -1543,7 +1496,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1ListIndexesResponse>(
@@ -1630,15 +1583,7 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects$Databases$Operations {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1706,7 +1651,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1774,7 +1719,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1843,7 +1788,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1928,7 +1873,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -2009,15 +1954,7 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects$Locations {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2071,7 +2008,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -2142,7 +2079,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);

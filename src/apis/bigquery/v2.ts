@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace bigquery_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,10 +81,6 @@ export namespace bigquery_v2 {
    * @param {object=} options Options for Bigquery
    */
   export class Bigquery {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     datasets: Resource$Datasets;
     jobs: Resource$Jobs;
     projects: Resource$Projects;
@@ -90,19 +88,13 @@ export namespace bigquery_v2 {
     tables: Resource$Tables;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.datasets = new Resource$Datasets(this);
-      this.jobs = new Resource$Jobs(this);
-      this.projects = new Resource$Projects(this);
-      this.tabledata = new Resource$Tabledata(this);
-      this.tables = new Resource$Tables(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.datasets = new Resource$Datasets();
+      this.jobs = new Resource$Jobs();
+      this.projects = new Resource$Projects();
+      this.tabledata = new Resource$Tabledata();
+      this.tables = new Resource$Tables();
     }
   }
 
@@ -2276,15 +2268,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Datasets {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2399,7 +2383,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2518,7 +2502,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2640,7 +2624,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2776,7 +2760,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatasetList>(parameters, callback);
@@ -2908,7 +2892,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -3039,7 +3023,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -3175,15 +3159,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Jobs {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3303,7 +3279,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$JobCancelResponse>(parameters, callback);
@@ -3424,7 +3400,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3569,7 +3545,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetQueryResultsResponse>(parameters, callback);
@@ -3703,7 +3679,7 @@ export namespace bigquery_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3844,7 +3820,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$JobList>(parameters, callback);
@@ -3968,7 +3944,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);
@@ -4153,15 +4129,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Projects {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4279,7 +4247,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetServiceAccountResponse>(
@@ -4409,7 +4377,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectList>(parameters, callback);
@@ -4450,15 +4418,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tabledata {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4592,7 +4552,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataInsertAllResponse>(
@@ -4739,7 +4699,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataList>(parameters, callback);
@@ -4813,15 +4773,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tables {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4938,7 +4890,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5065,7 +5017,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5193,7 +5145,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5333,7 +5285,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -5470,7 +5422,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5606,7 +5558,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);

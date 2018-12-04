@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace appengine_v1beta4 {
   export interface Options extends GlobalOptions {
     version: 'v1beta4';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace appengine_v1beta4 {
    * @param {object=} options Options for Appengine
    */
   export class Appengine {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     apps: Resource$Apps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.apps = new Resource$Apps(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.apps = new Resource$Apps();
     }
   }
 
@@ -1499,20 +1491,13 @@ export namespace appengine_v1beta4 {
 
 
   export class Resource$Apps {
-    root: Appengine;
     locations: Resource$Apps$Locations;
     modules: Resource$Apps$Modules;
     operations: Resource$Apps$Operations;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Apps$Locations(root);
-      this.modules = new Resource$Apps$Modules(root);
-      this.operations = new Resource$Apps$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Apps$Locations();
+      this.modules = new Resource$Apps$Modules();
+      this.operations = new Resource$Apps$Operations();
     }
 
 
@@ -1576,7 +1561,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1639,7 +1624,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -1710,7 +1695,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1774,15 +1759,7 @@ export namespace appengine_v1beta4 {
   }
 
   export class Resource$Apps$Locations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1838,7 +1815,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'locationsId'],
         pathParams: ['appsId', 'locationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1908,7 +1885,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1962,16 +1939,9 @@ export namespace appengine_v1beta4 {
 
 
   export class Resource$Apps$Modules {
-    root: Appengine;
     versions: Resource$Apps$Modules$Versions;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.versions = new Resource$Apps$Modules$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.versions = new Resource$Apps$Modules$Versions();
     }
 
 
@@ -2033,7 +2003,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId'],
         pathParams: ['appsId', 'modulesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2095,7 +2065,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId'],
         pathParams: ['appsId', 'modulesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Module>(parameters, callback);
@@ -2163,7 +2133,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListModulesResponse>(parameters, callback);
@@ -2233,7 +2203,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId'],
         pathParams: ['appsId', 'modulesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2340,16 +2310,9 @@ export namespace appengine_v1beta4 {
   }
 
   export class Resource$Apps$Modules$Versions {
-    root: Appengine;
     instances: Resource$Apps$Modules$Versions$Instances;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instances = new Resource$Apps$Modules$Versions$Instances(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instances = new Resource$Apps$Modules$Versions$Instances();
     }
 
 
@@ -2413,7 +2376,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId'],
         pathParams: ['appsId', 'modulesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2484,7 +2447,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId', 'versionsId'],
         pathParams: ['appsId', 'modulesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2553,7 +2516,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId', 'versionsId'],
         pathParams: ['appsId', 'modulesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2626,7 +2589,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId'],
         pathParams: ['appsId', 'modulesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
@@ -2713,7 +2676,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId', 'versionsId'],
         pathParams: ['appsId', 'modulesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2852,15 +2815,7 @@ export namespace appengine_v1beta4 {
   }
 
   export class Resource$Apps$Modules$Versions$Instances {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2932,7 +2887,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3005,7 +2960,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3072,7 +3027,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'modulesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -3148,7 +3103,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'modulesId', 'versionsId'],
         pathParams: ['appsId', 'modulesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -3271,15 +3226,7 @@ export namespace appengine_v1beta4 {
 
 
   export class Resource$Apps$Operations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3339,7 +3286,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId', 'operationsId'],
         pathParams: ['appsId', 'operationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3418,7 +3365,7 @@ export namespace appengine_v1beta4 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);

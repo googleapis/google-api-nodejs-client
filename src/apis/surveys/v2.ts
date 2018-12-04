@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace surveys_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,24 +82,14 @@ export namespace surveys_v2 {
    * @param {object=} options Options for Surveys
    */
   export class Surveys {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     results: Resource$Results;
     surveys: Resource$Surveys;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.results = new Resource$Results(this);
-      this.surveys = new Resource$Surveys(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.results = new Resource$Results();
+      this.surveys = new Resource$Surveys();
     }
   }
 
@@ -437,15 +429,7 @@ export namespace surveys_v2 {
 
 
   export class Resource$Results {
-    root: Surveys;
-    constructor(root: Surveys) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -503,7 +487,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveyResults>(parameters, callback);
@@ -532,15 +516,7 @@ export namespace surveys_v2 {
 
 
   export class Resource$Surveys {
-    root: Surveys;
-    constructor(root: Surveys) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -599,7 +575,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysDeleteResponse>(parameters, callback);
@@ -660,7 +636,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -724,7 +700,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -791,7 +767,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysListResponse>(parameters, callback);
@@ -858,7 +834,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStartResponse>(parameters, callback);
@@ -923,7 +899,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStopResponse>(parameters, callback);
@@ -989,7 +965,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);

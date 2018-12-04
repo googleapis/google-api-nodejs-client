@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace speech_v1p1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1p1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,26 +98,16 @@ export namespace speech_v1p1beta1 {
    * @param {object=} options Options for Speech
    */
   export class Speech {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     projects: Resource$Projects;
     speech: Resource$Speech;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.projects = new Resource$Projects(this);
-      this.speech = new Resource$Speech(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.projects = new Resource$Projects();
+      this.speech = new Resource$Speech();
     }
   }
 
@@ -890,15 +882,7 @@ export namespace speech_v1p1beta1 {
 
 
   export class Resource$Operations {
-    root: Speech;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -955,7 +939,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -979,50 +963,27 @@ export namespace speech_v1p1beta1 {
 
 
   export class Resource$Projects {
-    root: Speech;
     locations: Resource$Projects$Locations;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Speech;
     datasets: Resource$Projects$Locations$Datasets;
     log_data_stats: Resource$Projects$Locations$Log_data_stats;
     models: Resource$Projects$Locations$Models;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.datasets = new Resource$Projects$Locations$Datasets(root);
-      this.log_data_stats =
-          new Resource$Projects$Locations$Log_data_stats(root);
-      this.models = new Resource$Projects$Locations$Models(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.datasets = new Resource$Projects$Locations$Datasets();
+      this.log_data_stats = new Resource$Projects$Locations$Log_data_stats();
+      this.models = new Resource$Projects$Locations$Models();
     }
   }
 
 
   export class Resource$Projects$Locations$Datasets {
-    root: Speech;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1086,7 +1047,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1149,7 +1110,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1221,7 +1182,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDatasetsResponse>(parameters, callback);
@@ -1290,7 +1251,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1387,15 +1348,7 @@ export namespace speech_v1p1beta1 {
 
 
   export class Resource$Projects$Locations$Log_data_stats {
-    root: Speech;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1457,7 +1410,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogDataStatsResponse>(parameters, callback);
@@ -1483,15 +1436,7 @@ export namespace speech_v1p1beta1 {
 
 
   export class Resource$Projects$Locations$Models {
-    root: Speech;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1556,7 +1501,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1627,7 +1572,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1698,7 +1643,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1768,7 +1713,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListModelsResponse>(parameters, callback);
@@ -1867,15 +1812,7 @@ export namespace speech_v1p1beta1 {
 
 
   export class Resource$Speech {
-    root: Speech;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1939,7 +1876,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2006,7 +1943,7 @@ export namespace speech_v1p1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RecognizeResponse>(parameters, callback);

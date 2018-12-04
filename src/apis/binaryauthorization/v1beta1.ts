@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace binaryauthorization_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace binaryauthorization_v1beta1 {
    * @param {object=} options Options for Binaryauthorization
    */
   export class Binaryauthorization {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -438,18 +430,11 @@ export namespace binaryauthorization_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Binaryauthorization;
     attestors: Resource$Projects$Attestors;
     policy: Resource$Projects$Policy;
-    constructor(root: Binaryauthorization) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.attestors = new Resource$Projects$Attestors(root);
-      this.policy = new Resource$Projects$Policy(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.attestors = new Resource$Projects$Attestors();
+      this.policy = new Resource$Projects$Policy();
     }
 
 
@@ -510,7 +495,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -581,7 +566,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -624,15 +609,7 @@ export namespace binaryauthorization_v1beta1 {
   }
 
   export class Resource$Projects$Attestors {
-    root: Binaryauthorization;
-    constructor(root: Binaryauthorization) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -696,7 +673,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -763,7 +740,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -825,7 +802,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -894,7 +871,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -966,7 +943,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAttestorsResponse>(parameters, callback);
@@ -1036,7 +1013,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1116,7 +1093,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1185,7 +1162,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -1336,15 +1313,7 @@ export namespace binaryauthorization_v1beta1 {
 
 
   export class Resource$Projects$Policy {
-    root: Binaryauthorization;
-    constructor(root: Binaryauthorization) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1406,7 +1375,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1476,7 +1445,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1555,7 +1524,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

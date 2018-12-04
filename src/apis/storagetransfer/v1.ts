@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace storagetransfer_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,26 +99,16 @@ export namespace storagetransfer_v1 {
    * @param {object=} options Options for Storagetransfer
    */
   export class Storagetransfer {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     googleServiceAccounts: Resource$Googleserviceaccounts;
     transferJobs: Resource$Transferjobs;
     transferOperations: Resource$Transferoperations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.googleServiceAccounts = new Resource$Googleserviceaccounts(this);
-      this.transferJobs = new Resource$Transferjobs(this);
-      this.transferOperations = new Resource$Transferoperations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.googleServiceAccounts = new Resource$Googleserviceaccounts();
+      this.transferJobs = new Resource$Transferjobs();
+      this.transferOperations = new Resource$Transferoperations();
     }
   }
 
@@ -761,15 +753,7 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Googleserviceaccounts {
-    root: Storagetransfer;
-    constructor(root: Storagetransfer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -887,7 +871,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleServiceAccount>(parameters, callback);
@@ -913,15 +897,7 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Transferjobs {
-    root: Storagetransfer;
-    constructor(root: Storagetransfer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1035,7 +1011,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1153,7 +1129,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1286,7 +1262,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferJobsResponse>(parameters, callback);
@@ -1416,7 +1392,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1501,15 +1477,7 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Transferoperations {
-    root: Storagetransfer;
-    constructor(root: Storagetransfer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1622,7 +1590,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1740,7 +1708,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1857,7 +1825,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2003,7 +1971,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2127,7 +2095,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2251,7 +2219,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);

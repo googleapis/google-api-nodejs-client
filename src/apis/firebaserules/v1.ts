@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace firebaserules_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace firebaserules_v1 {
    * @param {object=} options Options for Firebaserules
    */
   export class Firebaserules {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -517,18 +509,11 @@ export namespace firebaserules_v1 {
 
 
   export class Resource$Projects {
-    root: Firebaserules;
     releases: Resource$Projects$Releases;
     rulesets: Resource$Projects$Rulesets;
-    constructor(root: Firebaserules) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.releases = new Resource$Projects$Releases(root);
-      this.rulesets = new Resource$Projects$Rulesets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.releases = new Resource$Projects$Releases();
+      this.rulesets = new Resource$Projects$Rulesets();
     }
 
 
@@ -600,7 +585,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestRulesetResponse>(parameters, callback);
@@ -632,15 +617,7 @@ export namespace firebaserules_v1 {
   }
 
   export class Resource$Projects$Releases {
-    root: Firebaserules;
-    constructor(root: Firebaserules) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -715,7 +692,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -781,7 +758,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -843,7 +820,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -918,7 +895,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetReleaseExecutableResponse>(
@@ -994,7 +971,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
@@ -1063,7 +1040,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -1201,15 +1178,7 @@ export namespace firebaserules_v1 {
 
 
   export class Resource$Projects$Rulesets {
-    root: Firebaserules;
-    constructor(root: Firebaserules) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1274,7 +1243,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1341,7 +1310,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1403,7 +1372,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1477,7 +1446,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListRulesetsResponse>(parameters, callback);

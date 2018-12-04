@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudasset_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,24 +98,14 @@ export namespace cloudasset_v1beta1 {
    * @param {object=} options Options for Cloudasset
    */
   export class Cloudasset {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.organizations = new Resource$Organizations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -543,16 +535,9 @@ export namespace cloudasset_v1beta1 {
 
 
   export class Resource$Organizations {
-    root: Cloudasset;
     operations: Resource$Organizations$Operations;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Organizations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Organizations$Operations();
     }
 
 
@@ -627,7 +612,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -700,7 +685,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -769,15 +754,7 @@ export namespace cloudasset_v1beta1 {
   }
 
   export class Resource$Organizations$Operations {
-    root: Cloudasset;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -834,7 +811,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -860,16 +837,9 @@ export namespace cloudasset_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Cloudasset;
     operations: Resource$Projects$Operations;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Projects$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Projects$Operations();
     }
 
 
@@ -944,7 +914,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -1017,7 +987,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1086,15 +1056,7 @@ export namespace cloudasset_v1beta1 {
   }
 
   export class Resource$Projects$Operations {
-    root: Cloudasset;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1151,7 +1113,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

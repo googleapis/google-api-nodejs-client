@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace streetviewpublish_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,24 +100,14 @@ export namespace streetviewpublish_v1 {
    * @param {object=} options Options for Streetviewpublish
    */
   export class Streetviewpublish {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     photo: Resource$Photo;
     photos: Resource$Photos;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.photo = new Resource$Photo(this);
-      this.photos = new Resource$Photos(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.photo = new Resource$Photo();
+      this.photos = new Resource$Photos();
     }
   }
 
@@ -521,15 +513,7 @@ export namespace streetviewpublish_v1 {
 
 
   export class Resource$Photo {
-    root: Streetviewpublish;
-    constructor(root: Streetviewpublish) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -597,7 +581,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -665,7 +649,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -734,7 +718,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -814,7 +798,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UploadRef>(parameters, callback);
@@ -891,7 +875,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -994,15 +978,7 @@ export namespace streetviewpublish_v1 {
 
 
   export class Resource$Photos {
-    root: Streetviewpublish;
-    constructor(root: Streetviewpublish) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1071,7 +1047,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchDeletePhotosResponse>(
@@ -1147,7 +1123,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback);
@@ -1228,7 +1204,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePhotosResponse>(
@@ -1300,7 +1276,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPhotosResponse>(parameters, callback);

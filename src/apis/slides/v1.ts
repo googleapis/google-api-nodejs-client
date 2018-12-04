@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace slides_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace slides_v1 {
    * @param {object=} options Options for Slides
    */
   export class Slides {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     presentations: Resource$Presentations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.presentations = new Resource$Presentations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.presentations = new Resource$Presentations();
     }
   }
 
@@ -3310,16 +3302,9 @@ export namespace slides_v1 {
 
 
   export class Resource$Presentations {
-    root: Slides;
     pages: Resource$Presentations$Pages;
-    constructor(root: Slides) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.pages = new Resource$Presentations$Pages(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.pages = new Resource$Presentations$Pages();
     }
 
 
@@ -3401,7 +3386,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId'],
         pathParams: ['presentationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePresentationResponse>(
@@ -3474,7 +3459,7 @@ export namespace slides_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Presentation>(parameters, callback);
@@ -3537,7 +3522,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId'],
         pathParams: ['presentationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Presentation>(parameters, callback);
@@ -3591,15 +3576,7 @@ export namespace slides_v1 {
   }
 
   export class Resource$Presentations$Pages {
-    root: Slides;
-    constructor(root: Slides) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3656,7 +3633,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId', 'pageObjectId'],
         pathParams: ['pageObjectId', 'presentationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -3731,7 +3708,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId', 'pageObjectId'],
         pathParams: ['pageObjectId', 'presentationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Thumbnail>(parameters, callback);

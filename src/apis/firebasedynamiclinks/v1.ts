@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace firebasedynamiclinks_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,26 +98,16 @@ export namespace firebasedynamiclinks_v1 {
    * @param {object=} options Options for Firebasedynamiclinks
    */
   export class Firebasedynamiclinks {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     managedShortLinks: Resource$Managedshortlinks;
     shortLinks: Resource$Shortlinks;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.managedShortLinks = new Resource$Managedshortlinks(this);
-      this.shortLinks = new Resource$Shortlinks(this);
-      this.v1 = new Resource$V1(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.managedShortLinks = new Resource$Managedshortlinks();
+      this.shortLinks = new Resource$Shortlinks();
+      this.v1 = new Resource$V1();
     }
   }
 
@@ -743,15 +735,7 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$Managedshortlinks {
-    root: Firebasedynamiclinks;
-    constructor(root: Firebasedynamiclinks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -826,7 +810,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateManagedShortLinkResponse>(
@@ -854,15 +838,7 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$Shortlinks {
-    root: Firebasedynamiclinks;
-    constructor(root: Firebasedynamiclinks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -931,7 +907,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
@@ -959,15 +935,7 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$V1 {
-    root: Firebasedynamiclinks;
-    constructor(root: Firebasedynamiclinks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1031,7 +999,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: ['dynamicLink'],
         pathParams: ['dynamicLink'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DynamicLinkStats>(parameters, callback);
@@ -1109,7 +1077,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
@@ -1185,7 +1153,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetIosReopenAttributionResponse>(

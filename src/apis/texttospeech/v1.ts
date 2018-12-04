@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace texttospeech_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,24 +99,14 @@ export namespace texttospeech_v1 {
    * @param {object=} options Options for Texttospeech
    */
   export class Texttospeech {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     text: Resource$Text;
     voices: Resource$Voices;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.text = new Resource$Text(this);
-      this.voices = new Resource$Voices(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.text = new Resource$Text();
+      this.voices = new Resource$Voices();
     }
   }
 
@@ -277,15 +269,7 @@ export namespace texttospeech_v1 {
 
 
   export class Resource$Text {
-    root: Texttospeech;
-    constructor(root: Texttospeech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -347,7 +331,7 @@ export namespace texttospeech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters, callback);
@@ -372,15 +356,7 @@ export namespace texttospeech_v1 {
 
 
   export class Resource$Voices {
-    root: Texttospeech;
-    constructor(root: Texttospeech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -437,7 +413,7 @@ export namespace texttospeech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVoicesResponse>(parameters, callback);

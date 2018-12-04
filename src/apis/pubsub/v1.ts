@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace pubsub_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace pubsub_v1 {
    * @param {object=} options Options for Pubsub
    */
   export class Pubsub {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -777,34 +769,19 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects {
-    root: Pubsub;
     snapshots: Resource$Projects$Snapshots;
     subscriptions: Resource$Projects$Subscriptions;
     topics: Resource$Projects$Topics;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.snapshots = new Resource$Projects$Snapshots(root);
-      this.subscriptions = new Resource$Projects$Subscriptions(root);
-      this.topics = new Resource$Projects$Topics(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.snapshots = new Resource$Projects$Snapshots();
+      this.subscriptions = new Resource$Projects$Subscriptions();
+      this.topics = new Resource$Projects$Topics();
     }
   }
 
 
   export class Resource$Projects$Snapshots {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -881,7 +858,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -957,7 +934,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['snapshot'],
         pathParams: ['snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1025,7 +1002,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['snapshot'],
         pathParams: ['snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -1145,7 +1122,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1222,7 +1199,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
@@ -1296,7 +1273,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -1421,7 +1398,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1558,7 +1535,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1709,15 +1686,7 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Subscriptions {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1837,7 +1806,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1982,7 +1951,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2104,7 +2073,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2222,7 +2191,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2342,7 +2311,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2482,7 +2451,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
@@ -2609,7 +2578,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2737,7 +2706,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2805,7 +2774,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2934,7 +2903,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PullResponse>(parameters, callback);
@@ -3011,7 +2980,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SeekResponse>(parameters, callback);
@@ -3136,7 +3105,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3274,7 +3243,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3519,18 +3488,11 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Topics {
-    root: Pubsub;
     snapshots: Resource$Projects$Topics$Snapshots;
     subscriptions: Resource$Projects$Topics$Subscriptions;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.snapshots = new Resource$Projects$Topics$Snapshots(root);
-      this.subscriptions = new Resource$Projects$Topics$Subscriptions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.snapshots = new Resource$Projects$Topics$Snapshots();
+      this.subscriptions = new Resource$Projects$Topics$Subscriptions();
     }
 
 
@@ -3661,7 +3623,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -3783,7 +3745,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3899,7 +3861,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -4021,7 +3983,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4157,7 +4119,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(parameters, callback);
@@ -4224,7 +4186,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -4352,7 +4314,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublishResponse>(parameters, callback);
@@ -4479,7 +4441,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4615,7 +4577,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4788,15 +4750,7 @@ export namespace pubsub_v1 {
   }
 
   export class Resource$Projects$Topics$Snapshots {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4871,7 +4825,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicSnapshotsResponse>(
@@ -4908,15 +4862,7 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Topics$Subscriptions {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5052,7 +4998,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicSubscriptionsResponse>(

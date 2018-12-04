@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace appstate_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace appstate_v1 {
    * @param {object=} options Options for Appstate
    */
   export class Appstate {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     states: Resource$States;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.states = new Resource$States(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.states = new Resource$States();
     }
   }
 
@@ -173,15 +165,7 @@ export namespace appstate_v1 {
 
 
   export class Resource$States {
-    root: Appstate;
-    constructor(root: Appstate) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -242,7 +226,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResult>(parameters, callback);
@@ -309,7 +293,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -372,7 +356,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetResponse>(parameters, callback);
@@ -437,7 +421,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListResponse>(parameters, callback);
@@ -506,7 +490,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResult>(parameters, callback);

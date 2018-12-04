@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace groupssettings_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace groupssettings_v1 {
    * @param {object=} options Options for Groupssettings
    */
   export class Groupssettings {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     groups: Resource$Groups;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.groups = new Resource$Groups(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.groups = new Resource$Groups();
     }
   }
 
@@ -310,15 +302,7 @@ export namespace groupssettings_v1 {
 
 
   export class Resource$Groups {
-    root: Groupssettings;
-    constructor(root: Groupssettings) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -372,7 +356,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -437,7 +421,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -502,7 +486,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);

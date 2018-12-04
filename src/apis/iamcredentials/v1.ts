@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace iamcredentials_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace iamcredentials_v1 {
    * @param {object=} options Options for Iamcredentials
    */
   export class Iamcredentials {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -286,30 +278,15 @@ export namespace iamcredentials_v1 {
 
 
   export class Resource$Projects {
-    root: Iamcredentials;
     serviceAccounts: Resource$Projects$Serviceaccounts;
-    constructor(root: Iamcredentials) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.serviceAccounts = new Resource$Projects$Serviceaccounts(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.serviceAccounts = new Resource$Projects$Serviceaccounts();
     }
   }
 
 
   export class Resource$Projects$Serviceaccounts {
-    root: Iamcredentials;
-    constructor(root: Iamcredentials) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -379,7 +356,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateAccessTokenResponse>(
@@ -461,7 +438,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateIdentityBindingAccessTokenResponse>(
@@ -535,7 +512,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateIdTokenResponse>(parameters, callback);
@@ -604,7 +581,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
@@ -673,7 +650,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(parameters, callback);

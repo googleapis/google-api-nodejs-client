@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace adexperiencereport_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,24 +99,14 @@ export namespace adexperiencereport_v1 {
    * @param {object=} options Options for Adexperiencereport
    */
   export class Adexperiencereport {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     sites: Resource$Sites;
     violatingSites: Resource$Violatingsites;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.sites = new Resource$Sites(this);
-      this.violatingSites = new Resource$Violatingsites(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.sites = new Resource$Sites();
+      this.violatingSites = new Resource$Violatingsites();
     }
   }
 
@@ -180,15 +172,7 @@ export namespace adexperiencereport_v1 {
 
 
   export class Resource$Sites {
-    root: Adexperiencereport;
-    constructor(root: Adexperiencereport) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -243,7 +227,7 @@ export namespace adexperiencereport_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback);
@@ -274,15 +258,7 @@ export namespace adexperiencereport_v1 {
 
 
   export class Resource$Violatingsites {
-    root: Adexperiencereport;
-    constructor(root: Adexperiencereport) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -343,7 +319,7 @@ export namespace adexperiencereport_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback);

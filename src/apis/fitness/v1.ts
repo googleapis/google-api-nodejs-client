@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace fitness_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,22 +82,12 @@ export namespace fitness_v1 {
    * @param {object=} options Options for Fitness
    */
   export class Fitness {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.users = new Resource$Users();
     }
   }
 
@@ -647,34 +639,19 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users {
-    root: Fitness;
     dataset: Resource$Users$Dataset;
     dataSources: Resource$Users$Datasources;
     sessions: Resource$Users$Sessions;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.dataset = new Resource$Users$Dataset(root);
-      this.dataSources = new Resource$Users$Datasources(root);
-      this.sessions = new Resource$Users$Sessions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.dataset = new Resource$Users$Dataset();
+      this.dataSources = new Resource$Users$Datasources();
+      this.sessions = new Resource$Users$Sessions();
     }
   }
 
 
   export class Resource$Users$Dataset {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -738,7 +715,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AggregateResponse>(parameters, callback);
@@ -769,19 +746,11 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Datasources {
-    root: Fitness;
     dataPointChanges: Resource$Users$Datasources$Datapointchanges;
     datasets: Resource$Users$Datasources$Datasets;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.dataPointChanges =
-          new Resource$Users$Datasources$Datapointchanges(root);
-      this.datasets = new Resource$Users$Datasources$Datasets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.dataPointChanges = new Resource$Users$Datasources$Datapointchanges();
+      this.datasets = new Resource$Users$Datasources$Datasets();
     }
 
 
@@ -850,7 +819,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -920,7 +889,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -985,7 +954,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1057,7 +1026,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -1130,7 +1099,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1203,7 +1172,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1329,15 +1298,7 @@ export namespace fitness_v1 {
   }
 
   export class Resource$Users$Datasources$Datapointchanges {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1408,7 +1369,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataPointChangesResponse>(
@@ -1451,15 +1412,7 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Datasources$Datasets {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1529,7 +1482,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1601,7 +1554,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1676,7 +1629,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1795,15 +1748,7 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Sessions {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1863,7 +1808,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1934,7 +1879,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -2003,7 +1948,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);

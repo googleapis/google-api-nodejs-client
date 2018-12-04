@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace blogger_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,10 +81,6 @@ export namespace blogger_v3 {
    * @param {object=} options Options for Blogger
    */
   export class Blogger {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     blogs: Resource$Blogs;
     blogUserInfos: Resource$Bloguserinfos;
     comments: Resource$Comments;
@@ -93,22 +91,16 @@ export namespace blogger_v3 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.blogs = new Resource$Blogs(this);
-      this.blogUserInfos = new Resource$Bloguserinfos(this);
-      this.comments = new Resource$Comments(this);
-      this.pages = new Resource$Pages(this);
-      this.pageViews = new Resource$Pageviews(this);
-      this.posts = new Resource$Posts(this);
-      this.postUserInfos = new Resource$Postuserinfos(this);
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.blogs = new Resource$Blogs();
+      this.blogUserInfos = new Resource$Bloguserinfos();
+      this.comments = new Resource$Comments();
+      this.pages = new Resource$Pages();
+      this.pageViews = new Resource$Pageviews();
+      this.posts = new Resource$Posts();
+      this.postUserInfos = new Resource$Postuserinfos();
+      this.users = new Resource$Users();
     }
   }
 
@@ -575,15 +567,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Blogs {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -639,7 +623,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Blog>(parameters, callback);
@@ -704,7 +688,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['url'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Blog>(parameters, callback);
@@ -773,7 +757,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BlogList>(parameters, callback);
@@ -855,15 +839,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Bloguserinfos {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -921,7 +897,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['userId', 'blogId'],
         pathParams: ['blogId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BlogUserInfo>(parameters, callback);
@@ -955,15 +931,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Comments {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1024,7 +992,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -1091,7 +1059,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1157,7 +1125,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -1231,7 +1199,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -1305,7 +1273,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -1375,7 +1343,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -1445,7 +1413,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -1642,15 +1610,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Pages {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1707,7 +1667,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1770,7 +1730,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -1836,7 +1796,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -1906,7 +1866,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PageList>(parameters, callback);
@@ -1974,7 +1934,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -2040,7 +2000,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -2106,7 +2066,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -2174,7 +2134,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -2363,15 +2323,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Pageviews {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2427,7 +2379,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pageviews>(parameters, callback);
@@ -2455,15 +2407,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Posts {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2520,7 +2464,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2586,7 +2530,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -2654,7 +2598,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'path'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -2722,7 +2666,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -2796,7 +2740,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PostList>(parameters, callback);
@@ -2867,7 +2811,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -2935,7 +2879,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -3001,7 +2945,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -3068,7 +3012,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'q'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PostList>(parameters, callback);
@@ -3139,7 +3083,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -3459,15 +3403,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Postuserinfos {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3529,7 +3465,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['userId', 'blogId', 'postId'],
         pathParams: ['blogId', 'postId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PostUserInfo>(parameters, callback);
@@ -3607,7 +3543,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['userId', 'blogId'],
         pathParams: ['blogId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PostUserInfosList>(parameters, callback);
@@ -3699,15 +3635,7 @@ export namespace blogger_v3 {
 
 
   export class Resource$Users {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3761,7 +3689,7 @@ export namespace blogger_v3 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);

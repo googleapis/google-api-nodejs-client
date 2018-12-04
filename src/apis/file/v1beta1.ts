@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace file_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace file_v1beta1 {
    * @param {object=} options Options for File
    */
   export class File {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -433,33 +425,19 @@ export namespace file_v1beta1 {
 
 
   export class Resource$Projects {
-    root: File;
     locations: Resource$Projects$Locations;
-    constructor(root: File) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: File;
     instances: Resource$Projects$Locations$Instances;
     operations: Resource$Projects$Locations$Operations;
-    constructor(root: File) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instances = new Resource$Projects$Locations$Instances(root);
-      this.operations = new Resource$Projects$Locations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instances = new Resource$Projects$Locations$Instances();
+      this.operations = new Resource$Projects$Locations$Operations();
     }
 
 
@@ -514,7 +492,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -585,7 +563,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -633,15 +611,7 @@ export namespace file_v1beta1 {
   }
 
   export class Resource$Projects$Locations$Instances {
-    root: File;
-    constructor(root: File) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -703,7 +673,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -769,7 +739,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -830,7 +800,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -903,7 +873,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -971,7 +941,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1091,15 +1061,7 @@ export namespace file_v1beta1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    root: File;
-    constructor(root: File) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1167,7 +1129,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1235,7 +1197,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1299,7 +1261,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1378,7 +1340,7 @@ export namespace file_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);

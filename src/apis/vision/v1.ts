@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace vision_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,10 +100,6 @@ export namespace vision_v1 {
    * @param {object=} options Options for Vision
    */
   export class Vision {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     files: Resource$Files;
     images: Resource$Images;
     locations: Resource$Locations;
@@ -109,19 +107,13 @@ export namespace vision_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.files = new Resource$Files(this);
-      this.images = new Resource$Images(this);
-      this.locations = new Resource$Locations(this);
-      this.operations = new Resource$Operations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.files = new Resource$Files();
+      this.images = new Resource$Images();
+      this.locations = new Resource$Locations();
+      this.operations = new Resource$Operations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -4801,15 +4793,7 @@ export namespace vision_v1 {
 
 
   export class Resource$Files {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4874,7 +4858,7 @@ export namespace vision_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4900,15 +4884,7 @@ export namespace vision_v1 {
 
 
   export class Resource$Images {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5025,7 +5001,7 @@ export namespace vision_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
@@ -5051,30 +5027,15 @@ export namespace vision_v1 {
 
 
   export class Resource$Locations {
-    root: Vision;
     operations: Resource$Locations$Operations;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Locations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Locations$Operations();
     }
   }
 
 
   export class Resource$Locations$Operations {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5131,7 +5092,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5157,15 +5118,7 @@ export namespace vision_v1 {
 
 
   export class Resource$Operations {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5232,7 +5185,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5299,7 +5252,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5362,7 +5315,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5438,7 +5391,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -5514,49 +5467,28 @@ export namespace vision_v1 {
 
 
   export class Resource$Projects {
-    root: Vision;
     locations: Resource$Projects$Locations;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Vision;
     products: Resource$Projects$Locations$Products;
     productSets: Resource$Projects$Locations$Productsets;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.products = new Resource$Projects$Locations$Products(root);
-      this.productSets = new Resource$Projects$Locations$Productsets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.products = new Resource$Projects$Locations$Products();
+      this.productSets = new Resource$Projects$Locations$Productsets();
     }
   }
 
 
   export class Resource$Projects$Locations$Products {
-    root: Vision;
     referenceImages: Resource$Projects$Locations$Products$Referenceimages;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.referenceImages =
-          new Resource$Projects$Locations$Products$Referenceimages(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Products$Referenceimages();
     }
 
 
@@ -5622,7 +5554,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -5691,7 +5623,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5753,7 +5685,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -5824,7 +5756,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -5899,7 +5831,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6008,15 +5940,7 @@ export namespace vision_v1 {
   }
 
   export class Resource$Projects$Locations$Products$Referenceimages {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6095,7 +6019,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(parameters, callback);
@@ -6169,7 +6093,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6235,7 +6159,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(parameters, callback);
@@ -6316,7 +6240,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReferenceImagesResponse>(
@@ -6405,17 +6329,9 @@ export namespace vision_v1 {
 
 
   export class Resource$Projects$Locations$Productsets {
-    root: Vision;
     products: Resource$Projects$Locations$Productsets$Products;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.products =
-          new Resource$Projects$Locations$Productsets$Products(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.products = new Resource$Projects$Locations$Productsets$Products();
     }
 
 
@@ -6481,7 +6397,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6553,7 +6469,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -6622,7 +6538,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6685,7 +6601,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -6732,7 +6648,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
     options = {};
                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                                               const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                                               const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                                                } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -6797,7 +6713,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductSetsResponse>(parameters, callback);
@@ -6869,7 +6785,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -6939,7 +6855,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7102,15 +7018,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
   }
 
   export class Resource$Projects$Locations$Productsets$Products {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7186,7 +7094,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsInProductSetResponse>(

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace compute_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,10 +81,6 @@ export namespace compute_v1 {
    * @param {object=} options Options for Compute
    */
   export class Compute {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     acceleratorTypes: Resource$Acceleratortypes;
     addresses: Resource$Addresses;
     autoscalers: Resource$Autoscalers;
@@ -143,73 +141,67 @@ export namespace compute_v1 {
     zones: Resource$Zones;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.acceleratorTypes = new Resource$Acceleratortypes(this);
-      this.addresses = new Resource$Addresses(this);
-      this.autoscalers = new Resource$Autoscalers(this);
-      this.backendBuckets = new Resource$Backendbuckets(this);
-      this.backendServices = new Resource$Backendservices(this);
-      this.disks = new Resource$Disks(this);
-      this.diskTypes = new Resource$Disktypes(this);
-      this.firewalls = new Resource$Firewalls(this);
-      this.forwardingRules = new Resource$Forwardingrules(this);
-      this.globalAddresses = new Resource$Globaladdresses(this);
-      this.globalForwardingRules = new Resource$Globalforwardingrules(this);
-      this.globalOperations = new Resource$Globaloperations(this);
-      this.healthChecks = new Resource$Healthchecks(this);
-      this.httpHealthChecks = new Resource$Httphealthchecks(this);
-      this.httpsHealthChecks = new Resource$Httpshealthchecks(this);
-      this.images = new Resource$Images(this);
-      this.instanceGroupManagers = new Resource$Instancegroupmanagers(this);
-      this.instanceGroups = new Resource$Instancegroups(this);
-      this.instances = new Resource$Instances(this);
-      this.instanceTemplates = new Resource$Instancetemplates(this);
-      this.interconnectAttachments = new Resource$Interconnectattachments(this);
-      this.interconnectLocations = new Resource$Interconnectlocations(this);
-      this.interconnects = new Resource$Interconnects(this);
-      this.licenseCodes = new Resource$Licensecodes(this);
-      this.licenses = new Resource$Licenses(this);
-      this.machineTypes = new Resource$Machinetypes(this);
-      this.networks = new Resource$Networks(this);
-      this.nodeGroups = new Resource$Nodegroups(this);
-      this.nodeTemplates = new Resource$Nodetemplates(this);
-      this.nodeTypes = new Resource$Nodetypes(this);
-      this.projects = new Resource$Projects(this);
-      this.regionAutoscalers = new Resource$Regionautoscalers(this);
-      this.regionBackendServices = new Resource$Regionbackendservices(this);
-      this.regionCommitments = new Resource$Regioncommitments(this);
-      this.regionDisks = new Resource$Regiondisks(this);
-      this.regionDiskTypes = new Resource$Regiondisktypes(this);
+      this.acceleratorTypes = new Resource$Acceleratortypes();
+      this.addresses = new Resource$Addresses();
+      this.autoscalers = new Resource$Autoscalers();
+      this.backendBuckets = new Resource$Backendbuckets();
+      this.backendServices = new Resource$Backendservices();
+      this.disks = new Resource$Disks();
+      this.diskTypes = new Resource$Disktypes();
+      this.firewalls = new Resource$Firewalls();
+      this.forwardingRules = new Resource$Forwardingrules();
+      this.globalAddresses = new Resource$Globaladdresses();
+      this.globalForwardingRules = new Resource$Globalforwardingrules();
+      this.globalOperations = new Resource$Globaloperations();
+      this.healthChecks = new Resource$Healthchecks();
+      this.httpHealthChecks = new Resource$Httphealthchecks();
+      this.httpsHealthChecks = new Resource$Httpshealthchecks();
+      this.images = new Resource$Images();
+      this.instanceGroupManagers = new Resource$Instancegroupmanagers();
+      this.instanceGroups = new Resource$Instancegroups();
+      this.instances = new Resource$Instances();
+      this.instanceTemplates = new Resource$Instancetemplates();
+      this.interconnectAttachments = new Resource$Interconnectattachments();
+      this.interconnectLocations = new Resource$Interconnectlocations();
+      this.interconnects = new Resource$Interconnects();
+      this.licenseCodes = new Resource$Licensecodes();
+      this.licenses = new Resource$Licenses();
+      this.machineTypes = new Resource$Machinetypes();
+      this.networks = new Resource$Networks();
+      this.nodeGroups = new Resource$Nodegroups();
+      this.nodeTemplates = new Resource$Nodetemplates();
+      this.nodeTypes = new Resource$Nodetypes();
+      this.projects = new Resource$Projects();
+      this.regionAutoscalers = new Resource$Regionautoscalers();
+      this.regionBackendServices = new Resource$Regionbackendservices();
+      this.regionCommitments = new Resource$Regioncommitments();
+      this.regionDisks = new Resource$Regiondisks();
+      this.regionDiskTypes = new Resource$Regiondisktypes();
       this.regionInstanceGroupManagers =
-          new Resource$Regioninstancegroupmanagers(this);
-      this.regionInstanceGroups = new Resource$Regioninstancegroups(this);
-      this.regionOperations = new Resource$Regionoperations(this);
-      this.regions = new Resource$Regions(this);
-      this.routers = new Resource$Routers(this);
-      this.routes = new Resource$Routes(this);
-      this.securityPolicies = new Resource$Securitypolicies(this);
-      this.snapshots = new Resource$Snapshots(this);
-      this.sslCertificates = new Resource$Sslcertificates(this);
-      this.sslPolicies = new Resource$Sslpolicies(this);
-      this.subnetworks = new Resource$Subnetworks(this);
-      this.targetHttpProxies = new Resource$Targethttpproxies(this);
-      this.targetHttpsProxies = new Resource$Targethttpsproxies(this);
-      this.targetInstances = new Resource$Targetinstances(this);
-      this.targetPools = new Resource$Targetpools(this);
-      this.targetSslProxies = new Resource$Targetsslproxies(this);
-      this.targetTcpProxies = new Resource$Targettcpproxies(this);
-      this.targetVpnGateways = new Resource$Targetvpngateways(this);
-      this.urlMaps = new Resource$Urlmaps(this);
-      this.vpnTunnels = new Resource$Vpntunnels(this);
-      this.zoneOperations = new Resource$Zoneoperations(this);
-      this.zones = new Resource$Zones(this);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Regioninstancegroupmanagers();
+      this.regionInstanceGroups = new Resource$Regioninstancegroups();
+      this.regionOperations = new Resource$Regionoperations();
+      this.regions = new Resource$Regions();
+      this.routers = new Resource$Routers();
+      this.routes = new Resource$Routes();
+      this.securityPolicies = new Resource$Securitypolicies();
+      this.snapshots = new Resource$Snapshots();
+      this.sslCertificates = new Resource$Sslcertificates();
+      this.sslPolicies = new Resource$Sslpolicies();
+      this.subnetworks = new Resource$Subnetworks();
+      this.targetHttpProxies = new Resource$Targethttpproxies();
+      this.targetHttpsProxies = new Resource$Targethttpsproxies();
+      this.targetInstances = new Resource$Targetinstances();
+      this.targetPools = new Resource$Targetpools();
+      this.targetSslProxies = new Resource$Targetsslproxies();
+      this.targetTcpProxies = new Resource$Targettcpproxies();
+      this.targetVpnGateways = new Resource$Targetvpngateways();
+      this.urlMaps = new Resource$Urlmaps();
+      this.vpnTunnels = new Resource$Vpntunnels();
+      this.zoneOperations = new Resource$Zoneoperations();
+      this.zones = new Resource$Zones();
     }
   }
 
@@ -10362,15 +10354,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Acceleratortypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -10509,7 +10493,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorTypeAggregatedList>(
@@ -10638,7 +10622,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'acceleratorType'],
         pathParams: ['acceleratorType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(parameters, callback);
@@ -10782,7 +10766,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorTypeList>(parameters, callback);
@@ -10929,15 +10913,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Addresses {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11071,7 +11047,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AddressAggregatedList>(parameters, callback);
@@ -11200,7 +11176,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -11324,7 +11300,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Address>(parameters, callback);
@@ -11454,7 +11430,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -11595,7 +11571,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AddressList>(parameters, callback);
@@ -11805,15 +11781,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Autoscalers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11947,7 +11915,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalerAggregatedList>(parameters, callback);
@@ -12078,7 +12046,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -12204,7 +12172,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Autoscaler>(parameters, callback);
@@ -12336,7 +12304,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -12477,7 +12445,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalerList>(parameters, callback);
@@ -12612,7 +12580,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -12747,7 +12715,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13035,15 +13003,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Backendbuckets {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -13109,7 +13069,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13237,7 +13197,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13310,7 +13270,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendBucket', 'keyName'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13434,7 +13394,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendBucket>(parameters, callback);
@@ -13562,7 +13522,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13700,7 +13660,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendBucketList>(parameters, callback);
@@ -13837,7 +13797,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13973,7 +13933,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14253,15 +14213,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Backendservices {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -14327,7 +14279,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14473,7 +14425,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceAggregatedList>(
@@ -14603,7 +14555,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14676,7 +14628,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService', 'keyName'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14800,7 +14752,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendService>(parameters, callback);
@@ -14934,7 +14886,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceGroupHealth>(
@@ -15065,7 +15017,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15204,7 +15156,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceList>(parameters, callback);
@@ -15343,7 +15295,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15415,7 +15367,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15553,7 +15505,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15945,15 +15897,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Disks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -16085,7 +16029,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskAggregatedList>(parameters, callback);
@@ -16222,7 +16166,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16353,7 +16297,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16477,7 +16421,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Disk>(parameters, callback);
@@ -16611,7 +16555,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16751,7 +16695,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskList>(parameters, callback);
@@ -16886,7 +16830,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17022,7 +16966,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17352,15 +17296,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Disktypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -17494,7 +17430,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskTypeAggregatedList>(parameters, callback);
@@ -17619,7 +17555,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'diskType'],
         pathParams: ['diskType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskType>(parameters, callback);
@@ -17759,7 +17695,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskTypeList>(parameters, callback);
@@ -17904,15 +17840,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Firewalls {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -18030,7 +17958,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18150,7 +18078,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Firewall>(parameters, callback);
@@ -18275,7 +18203,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18411,7 +18339,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FirewallList>(parameters, callback);
@@ -18545,7 +18473,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18679,7 +18607,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18884,15 +18812,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Forwardingrules {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -19030,7 +18950,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleAggregatedList>(
@@ -19164,7 +19084,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19291,7 +19211,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRule>(parameters, callback);
@@ -19424,7 +19344,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19568,7 +19488,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleList>(parameters, callback);
@@ -19706,7 +19626,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19958,15 +19878,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Globaladdresses {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -20085,7 +19997,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20206,7 +20118,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Address>(parameters, callback);
@@ -20333,7 +20245,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20470,7 +20382,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AddressList>(parameters, callback);
@@ -20613,15 +20525,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Globalforwardingrules {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -20742,7 +20646,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20866,7 +20770,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRule>(parameters, callback);
@@ -20994,7 +20898,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21133,7 +21037,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleList>(parameters, callback);
@@ -21265,7 +21169,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21442,15 +21346,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Globaloperations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -21584,7 +21480,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationAggregatedList>(parameters, callback);
@@ -21705,7 +21601,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -21828,7 +21724,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21967,7 +21863,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -22122,15 +22018,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Healthchecks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -22250,7 +22138,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22372,7 +22260,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheck>(parameters, callback);
@@ -22500,7 +22388,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22638,7 +22526,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheckList>(parameters, callback);
@@ -22773,7 +22661,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22908,7 +22796,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23118,15 +23006,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Httphealthchecks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -23247,7 +23127,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23371,7 +23251,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpHealthCheck>(parameters, callback);
@@ -23499,7 +23379,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23638,7 +23518,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpHealthCheckList>(parameters, callback);
@@ -23775,7 +23655,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23911,7 +23791,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24122,15 +24002,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Httpshealthchecks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -24251,7 +24123,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24375,7 +24247,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpsHealthCheck>(parameters, callback);
@@ -24503,7 +24375,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24643,7 +24515,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpsHealthCheckList>(parameters, callback);
@@ -24780,7 +24652,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24916,7 +24788,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25127,15 +24999,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Images {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -25252,7 +25116,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25384,7 +25248,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25504,7 +25368,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Image>(parameters, callback);
@@ -25630,7 +25494,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'family'],
         pathParams: ['family', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Image>(parameters, callback);
@@ -25756,7 +25620,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25896,7 +25760,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImageList>(parameters, callback);
@@ -26027,7 +25891,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26239,15 +26103,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Instancegroupmanagers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -26388,7 +26244,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26539,7 +26395,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManagerAggregatedList>(
@@ -26675,7 +26531,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26821,7 +26677,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26951,7 +26807,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManager>(parameters, callback);
@@ -27090,7 +26946,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27235,7 +27091,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManagerList>(parameters, callback);
@@ -27383,7 +27239,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -27532,7 +27388,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27686,7 +27542,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27825,7 +27681,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27965,7 +27821,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28472,15 +28328,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Instancegroups {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -28612,7 +28460,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28757,7 +28605,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupAggregatedList>(
@@ -28892,7 +28740,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29020,7 +28868,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroup>(parameters, callback);
@@ -29153,7 +29001,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29296,7 +29144,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupList>(parameters, callback);
@@ -29455,7 +29303,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupsListInstances>(
@@ -29595,7 +29443,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29732,7 +29580,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30130,15 +29978,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Instances {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -30271,7 +30111,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30413,7 +30253,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceAggregatedList>(parameters, callback);
@@ -30553,7 +30393,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30683,7 +30523,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30823,7 +30663,7 @@ export namespace compute_v1 {
         requiredParams:
             ['project', 'zone', 'instance', 'accessConfig', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30958,7 +30798,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31083,7 +30923,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -31215,7 +31055,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SerialPortOutput>(parameters, callback);
@@ -31346,7 +31186,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31487,7 +31327,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceList>(parameters, callback);
@@ -31566,7 +31406,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceListReferrers>(parameters, callback);
@@ -31696,7 +31536,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31827,7 +31667,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31967,7 +31807,7 @@ export namespace compute_v1 {
         requiredParams:
             ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32104,7 +31944,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32239,7 +32079,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32376,7 +32216,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32513,7 +32353,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32651,7 +32491,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32787,7 +32627,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32924,7 +32764,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33061,7 +32901,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33133,7 +32973,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33263,7 +33103,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33399,7 +33239,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33533,7 +33373,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33610,7 +33450,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33686,7 +33526,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -34784,15 +34624,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Instancetemplates {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -34915,7 +34747,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35039,7 +34871,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceTemplate>(parameters, callback);
@@ -35170,7 +35002,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35310,7 +35142,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceTemplateList>(parameters, callback);
@@ -35453,15 +35285,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Interconnectattachments {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -35606,7 +35430,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachmentAggregatedList>(
@@ -35738,7 +35562,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35866,7 +35690,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachment>(parameters, callback);
@@ -35997,7 +35821,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -36146,7 +35970,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachmentList>(
@@ -36222,7 +36046,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -36474,15 +36298,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Interconnectlocations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -36600,7 +36416,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'interconnectLocation'],
         pathParams: ['interconnectLocation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectLocation>(parameters, callback);
@@ -36741,7 +36557,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectLocationList>(parameters, callback);
@@ -36825,15 +36641,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Interconnects {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -36953,7 +36761,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37076,7 +36884,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Interconnect>(parameters, callback);
@@ -37156,7 +36964,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
@@ -37286,7 +37094,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37424,7 +37232,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectList>(parameters, callback);
@@ -37560,7 +37368,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37753,15 +37561,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Licensecodes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -37820,7 +37620,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'licenseCode'],
         pathParams: ['licenseCode', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseCode>(parameters, callback);
@@ -37893,7 +37693,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -37942,15 +37742,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Licenses {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -38011,7 +37803,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -38130,7 +37922,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$License>(parameters, callback);
@@ -38197,7 +37989,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -38272,7 +38064,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicensesListResponse>(parameters, callback);
@@ -38345,7 +38137,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -38505,15 +38297,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Machinetypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -38648,7 +38432,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MachineTypeAggregatedList>(
@@ -38775,7 +38559,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'machineType'],
         pathParams: ['machineType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MachineType>(parameters, callback);
@@ -38917,7 +38701,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MachineTypeList>(parameters, callback);
@@ -39063,15 +38847,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Networks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -39196,7 +38972,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39320,7 +39096,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39440,7 +39216,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Network>(parameters, callback);
@@ -39565,7 +39341,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39700,7 +39476,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkList>(parameters, callback);
@@ -39833,7 +39609,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39965,7 +39741,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40093,7 +39869,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40362,15 +40138,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Nodegroups {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -40436,7 +40204,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40511,7 +40279,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupAggregatedList>(parameters, callback);
@@ -40582,7 +40350,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40655,7 +40423,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40723,7 +40491,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroup>(parameters, callback);
@@ -40795,7 +40563,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'initialNodeCount'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40867,7 +40635,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupList>(parameters, callback);
@@ -40942,7 +40710,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupsListNodes>(parameters, callback);
@@ -41015,7 +40783,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41408,15 +41176,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Nodetemplates {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -41487,7 +41247,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplateAggregatedList>(
@@ -41560,7 +41320,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'nodeTemplate'],
         pathParams: ['nodeTemplate', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41628,7 +41388,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'nodeTemplate'],
         pathParams: ['nodeTemplate', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplate>(parameters, callback);
@@ -41701,7 +41461,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41775,7 +41535,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplateList>(parameters, callback);
@@ -41989,15 +41749,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Nodetypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -42064,7 +41816,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTypeAggregatedList>(parameters, callback);
@@ -42130,7 +41882,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'nodeType'],
         pathParams: ['nodeType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeType>(parameters, callback);
@@ -42201,7 +41953,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTypeList>(parameters, callback);
@@ -42346,15 +42098,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Projects {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -42468,7 +42212,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -42596,7 +42340,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -42717,7 +42461,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -42846,7 +42590,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -42960,7 +42704,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -43080,7 +42824,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -43220,7 +42964,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectsGetXpnResources>(parameters, callback);
@@ -43363,7 +43107,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$XpnHostList>(parameters, callback);
@@ -43489,7 +43233,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43616,7 +43360,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43743,7 +43487,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43816,7 +43560,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43944,7 +43688,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44355,15 +44099,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regionautoscalers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -44487,7 +44223,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44613,7 +44349,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Autoscaler>(parameters, callback);
@@ -44746,7 +44482,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44891,7 +44627,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionAutoscalerList>(parameters, callback);
@@ -45028,7 +44764,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45164,7 +44900,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45399,15 +45135,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regionbackendservices {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -45532,7 +45260,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45659,7 +45387,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendService>(parameters, callback);
@@ -45796,7 +45524,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceGroupHealth>(
@@ -45932,7 +45660,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46076,7 +45804,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceList>(parameters, callback);
@@ -46220,7 +45948,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46362,7 +46090,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46622,15 +46350,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regioncommitments {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -46764,7 +46484,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitmentAggregatedList>(parameters, callback);
@@ -46891,7 +46611,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'commitment'],
         pathParams: ['commitment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Commitment>(parameters, callback);
@@ -47024,7 +46744,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47168,7 +46888,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitmentList>(parameters, callback);
@@ -47349,15 +47069,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regiondisks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -47423,7 +47135,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47498,7 +47210,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47563,7 +47275,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Disk>(parameters, callback);
@@ -47636,7 +47348,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47707,7 +47419,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskList>(parameters, callback);
@@ -47780,7 +47492,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47853,7 +47565,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47927,7 +47639,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -48227,15 +47939,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regiondisktypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -48295,7 +47999,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'diskType'],
         pathParams: ['diskType', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskType>(parameters, callback);
@@ -48369,7 +48073,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionDiskTypeList>(parameters, callback);
@@ -48461,15 +48165,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regioninstancegroupmanagers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -48611,7 +48307,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48742,7 +48438,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48890,7 +48586,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49017,7 +48713,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManager>(parameters, callback);
@@ -49153,7 +48849,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49302,7 +48998,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupManagerList>(
@@ -49452,7 +49148,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -49602,7 +49298,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49745,7 +49441,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49884,7 +49580,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50022,7 +49718,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50471,15 +50167,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regioninstancegroups {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -50599,7 +50287,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroup>(parameters, callback);
@@ -50744,7 +50432,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupList>(parameters, callback);
@@ -50910,7 +50598,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupsListInstances>(
@@ -51047,7 +50735,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51247,15 +50935,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regionoperations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -51373,7 +51053,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -51499,7 +51179,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51643,7 +51323,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -51755,15 +51435,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Regions {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -51875,7 +51547,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Region>(parameters, callback);
@@ -52011,7 +51683,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionList>(parameters, callback);
@@ -52093,15 +51765,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Routers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -52235,7 +51899,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouterAggregatedList>(parameters, callback);
@@ -52364,7 +52028,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52489,7 +52153,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Router>(parameters, callback);
@@ -52567,7 +52231,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VmEndpointNatMappingsList>(
@@ -52700,7 +52364,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouterStatusResponse>(parameters, callback);
@@ -52830,7 +52494,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52971,7 +52635,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouterList>(parameters, callback);
@@ -53109,7 +52773,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -53245,7 +52909,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RoutersPreviewResponse>(parameters, callback);
@@ -53382,7 +53046,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -53774,15 +53438,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Routes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -53899,7 +53555,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54019,7 +53675,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Route>(parameters, callback);
@@ -54144,7 +53800,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54280,7 +53936,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouteList>(parameters, callback);
@@ -54419,15 +54075,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Securitypolicies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -54491,7 +54139,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54562,7 +54210,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54628,7 +54276,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicy>(parameters, callback);
@@ -54699,7 +54347,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicyRule>(parameters, callback);
@@ -54770,7 +54418,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54843,7 +54491,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicyList>(parameters, callback);
@@ -54915,7 +54563,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54987,7 +54635,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55058,7 +54706,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55321,15 +54969,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Snapshots {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -55451,7 +55091,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55572,7 +55212,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -55708,7 +55348,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SnapshotList>(parameters, callback);
@@ -55840,7 +55480,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55971,15 +55611,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Sslcertificates {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -56100,7 +55732,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56224,7 +55856,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertificate>(parameters, callback);
@@ -56352,7 +55984,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56491,7 +56123,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertificateList>(parameters, callback);
@@ -56634,15 +56266,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Sslpolicies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -56708,7 +56332,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56774,7 +56398,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslPolicy>(parameters, callback);
@@ -56845,7 +56469,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56916,7 +56540,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslPoliciesList>(parameters, callback);
@@ -56997,7 +56621,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslPoliciesListAvailableFeaturesResponse>(
@@ -57071,7 +56695,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57304,15 +56928,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Subnetworks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -57446,7 +57062,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubnetworkAggregatedList>(parameters, callback);
@@ -57577,7 +57193,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57711,7 +57327,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57837,7 +57453,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subnetwork>(parameters, callback);
@@ -57970,7 +57586,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58111,7 +57727,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubnetworkList>(parameters, callback);
@@ -58191,7 +57807,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsableSubnetworksAggregatedList>(
@@ -58269,7 +57885,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58405,7 +58021,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58786,15 +58402,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Targethttpproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -58915,7 +58523,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59039,7 +58647,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxy>(parameters, callback);
@@ -59167,7 +58775,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59306,7 +58914,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxyList>(parameters, callback);
@@ -59439,7 +59047,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59616,15 +59224,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Targethttpsproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -59745,7 +59345,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59869,7 +59469,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpsProxy>(parameters, callback);
@@ -59997,7 +59597,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60137,7 +59737,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpsProxyList>(parameters, callback);
@@ -60209,7 +59809,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60341,7 +59941,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60416,7 +60016,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60549,7 +60149,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60831,15 +60431,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Targetinstances {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -60977,7 +60569,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstanceAggregatedList>(
@@ -61111,7 +60703,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61239,7 +60831,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstance>(parameters, callback);
@@ -61372,7 +60964,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61516,7 +61108,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstanceList>(parameters, callback);
@@ -61730,15 +61322,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Targetpools {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -61867,7 +61451,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62003,7 +61587,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62144,7 +61728,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolAggregatedList>(parameters, callback);
@@ -62275,7 +61859,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62401,7 +61985,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPool>(parameters, callback);
@@ -62540,7 +62124,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolInstanceHealth>(parameters, callback);
@@ -62673,7 +62257,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62815,7 +62399,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolList>(parameters, callback);
@@ -62949,7 +62533,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63085,7 +62669,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63222,7 +62806,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63653,15 +63237,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Targetsslproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -63782,7 +63358,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63906,7 +63482,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetSslProxy>(parameters, callback);
@@ -64034,7 +63610,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64173,7 +63749,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetSslProxyList>(parameters, callback);
@@ -64304,7 +63880,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64435,7 +64011,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64566,7 +64142,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64641,7 +64217,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64923,15 +64499,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Targettcpproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -65052,7 +64620,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65176,7 +64744,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetTcpProxy>(parameters, callback);
@@ -65304,7 +64872,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65443,7 +65011,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetTcpProxyList>(parameters, callback);
@@ -65574,7 +65142,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65705,7 +65273,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65917,15 +65485,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Targetvpngateways {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -66064,7 +65624,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGatewayAggregatedList>(
@@ -66198,7 +65758,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -66326,7 +65886,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGateway>(parameters, callback);
@@ -66459,7 +66019,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -66604,7 +66164,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGatewayList>(parameters, callback);
@@ -66818,15 +66378,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Urlmaps {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -66943,7 +66495,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67063,7 +66615,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMap>(parameters, callback);
@@ -67188,7 +66740,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67321,7 +66873,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67457,7 +67009,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapList>(parameters, callback);
@@ -67590,7 +67142,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67722,7 +67274,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67856,7 +67408,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapsValidateResponse>(parameters, callback);
@@ -68115,15 +67667,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Vpntunnels {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -68257,7 +67801,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnelAggregatedList>(parameters, callback);
@@ -68387,7 +67931,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68513,7 +68057,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnel>(parameters, callback);
@@ -68645,7 +68189,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68787,7 +68331,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnelList>(parameters, callback);
@@ -68999,15 +68543,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Zoneoperations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -69125,7 +68661,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -69251,7 +68787,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69393,7 +68929,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -69505,15 +69041,7 @@ export namespace compute_v1 {
 
 
   export class Resource$Zones {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -69625,7 +69153,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -69760,7 +69288,7 @@ export namespace compute_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ZoneList>(parameters, callback);

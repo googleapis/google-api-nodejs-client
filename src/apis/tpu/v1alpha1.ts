@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace tpu_v1alpha1 {
   export interface Options extends GlobalOptions {
     version: 'v1alpha1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace tpu_v1alpha1 {
    * @param {object=} options Options for Tpu
    */
   export class Tpu {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -496,39 +488,25 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects {
-    root: Tpu;
     locations: Resource$Projects$Locations;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Tpu;
     acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
     nodes: Resource$Projects$Locations$Nodes;
     operations: Resource$Projects$Locations$Operations;
     tensorflowVersions: Resource$Projects$Locations$Tensorflowversions;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.acceleratorTypes =
-          new Resource$Projects$Locations$Acceleratortypes(root);
-      this.nodes = new Resource$Projects$Locations$Nodes(root);
-      this.operations = new Resource$Projects$Locations$Operations(root);
+          new Resource$Projects$Locations$Acceleratortypes();
+      this.nodes = new Resource$Projects$Locations$Nodes();
+      this.operations = new Resource$Projects$Locations$Operations();
       this.tensorflowVersions =
-          new Resource$Projects$Locations$Tensorflowversions(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Tensorflowversions();
     }
 
 
@@ -584,7 +562,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -655,7 +633,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -703,15 +681,7 @@ export namespace tpu_v1alpha1 {
   }
 
   export class Resource$Projects$Locations$Acceleratortypes {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -768,7 +738,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(parameters, callback);
@@ -845,7 +815,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAcceleratorTypesResponse>(
@@ -900,15 +870,7 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Nodes {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -970,7 +932,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1037,7 +999,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1099,7 +1061,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Node>(parameters, callback);
@@ -1168,7 +1130,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNodesResponse>(parameters, callback);
@@ -1236,7 +1198,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1304,7 +1266,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1372,7 +1334,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1501,15 +1463,7 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1576,7 +1530,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1645,7 +1599,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1710,7 +1664,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1789,7 +1743,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1862,15 +1816,7 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Tensorflowversions {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1928,7 +1874,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TensorFlowVersion>(parameters, callback);
@@ -2006,7 +1952,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTensorFlowVersionsResponse>(

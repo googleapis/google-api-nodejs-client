@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace iap_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace iap_v1beta1 {
    * @param {object=} options Options for Iap
    */
   export class Iap {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -327,33 +319,19 @@ export namespace iap_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Iap;
     iap_tunnel: Resource$Projects$Iap_tunnel;
     iap_web: Resource$Projects$Iap_web;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.iap_tunnel = new Resource$Projects$Iap_tunnel(root);
-      this.iap_web = new Resource$Projects$Iap_web(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.iap_tunnel = new Resource$Projects$Iap_tunnel();
+      this.iap_web = new Resource$Projects$Iap_web();
     }
   }
 
 
   export class Resource$Projects$Iap_tunnel {
-    root: Iap;
     zones: Resource$Projects$Iap_tunnel$Zones;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.zones = new Resource$Projects$Iap_tunnel$Zones(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.zones = new Resource$Projects$Iap_tunnel$Zones();
     }
 
 
@@ -417,7 +395,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -487,7 +465,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -567,7 +545,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -634,16 +612,9 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_tunnel$Zones {
-    root: Iap;
     instances: Resource$Projects$Iap_tunnel$Zones$Instances;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instances = new Resource$Projects$Iap_tunnel$Zones$Instances(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instances = new Resource$Projects$Iap_tunnel$Zones$Instances();
     }
 
 
@@ -708,7 +679,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -779,7 +750,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -860,7 +831,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -927,15 +898,7 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_tunnel$Zones$Instances {
-    root: Iap;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1003,7 +966,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1078,7 +1041,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1162,7 +1125,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1231,16 +1194,9 @@ export namespace iap_v1beta1 {
 
 
   export class Resource$Projects$Iap_web {
-    root: Iap;
     services: Resource$Projects$Iap_web$Services;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.services = new Resource$Projects$Iap_web$Services(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.services = new Resource$Projects$Iap_web$Services();
     }
 
 
@@ -1304,7 +1260,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1374,7 +1330,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1453,7 +1409,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1520,16 +1476,9 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_web$Services {
-    root: Iap;
     versions: Resource$Projects$Iap_web$Services$Versions;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.versions = new Resource$Projects$Iap_web$Services$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.versions = new Resource$Projects$Iap_web$Services$Versions();
     }
 
 
@@ -1594,7 +1543,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1665,7 +1614,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1746,7 +1695,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1813,15 +1762,7 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_web$Services$Versions {
-    root: Iap;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1887,7 +1828,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1960,7 +1901,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2044,7 +1985,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

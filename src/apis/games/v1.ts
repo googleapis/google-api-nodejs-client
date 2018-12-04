@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace games_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,10 +81,6 @@ export namespace games_v1 {
    * @param {object=} options Options for Games
    */
   export class Games {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     achievementDefinitions: Resource$Achievementdefinitions;
     achievements: Resource$Achievements;
     applications: Resource$Applications;
@@ -100,29 +98,23 @@ export namespace games_v1 {
     turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.achievementDefinitions = new Resource$Achievementdefinitions(this);
-      this.achievements = new Resource$Achievements(this);
-      this.applications = new Resource$Applications(this);
-      this.events = new Resource$Events(this);
-      this.leaderboards = new Resource$Leaderboards(this);
-      this.metagame = new Resource$Metagame(this);
-      this.players = new Resource$Players(this);
-      this.pushtokens = new Resource$Pushtokens(this);
-      this.questMilestones = new Resource$Questmilestones(this);
-      this.quests = new Resource$Quests(this);
-      this.revisions = new Resource$Revisions(this);
-      this.rooms = new Resource$Rooms(this);
-      this.scores = new Resource$Scores(this);
-      this.snapshots = new Resource$Snapshots(this);
-      this.turnBasedMatches = new Resource$Turnbasedmatches(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.achievementDefinitions = new Resource$Achievementdefinitions();
+      this.achievements = new Resource$Achievements();
+      this.applications = new Resource$Applications();
+      this.events = new Resource$Events();
+      this.leaderboards = new Resource$Leaderboards();
+      this.metagame = new Resource$Metagame();
+      this.players = new Resource$Players();
+      this.pushtokens = new Resource$Pushtokens();
+      this.questMilestones = new Resource$Questmilestones();
+      this.quests = new Resource$Quests();
+      this.revisions = new Resource$Revisions();
+      this.rooms = new Resource$Rooms();
+      this.scores = new Resource$Scores();
+      this.snapshots = new Resource$Snapshots();
+      this.turnBasedMatches = new Resource$Turnbasedmatches();
     }
   }
 
@@ -2953,15 +2945,7 @@ export namespace games_v1 {
 
 
   export class Resource$Achievementdefinitions {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3032,7 +3016,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementDefinitionsListResponse>(
@@ -3069,15 +3053,7 @@ export namespace games_v1 {
 
 
   export class Resource$Achievements {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3147,7 +3123,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId', 'stepsToIncrement'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementIncrementResponse>(
@@ -3224,7 +3200,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerAchievementListResponse>(
@@ -3296,7 +3272,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementRevealResponse>(
@@ -3379,7 +3355,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId', 'steps'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
@@ -3451,7 +3427,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUnlockResponse>(
@@ -3531,7 +3507,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
@@ -3661,15 +3637,7 @@ export namespace games_v1 {
 
 
   export class Resource$Applications {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3728,7 +3696,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -3794,7 +3762,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3865,7 +3833,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApplicationVerifyResponse>(
@@ -3922,15 +3890,7 @@ export namespace games_v1 {
 
 
   export class Resource$Events {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3994,7 +3954,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerEventListResponse>(parameters, callback);
@@ -4069,7 +4029,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EventDefinitionListResponse>(
@@ -4136,7 +4096,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EventUpdateResponse>(parameters, callback);
@@ -4209,15 +4169,7 @@ export namespace games_v1 {
 
 
   export class Resource$Leaderboards {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4273,7 +4225,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Leaderboard>(parameters, callback);
@@ -4342,7 +4294,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardListResponse>(parameters, callback);
@@ -4392,15 +4344,7 @@ export namespace games_v1 {
 
 
   export class Resource$Metagame {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4460,7 +4404,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MetagameConfig>(parameters, callback);
@@ -4535,7 +4479,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId', 'collection'],
         pathParams: ['collection', 'playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CategoryListResponse>(parameters, callback);
@@ -4586,15 +4530,7 @@ export namespace games_v1 {
 
 
   export class Resource$Players {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4650,7 +4586,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Player>(parameters, callback);
@@ -4718,7 +4654,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['collection'],
         pathParams: ['collection'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerListResponse>(parameters, callback);
@@ -4772,15 +4708,7 @@ export namespace games_v1 {
 
 
   export class Resource$Pushtokens {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4838,7 +4766,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4902,7 +4830,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4941,15 +4869,7 @@ export namespace games_v1 {
 
 
   export class Resource$Questmilestones {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5012,7 +4932,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['questId', 'milestoneId', 'requestId'],
         pathParams: ['milestoneId', 'questId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5046,15 +4966,7 @@ export namespace games_v1 {
 
 
   export class Resource$Quests {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5113,7 +5025,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Quest>(parameters, callback);
@@ -5182,7 +5094,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QuestListResponse>(parameters, callback);
@@ -5237,15 +5149,7 @@ export namespace games_v1 {
 
 
   export class Resource$Revisions {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5304,7 +5208,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['clientRevision'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RevisionCheckResponse>(parameters, callback);
@@ -5331,15 +5235,7 @@ export namespace games_v1 {
 
 
   export class Resource$Rooms {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5398,7 +5294,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5464,7 +5360,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5528,7 +5424,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5590,7 +5486,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5657,7 +5553,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5724,7 +5620,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5789,7 +5685,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RoomList>(parameters, callback);
@@ -5860,7 +5756,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RoomStatus>(parameters, callback);
@@ -6012,15 +5908,7 @@ export namespace games_v1 {
 
 
   export class Resource$Scores {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6095,7 +5983,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId', 'leaderboardId', 'timeSpan'],
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
@@ -6169,7 +6057,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6246,7 +6134,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6314,7 +6202,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'score'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResponse>(parameters, callback);
@@ -6384,7 +6272,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreListResponse>(parameters, callback);
@@ -6563,15 +6451,7 @@ export namespace games_v1 {
 
 
   export class Resource$Snapshots {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6626,7 +6506,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['snapshotId'],
         pathParams: ['snapshotId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -6696,7 +6576,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SnapshotListResponse>(parameters, callback);
@@ -6750,15 +6630,7 @@ export namespace games_v1 {
 
 
   export class Resource$Turnbasedmatches {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6816,7 +6688,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6884,7 +6756,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -6952,7 +6824,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7018,7 +6890,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7089,7 +6961,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7154,7 +7026,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7222,7 +7094,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7291,7 +7163,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7362,7 +7234,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId', 'matchVersion'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7433,7 +7305,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchList>(parameters, callback);
@@ -7506,7 +7378,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchRematch>(parameters, callback);
@@ -7580,7 +7452,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchSync>(parameters, callback);
@@ -7649,7 +7521,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);

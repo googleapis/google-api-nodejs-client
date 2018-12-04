@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace servicemanagement_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,24 +100,14 @@ export namespace servicemanagement_v1 {
    * @param {object=} options Options for Servicemanagement
    */
   export class Servicemanagement {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.services = new Resource$Services();
     }
   }
 
@@ -2596,15 +2588,7 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Operations {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2661,7 +2645,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2731,7 +2715,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2792,20 +2776,13 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services {
-    root: Servicemanagement;
     configs: Resource$Services$Configs;
     consumers: Resource$Services$Consumers;
     rollouts: Resource$Services$Rollouts;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.configs = new Resource$Services$Configs(root);
-      this.consumers = new Resource$Services$Consumers(root);
-      this.rollouts = new Resource$Services$Rollouts(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.configs = new Resource$Services$Configs();
+      this.consumers = new Resource$Services$Consumers();
+      this.rollouts = new Resource$Services$Rollouts();
     }
 
 
@@ -2865,7 +2842,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2935,7 +2912,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3005,7 +2982,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3074,7 +3051,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3157,7 +3134,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateConfigReportResponse>(
@@ -3223,7 +3200,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedService>(parameters, callback);
@@ -3292,7 +3269,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3361,7 +3338,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3435,7 +3412,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -3504,7 +3481,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3583,7 +3560,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3655,7 +3632,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3868,15 +3845,7 @@ export namespace servicemanagement_v1 {
   }
 
   export class Resource$Services$Configs {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3942,7 +3911,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -4007,7 +3976,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'configId'],
         pathParams: ['configId', 'serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -4083,7 +4052,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceConfigsResponse>(
@@ -4160,7 +4129,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4257,15 +4226,7 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Consumers {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4327,7 +4288,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4396,7 +4357,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4476,7 +4437,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4544,15 +4505,7 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Rollouts {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4623,7 +4576,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4687,7 +4640,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'rolloutId'],
         pathParams: ['rolloutId', 'serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Rollout>(parameters, callback);
@@ -4764,7 +4717,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceRolloutsResponse>(

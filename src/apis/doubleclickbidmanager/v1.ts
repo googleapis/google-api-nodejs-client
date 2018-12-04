@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace doubleclickbidmanager_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,28 +81,18 @@ export namespace doubleclickbidmanager_v1 {
    * @param {object=} options Options for Doubleclickbidmanager
    */
   export class Doubleclickbidmanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     lineitems: Resource$Lineitems;
     queries: Resource$Queries;
     reports: Resource$Reports;
     sdf: Resource$Sdf;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.lineitems = new Resource$Lineitems(this);
-      this.queries = new Resource$Queries(this);
-      this.reports = new Resource$Reports(this);
-      this.sdf = new Resource$Sdf(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.lineitems = new Resource$Lineitems();
+      this.queries = new Resource$Queries();
+      this.reports = new Resource$Reports();
+      this.sdf = new Resource$Sdf();
     }
   }
 
@@ -558,15 +550,7 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Lineitems {
-    root: Doubleclickbidmanager;
-    constructor(root: Doubleclickbidmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -631,7 +615,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadLineItemsResponse>(
@@ -703,7 +687,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UploadLineItemsResponse>(parameters, callback);
@@ -742,15 +726,7 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Queries {
-    root: Doubleclickbidmanager;
-    constructor(root: Doubleclickbidmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -809,7 +785,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -874,7 +850,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -939,7 +915,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -1006,7 +982,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListQueriesResponse>(parameters, callback);
@@ -1071,7 +1047,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1143,15 +1119,7 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Reports {
-    root: Doubleclickbidmanager;
-    constructor(root: Doubleclickbidmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1213,7 +1181,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
@@ -1238,15 +1206,7 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Sdf {
-    root: Doubleclickbidmanager;
-    constructor(root: Doubleclickbidmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1304,7 +1264,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadResponse>(parameters, callback);
