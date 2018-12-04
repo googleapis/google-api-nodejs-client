@@ -2,7 +2,7 @@
 
 # @google/appengine
 
-> The App Engine Admin API enables developers to provision and manage their App Engine applications.
+> Provisions and manages developers&#39; App Engine applications.
 
 ## Installation
 

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -29,10 +29,63 @@ export namespace genomics_v1alpha2 {
     version: 'v1alpha2';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Genomics API
    *
-   * Upload, process, query, and search Genomics data in the cloud.
+   * Uploads, processes, queries, and searches Genomics data in the cloud.
    *
    * @example
    * const {google} = require('googleapis');
@@ -45,24 +98,14 @@ export namespace genomics_v1alpha2 {
    * @param {object=} options Options for Genomics
    */
   export class Genomics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     pipelines: Resource$Pipelines;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.pipelines = new Resource$Pipelines(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.pipelines = new Resource$Pipelines();
     }
   }
 
@@ -123,7 +166,7 @@ export namespace genomics_v1alpha2 {
      * set will contain any ports exposed using the `PUBLISH_EXPOSED_PORTS` flag
      * as well as any specified in the `Action` definition.
      */
-    portMappings?: any;
+    portMappings?: {[key: string]: number;};
   }
   /**
    * An event generated when a container exits.
@@ -155,13 +198,13 @@ export namespace genomics_v1alpha2 {
    */
   export interface Schema$ControllerConfig {
     cmd?: string;
-    disks?: any;
+    disks?: {[key: string]: string;};
     gcsLogPath?: string;
-    gcsSinks?: any;
-    gcsSources?: any;
+    gcsSinks?: {[key: string]: Schema$RepeatedString;};
+    gcsSources?: {[key: string]: Schema$RepeatedString;};
     image?: string;
     machineType?: string;
-    vars?: any;
+    vars?: {[key: string]: string;};
   }
   /**
    * An event generated whenever a resource limitation or transient error delays
@@ -268,7 +311,7 @@ export namespace genomics_v1alpha2 {
     /**
      * Machine-readable details about the event.
      */
-    details?: any;
+    details?: {[key: string]: any;};
     /**
      * The time at which the event occurred.
      */
@@ -387,7 +430,7 @@ export namespace genomics_v1alpha2 {
      * An OperationMetadata or Metadata object. This will always be returned
      * with the Operation.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. For example&amp;#58;
@@ -399,7 +442,7 @@ export namespace genomics_v1alpha2 {
      * If importing Variants, an ImportVariantsResponse is returned. For
      * pipelines and exports, an Empty response is returned.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * An event that occurred during an Operation.
@@ -447,7 +490,7 @@ export namespace genomics_v1alpha2 {
      * Optionally provided by the caller when submitting the request that
      * creates the operation.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The Google Cloud Project in which the job is scoped.
      */
@@ -458,11 +501,11 @@ export namespace genomics_v1alpha2 {
      * API and a GetOperation is performed on v1 API, a v1 request will be
      * returned.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Runtime metadata on this Operation.
      */
-    runtimeMetadata?: any;
+    runtimeMetadata?: {[key: string]: any;};
     /**
      * The time at which the job began to run.
      */
@@ -688,7 +731,7 @@ export namespace genomics_v1alpha2 {
      * If parameters with defaults are specified here, the defaults will be
      * overridden.
      */
-    inputs?: any;
+    inputs?: {[key: string]: string;};
     /**
      * How long to keep the VM up after a failure (for example docker command
      * failed, copying input or output files failed, etc). While the VM is up,
@@ -708,7 +751,7 @@ export namespace genomics_v1alpha2 {
      * lowercase letter, and all following characters must be a dash, lowercase
      * letter, or digit, except the last character, which cannot be a dash.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. Logging options. Used by the service to communicate results to
      * the user.
@@ -720,7 +763,7 @@ export namespace genomics_v1alpha2 {
      * specified.  If parameters with defaults are specified here, the defaults
      * will be overridden.
      */
-    outputs?: any;
+    outputs?: {[key: string]: string;};
     /**
      * Required. The project in which to run the pipeline. The caller must have
      * WRITER access to all Google Cloud services and resources (e.g. Google
@@ -851,7 +894,7 @@ export namespace genomics_v1alpha2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -919,15 +962,7 @@ export namespace genomics_v1alpha2 {
 
 
   export class Resource$Operations {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1046,7 +1081,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1165,7 +1200,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1304,7 +1339,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1314,7 +1349,8 @@ export namespace genomics_v1alpha2 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1330,7 +1366,7 @@ export namespace genomics_v1alpha2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1341,7 +1377,7 @@ export namespace genomics_v1alpha2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1386,15 +1422,7 @@ export namespace genomics_v1alpha2 {
 
 
   export class Resource$Pipelines {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1508,7 +1536,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1625,7 +1653,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1741,7 +1769,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1859,7 +1887,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ControllerConfig>(parameters, callback);
@@ -1991,7 +2019,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPipelinesResponse>(parameters, callback);
@@ -2113,7 +2141,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2234,7 +2262,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2244,7 +2272,7 @@ export namespace genomics_v1alpha2 {
     }
   }
 
-  export interface Params$Resource$Pipelines$Create {
+  export interface Params$Resource$Pipelines$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2256,7 +2284,7 @@ export namespace genomics_v1alpha2 {
      */
     requestBody?: Schema$Pipeline;
   }
-  export interface Params$Resource$Pipelines$Delete {
+  export interface Params$Resource$Pipelines$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2268,7 +2296,7 @@ export namespace genomics_v1alpha2 {
      */
     pipelineId?: string;
   }
-  export interface Params$Resource$Pipelines$Get {
+  export interface Params$Resource$Pipelines$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2280,7 +2308,8 @@ export namespace genomics_v1alpha2 {
      */
     pipelineId?: string;
   }
-  export interface Params$Resource$Pipelines$Getcontrollerconfig {
+  export interface Params$Resource$Pipelines$Getcontrollerconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2295,7 +2324,7 @@ export namespace genomics_v1alpha2 {
      */
     validationToken?: string;
   }
-  export interface Params$Resource$Pipelines$List {
+  export interface Params$Resource$Pipelines$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2322,7 +2351,7 @@ export namespace genomics_v1alpha2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Pipelines$Run {
+  export interface Params$Resource$Pipelines$Run extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2334,7 +2363,8 @@ export namespace genomics_v1alpha2 {
      */
     requestBody?: Schema$RunPipelineRequest;
   }
-  export interface Params$Resource$Pipelines$Setoperationstatus {
+  export interface Params$Resource$Pipelines$Setoperationstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

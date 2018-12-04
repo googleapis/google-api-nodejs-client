@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace firestore_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +99,12 @@ export namespace firestore_v1beta1 {
    * @param {object=} options Options for Firestore
    */
   export class Firestore {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -251,7 +294,7 @@ export namespace firestore_v1beta1 {
      * a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and ``
      * `bak\`tik` `` represents `` bak`tik ``.
      */
-    fields?: any;
+    fields?: {[key: string]: Schema$Value;};
     /**
      * The resource name of the document, for example
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -706,7 +749,7 @@ export namespace firestore_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -722,7 +765,7 @@ export namespace firestore_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a
@@ -791,7 +834,7 @@ export namespace firestore_v1beta1 {
     /**
      * Labels associated with this target change.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The ID of a target to remove from this stream.
      */
@@ -835,7 +878,7 @@ export namespace firestore_v1beta1 {
      * names are forbidden except in certain documented contexts. The map keys,
      * represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
      */
-    fields?: any;
+    fields?: {[key: string]: Schema$Value;};
   }
   /**
    * An order on a field.
@@ -1017,7 +1060,7 @@ export namespace firestore_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1274,7 +1317,7 @@ export namespace firestore_v1beta1 {
     /**
      * Labels associated with this write request.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The ID of the write stream to resume. This may only be set in the first
      * message. When left empty, a new write stream will be created.
@@ -1342,33 +1385,19 @@ export namespace firestore_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Firestore;
     databases: Resource$Projects$Databases;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.databases = new Resource$Projects$Databases(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.databases = new Resource$Projects$Databases();
     }
   }
 
 
   export class Resource$Projects$Databases {
-    root: Firestore;
     documents: Resource$Projects$Databases$Documents;
     indexes: Resource$Projects$Databases$Indexes;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.documents = new Resource$Projects$Databases$Documents(root);
-      this.indexes = new Resource$Projects$Databases$Indexes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.documents = new Resource$Projects$Databases$Documents();
+      this.indexes = new Resource$Projects$Databases$Indexes();
     }
 
 
@@ -1443,7 +1472,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1523,7 +1552,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1534,7 +1563,8 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Exportdocuments {
+  export interface Params$Resource$Projects$Databases$Exportdocuments extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1551,7 +1581,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta1ExportDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Importdocuments {
+  export interface Params$Resource$Projects$Databases$Importdocuments extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1570,15 +1601,7 @@ export namespace firestore_v1beta1 {
   }
 
   export class Resource$Projects$Databases$Documents {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1644,7 +1667,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetDocumentsResponse>(
@@ -1717,7 +1740,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
@@ -1785,7 +1808,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -1857,7 +1880,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent', 'collectionId'],
         pathParams: ['collectionId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -1924,7 +1947,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1988,7 +2011,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -2064,7 +2087,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent', 'collectionId'],
         pathParams: ['collectionId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDocumentsResponse>(parameters, callback);
@@ -2137,7 +2160,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCollectionIdsResponse>(
@@ -2206,7 +2229,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListenResponse>(parameters, callback);
@@ -2276,7 +2299,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -2344,7 +2367,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2413,7 +2436,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
@@ -2481,7 +2504,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResponse>(parameters, callback);
@@ -2491,7 +2514,8 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Documents$Batchget {
+  export interface Params$Resource$Projects$Databases$Documents$Batchget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2508,7 +2532,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$BatchGetDocumentsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Begintransaction {
+  export interface Params$Resource$Projects$Databases$Documents$Begintransaction
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2525,7 +2550,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Commit {
+  export interface Params$Resource$Projects$Databases$Documents$Commit extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2542,7 +2568,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Createdocument {
+  export interface Params$Resource$Projects$Databases$Documents$Createdocument
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2562,7 +2589,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The parent resource. For example:
      * `projects/{project_id}/databases/{database_id}/documents` or
@@ -2575,7 +2602,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$Document;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Delete {
+  export interface Params$Resource$Projects$Databases$Documents$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2597,7 +2625,8 @@ export namespace firestore_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Get {
+  export interface Params$Resource$Projects$Databases$Documents$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2607,7 +2636,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The resource name of the Document to get. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -2623,7 +2652,8 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$List {
+  export interface Params$Resource$Projects$Databases$Documents$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2638,7 +2668,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The order to sort results by. For example: `priority desc, name`.
      */
@@ -2678,7 +2708,8 @@ export namespace firestore_v1beta1 {
      */
     transaction?: string;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Listcollectionids {
+  export interface Params$Resource$Projects$Databases$Documents$Listcollectionids
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2697,7 +2728,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$ListCollectionIdsRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Listen {
+  export interface Params$Resource$Projects$Databases$Documents$Listen extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2714,7 +2746,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$ListenRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Patch {
+  export interface Params$Resource$Projects$Databases$Documents$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2734,7 +2767,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The resource name of the document, for example
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -2744,14 +2777,15 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'updateMask.fieldPaths'?: string;
+    'updateMask.fieldPaths'?: string[];
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Document;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Rollback {
+  export interface Params$Resource$Projects$Databases$Documents$Rollback extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2768,7 +2802,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Runquery {
+  export interface Params$Resource$Projects$Databases$Documents$Runquery extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2788,7 +2823,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$RunQueryRequest;
   }
-  export interface Params$Resource$Projects$Databases$Documents$Write {
+  export interface Params$Resource$Projects$Databases$Documents$Write extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2809,15 +2845,7 @@ export namespace firestore_v1beta1 {
 
 
   export class Resource$Projects$Databases$Indexes {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2891,7 +2919,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2957,7 +2985,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3028,7 +3056,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta1Index>(
@@ -3107,7 +3135,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>(
@@ -3119,7 +3147,8 @@ export namespace firestore_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Databases$Indexes$Create {
+  export interface Params$Resource$Projects$Databases$Indexes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3136,7 +3165,8 @@ export namespace firestore_v1beta1 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1beta1Index;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$Delete {
+  export interface Params$Resource$Projects$Databases$Indexes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3148,7 +3178,8 @@ export namespace firestore_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$Get {
+  export interface Params$Resource$Projects$Databases$Indexes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3160,7 +3191,8 @@ export namespace firestore_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Databases$Indexes$List {
+  export interface Params$Resource$Projects$Databases$Indexes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

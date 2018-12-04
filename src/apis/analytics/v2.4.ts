@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace analytics_v2_4 {
   export interface Options extends GlobalOptions {
     version: 'v2_4';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,39 +81,21 @@ export namespace analytics_v2_4 {
    * @param {object=} options Options for Analytics
    */
   export class Analytics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     data: Resource$Data;
     management: Resource$Management;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.data = new Resource$Data(this);
-      this.management = new Resource$Management(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.data = new Resource$Data();
+      this.management = new Resource$Management();
     }
   }
 
 
 
   export class Resource$Data {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -138,7 +156,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -148,7 +166,7 @@ export namespace analytics_v2_4 {
     }
   }
 
-  export interface Params$Resource$Data$Get {
+  export interface Params$Resource$Data$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -207,38 +225,23 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management {
-    root: Analytics;
     accounts: Resource$Management$Accounts;
     goals: Resource$Management$Goals;
     profiles: Resource$Management$Profiles;
     segments: Resource$Management$Segments;
     webproperties: Resource$Management$Webproperties;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.accounts = new Resource$Management$Accounts(root);
-      this.goals = new Resource$Management$Goals(root);
-      this.profiles = new Resource$Management$Profiles(root);
-      this.segments = new Resource$Management$Segments(root);
-      this.webproperties = new Resource$Management$Webproperties(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.accounts = new Resource$Management$Accounts();
+      this.goals = new Resource$Management$Goals();
+      this.profiles = new Resource$Management$Profiles();
+      this.segments = new Resource$Management$Segments();
+      this.webproperties = new Resource$Management$Webproperties();
     }
   }
 
 
   export class Resource$Management$Accounts {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -297,7 +300,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -307,7 +310,8 @@ export namespace analytics_v2_4 {
     }
   }
 
-  export interface Params$Resource$Management$Accounts$List {
+  export interface Params$Resource$Management$Accounts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -326,15 +330,7 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Goals {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -398,7 +394,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -408,7 +404,8 @@ export namespace analytics_v2_4 {
     }
   }
 
-  export interface Params$Resource$Management$Goals$List {
+  export interface Params$Resource$Management$Goals$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -444,15 +441,7 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Profiles {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -515,7 +504,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -525,7 +514,8 @@ export namespace analytics_v2_4 {
     }
   }
 
-  export interface Params$Resource$Management$Profiles$List {
+  export interface Params$Resource$Management$Profiles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -556,15 +546,7 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Segments {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -623,7 +605,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -633,7 +615,8 @@ export namespace analytics_v2_4 {
     }
   }
 
-  export interface Params$Resource$Management$Segments$List {
+  export interface Params$Resource$Management$Segments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -652,15 +635,7 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Webproperties {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -722,7 +697,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -732,7 +707,8 @@ export namespace analytics_v2_4 {
     }
   }
 
-  export interface Params$Resource$Management$Webproperties$List {
+  export interface Params$Resource$Management$Webproperties$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

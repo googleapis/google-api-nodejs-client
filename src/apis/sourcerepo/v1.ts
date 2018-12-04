@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -29,10 +29,63 @@ export namespace sourcerepo_v1 {
     version: 'v1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Source Repositories API
    *
-   * Access source code repositories hosted by Google.
+   * Accesses source code repositories hosted by Google.
    *
    * @example
    * const {google} = require('googleapis');
@@ -45,22 +98,12 @@ export namespace sourcerepo_v1 {
    * @param {object=} options Options for Sourcerepo
    */
   export class Sourcerepo {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -291,7 +334,7 @@ export namespace sourcerepo_v1 {
      * How this project publishes a change in the repositories through Cloud
      * Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: any;
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig;};
   }
   /**
    * Configuration to publish a Cloud Pub/Sub message.
@@ -336,7 +379,7 @@ export namespace sourcerepo_v1 {
      * How this repository publishes a change in the repository through Cloud
      * Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: any;
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig;};
     /**
      * The disk usage of the repo, in bytes. Read-only field. Size is only
      * returned by GetRepo.
@@ -422,16 +465,9 @@ export namespace sourcerepo_v1 {
 
 
   export class Resource$Projects {
-    root: Sourcerepo;
     repos: Resource$Projects$Repos;
-    constructor(root: Sourcerepo) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.repos = new Resource$Projects$Repos(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.repos = new Resource$Projects$Repos();
     }
 
 
@@ -492,7 +528,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -560,7 +596,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -570,7 +606,8 @@ export namespace sourcerepo_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getconfig {
+  export interface Params$Resource$Projects$Getconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -582,7 +619,8 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updateconfig {
+  export interface Params$Resource$Projects$Updateconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -601,15 +639,7 @@ export namespace sourcerepo_v1 {
   }
 
   export class Resource$Projects$Repos {
-    root: Sourcerepo;
-    constructor(root: Sourcerepo) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -670,7 +700,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -735,7 +765,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -796,7 +826,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -863,7 +893,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -932,7 +962,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReposResponse>(parameters, callback);
@@ -998,7 +1028,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -1066,7 +1096,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1142,7 +1172,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1153,7 +1183,8 @@ export namespace sourcerepo_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Repos$Create {
+  export interface Params$Resource$Projects$Repos$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1170,7 +1201,8 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$Repo;
   }
-  export interface Params$Resource$Projects$Repos$Delete {
+  export interface Params$Resource$Projects$Repos$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1182,7 +1214,8 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Repos$Get {
+  export interface Params$Resource$Projects$Repos$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1194,7 +1227,8 @@ export namespace sourcerepo_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Repos$Getiampolicy {
+  export interface Params$Resource$Projects$Repos$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1206,7 +1240,8 @@ export namespace sourcerepo_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Repos$List {
+  export interface Params$Resource$Projects$Repos$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1229,7 +1264,8 @@ export namespace sourcerepo_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Repos$Patch {
+  export interface Params$Resource$Projects$Repos$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1246,7 +1282,8 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$UpdateRepoRequest;
   }
-  export interface Params$Resource$Projects$Repos$Setiampolicy {
+  export interface Params$Resource$Projects$Repos$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1263,7 +1300,8 @@ export namespace sourcerepo_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Repos$Testiampermissions {
+  export interface Params$Resource$Projects$Repos$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

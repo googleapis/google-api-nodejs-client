@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace drive_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +82,6 @@ export namespace drive_v3 {
    * @param {object=} options Options for Drive
    */
   export class Drive {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     about: Resource$About;
     changes: Resource$Changes;
     channels: Resource$Channels;
@@ -61,23 +93,17 @@ export namespace drive_v3 {
     teamdrives: Resource$Teamdrives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.about = new Resource$About(this);
-      this.changes = new Resource$Changes(this);
-      this.channels = new Resource$Channels(this);
-      this.comments = new Resource$Comments(this);
-      this.files = new Resource$Files(this);
-      this.permissions = new Resource$Permissions(this);
-      this.replies = new Resource$Replies(this);
-      this.revisions = new Resource$Revisions(this);
-      this.teamdrives = new Resource$Teamdrives(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.about = new Resource$About();
+      this.changes = new Resource$Changes();
+      this.channels = new Resource$Channels();
+      this.comments = new Resource$Comments();
+      this.files = new Resource$Files();
+      this.permissions = new Resource$Permissions();
+      this.replies = new Resource$Replies();
+      this.revisions = new Resource$Revisions();
+      this.teamdrives = new Resource$Teamdrives();
     }
   }
 
@@ -96,7 +122,7 @@ export namespace drive_v3 {
     /**
      * A map of source MIME type to possible targets for all supported exports.
      */
-    exportFormats?: any;
+    exportFormats?: {[key: string]: string[];};
     /**
      * The currently supported folder colors as RGB hex strings.
      */
@@ -104,7 +130,7 @@ export namespace drive_v3 {
     /**
      * A map of source MIME type to possible targets for all supported imports.
      */
-    importFormats?: any;
+    importFormats?: {[key: string]: string[];};
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;drive#about&quot;.
@@ -113,7 +139,7 @@ export namespace drive_v3 {
     /**
      * A map of maximum import sizes by MIME type, in bytes.
      */
-    maxImportSizes?: any;
+    maxImportSizes?: {[key: string]: string;};
     /**
      * The maximum upload size in bytes.
      */
@@ -122,11 +148,17 @@ export namespace drive_v3 {
      * The user&#39;s storage quota limits and usage. All fields are measured in
      * bytes.
      */
-    storageQuota?: any;
+    storageQuota?: {
+      limit?: string;
+      usage?: string;
+      usageInDrive?: string;
+      usageInDriveTrash?: string;
+    };
     /**
      * A list of themes that are supported for Team Drives.
      */
-    teamDriveThemes?: any[];
+    teamDriveThemes?:
+        Array<{backgroundImageLink?: string; colorRgb?: string; id?: string;}>;
     /**
      * The authenticated user.
      */
@@ -226,7 +258,7 @@ export namespace drive_v3 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -300,7 +332,7 @@ export namespace drive_v3 {
      * region. For a text file, for example, this would be the text at the
      * location of the comment.
      */
-    quotedFileContent?: any;
+    quotedFileContent?: {mimeType?: string; value?: string;};
     /**
      * The full list of replies to the comment in chronological order.
      */
@@ -341,17 +373,45 @@ export namespace drive_v3 {
      * requesting app. Entries with null values are cleared in update and copy
      * requests.
      */
-    appProperties?: any;
+    appProperties?: {[key: string]: string;};
     /**
      * Capabilities the current user has on this file. Each capability
      * corresponds to a fine-grained action that a user may take.
      */
-    capabilities?: any;
+    capabilities?: {
+      canAddChildren?: boolean;
+      canChangeCopyRequiresWriterPermission?: boolean;
+      canChangeViewersCanCopyContent?: boolean;
+      canComment?: boolean;
+      canCopy?: boolean;
+      canDelete?: boolean;
+      canDeleteChildren?: boolean;
+      canDownload?: boolean;
+      canEdit?: boolean;
+      canListChildren?: boolean;
+      canMoveChildrenOutOfTeamDrive?: boolean;
+      canMoveChildrenWithinTeamDrive?: boolean;
+      canMoveItemIntoTeamDrive?: boolean;
+      canMoveItemOutOfTeamDrive?: boolean;
+      canMoveItemWithinTeamDrive?: boolean;
+      canMoveTeamDriveItem?: boolean;
+      canReadRevisions?: boolean;
+      canReadTeamDrive?: boolean;
+      canRemoveChildren?: boolean;
+      canRename?: boolean;
+      canShare?: boolean;
+      canTrash?: boolean;
+      canTrashChildren?: boolean;
+      canUntrash?: boolean;
+    };
     /**
      * Additional information about the content of the file. These fields are
      * never populated in responses.
      */
-    contentHints?: any;
+    contentHints?: {
+      indexableText?: string;
+      thumbnail?: {image?: string; mimeType?: string;};
+    };
     /**
      * Whether the options to copy, print, or download this file, should be
      * disabled for readers and commenters.
@@ -417,7 +477,29 @@ export namespace drive_v3 {
     /**
      * Additional metadata about image media, if available.
      */
-    imageMediaMetadata?: any;
+    imageMediaMetadata?: {
+      aperture?: number;
+      cameraMake?: string;
+      cameraModel?: string;
+      colorSpace?: string;
+      exposureBias?: number;
+      exposureMode?: string;
+      exposureTime?: number;
+      flashUsed?: boolean;
+      focalLength?: number;
+      height?: number;
+      isoSpeed?: number;
+      lens?: string;
+      location?: {altitude?: number; latitude?: number; longitude?: number;};
+      maxApertureValue?: number;
+      meteringMode?: string;
+      rotation?: number;
+      sensor?: string;
+      subjectDistance?: number;
+      time?: string;
+      whiteBalance?: string;
+      width?: number;
+    };
     /**
      * Whether the file was created or opened by the requesting app.
      */
@@ -502,7 +584,7 @@ export namespace drive_v3 {
      * A collection of arbitrary key-value pairs which are visible to all apps.
      * Entries with null values are cleared in update and copy requests.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The number of storage quota bytes used by the file. This includes the
      * head revision as well as previous revisions with keepForever enabled.
@@ -575,7 +657,8 @@ export namespace drive_v3 {
      * Additional metadata about video media. This may not be available
      * immediately upon upload.
      */
-    videoMediaMetadata?: any;
+    videoMediaMetadata?:
+        {durationMillis?: string; height?: number; width?: number;};
     /**
      * Whether the file has been viewed by this user.
      */
@@ -713,7 +796,12 @@ export namespace drive_v3 {
      * or directly on this item. This is an output-only field which is present
      * only for Team Drive items.
      */
-    teamDrivePermissionDetails?: any[];
+    teamDrivePermissionDetails?: Array<{
+      inherited?: boolean;
+      inheritedFrom?: string;
+      role?: string;
+      teamDrivePermissionType?: string;
+    }>;
     /**
      * The type of the grantee. Valid values are:   - user  - group  - domain  -
      * anyone
@@ -916,7 +1004,12 @@ export namespace drive_v3 {
      * drive.teamdrives.update requests that don&#39;t set themeId. When
      * specified, all fields of the backgroundImageFile must be set.
      */
-    backgroundImageFile?: any;
+    backgroundImageFile?: {
+      id?: string;
+      width?: number;
+      xCoordinate?: number;
+      yCoordinate?: number;
+    };
     /**
      * A short-lived link to this Team Drive&#39;s background image.
      */
@@ -924,7 +1017,27 @@ export namespace drive_v3 {
     /**
      * Capabilities the current user has on this Team Drive.
      */
-    capabilities?: any;
+    capabilities?: {
+      canAddChildren?: boolean;
+      canChangeCopyRequiresWriterPermissionRestriction?: boolean;
+      canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeTeamDriveBackground?: boolean;
+      canChangeTeamMembersOnlyRestriction?: boolean;
+      canComment?: boolean;
+      canCopy?: boolean;
+      canDeleteChildren?: boolean;
+      canDeleteTeamDrive?: boolean;
+      canDownload?: boolean;
+      canEdit?: boolean;
+      canListChildren?: boolean;
+      canManageMembers?: boolean;
+      canReadRevisions?: boolean;
+      canRemoveChildren?: boolean;
+      canRename?: boolean;
+      canRenameTeamDrive?: boolean;
+      canShare?: boolean;
+      canTrashChildren?: boolean;
+    };
     /**
      * The color of this Team Drive as an RGB hex string. It can only be set on
      * a drive.teamdrives.update request that does not set themeId.
@@ -952,7 +1065,12 @@ export namespace drive_v3 {
      * A set of restrictions that apply to this Team Drive or items inside this
      * Team Drive.
      */
-    restrictions?: any;
+    restrictions?: {
+      adminManagedRestrictions?: boolean;
+      copyRequiresWriterPermission?: boolean;
+      domainUsersOnly?: boolean;
+      teamMembersOnly?: boolean;
+    };
     /**
      * The ID of the theme from which the background image and color will be
      * set. The set of possible teamDriveThemes can be retrieved from a
@@ -1020,15 +1138,7 @@ export namespace drive_v3 {
 
 
   export class Resource$About {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1081,7 +1191,7 @@ export namespace drive_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$About>(parameters, callback);
@@ -1091,7 +1201,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$About$Get {
+  export interface Params$Resource$About$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1100,15 +1210,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Changes {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1170,7 +1272,7 @@ export namespace drive_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StartPageToken>(parameters, callback);
@@ -1243,7 +1345,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['pageToken'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChangeList>(parameters, callback);
@@ -1316,7 +1418,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['pageToken'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -1326,7 +1428,8 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Changes$Getstartpagetoken {
+  export interface Params$Resource$Changes$Getstartpagetoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1342,7 +1445,7 @@ export namespace drive_v3 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Changes$List {
+  export interface Params$Resource$Changes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1396,7 +1499,7 @@ export namespace drive_v3 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Changes$Watch {
+  export interface Params$Resource$Changes$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1458,15 +1561,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Channels {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1522,7 +1617,7 @@ export namespace drive_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1532,7 +1627,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Channels$Stop {
+  export interface Params$Resource$Channels$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1547,15 +1642,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Comments {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1613,7 +1700,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -1677,7 +1764,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1740,7 +1827,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -1809,7 +1896,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -1875,7 +1962,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -1885,7 +1972,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Comments$Create {
+  export interface Params$Resource$Comments$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1901,7 +1988,7 @@ export namespace drive_v3 {
      */
     requestBody?: Schema$Comment;
   }
-  export interface Params$Resource$Comments$Delete {
+  export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1916,7 +2003,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
   }
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1936,7 +2023,7 @@ export namespace drive_v3 {
      */
     includeDeleted?: boolean;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1966,7 +2053,7 @@ export namespace drive_v3 {
      */
     startModifiedTime?: string;
   }
-  export interface Params$Resource$Comments$Update {
+  export interface Params$Resource$Comments$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1989,15 +2076,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Files {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2060,7 +2139,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -2133,7 +2212,7 @@ export namespace drive_v3 {
             (rootUrl + '/upload/drive/v3/files').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -2200,7 +2279,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2263,7 +2342,7 @@ export namespace drive_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2329,7 +2408,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'mimeType'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2398,7 +2477,7 @@ export namespace drive_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GeneratedIds>(parameters, callback);
@@ -2461,7 +2540,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -2533,7 +2612,7 @@ export namespace drive_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FileList>(parameters, callback);
@@ -2609,7 +2688,7 @@ export namespace drive_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -2676,7 +2755,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -2686,7 +2765,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Files$Copy {
+  export interface Params$Resource$Files$Copy extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2722,7 +2801,7 @@ export namespace drive_v3 {
      */
     requestBody?: Schema$File;
   }
-  export interface Params$Resource$Files$Create {
+  export interface Params$Resource$Files$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2773,7 +2852,7 @@ export namespace drive_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Files$Delete {
+  export interface Params$Resource$Files$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2788,13 +2867,13 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$Emptytrash {
+  export interface Params$Resource$Files$Emptytrash extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Files$Export {
+  export interface Params$Resource$Files$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2809,7 +2888,8 @@ export namespace drive_v3 {
      */
     mimeType?: string;
   }
-  export interface Params$Resource$Files$Generateids {
+  export interface Params$Resource$Files$Generateids extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2825,7 +2905,7 @@ export namespace drive_v3 {
      */
     space?: string;
   }
-  export interface Params$Resource$Files$Get {
+  export interface Params$Resource$Files$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2845,7 +2925,7 @@ export namespace drive_v3 {
      */
     supportsTeamDrives?: boolean;
   }
-  export interface Params$Resource$Files$List {
+  export interface Params$Resource$Files$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2908,7 +2988,7 @@ export namespace drive_v3 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Files$Update {
+  export interface Params$Resource$Files$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2964,7 +3044,7 @@ export namespace drive_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Files$Watch {
+  export interface Params$Resource$Files$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2992,15 +3072,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Permissions {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3066,7 +3138,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -3135,7 +3207,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3201,7 +3273,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -3270,7 +3342,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PermissionList>(parameters, callback);
@@ -3344,7 +3416,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -3354,7 +3426,8 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Permissions$Create {
+  export interface Params$Resource$Permissions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3396,7 +3469,8 @@ export namespace drive_v3 {
      */
     requestBody?: Schema$Permission;
   }
-  export interface Params$Resource$Permissions$Delete {
+  export interface Params$Resource$Permissions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3421,7 +3495,7 @@ export namespace drive_v3 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Get {
+  export interface Params$Resource$Permissions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3446,7 +3520,7 @@ export namespace drive_v3 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$List {
+  export interface Params$Resource$Permissions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3478,7 +3552,8 @@ export namespace drive_v3 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Update {
+  export interface Params$Resource$Permissions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3521,15 +3596,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Replies {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3589,7 +3656,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Reply>(parameters, callback);
@@ -3656,7 +3723,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3722,7 +3789,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Reply>(parameters, callback);
@@ -3792,7 +3859,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReplyList>(parameters, callback);
@@ -3861,7 +3928,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Reply>(parameters, callback);
@@ -3871,7 +3938,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Replies$Create {
+  export interface Params$Resource$Replies$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3891,7 +3958,7 @@ export namespace drive_v3 {
      */
     requestBody?: Schema$Reply;
   }
-  export interface Params$Resource$Replies$Delete {
+  export interface Params$Resource$Replies$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3910,7 +3977,7 @@ export namespace drive_v3 {
      */
     replyId?: string;
   }
-  export interface Params$Resource$Replies$Get {
+  export interface Params$Resource$Replies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3934,7 +4001,7 @@ export namespace drive_v3 {
      */
     replyId?: string;
   }
-  export interface Params$Resource$Replies$List {
+  export interface Params$Resource$Replies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3963,7 +4030,7 @@ export namespace drive_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Replies$Update {
+  export interface Params$Resource$Replies$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3990,15 +4057,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Revisions {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4056,7 +4115,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4119,7 +4178,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -4186,7 +4245,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RevisionList>(parameters, callback);
@@ -4252,7 +4311,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -4262,7 +4321,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Revisions$Delete {
+  export interface Params$Resource$Revisions$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4277,7 +4336,7 @@ export namespace drive_v3 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Revisions$Get {
+  export interface Params$Resource$Revisions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4297,7 +4356,7 @@ export namespace drive_v3 {
      */
     revisionId?: string;
   }
-  export interface Params$Resource$Revisions$List {
+  export interface Params$Resource$Revisions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4317,7 +4376,7 @@ export namespace drive_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Revisions$Update {
+  export interface Params$Resource$Revisions$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4340,15 +4399,7 @@ export namespace drive_v3 {
 
 
   export class Resource$Teamdrives {
-    root: Drive;
-    constructor(root: Drive) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4408,7 +4459,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['requestId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -4473,7 +4524,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4536,7 +4587,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -4604,7 +4655,7 @@ export namespace drive_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDriveList>(parameters, callback);
@@ -4672,7 +4723,7 @@ export namespace drive_v3 {
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -4682,7 +4733,8 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Teamdrives$Create {
+  export interface Params$Resource$Teamdrives$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4702,7 +4754,8 @@ export namespace drive_v3 {
      */
     requestBody?: Schema$TeamDrive;
   }
-  export interface Params$Resource$Teamdrives$Delete {
+  export interface Params$Resource$Teamdrives$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4713,7 +4766,7 @@ export namespace drive_v3 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Teamdrives$Get {
+  export interface Params$Resource$Teamdrives$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4730,7 +4783,7 @@ export namespace drive_v3 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$List {
+  export interface Params$Resource$Teamdrives$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4755,7 +4808,8 @@ export namespace drive_v3 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Update {
+  export interface Params$Resource$Teamdrives$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

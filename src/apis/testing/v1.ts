@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace testing_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,27 +99,16 @@ export namespace testing_v1 {
    * @param {object=} options Options for Testing
    */
   export class Testing {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     applicationDetailService: Resource$Applicationdetailservice;
     projects: Resource$Projects;
     testEnvironmentCatalog: Resource$Testenvironmentcatalog;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.applicationDetailService =
-          new Resource$Applicationdetailservice(this);
-      this.projects = new Resource$Projects(this);
-      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.applicationDetailService = new Resource$Applicationdetailservice();
+      this.projects = new Resource$Projects();
+      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog();
     }
   }
 
@@ -146,6 +188,10 @@ export namespace testing_v1 {
      * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
+    /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
@@ -242,6 +288,12 @@ export namespace testing_v1 {
      */
     id?: string;
     /**
+     * True if and only if tests with this model are recorded by stitching
+     * together screenshots. See use_low_spec_video_recording in device config.
+     * @OutputOnly
+     */
+    lowFpsVideoRecording?: boolean;
+    /**
      * The manufacturer of this device. @OutputOnly
      */
     manufacturer?: string;
@@ -282,11 +334,6 @@ export namespace testing_v1 {
      * &quot;preview&quot;, &quot;deprecated&quot;
      */
     tags?: string[];
-    /**
-     * True if and only if tests with this model DO NOT have video output. See
-     * also TestSpecification.disable_video_recording @OutputOnly
-     */
-    videoRecordingNotSupported?: boolean;
   }
   /**
    * A test of an android application that explores the application on a virtual
@@ -297,6 +344,10 @@ export namespace testing_v1 {
      * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
+    /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
     /**
      * The initial activity that should be used to start the app. Optional
      */
@@ -358,6 +409,10 @@ export namespace testing_v1 {
      * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
+    /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
@@ -461,6 +516,18 @@ export namespace testing_v1 {
      * &quot;com.example.foo&quot;.
      */
     packageName?: string;
+  }
+  /**
+   * An Android App Bundle file format, containing a BundleConfig.pb file, a
+   * base module directory, zero or more dynamic feature module directories.
+   * &lt;p&gt;See https://developer.android.com/guide/app-bundle/build for
+   * guidance on building App Bundles.
+   */
+  export interface Schema$AppBundle {
+    /**
+     * .aab file representing the app bundle under test.
+     */
+    bundleLocation?: Schema$FileReference;
   }
   /**
    * Response containing the current state of the specified test matrix.
@@ -1025,12 +1092,6 @@ export namespace testing_v1 {
      * progress_messages. @OutputOnly
      */
     progressMessages?: string[];
-    /**
-     * Indicates that video will not be recorded for this execution either
-     * because the user chose to disable it or the device does not support it.
-     * See AndroidModel.video_recording_not_supported @OutputOnly
-     */
-    videoRecordingDisabled?: boolean;
   }
   /**
    * A description of a test environment.
@@ -1332,15 +1393,7 @@ export namespace testing_v1 {
 
 
   export class Resource$Applicationdetailservice {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1403,7 +1456,7 @@ export namespace testing_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
@@ -1413,7 +1466,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Applicationdetailservice$Getapkdetails {
+  export interface Params$Resource$Applicationdetailservice$Getapkdetails
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1428,30 +1482,15 @@ export namespace testing_v1 {
 
 
   export class Resource$Projects {
-    root: Testing;
     testMatrices: Resource$Projects$Testmatrices;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.testMatrices = new Resource$Projects$Testmatrices(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.testMatrices = new Resource$Projects$Testmatrices();
     }
   }
 
 
   export class Resource$Projects$Testmatrices {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1521,7 +1560,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
@@ -1596,7 +1635,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1664,7 +1703,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1674,7 +1713,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Testmatrices$Cancel {
+  export interface Params$Resource$Projects$Testmatrices$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1689,7 +1729,8 @@ export namespace testing_v1 {
      */
     testMatrixId?: string;
   }
-  export interface Params$Resource$Projects$Testmatrices$Create {
+  export interface Params$Resource$Projects$Testmatrices$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1711,7 +1752,8 @@ export namespace testing_v1 {
      */
     requestBody?: Schema$TestMatrix;
   }
-  export interface Params$Resource$Projects$Testmatrices$Get {
+  export interface Params$Resource$Projects$Testmatrices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1730,15 +1772,7 @@ export namespace testing_v1 {
 
 
   export class Resource$Testenvironmentcatalog {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1799,7 +1833,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['environmentType'],
         pathParams: ['environmentType'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);
@@ -1809,7 +1843,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Testenvironmentcatalog$Get {
+  export interface Params$Resource$Testenvironmentcatalog$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

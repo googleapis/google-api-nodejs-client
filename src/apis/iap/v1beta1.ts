@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace iap_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,22 +98,12 @@ export namespace iap_v1beta1 {
    * @param {object=} options Options for Iap
    */
   export class Iap {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -276,33 +319,19 @@ export namespace iap_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Iap;
     iap_tunnel: Resource$Projects$Iap_tunnel;
     iap_web: Resource$Projects$Iap_web;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.iap_tunnel = new Resource$Projects$Iap_tunnel(root);
-      this.iap_web = new Resource$Projects$Iap_web(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.iap_tunnel = new Resource$Projects$Iap_tunnel();
+      this.iap_web = new Resource$Projects$Iap_web();
     }
   }
 
 
   export class Resource$Projects$Iap_tunnel {
-    root: Iap;
     zones: Resource$Projects$Iap_tunnel$Zones;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.zones = new Resource$Projects$Iap_tunnel$Zones(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.zones = new Resource$Projects$Iap_tunnel$Zones();
     }
 
 
@@ -366,7 +395,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -436,7 +465,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -516,7 +545,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -527,7 +556,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -544,7 +574,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -561,7 +592,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_tunnel$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -580,16 +612,9 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_tunnel$Zones {
-    root: Iap;
     instances: Resource$Projects$Iap_tunnel$Zones$Instances;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instances = new Resource$Projects$Iap_tunnel$Zones$Instances(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instances = new Resource$Projects$Iap_tunnel$Zones$Instances();
     }
 
 
@@ -654,7 +679,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -725,7 +750,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -806,7 +831,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -817,7 +842,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -834,7 +860,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -851,7 +878,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -870,15 +898,7 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_tunnel$Zones$Instances {
-    root: Iap;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -946,7 +966,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1021,7 +1041,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1105,7 +1125,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1116,7 +1136,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1133,7 +1154,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1150,7 +1172,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1171,16 +1194,9 @@ export namespace iap_v1beta1 {
 
 
   export class Resource$Projects$Iap_web {
-    root: Iap;
     services: Resource$Projects$Iap_web$Services;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.services = new Resource$Projects$Iap_web$Services(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.services = new Resource$Projects$Iap_web$Services();
     }
 
 
@@ -1244,7 +1260,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1314,7 +1330,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1393,7 +1409,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1404,7 +1420,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_web$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1421,7 +1438,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1438,7 +1456,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_web$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1457,16 +1476,9 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_web$Services {
-    root: Iap;
     versions: Resource$Projects$Iap_web$Services$Versions;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.versions = new Resource$Projects$Iap_web$Services$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.versions = new Resource$Projects$Iap_web$Services$Versions();
     }
 
 
@@ -1531,7 +1543,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1602,7 +1614,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1683,7 +1695,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1694,7 +1706,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_web$Services$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1711,7 +1724,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1728,7 +1742,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_web$Services$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1747,15 +1762,7 @@ export namespace iap_v1beta1 {
   }
 
   export class Resource$Projects$Iap_web$Services$Versions {
-    root: Iap;
-    constructor(root: Iap) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1821,7 +1828,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1894,7 +1901,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1978,7 +1985,7 @@ export namespace iap_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1989,7 +1996,8 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2006,7 +2014,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy {
+  export interface Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2023,7 +2032,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions {
+  export interface Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

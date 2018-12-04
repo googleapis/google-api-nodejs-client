@@ -2,7 +2,7 @@
 
 # @google/alertcenter
 
-> G Suite Alert Center API to view and manage alerts on issues affecting your domain.
+> Manages alerts on issues affecting your domain.
 
 ## Installation
 

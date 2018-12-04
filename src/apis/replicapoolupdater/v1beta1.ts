@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace replicapoolupdater_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,24 +83,14 @@ export namespace replicapoolupdater_v1beta1 {
    * @param {object=} options Options for Replicapoolupdater
    */
   export class Replicapoolupdater {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     rollingUpdates: Resource$Rollingupdates;
     zoneOperations: Resource$Zoneoperations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.rollingUpdates = new Resource$Rollingupdates(this);
-      this.zoneOperations = new Resource$Zoneoperations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.rollingUpdates = new Resource$Rollingupdates();
+      this.zoneOperations = new Resource$Zoneoperations();
     }
   }
 
@@ -75,7 +101,9 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Errors that occurred during the instance update.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * Fully-qualified URL of the instance being updated.
      */
@@ -130,7 +158,9 @@ export namespace replicapoolupdater_v1beta1 {
      * [Output Only] If errors occurred during processing of this operation,
      * this field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     httpErrorMessage?: string;
     httpErrorStatusCode?: number;
     /**
@@ -186,7 +216,11 @@ export namespace replicapoolupdater_v1beta1 {
      */
     targetLink?: string;
     user?: string;
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
     /**
      * [Output Only] URL of the zone where the operation resides.
      */
@@ -243,7 +277,9 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * [Output Only] Errors that occurred during the rolling update.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      */
@@ -274,7 +310,13 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Parameters of the update process.
      */
-    policy?: any;
+    policy?: {
+      autoPauseAfterInstances?: number;
+      instanceStartupTimeoutSec?: number;
+      maxNumConcurrentInstances?: number;
+      maxNumFailedInstances?: number;
+      minInstanceUpdateTimeSec?: number;
+    };
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100.
      * There is no requirement that this be linear or support any granularity of
@@ -334,15 +376,7 @@ export namespace replicapoolupdater_v1beta1 {
 
 
   export class Resource$Rollingupdates {
-    root: Replicapoolupdater;
-    constructor(root: Replicapoolupdater) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -407,7 +441,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -474,7 +508,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RollingUpdate>(parameters, callback);
@@ -545,7 +579,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -618,7 +652,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RollingUpdateList>(parameters, callback);
@@ -693,7 +727,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceUpdateList>(parameters, callback);
@@ -765,7 +799,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -837,7 +871,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -909,7 +943,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -919,7 +953,8 @@ export namespace replicapoolupdater_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Rollingupdates$Cancel {
+  export interface Params$Resource$Rollingupdates$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -938,7 +973,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Get {
+  export interface Params$Resource$Rollingupdates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -957,7 +993,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Insert {
+  export interface Params$Resource$Rollingupdates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -977,7 +1014,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     requestBody?: Schema$RollingUpdate;
   }
-  export interface Params$Resource$Rollingupdates$List {
+  export interface Params$Resource$Rollingupdates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1006,7 +1044,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Listinstanceupdates {
+  export interface Params$Resource$Rollingupdates$Listinstanceupdates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1039,7 +1078,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Pause {
+  export interface Params$Resource$Rollingupdates$Pause extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1058,7 +1098,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Resume {
+  export interface Params$Resource$Rollingupdates$Resume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1077,7 +1118,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Rollingupdates$Rollback {
+  export interface Params$Resource$Rollingupdates$Rollback extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1099,15 +1141,7 @@ export namespace replicapoolupdater_v1beta1 {
 
 
   export class Resource$Zoneoperations {
-    root: Replicapoolupdater;
-    constructor(root: Replicapoolupdater) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1167,7 +1201,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1240,7 +1274,7 @@ export namespace replicapoolupdater_v1beta1 {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -1250,7 +1284,8 @@ export namespace replicapoolupdater_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Zoneoperations$Get {
+  export interface Params$Resource$Zoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1269,7 +1304,8 @@ export namespace replicapoolupdater_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$List {
+  export interface Params$Resource$Zoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

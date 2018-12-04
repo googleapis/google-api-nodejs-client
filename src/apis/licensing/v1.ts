@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace licensing_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,22 +81,12 @@ export namespace licensing_v1 {
    * @param {object=} options Options for Licensing
    */
   export class Licensing {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     licenseAssignments: Resource$Licenseassignments;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.licenseAssignments = new Resource$Licenseassignments(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.licenseAssignments = new Resource$Licenseassignments();
     }
   }
 
@@ -135,15 +161,7 @@ export namespace licensing_v1 {
 
 
   export class Resource$Licenseassignments {
-    root: Licensing;
-    constructor(root: Licensing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -205,7 +223,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -272,7 +290,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -342,7 +360,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId'],
         pathParams: ['productId', 'skuId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -414,7 +432,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'customerId'],
         pathParams: ['productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -489,7 +507,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'customerId'],
         pathParams: ['productId', 'skuId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -561,7 +579,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -633,7 +651,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -643,7 +661,8 @@ export namespace licensing_v1 {
     }
   }
 
-  export interface Params$Resource$Licenseassignments$Delete {
+  export interface Params$Resource$Licenseassignments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -662,7 +681,8 @@ export namespace licensing_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Get {
+  export interface Params$Resource$Licenseassignments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -681,7 +701,8 @@ export namespace licensing_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Insert {
+  export interface Params$Resource$Licenseassignments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -701,7 +722,8 @@ export namespace licensing_v1 {
      */
     requestBody?: Schema$LicenseAssignmentInsert;
   }
-  export interface Params$Resource$Licenseassignments$Listforproduct {
+  export interface Params$Resource$Licenseassignments$Listforproduct extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -727,7 +749,8 @@ export namespace licensing_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Listforproductandsku {
+  export interface Params$Resource$Licenseassignments$Listforproductandsku
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -757,7 +780,8 @@ export namespace licensing_v1 {
      */
     skuId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Patch {
+  export interface Params$Resource$Licenseassignments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -781,7 +805,8 @@ export namespace licensing_v1 {
      */
     requestBody?: Schema$LicenseAssignment;
   }
-  export interface Params$Resource$Licenseassignments$Update {
+  export interface Params$Resource$Licenseassignments$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

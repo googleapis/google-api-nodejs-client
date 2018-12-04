@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace bigquery_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,10 +81,6 @@ export namespace bigquery_v2 {
    * @param {object=} options Options for Bigquery
    */
   export class Bigquery {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     datasets: Resource$Datasets;
     jobs: Resource$Jobs;
     projects: Resource$Projects;
@@ -56,19 +88,13 @@ export namespace bigquery_v2 {
     tables: Resource$Tables;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.datasets = new Resource$Datasets(this);
-      this.jobs = new Resource$Jobs(this);
-      this.projects = new Resource$Projects(this);
-      this.tabledata = new Resource$Tabledata(this);
-      this.tables = new Resource$Tables(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.datasets = new Resource$Datasets();
+      this.jobs = new Resource$Jobs();
+      this.projects = new Resource$Projects();
+      this.tabledata = new Resource$Tabledata();
+      this.tables = new Resource$Tables();
     }
   }
 
@@ -262,7 +288,14 @@ export namespace bigquery_v2 {
      * access.specialGroup: projectOwners; access.role: OWNER;
      * access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
-    access?: any[];
+    access?: Array<{
+      domain?: string;
+      groupByEmail?: string;
+      role?: string;
+      specialGroup?: string;
+      userByEmail?: string;
+      view?: Schema$TableReference;
+    }>;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds
      * since the epoch.
@@ -330,7 +363,7 @@ export namespace bigquery_v2 {
      * updating a dataset. See Creating and Updating Dataset Labels for more
      * information.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output-only] The date when this dataset or any of its tables was last
      * modified, in milliseconds since the epoch.
@@ -355,7 +388,14 @@ export namespace bigquery_v2 {
      * resource, use the Datasets: get method. This property is omitted when
      * there are no datasets in the project.
      */
-    datasets?: any[];
+    datasets?: Array<{
+      datasetReference?: Schema$DatasetReference;
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      labels?: {[key: string]: string;};
+      location?: string;
+    }>;
     /**
      * A hash value of the results page. You can use this property to determine
      * if the page has changed since the last request.
@@ -842,7 +882,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Pick one] Configures a load job.
      */
@@ -1003,6 +1043,11 @@ export namespace bigquery_v2 {
      */
     quote?: string;
     /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
      * [Optional] The schema for the destination table. The schema can be
      * omitted if the destination table already exists, or if you&#39;re loading
      * data from Google Cloud Datastore.
@@ -1059,9 +1104,16 @@ export namespace bigquery_v2 {
      */
     sourceUris?: string[];
     /**
-     * Time-based partitioning specification for the destination table.
+     * Time-based partitioning specification for the destination table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
+    /**
+     * [Optional] If sourceFormat is set to &quot;AVRO&quot;, indicates whether
+     * to enable interpreting logical types into their corresponding types (ie.
+     * TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     */
+    useAvroLogicalTypes?: boolean;
     /**
      * [Optional] Specifies the action that occurs if the destination table
      * already exists. The following values are supported: WRITE_TRUNCATE: If
@@ -1161,6 +1213,11 @@ export namespace bigquery_v2 {
      */
     queryParameters?: Schema$QueryParameter[];
     /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
      * Allows the schema of the destination table to be updated as a side effect
      * of the query job. Schema update options are supported in two cases: when
      * writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE
@@ -1178,9 +1235,10 @@ export namespace bigquery_v2 {
      * source. By defining these properties, the data source can then be queried
      * as if it were a standard BigQuery table.
      */
-    tableDefinitions?: any;
+    tableDefinitions?: {[key: string]: Schema$ExternalDataConfiguration;};
     /**
-     * Time-based partitioning specification for the destination table.
+     * Time-based partitioning specification for the destination table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
@@ -1265,7 +1323,17 @@ export namespace bigquery_v2 {
     /**
      * List of jobs that were requested.
      */
-    jobs?: any[];
+    jobs?: Array<{
+      configuration?: Schema$JobConfiguration;
+      errorResult?: Schema$ErrorProto;
+      id?: string;
+      jobReference?: Schema$JobReference;
+      kind?: string;
+      state?: string;
+      statistics?: Schema$JobStatistics;
+      status?: Schema$JobStatus;
+      user_email?: string;
+    }>;
     /**
      * The resource type of the response.
      */
@@ -1283,9 +1351,8 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * The geographic location of the job. Required except for US and EU. See
-     * details at
-     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * The geographic location of the job. See details at
+     * https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -1395,7 +1462,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: any[];
+    reservationUsage?: Array<{name?: string; slotMs?: string;}>;
     /**
      * [Output-only] The schema of the results. Present only for successful dry
      * run of non-legacy SQL queries.
@@ -1510,7 +1577,7 @@ export namespace bigquery_v2 {
      * options are immutable for subsequent training runs. Default values are
      * used for any options not specified in the input query.
      */
-    modelOptions?: any;
+    modelOptions?: {labels?: string[]; lossType?: string; modelType?: string;};
     /**
      * [Output-only, Beta] Information about ml training runs, each training run
      * comprises of multiple iterations and there may be multiple training runs
@@ -1535,7 +1602,13 @@ export namespace bigquery_v2 {
     /**
      * Projects to which you have at least READ access.
      */
-    projects?: any[];
+    projects?: Array<{
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      numericId?: string;
+      projectReference?: Schema$ProjectReference;
+    }>;
     /**
      * The total number of projects in the list.
      */
@@ -1572,7 +1645,11 @@ export namespace bigquery_v2 {
      * [Optional] The types of the fields of this struct, in order, if this is a
      * struct.
      */
-    structTypes?: any[];
+    structTypes?: Array<{
+      description?: string;
+      name?: string;
+      type?: Schema$QueryParameterType;
+    }>;
     /**
      * [Required] The top level type of this field.
      */
@@ -1587,7 +1664,7 @@ export namespace bigquery_v2 {
      * [Optional] The struct field values, in order of the struct type&#39;s
      * declaration.
      */
-    structValues?: any;
+    structValues?: {[key: string]: Schema$QueryParameterValue;};
     /**
      * [Optional] The value of this value, if a simple scalar type.
      */
@@ -1757,6 +1834,18 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string;
   }
+  export interface Schema$RangePartitioning {
+    /**
+     * [Experimental] [Required] The table is partitioned by this field. The
+     * field must be a top-level NULLABLE/REQUIRED field. The only supported
+     * type is INTEGER/INT64.
+     */
+    field?: string;
+    /**
+     * [Experimental] [Required] Defines the ranges for range partitioning.
+     */
+    range?: {end?: string; interval?: string; start?: string;};
+  }
   export interface Schema$Streamingbuffer {
     /**
      * [Output-only] A lower-bound estimate of the number of bytes currently in
@@ -1777,8 +1866,8 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Table {
     /**
-     * [Beta] Clustering specification for the table. Must be specified with
-     * time-based partitioning, data in the table will be first partitioned and
+     * [Experimental] Clustering specification for the table. Must be specified
+     * with partitioning, data in the table will be first partitioned and
      * subsequently clustered.
      */
     clustering?: Schema$Clustering;
@@ -1836,7 +1925,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output-only] The time when this table was last modified, in milliseconds
      * since the epoch.
@@ -1864,10 +1953,27 @@ export namespace bigquery_v2 {
      */
     numLongTermBytes?: string;
     /**
+     * [Output-only] [Experimental] The physical size of this table in bytes,
+     * excluding any data in the streaming buffer. This includes compression and
+     * storage used for time travel.
+     */
+    numPhysicalBytes?: string;
+    /**
      * [Output-only] The number of rows of data in this table, excluding any
      * data in the streaming buffer.
      */
     numRows?: string;
+    /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
+     * [Experimental] [Optional] If set to true, queries over this table require
+     * a partition filter that can be used for partition elimination to be
+     * specified.
+     */
+    requirePartitionFilter?: boolean;
     /**
      * [Optional] Describes the schema of this table.
      */
@@ -1887,7 +1993,8 @@ export namespace bigquery_v2 {
      */
     tableReference?: Schema$TableReference;
     /**
-     * Time-based partitioning specification for this table.
+     * Time-based partitioning specification for this table. Only one of
+     * timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
@@ -1920,7 +2027,7 @@ export namespace bigquery_v2 {
     /**
      * The rows to insert.
      */
-    rows?: any[];
+    rows?: Array<{insertId?: string; json?: Schema$JsonObject;}>;
     /**
      * [Optional] Insert all valid rows of a request, even if invalid rows
      * exist. The default value is false, which causes the entire request to
@@ -1941,7 +2048,7 @@ export namespace bigquery_v2 {
     /**
      * An array of errors for rows that were not inserted.
      */
-    insertErrors?: any[];
+    insertErrors?: Array<{errors?: Schema$ErrorProto[]; index?: number;}>;
     /**
      * The resource type of the response.
      */
@@ -2017,7 +2124,19 @@ export namespace bigquery_v2 {
     /**
      * Tables in the requested dataset.
      */
-    tables?: any[];
+    tables?: Array<{
+      clustering?: Schema$Clustering;
+      creationTime?: string;
+      expirationTime?: string;
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      labels?: {[key: string]: string;};
+      tableReference?: Schema$TableReference;
+      timePartitioning?: Schema$TimePartitioning;
+      type?: string;
+      view?: {useLegacySql?: boolean;};
+    }>;
     /**
      * The total number of tables in the dataset.
      */
@@ -2104,7 +2223,17 @@ export namespace bigquery_v2 {
      * explicitly specified in the input query will be copied from the previous
      * training run.
      */
-    trainingOptions?: any;
+    trainingOptions?: {
+      earlyStop?: boolean;
+      l1Reg?: number;
+      l2Reg?: number;
+      learnRate?: number;
+      learnRateStrategy?: string;
+      lineSearchInitLearnRate?: number;
+      maxIteration?: string;
+      minRelProgress?: number;
+      warmStart?: boolean;
+    };
   }
   export interface Schema$UserDefinedFunctionResource {
     /**
@@ -2139,15 +2268,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Datasets {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2262,7 +2383,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2381,7 +2502,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2503,7 +2624,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2639,7 +2760,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatasetList>(parameters, callback);
@@ -2771,7 +2892,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2902,7 +3023,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2912,7 +3033,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Datasets$Delete {
+  export interface Params$Resource$Datasets$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2932,7 +3053,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Get {
+  export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2947,7 +3068,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Insert {
+  export interface Params$Resource$Datasets$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2963,7 +3084,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$List {
+  export interface Params$Resource$Datasets$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2995,7 +3116,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Patch {
+  export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3015,7 +3136,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$Update {
+  export interface Params$Resource$Datasets$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3038,15 +3159,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Jobs {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3166,7 +3279,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$JobCancelResponse>(parameters, callback);
@@ -3287,7 +3400,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3432,7 +3545,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetQueryResultsResponse>(parameters, callback);
@@ -3566,7 +3679,7 @@ export namespace bigquery_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3707,7 +3820,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$JobList>(parameters, callback);
@@ -3831,7 +3944,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);
@@ -3841,7 +3954,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Jobs$Cancel {
+  export interface Params$Resource$Jobs$Cancel extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3862,7 +3975,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Get {
+  export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3883,7 +3996,8 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Getqueryresults {
+  export interface Params$Resource$Jobs$Getqueryresults extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3923,7 +4037,7 @@ export namespace bigquery_v2 {
      */
     timeoutMs?: number;
   }
-  export interface Params$Resource$Jobs$Insert {
+  export interface Params$Resource$Jobs$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3954,7 +4068,7 @@ export namespace bigquery_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Jobs$List {
+  export interface Params$Resource$Jobs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3994,9 +4108,9 @@ export namespace bigquery_v2 {
     /**
      * Filter for job state
      */
-    stateFilter?: string;
+    stateFilter?: string[];
   }
-  export interface Params$Resource$Jobs$Query {
+  export interface Params$Resource$Jobs$Query extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4015,15 +4129,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Projects {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4141,7 +4247,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetServiceAccountResponse>(
@@ -4271,7 +4377,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectList>(parameters, callback);
@@ -4281,7 +4387,8 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getserviceaccount {
+  export interface Params$Resource$Projects$Getserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4292,7 +4399,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$List {
+  export interface Params$Resource$Projects$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4311,15 +4418,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tabledata {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4453,7 +4552,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataInsertAllResponse>(
@@ -4600,7 +4699,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataList>(parameters, callback);
@@ -4610,7 +4709,8 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tabledata$Insertall {
+  export interface Params$Resource$Tabledata$Insertall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4634,7 +4734,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$TableDataInsertAllRequest;
   }
-  export interface Params$Resource$Tabledata$List {
+  export interface Params$Resource$Tabledata$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4673,15 +4773,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tables {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4798,7 +4890,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4925,7 +5017,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5053,7 +5145,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5193,7 +5285,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -5330,7 +5422,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5466,7 +5558,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5476,7 +5568,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tables$Delete {
+  export interface Params$Resource$Tables$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5495,7 +5587,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Tables$Get {
+  export interface Params$Resource$Tables$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5519,7 +5611,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Tables$Insert {
+  export interface Params$Resource$Tables$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5539,7 +5631,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Tables$List {
+  export interface Params$Resource$Tables$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5563,7 +5655,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Tables$Patch {
+  export interface Params$Resource$Tables$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5587,7 +5679,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Tables$Update {
+  export interface Params$Resource$Tables$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

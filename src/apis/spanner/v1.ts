@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace spanner_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +99,12 @@ export namespace spanner_v1 {
    * @param {object=} options Options for Spanner
    */
   export class Spanner {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -299,7 +342,7 @@ export namespace spanner_v1 {
      * whose keys are parameter names, and whose values are the corresponding
      * parameter values.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -308,7 +351,7 @@ export namespace spanner_v1 {
      * of the SQL statement parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: any;
+    paramTypes?: {[key: string]: Schema$Type;};
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionQuery().  There must be an exact match
@@ -455,7 +498,7 @@ export namespace spanner_v1 {
      * as the string:  name + &quot;_&quot; + value  would prove problematic if
      * we were to allow &quot;_&quot; in a future release.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
@@ -708,7 +751,7 @@ export namespace spanner_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -724,7 +767,7 @@ export namespace spanner_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Partial results from a streaming read or SQL query. Streaming reads and SQL
@@ -862,7 +905,7 @@ export namespace spanner_v1 {
      * are parameter names, and whose values are the corresponding parameter
      * values.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -871,7 +914,7 @@ export namespace spanner_v1 {
      * of the SQL query parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: any;
+    paramTypes?: {[key: string]: Schema$Type;};
     /**
      * Additional options that affect how many partitions are created.
      */
@@ -960,7 +1003,7 @@ export namespace spanner_v1 {
      * a profile query. For example, number of executions, number of rows/time
      * per execution etc.
      */
-    executionStats?: any;
+    executionStats?: {[key: string]: any;};
     /**
      * The `PlanNode`&#39;s index in node list.
      */
@@ -978,7 +1021,7 @@ export namespace spanner_v1 {
      * information in its metadata:      { &quot;parameter_reference&quot;:
      * &quot;param1&quot;,       &quot;parameter_type&quot;: &quot;array&quot; }
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Condensed representation for SCALAR nodes.
      */
@@ -1218,7 +1261,7 @@ export namespace spanner_v1 {
      * &quot;elapsed_time&quot;: &quot;1.22 secs&quot;, &quot;cpu_time&quot;:
      * &quot;1.19 secs&quot;     }
      */
-    queryStats?: any;
+    queryStats?: {[key: string]: any;};
     /**
      * Standard DML returns an exact count of rows that were modified.
      */
@@ -1260,7 +1303,7 @@ export namespace spanner_v1 {
      * associated with a given session.  See https://goo.gl/xmQnxf for more
      * information on and examples of labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The name of the session. This is always system-assigned; values provided
      * when creating a session are ignored.
@@ -1295,7 +1338,7 @@ export namespace spanner_v1 {
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
      */
-    subqueries?: any;
+    subqueries?: {[key: string]: number;};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1342,7 +1385,7 @@ export namespace spanner_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1762,32 +1805,17 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects {
-    root: Spanner;
     instanceConfigs: Resource$Projects$Instanceconfigs;
     instances: Resource$Projects$Instances;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instanceConfigs = new Resource$Projects$Instanceconfigs(root);
-      this.instances = new Resource$Projects$Instances(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instanceConfigs = new Resource$Projects$Instanceconfigs();
+      this.instances = new Resource$Projects$Instances();
     }
   }
 
 
   export class Resource$Projects$Instanceconfigs {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1842,7 +1870,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceConfig>(parameters, callback);
@@ -1916,7 +1944,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstanceConfigsResponse>(
@@ -1927,7 +1955,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigs$Get {
+  export interface Params$Resource$Projects$Instanceconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1939,7 +1968,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$List {
+  export interface Params$Resource$Projects$Instanceconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1964,18 +1994,11 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances {
-    root: Spanner;
     databases: Resource$Projects$Instances$Databases;
     operations: Resource$Projects$Instances$Operations;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.databases = new Resource$Projects$Instances$Databases(root);
-      this.operations = new Resource$Projects$Instances$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.databases = new Resource$Projects$Instances$Databases();
+      this.operations = new Resource$Projects$Instances$Operations();
     }
 
 
@@ -2056,7 +2079,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2125,7 +2148,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2186,7 +2209,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -2255,7 +2278,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2326,7 +2349,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -2415,7 +2438,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2484,7 +2507,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2563,7 +2586,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2574,7 +2597,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Create {
+  export interface Params$Resource$Projects$Instances$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2591,7 +2615,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Delete {
+  export interface Params$Resource$Projects$Instances$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2603,7 +2628,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Get {
+  export interface Params$Resource$Projects$Instances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2615,7 +2641,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Getiampolicy {
+  export interface Params$Resource$Projects$Instances$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2634,7 +2661,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$List {
+  export interface Params$Resource$Projects$Instances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2670,7 +2698,8 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Patch {
+  export interface Params$Resource$Projects$Instances$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2689,7 +2718,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$UpdateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Setiampolicy {
+  export interface Params$Resource$Projects$Instances$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2708,7 +2738,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Testiampermissions {
+  export interface Params$Resource$Projects$Instances$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2729,19 +2760,11 @@ export namespace spanner_v1 {
   }
 
   export class Resource$Projects$Instances$Databases {
-    root: Spanner;
     operations: Resource$Projects$Instances$Databases$Operations;
     sessions: Resource$Projects$Instances$Databases$Sessions;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations =
-          new Resource$Projects$Instances$Databases$Operations(root);
-      this.sessions = new Resource$Projects$Instances$Databases$Sessions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Projects$Instances$Databases$Operations();
+      this.sessions = new Resource$Projects$Instances$Databases$Sessions();
     }
 
 
@@ -2808,7 +2831,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2875,7 +2898,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2936,7 +2959,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -3006,7 +3029,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters, callback);
@@ -3078,7 +3101,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3148,7 +3171,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDatabasesResponse>(parameters, callback);
@@ -3219,7 +3242,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3300,7 +3323,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3375,7 +3398,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3385,7 +3408,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Create {
+  export interface Params$Resource$Projects$Instances$Databases$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3402,7 +3426,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase {
+  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3413,7 +3438,8 @@ export namespace spanner_v1 {
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3425,7 +3451,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getddl {
+  export interface Params$Resource$Projects$Instances$Databases$Getddl extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3436,7 +3463,8 @@ export namespace spanner_v1 {
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy {
+  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3455,7 +3483,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$List {
+  export interface Params$Resource$Projects$Instances$Databases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3477,7 +3506,8 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy {
+  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3496,7 +3526,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions {
+  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3515,7 +3546,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Updateddl {
+  export interface Params$Resource$Projects$Instances$Databases$Updateddl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3533,15 +3565,7 @@ export namespace spanner_v1 {
   }
 
   export class Resource$Projects$Instances$Databases$Operations {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3610,7 +3634,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3680,7 +3704,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3746,7 +3770,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3826,7 +3850,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -3836,7 +3860,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3847,7 +3872,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3858,7 +3884,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3869,7 +3896,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$List {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3895,15 +3923,7 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances$Databases$Sessions {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3970,7 +3990,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Transaction>(parameters, callback);
@@ -4045,7 +4065,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -4126,7 +4146,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4193,7 +4213,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4273,7 +4293,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -4350,7 +4370,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -4414,7 +4434,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4487,7 +4507,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -4570,7 +4590,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4655,7 +4675,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4732,7 +4752,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -4806,7 +4826,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4883,7 +4903,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -4893,7 +4913,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4909,7 +4930,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4926,7 +4948,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4942,7 +4965,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateSessionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4953,7 +4977,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4969,7 +4994,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4985,7 +5011,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4996,7 +5023,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$List {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5026,7 +5054,8 @@ export namespace spanner_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5042,7 +5071,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionQueryRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5058,7 +5088,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5074,7 +5105,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5090,7 +5122,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5110,15 +5143,7 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances$Operations {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5185,7 +5210,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5253,7 +5278,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5317,7 +5342,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5395,7 +5420,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -5405,7 +5430,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Operations$Cancel {
+  export interface Params$Resource$Projects$Instances$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5416,7 +5442,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Delete {
+  export interface Params$Resource$Projects$Instances$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5427,7 +5454,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Get {
+  export interface Params$Resource$Projects$Instances$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5438,7 +5466,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$List {
+  export interface Params$Resource$Projects$Instances$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

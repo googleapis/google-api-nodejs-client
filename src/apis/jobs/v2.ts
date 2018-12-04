@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace jobs_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,26 +99,16 @@ export namespace jobs_v2 {
    * @param {object=} options Options for Jobs
    */
   export class Jobs {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     companies: Resource$Companies;
     jobs: Resource$Jobs;
     v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.companies = new Resource$Companies(this);
-      this.jobs = new Resource$Jobs(this);
-      this.v2 = new Resource$V2(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.companies = new Resource$Companies();
+      this.jobs = new Resource$Jobs();
+      this.v2 = new Resource$V2();
     }
   }
 
@@ -148,7 +191,7 @@ export namespace jobs_v2 {
      */
     method?: string;
     /**
-     * Optional.  Specifies the traffic density to use when caculating commute
+     * Optional.  Specifies the traffic density to use when calculating commute
      * time. Must not be present if departure_hour_local is specified.
      */
     roadTraffic?: string;
@@ -582,7 +625,7 @@ export namespace jobs_v2 {
      * Stores a map from the values of string custom field associated with `key`
      * to the number of jobs with that value in this histogram result.
      */
-    stringValueHistogramResult?: any;
+    stringValueHistogramResult?: {[key: string]: number;};
   }
   /**
    * Resource that represents the custom data not captured by the standard
@@ -856,8 +899,8 @@ export namespace jobs_v2 {
     query?: Schema$JobQuery;
     /**
      * Meta information, such as `user_id`, collected from the job searcher or
-     * other entity conducting the job search, which is used to improve the
-     * search quality of the service. Users determine identifier values, which
+     * other entity conducting a job search, is used to improve the
+     * service&#39;s search quality. Users determine identifier values, which
      * must be unique and consist.
      */
     requestMetadata?: Schema$RequestMetadata;
@@ -924,7 +967,7 @@ export namespace jobs_v2 {
      * companyName).  Values: the count of jobs that match the filter for this
      * search.
      */
-    values?: any;
+    values?: {[key: string]: number;};
   }
   /**
    * Output only.  Histogram results that matches HistogramFacets specified in
@@ -1017,7 +1060,7 @@ export namespace jobs_v2 {
      * than 255 characters. For unfilterable `string_values`, the maximum total
      * size of `string_values` across all keys is 50KB.
      */
-    customAttributes?: any;
+    customAttributes?: {[key: string]: Schema$CustomAttribute;};
     /**
      * Optional.  The department or functional area within the company with the
      * open position.  The maximum number of allowed characters is 255.
@@ -1118,7 +1161,9 @@ export namespace jobs_v2 {
     expiryDate?: Schema$Date;
     /**
      * Deprecated. Always use compensation_info.  Optional.  Job compensation
-     * information.  This field replaces compensation_info.
+     * information.  This field replaces compensation_info. Only
+     * CompensationInfo.entries or extended_compensation_info can be set,
+     * otherwise an exception is thrown.
      */
     extendedCompensationInfo?: Schema$ExtendedCompensationInfo;
     /**
@@ -1133,7 +1178,7 @@ export namespace jobs_v2 {
      * between 1-20. If an invalid key is provided on job create or update, an
      * error is returned.
      */
-    filterableCustomFields?: any;
+    filterableCustomFields?: {[key: string]: Schema$CustomField;};
     /**
      * Optional.  A description of bonus, commission, and other compensation
      * incentives associated with the job not including salary or pay.  The
@@ -1253,7 +1298,7 @@ export namespace jobs_v2 {
      * them, nor can the client use them to list jobs.  The key of the map can
      * be any valid string.
      */
-    unindexedCustomFields?: any;
+    unindexedCustomFields?: {[key: string]: Schema$CustomField;};
     /**
      * Output only.  The timestamp when this job was last updated.
      */
@@ -1318,8 +1363,8 @@ export namespace jobs_v2 {
      * EMPTY(&lt;field_name&gt;) to filter on the existence of a key.  Boolean
      * expressions (AND/OR/NOT) are supported up to 3 levels of nesting (For
      * example, &quot;((A AND B AND C) OR NOT D) AND E&quot;), and there can be
-     * a maximum of 50 comparisons/functions in the expression. The expression
-     * must be &lt; 3000 characters in length.  Sample Query: (key1 =
+     * a maximum of 100 comparisons/functions in the expression. The expression
+     * must be &lt; 3000 bytes in length.  Sample Query: (key1 =
      * &quot;TEST&quot; OR LOWER(key1)=&quot;test&quot; OR NOT EMPTY(key1)) AND
      * key2 &gt; 100
      */
@@ -1332,7 +1377,7 @@ export namespace jobs_v2 {
      * to the desired custom field map value. If an invalid key is provided or
      * specified together with custom_attribute_filter, an error is thrown.
      */
-    customFieldFilters?: any;
+    customFieldFilters?: {[key: string]: Schema$CustomFieldFilter;};
     /**
      * Optional.  This flag controls the spell-check feature. If false, the
      * service attempts to correct a misspelled query, for example,
@@ -1369,12 +1414,11 @@ export namespace jobs_v2 {
     /**
      * Optional.  The location filter specifies geo-regions containing the jobs
      * to search against. See LocationFilter for more information.  If a
-     * location value is not specified, jobs are be retrieved from all
-     * locations.  If multiple values are specified, jobs are retrieved from any
-     * of the specified locations, and, if different values are specified for
-     * the LocationFilter.distance_in_miles parameter, the maximum provided
-     * distance is used for all locations.  At most 5 location filters are
-     * allowed.
+     * location value is not specified, jobs are retrieved from all locations.
+     * If multiple values are specified, jobs are retrieved from any of the
+     * specified locations. If different values are specified for the
+     * LocationFilter.distance_in_miles parameter, the maximum provided distance
+     * is used for all locations.  At most 5 location filters are allowed.
      */
     locationFilters?: Schema$LocationFilter[];
     /**
@@ -1536,7 +1580,7 @@ export namespace jobs_v2 {
      * location value isn&#39;t specified, jobs fitting the other search
      * criteria are retrieved regardless of where they&#39;re located.  If
      * multiple values are specified, jobs are retrieved from any of the
-     * specified locations, and, if different values are specified for the
+     * specified locations. If different values are specified for the
      * LocationFilter.distance_in_miles parameter, the maximum provided distance
      * is used for all locations.  At most 5 location filters are allowed.
      */
@@ -1954,8 +1998,7 @@ export namespace jobs_v2 {
    */
   export interface Schema$SearchJobsRequest {
     /**
-     * Deprecated. Any value provided in this field is ignored.  Optional.
-     * Controls whether to disable relevance thresholding. Relevance
+     * Optional.  Controls whether to disable relevance thresholding. Relevance
      * thresholding removes jobs that have low relevance in search results, for
      * example, removing &quot;Assistant to the CEO&quot; positions from the
      * search results of a search for &quot;CEO&quot;.  Disabling relevance
@@ -2032,7 +2075,7 @@ export namespace jobs_v2 {
     query?: Schema$JobQuery;
     /**
      * Required.  The meta information collected about the job searcher, used to
-     * improve the search quality of the service.. The identifiers, (such as
+     * improve the search quality of the service. The identifiers, (such as
      * `user_id`) are provided by users, and must be unique and consistent.
      */
     requestMetadata?: Schema$RequestMetadata;
@@ -2167,16 +2210,9 @@ export namespace jobs_v2 {
 
 
   export class Resource$Companies {
-    root: Jobs;
     jobs: Resource$Companies$Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.jobs = new Resource$Companies$Jobs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.jobs = new Resource$Companies$Jobs();
     }
 
 
@@ -2233,7 +2269,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2296,7 +2332,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2356,7 +2392,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2424,7 +2460,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompaniesResponse>(parameters, callback);
@@ -2491,7 +2527,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2501,7 +2537,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Create {
+  export interface Params$Resource$Companies$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2513,7 +2549,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$Company;
   }
-  export interface Params$Resource$Companies$Delete {
+  export interface Params$Resource$Companies$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2525,7 +2561,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Companies$Get {
+  export interface Params$Resource$Companies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2537,7 +2573,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Companies$List {
+  export interface Params$Resource$Companies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2559,7 +2595,7 @@ export namespace jobs_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Companies$Patch {
+  export interface Params$Resource$Companies$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2590,15 +2626,7 @@ export namespace jobs_v2 {
   }
 
   export class Resource$Companies$Jobs {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2664,7 +2692,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['companyName'],
         pathParams: ['companyName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompanyJobsResponse>(parameters, callback);
@@ -2674,7 +2702,8 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Jobs$List {
+  export interface Params$Resource$Companies$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2718,15 +2747,7 @@ export namespace jobs_v2 {
 
 
   export class Resource$Jobs {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2784,7 +2805,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2848,7 +2869,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -2913,7 +2934,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2982,7 +3003,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3043,7 +3064,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3117,7 +3138,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetHistogramResponse>(parameters, callback);
@@ -3184,7 +3205,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3249,7 +3270,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3315,7 +3336,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3389,7 +3410,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3399,7 +3420,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Jobs$Batchdelete {
+  export interface Params$Resource$Jobs$Batchdelete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3411,7 +3432,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$BatchDeleteJobsRequest;
   }
-  export interface Params$Resource$Jobs$Create {
+  export interface Params$Resource$Jobs$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3423,7 +3444,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$CreateJobRequest;
   }
-  export interface Params$Resource$Jobs$Delete {
+  export interface Params$Resource$Jobs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3442,7 +3463,8 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Jobs$Deletebyfilter {
+  export interface Params$Resource$Jobs$Deletebyfilter extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3454,7 +3476,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$DeleteJobsByFilterRequest;
   }
-  export interface Params$Resource$Jobs$Get {
+  export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3466,7 +3488,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Jobs$Histogram {
+  export interface Params$Resource$Jobs$Histogram extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3478,7 +3500,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$GetHistogramRequest;
   }
-  export interface Params$Resource$Jobs$List {
+  export interface Params$Resource$Jobs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3510,7 +3532,7 @@ export namespace jobs_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Jobs$Patch {
+  export interface Params$Resource$Jobs$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3528,7 +3550,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$UpdateJobRequest;
   }
-  export interface Params$Resource$Jobs$Search {
+  export interface Params$Resource$Jobs$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3540,7 +3562,8 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$SearchJobsRequest;
   }
-  export interface Params$Resource$Jobs$Searchforalert {
+  export interface Params$Resource$Jobs$Searchforalert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3555,15 +3578,7 @@ export namespace jobs_v2 {
 
 
   export class Resource$V2 {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3628,7 +3643,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CompleteQueryResponse>(parameters, callback);
@@ -3638,7 +3653,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$V2$Complete {
+  export interface Params$Resource$V2$Complete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

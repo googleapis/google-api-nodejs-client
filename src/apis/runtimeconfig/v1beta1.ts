@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace runtimeconfig_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -48,22 +101,12 @@ export namespace runtimeconfig_v1beta1 {
    * @param {object=} options Options for Runtimeconfig
    */
   export class Runtimeconfig {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -104,14 +147,13 @@ export namespace runtimeconfig_v1beta1 {
    * A Cardinality condition for the Waiter resource. A cardinality condition is
    * met when the number of variables under a specified path prefix reaches a
    * predefined number. For example, if you set a Cardinality condition where
-   * the `path` is set to `/foo` and the number of paths is set to 2, the
+   * the `path` is set to `/foo` and the number of paths is set to `2`, the
    * following variables would meet the condition in a RuntimeConfig resource:
    * + `/foo/variable1 = &quot;value1&quot;` + `/foo/variable2 =
    * &quot;value2&quot;` + `/bar/variable3 = &quot;value3&quot;`  It would not
-   * would not satisify the same condition with the `number` set to 3, however,
-   * because there is only 2 paths that start with `/foo`. Cardinality
-   * conditions are recursive; all subtrees under the specific path prefix are
-   * counted.
+   * satisfy the same condition with the `number` set to `3`, however, because
+   * there is only 2 paths that start with `/foo`. Cardinality conditions are
+   * recursive; all subtrees under the specific path prefix are counted.
    */
   export interface Schema$Cardinality {
     /**
@@ -246,7 +288,7 @@ export namespace runtimeconfig_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -262,7 +304,7 @@ export namespace runtimeconfig_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -386,7 +428,7 @@ export namespace runtimeconfig_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -428,7 +470,7 @@ export namespace runtimeconfig_v1beta1 {
      * The name of the variable resource, in the format:
      * projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME] The
      * `[PROJECT_ID]` must be a valid project ID, `[CONFIG_NAME]` must be a
-     * valid RuntimeConfig reource and `[VARIABLE_NAME]` follows Unix file
+     * valid RuntimeConfig resource and `[VARIABLE_NAME]` follows Unix file
      * system file path naming.  The `[VARIABLE_NAME]` can contain ASCII
      * letters, numbers, slashes and dashes. Slashes are used as path element
      * separators and are not part of the `[VARIABLE_NAME]` itself, so
@@ -441,7 +483,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     name?: string;
     /**
-     * [Ouput only] The current state of the variable. The variable state
+     * Output only. The current state of the variable. The variable state
      * indicates the outcome of the `variables().watch` call and is visible
      * through the `get` and `list` calls.
      */
@@ -453,7 +495,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     text?: string;
     /**
-     * Output only. The time of the last variable update.
+     * Output only. The time of the last variable update. Timestamp will be UTC
+     * timestamp.
      */
     updateTime?: string;
     /**
@@ -544,35 +587,21 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Runtimeconfig;
     configs: Resource$Projects$Configs;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.configs = new Resource$Projects$Configs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.configs = new Resource$Projects$Configs();
     }
   }
 
 
   export class Resource$Projects$Configs {
-    root: Runtimeconfig;
     operations: Resource$Projects$Configs$Operations;
     variables: Resource$Projects$Configs$Variables;
     waiters: Resource$Projects$Configs$Waiters;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Projects$Configs$Operations(root);
-      this.variables = new Resource$Projects$Configs$Variables(root);
-      this.waiters = new Resource$Projects$Configs$Waiters(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Projects$Configs$Operations();
+      this.variables = new Resource$Projects$Configs$Variables();
+      this.waiters = new Resource$Projects$Configs$Waiters();
     }
 
 
@@ -637,7 +666,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -703,7 +732,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -766,7 +795,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -834,7 +863,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -904,7 +933,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListConfigsResponse>(parameters, callback);
@@ -973,7 +1002,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1052,7 +1081,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1122,7 +1151,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -1132,7 +1161,8 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Create {
+  export interface Params$Resource$Projects$Configs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1159,7 +1189,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$RuntimeConfig;
   }
-  export interface Params$Resource$Projects$Configs$Delete {
+  export interface Params$Resource$Projects$Configs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1171,7 +1202,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Get {
+  export interface Params$Resource$Projects$Configs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1183,7 +1215,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Getiampolicy {
+  export interface Params$Resource$Projects$Configs$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1195,7 +1228,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Configs$List {
+  export interface Params$Resource$Projects$Configs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1218,7 +1252,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Configs$Setiampolicy {
+  export interface Params$Resource$Projects$Configs$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1235,7 +1270,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Configs$Testiampermissions {
+  export interface Params$Resource$Projects$Configs$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1252,7 +1288,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Configs$Update {
+  export interface Params$Resource$Projects$Configs$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1271,15 +1308,7 @@ export namespace runtimeconfig_v1beta1 {
   }
 
   export class Resource$Projects$Configs$Operations {
-    root: Runtimeconfig;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1337,7 +1366,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1418,7 +1447,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1429,7 +1458,8 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Operations$Get {
+  export interface Params$Resource$Projects$Configs$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1440,7 +1470,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Operations$Testiampermissions {
+  export interface Params$Resource$Projects$Configs$Operations$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1460,15 +1491,7 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects$Configs$Variables {
-    root: Runtimeconfig;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1535,7 +1558,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1605,7 +1628,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1667,7 +1690,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1743,7 +1766,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
@@ -1824,7 +1847,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1892,7 +1915,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1969,7 +1992,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1979,7 +2002,8 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Variables$Create {
+  export interface Params$Resource$Projects$Configs$Variables$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2006,7 +2030,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$Variable;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Delete {
+  export interface Params$Resource$Projects$Configs$Variables$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2023,7 +2048,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     recursive?: boolean;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Get {
+  export interface Params$Resource$Projects$Configs$Variables$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2035,7 +2061,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Variables$List {
+  export interface Params$Resource$Projects$Configs$Variables$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2069,7 +2096,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     returnValues?: boolean;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Testiampermissions {
+  export interface Params$Resource$Projects$Configs$Variables$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2086,7 +2114,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Update {
+  export interface Params$Resource$Projects$Configs$Variables$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2103,7 +2132,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$Variable;
   }
-  export interface Params$Resource$Projects$Configs$Variables$Watch {
+  export interface Params$Resource$Projects$Configs$Variables$Watch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2123,15 +2153,7 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects$Configs$Waiters {
-    root: Runtimeconfig;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2199,7 +2221,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2265,7 +2287,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2327,7 +2349,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Waiter>(parameters, callback);
@@ -2397,7 +2419,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListWaitersResponse>(parameters, callback);
@@ -2478,7 +2500,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2489,7 +2511,8 @@ export namespace runtimeconfig_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Configs$Waiters$Create {
+  export interface Params$Resource$Projects$Configs$Waiters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2516,7 +2539,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     requestBody?: Schema$Waiter;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$Delete {
+  export interface Params$Resource$Projects$Configs$Waiters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2528,7 +2552,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$Get {
+  export interface Params$Resource$Projects$Configs$Waiters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2541,7 +2566,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$List {
+  export interface Params$Resource$Projects$Configs$Waiters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2564,7 +2590,8 @@ export namespace runtimeconfig_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Configs$Waiters$Testiampermissions {
+  export interface Params$Resource$Projects$Configs$Waiters$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

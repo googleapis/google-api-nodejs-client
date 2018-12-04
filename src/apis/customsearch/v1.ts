@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace customsearch_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,34 +81,26 @@ export namespace customsearch_v1 {
    * @param {object=} options Options for Customsearch
    */
   export class Customsearch {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     cse: Resource$Cse;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.cse = new Resource$Cse(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.cse = new Resource$Cse();
     }
   }
 
   export interface Schema$Context {
-    facets?: any[][];
+    facets?: Array<
+        Array<{anchor?: string; label?: string; label_with_op?: string;}>>;
     title?: string;
   }
   export interface Schema$Promotion {
-    bodyLines?: any[];
+    bodyLines?: Array<
+        {htmlTitle?: string; link?: string; title?: string; url?: string;}>;
     displayLink?: string;
     htmlTitle?: string;
-    image?: any;
+    image?: {height?: number; source?: string; width?: number;};
     link?: string;
     title?: string;
   }
@@ -122,12 +150,21 @@ export namespace customsearch_v1 {
     htmlFormattedUrl?: string;
     htmlSnippet?: string;
     htmlTitle?: string;
-    image?: any;
+    image?: {
+      byteSize?: number;
+      contextLink?: string;
+      height?: number;
+      thumbnailHeight?: number;
+      thumbnailLink?: string;
+      thumbnailWidth?: number;
+      width?: number;
+    };
     kind?: string;
-    labels?: any[];
+    labels?:
+        Array<{displayName?: string; label_with_op?: string; name?: string;}>;
     link?: string;
     mime?: string;
-    pagemap?: any;
+    pagemap?: {[key: string]: Array<{[key: string]: any;}>;};
     snippet?: string;
     title?: string;
   }
@@ -136,24 +173,22 @@ export namespace customsearch_v1 {
     items?: Schema$Result[];
     kind?: string;
     promotions?: Schema$Promotion[];
-    queries?: any;
-    searchInformation?: any;
-    spelling?: any;
-    url?: any;
+    queries?: {[key: string]: Schema$Query[];};
+    searchInformation?: {
+      formattedSearchTime?: string;
+      formattedTotalResults?: string;
+      searchTime?: number;
+      totalResults?: string;
+    };
+    spelling?: {correctedQuery?: string; htmlCorrectedQuery?: string;};
+    url?: {template?: string; type?: string;};
   }
 
 
   export class Resource$Cse {
-    root: Customsearch;
     siterestrict: Resource$Cse$Siterestrict;
-    constructor(root: Customsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.siterestrict = new Resource$Cse$Siterestrict(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.siterestrict = new Resource$Cse$Siterestrict();
     }
 
 
@@ -241,7 +276,7 @@ export namespace customsearch_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);
@@ -251,7 +286,7 @@ export namespace customsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Cse$List {
+  export interface Params$Resource$Cse$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -399,15 +434,7 @@ export namespace customsearch_v1 {
   }
 
   export class Resource$Cse$Siterestrict {
-    root: Customsearch;
-    constructor(root: Customsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -498,7 +525,7 @@ export namespace customsearch_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);
@@ -508,7 +535,8 @@ export namespace customsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Cse$Siterestrict$List {
+  export interface Params$Resource$Cse$Siterestrict$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

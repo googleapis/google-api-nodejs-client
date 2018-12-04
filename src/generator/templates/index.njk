@@ -13,8 +13,6 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import { ServiceOptions, getAPI } from 'googleapis-common';
-
 {% for apiName, api in apis %}
   import * as {{ apiName }} from './{{ apiName }}';
 {% endfor %}
@@ -34,9 +32,4 @@ export class GeneratedAPIs {
   {% for apiName, api in apis %}
     {{ apiName }} = {{ apiName }}.{{ apiName }};
   {% endfor %}
-  constructor() {
-    {% for apiName, api in apis %}
-      this.{{ apiName }} = this.{{ apiName }}.bind(this);
-    {% endfor %}
-  }
 }

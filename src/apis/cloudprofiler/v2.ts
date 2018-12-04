@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudprofiler_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,22 +98,12 @@ export namespace cloudprofiler_v2 {
    * @param {object=} options Options for Cloudprofiler
    */
   export class Cloudprofiler {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -98,7 +141,7 @@ export namespace cloudprofiler_v2 {
      * a zone is &quot;us-central1-a&quot;, an example of a region is
      * &quot;us-central1&quot; or &quot;us-central&quot;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Project ID is the ID of a cloud project. Validation regex:
      * `^a-z{4,61}[a-z0-9]$`.
@@ -134,7 +177,7 @@ export namespace cloudprofiler_v2 {
      * get merged with the deployment labels for the final data set.  See
      * documentation on deployment labels for validation rules and limits.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      */
@@ -154,30 +197,15 @@ export namespace cloudprofiler_v2 {
 
 
   export class Resource$Projects {
-    root: Cloudprofiler;
     profiles: Resource$Projects$Profiles;
-    constructor(root: Cloudprofiler) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.profiles = new Resource$Projects$Profiles(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.profiles = new Resource$Projects$Profiles();
     }
   }
 
 
   export class Resource$Projects$Profiles {
-    root: Cloudprofiler;
-    constructor(root: Cloudprofiler) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -247,7 +275,7 @@ export namespace cloudprofiler_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -317,7 +345,7 @@ export namespace cloudprofiler_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -388,7 +416,7 @@ export namespace cloudprofiler_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -398,7 +426,8 @@ export namespace cloudprofiler_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Profiles$Create {
+  export interface Params$Resource$Projects$Profiles$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -414,7 +443,8 @@ export namespace cloudprofiler_v2 {
      */
     requestBody?: Schema$CreateProfileRequest;
   }
-  export interface Params$Resource$Projects$Profiles$Createoffline {
+  export interface Params$Resource$Projects$Profiles$Createoffline extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -430,7 +460,8 @@ export namespace cloudprofiler_v2 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Projects$Profiles$Patch {
+  export interface Params$Resource$Projects$Profiles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

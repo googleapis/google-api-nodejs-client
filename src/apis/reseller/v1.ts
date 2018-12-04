@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace reseller_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,26 +81,16 @@ export namespace reseller_v1 {
    * @param {object=} options Options for Reseller
    */
   export class Reseller {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     customers: Resource$Customers;
     resellernotify: Resource$Resellernotify;
     subscriptions: Resource$Subscriptions;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.customers = new Resource$Customers(this);
-      this.resellernotify = new Resource$Resellernotify(this);
-      this.subscriptions = new Resource$Subscriptions(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.customers = new Resource$Customers();
+      this.resellernotify = new Resource$Resellernotify();
+      this.subscriptions = new Resource$Subscriptions();
     }
   }
 
@@ -341,7 +367,11 @@ export namespace reseller_v1 {
      * trial plan. For more information about the API&quot;s payment plans, see
      * the API concepts.
      */
-    plan?: any;
+    plan?: {
+      commitmentInterval?: {endTime?: string; startTime?: string;};
+      isCommitmentPlan?: boolean;
+      planName?: string;
+    };
     /**
      * This is an optional property. This purchase order (PO) information is for
      * resellers to use for their company tracking usage. If a purchaseOrderId
@@ -411,12 +441,15 @@ export namespace reseller_v1 {
      * Read-only transfer related information for the subscription. For more
      * information, see retrieve transferable subscriptions for a customer.
      */
-    transferInfo?: any;
+    transferInfo?: {
+      minimumTransferableSeats?: number;
+      transferabilityExpirationTime?: string;
+    };
     /**
      * The G Suite annual commitment and flexible payment plans can be in a
      * 30-day free trial. For more information, see the API concepts.
      */
-    trialSettings?: any;
+    trialSettings?: {isInTrial?: boolean; trialEndTime?: string;};
   }
   /**
    * JSON template for a subscription list.
@@ -440,15 +473,7 @@ export namespace reseller_v1 {
 
 
   export class Resource$Customers {
-    root: Reseller;
-    constructor(root: Reseller) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -502,7 +527,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -567,7 +592,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -633,7 +658,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -698,7 +723,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -708,7 +733,7 @@ export namespace reseller_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Get {
+  export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -722,7 +747,7 @@ export namespace reseller_v1 {
      */
     customerId?: string;
   }
-  export interface Params$Resource$Customers$Insert {
+  export interface Params$Resource$Customers$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -743,7 +768,7 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Customer;
   }
-  export interface Params$Resource$Customers$Patch {
+  export interface Params$Resource$Customers$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -762,7 +787,7 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Customer;
   }
-  export interface Params$Resource$Customers$Update {
+  export interface Params$Resource$Customers$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -784,15 +809,7 @@ export namespace reseller_v1 {
 
 
   export class Resource$Resellernotify {
-    root: Reseller;
-    constructor(root: Reseller) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -862,7 +879,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
@@ -933,7 +950,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -1002,7 +1019,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -1012,13 +1029,15 @@ export namespace reseller_v1 {
     }
   }
 
-  export interface Params$Resource$Resellernotify$Getwatchdetails {
+  export interface Params$Resource$Resellernotify$Getwatchdetails extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Resellernotify$Register {
+  export interface Params$Resource$Resellernotify$Register extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1029,7 +1048,8 @@ export namespace reseller_v1 {
      */
     serviceAccountEmailAddress?: string;
   }
-  export interface Params$Resource$Resellernotify$Unregister {
+  export interface Params$Resource$Resellernotify$Unregister extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1043,15 +1063,7 @@ export namespace reseller_v1 {
 
 
   export class Resource$Subscriptions {
-    root: Reseller;
-    constructor(root: Reseller) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1114,7 +1126,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1187,7 +1199,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1260,7 +1272,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1331,7 +1343,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1400,7 +1412,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1466,7 +1478,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1536,7 +1548,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1608,7 +1620,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscriptions>(parameters, callback);
@@ -1679,7 +1691,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1749,7 +1761,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1759,7 +1771,8 @@ export namespace reseller_v1 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Activate {
+  export interface Params$Resource$Subscriptions$Activate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1781,7 +1794,8 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Changeplan {
+  export interface Params$Resource$Subscriptions$Changeplan extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1808,7 +1822,8 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$ChangePlanRequest;
   }
-  export interface Params$Resource$Subscriptions$Changerenewalsettings {
+  export interface Params$Resource$Subscriptions$Changerenewalsettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1835,7 +1850,8 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$RenewalSettings;
   }
-  export interface Params$Resource$Subscriptions$Changeseats {
+  export interface Params$Resource$Subscriptions$Changeseats extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1862,7 +1878,8 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Seats;
   }
-  export interface Params$Resource$Subscriptions$Delete {
+  export interface Params$Resource$Subscriptions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1889,7 +1906,8 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Get {
+  export interface Params$Resource$Subscriptions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1911,7 +1929,8 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert {
+  export interface Params$Resource$Subscriptions$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1939,7 +1958,8 @@ export namespace reseller_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List {
+  export interface Params$Resource$Subscriptions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1982,7 +2002,8 @@ export namespace reseller_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Subscriptions$Startpaidservice {
+  export interface Params$Resource$Subscriptions$Startpaidservice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2004,7 +2025,8 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string;
   }
-  export interface Params$Resource$Subscriptions$Suspend {
+  export interface Params$Resource$Subscriptions$Suspend extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

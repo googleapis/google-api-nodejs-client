@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace androidenterprise_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,10 +81,6 @@ export namespace androidenterprise_v1 {
    * @param {object=} options Options for Androidenterprise
    */
   export class Androidenterprise {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     devices: Resource$Devices;
     enterprises: Resource$Enterprises;
     entitlements: Resource$Entitlements;
@@ -64,34 +96,30 @@ export namespace androidenterprise_v1 {
     storelayoutclusters: Resource$Storelayoutclusters;
     storelayoutpages: Resource$Storelayoutpages;
     users: Resource$Users;
+    webapps: Resource$Webapps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.devices = new Resource$Devices(this);
-      this.enterprises = new Resource$Enterprises(this);
-      this.entitlements = new Resource$Entitlements(this);
-      this.grouplicenses = new Resource$Grouplicenses(this);
-      this.grouplicenseusers = new Resource$Grouplicenseusers(this);
-      this.installs = new Resource$Installs(this);
+      this.devices = new Resource$Devices();
+      this.enterprises = new Resource$Enterprises();
+      this.entitlements = new Resource$Entitlements();
+      this.grouplicenses = new Resource$Grouplicenses();
+      this.grouplicenseusers = new Resource$Grouplicenseusers();
+      this.installs = new Resource$Installs();
       this.managedconfigurationsfordevice =
-          new Resource$Managedconfigurationsfordevice(this);
+          new Resource$Managedconfigurationsfordevice();
       this.managedconfigurationsforuser =
-          new Resource$Managedconfigurationsforuser(this);
+          new Resource$Managedconfigurationsforuser();
       this.managedconfigurationssettings =
-          new Resource$Managedconfigurationssettings(this);
-      this.permissions = new Resource$Permissions(this);
-      this.products = new Resource$Products(this);
-      this.serviceaccountkeys = new Resource$Serviceaccountkeys(this);
-      this.storelayoutclusters = new Resource$Storelayoutclusters(this);
-      this.storelayoutpages = new Resource$Storelayoutpages(this);
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Managedconfigurationssettings();
+      this.permissions = new Resource$Permissions();
+      this.products = new Resource$Products();
+      this.serviceaccountkeys = new Resource$Serviceaccountkeys();
+      this.storelayoutclusters = new Resource$Storelayoutclusters();
+      this.storelayoutpages = new Resource$Storelayoutpages();
+      this.users = new Resource$Users();
+      this.webapps = new Resource$Webapps();
     }
   }
 
@@ -140,7 +168,7 @@ export namespace androidenterprise_v1 {
      */
     permission?: string[];
     /**
-     * Options for displaying the Play Search page.
+     * Options for displaying the managed Play Search apps page.
      */
     playSearch?: Schema$AdministratorWebTokenSpecPlaySearch;
     /**
@@ -148,7 +176,7 @@ export namespace androidenterprise_v1 {
      */
     privateApps?: Schema$AdministratorWebTokenSpecPrivateApps;
     /**
-     * Options for displaying the Store Builder page.
+     * Options for displaying the Organize apps page.
      */
     storeBuilder?: Schema$AdministratorWebTokenSpecStoreBuilder;
     /**
@@ -162,7 +190,7 @@ export namespace androidenterprise_v1 {
      */
     approveApps?: boolean;
     /**
-     * Whether the Play Search page is displayed. Default is true.
+     * Whether the managed Play Search apps page is displayed. Default is true.
      */
     enabled?: boolean;
   }
@@ -174,7 +202,7 @@ export namespace androidenterprise_v1 {
   }
   export interface Schema$AdministratorWebTokenSpecStoreBuilder {
     /**
-     * Whether the Store Builder page is displayed. Default is true.
+     * Whether the Organize apps page is displayed. Default is true.
      */
     enabled?: boolean;
   }
@@ -333,10 +361,19 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$AppVersion {
     /**
-     * The track that this app was published in. For example if track is
-     * &quot;alpha&quot;, this is an alpha version of the app.
+     * True if this version is a production APK.
+     */
+    isProduction?: boolean;
+    /**
+     * Deprecated, use trackId instead.
      */
     track?: string;
+    /**
+     * Track ids that the app version is published in. Replaces the track field
+     * (deprecated), but doesn&#39;t include the production track (see
+     * isProduction instead).
+     */
+    trackId?: string[];
     /**
      * Unique increasing identifier for the app version.
      */
@@ -1143,6 +1180,10 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$Product {
     /**
+     * The tracks visible to the enterprise.
+     */
+    appTracks?: Schema$TrackInfo[];
+    /**
      * App versions currently available for this product.
      */
     appVersion?: Schema$AppVersion[];
@@ -1155,7 +1196,7 @@ export namespace androidenterprise_v1 {
      */
     availableCountries?: string[];
     /**
-     * The tracks that are visible to the enterprise.
+     * Deprecated, use appTracks instead.
      */
     availableTracks?: string[];
     /**
@@ -1325,21 +1366,13 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
     /**
-     * Grants visibility to the specified track(s) of the product to the device.
-     * The track available to the device is based on the following order of
-     * preference: alpha, beta, production. For example, if an app has a prod
-     * version, a beta version and an alpha version and the enterprise has been
-     * granted visibility to both the alpha and beta tracks, if tracks is
-     * {&quot;beta&quot;, &quot;production&quot;} then the beta version of the
-     * app is made available to the device. If there are no app versions in the
-     * specified track adding the &quot;alpha&quot; and &quot;beta&quot; values
-     * to the list of tracks will have no effect. Note that the enterprise
-     * requires access to alpha and/or beta tracks before users can be granted
-     * visibility to apps in those tracks.  The allowed sets are: {} (considered
-     * equivalent to {&quot;production&quot;}) {&quot;production&quot;}
-     * {&quot;beta&quot;, &quot;production&quot;} {&quot;alpha&quot;,
-     * &quot;beta&quot;, &quot;production&quot;} The order of elements is not
-     * relevant. Any other set of tracks will be rejected with an error.
+     * Grants the device visibility to the specified product release track(s),
+     * identified by trackIds. The list of release tracks of a product can be
+     * obtained by calling Products.Get.
+     */
+    trackIds?: string[];
+    /**
+     * Deprecated. Use trackIds instead.
      */
     tracks?: string[];
   }
@@ -1461,22 +1494,12 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
     /**
-     * Grants visibility to the specified track(s) of the product to the user.
-     * The track available to the user is based on the following order of
-     * preference: alpha, beta, production. For example, if an app has a prod
-     * version, a beta version and an alpha version and the enterprise has been
-     * granted visibility to both the alpha and beta tracks, if tracks is
-     * {&quot;beta&quot;, &quot;production&quot;} the user will be able to
-     * install the app and they will get the beta version of the app. If there
-     * are no app versions in the specified track adding the &quot;alpha&quot;
-     * and &quot;beta&quot; values to the list of tracks will have no effect.
-     * Note that the enterprise requires access to alpha and/or beta tracks
-     * before users can be granted visibility to apps in those tracks.  The
-     * allowed sets are: {} (considered equivalent to {&quot;production&quot;})
-     * {&quot;production&quot;} {&quot;beta&quot;, &quot;production&quot;}
-     * {&quot;alpha&quot;, &quot;beta&quot;, &quot;production&quot;} The order
-     * of elements is not relevant. Any other set of tracks will be rejected
-     * with an error.
+     * Grants the user visibility to the specified product track(s), identified
+     * by trackIds.
+     */
+    trackIds?: string[];
+    /**
+     * Deprecated. Use trackIds instead.
      */
     tracks?: string[];
   }
@@ -1682,6 +1705,22 @@ export namespace androidenterprise_v1 {
     previousPageToken?: string;
   }
   /**
+   * Id to name association of a track.
+   */
+  export interface Schema$TrackInfo {
+    /**
+     * A modifiable name for a track. This is the visible name in the play
+     * developer console.
+     */
+    trackAlias?: string;
+    /**
+     * Unmodifiable, unique track identifier. This identifier is the
+     * releaseTrackId in the url of the play developer console page that
+     * displays the track information.
+     */
+    trackId?: string;
+  }
+  /**
    * A Users resource represents an account associated with an enterprise. The
    * account may be specific to a device or to an individual user (who can then
    * use the account across multiple devices). The account may provide access to
@@ -1795,18 +1834,74 @@ export namespace androidenterprise_v1 {
      */
     userValue?: string;
   }
+  /**
+   * WebApp resource info.
+   */
+  export interface Schema$WebApp {
+    /**
+     * The display mode of the web app.
+     */
+    displayMode?: string;
+    /**
+     * A list of icons representing this website. Must have at least one
+     * element.
+     */
+    icons?: Schema$WebAppIcon[];
+    /**
+     * A flag whether the app has been published to the Play store yet.
+     */
+    isPublished?: boolean;
+    /**
+     * The start URL, i.e. the URL that should load when the user opens the
+     * application.
+     */
+    startUrl?: string;
+    /**
+     * The title of the web application as displayed to the user (e.g., amongst
+     * a list of other applications, or as a label for an icon).
+     */
+    title?: string;
+    /**
+     * The current version of the app.   Note that the version can automatically
+     * increase during the lifetime of the web app, while Google does internal
+     * housekeeping to keep the web app up-to-date.
+     */
+    versionCode?: string;
+    /**
+     * The ID of the application.
+     */
+    webAppId?: string;
+  }
+  /**
+   * Icon for a web app.
+   */
+  export interface Schema$WebAppIcon {
+    /**
+     * The actual bytes of the image in a base64url encoded string (c.f.
+     * RFC4648, section 5 &quot;Base 64 Encoding with URL and Filename Safe
+     * Alphabet&quot;).   - The image type can be png or jpg. - The image should
+     * ideally be square. - The image should ideally have a size of 512x512.
+     */
+    imageData?: string;
+  }
+  /**
+   * The web app details for an enterprise.
+   */
+  export interface Schema$WebAppsListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;androidenterprise#webAppsListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The manifest describing a web app.
+     */
+    webApp?: Schema$WebApp[];
+  }
 
 
   export class Resource$Devices {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1864,7 +1959,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -1938,7 +2033,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceState>(parameters, callback);
@@ -2006,7 +2101,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DevicesListResponse>(parameters, callback);
@@ -2076,7 +2171,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2151,7 +2246,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceState>(parameters, callback);
@@ -2221,7 +2316,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2231,7 +2326,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Devices$Get {
+  export interface Params$Resource$Devices$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2250,7 +2345,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Devices$Getstate {
+  export interface Params$Resource$Devices$Getstate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2269,7 +2364,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Devices$List {
+  export interface Params$Resource$Devices$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2284,7 +2379,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Devices$Patch {
+  export interface Params$Resource$Devices$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2314,7 +2409,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Device;
   }
-  export interface Params$Resource$Devices$Setstate {
+  export interface Params$Resource$Devices$Setstate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2338,7 +2433,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$DeviceState;
   }
-  export interface Params$Resource$Devices$Update {
+  export interface Params$Resource$Devices$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2371,15 +2466,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Enterprises {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2442,7 +2529,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2513,7 +2600,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2588,7 +2675,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdministratorWebToken>(parameters, callback);
@@ -2656,7 +2743,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['token'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2723,7 +2810,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignupInfo>(parameters, callback);
@@ -2786,7 +2873,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2859,7 +2946,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AndroidDevicePolicyConfig>(
@@ -2941,7 +3028,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -3012,7 +3099,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(parameters, callback);
@@ -3082,7 +3169,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['domain'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EnterprisesListResponse>(parameters, callback);
@@ -3164,7 +3251,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationSet>(parameters, callback);
@@ -3242,7 +3329,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EnterprisesSendTestPushNotificationResponse>(
@@ -3314,7 +3401,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EnterpriseAccount>(parameters, callback);
@@ -3388,7 +3475,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AndroidDevicePolicyConfig>(
@@ -3466,7 +3553,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(parameters, callback);
@@ -3532,7 +3619,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3542,7 +3629,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Acknowledgenotificationset {
+  export interface Params$Resource$Enterprises$Acknowledgenotificationset
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3554,7 +3642,8 @@ export namespace androidenterprise_v1 {
      */
     notificationSetId?: string;
   }
-  export interface Params$Resource$Enterprises$Completesignup {
+  export interface Params$Resource$Enterprises$Completesignup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3569,7 +3658,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseToken?: string;
   }
-  export interface Params$Resource$Enterprises$Createwebtoken {
+  export interface Params$Resource$Enterprises$Createwebtoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3585,7 +3675,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$AdministratorWebTokenSpec;
   }
-  export interface Params$Resource$Enterprises$Enroll {
+  export interface Params$Resource$Enterprises$Enroll extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3601,7 +3692,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Enterprise;
   }
-  export interface Params$Resource$Enterprises$Generatesignupurl {
+  export interface Params$Resource$Enterprises$Generatesignupurl extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3618,7 +3710,7 @@ export namespace androidenterprise_v1 {
      */
     callbackUrl?: string;
   }
-  export interface Params$Resource$Enterprises$Get {
+  export interface Params$Resource$Enterprises$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3629,7 +3721,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Getandroiddevicepolicyconfig {
+  export interface Params$Resource$Enterprises$Getandroiddevicepolicyconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3640,7 +3733,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Getserviceaccount {
+  export interface Params$Resource$Enterprises$Getserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3655,7 +3749,8 @@ export namespace androidenterprise_v1 {
      */
     keyType?: string;
   }
-  export interface Params$Resource$Enterprises$Getstorelayout {
+  export interface Params$Resource$Enterprises$Getstorelayout extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3666,7 +3761,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$List {
+  export interface Params$Resource$Enterprises$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3677,7 +3772,8 @@ export namespace androidenterprise_v1 {
      */
     domain?: string;
   }
-  export interface Params$Resource$Enterprises$Pullnotificationset {
+  export interface Params$Resource$Enterprises$Pullnotificationset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3694,7 +3790,8 @@ export namespace androidenterprise_v1 {
      */
     requestMode?: string;
   }
-  export interface Params$Resource$Enterprises$Sendtestpushnotification {
+  export interface Params$Resource$Enterprises$Sendtestpushnotification extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3705,7 +3802,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Enterprises$Setaccount {
+  export interface Params$Resource$Enterprises$Setaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3721,7 +3819,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$EnterpriseAccount;
   }
-  export interface Params$Resource$Enterprises$Setandroiddevicepolicyconfig {
+  export interface Params$Resource$Enterprises$Setandroiddevicepolicyconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3737,7 +3836,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$AndroidDevicePolicyConfig;
   }
-  export interface Params$Resource$Enterprises$Setstorelayout {
+  export interface Params$Resource$Enterprises$Setstorelayout extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3753,7 +3853,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreLayout;
   }
-  export interface Params$Resource$Enterprises$Unenroll {
+  export interface Params$Resource$Enterprises$Unenroll extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3767,15 +3868,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Entitlements {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3837,7 +3930,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3903,7 +3996,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -3973,7 +4066,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntitlementsListResponse>(parameters, callback);
@@ -4046,7 +4139,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -4119,7 +4212,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -4129,7 +4222,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Entitlements$Delete {
+  export interface Params$Resource$Entitlements$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4149,7 +4243,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$Get {
+  export interface Params$Resource$Entitlements$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4169,7 +4263,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$List {
+  export interface Params$Resource$Entitlements$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4184,7 +4279,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Entitlements$Patch {
+  export interface Params$Resource$Entitlements$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4216,7 +4312,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Entitlement;
   }
-  export interface Params$Resource$Entitlements$Update {
+  export interface Params$Resource$Entitlements$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4251,15 +4348,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Grouplicenses {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4318,7 +4407,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicense>(parameters, callback);
@@ -4389,7 +4478,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicensesListResponse>(
@@ -4400,7 +4489,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Grouplicenses$Get {
+  export interface Params$Resource$Grouplicenses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4416,7 +4506,8 @@ export namespace androidenterprise_v1 {
      */
     groupLicenseId?: string;
   }
-  export interface Params$Resource$Grouplicenses$List {
+  export interface Params$Resource$Grouplicenses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4430,15 +4521,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Grouplicenseusers {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4507,7 +4590,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicenseUsersListResponse>(
@@ -4519,7 +4602,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Grouplicenseusers$List {
+  export interface Params$Resource$Grouplicenseusers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4538,15 +4622,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Installs {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4609,7 +4685,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4675,7 +4751,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4746,7 +4822,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstallsListResponse>(parameters, callback);
@@ -4818,7 +4894,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4890,7 +4966,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4900,7 +4976,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Installs$Delete {
+  export interface Params$Resource$Installs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4924,7 +5000,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Installs$Get {
+  export interface Params$Resource$Installs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4948,7 +5024,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Installs$List {
+  export interface Params$Resource$Installs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4967,7 +5043,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Installs$Patch {
+  export interface Params$Resource$Installs$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4996,7 +5072,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$Install;
   }
-  export interface Params$Resource$Installs$Update {
+  export interface Params$Resource$Installs$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5028,15 +5104,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Managedconfigurationsfordevice {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5107,7 +5175,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5182,7 +5250,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5260,7 +5328,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForDeviceListResponse>(
@@ -5343,7 +5411,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5425,7 +5493,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5435,7 +5503,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsfordevice$Delete {
+  export interface Params$Resource$Managedconfigurationsfordevice$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5459,7 +5528,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Get {
+  export interface Params$Resource$Managedconfigurationsfordevice$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5483,7 +5553,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$List {
+  export interface Params$Resource$Managedconfigurationsfordevice$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5502,7 +5573,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Patch {
+  export interface Params$Resource$Managedconfigurationsfordevice$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5531,7 +5603,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ManagedConfiguration;
   }
-  export interface Params$Resource$Managedconfigurationsfordevice$Update {
+  export interface Params$Resource$Managedconfigurationsfordevice$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5563,15 +5636,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Managedconfigurationsforuser {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5635,7 +5700,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5705,7 +5770,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5782,7 +5847,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForUserListResponse>(
@@ -5863,7 +5928,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5942,7 +6007,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5952,7 +6017,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationsforuser$Delete {
+  export interface Params$Resource$Managedconfigurationsforuser$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5972,7 +6038,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Get {
+  export interface Params$Resource$Managedconfigurationsforuser$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5992,7 +6059,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$List {
+  export interface Params$Resource$Managedconfigurationsforuser$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6007,7 +6075,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Patch {
+  export interface Params$Resource$Managedconfigurationsforuser$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6032,7 +6101,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ManagedConfiguration;
   }
-  export interface Params$Resource$Managedconfigurationsforuser$Update {
+  export interface Params$Resource$Managedconfigurationsforuser$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6060,15 +6130,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Managedconfigurationssettings {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6138,7 +6200,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsSettingsListResponse>(
@@ -6150,7 +6212,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Managedconfigurationssettings$List {
+  export interface Params$Resource$Managedconfigurationssettings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6169,15 +6232,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Permissions {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6235,7 +6290,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['permissionId'],
         pathParams: ['permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -6245,7 +6300,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Permissions$Get {
+  export interface Params$Resource$Permissions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6263,15 +6318,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Products {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6335,7 +6382,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6423,7 +6470,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsGenerateApprovalUrlResponse>(
@@ -6490,7 +6537,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6568,7 +6615,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppRestrictionsSchema>(parameters, callback);
@@ -6639,7 +6686,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductPermissions>(parameters, callback);
@@ -6712,7 +6759,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(parameters, callback);
@@ -6781,7 +6828,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6791,7 +6838,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Products$Approve {
+  export interface Params$Resource$Products$Approve extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6811,7 +6858,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ProductsApproveRequest;
   }
-  export interface Params$Resource$Products$Generateapprovalurl {
+  export interface Params$Resource$Products$Generateapprovalurl extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6831,7 +6879,7 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Get {
+  export interface Params$Resource$Products$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6850,7 +6898,8 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getapprestrictionsschema {
+  export interface Params$Resource$Products$Getapprestrictionsschema extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6869,7 +6918,8 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Getpermissions {
+  export interface Params$Resource$Products$Getpermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6884,7 +6934,7 @@ export namespace androidenterprise_v1 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$List {
+  export interface Params$Resource$Products$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6927,7 +6977,8 @@ export namespace androidenterprise_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Products$Unapprove {
+  export interface Params$Resource$Products$Unapprove extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6945,15 +6996,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Serviceaccountkeys {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7018,7 +7061,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'keyId'],
         pathParams: ['enterpriseId', 'keyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7092,7 +7135,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -7170,7 +7213,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKeysListResponse>(
@@ -7182,7 +7225,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Serviceaccountkeys$Delete {
+  export interface Params$Resource$Serviceaccountkeys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7197,7 +7241,8 @@ export namespace androidenterprise_v1 {
      */
     keyId?: string;
   }
-  export interface Params$Resource$Serviceaccountkeys$Insert {
+  export interface Params$Resource$Serviceaccountkeys$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7213,7 +7258,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ServiceAccountKey;
   }
-  export interface Params$Resource$Serviceaccountkeys$List {
+  export interface Params$Resource$Serviceaccountkeys$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7227,15 +7273,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Storelayoutclusters {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7297,7 +7335,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7364,7 +7402,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7435,7 +7473,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7512,7 +7550,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayoutClustersListResponse>(
@@ -7586,7 +7624,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7658,7 +7696,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7668,7 +7706,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutclusters$Delete {
+  export interface Params$Resource$Storelayoutclusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7687,7 +7726,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Get {
+  export interface Params$Resource$Storelayoutclusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7706,7 +7746,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Insert {
+  export interface Params$Resource$Storelayoutclusters$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7726,7 +7767,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreCluster;
   }
-  export interface Params$Resource$Storelayoutclusters$List {
+  export interface Params$Resource$Storelayoutclusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7741,7 +7783,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutclusters$Patch {
+  export interface Params$Resource$Storelayoutclusters$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7765,7 +7808,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StoreCluster;
   }
-  export interface Params$Resource$Storelayoutclusters$Update {
+  export interface Params$Resource$Storelayoutclusters$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7792,15 +7836,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Storelayoutpages {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7861,7 +7897,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7927,7 +7963,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -7997,7 +8033,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8071,7 +8107,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayoutPagesListResponse>(
@@ -8145,7 +8181,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8216,7 +8252,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8226,7 +8262,8 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Storelayoutpages$Delete {
+  export interface Params$Resource$Storelayoutpages$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8241,7 +8278,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Get {
+  export interface Params$Resource$Storelayoutpages$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8256,7 +8294,8 @@ export namespace androidenterprise_v1 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Insert {
+  export interface Params$Resource$Storelayoutpages$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8272,7 +8311,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StorePage;
   }
-  export interface Params$Resource$Storelayoutpages$List {
+  export interface Params$Resource$Storelayoutpages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8283,7 +8323,8 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Storelayoutpages$Patch {
+  export interface Params$Resource$Storelayoutpages$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8303,7 +8344,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$StorePage;
   }
-  export interface Params$Resource$Storelayoutpages$Update {
+  export interface Params$Resource$Storelayoutpages$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8326,15 +8368,7 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Users {
-    root: Androidenterprise;
-    constructor(root: Androidenterprise) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8393,7 +8427,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8407,8 +8441,9 @@ export namespace androidenterprise_v1 {
      * androidenterprise.users.generateAuthenticationToken
      * @desc Generates an authentication token which the device policy client
      * can use to provision the given EMM-managed user account on a device. The
-     * generated token is single-use and expires after a few minutes.  This call
-     * only works with EMM-managed accounts.
+     * generated token is single-use and expires after a few minutes.  You can
+     * provision a maximum of 10 devices per user.  This call only works with
+     * EMM-managed accounts.
      * @alias androidenterprise.users.generateAuthenticationToken
      * @memberOf! ()
      *
@@ -8467,7 +8502,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AuthenticationToken>(parameters, callback);
@@ -8539,7 +8574,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserToken>(parameters, callback);
@@ -8603,7 +8638,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8674,7 +8709,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -8744,7 +8779,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8814,7 +8849,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'email'],
         pathParams: ['enterpriseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(parameters, callback);
@@ -8886,7 +8921,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8956,7 +8991,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9025,7 +9060,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9100,7 +9135,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -9172,7 +9207,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -9182,7 +9217,7 @@ export namespace androidenterprise_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Delete {
+  export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9197,7 +9232,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generateauthenticationtoken {
+  export interface Params$Resource$Users$Generateauthenticationtoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9212,7 +9248,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Generatetoken {
+  export interface Params$Resource$Users$Generatetoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9227,7 +9264,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Get {
+  export interface Params$Resource$Users$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9242,7 +9279,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Getavailableproductset {
+  export interface Params$Resource$Users$Getavailableproductset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9257,7 +9295,7 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Insert {
+  export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9273,7 +9311,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$List {
+  export interface Params$Resource$Users$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9288,7 +9326,7 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Users$Patch {
+  export interface Params$Resource$Users$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9308,7 +9346,8 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$Revokedeviceaccess {
+  export interface Params$Resource$Users$Revokedeviceaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9323,7 +9362,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Revoketoken {
+  export interface Params$Resource$Users$Revoketoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9338,7 +9378,8 @@ export namespace androidenterprise_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Setavailableproductset {
+  export interface Params$Resource$Users$Setavailableproductset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9358,7 +9399,7 @@ export namespace androidenterprise_v1 {
      */
     requestBody?: Schema$ProductSet;
   }
-  export interface Params$Resource$Users$Update {
+  export interface Params$Resource$Users$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9377,5 +9418,506 @@ export namespace androidenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$User;
+  }
+
+
+  export class Resource$Webapps {
+    constructor() {}
+
+
+    /**
+     * androidenterprise.webapps.delete
+     * @desc Deletes an existing web app.
+     * @alias androidenterprise.webapps.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(params?: Params$Resource$Webapps$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
+    delete(
+        params: Params$Resource$Webapps$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Webapps$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Webapps$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.get
+     * @desc Gets an existing web app.
+     * @alias androidenterprise.webapps.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Webapps$Get,
+        options?: MethodOptions): AxiosPromise<Schema$WebApp>;
+    get(params: Params$Resource$Webapps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    get(params: Params$Resource$Webapps$Get,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    get(callback: BodyResponseCallback<Schema$WebApp>): void;
+    get(paramsOrCallback?: Params$Resource$Webapps$Get|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.insert
+     * @desc Creates a new web app for the enterprise.
+     * @alias androidenterprise.webapps.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {().WebApp} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(params?: Params$Resource$Webapps$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$WebApp>;
+    insert(
+        params: Params$Resource$Webapps$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    insert(
+        params: Params$Resource$Webapps$Insert,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    insert(callback: BodyResponseCallback<Schema$WebApp>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Webapps$Insert|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/webApps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.list
+     * @desc Retrieves the details of all web apps for a given enterprise.
+     * @alias androidenterprise.webapps.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Webapps$List, options?: MethodOptions):
+        AxiosPromise<Schema$WebAppsListResponse>;
+    list(
+        params: Params$Resource$Webapps$List,
+        options: MethodOptions|BodyResponseCallback<Schema$WebAppsListResponse>,
+        callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+    list(
+        params: Params$Resource$Webapps$List,
+        callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Webapps$List|
+        BodyResponseCallback<Schema$WebAppsListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WebAppsListResponse>,
+        callback?: BodyResponseCallback<Schema$WebAppsListResponse>):
+        void|AxiosPromise<Schema$WebAppsListResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/webApps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebAppsListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebAppsListResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.patch
+     * @desc Updates an existing web app. This method supports patch semantics.
+     * @alias androidenterprise.webapps.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {().WebApp} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(params?: Params$Resource$Webapps$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$WebApp>;
+    patch(
+        params: Params$Resource$Webapps$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    patch(
+        params: Params$Resource$Webapps$Patch,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    patch(callback: BodyResponseCallback<Schema$WebApp>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Webapps$Patch|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.update
+     * @desc Updates an existing web app.
+     * @alias androidenterprise.webapps.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {().WebApp} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(params?: Params$Resource$Webapps$Update, options?: MethodOptions):
+        AxiosPromise<Schema$WebApp>;
+    update(
+        params: Params$Resource$Webapps$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    update(
+        params: Params$Resource$Webapps$Update,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    update(callback: BodyResponseCallback<Schema$WebApp>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Webapps$Update|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Webapps$Delete extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+  }
+  export interface Params$Resource$Webapps$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+  }
+  export interface Params$Resource$Webapps$Insert extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WebApp;
+  }
+  export interface Params$Resource$Webapps$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+  }
+  export interface Params$Resource$Webapps$Patch extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WebApp;
+  }
+  export interface Params$Resource$Webapps$Update extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WebApp;
   }
 }

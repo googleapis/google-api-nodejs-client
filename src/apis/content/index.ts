@@ -15,21 +15,14 @@
 
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {content_v2} from './v2';
-import {content_v2sandbox} from './v2sandbox';
 
 export const VERSIONS = {
   'v2': content_v2.Content,
-  'v2sandbox': content_v2sandbox.Content,
 };
 
 export function content(version: 'v2'): content_v2.Content;
 export function content(options: content_v2.Options): content_v2.Content;
-export function content(version: 'v2sandbox'): content_v2sandbox.Content;
-export function content(options: content_v2sandbox.Options):
-    content_v2sandbox.Content;
-export function content<T = content_v2.Content | content_v2sandbox.Content>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2'|content_v2.Options|'v2sandbox'|
-    content_v2sandbox.Options) {
+export function content<T = content_v2.Content>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|content_v2.Options) {
   return getAPI<T>('content', versionOrOptions, VERSIONS, this);
 }

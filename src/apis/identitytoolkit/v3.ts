@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace identitytoolkit_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,22 +81,12 @@ export namespace identitytoolkit_v3 {
    * @param {object=} options Options for Identitytoolkit
    */
   export class Identitytoolkit {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     relyingparty: Resource$Relyingparty;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.relyingparty = new Resource$Relyingparty(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.relyingparty = new Resource$Relyingparty();
     }
   }
 
@@ -279,7 +305,7 @@ export namespace identitytoolkit_v3 {
      * customized by clients: client_id, response_type, scope, redirect_uri,
      * state, oauth_token.
      */
-    customParameter?: any;
+    customParameter?: {[key: string]: string;};
     /**
      * The hosted domain to restrict sign-in to accounts at that domain for
      * Google Apps hosted accounts.
@@ -1155,7 +1181,12 @@ export namespace identitytoolkit_v3 {
     /**
      * The user&#39;s profiles at the associated IdPs.
      */
-    providerUserInfo?: any[];
+    providerUserInfo?: Array<{
+      displayName?: string;
+      federatedId?: string;
+      photoUrl?: string;
+      providerId?: string;
+    }>;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
@@ -1203,7 +1234,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The error encountered while processing the account info.
      */
-    error?: any[];
+    error?: Array<{index?: number; message?: string;}>;
     /**
      * The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
      */
@@ -1268,7 +1299,16 @@ export namespace identitytoolkit_v3 {
     /**
      * The IDP of the user.
      */
-    providerUserInfo?: any[];
+    providerUserInfo?: Array<{
+      displayName?: string;
+      email?: string;
+      federatedId?: string;
+      phoneNumber?: string;
+      photoUrl?: string;
+      providerId?: string;
+      rawId?: string;
+      screenName?: string;
+    }>;
     /**
      * The user&#39;s plain text password.
      */
@@ -1551,15 +1591,7 @@ export namespace identitytoolkit_v3 {
 
 
   export class Resource$Relyingparty {
-    root: Identitytoolkit;
-    constructor(root: Identitytoolkit) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1621,7 +1653,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateAuthUriResponse>(parameters, callback);
@@ -1690,7 +1722,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteAccountResponse>(parameters, callback);
@@ -1760,7 +1792,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadAccountResponse>(parameters, callback);
@@ -1830,7 +1862,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EmailLinkSigninResponse>(parameters, callback);
@@ -1899,7 +1931,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetAccountInfoResponse>(parameters, callback);
@@ -1973,7 +2005,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
@@ -2054,7 +2086,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -2132,7 +2164,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -2206,7 +2238,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetRecaptchaParamResponse>(
@@ -2276,7 +2308,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResetPasswordResponse>(parameters, callback);
@@ -2357,7 +2389,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -2430,7 +2462,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SetAccountInfoResponse>(parameters, callback);
@@ -2508,7 +2540,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -2586,7 +2618,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
@@ -2657,7 +2689,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignupNewUserResponse>(parameters, callback);
@@ -2726,7 +2758,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UploadAccountResponse>(parameters, callback);
@@ -2796,7 +2828,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VerifyAssertionResponse>(parameters, callback);
@@ -2867,7 +2899,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VerifyCustomTokenResponse>(
@@ -2937,7 +2969,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VerifyPasswordResponse>(parameters, callback);
@@ -3016,7 +3048,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -3030,7 +3062,8 @@ export namespace identitytoolkit_v3 {
     }
   }
 
-  export interface Params$Resource$Relyingparty$Createauthuri {
+  export interface Params$Resource$Relyingparty$Createauthuri extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3042,7 +3075,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyCreateAuthUriRequest;
   }
-  export interface Params$Resource$Relyingparty$Deleteaccount {
+  export interface Params$Resource$Relyingparty$Deleteaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3054,7 +3088,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDeleteAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Downloadaccount {
+  export interface Params$Resource$Relyingparty$Downloadaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3066,7 +3101,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyDownloadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Emaillinksignin {
+  export interface Params$Resource$Relyingparty$Emaillinksignin extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3078,7 +3114,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyEmailLinkSigninRequest;
   }
-  export interface Params$Resource$Relyingparty$Getaccountinfo {
+  export interface Params$Resource$Relyingparty$Getaccountinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3090,7 +3127,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyGetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Getoobconfirmationcode {
+  export interface Params$Resource$Relyingparty$Getoobconfirmationcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3102,7 +3140,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$Relyingparty;
   }
-  export interface Params$Resource$Relyingparty$Getprojectconfig {
+  export interface Params$Resource$Relyingparty$Getprojectconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3117,19 +3156,22 @@ export namespace identitytoolkit_v3 {
      */
     projectNumber?: string;
   }
-  export interface Params$Resource$Relyingparty$Getpublickeys {
+  export interface Params$Resource$Relyingparty$Getpublickeys extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Relyingparty$Getrecaptchaparam {
+  export interface Params$Resource$Relyingparty$Getrecaptchaparam extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Relyingparty$Resetpassword {
+  export interface Params$Resource$Relyingparty$Resetpassword extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3141,7 +3183,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyResetPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Sendverificationcode {
+  export interface Params$Resource$Relyingparty$Sendverificationcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3153,7 +3196,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySendVerificationCodeRequest;
   }
-  export interface Params$Resource$Relyingparty$Setaccountinfo {
+  export interface Params$Resource$Relyingparty$Setaccountinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3165,7 +3209,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetAccountInfoRequest;
   }
-  export interface Params$Resource$Relyingparty$Setprojectconfig {
+  export interface Params$Resource$Relyingparty$Setprojectconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3177,7 +3222,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySetProjectConfigRequest;
   }
-  export interface Params$Resource$Relyingparty$Signoutuser {
+  export interface Params$Resource$Relyingparty$Signoutuser extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3189,7 +3235,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignOutUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Signupnewuser {
+  export interface Params$Resource$Relyingparty$Signupnewuser extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3201,7 +3248,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartySignupNewUserRequest;
   }
-  export interface Params$Resource$Relyingparty$Uploadaccount {
+  export interface Params$Resource$Relyingparty$Uploadaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3213,7 +3261,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyUploadAccountRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyassertion {
+  export interface Params$Resource$Relyingparty$Verifyassertion extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3225,7 +3274,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifycustomtoken {
+  export interface Params$Resource$Relyingparty$Verifycustomtoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3237,7 +3287,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyCustomTokenRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifypassword {
+  export interface Params$Resource$Relyingparty$Verifypassword extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3249,7 +3300,8 @@ export namespace identitytoolkit_v3 {
      */
     requestBody?: Schema$IdentitytoolkitRelyingpartyVerifyPasswordRequest;
   }
-  export interface Params$Resource$Relyingparty$Verifyphonenumber {
+  export interface Params$Resource$Relyingparty$Verifyphonenumber extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

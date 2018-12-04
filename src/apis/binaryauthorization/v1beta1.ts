@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace binaryauthorization_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +99,12 @@ export namespace binaryauthorization_v1beta1 {
    * @param {object=} options Options for Binaryauthorization
    */
   export class Binaryauthorization {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -296,7 +339,7 @@ export namespace binaryauthorization_v1beta1 {
      * region (e.g. us-central1). For `clusterId` syntax restrictions see
      * https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.
      */
-    clusterAdmissionRules?: any;
+    clusterAdmissionRules?: {[key: string]: Schema$AdmissionRule;};
     /**
      * Required. Default admission rule for a cluster without a per-cluster
      * admission rule.
@@ -387,18 +430,11 @@ export namespace binaryauthorization_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Binaryauthorization;
     attestors: Resource$Projects$Attestors;
     policy: Resource$Projects$Policy;
-    constructor(root: Binaryauthorization) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.attestors = new Resource$Projects$Attestors(root);
-      this.policy = new Resource$Projects$Policy(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.attestors = new Resource$Projects$Attestors();
+      this.policy = new Resource$Projects$Policy();
     }
 
 
@@ -459,7 +495,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -530,7 +566,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -540,7 +576,8 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getpolicy {
+  export interface Params$Resource$Projects$Getpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -552,7 +589,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatepolicy {
+  export interface Params$Resource$Projects$Updatepolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -571,15 +609,7 @@ export namespace binaryauthorization_v1beta1 {
   }
 
   export class Resource$Projects$Attestors {
-    root: Binaryauthorization;
-    constructor(root: Binaryauthorization) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -643,7 +673,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -710,7 +740,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -772,7 +802,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -841,7 +871,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -913,7 +943,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAttestorsResponse>(parameters, callback);
@@ -983,7 +1013,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1063,7 +1093,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1132,7 +1162,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -1142,7 +1172,8 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Attestors$Create {
+  export interface Params$Resource$Projects$Attestors$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1162,7 +1193,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$Attestor;
   }
-  export interface Params$Resource$Projects$Attestors$Delete {
+  export interface Params$Resource$Projects$Attestors$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1174,7 +1206,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Get {
+  export interface Params$Resource$Projects$Attestors$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1186,7 +1219,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Getiampolicy {
+  export interface Params$Resource$Projects$Attestors$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1198,7 +1232,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Attestors$List {
+  export interface Params$Resource$Projects$Attestors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1221,7 +1256,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Setiampolicy {
+  export interface Params$Resource$Projects$Attestors$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1238,7 +1274,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Testiampermissions {
+  export interface Params$Resource$Projects$Attestors$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1255,7 +1292,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Update {
+  export interface Params$Resource$Projects$Attestors$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1275,15 +1313,7 @@ export namespace binaryauthorization_v1beta1 {
 
 
   export class Resource$Projects$Policy {
-    root: Binaryauthorization;
-    constructor(root: Binaryauthorization) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1345,7 +1375,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1415,7 +1445,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1494,7 +1524,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1505,7 +1535,8 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Policy$Getiampolicy {
+  export interface Params$Resource$Projects$Policy$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1517,7 +1548,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Policy$Setiampolicy {
+  export interface Params$Resource$Projects$Policy$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1534,7 +1566,8 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Policy$Testiampermissions {
+  export interface Params$Resource$Projects$Policy$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

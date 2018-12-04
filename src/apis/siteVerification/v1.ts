@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace siteVerification_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,22 +81,12 @@ export namespace siteVerification_v1 {
    * @param {object=} options Options for Siteverification
    */
   export class Siteverification {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     webResource: Resource$Webresource;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.webResource = new Resource$Webresource(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.webResource = new Resource$Webresource();
     }
   }
 
@@ -68,7 +94,7 @@ export namespace siteVerification_v1 {
     /**
      * The site for which a verification token will be generated.
      */
-    site?: any;
+    site?: {identifier?: string; type?: string;};
     /**
      * The verification method that will be used to verify this site. For sites,
      * &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only
@@ -111,20 +137,12 @@ export namespace siteVerification_v1 {
     /**
      * The address and type of a site that is verified or will be verified.
      */
-    site?: any;
+    site?: {identifier?: string; type?: string;};
   }
 
 
   export class Resource$Webresource {
-    root: Siteverification;
-    constructor(root: Siteverification) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -182,7 +200,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -252,7 +270,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -327,7 +345,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
@@ -406,7 +424,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['verificationMethod'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -477,7 +495,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
@@ -555,7 +573,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -634,7 +652,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -646,7 +664,8 @@ export namespace siteVerification_v1 {
     }
   }
 
-  export interface Params$Resource$Webresource$Delete {
+  export interface Params$Resource$Webresource$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -657,7 +676,7 @@ export namespace siteVerification_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Webresource$Get {
+  export interface Params$Resource$Webresource$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -668,7 +687,8 @@ export namespace siteVerification_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Webresource$Gettoken {
+  export interface Params$Resource$Webresource$Gettoken extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -680,7 +700,8 @@ export namespace siteVerification_v1 {
      */
     requestBody?: Schema$SiteVerificationWebResourceGettokenRequest;
   }
-  export interface Params$Resource$Webresource$Insert {
+  export interface Params$Resource$Webresource$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -696,13 +717,14 @@ export namespace siteVerification_v1 {
      */
     requestBody?: Schema$SiteVerificationWebResourceResource;
   }
-  export interface Params$Resource$Webresource$List {
+  export interface Params$Resource$Webresource$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Webresource$Patch {
+  export interface Params$Resource$Webresource$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -718,7 +740,8 @@ export namespace siteVerification_v1 {
      */
     requestBody?: Schema$SiteVerificationWebResourceResource;
   }
-  export interface Params$Resource$Webresource$Update {
+  export interface Params$Resource$Webresource$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

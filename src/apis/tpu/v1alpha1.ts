@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace tpu_v1alpha1 {
   export interface Options extends GlobalOptions {
     version: 'v1alpha1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,22 +98,12 @@ export namespace tpu_v1alpha1 {
    * @param {object=} options Options for Tpu
    */
   export class Tpu {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -123,6 +166,10 @@ export namespace tpu_v1alpha1 {
      * The listed nodes.
      */
     nodes?: Schema$Node[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[];
   }
   /**
    * The response message for Operations.ListOperations.
@@ -163,7 +210,7 @@ export namespace tpu_v1alpha1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -172,7 +219,7 @@ export namespace tpu_v1alpha1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -236,7 +283,7 @@ export namespace tpu_v1alpha1 {
     /**
      * Resource labels to represent user-provided metadata.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The immutable name of the TPU
      */
@@ -297,7 +344,7 @@ export namespace tpu_v1alpha1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -313,7 +360,7 @@ export namespace tpu_v1alpha1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -413,7 +460,7 @@ export namespace tpu_v1alpha1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -441,39 +488,25 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects {
-    root: Tpu;
     locations: Resource$Projects$Locations;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Tpu;
     acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
     nodes: Resource$Projects$Locations$Nodes;
     operations: Resource$Projects$Locations$Operations;
     tensorflowVersions: Resource$Projects$Locations$Tensorflowversions;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.acceleratorTypes =
-          new Resource$Projects$Locations$Acceleratortypes(root);
-      this.nodes = new Resource$Projects$Locations$Nodes(root);
-      this.operations = new Resource$Projects$Locations$Operations(root);
+          new Resource$Projects$Locations$Acceleratortypes();
+      this.nodes = new Resource$Projects$Locations$Nodes();
+      this.operations = new Resource$Projects$Locations$Operations();
       this.tensorflowVersions =
-          new Resource$Projects$Locations$Tensorflowversions(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Tensorflowversions();
     }
 
 
@@ -529,7 +562,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -600,7 +633,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -610,7 +643,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -621,7 +655,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -646,15 +681,7 @@ export namespace tpu_v1alpha1 {
   }
 
   export class Resource$Projects$Locations$Acceleratortypes {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -711,7 +738,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(parameters, callback);
@@ -788,7 +815,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAcceleratorTypesResponse>(
@@ -800,7 +827,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get {
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -811,7 +839,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Acceleratortypes$List {
+  export interface Params$Resource$Projects$Locations$Acceleratortypes$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -841,15 +870,7 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Nodes {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -911,7 +932,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -978,7 +999,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1040,7 +1061,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Node>(parameters, callback);
@@ -1109,7 +1130,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNodesResponse>(parameters, callback);
@@ -1177,7 +1198,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1245,7 +1266,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1313,7 +1334,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1323,7 +1344,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Nodes$Create {
+  export interface Params$Resource$Projects$Locations$Nodes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1343,7 +1365,8 @@ export namespace tpu_v1alpha1 {
      */
     requestBody?: Schema$Node;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Delete {
+  export interface Params$Resource$Projects$Locations$Nodes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1354,7 +1377,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Get {
+  export interface Params$Resource$Projects$Locations$Nodes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1365,7 +1389,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$List {
+  export interface Params$Resource$Projects$Locations$Nodes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1384,7 +1409,8 @@ export namespace tpu_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Reimage {
+  export interface Params$Resource$Projects$Locations$Nodes$Reimage extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1400,7 +1426,8 @@ export namespace tpu_v1alpha1 {
      */
     requestBody?: Schema$ReimageNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Start {
+  export interface Params$Resource$Projects$Locations$Nodes$Start extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1416,7 +1443,8 @@ export namespace tpu_v1alpha1 {
      */
     requestBody?: Schema$StartNodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Nodes$Stop {
+  export interface Params$Resource$Projects$Locations$Nodes$Stop extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1435,15 +1463,7 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1510,7 +1530,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1579,7 +1599,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1644,7 +1664,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1723,7 +1743,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1733,7 +1753,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1744,7 +1765,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1755,7 +1777,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1766,7 +1789,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List {
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1792,15 +1816,7 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Tensorflowversions {
-    root: Tpu;
-    constructor(root: Tpu) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1858,7 +1874,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TensorFlowVersion>(parameters, callback);
@@ -1936,7 +1952,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTensorFlowVersionsResponse>(
@@ -1948,7 +1964,8 @@ export namespace tpu_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get {
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1959,7 +1976,8 @@ export namespace tpu_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tensorflowversions$List {
+  export interface Params$Resource$Projects$Locations$Tensorflowversions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace sqladmin_v1beta4 {
   export interface Options extends GlobalOptions {
     version: 'v1beta4';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +82,6 @@ export namespace sqladmin_v1beta4 {
    * @param {object=} options Options for Sqladmin
    */
   export class Sqladmin {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     backupRuns: Resource$Backupruns;
     databases: Resource$Databases;
     flags: Resource$Flags;
@@ -60,22 +92,16 @@ export namespace sqladmin_v1beta4 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.backupRuns = new Resource$Backupruns(this);
-      this.databases = new Resource$Databases(this);
-      this.flags = new Resource$Flags(this);
-      this.instances = new Resource$Instances(this);
-      this.operations = new Resource$Operations(this);
-      this.sslCerts = new Resource$Sslcerts(this);
-      this.tiers = new Resource$Tiers(this);
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.backupRuns = new Resource$Backupruns();
+      this.databases = new Resource$Databases();
+      this.flags = new Resource$Flags();
+      this.instances = new Resource$Instances();
+      this.operations = new Resource$Operations();
+      this.sslCerts = new Resource$Sslcerts();
+      this.tiers = new Resource$Tiers();
+      this.users = new Resource$Users();
     }
   }
 
@@ -100,6 +126,19 @@ export namespace sqladmin_v1beta4 {
      * The whitelisted value for the access control list.
      */
     value?: string;
+  }
+  /**
+   * An Admin API warning message.
+   */
+  export interface Schema$ApiWarning {
+    /**
+     * Code to uniquely identify the warning type.
+     */
+    code?: string;
+    /**
+     * The warning message.
+     */
+    message?: string;
   }
   /**
    * Database instance backup configuration.
@@ -343,7 +382,7 @@ export namespace sqladmin_v1beta4 {
      * The name and status of the failover replica. This property is applicable
      * only to Second Generation instances.
      */
-    failoverReplica?: any;
+    failoverReplica?: {available?: boolean; name?: string;};
     /**
      * The Compute Engine zone that the instance is currently serving from. This
      * value could be different from the zone that was specified when the
@@ -539,7 +578,7 @@ export namespace sqladmin_v1beta4 {
      * Options for exporting data as CSV. Exporting in CSV format using the
      * Cloud SQL Admin API is not supported for PostgreSQL instances.
      */
-    csvExportOptions?: any;
+    csvExportOptions?: {selectQuery?: string;};
     /**
      * Databases to be exported. MySQL instances: If fileType is SQL and no
      * database is specified, all databases are exported, except for the mysql
@@ -563,7 +602,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for exporting data as SQL statements.
      */
-    sqlExportOptions?: any;
+    sqlExportOptions?: {
+      mysqlExportOptions?: {masterData?: number;};
+      schemaOnly?: boolean;
+      tables?: string[];
+    };
     /**
      * The path to the file in Google Cloud Storage where the export will be
      * stored. The URI is in the form gs://bucketName/fileName. If the file
@@ -651,7 +694,7 @@ export namespace sqladmin_v1beta4 {
      * Options for importing data as CSV. Importing CSV data using the Cloud SQL
      * Admin API is not supported for PostgreSQL instances.
      */
-    csvImportOptions?: any;
+    csvImportOptions?: {columns?: string[]; table?: string;};
     /**
      * The target database for the import. If fileType is SQL, this field is
      * required only if the import file does not specify a database, and is
@@ -744,6 +787,10 @@ export namespace sqladmin_v1beta4 {
      * this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
+    /**
+     * List of warnings that ocurred while handling the request.
+     */
+    warnings?: Schema$ApiWarning[];
   }
   /**
    * Instances ListServerCas response.
@@ -801,7 +848,10 @@ export namespace sqladmin_v1beta4 {
      */
     ipv4Enabled?: boolean;
     /**
-     * Reserved for future use.
+     * The resource link for the VPC network from which the Cloud SQL instance
+     * is accessible for private IP. For example,
+     * /projects/myProject/global/networks/default. This setting can be updated,
+     * but it cannot be removed after it is set.
      */
     privateNetwork?: string;
     /**
@@ -855,7 +905,7 @@ export namespace sqladmin_v1beta4 {
   }
   /**
    * Maintenance window. This specifies when a v2 Cloud SQL instance should
-   * preferably be restarted for system maintenance puruposes.
+   * preferably be restarted for system maintenance purposes.
    */
   export interface Schema$MaintenanceWindow {
     /**
@@ -1248,7 +1298,7 @@ export namespace sqladmin_v1beta4 {
      * User-provided labels, represented as a dictionary where each label is a
      * single key value pair.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * SslCerts Resource
@@ -1480,15 +1530,7 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Backupruns {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1551,7 +1593,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1617,7 +1659,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackupRun>(parameters, callback);
@@ -1688,7 +1730,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1761,7 +1803,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackupRunsListResponse>(parameters, callback);
@@ -1771,7 +1813,8 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Backupruns$Delete {
+  export interface Params$Resource$Backupruns$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1791,7 +1834,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Get {
+  export interface Params$Resource$Backupruns$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1810,7 +1853,8 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Insert {
+  export interface Params$Resource$Backupruns$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1830,7 +1874,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$BackupRun;
   }
-  export interface Params$Resource$Backupruns$List {
+  export interface Params$Resource$Backupruns$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1857,15 +1901,7 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Databases {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1927,7 +1963,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1993,7 +2029,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -2063,7 +2099,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2132,7 +2168,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatabasesListResponse>(parameters, callback);
@@ -2203,7 +2239,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2274,7 +2310,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2284,7 +2320,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Databases$Delete {
+  export interface Params$Resource$Databases$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2303,7 +2339,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Get {
+  export interface Params$Resource$Databases$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2322,7 +2358,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Insert {
+  export interface Params$Resource$Databases$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2342,7 +2378,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Databases$List {
+  export interface Params$Resource$Databases$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2357,7 +2393,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Patch {
+  export interface Params$Resource$Databases$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2381,7 +2417,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Databases$Update {
+  export interface Params$Resource$Databases$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2408,15 +2444,7 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Flags {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2474,7 +2502,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FlagsListResponse>(parameters, callback);
@@ -2484,7 +2512,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Flags$List {
+  export interface Params$Resource$Flags$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2499,15 +2527,7 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Instances {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2574,7 +2594,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2643,7 +2663,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2710,7 +2730,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2782,7 +2802,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2852,7 +2872,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2923,7 +2943,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2988,7 +3008,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatabaseInstance>(parameters, callback);
@@ -3030,7 +3050,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     options = {};
                                                                                                                                                                                                                                                                           }
 
-                                                                                                                                                                                                                                                                          const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                          const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                           } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -3092,7 +3112,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3162,7 +3182,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListResponse>(parameters, callback);
@@ -3242,7 +3262,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListServerCasResponse>(
@@ -3315,7 +3335,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3386,7 +3406,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3457,7 +3477,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3527,7 +3547,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3598,7 +3618,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3670,7 +3690,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3740,7 +3760,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3810,7 +3830,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3881,7 +3901,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3951,7 +3971,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3961,7 +3981,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Instances$Addserverca {
+  export interface Params$Resource$Instances$Addserverca extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3976,7 +3997,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Clone {
+  export interface Params$Resource$Instances$Clone extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3997,7 +4018,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesCloneRequest;
   }
-  export interface Params$Resource$Instances$Delete {
+  export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4012,7 +4033,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Demotemaster {
+  export interface Params$Resource$Instances$Demotemaster extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4032,7 +4054,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesDemoteMasterRequest;
   }
-  export interface Params$Resource$Instances$Export {
+  export interface Params$Resource$Instances$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4052,7 +4074,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesExportRequest;
   }
-  export interface Params$Resource$Instances$Failover {
+  export interface Params$Resource$Instances$Failover extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4072,7 +4095,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesFailoverRequest;
   }
-  export interface Params$Resource$Instances$Get {
+  export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4087,7 +4110,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Import {
+  export interface Params$Resource$Instances$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4107,7 +4130,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesImportRequest;
   }
-  export interface Params$Resource$Instances$Insert {
+  export interface Params$Resource$Instances$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4124,7 +4147,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$List {
+  export interface Params$Resource$Instances$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4149,7 +4172,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Listservercas {
+  export interface Params$Resource$Instances$Listservercas extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4164,7 +4188,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Patch {
+  export interface Params$Resource$Instances$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4184,7 +4208,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$Promotereplica {
+  export interface Params$Resource$Instances$Promotereplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4199,7 +4224,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Resetsslconfig {
+  export interface Params$Resource$Instances$Resetsslconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4214,7 +4240,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restart {
+  export interface Params$Resource$Instances$Restart extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4229,7 +4256,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restorebackup {
+  export interface Params$Resource$Instances$Restorebackup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4249,7 +4277,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
   }
-  export interface Params$Resource$Instances$Rotateserverca {
+  export interface Params$Resource$Instances$Rotateserverca extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4269,7 +4298,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRotateServerCaRequest;
   }
-  export interface Params$Resource$Instances$Startreplica {
+  export interface Params$Resource$Instances$Startreplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4284,7 +4314,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Stopreplica {
+  export interface Params$Resource$Instances$Stopreplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4299,7 +4330,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Truncatelog {
+  export interface Params$Resource$Instances$Truncatelog extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4319,7 +4351,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesTruncateLogRequest;
   }
-  export interface Params$Resource$Instances$Update {
+  export interface Params$Resource$Instances$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4342,15 +4374,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Operations {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4408,7 +4432,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4478,7 +4502,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -4488,7 +4512,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4503,7 +4527,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4530,15 +4554,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Sslcerts {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4604,7 +4620,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4674,7 +4690,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4741,7 +4757,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4813,7 +4829,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsInsertResponse>(parameters, callback);
@@ -4882,7 +4898,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsListResponse>(parameters, callback);
@@ -4892,7 +4908,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Sslcerts$Createephemeral {
+  export interface Params$Resource$Sslcerts$Createephemeral extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4912,7 +4929,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$SslCertsCreateEphemeralRequest;
   }
-  export interface Params$Resource$Sslcerts$Delete {
+  export interface Params$Resource$Sslcerts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4931,7 +4948,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     sha1Fingerprint?: string;
   }
-  export interface Params$Resource$Sslcerts$Get {
+  export interface Params$Resource$Sslcerts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4950,7 +4967,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     sha1Fingerprint?: string;
   }
-  export interface Params$Resource$Sslcerts$Insert {
+  export interface Params$Resource$Sslcerts$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4970,7 +4987,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$SslCertsInsertRequest;
   }
-  export interface Params$Resource$Sslcerts$List {
+  export interface Params$Resource$Sslcerts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4988,15 +5005,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Tiers {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5055,7 +5064,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TiersListResponse>(parameters, callback);
@@ -5065,7 +5074,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Tiers$List {
+  export interface Params$Resource$Tiers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5079,15 +5088,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Users {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5150,7 +5151,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'host', 'name'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5219,7 +5220,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5287,7 +5288,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(parameters, callback);
@@ -5358,7 +5359,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'name'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5368,7 +5369,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Users$Delete {
+  export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5391,7 +5392,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Users$Insert {
+  export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5411,7 +5412,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$List {
+  export interface Params$Resource$Users$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5426,7 +5427,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Users$Update {
+  export interface Params$Resource$Users$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

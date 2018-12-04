@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudasset_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,24 +98,14 @@ export namespace cloudasset_v1beta1 {
    * @param {object=} options Options for Cloudasset
    */
   export class Cloudasset {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.organizations = new Resource$Organizations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -197,7 +240,9 @@ export namespace cloudasset_v1beta1 {
     /**
      * A list of asset types of which to take a snapshot for. For example:
      * &quot;google.compute.disk&quot;. If specified, only matching assets will
-     * be returned.
+     * be returned. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * for all supported asset types.
      */
     assetTypes?: string[];
     /**
@@ -212,10 +257,10 @@ export namespace cloudasset_v1beta1 {
     outputConfig?: Schema$OutputConfig;
     /**
      * Timestamp to take an asset snapshot. This can only be set to a timestamp
-     * in the past or of the current time. If not specified, the current time
-     * will be used. Due to delays in resource data collection and indexing,
-     * there is a volatile window during which running the same query may get
-     * different results.
+     * between 2018-10-02 UTC (inclusive) and the current time. If not
+     * specified, the current time will be used. Due to delays in resource data
+     * collection and indexing, there is a volatile window during which running
+     * the same query may get different results.
      */
     readTime?: string;
   }
@@ -253,9 +298,9 @@ export namespace cloudasset_v1beta1 {
    */
   export interface Schema$GcsDestination {
     /**
-     * The path of the Cloud Storage objects. It&#39;s the same path that is
-     * used by  gsutil. For example: &quot;gs://bucket_name/object_path&quot;.
-     * See [Viewing and Editing Object
+     * The uri of the Cloud Storage object. It&#39;s the same uri that is used
+     * by gsutil. For example: &quot;gs://bucket_name/object_name&quot;. See
+     * [Viewing and Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
      */
@@ -282,7 +327,7 @@ export namespace cloudasset_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -298,7 +343,7 @@ export namespace cloudasset_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Output configuration for export assets destination.
@@ -364,7 +409,7 @@ export namespace cloudasset_v1beta1 {
      * The content of the resource, in which some sensitive fields are scrubbed
      * away and may not be present.
      */
-    data?: any;
+    data?: {[key: string]: any;};
     /**
      * The URL of the discovery document containing the resource&#39;s JSON
      * schema. For example:
@@ -447,7 +492,7 @@ export namespace cloudasset_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -474,32 +519,25 @@ export namespace cloudasset_v1beta1 {
     window?: Schema$TimeWindow;
   }
   /**
-   * A time window of [start_time, end_time).
+   * A time window of (start_time, end_time].
    */
   export interface Schema$TimeWindow {
     /**
-     * End time of the time window (exclusive). Current timestamp if not
+     * End time of the time window (inclusive). Current timestamp if not
      * specified.
      */
     endTime?: string;
     /**
-     * Start time of the time window (inclusive).
+     * Start time of the time window (exclusive).
      */
     startTime?: string;
   }
 
 
   export class Resource$Organizations {
-    root: Cloudasset;
     operations: Resource$Organizations$Operations;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Organizations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Organizations$Operations();
     }
 
 
@@ -517,8 +555,8 @@ export namespace cloudasset_v1beta1 {
      * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      * @param {string=} params.contentType Required. The content type.
      * @param {string} params.parent Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param {string=} params.readTimeWindow.endTime End time of the time window (exclusive). Current timestamp if not specified.
-     * @param {string=} params.readTimeWindow.startTime Start time of the time window (inclusive).
+     * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). Current timestamp if not specified.
+     * @param {string=} params.readTimeWindow.startTime Start time of the time window (exclusive).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -574,7 +612,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -647,7 +685,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -657,7 +695,8 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Batchgetassetshistory {
+  export interface Params$Resource$Organizations$Batchgetassetshistory extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -671,7 +710,7 @@ export namespace cloudasset_v1beta1 {
      * for more info.  The request becomes a no-op if the asset name list is
      * empty, and the max size of the asset name list is 100 in one request.
      */
-    assetNames?: string;
+    assetNames?: string[];
     /**
      * Required. The content type.
      */
@@ -684,16 +723,17 @@ export namespace cloudasset_v1beta1 {
      */
     parent?: string;
     /**
-     * End time of the time window (exclusive). Current timestamp if not
+     * End time of the time window (inclusive). Current timestamp if not
      * specified.
      */
     'readTimeWindow.endTime'?: string;
     /**
-     * Start time of the time window (inclusive).
+     * Start time of the time window (exclusive).
      */
     'readTimeWindow.startTime'?: string;
   }
-  export interface Params$Resource$Organizations$Exportassets {
+  export interface Params$Resource$Organizations$Exportassets extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -714,15 +754,7 @@ export namespace cloudasset_v1beta1 {
   }
 
   export class Resource$Organizations$Operations {
-    root: Cloudasset;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -779,7 +811,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -789,7 +821,8 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Operations$Get {
+  export interface Params$Resource$Organizations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -804,16 +837,9 @@ export namespace cloudasset_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Cloudasset;
     operations: Resource$Projects$Operations;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Projects$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Projects$Operations();
     }
 
 
@@ -831,8 +857,8 @@ export namespace cloudasset_v1beta1 {
      * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      * @param {string=} params.contentType Required. The content type.
      * @param {string} params.parent Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param {string=} params.readTimeWindow.endTime End time of the time window (exclusive). Current timestamp if not specified.
-     * @param {string=} params.readTimeWindow.startTime Start time of the time window (inclusive).
+     * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). Current timestamp if not specified.
+     * @param {string=} params.readTimeWindow.startTime Start time of the time window (exclusive).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -888,7 +914,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -961,7 +987,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -971,7 +997,8 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Batchgetassetshistory {
+  export interface Params$Resource$Projects$Batchgetassetshistory extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -985,7 +1012,7 @@ export namespace cloudasset_v1beta1 {
      * for more info.  The request becomes a no-op if the asset name list is
      * empty, and the max size of the asset name list is 100 in one request.
      */
-    assetNames?: string;
+    assetNames?: string[];
     /**
      * Required. The content type.
      */
@@ -998,16 +1025,17 @@ export namespace cloudasset_v1beta1 {
      */
     parent?: string;
     /**
-     * End time of the time window (exclusive). Current timestamp if not
+     * End time of the time window (inclusive). Current timestamp if not
      * specified.
      */
     'readTimeWindow.endTime'?: string;
     /**
-     * Start time of the time window (inclusive).
+     * Start time of the time window (exclusive).
      */
     'readTimeWindow.startTime'?: string;
   }
-  export interface Params$Resource$Projects$Exportassets {
+  export interface Params$Resource$Projects$Exportassets extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1028,15 +1056,7 @@ export namespace cloudasset_v1beta1 {
   }
 
   export class Resource$Projects$Operations {
-    root: Cloudasset;
-    constructor(root: Cloudasset) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1093,7 +1113,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1103,7 +1123,8 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get {
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

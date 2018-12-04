@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace webfonts_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,22 +83,12 @@ export namespace webfonts_v1 {
    * @param {object=} options Options for Webfonts
    */
   export class Webfonts {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     webfonts: Resource$Webfonts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.webfonts = new Resource$Webfonts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.webfonts = new Resource$Webfonts();
     }
   }
 
@@ -79,7 +105,7 @@ export namespace webfonts_v1 {
      * The font files (with all supported scripts) for each one of the available
      * variants, as a key : value map.
      */
-    files?: any;
+    files?: {[key: string]: string;};
     /**
      * This kind represents a webfont object in the webfonts service.
      */
@@ -115,15 +141,7 @@ export namespace webfonts_v1 {
 
 
   export class Resource$Webfonts {
-    root: Webfonts;
-    constructor(root: Webfonts) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -182,7 +200,7 @@ export namespace webfonts_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WebfontList>(parameters, callback);
@@ -192,7 +210,7 @@ export namespace webfonts_v1 {
     }
   }
 
-  export interface Params$Resource$Webfonts$List {
+  export interface Params$Resource$Webfonts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudtasks_v2beta3 {
   export interface Options extends GlobalOptions {
     version: 'v2beta3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,22 +98,12 @@ export namespace cloudtasks_v2beta3 {
    * @param {object=} options Options for Cloudtasks
    */
   export class Cloudtasks {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -95,17 +138,28 @@ export namespace cloudtasks_v2beta3 {
    * Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed)
    * and how routing is affected by [dispatch
    * files](https://cloud.google.com/appengine/docs/python/config/dispatchref).
-   * The AppEngineRouting used to construct the URL that the task is delivered
-   * to can be set at the queue-level or task-level:  * If set,
-   * app_engine_routing_override    is used for all tasks in the queue, no
-   * matter what the setting    is for the    task-level app_engine_routing. The
-   * `url` that the task will be sent to is:  * `url =` host `+`   relative_uri
-   * The task attempt has succeeded if the app&#39;s request handler returns an
-   * HTTP response code in the range [`200` - `299`]. `503` is considered an App
-   * Engine system error instead of an application error. Requests returning
-   * error `503` will be retried regardless of retry configuration and not
-   * counted against retry counts. Any other response code or a failure to
-   * receive a response before the deadline is a failed attempt.
+   * Traffic is encrypted during transport and never leaves Google datacenters.
+   * Because this traffic is carried over a communication mechanism internal to
+   * Google, you cannot explicitly set the protocol (for example, HTTP or
+   * HTTPS). The request to the handler, however, will appear to have used the
+   * HTTP protocol.  The AppEngineRouting used to construct the URL that the
+   * task is delivered to can be set at the queue-level or task-level:  * If
+   * set,    app_engine_routing_override    is used for all tasks in the queue,
+   * no matter what the setting    is for the    task-level app_engine_routing.
+   * The `url` that the task will be sent to is:  * `url =` host `+`
+   * relative_uri  Tasks can be dispatched to secure app handlers, unsecure app
+   * handlers, and URIs restricted with [`login:
+   * admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref).
+   * Because tasks are not run as any user, they cannot be dispatched to URIs
+   * restricted with [`login:
+   * required`](https://cloud.google.com/appengine/docs/standard/python/config/appref)
+   * Task dispatches also do not follow redirects.  The task attempt has
+   * succeeded if the app&#39;s request handler returns an HTTP response code in
+   * the range [`200` - `299`]. `503` is considered an App Engine system error
+   * instead of an application error. Requests returning error `503` will be
+   * retried regardless of retry configuration and not counted against retry
+   * counts. Any other response code or a failure to receive a response before
+   * the deadline is a failed attempt.
    */
   export interface Schema$AppEngineHttpRequest {
     /**
@@ -146,7 +200,7 @@ export namespace cloudtasks_v2beta3 {
      * there is a limit on the maximum size of the Task. For more information,
      * see the CreateTask documentation.
      */
-    headers?: any;
+    headers?: {[key: string]: string;};
     /**
      * The HTTP method to use for the request. The default is POST.  The
      * app&#39;s request handler for the task&#39;s target URL must be able to
@@ -169,16 +223,9 @@ export namespace cloudtasks_v2beta3 {
     relativeUri?: string;
   }
   /**
-   * App Engine Routing.  Specifies the target URI. Since this target type
-   * dispatches tasks to secure app handlers, unsecure app handlers, and URIs
-   * restricted with [`login:
-   * admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref)
-   * the protocol (for example, HTTP or HTTPS) cannot be explictly specified.
-   * Task dispatches do not follow redirects and cannot target URI paths
-   * restricted with [`login:
-   * required`](https://cloud.google.com/appengine/docs/standard/python/config/appref)
-   * because tasks are not run as any user.  For more information about
-   * services, versions, and instances see [An Overview of App
+   * App Engine Routing.  Defines routing characteristics specific to App Engine
+   * - service, version, and instance.  For more information about services,
+   * versions, and instances see [An Overview of App
    * Engine](https://cloud.google.com/appengine/docs/python/an-overview-of-app-engine),
    * [Microservices Architecture on Google App
    * Engine](https://cloud.google.com/appengine/docs/python/microservices-on-app-engine),
@@ -427,7 +474,7 @@ export namespace cloudtasks_v2beta3 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -436,7 +483,7 @@ export namespace cloudtasks_v2beta3 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -502,7 +549,7 @@ export namespace cloudtasks_v2beta3 {
   export interface Schema$Queue {
     /**
      * App Engine HTTP queue.  An App Engine queue is a queue that has an
-     * AppEngineHttpQeueue type.
+     * AppEngineHttpQueue type.
      */
     appEngineHttpQueue?: Schema$AppEngineHttpQueue;
     /**
@@ -748,7 +795,7 @@ export namespace cloudtasks_v2beta3 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -844,31 +891,17 @@ export namespace cloudtasks_v2beta3 {
 
 
   export class Resource$Projects {
-    root: Cloudtasks;
     locations: Resource$Projects$Locations;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Cloudtasks;
     queues: Resource$Projects$Locations$Queues;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.queues = new Resource$Projects$Locations$Queues(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.queues = new Resource$Projects$Locations$Queues();
     }
 
 
@@ -923,7 +956,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -994,7 +1027,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1004,7 +1037,8 @@ export namespace cloudtasks_v2beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1015,7 +1049,8 @@ export namespace cloudtasks_v2beta3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1040,16 +1075,9 @@ export namespace cloudtasks_v2beta3 {
   }
 
   export class Resource$Projects$Locations$Queues {
-    root: Cloudtasks;
     tasks: Resource$Projects$Locations$Queues$Tasks;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.tasks = new Resource$Projects$Locations$Queues$Tasks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.tasks = new Resource$Projects$Locations$Queues$Tasks();
     }
 
 
@@ -1117,7 +1145,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1189,7 +1217,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1250,7 +1278,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1322,7 +1350,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1392,7 +1420,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListQueuesResponse>(parameters, callback);
@@ -1467,7 +1495,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1537,7 +1565,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1607,7 +1635,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1680,7 +1708,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1753,7 +1781,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1833,7 +1861,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1844,7 +1872,8 @@ export namespace cloudtasks_v2beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Create {
+  export interface Params$Resource$Projects$Locations$Queues$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1863,7 +1892,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Delete {
+  export interface Params$Resource$Projects$Locations$Queues$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1875,7 +1905,8 @@ export namespace cloudtasks_v2beta3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Get {
+  export interface Params$Resource$Projects$Locations$Queues$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1887,7 +1918,8 @@ export namespace cloudtasks_v2beta3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Queues$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1904,7 +1936,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$List {
+  export interface Params$Resource$Projects$Locations$Queues$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1941,7 +1974,8 @@ export namespace cloudtasks_v2beta3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Patch {
+  export interface Params$Resource$Projects$Locations$Queues$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1973,7 +2007,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Pause {
+  export interface Params$Resource$Projects$Locations$Queues$Pause extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1990,7 +2025,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$PauseQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Purge {
+  export interface Params$Resource$Projects$Locations$Queues$Purge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2007,7 +2043,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$PurgeQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Resume {
+  export interface Params$Resource$Projects$Locations$Queues$Resume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2024,7 +2061,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$ResumeQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Queues$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2041,7 +2079,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Queues$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2060,15 +2099,7 @@ export namespace cloudtasks_v2beta3 {
   }
 
   export class Resource$Projects$Locations$Queues$Tasks {
-    root: Cloudtasks;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2131,7 +2162,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2199,7 +2230,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2261,7 +2292,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2334,7 +2365,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTasksResponse>(parameters, callback);
@@ -2409,7 +2440,7 @@ export namespace cloudtasks_v2beta3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2419,7 +2450,8 @@ export namespace cloudtasks_v2beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Create {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2437,7 +2469,8 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$CreateTaskRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2449,7 +2482,8 @@ export namespace cloudtasks_v2beta3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2471,7 +2505,8 @@ export namespace cloudtasks_v2beta3 {
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$List {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2509,7 +2544,8 @@ export namespace cloudtasks_v2beta3 {
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

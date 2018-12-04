@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudshell_v1alpha1 {
   export interface Options extends GlobalOptions {
     version: 'v1alpha1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +99,12 @@ export namespace cloudshell_v1alpha1 {
    * @param {object=} options Options for Cloudshell
    */
   export class Cloudshell {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.users = new Resource$Users();
     }
   }
 
@@ -165,7 +208,7 @@ export namespace cloudshell_v1alpha1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -181,7 +224,7 @@ export namespace cloudshell_v1alpha1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A public SSH key, corresponding to a private SSH key held by the client.
@@ -283,7 +326,7 @@ export namespace cloudshell_v1alpha1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -294,31 +337,17 @@ export namespace cloudshell_v1alpha1 {
 
 
   export class Resource$Users {
-    root: Cloudshell;
     environments: Resource$Users$Environments;
-    constructor(root: Cloudshell) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.environments = new Resource$Users$Environments(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.environments = new Resource$Users$Environments();
     }
   }
 
 
   export class Resource$Users$Environments {
-    root: Cloudshell;
     publicKeys: Resource$Users$Environments$Publickeys;
-    constructor(root: Cloudshell) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.publicKeys = new Resource$Users$Environments$Publickeys(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.publicKeys = new Resource$Users$Environments$Publickeys();
     }
 
 
@@ -381,7 +410,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -445,7 +474,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -514,7 +543,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -587,7 +616,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -597,7 +626,8 @@ export namespace cloudshell_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Users$Environments$Authorize {
+  export interface Params$Resource$Users$Environments$Authorize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -615,7 +645,8 @@ export namespace cloudshell_v1alpha1 {
      */
     requestBody?: Schema$AuthorizeEnvironmentRequest;
   }
-  export interface Params$Resource$Users$Environments$Get {
+  export interface Params$Resource$Users$Environments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -628,7 +659,8 @@ export namespace cloudshell_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Environments$Patch {
+  export interface Params$Resource$Users$Environments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -650,7 +682,8 @@ export namespace cloudshell_v1alpha1 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Users$Environments$Start {
+  export interface Params$Resource$Users$Environments$Start extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -670,15 +703,7 @@ export namespace cloudshell_v1alpha1 {
   }
 
   export class Resource$Users$Environments$Publickeys {
-    root: Cloudshell;
-    constructor(root: Cloudshell) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -742,7 +767,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublicKey>(parameters, callback);
@@ -810,7 +835,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -820,7 +845,8 @@ export namespace cloudshell_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Users$Environments$Publickeys$Create {
+  export interface Params$Resource$Users$Environments$Publickeys$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -836,7 +862,8 @@ export namespace cloudshell_v1alpha1 {
      */
     requestBody?: Schema$CreatePublicKeyRequest;
   }
-  export interface Params$Resource$Users$Environments$Publickeys$Delete {
+  export interface Params$Resource$Users$Environments$Publickeys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

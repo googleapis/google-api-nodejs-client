@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -29,10 +29,63 @@ export namespace script_v1 {
     version: 'v1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Apps Script API
    *
-   * An API for managing and executing Google Apps Script projects.
+   * Manages and executes Google Apps Script projects.
    *
    * @example
    * const {google} = require('googleapis');
@@ -45,26 +98,16 @@ export namespace script_v1 {
    * @param {object=} options Options for Script
    */
   export class Script {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     processes: Resource$Processes;
     projects: Resource$Projects;
     scripts: Resource$Scripts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.processes = new Resource$Processes(this);
-      this.projects = new Resource$Projects(this);
-      this.scripts = new Resource$Scripts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.processes = new Resource$Processes();
+      this.projects = new Resource$Projects();
+      this.scripts = new Resource$Scripts();
     }
   }
 
@@ -574,7 +617,7 @@ export namespace script_v1 {
      * If the script function returns successfully, this field contains an
      * ExecutionResponse object with the function&#39;s return value.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * The script project resource.
@@ -641,7 +684,7 @@ export namespace script_v1 {
      * An array that contains a single ExecutionError object that provides
      * information about the nature of the error.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which is in English. Any user-facing
      * error message is localized and sent in the details field, or localized by
@@ -686,15 +729,7 @@ export namespace script_v1 {
 
 
   export class Resource$Processes {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -764,7 +799,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUserProcessesResponse>(
@@ -848,7 +883,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListScriptProcessesResponse>(
@@ -859,7 +894,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Processes$List {
+  export interface Params$Resource$Processes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -909,19 +944,20 @@ export namespace script_v1 {
      * Optional field used to limit returned processes to those having one of
      * the specified process statuses.
      */
-    'userProcessFilter.statuses'?: string;
+    'userProcessFilter.statuses'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified process types.
      */
-    'userProcessFilter.types'?: string;
+    'userProcessFilter.types'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified user access levels.
      */
-    'userProcessFilter.userAccessLevels'?: string;
+    'userProcessFilter.userAccessLevels'?: string[];
   }
-  export interface Params$Resource$Processes$Listscriptprocesses {
+  export interface Params$Resource$Processes$Listscriptprocesses extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -965,33 +1001,26 @@ export namespace script_v1 {
      * Optional field used to limit returned processes to those having one of
      * the specified process statuses.
      */
-    'scriptProcessFilter.statuses'?: string;
+    'scriptProcessFilter.statuses'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified process types.
      */
-    'scriptProcessFilter.types'?: string;
+    'scriptProcessFilter.types'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified user access levels.
      */
-    'scriptProcessFilter.userAccessLevels'?: string;
+    'scriptProcessFilter.userAccessLevels'?: string[];
   }
 
 
   export class Resource$Projects {
-    root: Script;
     deployments: Resource$Projects$Deployments;
     versions: Resource$Projects$Versions;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.deployments = new Resource$Projects$Deployments(root);
-      this.versions = new Resource$Projects$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.deployments = new Resource$Projects$Deployments();
+      this.versions = new Resource$Projects$Versions();
     }
 
 
@@ -1049,7 +1078,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1110,7 +1139,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1178,7 +1207,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1247,7 +1276,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Metrics>(parameters, callback);
@@ -1318,7 +1347,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1328,7 +1357,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Create {
+  export interface Params$Resource$Projects$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1340,7 +1369,7 @@ export namespace script_v1 {
      */
     requestBody?: Schema$CreateProjectRequest;
   }
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1351,7 +1380,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Getcontent {
+  export interface Params$Resource$Projects$Getcontent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1367,7 +1397,8 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Getmetrics {
+  export interface Params$Resource$Projects$Getmetrics extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1386,7 +1417,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Updatecontent {
+  export interface Params$Resource$Projects$Updatecontent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1404,15 +1436,7 @@ export namespace script_v1 {
   }
 
   export class Resource$Projects$Deployments {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1473,7 +1497,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1541,7 +1565,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1606,7 +1630,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1676,7 +1700,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeploymentsResponse>(parameters, callback);
@@ -1746,7 +1770,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1756,7 +1780,8 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Deployments$Create {
+  export interface Params$Resource$Projects$Deployments$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1772,7 +1797,8 @@ export namespace script_v1 {
      */
     requestBody?: Schema$DeploymentConfig;
   }
-  export interface Params$Resource$Projects$Deployments$Delete {
+  export interface Params$Resource$Projects$Deployments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1787,7 +1813,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Get {
+  export interface Params$Resource$Projects$Deployments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1802,7 +1829,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$List {
+  export interface Params$Resource$Projects$Deployments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1822,7 +1850,8 @@ export namespace script_v1 {
      */
     scriptId?: string;
   }
-  export interface Params$Resource$Projects$Deployments$Update {
+  export interface Params$Resource$Projects$Deployments$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1845,15 +1874,7 @@ export namespace script_v1 {
 
 
   export class Resource$Projects$Versions {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1914,7 +1935,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1978,7 +1999,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'versionNumber'],
         pathParams: ['scriptId', 'versionNumber'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2048,7 +2069,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
@@ -2058,7 +2079,8 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Versions$Create {
+  export interface Params$Resource$Projects$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2074,7 +2096,8 @@ export namespace script_v1 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Projects$Versions$Get {
+  export interface Params$Resource$Projects$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2089,7 +2112,8 @@ export namespace script_v1 {
      */
     versionNumber?: number;
   }
-  export interface Params$Resource$Projects$Versions$List {
+  export interface Params$Resource$Projects$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2113,27 +2137,23 @@ export namespace script_v1 {
 
 
   export class Resource$Scripts {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * script.scripts.run
-     * @desc Runs a function in an Apps Script project. The project must be
-     * deployed for use with the Apps Script API.  This method requires
+     * @desc Runs a function in an Apps Script project. The script project must
+     * be deployed for use with the Apps Script API and the calling application
+     * must share the same Cloud Platform project.  This method requires
      * authorization with an OAuth 2.0 token that includes at least one of the
      * scopes listed in the [Authorization](#authorization) section; script
      * projects that do not require authorization cannot be executed through
      * this API. To find the correct scopes to include in the authentication
      * token, open the project in the script editor, then select **File >
-     * Project properties** and click the **Scopes** tab.
+     * Project properties** and click the **Scopes** tab.  The error `403,
+     * PERMISSION_DENIED: The caller does not have permission` indicates that
+     * the Cloud Platform project used to authorize the request is not the same
+     * as the one used by the script.
      * @alias script.scripts.run
      * @memberOf! ()
      *
@@ -2184,7 +2204,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2194,7 +2214,7 @@ export namespace script_v1 {
     }
   }
 
-  export interface Params$Resource$Scripts$Run {
+  export interface Params$Resource$Scripts$Run extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

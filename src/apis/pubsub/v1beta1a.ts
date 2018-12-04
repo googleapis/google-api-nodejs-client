@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace pubsub_v1beta1a {
   export interface Options extends GlobalOptions {
     version: 'v1beta1a';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,24 +99,14 @@ export namespace pubsub_v1beta1a {
    * @param {object=} options Options for Pubsub
    */
   export class Pubsub {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     subscriptions: Resource$Subscriptions;
     topics: Resource$Topics;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.subscriptions = new Resource$Subscriptions(this);
-      this.topics = new Resource$Topics(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.subscriptions = new Resource$Subscriptions();
+      this.topics = new Resource$Topics();
     }
   }
 
@@ -403,15 +446,7 @@ export namespace pubsub_v1beta1a {
 
 
   export class Resource$Subscriptions {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -474,7 +509,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -545,7 +580,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -613,7 +648,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -676,7 +711,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -746,7 +781,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
@@ -814,7 +849,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -884,7 +919,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -954,7 +989,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PullResponse>(parameters, callback);
@@ -1024,7 +1059,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PullBatchResponse>(parameters, callback);
@@ -1034,7 +1069,8 @@ export namespace pubsub_v1beta1a {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Acknowledge {
+  export interface Params$Resource$Subscriptions$Acknowledge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1046,7 +1082,8 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$AcknowledgeRequest;
   }
-  export interface Params$Resource$Subscriptions$Create {
+  export interface Params$Resource$Subscriptions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1058,7 +1095,8 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$Delete {
+  export interface Params$Resource$Subscriptions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1069,7 +1107,8 @@ export namespace pubsub_v1beta1a {
      */
     subscription?: string;
   }
-  export interface Params$Resource$Subscriptions$Get {
+  export interface Params$Resource$Subscriptions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1080,7 +1119,8 @@ export namespace pubsub_v1beta1a {
      */
     subscription?: string;
   }
-  export interface Params$Resource$Subscriptions$List {
+  export interface Params$Resource$Subscriptions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1100,7 +1140,8 @@ export namespace pubsub_v1beta1a {
      */
     query?: string;
   }
-  export interface Params$Resource$Subscriptions$Modifyackdeadline {
+  export interface Params$Resource$Subscriptions$Modifyackdeadline extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1112,7 +1153,8 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$ModifyAckDeadlineRequest;
   }
-  export interface Params$Resource$Subscriptions$Modifypushconfig {
+  export interface Params$Resource$Subscriptions$Modifypushconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1124,7 +1166,8 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$ModifyPushConfigRequest;
   }
-  export interface Params$Resource$Subscriptions$Pull {
+  export interface Params$Resource$Subscriptions$Pull extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1136,7 +1179,8 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$PullRequest;
   }
-  export interface Params$Resource$Subscriptions$Pullbatch {
+  export interface Params$Resource$Subscriptions$Pullbatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1151,15 +1195,7 @@ export namespace pubsub_v1beta1a {
 
 
   export class Resource$Topics {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1215,7 +1251,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -1281,7 +1317,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1345,7 +1381,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -1411,7 +1447,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(parameters, callback);
@@ -1476,7 +1512,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1546,7 +1582,7 @@ export namespace pubsub_v1beta1a {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublishBatchResponse>(parameters, callback);
@@ -1556,7 +1592,7 @@ export namespace pubsub_v1beta1a {
     }
   }
 
-  export interface Params$Resource$Topics$Create {
+  export interface Params$Resource$Topics$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1568,7 +1604,7 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Topics$Delete {
+  export interface Params$Resource$Topics$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1579,7 +1615,7 @@ export namespace pubsub_v1beta1a {
      */
     topic?: string;
   }
-  export interface Params$Resource$Topics$Get {
+  export interface Params$Resource$Topics$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1590,7 +1626,7 @@ export namespace pubsub_v1beta1a {
      */
     topic?: string;
   }
-  export interface Params$Resource$Topics$List {
+  export interface Params$Resource$Topics$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1610,7 +1646,7 @@ export namespace pubsub_v1beta1a {
      */
     query?: string;
   }
-  export interface Params$Resource$Topics$Publish {
+  export interface Params$Resource$Topics$Publish extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1622,7 +1658,8 @@ export namespace pubsub_v1beta1a {
      */
     requestBody?: Schema$PublishRequest;
   }
-  export interface Params$Resource$Topics$Publishbatch {
+  export interface Params$Resource$Topics$Publishbatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

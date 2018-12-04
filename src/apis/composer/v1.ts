@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace composer_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,22 +98,12 @@ export namespace composer_v1 {
    * @param {object=} options Options for Composer
    */
   export class Composer {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -92,7 +135,7 @@ export namespace composer_v1 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
      * constrained to be &lt;= 128 bytes in size.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The resource name of the environment, in the form:
      * &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
@@ -281,7 +324,7 @@ export namespace composer_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -297,7 +340,7 @@ export namespace composer_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata describing an operation.
@@ -351,7 +394,7 @@ export namespace composer_v1 {
      * [blacklisted](/composer/docs/how-to/managing/setting-airflow-configurations#airflow_configuration_blacklists),
      * and cannot be overridden.
      */
-    airflowConfigOverrides?: any;
+    airflowConfigOverrides?: {[key: string]: string;};
     /**
      * Optional. Additional environment variables to provide to the Apache
      * Airflow scheduler, worker, and webserver processes.  Environment variable
@@ -363,7 +406,7 @@ export namespace composer_v1 {
      * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` *
      * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
      */
-    envVariables?: any;
+    envVariables?: {[key: string]: string;};
     /**
      * Output only. The version of the software running in the environment. This
      * encapsulates both the version of Cloud Composer functionality and the
@@ -384,7 +427,14 @@ export namespace composer_v1 {
      * &quot;[devel]&gt;=1.8.2, &lt;1.9.2&quot;. To specify a package without
      * pinning it to a version specifier, use the empty string as the value.
      */
-    pypiPackages?: any;
+    pypiPackages?: {[key: string]: string;};
+    /**
+     * Optional. The major version of Python used to run the Apache Airflow
+     * scheduler, worker, and webserver processes.  Can be set to &#39;2&#39; or
+     * &#39;3&#39;. If not specified, the default is &#39;2&#39;. Cannot be
+     * updated.
+     */
+    pythonVersion?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -431,7 +481,7 @@ export namespace composer_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -442,47 +492,25 @@ export namespace composer_v1 {
 
 
   export class Resource$Projects {
-    root: Composer;
     locations: Resource$Projects$Locations;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Composer;
     environments: Resource$Projects$Locations$Environments;
     operations: Resource$Projects$Locations$Operations;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.environments = new Resource$Projects$Locations$Environments(root);
-      this.operations = new Resource$Projects$Locations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.environments = new Resource$Projects$Locations$Environments();
+      this.operations = new Resource$Projects$Locations$Operations();
     }
   }
 
 
   export class Resource$Projects$Locations$Environments {
-    root: Composer;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -544,7 +572,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -611,7 +639,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -673,7 +701,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -743,7 +771,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
@@ -812,7 +840,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -822,7 +850,8 @@ export namespace composer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Environments$Create {
+  export interface Params$Resource$Projects$Locations$Environments$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -839,7 +868,8 @@ export namespace composer_v1 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Delete {
+  export interface Params$Resource$Projects$Locations$Environments$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -851,7 +881,8 @@ export namespace composer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Get {
+  export interface Params$Resource$Projects$Locations$Environments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -863,7 +894,8 @@ export namespace composer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$List {
+  export interface Params$Resource$Projects$Locations$Environments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -883,7 +915,8 @@ export namespace composer_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Patch {
+  export interface Params$Resource$Projects$Locations$Environments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -980,15 +1013,7 @@ export namespace composer_v1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    root: Composer;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1049,7 +1074,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1113,7 +1138,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1192,7 +1217,7 @@ export namespace composer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1202,7 +1227,8 @@ export namespace composer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1213,7 +1239,8 @@ export namespace composer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1224,7 +1251,8 @@ export namespace composer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List {
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

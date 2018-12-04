@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace logging_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,10 +98,6 @@ export namespace logging_v2 {
    * @param {object=} options Options for Logging
    */
   export class Logging {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     billingAccounts: Resource$Billingaccounts;
     entries: Resource$Entries;
     exclusions: Resource$Exclusions;
@@ -60,24 +109,18 @@ export namespace logging_v2 {
     sinks: Resource$Sinks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.billingAccounts = new Resource$Billingaccounts(this);
-      this.entries = new Resource$Entries(this);
-      this.exclusions = new Resource$Exclusions(this);
-      this.folders = new Resource$Folders(this);
-      this.logs = new Resource$Logs(this);
+      this.billingAccounts = new Resource$Billingaccounts();
+      this.entries = new Resource$Entries();
+      this.exclusions = new Resource$Exclusions();
+      this.folders = new Resource$Folders();
+      this.logs = new Resource$Logs();
       this.monitoredResourceDescriptors =
-          new Resource$Monitoredresourcedescriptors(this);
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-      this.sinks = new Resource$Sinks(this);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Monitoredresourcedescriptors();
+      this.organizations = new Resource$Organizations();
+      this.projects = new Resource$Projects();
+      this.sinks = new Resource$Sinks();
     }
   }
 
@@ -451,12 +494,12 @@ export namespace logging_v2 {
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    jsonPayload?: any;
+    jsonPayload?: {[key: string]: any;};
     /**
      * Optional. A set of user-defined (key, value) data that provides
      * additional information about the log entry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The resource name of the log to which this log entry belongs:
      * &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
@@ -492,7 +535,7 @@ export namespace logging_v2 {
      * The log entry payload, represented as a protocol buffer. Some Google
      * Cloud Platform services use this field for their log entry payloads.
      */
-    protoPayload?: any;
+    protoPayload?: {[key: string]: any;};
     /**
      * Output only. The time the log entry was received by Logging.
      */
@@ -681,6 +724,7 @@ export namespace logging_v2 {
     bucketOptions?: Schema$BucketOptions;
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      */
     description?: string;
     /**
@@ -702,7 +746,7 @@ export namespace logging_v2 {
      * there are upper bounds on the maximum number of labels and the number of
      * active time series that are allowed in a project.
      */
-    labelExtractors?: any;
+    labelExtractors?: {[key: string]: string;};
     /**
      * Optional. The metric descriptor associated with the logs-based metric. If
      * unspecified, it uses a default metric descriptor with a DELTA metric
@@ -778,10 +822,6 @@ export namespace logging_v2 {
      */
     destination?: string;
     /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    endTime?: string;
-    /**
      * Optional. An advanced logs filter. The only exported log entries are
      * those that are in the resource owning the sink and that match the filter.
      * For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND
@@ -817,10 +857,6 @@ export namespace logging_v2 {
      * entries. The v2 format is used by default and cannot be changed.
      */
     outputVersionFormat?: string;
-    /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    startTime?: string;
     /**
      * Output only. An IAM identity&amp;mdash;a service account or
      * group&amp;mdash;under which Logging writes the exported log entries to
@@ -956,7 +992,7 @@ export namespace logging_v2 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
@@ -1028,11 +1064,11 @@ export namespace logging_v2 {
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: any;
+    systemLabels?: {[key: string]: any;};
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * Complete log information about a single HTTP request to an App Engine
@@ -1266,7 +1302,7 @@ export namespace logging_v2 {
      * as a label in this parameter, then the log entry&#39;s label is not
      * changed. See LogEntry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Optional. A default log resource name that is assigned to all log entries
      * in entries that do not specify a value for log_name:
@@ -1306,34 +1342,19 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts {
-    root: Logging;
     exclusions: Resource$Billingaccounts$Exclusions;
     logs: Resource$Billingaccounts$Logs;
     sinks: Resource$Billingaccounts$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Billingaccounts$Exclusions(root);
-      this.logs = new Resource$Billingaccounts$Logs(root);
-      this.sinks = new Resource$Billingaccounts$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Billingaccounts$Exclusions();
+      this.logs = new Resource$Billingaccounts$Logs();
+      this.sinks = new Resource$Billingaccounts$Sinks();
     }
   }
 
 
   export class Resource$Billingaccounts$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1396,7 +1417,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1461,7 +1482,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1523,7 +1544,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1593,7 +1614,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -1661,7 +1682,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1671,7 +1692,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Exclusions$Create {
+  export interface Params$Resource$Billingaccounts$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1690,7 +1712,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Delete {
+  export interface Params$Resource$Billingaccounts$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1706,7 +1729,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Get {
+  export interface Params$Resource$Billingaccounts$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1722,7 +1746,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$List {
+  export interface Params$Resource$Billingaccounts$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1748,7 +1773,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Patch {
+  export interface Params$Resource$Billingaccounts$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1781,15 +1807,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1849,7 +1867,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1919,7 +1937,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -1929,7 +1947,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Logs$Delete {
+  export interface Params$Resource$Billingaccounts$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1947,7 +1966,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Logs$List {
+  export interface Params$Resource$Billingaccounts$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1976,15 +1996,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2048,7 +2060,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2114,7 +2126,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2175,7 +2187,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2244,7 +2256,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -2315,7 +2327,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2386,7 +2398,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2396,7 +2408,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Sinks$Create {
+  export interface Params$Resource$Billingaccounts$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2428,7 +2441,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Delete {
+  export interface Params$Resource$Billingaccounts$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2445,7 +2459,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Get {
+  export interface Params$Resource$Billingaccounts$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2461,7 +2476,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$List {
+  export interface Params$Resource$Billingaccounts$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2487,7 +2503,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Patch {
+  export interface Params$Resource$Billingaccounts$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2533,7 +2550,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Update {
+  export interface Params$Resource$Billingaccounts$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2583,15 +2601,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Entries {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2650,7 +2660,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
@@ -2721,7 +2731,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
@@ -2731,7 +2741,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Entries$List {
+  export interface Params$Resource$Entries$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2743,7 +2753,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$ListLogEntriesRequest;
   }
-  export interface Params$Resource$Entries$Write {
+  export interface Params$Resource$Entries$Write extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2758,15 +2768,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2828,7 +2830,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -2892,7 +2894,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2953,7 +2955,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3021,7 +3023,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3087,7 +3089,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3097,7 +3099,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Exclusions$Create {
+  export interface Params$Resource$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3116,7 +3119,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Exclusions$Delete {
+  export interface Params$Resource$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3132,7 +3136,7 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Exclusions$Get {
+  export interface Params$Resource$Exclusions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3148,7 +3152,7 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Exclusions$List {
+  export interface Params$Resource$Exclusions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3174,7 +3178,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Exclusions$Patch {
+  export interface Params$Resource$Exclusions$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3207,34 +3211,19 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders {
-    root: Logging;
     exclusions: Resource$Folders$Exclusions;
     logs: Resource$Folders$Logs;
     sinks: Resource$Folders$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Folders$Exclusions(root);
-      this.logs = new Resource$Folders$Logs(root);
-      this.sinks = new Resource$Folders$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Folders$Exclusions();
+      this.logs = new Resource$Folders$Logs();
+      this.sinks = new Resource$Folders$Sinks();
     }
   }
 
 
   export class Resource$Folders$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3297,7 +3286,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3362,7 +3351,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3424,7 +3413,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3494,7 +3483,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3562,7 +3551,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3572,7 +3561,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Exclusions$Create {
+  export interface Params$Resource$Folders$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3591,7 +3581,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Folders$Exclusions$Delete {
+  export interface Params$Resource$Folders$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3607,7 +3598,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Get {
+  export interface Params$Resource$Folders$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3623,7 +3615,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$List {
+  export interface Params$Resource$Folders$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3649,7 +3642,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Patch {
+  export interface Params$Resource$Folders$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3682,15 +3676,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3750,7 +3736,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3819,7 +3805,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -3829,7 +3815,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Logs$Delete {
+  export interface Params$Resource$Folders$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3847,7 +3834,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Folders$Logs$List {
+  export interface Params$Resource$Folders$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3876,15 +3864,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3948,7 +3928,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4014,7 +3994,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4075,7 +4055,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4143,7 +4123,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -4214,7 +4194,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4285,7 +4265,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4295,7 +4275,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Sinks$Create {
+  export interface Params$Resource$Folders$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4327,7 +4308,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Delete {
+  export interface Params$Resource$Folders$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4344,7 +4326,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Get {
+  export interface Params$Resource$Folders$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4360,7 +4343,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$List {
+  export interface Params$Resource$Folders$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4386,7 +4370,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Patch {
+  export interface Params$Resource$Folders$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4432,7 +4417,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Update {
+  export interface Params$Resource$Folders$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4482,15 +4468,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4548,7 +4526,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4616,7 +4594,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -4626,7 +4604,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Logs$Delete {
+  export interface Params$Resource$Logs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4644,7 +4622,7 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Logs$List {
+  export interface Params$Resource$Logs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4673,15 +4651,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Monitoredresourcedescriptors {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4748,7 +4718,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -4760,7 +4730,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Monitoredresourcedescriptors$List {
+  export interface Params$Resource$Monitoredresourcedescriptors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4783,34 +4754,19 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations {
-    root: Logging;
     exclusions: Resource$Organizations$Exclusions;
     logs: Resource$Organizations$Logs;
     sinks: Resource$Organizations$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Organizations$Exclusions(root);
-      this.logs = new Resource$Organizations$Logs(root);
-      this.sinks = new Resource$Organizations$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Organizations$Exclusions();
+      this.logs = new Resource$Organizations$Logs();
+      this.sinks = new Resource$Organizations$Sinks();
     }
   }
 
 
   export class Resource$Organizations$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4873,7 +4829,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -4938,7 +4894,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5000,7 +4956,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5070,7 +5026,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -5138,7 +5094,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5148,7 +5104,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Exclusions$Create {
+  export interface Params$Resource$Organizations$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5167,7 +5124,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Organizations$Exclusions$Delete {
+  export interface Params$Resource$Organizations$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5183,7 +5141,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Get {
+  export interface Params$Resource$Organizations$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5199,7 +5158,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$List {
+  export interface Params$Resource$Organizations$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5225,7 +5185,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Patch {
+  export interface Params$Resource$Organizations$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5258,15 +5219,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5326,7 +5279,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5396,7 +5349,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -5406,7 +5359,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Logs$Delete {
+  export interface Params$Resource$Organizations$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5424,7 +5378,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Organizations$Logs$List {
+  export interface Params$Resource$Organizations$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5453,15 +5408,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5525,7 +5472,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5591,7 +5538,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5652,7 +5599,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5721,7 +5668,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -5792,7 +5739,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5863,7 +5810,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5873,7 +5820,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sinks$Create {
+  export interface Params$Resource$Organizations$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5905,7 +5853,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Delete {
+  export interface Params$Resource$Organizations$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5922,7 +5871,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Get {
+  export interface Params$Resource$Organizations$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5938,7 +5888,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$List {
+  export interface Params$Resource$Organizations$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5964,7 +5915,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Patch {
+  export interface Params$Resource$Organizations$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6010,7 +5962,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Update {
+  export interface Params$Resource$Organizations$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6060,36 +6013,21 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects {
-    root: Logging;
     exclusions: Resource$Projects$Exclusions;
     logs: Resource$Projects$Logs;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Projects$Exclusions(root);
-      this.logs = new Resource$Projects$Logs(root);
-      this.metrics = new Resource$Projects$Metrics(root);
-      this.sinks = new Resource$Projects$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Projects$Exclusions();
+      this.logs = new Resource$Projects$Logs();
+      this.metrics = new Resource$Projects$Metrics();
+      this.sinks = new Resource$Projects$Sinks();
     }
   }
 
 
   export class Resource$Projects$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6152,7 +6090,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6217,7 +6155,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6279,7 +6217,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6349,7 +6287,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -6417,7 +6355,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6427,7 +6365,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Exclusions$Create {
+  export interface Params$Resource$Projects$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6446,7 +6385,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Projects$Exclusions$Delete {
+  export interface Params$Resource$Projects$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6462,7 +6402,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Get {
+  export interface Params$Resource$Projects$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6478,7 +6419,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$List {
+  export interface Params$Resource$Projects$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6504,7 +6446,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Patch {
+  export interface Params$Resource$Projects$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6537,15 +6480,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6605,7 +6540,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6674,7 +6609,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -6684,7 +6619,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Logs$Delete {
+  export interface Params$Resource$Projects$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6702,7 +6638,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Projects$Logs$List {
+  export interface Params$Resource$Projects$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6731,15 +6668,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Metrics {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6800,7 +6729,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6866,7 +6795,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6929,7 +6858,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6999,7 +6928,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
@@ -7067,7 +6996,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -7077,7 +7006,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Metrics$Create {
+  export interface Params$Resource$Projects$Metrics$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7094,7 +7024,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogMetric;
   }
-  export interface Params$Resource$Projects$Metrics$Delete {
+  export interface Params$Resource$Projects$Metrics$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7106,7 +7037,8 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Get {
+  export interface Params$Resource$Projects$Metrics$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7118,7 +7050,8 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$List {
+  export interface Params$Resource$Projects$Metrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7143,7 +7076,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Update {
+  export interface Params$Resource$Projects$Metrics$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7166,15 +7100,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7238,7 +7164,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7304,7 +7230,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7365,7 +7291,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7433,7 +7359,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -7504,7 +7430,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7575,7 +7501,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7585,7 +7511,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Sinks$Create {
+  export interface Params$Resource$Projects$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7617,7 +7544,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Delete {
+  export interface Params$Resource$Projects$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7634,7 +7562,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Get {
+  export interface Params$Resource$Projects$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7650,7 +7579,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$List {
+  export interface Params$Resource$Projects$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7676,7 +7606,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Patch {
+  export interface Params$Resource$Projects$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7722,7 +7653,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Update {
+  export interface Params$Resource$Projects$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7772,15 +7704,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7842,7 +7766,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7906,7 +7830,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7966,7 +7890,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -8033,7 +7957,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -8102,7 +8026,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -8112,7 +8036,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Sinks$Create {
+  export interface Params$Resource$Sinks$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8144,7 +8068,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Sinks$Delete {
+  export interface Params$Resource$Sinks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8161,7 +8085,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Sinks$Get {
+  export interface Params$Resource$Sinks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8177,7 +8101,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Sinks$List {
+  export interface Params$Resource$Sinks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8203,7 +8127,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Sinks$Update {
+  export interface Params$Resource$Sinks$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

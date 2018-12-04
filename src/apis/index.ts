@@ -13,8 +13,6 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, ServiceOptions} from 'googleapis-common';
-
 import * as abusiveexperiencereport from './abusiveexperiencereport';
 import * as acceleratedmobilepageurl from './acceleratedmobilepageurl';
 import * as accesscontextmanager from './accesscontextmanager';
@@ -53,6 +51,8 @@ import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
 import * as cloudprofiler from './cloudprofiler';
 import * as cloudresourcemanager from './cloudresourcemanager';
+import * as cloudscheduler from './cloudscheduler';
+import * as cloudsearch from './cloudsearch';
 import * as cloudshell from './cloudshell';
 import * as cloudtasks from './cloudtasks';
 import * as cloudtrace from './cloudtrace';
@@ -74,6 +74,7 @@ import * as dns from './dns';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
+import * as driveactivity from './driveactivity';
 import * as file from './file';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebasehosting from './firebasehosting';
@@ -105,7 +106,6 @@ import * as monitoring from './monitoring';
 import * as oauth2 from './oauth2';
 import * as oslogin from './oslogin';
 import * as pagespeedonline from './pagespeedonline';
-import * as partners from './partners';
 import * as people from './people';
 import * as playcustomapp from './playcustomapp';
 import * as plus from './plus';
@@ -127,7 +127,6 @@ import * as servicecontrol from './servicecontrol';
 import * as servicemanagement from './servicemanagement';
 import * as servicenetworking from './servicenetworking';
 import * as serviceusage from './serviceusage';
-import * as serviceuser from './serviceuser';
 import * as sheets from './sheets';
 import * as siteVerification from './siteVerification';
 import * as slides from './slides';
@@ -201,6 +200,8 @@ export const APIS: APIList = {
   cloudkms: cloudkms.VERSIONS,
   cloudprofiler: cloudprofiler.VERSIONS,
   cloudresourcemanager: cloudresourcemanager.VERSIONS,
+  cloudscheduler: cloudscheduler.VERSIONS,
+  cloudsearch: cloudsearch.VERSIONS,
   cloudshell: cloudshell.VERSIONS,
   cloudtasks: cloudtasks.VERSIONS,
   cloudtrace: cloudtrace.VERSIONS,
@@ -222,6 +223,7 @@ export const APIS: APIList = {
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
+  driveactivity: driveactivity.VERSIONS,
   file: file.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebasehosting: firebasehosting.VERSIONS,
@@ -253,7 +255,6 @@ export const APIS: APIList = {
   oauth2: oauth2.VERSIONS,
   oslogin: oslogin.VERSIONS,
   pagespeedonline: pagespeedonline.VERSIONS,
-  partners: partners.VERSIONS,
   people: people.VERSIONS,
   playcustomapp: playcustomapp.VERSIONS,
   plus: plus.VERSIONS,
@@ -275,7 +276,6 @@ export const APIS: APIList = {
   servicemanagement: servicemanagement.VERSIONS,
   servicenetworking: servicenetworking.VERSIONS,
   serviceusage: serviceusage.VERSIONS,
-  serviceuser: serviceuser.VERSIONS,
   sheets: sheets.VERSIONS,
   siteVerification: siteVerification.VERSIONS,
   slides: slides.VERSIONS,
@@ -346,6 +346,8 @@ export class GeneratedAPIs {
   cloudkms = cloudkms.cloudkms;
   cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
+  cloudscheduler = cloudscheduler.cloudscheduler;
+  cloudsearch = cloudsearch.cloudsearch;
   cloudshell = cloudshell.cloudshell;
   cloudtasks = cloudtasks.cloudtasks;
   cloudtrace = cloudtrace.cloudtrace;
@@ -367,6 +369,7 @@ export class GeneratedAPIs {
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
+  driveactivity = driveactivity.driveactivity;
   file = file.file;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebasehosting = firebasehosting.firebasehosting;
@@ -398,7 +401,6 @@ export class GeneratedAPIs {
   oauth2 = oauth2.oauth2;
   oslogin = oslogin.oslogin;
   pagespeedonline = pagespeedonline.pagespeedonline;
-  partners = partners.partners;
   people = people.people;
   playcustomapp = playcustomapp.playcustomapp;
   plus = plus.plus;
@@ -421,7 +423,6 @@ export class GeneratedAPIs {
   servicemanagement = servicemanagement.servicemanagement;
   servicenetworking = servicenetworking.servicenetworking;
   serviceusage = serviceusage.serviceusage;
-  serviceuser = serviceuser.serviceuser;
   sheets = sheets.sheets;
   siteVerification = siteVerification.siteVerification;
   slides = slides.slides;
@@ -450,147 +451,4 @@ export class GeneratedAPIs {
   youtube = youtube.youtube;
   youtubeAnalytics = youtubeAnalytics.youtubeAnalytics;
   youtubereporting = youtubereporting.youtubereporting;
-  constructor() {
-    this.abusiveexperiencereport = this.abusiveexperiencereport.bind(this);
-    this.acceleratedmobilepageurl = this.acceleratedmobilepageurl.bind(this);
-    this.accesscontextmanager = this.accesscontextmanager.bind(this);
-    this.adexchangebuyer = this.adexchangebuyer.bind(this);
-    this.adexchangebuyer2 = this.adexchangebuyer2.bind(this);
-    this.adexperiencereport = this.adexperiencereport.bind(this);
-    this.admin = this.admin.bind(this);
-    this.adsense = this.adsense.bind(this);
-    this.adsensehost = this.adsensehost.bind(this);
-    this.alertcenter = this.alertcenter.bind(this);
-    this.analytics = this.analytics.bind(this);
-    this.analyticsreporting = this.analyticsreporting.bind(this);
-    this.androiddeviceprovisioning = this.androiddeviceprovisioning.bind(this);
-    this.androidenterprise = this.androidenterprise.bind(this);
-    this.androidmanagement = this.androidmanagement.bind(this);
-    this.androidpublisher = this.androidpublisher.bind(this);
-    this.appengine = this.appengine.bind(this);
-    this.appsactivity = this.appsactivity.bind(this);
-    this.appstate = this.appstate.bind(this);
-    this.bigquery = this.bigquery.bind(this);
-    this.bigquerydatatransfer = this.bigquerydatatransfer.bind(this);
-    this.binaryauthorization = this.binaryauthorization.bind(this);
-    this.blogger = this.blogger.bind(this);
-    this.books = this.books.bind(this);
-    this.calendar = this.calendar.bind(this);
-    this.chat = this.chat.bind(this);
-    this.civicinfo = this.civicinfo.bind(this);
-    this.classroom = this.classroom.bind(this);
-    this.cloudasset = this.cloudasset.bind(this);
-    this.cloudbilling = this.cloudbilling.bind(this);
-    this.cloudbuild = this.cloudbuild.bind(this);
-    this.clouddebugger = this.clouddebugger.bind(this);
-    this.clouderrorreporting = this.clouderrorreporting.bind(this);
-    this.cloudfunctions = this.cloudfunctions.bind(this);
-    this.cloudiot = this.cloudiot.bind(this);
-    this.cloudkms = this.cloudkms.bind(this);
-    this.cloudprofiler = this.cloudprofiler.bind(this);
-    this.cloudresourcemanager = this.cloudresourcemanager.bind(this);
-    this.cloudshell = this.cloudshell.bind(this);
-    this.cloudtasks = this.cloudtasks.bind(this);
-    this.cloudtrace = this.cloudtrace.bind(this);
-    this.composer = this.composer.bind(this);
-    this.compute = this.compute.bind(this);
-    this.container = this.container.bind(this);
-    this.content = this.content.bind(this);
-    this.customsearch = this.customsearch.bind(this);
-    this.dataflow = this.dataflow.bind(this);
-    this.dataproc = this.dataproc.bind(this);
-    this.datastore = this.datastore.bind(this);
-    this.deploymentmanager = this.deploymentmanager.bind(this);
-    this.dfareporting = this.dfareporting.bind(this);
-    this.dialogflow = this.dialogflow.bind(this);
-    this.digitalassetlinks = this.digitalassetlinks.bind(this);
-    this.discovery = this.discovery.bind(this);
-    this.dlp = this.dlp.bind(this);
-    this.dns = this.dns.bind(this);
-    this.doubleclickbidmanager = this.doubleclickbidmanager.bind(this);
-    this.doubleclicksearch = this.doubleclicksearch.bind(this);
-    this.drive = this.drive.bind(this);
-    this.file = this.file.bind(this);
-    this.firebasedynamiclinks = this.firebasedynamiclinks.bind(this);
-    this.firebasehosting = this.firebasehosting.bind(this);
-    this.firebaserules = this.firebaserules.bind(this);
-    this.firestore = this.firestore.bind(this);
-    this.fitness = this.fitness.bind(this);
-    this.fusiontables = this.fusiontables.bind(this);
-    this.games = this.games.bind(this);
-    this.gamesConfiguration = this.gamesConfiguration.bind(this);
-    this.gamesManagement = this.gamesManagement.bind(this);
-    this.genomics = this.genomics.bind(this);
-    this.gmail = this.gmail.bind(this);
-    this.groupsmigration = this.groupsmigration.bind(this);
-    this.groupssettings = this.groupssettings.bind(this);
-    this.iam = this.iam.bind(this);
-    this.iamcredentials = this.iamcredentials.bind(this);
-    this.iap = this.iap.bind(this);
-    this.identitytoolkit = this.identitytoolkit.bind(this);
-    this.indexing = this.indexing.bind(this);
-    this.jobs = this.jobs.bind(this);
-    this.kgsearch = this.kgsearch.bind(this);
-    this.language = this.language.bind(this);
-    this.licensing = this.licensing.bind(this);
-    this.logging = this.logging.bind(this);
-    this.manufacturers = this.manufacturers.bind(this);
-    this.mirror = this.mirror.bind(this);
-    this.ml = this.ml.bind(this);
-    this.monitoring = this.monitoring.bind(this);
-    this.oauth2 = this.oauth2.bind(this);
-    this.oslogin = this.oslogin.bind(this);
-    this.pagespeedonline = this.pagespeedonline.bind(this);
-    this.partners = this.partners.bind(this);
-    this.people = this.people.bind(this);
-    this.playcustomapp = this.playcustomapp.bind(this);
-    this.plus = this.plus.bind(this);
-    this.plusDomains = this.plusDomains.bind(this);
-    this.poly = this.poly.bind(this);
-    this.proximitybeacon = this.proximitybeacon.bind(this);
-    this.pubsub = this.pubsub.bind(this);
-    this.redis = this.redis.bind(this);
-    this.replicapool = this.replicapool.bind(this);
-    this.replicapoolupdater = this.replicapoolupdater.bind(this);
-    this.reseller = this.reseller.bind(this);
-    this.runtimeconfig = this.runtimeconfig.bind(this);
-    this.safebrowsing = this.safebrowsing.bind(this);
-    this.script = this.script.bind(this);
-    this.searchconsole = this.searchconsole.bind(this);
-    this.servicebroker = this.servicebroker.bind(this);
-    this.serviceconsumermanagement = this.serviceconsumermanagement.bind(this);
-    this.servicecontrol = this.servicecontrol.bind(this);
-    this.servicemanagement = this.servicemanagement.bind(this);
-    this.servicenetworking = this.servicenetworking.bind(this);
-    this.serviceusage = this.serviceusage.bind(this);
-    this.serviceuser = this.serviceuser.bind(this);
-    this.sheets = this.sheets.bind(this);
-    this.siteVerification = this.siteVerification.bind(this);
-    this.slides = this.slides.bind(this);
-    this.sourcerepo = this.sourcerepo.bind(this);
-    this.spanner = this.spanner.bind(this);
-    this.speech = this.speech.bind(this);
-    this.sqladmin = this.sqladmin.bind(this);
-    this.storage = this.storage.bind(this);
-    this.storagetransfer = this.storagetransfer.bind(this);
-    this.streetviewpublish = this.streetviewpublish.bind(this);
-    this.surveys = this.surveys.bind(this);
-    this.tagmanager = this.tagmanager.bind(this);
-    this.tasks = this.tasks.bind(this);
-    this.testing = this.testing.bind(this);
-    this.texttospeech = this.texttospeech.bind(this);
-    this.toolresults = this.toolresults.bind(this);
-    this.tpu = this.tpu.bind(this);
-    this.translate = this.translate.bind(this);
-    this.urlshortener = this.urlshortener.bind(this);
-    this.vault = this.vault.bind(this);
-    this.videointelligence = this.videointelligence.bind(this);
-    this.vision = this.vision.bind(this);
-    this.webfonts = this.webfonts.bind(this);
-    this.webmasters = this.webmasters.bind(this);
-    this.websecurityscanner = this.websecurityscanner.bind(this);
-    this.youtube = this.youtube.bind(this);
-    this.youtubeAnalytics = this.youtubeAnalytics.bind(this);
-    this.youtubereporting = this.youtubereporting.bind(this);
-  }
 }

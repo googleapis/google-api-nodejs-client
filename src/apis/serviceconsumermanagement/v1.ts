@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace serviceconsumermanagement_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,24 +98,14 @@ export namespace serviceconsumermanagement_v1 {
    * @param {object=} options Options for Serviceconsumermanagement
    */
   export class Serviceconsumermanagement {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.services = new Resource$Services();
     }
   }
 
@@ -136,6 +179,41 @@ export namespace serviceconsumermanagement_v1 {
      * interfaces.
      */
     version?: string;
+  }
+  /**
+   * Request to apply configuration to an existing tenant project.
+   */
+  export interface Schema$ApplyTenantProjectConfigRequest {
+    /**
+     * Configuration that should be applied to the existing tenant project.
+     */
+    projectConfig?: Schema$TenantProjectConfig;
+    /**
+     * Tag of the project. Must be less than 128 characters. Required.
+     */
+    tag?: string;
+  }
+  /**
+   * Request to attach an existing project to the tenancy unit as a new tenant
+   * resource.
+   */
+  export interface Schema$AttachTenantProjectRequest {
+    /**
+     * When attaching an external project, this is in the format of
+     * `projects/{project_number}’.
+     */
+    externalResource?: string;
+    /**
+     * When attaching a reserved project already in Tenancy Units, this is the
+     * tag of tenant resource under the tenancy unit for the service&#39;s
+     * producer project. The reserved tenant resource must be in active state.
+     */
+    reservedResource?: string;
+    /**
+     * Tag of the tenant resource after attachment. Must be less than 128
+     * characters. Required.
+     */
+    tag?: string;
   }
   /**
    * `Authentication` defines the authentication configuration for an API.
@@ -302,6 +380,11 @@ export namespace serviceconsumermanagement_v1 {
      * value lower than this will be rejected.
      */
     minDeadline?: number;
+    /**
+     * The number of seconds to wait for the completion of a long running
+     * operation. The default is no deadline.
+     */
+    operationDeadline?: number;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1236,7 +1319,7 @@ export namespace serviceconsumermanagement_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: any;
+    metricCosts?: {[key: string]: string;};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1437,7 +1520,7 @@ export namespace serviceconsumermanagement_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1453,7 +1536,7 @@ export namespace serviceconsumermanagement_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1474,7 +1557,7 @@ export namespace serviceconsumermanagement_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: any;
+    value?: {[key: string]: any;};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1640,7 +1723,7 @@ export namespace serviceconsumermanagement_v1 {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: any;
+    values?: {[key: string]: string;};
   }
   /**
    * Request message to remove tenant project resource from the tenancy unit.
@@ -1853,7 +1936,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: any[];
+    sourceFiles?: Array<{[key: string]: any;}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1900,7 +1983,7 @@ export namespace serviceconsumermanagement_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2024,7 +2107,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Labels that will be applied to this project.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Configuration for IAM service account on tenant project.
      */
@@ -2165,15 +2248,7 @@ export namespace serviceconsumermanagement_v1 {
 
 
   export class Resource$Operations {
-    root: Serviceconsumermanagement;
-    constructor(root: Serviceconsumermanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2241,7 +2316,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2309,7 +2384,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2373,7 +2448,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2450,7 +2525,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2460,7 +2535,8 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2476,7 +2552,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete {
+  export interface Params$Resource$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2487,7 +2564,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2498,7 +2575,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2524,16 +2601,9 @@ export namespace serviceconsumermanagement_v1 {
 
 
   export class Resource$Services {
-    root: Serviceconsumermanagement;
     tenancyUnits: Resource$Services$Tenancyunits;
-    constructor(root: Serviceconsumermanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.tenancyUnits = new Resource$Services$Tenancyunits(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.tenancyUnits = new Resource$Services$Tenancyunits();
     }
 
 
@@ -2600,7 +2670,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchTenancyUnitsResponse>(
@@ -2611,7 +2681,7 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Search {
+  export interface Params$Resource$Services$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2653,15 +2723,7 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   export class Resource$Services$Tenancyunits {
-    root: Serviceconsumermanagement;
-    constructor(root: Serviceconsumermanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2727,7 +2789,164 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
+     * @desc Apply configuration to an existing tenant project. This project
+     * must exist in active state and have the original owner account. Caller
+     * must have the permission to add a project to the given tenancy unit.
+     * Configuration will be applied, but any existing settings on the project
+     * will not be modified. Specified policy bindings will be applied. Existing
+     * binding will not be modified. Specified services will be activated.   No
+     * service will be deactivated. New billing configuration will be applied if
+     * specified. Omit billing configuration to keep the existing one. Service
+     * account in the project will be created if previously non existing.
+     * Operation fails if any of the steps fail, but no rollback of already
+     * applied configuration changes is attempted. Operation<response: Empty>.
+     * @alias serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the tenancy unit.
+     * @param {().ApplyTenantProjectConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    applyProjectConfig(
+        params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    applyProjectConfig(
+        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    applyProjectConfig(
+        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    applyProjectConfig(callback: BodyResponseCallback<Schema$Operation>): void;
+    applyProjectConfig(
+        paramsOrCallback?:
+            Params$Resource$Services$Tenancyunits$Applyprojectconfig|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Applyprojectconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Applyprojectconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:applyProjectConfig')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * serviceconsumermanagement.services.tenancyUnits.attachProject
+     * @desc Attach an existing project to the tenancy unit as a new tenant
+     * resource. The project could be either the tenant project reserved by
+     * calling AddTenantProject under tenancy unit for the producer project of
+     * service, or from outside. Caller will be checked against the permission
+     * as if calling AddTenantProject on the same consumer. To trigger the
+     * attachement, the targeted tenant project must be in a folder. Please also
+     * make sure ServiceConsumerManagement service account is the owner of that
+     * project. Note that these two requirements are already met if the project
+     * is reserved through AddTenantProject. Operation<response: Empty>.
+     * @alias serviceconsumermanagement.services.tenancyUnits.attachProject
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the tenancy unit that project will be attached to.
+     * @param {().AttachTenantProjectRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    attachProject(
+        params?: Params$Resource$Services$Tenancyunits$Attachproject,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    attachProject(
+        params: Params$Resource$Services$Tenancyunits$Attachproject,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachProject(
+        params: Params$Resource$Services$Tenancyunits$Attachproject,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachProject(callback: BodyResponseCallback<Schema$Operation>): void;
+    attachProject(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Attachproject|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Attachproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Attachproject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:attachProject')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2796,7 +3015,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TenancyUnit>(parameters, callback);
@@ -2864,7 +3083,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2939,7 +3158,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters, callback);
@@ -3011,7 +3230,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3021,7 +3240,8 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Tenancyunits$Addproject {
+  export interface Params$Resource$Services$Tenancyunits$Addproject extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3037,7 +3257,42 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$AddTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Create {
+  export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApplyTenantProjectConfigRequest;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Attachproject extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit that project will be attached to.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AttachTenantProjectRequest;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3058,7 +3313,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CreateTenancyUnitRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Delete {
+  export interface Params$Resource$Services$Tenancyunits$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3069,7 +3325,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$List {
+  export interface Params$Resource$Services$Tenancyunits$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3099,7 +3356,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$Removeproject {
+  export interface Params$Resource$Services$Tenancyunits$Removeproject extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

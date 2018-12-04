@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace pubsub_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +99,12 @@ export namespace pubsub_v1 {
    * @param {object=} options Options for Pubsub
    */
   export class Pubsub {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -116,10 +159,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$CreateSnapshotRequest {
     /**
-     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
-     * labels&lt;/a&gt;.
+     * See &lt;a
+     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
+     * and managing labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The subscription whose backlog the snapshot retains. Specifically, the
      * created snapshot is guaranteed to retain:  (a) The existing backlog on
@@ -140,6 +184,21 @@ export namespace pubsub_v1 {
    * representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
+  /**
+   * A policy that specifies the conditions for resource expiration (i.e.,
+   * automatic resource deletion).
+   */
+  export interface Schema$ExpirationPolicy {
+    /**
+     * Specifies the &quot;time-to-live&quot; duration for an associated
+     * resource. The resource expires if it is not active for a period of `ttl`.
+     * The definition of &quot;activity&quot; depends on the type of the
+     * associated resource. The minimum and maximum allowed values for `ttl`
+     * depend on the type of the associated resource, as well. If `ttl` is not
+     * set, the associated resource never expires.
+     */
+    ttl?: string;
+  }
   /**
    * Represents an expression text. Example:      title: &quot;User account
    * presence&quot;     description: &quot;Determines whether the request has a
@@ -345,13 +404,18 @@ export namespace pubsub_v1 {
   /**
    * A message that is published by publishers and consumed by subscribers. The
    * message must contain either a non-empty data field or at least one
-   * attribute.
+   * attribute. Note that client libraries represent this object differently
+   * depending on the language. See the corresponding &lt;a
+   * href=&quot;https://cloud.google.com/pubsub/docs/reference/libraries&quot;&gt;client
+   * library documentation&lt;/a&gt; for more information. See &lt;a
+   * href=&quot;https://cloud.google.com/pubsub/quotas&quot;&gt;Quotas and
+   * limits&lt;/a&gt; for more information about message limits.
    */
   export interface Schema$PubsubMessage {
     /**
      * Optional attributes for this message.
      */
-    attributes?: any;
+    attributes?: {[key: string]: string;};
     /**
      * The message data field. If this field is empty, the message must contain
      * at least one attribute.
@@ -421,7 +485,7 @@ export namespace pubsub_v1 {
      * v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in
      * the v1 Pub/Sub API.
      */
-    attributes?: any;
+    attributes?: {[key: string]: string;};
     /**
      * A URL locating the endpoint to which messages should be pushed. For
      * example, a Webhook endpoint might use
@@ -487,13 +551,13 @@ export namespace pubsub_v1 {
   }
   /**
    * A snapshot resource. Snapshots are used in &lt;a
-   * href=&quot;/pubsub/docs/replay-overview&quot;&gt;Seek&lt;/a&gt; operations,
-   * which allow you to manage message acknowledgments in bulk. That is, you can
-   * set the acknowledgment state of messages in an existing subscription to the
-   * state captured by a snapshot.&lt;br&gt;&lt;br&gt; &lt;b&gt;BETA:&lt;/b&gt;
-   * This feature is part of a beta release. This API might be changed in
-   * backward-incompatible ways and is not recommended for production use. It is
-   * not subject to any SLA or deprecation policy.
+   * href=&quot;https://cloud.google.com/pubsub/docs/replay-overview&quot;&gt;Seek&lt;/a&gt;
+   * operations, which allow you to manage message acknowledgments in bulk. That
+   * is, you can set the acknowledgment state of messages in an existing
+   * subscription to the state captured by a snapshot.&lt;br&gt;&lt;br&gt;
+   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
    */
   export interface Schema$Snapshot {
     /**
@@ -510,10 +574,11 @@ export namespace pubsub_v1 {
      */
     expireTime?: string;
     /**
-     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
-     * labels&lt;/a&gt;.
+     * See &lt;a
+     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
+     * and managing labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The name of the snapshot.
      */
@@ -528,16 +593,17 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Subscription {
     /**
-     * This value is the maximum time after a subscriber receives a message
-     * before the subscriber should acknowledge the message. After message
-     * delivery but before the ack deadline expires and before the message is
-     * acknowledged, it is an outstanding message and will not be delivered
-     * again during that time (on a best-effort basis).  For pull subscriptions,
-     * this value is used as the initial value for the ack deadline. To override
-     * this value for a given message, call `ModifyAckDeadline` with the
-     * corresponding `ack_id` if using non-streaming pull or send the `ack_id`
-     * in a `StreamingModifyAckDeadlineRequest` if using streaming pull. The
-     * minimum custom deadline you can specify is 10 seconds. The maximum custom
+     * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
+     * the subscriber to acknowledge receipt before resending the message. In
+     * the interval after the message is delivered and before it is
+     * acknowledged, it is considered to be &lt;i&gt;outstanding&lt;/i&gt;.
+     * During that time period, the message will not be redelivered (on a
+     * best-effort basis).  For pull subscriptions, this value is used as the
+     * initial value for the ack deadline. To override this value for a given
+     * message, call `ModifyAckDeadline` with the corresponding `ack_id` if
+     * using non-streaming pull or send the `ack_id` in a
+     * `StreamingModifyAckDeadlineRequest` if using streaming pull. The minimum
+     * custom deadline you can specify is 10 seconds. The maximum custom
      * deadline you can specify is 600 seconds (10 minutes). If this parameter
      * is 0, a default value of 10 seconds is used.  For push delivery, this
      * value is also used to set the request timeout for the call to the push
@@ -546,10 +612,23 @@ export namespace pubsub_v1 {
      */
     ackDeadlineSeconds?: number;
     /**
-     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
-     * labels&lt;/a&gt;.
+     * A policy that specifies the conditions for this subscription&#39;s
+     * expiration. A subscription is considered active as long as any connected
+     * subscriber is successfully consuming messages from the subscription or is
+     * issuing operations on the subscription. If `expiration_policy` is not
+     * set, a *default policy* with `ttl` of 31 days will be used. The minimum
+     * allowed value for `expiration_policy.ttl` is 1 day.
+     * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
      */
-    labels?: any;
+    expirationPolicy?: Schema$ExpirationPolicy;
+    /**
+     * See &lt;a
+     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
+     * and managing labels&lt;/a&gt;.
+     */
+    labels?: {[key: string]: string;};
     /**
      * How long to retain unacknowledged messages in the subscription&#39;s
      * backlog, from the moment a message is published. If
@@ -583,11 +662,11 @@ export namespace pubsub_v1 {
      * are not expunged from the subscription&#39;s backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to &lt;a
-     * href=&quot;/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt;Seek to a
-     * timestamp&lt;/a&gt;. &lt;br&gt;&lt;br&gt; &lt;b&gt;BETA:&lt;/b&gt; This
-     * feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * href=&quot;https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt;
+     * Seek to a timestamp&lt;/a&gt;. &lt;br&gt;&lt;br&gt;
+     * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
      */
     retainAckedMessages?: boolean;
     /**
@@ -624,10 +703,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
-     * See &lt;a href=&quot;/pubsub/docs/labels&quot;&gt; Creating and managing
-     * labels&lt;/a&gt;.
+     * See &lt;a
+     * href=&quot;https://cloud.google.com/pubsub/docs/labels&quot;&gt; Creating
+     * and managing labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The name of the topic. It must have the format
      * `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start
@@ -689,53 +769,39 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects {
-    root: Pubsub;
     snapshots: Resource$Projects$Snapshots;
     subscriptions: Resource$Projects$Subscriptions;
     topics: Resource$Projects$Topics;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.snapshots = new Resource$Projects$Snapshots(root);
-      this.subscriptions = new Resource$Projects$Subscriptions(root);
-      this.topics = new Resource$Projects$Topics(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.snapshots = new Resource$Projects$Snapshots();
+      this.subscriptions = new Resource$Projects$Subscriptions();
+      this.topics = new Resource$Projects$Topics();
     }
   }
 
 
   export class Resource$Projects$Snapshots {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * pubsub.projects.snapshots.create
      * @desc Creates a snapshot from the requested subscription. Snapshots are
-     * used in <a href="/pubsub/docs/replay-overview">Seek</a> operations, which
-     * allow you to manage message acknowledgments in bulk. That is, you can set
-     * the acknowledgment state of messages in an existing subscription to the
-     * state captured by a snapshot. <br><br> <b>BETA:</b> This feature is part
-     * of a beta release. This API might be changed in backward-incompatible
-     * ways and is not recommended for production use. It is not subject to any
-     * SLA or deprecation policy.<br><br> If the snapshot already exists,
-     * returns `ALREADY_EXISTS`. If the requested subscription doesn't exist,
-     * returns `NOT_FOUND`. If the backlog in the subscription is too old -- and
-     * the resulting snapshot would expire in less than 1 hour -- then
-     * `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time`
-     * field. If the name is not provided in the request, the server will assign
-     * a random name for this snapshot on the same project as the subscription,
-     * conforming to the [resource name
+     * used in <a
+     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk.
+     * That is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot. <br><br> <b>BETA:</b>
+     * This feature is part of a beta release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.<br><br> If the snapshot
+     * already exists, returns `ALREADY_EXISTS`. If the requested subscription
+     * doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is
+     * too old -- and the resulting snapshot would expire in less than 1 hour --
+     * then `FAILED_PRECONDITION` is returned. See also the
+     * `Snapshot.expire_time` field. If the name is not provided in the request,
+     * the server will assign a random name for this snapshot on the same
+     * project as the subscription, conforming to the [resource name
      * format](https://cloud.google.com/pubsub/docs/overview#names). The
      * generated name is populated in the returned Snapshot object. Note that
      * for REST API requests, you must specify a name in the request.
@@ -743,7 +809,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Optional user-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="/pubsub/docs/admin#resource_names">resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * @param {string} params.name Optional user-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      * @param {().CreateSnapshotRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -792,7 +858,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -805,17 +871,17 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.delete
      * @desc Removes an existing snapshot. Snapshots are used in <a
-     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
-     * to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
-     * beta release. This API might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy. When the snapshot is deleted, all messages retained
-     * in the snapshot are immediately dropped. After a snapshot is deleted, a
-     * new one may be created with the same name, but the new one has no
-     * association with the old snapshot or its subscription, unless the same
-     * subscription is specified.
+     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk.
+     * That is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
+     * This feature is part of a beta release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy. When the snapshot is
+     * deleted, all messages retained in the snapshot are immediately dropped.
+     * After a snapshot is deleted, a new one may be created with the same name,
+     * but the new one has no association with the old snapshot or its
+     * subscription, unless the same subscription is specified.
      * @alias pubsub.projects.snapshots.delete
      * @memberOf! ()
      *
@@ -868,7 +934,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['snapshot'],
         pathParams: ['snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -881,13 +947,13 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.get
      * @desc Gets the configuration details of a snapshot. Snapshots are used in
-     * <a href="/pubsub/docs/replay-overview">Seek</a> operations, which allow
-     * you to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
-     * beta release. This API might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy.
+     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk.
+     * That is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
+     * This feature is part of a beta release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.snapshots.get
      * @memberOf! ()
      *
@@ -936,7 +1002,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['snapshot'],
         pathParams: ['snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -1056,7 +1122,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1069,13 +1135,13 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.list
      * @desc Lists the existing snapshots. Snapshots are used in <a
-     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
-     * to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
-     * beta release. This API might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy.
+     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk.
+     * That is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
+     * This feature is part of a beta release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.snapshots.list
      * @memberOf! ()
      *
@@ -1133,7 +1199,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
@@ -1146,14 +1212,14 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.snapshots.patch
      * @desc Updates an existing snapshot. Snapshots are used in <a
-     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
-     * to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.<br><br> <b>BETA:</b> This feature is part of a
-     * beta release. This API might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy. Note that certain properties of a snapshot are not
-     * modifiable.
+     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk.
+     * That is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
+     * This feature is part of a beta release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy. Note that certain
+     * properties of a snapshot are not modifiable.
      * @alias pubsub.projects.snapshots.patch
      * @memberOf! ()
      *
@@ -1207,7 +1273,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -1332,7 +1398,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1469,7 +1535,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1480,7 +1546,8 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Snapshots$Create {
+  export interface Params$Resource$Projects$Snapshots$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1491,8 +1558,8 @@ export namespace pubsub_v1 {
      * provided in the request, the server will assign a random name for this
      * snapshot on the same project as the subscription. Note that for REST API
      * requests, you must specify a name.  See the <a
-     * href="/pubsub/docs/admin#resource_names">resource name rules</a>. Format
-     * is `projects/{project}/snapshots/{snap}`.
+     * href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      */
     name?: string;
 
@@ -1501,7 +1568,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$CreateSnapshotRequest;
   }
-  export interface Params$Resource$Projects$Snapshots$Delete {
+  export interface Params$Resource$Projects$Snapshots$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1513,7 +1581,8 @@ export namespace pubsub_v1 {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$Get {
+  export interface Params$Resource$Projects$Snapshots$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1525,7 +1594,8 @@ export namespace pubsub_v1 {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$Getiampolicy {
+  export interface Params$Resource$Projects$Snapshots$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1537,7 +1607,8 @@ export namespace pubsub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$List {
+  export interface Params$Resource$Projects$Snapshots$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1559,7 +1630,8 @@ export namespace pubsub_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Snapshots$Patch {
+  export interface Params$Resource$Projects$Snapshots$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1575,7 +1647,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$UpdateSnapshotRequest;
   }
-  export interface Params$Resource$Projects$Snapshots$Setiampolicy {
+  export interface Params$Resource$Projects$Snapshots$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1592,7 +1665,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Snapshots$Testiampermissions {
+  export interface Params$Resource$Projects$Snapshots$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1612,15 +1686,7 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Subscriptions {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1740,7 +1806,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1753,12 +1819,12 @@ export namespace pubsub_v1 {
     /**
      * pubsub.projects.subscriptions.create
      * @desc Creates a subscription to a given topic. See the <a
-     * href="/pubsub/docs/admin#resource_names"> resource name rules</a>. If the
-     * subscription already exists, returns `ALREADY_EXISTS`. If the
-     * corresponding topic doesn't exist, returns `NOT_FOUND`.  If the name is
-     * not provided in the request, the server will assign a random name for
-     * this subscription on the same project as the topic, conforming to the
-     * [resource name
+     * href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>. If the subscription already exists, returns
+     * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns
+     * `NOT_FOUND`.  If the name is not provided in the request, the server will
+     * assign a random name for this subscription on the same project as the
+     * topic, conforming to the [resource name
      * format](https://cloud.google.com/pubsub/docs/overview#names). The
      * generated name is populated in the returned Subscription object. Note
      * that for REST API requests, you must specify a name in the request.
@@ -1885,7 +1951,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2007,7 +2073,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2125,7 +2191,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2245,7 +2311,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2385,7 +2451,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
@@ -2512,7 +2578,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2640,7 +2706,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2708,7 +2774,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2837,7 +2903,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PullResponse>(parameters, callback);
@@ -2851,14 +2917,14 @@ export namespace pubsub_v1 {
      * pubsub.projects.subscriptions.seek
      * @desc Seeks an existing subscription to a point in time or to a given
      * snapshot, whichever is provided in the request. Snapshots are used in <a
-     * href="/pubsub/docs/replay-overview">Seek</a> operations, which allow you
-     * to manage message acknowledgments in bulk. That is, you can set the
-     * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot. Note that both the subscription and the snapshot
-     * must be on the same topic.<br><br> <b>BETA:</b> This feature is part of a
-     * beta release. This API might be changed in backward-incompatible ways and
-     * is not recommended for production use. It is not subject to any SLA or
-     * deprecation policy.
+     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk.
+     * That is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot. Note that both the
+     * subscription and the snapshot must be on the same topic.<br><br>
+     * <b>BETA:</b> This feature is part of a beta release. This API might be
+     * changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.subscriptions.seek
      * @memberOf! ()
      *
@@ -2914,7 +2980,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SeekResponse>(parameters, callback);
@@ -3039,7 +3105,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3177,7 +3243,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3188,7 +3254,8 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Subscriptions$Acknowledge {
+  export interface Params$Resource$Projects$Subscriptions$Acknowledge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3205,7 +3272,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$AcknowledgeRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Create {
+  export interface Params$Resource$Projects$Subscriptions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3226,7 +3294,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Projects$Subscriptions$Delete {
+  export interface Params$Resource$Projects$Subscriptions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3238,7 +3307,8 @@ export namespace pubsub_v1 {
      */
     subscription?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Get {
+  export interface Params$Resource$Projects$Subscriptions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3250,7 +3320,8 @@ export namespace pubsub_v1 {
      */
     subscription?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Getiampolicy {
+  export interface Params$Resource$Projects$Subscriptions$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3262,7 +3333,8 @@ export namespace pubsub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$List {
+  export interface Params$Resource$Projects$Subscriptions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3284,7 +3356,8 @@ export namespace pubsub_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline {
+  export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3301,7 +3374,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$ModifyAckDeadlineRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Modifypushconfig {
+  export interface Params$Resource$Projects$Subscriptions$Modifypushconfig
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3318,7 +3392,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$ModifyPushConfigRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Patch {
+  export interface Params$Resource$Projects$Subscriptions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3339,7 +3414,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$UpdateSubscriptionRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Pull {
+  export interface Params$Resource$Projects$Subscriptions$Pull extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3356,7 +3432,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$PullRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Seek {
+  export interface Params$Resource$Projects$Subscriptions$Seek extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3372,7 +3449,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SeekRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Setiampolicy {
+  export interface Params$Resource$Projects$Subscriptions$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3389,7 +3467,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Subscriptions$Testiampermissions {
+  export interface Params$Resource$Projects$Subscriptions$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3409,25 +3488,19 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Topics {
-    root: Pubsub;
     snapshots: Resource$Projects$Topics$Snapshots;
     subscriptions: Resource$Projects$Topics$Subscriptions;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.snapshots = new Resource$Projects$Topics$Snapshots(root);
-      this.subscriptions = new Resource$Projects$Topics$Subscriptions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.snapshots = new Resource$Projects$Topics$Snapshots();
+      this.subscriptions = new Resource$Projects$Topics$Subscriptions();
     }
 
 
     /**
      * pubsub.projects.topics.create
      * @desc Creates the given topic with the given name. See the <a
-     * href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
+     * href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3550,7 +3623,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -3672,7 +3745,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3788,7 +3861,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -3910,7 +3983,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4046,7 +4119,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(parameters, callback);
@@ -4113,7 +4186,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -4241,7 +4314,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublishResponse>(parameters, callback);
@@ -4368,7 +4441,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4504,7 +4577,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4515,7 +4588,8 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Create {
+  export interface Params$Resource$Projects$Topics$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4536,7 +4610,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$Topic;
   }
-  export interface Params$Resource$Projects$Topics$Delete {
+  export interface Params$Resource$Projects$Topics$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4548,7 +4623,8 @@ export namespace pubsub_v1 {
      */
     topic?: string;
   }
-  export interface Params$Resource$Projects$Topics$Get {
+  export interface Params$Resource$Projects$Topics$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4560,7 +4636,8 @@ export namespace pubsub_v1 {
      */
     topic?: string;
   }
-  export interface Params$Resource$Projects$Topics$Getiampolicy {
+  export interface Params$Resource$Projects$Topics$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4572,7 +4649,8 @@ export namespace pubsub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Topics$List {
+  export interface Params$Resource$Projects$Topics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4594,7 +4672,8 @@ export namespace pubsub_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Topics$Patch {
+  export interface Params$Resource$Projects$Topics$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4615,7 +4694,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$UpdateTopicRequest;
   }
-  export interface Params$Resource$Projects$Topics$Publish {
+  export interface Params$Resource$Projects$Topics$Publish extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4632,7 +4712,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$PublishRequest;
   }
-  export interface Params$Resource$Projects$Topics$Setiampolicy {
+  export interface Params$Resource$Projects$Topics$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4649,7 +4730,8 @@ export namespace pubsub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Topics$Testiampermissions {
+  export interface Params$Resource$Projects$Topics$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4668,27 +4750,20 @@ export namespace pubsub_v1 {
   }
 
   export class Resource$Projects$Topics$Snapshots {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * pubsub.projects.topics.snapshots.list
      * @desc Lists the names of the snapshots on this topic. Snapshots are used
-     * in <a href="/pubsub/docs/replay-overview">Seek</a> operations, which
-     * allow you to manage message acknowledgments in bulk. That is, you can set
-     * the acknowledgment state of messages in an existing subscription to the
-     * state captured by a snapshot.<br><br> <b>BETA:</b> This feature is part
-     * of a beta release. This API might be changed in backward-incompatible
-     * ways and is not recommended for production use. It is not subject to any
-     * SLA or deprecation policy.
+     * in <a
+     * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow you to manage message acknowledgments in bulk.
+     * That is, you can set the acknowledgment state of messages in an existing
+     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
+     * This feature is part of a beta release. This API might be changed in
+     * backward-incompatible ways and is not recommended for production use. It
+     * is not subject to any SLA or deprecation policy.
      * @alias pubsub.projects.topics.snapshots.list
      * @memberOf! ()
      *
@@ -4750,7 +4825,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicSnapshotsResponse>(
@@ -4761,7 +4836,8 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Snapshots$List {
+  export interface Params$Resource$Projects$Topics$Snapshots$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4786,15 +4862,7 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Topics$Subscriptions {
-    root: Pubsub;
-    constructor(root: Pubsub) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4930,7 +4998,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
@@ -4942,7 +5010,8 @@ export namespace pubsub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Topics$Subscriptions$List {
+  export interface Params$Resource$Projects$Topics$Subscriptions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

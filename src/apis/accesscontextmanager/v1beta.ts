@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace accesscontextmanager_v1beta {
   export interface Options extends GlobalOptions {
     version: 'v1beta';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,24 +99,14 @@ export namespace accesscontextmanager_v1beta {
    * @param {object=} options Options for Accesscontextmanager
    */
   export class Accesscontextmanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accessPolicies: Resource$Accesspolicies;
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accessPolicies = new Resource$Accesspolicies(this);
-      this.operations = new Resource$Operations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accessPolicies = new Resource$Accesspolicies();
+      this.operations = new Resource$Operations();
     }
   }
 
@@ -125,7 +168,7 @@ export namespace accesscontextmanager_v1beta {
      */
     parent?: string;
     /**
-     * Human readable title. Does not affect behavior.
+     * Required. Human readable title. Does not affect behavior.
      */
     title?: string;
     /**
@@ -291,7 +334,7 @@ export namespace accesscontextmanager_v1beta {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -307,7 +350,7 @@ export namespace accesscontextmanager_v1beta {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A restriction on the OS type and version of devices making requests.
@@ -474,7 +517,7 @@ export namespace accesscontextmanager_v1beta {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -485,19 +528,11 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Accesspolicies {
-    root: Accesscontextmanager;
     accessLevels: Resource$Accesspolicies$Accesslevels;
     servicePerimeters: Resource$Accesspolicies$Serviceperimeters;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.accessLevels = new Resource$Accesspolicies$Accesslevels(root);
-      this.servicePerimeters =
-          new Resource$Accesspolicies$Serviceperimeters(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.accessLevels = new Resource$Accesspolicies$Accesslevels();
+      this.servicePerimeters = new Resource$Accesspolicies$Serviceperimeters();
     }
 
 
@@ -563,7 +598,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -632,7 +667,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -695,7 +730,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccessPolicy>(parameters, callback);
@@ -768,7 +803,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessPoliciesResponse>(
@@ -841,7 +876,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -851,7 +886,8 @@ export namespace accesscontextmanager_v1beta {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Create {
+  export interface Params$Resource$Accesspolicies$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -863,7 +899,8 @@ export namespace accesscontextmanager_v1beta {
      */
     requestBody?: Schema$AccessPolicy;
   }
-  export interface Params$Resource$Accesspolicies$Delete {
+  export interface Params$Resource$Accesspolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -875,7 +912,8 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Get {
+  export interface Params$Resource$Accesspolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -887,7 +925,8 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$List {
+  export interface Params$Resource$Accesspolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -908,7 +947,8 @@ export namespace accesscontextmanager_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Patch {
+  export interface Params$Resource$Accesspolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -931,15 +971,7 @@ export namespace accesscontextmanager_v1beta {
   }
 
   export class Resource$Accesspolicies$Accesslevels {
-    root: Accesscontextmanager;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1004,7 +1036,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1073,7 +1105,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1137,7 +1169,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccessLevel>(parameters, callback);
@@ -1209,7 +1241,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessLevelsResponse>(parameters, callback);
@@ -1281,7 +1313,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1291,7 +1323,8 @@ export namespace accesscontextmanager_v1beta {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Accesslevels$Create {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1308,7 +1341,8 @@ export namespace accesscontextmanager_v1beta {
      */
     requestBody?: Schema$AccessLevel;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Delete {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1320,7 +1354,8 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Get {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1341,7 +1376,8 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$List {
+  export interface Params$Resource$Accesspolicies$Accesslevels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1368,7 +1404,8 @@ export namespace accesscontextmanager_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Patch {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1393,15 +1430,7 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Accesspolicies$Serviceperimeters {
-    root: Accesscontextmanager;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1467,7 +1496,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1537,7 +1566,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1600,7 +1629,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServicePerimeter>(parameters, callback);
@@ -1676,7 +1705,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicePerimetersResponse>(
@@ -1752,7 +1781,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1762,7 +1791,8 @@ export namespace accesscontextmanager_v1beta {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Create {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1779,7 +1809,8 @@ export namespace accesscontextmanager_v1beta {
      */
     requestBody?: Schema$ServicePerimeter;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1791,7 +1822,8 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Get {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1803,7 +1835,8 @@ export namespace accesscontextmanager_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$List {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1824,7 +1857,8 @@ export namespace accesscontextmanager_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1850,15 +1884,7 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Operations {
-    root: Accesscontextmanager;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1915,7 +1941,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1925,7 +1951,7 @@ export namespace accesscontextmanager_v1beta {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

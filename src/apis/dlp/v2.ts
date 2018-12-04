@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace dlp_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,26 +100,16 @@ export namespace dlp_v2 {
    * @param {object=} options Options for Dlp
    */
   export class Dlp {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     infoTypes: Resource$Infotypes;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.infoTypes = new Resource$Infotypes(this);
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.infoTypes = new Resource$Infotypes();
+      this.organizations = new Resource$Organizations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -163,6 +206,11 @@ export namespace dlp_v2 {
    * Options defining BigQuery table and row identifiers.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryOptions {
+    /**
+     * References to fields excluded from scanning. This allows you to skip
+     * inspection of entire columns which you know have no findings.
+     */
+    excludedFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
      * References to fields uniquely identifying rows within the table. Nested
      * fields in the format, like `person.birthdate.year`, are allowed.
@@ -415,7 +463,8 @@ export namespace dlp_v2 {
     filesLimitPercent?: number;
     /**
      * List of file type groups to include in the scan. If empty, all files are
-     * scanned and available data format processors are applied.
+     * scanned and available data format processors are applied. In addition,
+     * the binary content of the selected files is always scanned as well.
      */
     fileTypes?: string[];
     sampleMethod?: string;
@@ -861,7 +910,7 @@ export namespace dlp_v2 {
     upperBoundDays?: number;
   }
   /**
-   * Message for a date time object.
+   * Message for a date time object. e.g. 2018-01-01, 5th August.
    */
   export interface Schema$GooglePrivacyDlpV2DateTime {
     /**
@@ -1444,7 +1493,8 @@ export namespace dlp_v2 {
      * Name of the information type. Either a name of your choosing when
      * creating a CustomInfoType, or one of the names listed at
      * https://cloud.google.com/dlp/docs/infotypes-reference when specifying a
-     * built-in type.
+     * built-in type. InfoType names should conform to the pattern
+     * [a-zA-Z0-9_]{1,64}.
      */
     name?: string;
   }
@@ -1739,7 +1789,7 @@ export namespace dlp_v2 {
     displayName?: string;
     /**
      * A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automaticaly being paused. Will
+     * errors may result in the JobTrigger automatically being paused. Will
      * return the last 100 errors. Whenever the JobTrigger is modified this list
      * will be cleared. Output only field.
      */
@@ -1777,7 +1827,7 @@ export namespace dlp_v2 {
     /**
      * Optional message indicating that multiple rows might be associated to a
      * single individual. If the same entity_id is associated to multiple
-     * quasi-identifier tuples over distict rows, we consider the entire
+     * quasi-identifier tuples over distinct rows, we consider the entire
      * collection of tuples as the composite quasi-identifier. This collection
      * is a multiset: the order in which the different tuples appear in the
      * dataset is ignored, but their frequency is taken into account.  Important
@@ -2236,8 +2286,9 @@ export namespace dlp_v2 {
      * derived from the `Finding` object. If appending to an existing table, any
      * columns from the predefined schema that are missing will be added. No
      * columns in the existing table will be deleted.  If unspecified, then all
-     * available columns will be used for a new table, and no changes will be
-     * made to an existing table.
+     * available columns will be used for a new table or an (existing) table
+     * with no schema, and no changes will be made to an existing table that has
+     * a schema.
      */
     outputSchema?: string;
     /**
@@ -2410,6 +2461,9 @@ export namespace dlp_v2 {
    * Message for infoType-dependent details parsed from quote.
    */
   export interface Schema$GooglePrivacyDlpV2QuoteInfo {
+    /**
+     * The date time indicated by the quote.
+     */
     dateTime?: Schema$GooglePrivacyDlpV2DateTime;
   }
   /**
@@ -2946,7 +3000,7 @@ export namespace dlp_v2 {
      */
     fieldTransformations?: Schema$GooglePrivacyDlpV2FieldTransformation[];
     /**
-     * Set if the transformation was limited to a specific info_type.
+     * Set if the transformation was limited to a specific InfoType.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
@@ -3146,7 +3200,7 @@ export namespace dlp_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -3211,15 +3265,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Infotypes {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3284,7 +3330,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
@@ -3296,7 +3342,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Infotypes$List {
+  export interface Params$Resource$Infotypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3317,35 +3363,20 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations {
-    root: Dlp;
     deidentifyTemplates: Resource$Organizations$Deidentifytemplates;
     inspectTemplates: Resource$Organizations$Inspecttemplates;
     storedInfoTypes: Resource$Organizations$Storedinfotypes;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.deidentifyTemplates =
-          new Resource$Organizations$Deidentifytemplates(root);
-      this.inspectTemplates = new Resource$Organizations$Inspecttemplates(root);
-      this.storedInfoTypes = new Resource$Organizations$Storedinfotypes(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Organizations$Deidentifytemplates();
+      this.inspectTemplates = new Resource$Organizations$Inspecttemplates();
+      this.storedInfoTypes = new Resource$Organizations$Storedinfotypes();
     }
   }
 
 
   export class Resource$Organizations$Deidentifytemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3419,7 +3450,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3489,7 +3520,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -3562,7 +3593,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3643,7 +3674,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -3726,7 +3757,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3738,7 +3769,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Deidentifytemplates$Create {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3755,7 +3787,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Delete {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3768,7 +3801,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Get {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3781,7 +3815,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$List {
+  export interface Params$Resource$Organizations$Deidentifytemplates$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3814,7 +3849,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Patch {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3835,15 +3871,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations$Inspecttemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3916,7 +3944,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -3986,7 +4014,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -4058,7 +4086,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4138,7 +4166,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
@@ -4217,7 +4245,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4229,7 +4257,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Inspecttemplates$Create {
+  export interface Params$Resource$Organizations$Inspecttemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4246,7 +4275,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Delete {
+  export interface Params$Resource$Organizations$Inspecttemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4259,7 +4289,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Get {
+  export interface Params$Resource$Organizations$Inspecttemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4272,7 +4303,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$List {
+  export interface Params$Resource$Organizations$Inspecttemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4305,7 +4337,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Patch {
+  export interface Params$Resource$Organizations$Inspecttemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4326,15 +4359,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations$Storedinfotypes {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4406,7 +4431,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -4476,7 +4501,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -4549,7 +4574,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -4630,7 +4655,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
@@ -4711,7 +4736,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -4723,7 +4748,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Storedinfotypes$Create {
+  export interface Params$Resource$Organizations$Storedinfotypes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4740,7 +4766,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Delete {
+  export interface Params$Resource$Organizations$Storedinfotypes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4753,7 +4780,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Get {
+  export interface Params$Resource$Organizations$Storedinfotypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4766,7 +4794,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$List {
+  export interface Params$Resource$Organizations$Storedinfotypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4799,7 +4828,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Storedinfotypes$Patch {
+  export interface Params$Resource$Organizations$Storedinfotypes$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4821,7 +4851,6 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects {
-    root: Dlp;
     content: Resource$Projects$Content;
     deidentifyTemplates: Resource$Projects$Deidentifytemplates;
     dlpJobs: Resource$Projects$Dlpjobs;
@@ -4829,35 +4858,20 @@ export namespace dlp_v2 {
     inspectTemplates: Resource$Projects$Inspecttemplates;
     jobTriggers: Resource$Projects$Jobtriggers;
     storedInfoTypes: Resource$Projects$Storedinfotypes;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.content = new Resource$Projects$Content(root);
-      this.deidentifyTemplates =
-          new Resource$Projects$Deidentifytemplates(root);
-      this.dlpJobs = new Resource$Projects$Dlpjobs(root);
-      this.image = new Resource$Projects$Image(root);
-      this.inspectTemplates = new Resource$Projects$Inspecttemplates(root);
-      this.jobTriggers = new Resource$Projects$Jobtriggers(root);
-      this.storedInfoTypes = new Resource$Projects$Storedinfotypes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.content = new Resource$Projects$Content();
+      this.deidentifyTemplates = new Resource$Projects$Deidentifytemplates();
+      this.dlpJobs = new Resource$Projects$Dlpjobs();
+      this.image = new Resource$Projects$Image();
+      this.inspectTemplates = new Resource$Projects$Inspecttemplates();
+      this.jobTriggers = new Resource$Projects$Jobtriggers();
+      this.storedInfoTypes = new Resource$Projects$Storedinfotypes();
     }
   }
 
 
   export class Resource$Projects$Content {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4931,7 +4945,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
@@ -5013,7 +5027,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
@@ -5092,7 +5106,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
@@ -5104,7 +5118,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Content$Deidentify {
+  export interface Params$Resource$Projects$Content$Deidentify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5120,7 +5135,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Inspect {
+  export interface Params$Resource$Projects$Content$Inspect extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5136,7 +5152,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2InspectContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Reidentify {
+  export interface Params$Resource$Projects$Content$Reidentify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5155,15 +5172,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Deidentifytemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5236,7 +5245,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5305,7 +5314,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5377,7 +5386,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5457,7 +5466,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -5539,7 +5548,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5551,7 +5560,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Deidentifytemplates$Create {
+  export interface Params$Resource$Projects$Deidentifytemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5568,7 +5578,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Delete {
+  export interface Params$Resource$Projects$Deidentifytemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5581,7 +5592,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Get {
+  export interface Params$Resource$Projects$Deidentifytemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5594,7 +5606,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$List {
+  export interface Params$Resource$Projects$Deidentifytemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5627,7 +5640,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Patch {
+  export interface Params$Resource$Projects$Deidentifytemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5648,15 +5662,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Dlpjobs {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5720,7 +5726,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5795,7 +5801,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
@@ -5865,7 +5871,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5930,7 +5936,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
@@ -6014,7 +6020,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
@@ -6026,7 +6032,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Dlpjobs$Cancel {
+  export interface Params$Resource$Projects$Dlpjobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6042,7 +6049,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CancelDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Create {
+  export interface Params$Resource$Projects$Dlpjobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6058,7 +6066,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Delete {
+  export interface Params$Resource$Projects$Dlpjobs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6069,7 +6078,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Get {
+  export interface Params$Resource$Projects$Dlpjobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6080,7 +6090,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$List {
+  export interface Params$Resource$Projects$Dlpjobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6133,15 +6144,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Image {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6218,7 +6221,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
@@ -6230,7 +6233,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Image$Redact {
+  export interface Params$Resource$Projects$Image$Redact extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6249,15 +6253,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Inspecttemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6329,7 +6325,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6398,7 +6394,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -6470,7 +6466,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6550,7 +6546,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
@@ -6629,7 +6625,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6641,7 +6637,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Inspecttemplates$Create {
+  export interface Params$Resource$Projects$Inspecttemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6658,7 +6655,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Delete {
+  export interface Params$Resource$Projects$Inspecttemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6671,7 +6669,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Get {
+  export interface Params$Resource$Projects$Inspecttemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6684,7 +6683,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$List {
+  export interface Params$Resource$Projects$Inspecttemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6717,7 +6717,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Patch {
+  export interface Params$Resource$Projects$Inspecttemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6738,15 +6739,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Jobtriggers {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6814,7 +6807,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -6883,7 +6876,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -6951,7 +6944,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -7030,7 +7023,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
@@ -7105,7 +7098,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -7117,7 +7110,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobtriggers$Create {
+  export interface Params$Resource$Projects$Jobtriggers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7133,7 +7127,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Delete {
+  export interface Params$Resource$Projects$Jobtriggers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7145,7 +7140,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Get {
+  export interface Params$Resource$Projects$Jobtriggers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7157,7 +7153,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$List {
+  export interface Params$Resource$Projects$Jobtriggers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7189,7 +7186,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Patch {
+  export interface Params$Resource$Projects$Jobtriggers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7209,15 +7207,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Storedinfotypes {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7289,7 +7279,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7359,7 +7349,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -7432,7 +7422,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7513,7 +7503,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
@@ -7594,7 +7584,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7606,7 +7596,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Storedinfotypes$Create {
+  export interface Params$Resource$Projects$Storedinfotypes$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7623,7 +7614,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Delete {
+  export interface Params$Resource$Projects$Storedinfotypes$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7636,7 +7628,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Get {
+  export interface Params$Resource$Projects$Storedinfotypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7649,7 +7642,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$List {
+  export interface Params$Resource$Projects$Storedinfotypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7682,7 +7676,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Storedinfotypes$Patch {
+  export interface Params$Resource$Projects$Storedinfotypes$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

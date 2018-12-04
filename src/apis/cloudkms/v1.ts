@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudkms_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +99,12 @@ export namespace cloudkms_v1 {
    * @param {object=} options Options for Cloudkms
    */
   export class Cloudkms {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -206,7 +249,7 @@ export namespace cloudkms_v1 {
      * Labels with user-defined metadata. For more information, see [Labeling
      * Keys](/kms/docs/labeling-keys).
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The resource name for this CryptoKey in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x.
@@ -540,7 +583,7 @@ export namespace cloudkms_v1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -549,7 +592,7 @@ export namespace cloudkms_v1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -687,31 +730,17 @@ export namespace cloudkms_v1 {
 
 
   export class Resource$Projects {
-    root: Cloudkms;
     locations: Resource$Projects$Locations;
-    constructor(root: Cloudkms) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Cloudkms;
     keyRings: Resource$Projects$Locations$Keyrings;
-    constructor(root: Cloudkms) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.keyRings = new Resource$Projects$Locations$Keyrings(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.keyRings = new Resource$Projects$Locations$Keyrings();
     }
 
 
@@ -766,7 +795,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -837,7 +866,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -847,7 +876,8 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -858,7 +888,8 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -883,17 +914,9 @@ export namespace cloudkms_v1 {
   }
 
   export class Resource$Projects$Locations$Keyrings {
-    root: Cloudkms;
     cryptoKeys: Resource$Projects$Locations$Keyrings$Cryptokeys;
-    constructor(root: Cloudkms) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.cryptoKeys =
-          new Resource$Projects$Locations$Keyrings$Cryptokeys(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.cryptoKeys = new Resource$Projects$Locations$Keyrings$Cryptokeys();
     }
 
 
@@ -955,7 +978,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$KeyRing>(parameters, callback);
@@ -1016,7 +1039,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$KeyRing>(parameters, callback);
@@ -1084,7 +1107,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1154,7 +1177,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListKeyRingsResponse>(parameters, callback);
@@ -1223,7 +1246,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1303,7 +1326,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1314,7 +1337,8 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Create {
+  export interface Params$Resource$Projects$Locations$Keyrings$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1336,7 +1360,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$KeyRing;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Get {
+  export interface Params$Resource$Projects$Locations$Keyrings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1347,7 +1372,8 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1359,7 +1385,8 @@ export namespace cloudkms_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$List {
+  export interface Params$Resource$Projects$Locations$Keyrings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1383,7 +1410,8 @@ export namespace cloudkms_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1400,7 +1428,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1419,19 +1448,11 @@ export namespace cloudkms_v1 {
   }
 
   export class Resource$Projects$Locations$Keyrings$Cryptokeys {
-    root: Cloudkms;
     cryptoKeyVersions:
         Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions;
-    constructor(root: Cloudkms) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.cryptoKeyVersions =
-          new Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions(
-              root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions();
     }
 
 
@@ -1497,7 +1518,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -1568,7 +1589,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DecryptResponse>(parameters, callback);
@@ -1639,7 +1660,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EncryptResponse>(parameters, callback);
@@ -1704,7 +1725,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -1776,7 +1797,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1849,7 +1870,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCryptoKeysResponse>(parameters, callback);
@@ -1919,7 +1940,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -1992,7 +2013,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2075,7 +2096,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2152,7 +2173,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -2162,7 +2183,8 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2183,7 +2205,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKey;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2200,7 +2223,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DecryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2218,7 +2242,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$EncryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2229,7 +2254,8 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2241,7 +2267,8 @@ export namespace cloudkms_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2269,7 +2296,8 @@ export namespace cloudkms_v1 {
      */
     versionView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2290,7 +2318,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKey;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2307,7 +2336,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2324,7 +2354,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2343,15 +2374,7 @@ export namespace cloudkms_v1 {
 
   export class
       Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
-    root: Cloudkms;
-    constructor(root: Cloudkms) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2423,7 +2446,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AsymmetricDecryptResponse>(
@@ -2502,7 +2525,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AsymmetricSignResponse>(parameters, callback);
@@ -2577,7 +2600,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -2656,7 +2679,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -2724,7 +2747,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -2798,7 +2821,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublicKey>(parameters, callback);
@@ -2879,7 +2902,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
@@ -2957,7 +2980,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -3033,7 +3056,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -3043,7 +3066,8 @@ export namespace cloudkms_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3060,7 +3084,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$AsymmetricDecryptRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3076,7 +3101,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$AsymmetricSignRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3093,7 +3119,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKeyVersion;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3109,7 +3136,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DestroyCryptoKeyVersionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3120,7 +3148,8 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3131,7 +3160,8 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3160,7 +3190,8 @@ export namespace cloudkms_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3181,7 +3212,8 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$CryptoKeyVersion;
   }
-  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore {
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

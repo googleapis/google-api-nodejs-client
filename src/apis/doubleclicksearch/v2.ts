@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace doubleclicksearch_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,26 +82,16 @@ export namespace doubleclicksearch_v2 {
    * @param {object=} options Options for Doubleclicksearch
    */
   export class Doubleclicksearch {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     conversion: Resource$Conversion;
     reports: Resource$Reports;
     savedColumns: Resource$Savedcolumns;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.conversion = new Resource$Conversion(this);
-      this.reports = new Resource$Reports(this);
-      this.savedColumns = new Resource$Savedcolumns(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.conversion = new Resource$Conversion();
+      this.reports = new Resource$Reports();
+      this.savedColumns = new Resource$Savedcolumns();
     }
   }
 
@@ -314,7 +340,7 @@ export namespace doubleclicksearch_v2 {
      * Asynchronous report only. Contains a list of generated report files once
      * the report has succesfully completed.
      */
-    files?: any[];
+    files?: Array<{byteCount?: string; url?: string;}>;
     /**
      * Asynchronous report only. Id of the report.
      */
@@ -445,7 +471,10 @@ export namespace doubleclicksearch_v2 {
      * A list of filters to be applied to the report. The maximum number of
      * filters per request is 300.
      */
-    filters?: any[];
+    filters?: Array<{
+      column?: Schema$ReportApiColumnSpec; operator?: string;
+      values?: any[];
+    }>;
     /**
      * Determines if removed entities should be included in the report. Defaults
      * to false. Deprecated, please use includeRemovedEntities instead.
@@ -467,13 +496,21 @@ export namespace doubleclicksearch_v2 {
      * sorting to be performed on the report rows. The maximum number of
      * orderings per request is 300.
      */
-    orderBy?: any[];
+    orderBy?: Array<{column?: Schema$ReportApiColumnSpec; sortOrder?: string;}>;
     /**
      * The reportScope is a set of IDs that are used to determine which subset
      * of entities will be returned in the report. The full lineage of IDs from
      * the lowest scoped level desired up through agency is required.
      */
-    reportScope?: any;
+    reportScope?: {
+      adGroupId?: string;
+      adId?: string;
+      advertiserId?: string;
+      agencyId?: string;
+      campaignId?: string;
+      engineAccountId?: string;
+      keywordId?: string;
+    };
     /**
      * Determines the type of rows that are returned in the report. For example,
      * if you specify reportType: keyword, each row in the report will contain
@@ -482,7 +519,7 @@ export namespace doubleclicksearch_v2 {
      */
     reportType?: string;
     /**
-     * Synchronous report only. The maxinum number of rows to return; additional
+     * Synchronous report only. The maximum number of rows to return; additional
      * rows are dropped. Acceptable values are 0 to 10000, inclusive. Defaults
      * to 10000.
      */
@@ -504,7 +541,12 @@ export namespace doubleclicksearch_v2 {
      * If metrics are requested in a report, this argument will be used to
      * restrict the metrics to a specific time range.
      */
-    timeRange?: any;
+    timeRange?: {
+      changedAttributesSinceTimestamp?: string;
+      changedMetricsSinceTimestamp?: string;
+      endDate?: string;
+      startDate?: string;
+    };
     /**
      * If true, the report would only be created if all the requested stat data
      * are sourced from a single timezone. Defaults to false.
@@ -571,15 +613,7 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Conversion {
-    root: Doubleclicksearch;
-    constructor(root: Doubleclicksearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -650,7 +684,7 @@ export namespace doubleclicksearch_v2 {
           'startDate', 'startRow'
         ],
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -716,7 +750,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -792,7 +826,7 @@ export namespace doubleclicksearch_v2 {
           'startDate', 'startRow'
         ],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -858,7 +892,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -933,7 +967,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
@@ -944,7 +978,7 @@ export namespace doubleclicksearch_v2 {
     }
   }
 
-  export interface Params$Resource$Conversion$Get {
+  export interface Params$Resource$Conversion$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -997,7 +1031,8 @@ export namespace doubleclicksearch_v2 {
      */
     startRow?: number;
   }
-  export interface Params$Resource$Conversion$Insert {
+  export interface Params$Resource$Conversion$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1009,7 +1044,7 @@ export namespace doubleclicksearch_v2 {
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Patch {
+  export interface Params$Resource$Conversion$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1051,7 +1086,8 @@ export namespace doubleclicksearch_v2 {
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Update {
+  export interface Params$Resource$Conversion$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1063,7 +1099,8 @@ export namespace doubleclicksearch_v2 {
      */
     requestBody?: Schema$ConversionList;
   }
-  export interface Params$Resource$Conversion$Updateavailability {
+  export interface Params$Resource$Conversion$Updateavailability extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1078,15 +1115,7 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Reports {
-    root: Doubleclicksearch;
-    constructor(root: Doubleclicksearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1144,7 +1173,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1205,7 +1234,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['reportId'],
         pathParams: ['reportId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1271,7 +1300,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['reportId', 'reportFragment'],
         pathParams: ['reportFragment', 'reportId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1335,7 +1364,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1345,7 +1374,7 @@ export namespace doubleclicksearch_v2 {
     }
   }
 
-  export interface Params$Resource$Reports$Generate {
+  export interface Params$Resource$Reports$Generate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1357,7 +1386,7 @@ export namespace doubleclicksearch_v2 {
      */
     requestBody?: Schema$ReportRequest;
   }
-  export interface Params$Resource$Reports$Get {
+  export interface Params$Resource$Reports$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1368,7 +1397,7 @@ export namespace doubleclicksearch_v2 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Getfile {
+  export interface Params$Resource$Reports$Getfile extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1383,7 +1412,7 @@ export namespace doubleclicksearch_v2 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Request {
+  export interface Params$Resource$Reports$Request extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1398,15 +1427,7 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Savedcolumns {
-    root: Doubleclicksearch;
-    constructor(root: Doubleclicksearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1468,7 +1489,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['agencyId', 'advertiserId'],
         pathParams: ['advertiserId', 'agencyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedColumnList>(parameters, callback);
@@ -1478,7 +1499,8 @@ export namespace doubleclicksearch_v2 {
     }
   }
 
-  export interface Params$Resource$Savedcolumns$List {
+  export interface Params$Resource$Savedcolumns$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

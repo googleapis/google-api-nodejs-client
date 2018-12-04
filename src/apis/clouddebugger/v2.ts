@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace clouddebugger_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,24 +99,14 @@ export namespace clouddebugger_v2 {
    * @param {object=} options Options for Clouddebugger
    */
   export class Clouddebugger {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     controller: Resource$Controller;
     debugger: Resource$Debugger;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.controller = new Resource$Controller(this);
-      this.debugger = new Resource$Debugger(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.controller = new Resource$Controller();
+      this.debugger = new Resource$Debugger();
     }
   }
 
@@ -133,7 +176,7 @@ export namespace clouddebugger_v2 {
      * A set of custom breakpoint properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Breakpoint source location.
      */
@@ -279,7 +322,7 @@ export namespace clouddebugger_v2 {
      * A set of custom debuggee properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Project the debuggee is associated with. Use project number or id when
      * registering a Google Cloud Platform project.
@@ -297,10 +340,10 @@ export namespace clouddebugger_v2 {
      */
     status?: Schema$StatusMessage;
     /**
-     * Uniquifier to further distiguish the application. It is possible that
+     * Uniquifier to further distinguish the application. It is possible that
      * different applications might have identical values in the debuggee
      * message, thus, incorrectly identified as a single application by the
-     * Controller service. This field adds salt to further distiguish the
+     * Controller service. This field adds salt to further distinguish the
      * application. Agents should consider seeding this field with value that
      * identifies the code, binary, configuration and environment.
      */
@@ -326,7 +369,7 @@ export namespace clouddebugger_v2 {
     /**
      * Labels with user defined metadata.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   /**
    * Represents a message with parameters.
@@ -476,7 +519,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$RegisterDebuggeeResponse {
     /**
-     * Debuggee resource. The field `id` is guranteed to be set (in addition to
+     * Debuggee resource. The field `id` is guaranteed to be set (in addition to
      * the echoed fields). If the field `is_disabled` is set to `true`, the
      * agent should disable itself by removing all breakpoints and detaching
      * from the application. It should however continue to poll
@@ -703,31 +746,17 @@ export namespace clouddebugger_v2 {
 
 
   export class Resource$Controller {
-    root: Clouddebugger;
     debuggees: Resource$Controller$Debuggees;
-    constructor(root: Clouddebugger) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.debuggees = new Resource$Controller$Debuggees(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.debuggees = new Resource$Controller$Debuggees();
     }
   }
 
 
   export class Resource$Controller$Debuggees {
-    root: Clouddebugger;
     breakpoints: Resource$Controller$Debuggees$Breakpoints;
-    constructor(root: Clouddebugger) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.breakpoints = new Resource$Controller$Debuggees$Breakpoints(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.breakpoints = new Resource$Controller$Debuggees$Breakpoints();
     }
 
 
@@ -850,7 +879,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegisterDebuggeeResponse>(parameters, callback);
@@ -860,7 +889,8 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Controller$Debuggees$Register {
+  export interface Params$Resource$Controller$Debuggees$Register extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -874,15 +904,7 @@ export namespace clouddebugger_v2 {
   }
 
   export class Resource$Controller$Debuggees$Breakpoints {
-    root: Clouddebugger;
-    constructor(root: Clouddebugger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1012,7 +1034,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListActiveBreakpointsResponse>(
@@ -1158,7 +1180,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId', 'id'],
         pathParams: ['debuggeeId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
@@ -1170,7 +1192,8 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Controller$Debuggees$Breakpoints$List {
+  export interface Params$Resource$Controller$Debuggees$Breakpoints$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1196,7 +1219,8 @@ export namespace clouddebugger_v2 {
      */
     waitToken?: string;
   }
-  export interface Params$Resource$Controller$Debuggees$Breakpoints$Update {
+  export interface Params$Resource$Controller$Debuggees$Breakpoints$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1220,31 +1244,17 @@ export namespace clouddebugger_v2 {
 
 
   export class Resource$Debugger {
-    root: Clouddebugger;
     debuggees: Resource$Debugger$Debuggees;
-    constructor(root: Clouddebugger) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.debuggees = new Resource$Debugger$Debuggees(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.debuggees = new Resource$Debugger$Debuggees();
     }
   }
 
 
   export class Resource$Debugger$Debuggees {
-    root: Clouddebugger;
     breakpoints: Resource$Debugger$Debuggees$Breakpoints;
-    constructor(root: Clouddebugger) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.breakpoints = new Resource$Debugger$Debuggees$Breakpoints(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.breakpoints = new Resource$Debugger$Debuggees$Breakpoints();
     }
 
 
@@ -1357,7 +1367,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDebuggeesResponse>(parameters, callback);
@@ -1367,7 +1377,8 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Debugger$Debuggees$List {
+  export interface Params$Resource$Debugger$Debuggees$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1390,15 +1401,7 @@ export namespace clouddebugger_v2 {
   }
 
   export class Resource$Debugger$Debuggees$Breakpoints {
-    root: Clouddebugger;
-    constructor(root: Clouddebugger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1514,7 +1517,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1637,7 +1640,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetBreakpointResponse>(parameters, callback);
@@ -1763,7 +1766,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBreakpointsResponse>(parameters, callback);
@@ -1886,7 +1889,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SetBreakpointResponse>(parameters, callback);
@@ -1896,7 +1899,8 @@ export namespace clouddebugger_v2 {
     }
   }
 
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1916,7 +1920,8 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1936,7 +1941,8 @@ export namespace clouddebugger_v2 {
      */
     debuggeeId?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$List {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1979,7 +1985,8 @@ export namespace clouddebugger_v2 {
      */
     waitToken?: string;
   }
-  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set {
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

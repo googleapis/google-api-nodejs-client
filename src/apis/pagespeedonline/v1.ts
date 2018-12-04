@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace pagespeedonline_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,22 +82,12 @@ export namespace pagespeedonline_v1 {
    * @param {object=} options Options for Pagespeedonline
    */
   export class Pagespeedonline {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     pagespeedapi: Resource$Pagespeedapi;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.pagespeedapi = new Resource$Pagespeedapi(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.pagespeedapi = new Resource$Pagespeedapi();
     }
   }
 
@@ -74,7 +100,31 @@ export namespace pagespeedonline_v1 {
      * Localized PageSpeed results. Contains a ruleResults entry for each
      * PageSpeed rule instantiated and run by the server.
      */
-    formattedResults?: any;
+    formattedResults?: {
+      locale?: string;
+      ruleResults?: {
+        [key: string]: {
+          localizedRuleName?: string;
+          ruleImpact?: number;
+          urlBlocks?: Array<{
+            header?: {
+              args?: Array<{type?: string; value?: string;}>;
+              format?: string;
+            };
+            urls?: Array<{
+              details?: Array<{
+                args?: Array<{type?: string; value?: string;}>;
+                format?: string;
+              }>;
+              result?: {
+                args?: Array<{type?: string; value?: string;}>;
+                format?: string;
+              };
+            }>;
+          }>;
+        };
+      };
+    };
     /**
      * Canonicalized and final URL for the document, after following page
      * redirects (if any).
@@ -93,7 +143,21 @@ export namespace pagespeedonline_v1 {
      * Summary statistics for the page, such as number of JavaScript bytes,
      * number of HTML bytes, etc.
      */
-    pageStats?: any;
+    pageStats?: {
+      cssResponseBytes?: string;
+      flashResponseBytes?: string;
+      htmlResponseBytes?: string;
+      imageResponseBytes?: string;
+      javascriptResponseBytes?: string;
+      numberCssResources?: number;
+      numberHosts?: number;
+      numberJsResources?: number;
+      numberResources?: number;
+      numberStaticResources?: number;
+      otherResponseBytes?: string;
+      textResponseBytes?: string;
+      totalRequestBytes?: string;
+    };
     /**
      * Response code for the document. 200 indicates a normal page load. 4xx/5xx
      * indicates an error.
@@ -108,7 +172,8 @@ export namespace pagespeedonline_v1 {
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
-    screenshot?: any;
+    screenshot?:
+        {data?: string; height?: number; mime_type?: string; width?: number;};
     /**
      * Title of the page, as displayed in the browser&#39;s title bar.
      */
@@ -116,20 +181,12 @@ export namespace pagespeedonline_v1 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: any;
+    version?: {major?: number; minor?: number;};
   }
 
 
   export class Resource$Pagespeedapi {
-    root: Pagespeedonline;
-    constructor(root: Pagespeedonline) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -195,7 +252,7 @@ export namespace pagespeedonline_v1 {
         params,
         requiredParams: ['url'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Result>(parameters, callback);
@@ -205,7 +262,8 @@ export namespace pagespeedonline_v1 {
     }
   }
 
-  export interface Params$Resource$Pagespeedapi$Runpagespeed {
+  export interface Params$Resource$Pagespeedapi$Runpagespeed extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -223,7 +281,7 @@ export namespace pagespeedonline_v1 {
     /**
      * A PageSpeed rule to run; if none are given, all rules are run
      */
-    rule?: string;
+    rule?: string[];
     /**
      * Indicates if binary data containing a screenshot should be included
      */

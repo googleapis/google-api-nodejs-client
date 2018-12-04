@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace ml_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -45,22 +98,12 @@ export namespace ml_v1 {
    * @param {object=} options Options for Ml
    */
   export class Ml {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -97,7 +140,7 @@ export namespace ml_v1 {
      * Application specific response metadata. Must be set in the first response
      * for streaming APIs.
      */
-    extensions?: any[];
+    extensions?: Array<{[key: string]: any;}>;
   }
   /**
    * An observed value of a metric.
@@ -205,7 +248,7 @@ export namespace ml_v1 {
     /**
      * The hyperparameters given to this trial.
      */
-    hyperparameters?: any;
+    hyperparameters?: {[key: string]: string;};
     /**
      * True if the trial is stopped early.
      */
@@ -308,7 +351,7 @@ export namespace ml_v1 {
      * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
      * labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Input parameters to create a prediction job.
      */
@@ -441,7 +484,7 @@ export namespace ml_v1 {
      * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
      * labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The name specified for the model when it was created.  The
      * model name must be unique within the project it is created in.
@@ -485,7 +528,7 @@ export namespace ml_v1 {
      * The user labels, inherited from the model or the model version being
      * operated on.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Contains the name of the model associated with the operation.
      */
@@ -909,7 +952,7 @@ export namespace ml_v1 {
      * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
      * labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The time the version was last used for prediction.
      */
@@ -1164,7 +1207,7 @@ export namespace ml_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1180,7 +1223,7 @@ export namespace ml_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -1235,7 +1278,7 @@ export namespace ml_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1275,22 +1318,15 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects {
-    root: Ml;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
     models: Resource$Projects$Models;
     operations: Resource$Projects$Operations;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.jobs = new Resource$Projects$Jobs(root);
-      this.locations = new Resource$Projects$Locations(root);
-      this.models = new Resource$Projects$Models(root);
-      this.operations = new Resource$Projects$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.jobs = new Resource$Projects$Jobs();
+      this.locations = new Resource$Projects$Locations();
+      this.models = new Resource$Projects$Models();
+      this.operations = new Resource$Projects$Operations();
     }
 
 
@@ -1364,7 +1400,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
@@ -1435,7 +1471,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback);
@@ -1445,7 +1481,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getconfig {
+  export interface Params$Resource$Projects$Getconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1456,7 +1493,7 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Predict {
+  export interface Params$Resource$Projects$Predict extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1475,15 +1512,7 @@ export namespace ml_v1 {
   }
 
   export class Resource$Projects$Jobs {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1545,7 +1574,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -1614,7 +1643,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -1677,7 +1706,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -1746,7 +1775,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -1824,7 +1853,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
@@ -1896,7 +1925,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -1966,7 +1995,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2044,7 +2073,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -2056,7 +2085,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Cancel {
+  export interface Params$Resource$Projects$Jobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2072,7 +2102,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Create {
+  export interface Params$Resource$Projects$Jobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2088,7 +2119,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Job;
   }
-  export interface Params$Resource$Projects$Jobs$Get {
+  export interface Params$Resource$Projects$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2099,7 +2131,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Getiampolicy {
+  export interface Params$Resource$Projects$Jobs$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2111,7 +2144,8 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List {
+  export interface Params$Resource$Projects$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2146,7 +2180,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Patch {
+  export interface Params$Resource$Projects$Jobs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2176,7 +2211,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Job;
   }
-  export interface Params$Resource$Projects$Jobs$Setiampolicy {
+  export interface Params$Resource$Projects$Jobs$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2193,7 +2229,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Testiampermissions {
+  export interface Params$Resource$Projects$Jobs$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2213,15 +2250,7 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Locations {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2279,7 +2308,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Location>(
@@ -2356,7 +2385,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
@@ -2368,7 +2397,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2379,7 +2409,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2407,16 +2438,9 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Models {
-    root: Ml;
     versions: Resource$Projects$Models$Versions;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.versions = new Resource$Projects$Models$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.versions = new Resource$Projects$Models$Versions();
     }
 
 
@@ -2482,7 +2506,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
@@ -2555,7 +2579,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -2622,7 +2646,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
@@ -2691,7 +2715,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2772,7 +2796,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
@@ -2848,7 +2872,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -2920,7 +2944,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2998,7 +3022,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -3010,7 +3034,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Create {
+  export interface Params$Resource$Projects$Models$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3026,7 +3051,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Delete {
+  export interface Params$Resource$Projects$Models$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3037,7 +3063,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Get {
+  export interface Params$Resource$Projects$Models$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3048,7 +3075,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Getiampolicy {
+  export interface Params$Resource$Projects$Models$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3060,7 +3088,8 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Models$List {
+  export interface Params$Resource$Projects$Models$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3088,7 +3117,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Patch {
+  export interface Params$Resource$Projects$Models$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3115,7 +3145,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Setiampolicy {
+  export interface Params$Resource$Projects$Models$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3132,7 +3163,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Models$Testiampermissions {
+  export interface Params$Resource$Projects$Models$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3151,15 +3183,7 @@ export namespace ml_v1 {
   }
 
   export class Resource$Projects$Models$Versions {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3231,7 +3255,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3307,7 +3331,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3376,7 +3400,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
@@ -3461,7 +3485,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
@@ -3537,7 +3561,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3613,7 +3637,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
@@ -3623,7 +3647,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Versions$Create {
+  export interface Params$Resource$Projects$Models$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3639,7 +3664,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Delete {
+  export interface Params$Resource$Projects$Models$Versions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3652,7 +3678,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Get {
+  export interface Params$Resource$Projects$Models$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3663,7 +3690,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$List {
+  export interface Params$Resource$Projects$Models$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3691,7 +3719,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Patch {
+  export interface Params$Resource$Projects$Models$Versions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3717,7 +3746,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Setdefault {
+  export interface Params$Resource$Projects$Models$Versions$Setdefault extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3739,15 +3769,7 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Operations {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3816,7 +3838,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -3886,7 +3908,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -3955,7 +3977,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -4041,7 +4063,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
@@ -4053,7 +4075,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel {
+  export interface Params$Resource$Projects$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4064,7 +4087,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Delete {
+  export interface Params$Resource$Projects$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4075,7 +4099,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get {
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4086,7 +4111,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List {
+  export interface Params$Resource$Projects$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

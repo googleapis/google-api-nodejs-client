@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace iam_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,10 +100,6 @@ export namespace iam_v1 {
    * @param {object=} options Options for Iam
    */
   export class Iam {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     iamPolicies: Resource$Iampolicies;
     organizations: Resource$Organizations;
     permissions: Resource$Permissions;
@@ -58,19 +107,13 @@ export namespace iam_v1 {
     roles: Resource$Roles;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.iamPolicies = new Resource$Iampolicies(this);
-      this.organizations = new Resource$Organizations(this);
-      this.permissions = new Resource$Permissions(this);
-      this.projects = new Resource$Projects(this);
-      this.roles = new Resource$Roles(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.iamPolicies = new Resource$Iampolicies();
+      this.organizations = new Resource$Organizations();
+      this.permissions = new Resource$Permissions();
+      this.projects = new Resource$Projects();
+      this.roles = new Resource$Roles();
     }
   }
 
@@ -311,7 +354,7 @@ export namespace iam_v1 {
      * field is non-operational and it will not be used during the lint
      * operation.
      */
-    context?: any;
+    context?: {[key: string]: any;};
     /**
      * The full resource name of the policy this lint request is about.  The
      * name follows the Google Cloud Platform (GCP) resource format. For
@@ -856,15 +899,7 @@ export namespace iam_v1 {
 
 
   export class Resource$Iampolicies {
-    root: Iam;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -940,7 +975,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LintPolicyResponse>(parameters, callback);
@@ -1014,7 +1049,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryAuditableServicesResponse>(
@@ -1026,7 +1061,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Iampolicies$Lintpolicy {
+  export interface Params$Resource$Iampolicies$Lintpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1038,7 +1074,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$LintPolicyRequest;
   }
-  export interface Params$Resource$Iampolicies$Queryauditableservices {
+  export interface Params$Resource$Iampolicies$Queryauditableservices extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1053,30 +1090,15 @@ export namespace iam_v1 {
 
 
   export class Resource$Organizations {
-    root: Iam;
     roles: Resource$Organizations$Roles;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.roles = new Resource$Organizations$Roles(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.roles = new Resource$Organizations$Roles();
     }
   }
 
 
   export class Resource$Organizations$Roles {
-    root: Iam;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1136,7 +1158,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1207,7 +1229,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1268,7 +1290,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1339,7 +1361,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -1406,7 +1428,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1473,7 +1495,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1483,7 +1505,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Roles$Create {
+  export interface Params$Resource$Organizations$Roles$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1500,7 +1523,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Organizations$Roles$Delete {
+  export interface Params$Resource$Organizations$Roles$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1517,7 +1541,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Get {
+  export interface Params$Resource$Organizations$Roles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1530,7 +1555,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Roles$List {
+  export interface Params$Resource$Organizations$Roles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1559,7 +1585,8 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Organizations$Roles$Patch {
+  export interface Params$Resource$Organizations$Roles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1581,7 +1608,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Organizations$Roles$Undelete {
+  export interface Params$Resource$Organizations$Roles$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1603,15 +1631,7 @@ export namespace iam_v1 {
 
 
   export class Resource$Permissions {
-    root: Iam;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1682,7 +1702,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryTestablePermissionsResponse>(
@@ -1694,7 +1714,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Permissions$Querytestablepermissions {
+  export interface Params$Resource$Permissions$Querytestablepermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1709,32 +1730,17 @@ export namespace iam_v1 {
 
 
   export class Resource$Projects {
-    root: Iam;
     roles: Resource$Projects$Roles;
     serviceAccounts: Resource$Projects$Serviceaccounts;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.roles = new Resource$Projects$Roles(root);
-      this.serviceAccounts = new Resource$Projects$Serviceaccounts(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.roles = new Resource$Projects$Roles();
+      this.serviceAccounts = new Resource$Projects$Serviceaccounts();
     }
   }
 
 
   export class Resource$Projects$Roles {
-    root: Iam;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1794,7 +1800,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1865,7 +1871,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1926,7 +1932,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1996,7 +2002,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -2063,7 +2069,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -2130,7 +2136,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -2140,7 +2146,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Roles$Create {
+  export interface Params$Resource$Projects$Roles$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2157,7 +2164,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateRoleRequest;
   }
-  export interface Params$Resource$Projects$Roles$Delete {
+  export interface Params$Resource$Projects$Roles$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2174,7 +2182,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$Get {
+  export interface Params$Resource$Projects$Roles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2187,7 +2196,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Roles$List {
+  export interface Params$Resource$Projects$Roles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2216,7 +2226,8 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Roles$Patch {
+  export interface Params$Resource$Projects$Roles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2238,7 +2249,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$Role;
   }
-  export interface Params$Resource$Projects$Roles$Undelete {
+  export interface Params$Resource$Projects$Roles$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2259,16 +2271,9 @@ export namespace iam_v1 {
 
 
   export class Resource$Projects$Serviceaccounts {
-    root: Iam;
     keys: Resource$Projects$Serviceaccounts$Keys;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.keys = new Resource$Projects$Serviceaccounts$Keys(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.keys = new Resource$Projects$Serviceaccounts$Keys();
     }
 
 
@@ -2330,7 +2335,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2395,7 +2400,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2457,7 +2462,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2524,7 +2529,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2598,7 +2603,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountsResponse>(
@@ -2667,7 +2672,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2735,7 +2740,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
@@ -2806,7 +2811,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
@@ -2883,7 +2888,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2952,7 +2957,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2962,7 +2967,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Create {
+  export interface Params$Resource$Projects$Serviceaccounts$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2979,7 +2985,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Delete {
+  export interface Params$Resource$Projects$Serviceaccounts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2994,7 +3001,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Get {
+  export interface Params$Resource$Projects$Serviceaccounts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3009,7 +3017,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy {
+  export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3021,7 +3030,8 @@ export namespace iam_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$List {
+  export interface Params$Resource$Projects$Serviceaccounts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3044,7 +3054,8 @@ export namespace iam_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy {
+  export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3061,7 +3072,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signblob {
+  export interface Params$Resource$Projects$Serviceaccounts$Signblob extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3081,7 +3093,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SignBlobRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Signjwt {
+  export interface Params$Resource$Projects$Serviceaccounts$Signjwt extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3101,7 +3114,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$SignJwtRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions {
+  export interface Params$Resource$Projects$Serviceaccounts$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3118,7 +3132,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Update {
+  export interface Params$Resource$Projects$Serviceaccounts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3141,15 +3156,7 @@ export namespace iam_v1 {
   }
 
   export class Resource$Projects$Serviceaccounts$Keys {
-    root: Iam;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3209,7 +3216,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -3274,7 +3281,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3337,7 +3344,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -3409,7 +3416,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountKeysResponse>(
@@ -3421,7 +3428,8 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3441,7 +3449,8 @@ export namespace iam_v1 {
      */
     requestBody?: Schema$CreateServiceAccountKeyRequest;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3456,7 +3465,8 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3476,7 +3486,8 @@ export namespace iam_v1 {
      */
     publicKeyType?: string;
   }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$List {
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3487,7 +3498,7 @@ export namespace iam_v1 {
      * Duplicate key types are not allowed. If no key type is provided, all keys
      * are returned.
      */
-    keyTypes?: string;
+    keyTypes?: string[];
     /**
      * The resource name of the service account in the following format:
      * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a
@@ -3501,15 +3512,7 @@ export namespace iam_v1 {
 
 
   export class Resource$Roles {
-    root: Iam;
-    constructor(root: Iam) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3562,7 +3565,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -3630,7 +3633,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -3705,7 +3708,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryGrantableRolesResponse>(
@@ -3716,7 +3719,7 @@ export namespace iam_v1 {
     }
   }
 
-  export interface Params$Resource$Roles$Get {
+  export interface Params$Resource$Roles$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3729,7 +3732,7 @@ export namespace iam_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Roles$List {
+  export interface Params$Resource$Roles$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3758,7 +3761,8 @@ export namespace iam_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Roles$Querygrantableroles {
+  export interface Params$Resource$Roles$Querygrantableroles extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

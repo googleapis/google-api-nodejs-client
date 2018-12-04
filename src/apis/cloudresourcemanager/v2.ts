@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -29,11 +29,64 @@ export namespace cloudresourcemanager_v2 {
     version: 'v2';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Resource Manager API
    *
-   * The Google Cloud Resource Manager API provides methods for creating,
-   * reading, and updating project metadata.
+   * Creates, reads, and updates metadata for Google Cloud Platform resource
+   * containers.
    *
    * @example
    * const {google} = require('googleapis');
@@ -46,24 +99,14 @@ export namespace cloudresourcemanager_v2 {
    * @param {object=} options Options for Cloudresourcemanager
    */
   export class Cloudresourcemanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     folders: Resource$Folders;
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.folders = new Resource$Folders(this);
-      this.operations = new Resource$Operations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.folders = new Resource$Folders();
+      this.operations = new Resource$Operations();
     }
   }
 
@@ -302,7 +345,7 @@ export namespace cloudresourcemanager_v2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -318,7 +361,7 @@ export namespace cloudresourcemanager_v2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -500,7 +543,7 @@ export namespace cloudresourcemanager_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -537,15 +580,7 @@ export namespace cloudresourcemanager_v2 {
 
 
   export class Resource$Folders {
-    root: Cloudresourcemanager;
-    constructor(root: Cloudresourcemanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -621,7 +656,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -690,7 +725,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -754,7 +789,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -826,7 +861,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -899,7 +934,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -977,7 +1012,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1053,7 +1088,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1124,7 +1159,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchFoldersResponse>(parameters, callback);
@@ -1196,7 +1231,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1274,7 +1309,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1348,7 +1383,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1358,7 +1393,7 @@ export namespace cloudresourcemanager_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Create {
+  export interface Params$Resource$Folders$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1375,7 +1410,7 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$Folder;
   }
-  export interface Params$Resource$Folders$Delete {
+  export interface Params$Resource$Folders$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1387,7 +1422,7 @@ export namespace cloudresourcemanager_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Get {
+  export interface Params$Resource$Folders$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1399,7 +1434,8 @@ export namespace cloudresourcemanager_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getiampolicy {
+  export interface Params$Resource$Folders$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1416,7 +1452,7 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Folders$List {
+  export interface Params$Resource$Folders$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1446,7 +1482,7 @@ export namespace cloudresourcemanager_v2 {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Folders$Move {
+  export interface Params$Resource$Folders$Move extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1463,7 +1499,7 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$MoveFolderRequest;
   }
-  export interface Params$Resource$Folders$Patch {
+  export interface Params$Resource$Folders$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1484,7 +1520,7 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$Folder;
   }
-  export interface Params$Resource$Folders$Search {
+  export interface Params$Resource$Folders$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1496,7 +1532,8 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$SearchFoldersRequest;
   }
-  export interface Params$Resource$Folders$Setiampolicy {
+  export interface Params$Resource$Folders$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1513,7 +1550,8 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Folders$Testiampermissions {
+  export interface Params$Resource$Folders$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1530,7 +1568,7 @@ export namespace cloudresourcemanager_v2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Folders$Undelete {
+  export interface Params$Resource$Folders$Undelete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1550,15 +1588,7 @@ export namespace cloudresourcemanager_v2 {
 
 
   export class Resource$Operations {
-    root: Cloudresourcemanager;
-    constructor(root: Cloudresourcemanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1615,7 +1645,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1625,7 +1655,7 @@ export namespace cloudresourcemanager_v2 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

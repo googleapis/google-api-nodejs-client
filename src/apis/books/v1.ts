@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace books_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,10 +81,6 @@ export namespace books_v1 {
    * @param {object=} options Options for Books
    */
   export class Books {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     bookshelves: Resource$Bookshelves;
     cloudloading: Resource$Cloudloading;
     dictionary: Resource$Dictionary;
@@ -64,27 +96,21 @@ export namespace books_v1 {
     volumes: Resource$Volumes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.bookshelves = new Resource$Bookshelves(this);
-      this.cloudloading = new Resource$Cloudloading(this);
-      this.dictionary = new Resource$Dictionary(this);
-      this.familysharing = new Resource$Familysharing(this);
-      this.layers = new Resource$Layers(this);
-      this.myconfig = new Resource$Myconfig(this);
-      this.mylibrary = new Resource$Mylibrary(this);
-      this.notification = new Resource$Notification(this);
-      this.onboarding = new Resource$Onboarding(this);
-      this.personalizedstream = new Resource$Personalizedstream(this);
-      this.promooffer = new Resource$Promooffer(this);
-      this.series = new Resource$Series(this);
-      this.volumes = new Resource$Volumes(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.bookshelves = new Resource$Bookshelves();
+      this.cloudloading = new Resource$Cloudloading();
+      this.dictionary = new Resource$Dictionary();
+      this.familysharing = new Resource$Familysharing();
+      this.layers = new Resource$Layers();
+      this.myconfig = new Resource$Myconfig();
+      this.mylibrary = new Resource$Mylibrary();
+      this.notification = new Resource$Notification();
+      this.onboarding = new Resource$Onboarding();
+      this.personalizedstream = new Resource$Personalizedstream();
+      this.promooffer = new Resource$Promooffer();
+      this.series = new Resource$Series();
+      this.volumes = new Resource$Volumes();
     }
   }
 
@@ -102,7 +128,13 @@ export namespace books_v1 {
     /**
      * Selection ranges sent from the client.
      */
-    clientVersionRanges?: any;
+    clientVersionRanges?: {
+      cfiRange?: Schema$BooksAnnotationsRange;
+      contentVersion?: string;
+      gbImageRange?: Schema$BooksAnnotationsRange;
+      gbTextRange?: Schema$BooksAnnotationsRange;
+      imageCfiRange?: Schema$BooksAnnotationsRange;
+    };
     /**
      * Timestamp for the created time of this annotation.
      */
@@ -110,7 +142,13 @@ export namespace books_v1 {
     /**
      * Selection ranges for the most recent content version.
      */
-    currentVersionRanges?: any;
+    currentVersionRanges?: {
+      cfiRange?: Schema$BooksAnnotationsRange;
+      contentVersion?: string;
+      gbImageRange?: Schema$BooksAnnotationsRange;
+      gbTextRange?: Schema$BooksAnnotationsRange;
+      imageCfiRange?: Schema$BooksAnnotationsRange;
+    };
     /**
      * User-created data for this annotation.
      */
@@ -135,7 +173,11 @@ export namespace books_v1 {
      * The layer this annotation is for.
      */
     layerId?: string;
-    layerSummary?: any;
+    layerSummary?: {
+      allowedCharacterCount?: number;
+      limitType?: string;
+      remainingCharacterCount?: number;
+    };
     /**
      * Pages that this annotation spans.
      */
@@ -234,7 +276,13 @@ export namespace books_v1 {
   }
   export interface Schema$AnnotationsSummary {
     kind?: string;
-    layers?: any[];
+    layers?: Array<{
+      allowedCharacterCount?: number;
+      layerId?: string;
+      limitType?: string;
+      remainingCharacterCount?: number;
+      updated?: string;
+    }>;
   }
   export interface Schema$BooksAnnotationsRange {
     /**
@@ -322,7 +370,7 @@ export namespace books_v1 {
     /**
      * A list of onboarding categories.
      */
-    items?: any[];
+    items?: Array<{badgeUrl?: string; categoryId?: string; name?: string;}>;
     /**
      * Resource type.
      */
@@ -377,12 +425,54 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Schema$Dictlayerdata {
-    common?: any;
-    dict?: any;
+    common?: {title?: string;};
+    dict?: {
+      source?: {attribution?: string; url?: string;};
+      words?: Array<{
+        derivatives?: Array<
+            {source?: {attribution?: string; url?: string;}; text?: string;}>;
+        examples?: Array<
+            {source?: {attribution?: string; url?: string;}; text?: string;}>;
+        senses?: Array<{
+          conjugations?: Array<{type?: string; value?: string;}>;
+          definitions?: Array<{
+            definition?: string;
+            examples?: Array<{
+              source?: {attribution?: string; url?: string;};
+              text?: string;
+            }>;
+          }>;
+          partOfSpeech?: string;
+          pronunciation?: string;
+          pronunciationUrl?: string;
+          source?: {attribution?: string; url?: string;};
+          syllabification?: string;
+          synonyms?: Array<{
+            source?: {attribution?: string; url?: string;};
+            text?: string;
+          }>;
+        }>;
+        source?: {attribution?: string; url?: string;};
+      }>;
+    };
     kind?: string;
   }
   export interface Schema$Discoveryclusters {
-    clusters?: any[];
+    clusters?: Array<{
+      banner_with_content_container?: {
+        fillColorArgb?: string;
+        imageUrl?: string;
+        maskColorArgb?: string;
+        moreButtonText?: string;
+        moreButtonUrl?: string;
+        textColorArgb?: string;
+      };
+      subTitle?: string;
+      title?: string;
+      totalVolumes?: number;
+      uid?: string;
+      volumes?: Schema$Volume[];
+    }>;
     /**
      * Resorce type.
      */
@@ -463,11 +553,35 @@ export namespace books_v1 {
     /**
      * Family membership info of the user that made the request.
      */
-    membership?: any;
+    membership?: {
+      acquirePermission?: string;
+      ageGroup?: string;
+      allowedMaturityRating?: string;
+      isInFamily?: boolean;
+      role?: string;
+    };
   }
   export interface Schema$Geolayerdata {
-    common?: any;
-    geo?: any;
+    common?: {
+      lang?: string;
+      previewImageUrl?: string;
+      snippet?: string;
+      snippetUrl?: string;
+      title?: string;
+    };
+    geo?: {
+      boundary?: Array<Array<{latitude?: number; longitude?: number;}>>;
+      cachePolicy?: string;
+      countryCode?: string;
+      latitude?: number;
+      longitude?: number;
+      mapType?: string;
+      viewport?: {
+        hi?: {latitude?: number; longitude?: number;};
+        lo?: {latitude?: number; longitude?: number;};
+      };
+      zoom?: number;
+    };
     kind?: string;
   }
   export interface Schema$Layersummaries {
@@ -546,7 +660,13 @@ export namespace books_v1 {
     /**
      * A list of offline dictionary metadata.
      */
-    items?: any[];
+    items?: Array<{
+      download_url?: string;
+      encrypted_key?: string;
+      language?: string;
+      size?: string;
+      version?: string;
+    }>;
     /**
      * Resource type.
      */
@@ -579,7 +699,19 @@ export namespace books_v1 {
     /**
      * A list of offers.
      */
-    items?: any[];
+    items?: Array<{
+      artUrl?: string;
+      gservicesKey?: string;
+      id?: string;
+      items?: Array<{
+        author?: string;
+        canonicalVolumeLink?: string;
+        coverUrl?: string;
+        description?: string;
+        title?: string;
+        volumeId?: string;
+      }>;
+    }>;
     /**
      * Resource type.
      */
@@ -634,7 +766,7 @@ export namespace books_v1 {
     /**
      * Author of this review.
      */
-    author?: any;
+    author?: {displayName?: string;};
     /**
      * Review text.
      */
@@ -660,7 +792,7 @@ export namespace books_v1 {
      * Information regarding the source of this review, when the review is not
      * from a Google Books user.
      */
-    source?: any;
+    source?: {description?: string; extraDescription?: string; url?: string;};
     /**
      * Title for this review.
      */
@@ -680,7 +812,13 @@ export namespace books_v1 {
      * Resource type.
      */
     kind?: string;
-    series?: any[];
+    series?: Array<{
+      bannerImageUrl?: string;
+      imageUrl?: string;
+      seriesId?: string;
+      seriesType?: string;
+      title?: string;
+    }>;
   }
   export interface Schema$Seriesmembership {
     /**
@@ -698,8 +836,14 @@ export namespace books_v1 {
     /**
      * User settings in sub-objects, each for different purposes.
      */
-    notesExport?: any;
-    notification?: any;
+    notesExport?: {folderName?: string; isEnabled?: boolean;};
+    notification?: {
+      matchMyInterests?: {opted_state?: string;};
+      moreFromAuthors?: {opted_state?: string;};
+      moreFromSeries?: {opted_state?: string;};
+      priceDrop?: {opted_state?: string;};
+      rewardExpirations?: {opted_state?: string;};
+    };
   }
   export interface Schema$Volume {
     /**
@@ -707,7 +851,30 @@ export namespace books_v1 {
      * volume text. This information can depend on country (books may be public
      * domain in one country but not in another, e.g.).
      */
-    accessInfo?: any;
+    accessInfo?: {
+      accessViewStatus?: string;
+      country?: string;
+      downloadAccess?: Schema$DownloadAccessRestriction;
+      driveImportedContentLink?: string;
+      embeddable?: boolean;
+      epub?: {
+        acsTokenLink?: string;
+        downloadLink?: string;
+        isAvailable?: boolean;
+      };
+      explicitOfflineLicenseManagement?: boolean;
+      pdf?: {
+        acsTokenLink?: string;
+        downloadLink?: string;
+        isAvailable?: boolean;
+      };
+      publicDomain?: boolean;
+      quoteSharingAllowed?: boolean;
+      textToSpeechPermission?: string;
+      viewOrderUrl?: string;
+      viewability?: string;
+      webReaderLink?: string;
+    };
     /**
      * Opaque identifier for a specific version of a volume resource. (In LITE
      * projection)
@@ -724,22 +891,39 @@ export namespace books_v1 {
     /**
      * What layers exist in this volume and high level information about them.
      */
-    layerInfo?: any;
+    layerInfo?: {
+      layers?: Array<{layerId?: string; volumeAnnotationsVersion?: string;}>;
+    };
     /**
      * Recommendation related information for this volume.
      */
-    recommendedInfo?: any;
+    recommendedInfo?: {explanation?: string;};
     /**
      * Any information about a volume related to the eBookstore and/or
      * purchaseability. This information can depend on the country where the
      * request originates from (i.e. books may not be for sale in certain
      * countries).
      */
-    saleInfo?: any;
+    saleInfo?: {
+      buyLink?: string;
+      country?: string;
+      isEbook?: boolean;
+      listPrice?: {amount?: number; currencyCode?: string;};
+      offers?: Array<{
+        finskyOfferType?: number;
+        giftable?: boolean;
+        listPrice?: {amountInMicros?: number; currencyCode?: string;};
+        rentalDuration?: {count?: number; unit?: string;};
+        retailPrice?: {amountInMicros?: number; currencyCode?: string;};
+      }>;
+      onSaleDate?: string;
+      retailPrice?: {amount?: number; currencyCode?: string;};
+      saleability?: string;
+    };
     /**
      * Search result information related to this volume.
      */
-    searchInfo?: any;
+    searchInfo?: {textSnippet?: string;};
     /**
      * URL to this resource. (In LITE projection.)
      */
@@ -748,11 +932,81 @@ export namespace books_v1 {
      * User specific information related to this volume. (e.g. page this user
      * last read or whether they purchased this book)
      */
-    userInfo?: any;
+    userInfo?: {
+      acquiredTime?: string;
+      acquisitionType?: number;
+      copy?: {
+        allowedCharacterCount?: number;
+        limitType?: string;
+        remainingCharacterCount?: number;
+        updated?: string;
+      };
+      entitlementType?: number;
+      familySharing?: {
+        familyRole?: string;
+        isSharingAllowed?: boolean;
+        isSharingDisabledByFop?: boolean;
+      };
+      isFamilySharedFromUser?: boolean;
+      isFamilySharedToUser?: boolean;
+      isFamilySharingAllowed?: boolean;
+      isFamilySharingDisabledByFop?: boolean;
+      isInMyBooks?: boolean;
+      isPreordered?: boolean;
+      isPurchased?: boolean;
+      isUploaded?: boolean;
+      readingPosition?: Schema$ReadingPosition;
+      rentalPeriod?: {endUtcSec?: string; startUtcSec?: string;};
+      rentalState?: string;
+      review?: Schema$Review;
+      updated?: string;
+      userUploadedVolumeInfo?: {processingState?: string;};
+    };
     /**
      * General volume information.
      */
-    volumeInfo?: any;
+    volumeInfo?: {
+      allowAnonLogging?: boolean;
+      authors?: string[];
+      averageRating?: number;
+      canonicalVolumeLink?: string;
+      categories?: string[];
+      comicsContent?: boolean;
+      contentVersion?: string;
+      description?: string;
+      dimensions?: {height?: string; thickness?: string; width?: string;};
+      imageLinks?: {
+        extraLarge?: string;
+        large?: string;
+        medium?: string;
+        small?: string;
+        smallThumbnail?: string;
+        thumbnail?: string;
+      };
+      industryIdentifiers?: Array<{identifier?: string; type?: string;}>;
+      infoLink?: string;
+      language?: string;
+      mainCategory?: string;
+      maturityRating?: string;
+      pageCount?: number;
+      panelizationSummary?: {
+        containsEpubBubbles?: boolean;
+        containsImageBubbles?: boolean;
+        epubBubbleVersion?: string;
+        imageBubbleVersion?: string;
+      };
+      previewLink?: string;
+      printType?: string;
+      printedPageCount?: number;
+      publishedDate?: string;
+      publisher?: string;
+      ratingsCount?: number;
+      readingModes?: any;
+      samplePageCount?: number;
+      seriesInfo?: Schema$Volumeseriesinfo;
+      subtitle?: string;
+      title?: string;
+    };
   }
   export interface Schema$Volume2 {
     /**
@@ -781,7 +1035,12 @@ export namespace books_v1 {
     /**
      * The content ranges to identify the selected text.
      */
-    contentRanges?: any;
+    contentRanges?: {
+      cfiRange?: Schema$BooksAnnotationsRange;
+      contentVersion?: string;
+      gbImageRange?: Schema$BooksAnnotationsRange;
+      gbTextRange?: Schema$BooksAnnotationsRange;
+    };
     /**
      * Data for this annotation.
      */
@@ -879,21 +1138,19 @@ export namespace books_v1 {
      * Short book title in the context of the series.
      */
     shortSeriesBookTitle?: string;
-    volumeSeries?: any[];
+    volumeSeries?: Array<{
+      issue?: Array<{issueDisplayNumber?: string; issueOrderNumber?: number;}>;
+      orderNumber?: number;
+      seriesBookType?: string;
+      seriesId?: string;
+    }>;
   }
 
 
   export class Resource$Bookshelves {
-    root: Books;
     volumes: Resource$Bookshelves$Volumes;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.volumes = new Resource$Bookshelves$Volumes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.volumes = new Resource$Bookshelves$Volumes();
     }
 
 
@@ -951,7 +1208,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -1017,7 +1274,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -1027,7 +1284,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Bookshelves$Get {
+  export interface Params$Resource$Bookshelves$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1046,7 +1303,7 @@ export namespace books_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Bookshelves$List {
+  export interface Params$Resource$Bookshelves$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1063,15 +1320,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Bookshelves$Volumes {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1136,7 +1385,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -1146,7 +1395,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Bookshelves$Volumes$List {
+  export interface Params$Resource$Bookshelves$Volumes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1181,15 +1431,7 @@ export namespace books_v1 {
 
 
   export class Resource$Cloudloading {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1253,7 +1495,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
@@ -1319,7 +1561,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1388,7 +1630,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
@@ -1399,7 +1641,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Cloudloading$Addbook {
+  export interface Params$Resource$Cloudloading$Addbook extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1423,7 +1666,8 @@ export namespace books_v1 {
      */
     upload_client_token?: string;
   }
-  export interface Params$Resource$Cloudloading$Deletebook {
+  export interface Params$Resource$Cloudloading$Deletebook extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1434,7 +1678,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Cloudloading$Updatebook {
+  export interface Params$Resource$Cloudloading$Updatebook extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1449,15 +1694,7 @@ export namespace books_v1 {
 
 
   export class Resource$Dictionary {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1516,7 +1753,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -1526,7 +1763,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Dictionary$Listofflinemetadata {
+  export interface Params$Resource$Dictionary$Listofflinemetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1540,15 +1778,7 @@ export namespace books_v1 {
 
 
   export class Resource$Familysharing {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1608,7 +1838,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FamilyInfo>(parameters, callback);
@@ -1676,7 +1906,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1744,7 +1974,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1754,7 +1984,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Familysharing$Getfamilyinfo {
+  export interface Params$Resource$Familysharing$Getfamilyinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1765,7 +1996,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Familysharing$Share {
+  export interface Params$Resource$Familysharing$Share extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1784,7 +2016,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Familysharing$Unshare {
+  export interface Params$Resource$Familysharing$Unshare extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1806,18 +2039,11 @@ export namespace books_v1 {
 
 
   export class Resource$Layers {
-    root: Books;
     annotationData: Resource$Layers$Annotationdata;
     volumeAnnotations: Resource$Layers$Volumeannotations;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.annotationData = new Resource$Layers$Annotationdata(root);
-      this.volumeAnnotations = new Resource$Layers$Volumeannotations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.annotationData = new Resource$Layers$Annotationdata();
+      this.volumeAnnotations = new Resource$Layers$Volumeannotations();
     }
 
 
@@ -1877,7 +2103,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'summaryId'],
         pathParams: ['summaryId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Layersummary>(parameters, callback);
@@ -1946,7 +2172,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Layersummaries>(parameters, callback);
@@ -1956,7 +2182,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Get {
+  export interface Params$Resource$Layers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1979,7 +2205,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Layers$List {
+  export interface Params$Resource$Layers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2008,15 +2234,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Layers$Annotationdata {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2084,7 +2302,7 @@ export namespace books_v1 {
         requiredParams:
             ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
         pathParams: ['annotationDataId', 'layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotationdata>(parameters, callback);
@@ -2164,7 +2382,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotationsdata>(parameters, callback);
@@ -2174,7 +2392,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Annotationdata$Get {
+  export interface Params$Resource$Layers$Annotationdata$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2224,7 +2443,8 @@ export namespace books_v1 {
      */
     w?: number;
   }
-  export interface Params$Resource$Layers$Annotationdata$List {
+  export interface Params$Resource$Layers$Annotationdata$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2234,7 +2454,7 @@ export namespace books_v1 {
      * The list of Annotation Data Ids to retrieve. Pagination is ignored if
      * this is set.
      */
-    annotationDataId?: string;
+    annotationDataId?: string[];
     /**
      * The content version for the requested volume.
      */
@@ -2292,15 +2512,7 @@ export namespace books_v1 {
 
 
   export class Resource$Layers$Volumeannotations {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2362,7 +2574,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'annotationId'],
         pathParams: ['annotationId', 'layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotation>(parameters, callback);
@@ -2443,7 +2655,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotations>(parameters, callback);
@@ -2453,7 +2665,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Volumeannotations$Get {
+  export interface Params$Resource$Layers$Volumeannotations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2481,7 +2694,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Layers$Volumeannotations$List {
+  export interface Params$Resource$Layers$Volumeannotations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2556,15 +2770,7 @@ export namespace books_v1 {
 
 
   export class Resource$Myconfig {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2623,7 +2829,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -2694,7 +2900,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeIds', 'cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadAccesses>(parameters, callback);
@@ -2766,7 +2972,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RequestAccess>(parameters, callback);
@@ -2840,7 +3046,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['source', 'nonce', 'cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -2910,7 +3116,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -2920,13 +3126,15 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Myconfig$Getusersettings {
+  export interface Params$Resource$Myconfig$Getusersettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Myconfig$Releasedownloadaccess {
+  export interface Params$Resource$Myconfig$Releasedownloadaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2947,9 +3155,10 @@ export namespace books_v1 {
     /**
      * The volume(s) to release restrictions for.
      */
-    volumeIds?: string;
+    volumeIds?: string[];
   }
-  export interface Params$Resource$Myconfig$Requestaccess {
+  export interface Params$Resource$Myconfig$Requestaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2981,7 +3190,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Myconfig$Syncvolumelicenses {
+  export interface Params$Resource$Myconfig$Syncvolumelicenses extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2994,7 +3204,7 @@ export namespace books_v1 {
     /**
      * List of features supported by the client, i.e., 'RENTALS'
      */
-    features?: string;
+    features?: string[];
     /**
      * Set to true to include non-comics series. Defaults to false.
      */
@@ -3018,9 +3228,10 @@ export namespace books_v1 {
     /**
      * The volume(s) to request download restrictions for.
      */
-    volumeIds?: string;
+    volumeIds?: string[];
   }
-  export interface Params$Resource$Myconfig$Updateusersettings {
+  export interface Params$Resource$Myconfig$Updateusersettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3035,34 +3246,19 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary {
-    root: Books;
     annotations: Resource$Mylibrary$Annotations;
     bookshelves: Resource$Mylibrary$Bookshelves;
     readingpositions: Resource$Mylibrary$Readingpositions;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.annotations = new Resource$Mylibrary$Annotations(root);
-      this.bookshelves = new Resource$Mylibrary$Bookshelves(root);
-      this.readingpositions = new Resource$Mylibrary$Readingpositions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.annotations = new Resource$Mylibrary$Annotations();
+      this.bookshelves = new Resource$Mylibrary$Bookshelves();
+      this.readingpositions = new Resource$Mylibrary$Readingpositions();
     }
   }
 
 
   export class Resource$Mylibrary$Annotations {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3121,7 +3317,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3192,7 +3388,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3268,7 +3464,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotations>(parameters, callback);
@@ -3336,7 +3532,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['layerIds', 'volumeId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationsSummary>(parameters, callback);
@@ -3405,7 +3601,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3415,7 +3611,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Annotations$Delete {
+  export interface Params$Resource$Mylibrary$Annotations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3430,7 +3627,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Insert {
+  export interface Params$Resource$Mylibrary$Annotations$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3459,7 +3657,8 @@ export namespace books_v1 {
      */
     requestBody?: Schema$Annotation;
   }
-  export interface Params$Resource$Mylibrary$Annotations$List {
+  export interface Params$Resource$Mylibrary$Annotations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3476,7 +3675,7 @@ export namespace books_v1 {
     /**
      * The layer ID(s) to limit annotation by.
      */
-    layerIds?: string;
+    layerIds?: string[];
     /**
      * Maximum number of results to return
      */
@@ -3509,7 +3708,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Summary {
+  export interface Params$Resource$Mylibrary$Annotations$Summary extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3518,13 +3718,14 @@ export namespace books_v1 {
     /**
      * Array of layer IDs to get the summary for.
      */
-    layerIds?: string;
+    layerIds?: string[];
     /**
      * Volume id to get the summary for.
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Update {
+  export interface Params$Resource$Mylibrary$Annotations$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3547,16 +3748,9 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary$Bookshelves {
-    root: Books;
     volumes: Resource$Mylibrary$Bookshelves$Volumes;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.volumes = new Resource$Mylibrary$Bookshelves$Volumes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.volumes = new Resource$Mylibrary$Bookshelves$Volumes();
     }
 
 
@@ -3619,7 +3813,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3686,7 +3880,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3751,7 +3945,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -3819,7 +4013,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -3888,7 +4082,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId', 'volumePosition'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3957,7 +4151,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3967,7 +4161,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume {
+  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3990,7 +4185,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes {
+  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4005,7 +4201,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Get {
+  export interface Params$Resource$Mylibrary$Bookshelves$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4020,7 +4217,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$List {
+  export interface Params$Resource$Mylibrary$Bookshelves$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4031,7 +4229,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume {
+  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4055,7 +4254,8 @@ export namespace books_v1 {
      */
     volumePosition?: number;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume {
+  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4080,15 +4280,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Mylibrary$Bookshelves$Volumes {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4154,7 +4346,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -4164,7 +4356,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List {
+  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4207,15 +4400,7 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary$Readingpositions {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4273,7 +4458,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReadingPosition>(parameters, callback);
@@ -4347,7 +4532,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'timestamp', 'position'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4357,7 +4542,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Readingpositions$Get {
+  export interface Params$Resource$Mylibrary$Readingpositions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4376,7 +4562,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Readingpositions$Setposition {
+  export interface Params$Resource$Mylibrary$Readingpositions$Setposition
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4415,15 +4602,7 @@ export namespace books_v1 {
 
 
   export class Resource$Notification {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4480,7 +4659,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['notification_id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -4490,7 +4669,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Notification$Get {
+  export interface Params$Resource$Notification$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4513,15 +4692,7 @@ export namespace books_v1 {
 
 
   export class Resource$Onboarding {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4580,7 +4751,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Category>(parameters, callback);
@@ -4650,7 +4821,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volume2>(parameters, callback);
@@ -4660,7 +4831,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Onboarding$Listcategories {
+  export interface Params$Resource$Onboarding$Listcategories extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4672,7 +4844,8 @@ export namespace books_v1 {
      */
     locale?: string;
   }
-  export interface Params$Resource$Onboarding$Listcategoryvolumes {
+  export interface Params$Resource$Onboarding$Listcategoryvolumes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4681,7 +4854,7 @@ export namespace books_v1 {
     /**
      * List of category ids requested.
      */
-    categoryId?: string;
+    categoryId?: string[];
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if
      * unset.
@@ -4704,15 +4877,7 @@ export namespace books_v1 {
 
 
   export class Resource$Personalizedstream {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4770,7 +4935,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Discoveryclusters>(parameters, callback);
@@ -4780,7 +4945,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Personalizedstream$Get {
+  export interface Params$Resource$Personalizedstream$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4804,15 +4970,7 @@ export namespace books_v1 {
 
 
   export class Resource$Promooffer {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4875,7 +5033,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4945,7 +5103,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5011,7 +5169,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Offers>(parameters, callback);
@@ -5021,7 +5179,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Promooffer$Accept {
+  export interface Params$Resource$Promooffer$Accept extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5060,7 +5219,8 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Promooffer$Dismiss {
+  export interface Params$Resource$Promooffer$Dismiss extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5095,7 +5255,7 @@ export namespace books_v1 {
      */
     serial?: string;
   }
-  export interface Params$Resource$Promooffer$Get {
+  export interface Params$Resource$Promooffer$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5129,16 +5289,9 @@ export namespace books_v1 {
 
 
   export class Resource$Series {
-    root: Books;
     membership: Resource$Series$Membership;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.membership = new Resource$Series$Membership(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.membership = new Resource$Series$Membership();
     }
 
 
@@ -5193,7 +5346,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Series>(parameters, callback);
@@ -5203,7 +5356,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Series$Get {
+  export interface Params$Resource$Series$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5212,19 +5365,11 @@ export namespace books_v1 {
     /**
      * String that identifies the series
      */
-    series_id?: string;
+    series_id?: string[];
   }
 
   export class Resource$Series$Membership {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5282,7 +5427,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Seriesmembership>(parameters, callback);
@@ -5292,7 +5437,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Series$Membership$Get {
+  export interface Params$Resource$Series$Membership$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5315,22 +5461,15 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes {
-    root: Books;
     associated: Resource$Volumes$Associated;
     mybooks: Resource$Volumes$Mybooks;
     recommended: Resource$Volumes$Recommended;
     useruploaded: Resource$Volumes$Useruploaded;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.associated = new Resource$Volumes$Associated(root);
-      this.mybooks = new Resource$Volumes$Mybooks(root);
-      this.recommended = new Resource$Volumes$Recommended(root);
-      this.useruploaded = new Resource$Volumes$Useruploaded(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.associated = new Resource$Volumes$Associated();
+      this.mybooks = new Resource$Volumes$Mybooks();
+      this.recommended = new Resource$Volumes$Recommended();
+      this.useruploaded = new Resource$Volumes$Useruploaded();
     }
 
 
@@ -5391,7 +5530,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volume>(parameters, callback);
@@ -5468,7 +5607,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5478,7 +5617,7 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Get {
+  export interface Params$Resource$Volumes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5513,7 +5652,7 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Volumes$List {
+  export interface Params$Resource$Volumes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5579,15 +5718,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Volumes$Associated {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5650,7 +5781,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5660,7 +5791,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Associated$List {
+  export interface Params$Resource$Volumes$Associated$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5692,15 +5824,7 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Mybooks {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5765,7 +5889,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5775,7 +5899,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Mybooks$List {
+  export interface Params$Resource$Volumes$Mybooks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5784,7 +5909,7 @@ export namespace books_v1 {
     /**
      * How the book was acquired
      */
-    acquireMethod?: string;
+    acquireMethod?: string[];
     /**
      * ISO-3166-1 code to override the IP-based location.
      */
@@ -5802,7 +5927,7 @@ export namespace books_v1 {
      * The processing state of the user uploaded volumes to be returned.
      * Applicable only if the UPLOADED is specified in the acquireMethod.
      */
-    processingState?: string;
+    processingState?: string[];
     /**
      * String to identify the originator of this request.
      */
@@ -5815,15 +5940,7 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Recommended {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5884,7 +6001,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5963,7 +6080,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['rating', 'volumeId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
@@ -5975,7 +6092,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Recommended$List {
+  export interface Params$Resource$Volumes$Recommended$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5996,7 +6114,8 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Volumes$Recommended$Rate {
+  export interface Params$Resource$Volumes$Recommended$Rate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6023,15 +6142,7 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Useruploaded {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6095,7 +6206,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -6105,7 +6216,8 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Useruploaded$List {
+  export interface Params$Resource$Volumes$Useruploaded$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6123,7 +6235,7 @@ export namespace books_v1 {
     /**
      * The processing state of the user uploaded volumes to be returned.
      */
-    processingState?: string;
+    processingState?: string[];
     /**
      * String to identify the originator of this request.
      */
@@ -6136,6 +6248,6 @@ export namespace books_v1 {
      * The ids of the volumes to be returned. If not specified all that match
      * the processingState are returned.
      */
-    volumeId?: string;
+    volumeId?: string[];
   }
 }

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace groupssettings_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,22 +81,12 @@ export namespace groupssettings_v1 {
    * @param {object=} options Options for Groupssettings
    */
   export class Groupssettings {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     groups: Resource$Groups;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.groups = new Resource$Groups(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.groups = new Resource$Groups();
     }
   }
 
@@ -276,15 +302,7 @@ export namespace groupssettings_v1 {
 
 
   export class Resource$Groups {
-    root: Groupssettings;
-    constructor(root: Groupssettings) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -338,7 +356,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -403,7 +421,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -468,7 +486,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -478,7 +496,7 @@ export namespace groupssettings_v1 {
     }
   }
 
-  export interface Params$Resource$Groups$Get {
+  export interface Params$Resource$Groups$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -489,7 +507,7 @@ export namespace groupssettings_v1 {
      */
     groupUniqueId?: string;
   }
-  export interface Params$Resource$Groups$Patch {
+  export interface Params$Resource$Groups$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -505,7 +523,7 @@ export namespace groupssettings_v1 {
      */
     requestBody?: Schema$Groups;
   }
-  export interface Params$Resource$Groups$Update {
+  export interface Params$Resource$Groups$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

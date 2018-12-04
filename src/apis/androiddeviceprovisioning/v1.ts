@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace androiddeviceprovisioning_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,26 +99,16 @@ export namespace androiddeviceprovisioning_v1 {
    * @param {object=} options Options for Androiddeviceprovisioning
    */
   export class Androiddeviceprovisioning {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     customers: Resource$Customers;
     operations: Resource$Operations;
     partners: Resource$Partners;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.customers = new Resource$Customers(this);
-      this.operations = new Resource$Operations(this);
-      this.partners = new Resource$Partners(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.customers = new Resource$Customers();
+      this.operations = new Resource$Operations();
+      this.partners = new Resource$Partners();
     }
   }
 
@@ -81,6 +124,10 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The device identifier of the device to claim.
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
+    /**
+     * Optional. The metadata to attach to the device.
+     */
+    deviceMetadata?: Schema$DeviceMetadata;
     /**
      * Required. The section type of the device&#39;s provisioning record.
      */
@@ -410,7 +457,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Metadata entries recorded as key-value pairs.
      */
-    entries?: any;
+    entries?: {[key: string]: string;};
   }
   /**
    * A `DeviceReference` is an API abstraction that lets you supply a _device_
@@ -663,7 +710,7 @@ export namespace androiddeviceprovisioning_v1 {
      * the operation is created by `claimAsync`, `unclaimAsync`, or
      * `updateMetadataAsync`.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -675,7 +722,7 @@ export namespace androiddeviceprovisioning_v1 {
      * the operation is created by `claimAsync`, `unclaimAsync`, or
      * `updateMetadataAsync`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A task for each device in the operation. Corresponds to each device change
@@ -803,7 +850,7 @@ export namespace androiddeviceprovisioning_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -875,20 +922,13 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Customers {
-    root: Androiddeviceprovisioning;
     configurations: Resource$Customers$Configurations;
     devices: Resource$Customers$Devices;
     dpcs: Resource$Customers$Dpcs;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.configurations = new Resource$Customers$Configurations(root);
-      this.devices = new Resource$Customers$Devices(root);
-      this.dpcs = new Resource$Customers$Dpcs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.configurations = new Resource$Customers$Configurations();
+      this.devices = new Resource$Customers$Devices();
+      this.dpcs = new Resource$Customers$Dpcs();
     }
 
 
@@ -952,7 +992,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListCustomersResponse>(
@@ -964,7 +1004,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$List {
+  export interface Params$Resource$Customers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -982,15 +1022,7 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   export class Resource$Customers$Configurations {
-    root: Androiddeviceprovisioning;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1053,7 +1085,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -1120,7 +1152,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1183,7 +1215,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -1260,7 +1292,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListConfigurationsResponse>(
@@ -1331,7 +1363,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -1341,7 +1373,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Configurations$Create {
+  export interface Params$Resource$Customers$Configurations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1358,7 +1391,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$Configuration;
   }
-  export interface Params$Resource$Customers$Configurations$Delete {
+  export interface Params$Resource$Customers$Configurations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1371,7 +1405,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Configurations$Get {
+  export interface Params$Resource$Customers$Configurations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1383,7 +1418,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Configurations$List {
+  export interface Params$Resource$Customers$Configurations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1395,7 +1431,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Configurations$Patch {
+  export interface Params$Resource$Customers$Configurations$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1423,15 +1460,7 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Customers$Devices {
-    root: Androiddeviceprovisioning;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1495,7 +1524,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1557,7 +1586,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -1632,7 +1661,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListDevicesResponse>(
@@ -1702,7 +1731,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1772,7 +1801,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1782,7 +1811,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Devices$Applyconfiguration {
+  export interface Params$Resource$Customers$Devices$Applyconfiguration extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1799,7 +1829,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CustomerApplyConfigurationRequest;
   }
-  export interface Params$Resource$Customers$Devices$Get {
+  export interface Params$Resource$Customers$Devices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1811,7 +1842,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Devices$List {
+  export interface Params$Resource$Customers$Devices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1832,7 +1864,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Devices$Removeconfiguration {
+  export interface Params$Resource$Customers$Devices$Removeconfiguration extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1849,7 +1882,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CustomerRemoveConfigurationRequest;
   }
-  export interface Params$Resource$Customers$Devices$Unclaim {
+  export interface Params$Resource$Customers$Devices$Unclaim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1869,15 +1903,7 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Customers$Dpcs {
-    root: Androiddeviceprovisioning;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1939,7 +1965,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListDpcsResponse>(parameters, callback);
@@ -1949,7 +1975,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Dpcs$List {
+  export interface Params$Resource$Customers$Dpcs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1965,15 +1992,7 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Operations {
-    root: Androiddeviceprovisioning;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2030,7 +2049,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2040,7 +2059,7 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2054,34 +2073,19 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Partners {
-    root: Androiddeviceprovisioning;
     customers: Resource$Partners$Customers;
     devices: Resource$Partners$Devices;
     vendors: Resource$Partners$Vendors;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.customers = new Resource$Partners$Customers(root);
-      this.devices = new Resource$Partners$Devices(root);
-      this.vendors = new Resource$Partners$Vendors(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.customers = new Resource$Partners$Customers();
+      this.devices = new Resource$Partners$Devices();
+      this.vendors = new Resource$Partners$Vendors();
     }
   }
 
 
   export class Resource$Partners$Customers {
-    root: Androiddeviceprovisioning;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2089,7 +2093,8 @@ export namespace androiddeviceprovisioning_v1 {
      * @desc Creates a customer for zero-touch enrollment. After the method
      * returns successfully, admin and owner roles can manage devices and EMM
      * configs by calling API methods or using their zero-touch enrollment
-     * portal. The API doesn't notify the customer that they have access.
+     * portal. The customer receives an email that welcomes them to zero-touch
+     * enrollment and explains how to sign into the portal.
      * @alias androiddeviceprovisioning.partners.customers.create
      * @memberOf! ()
      *
@@ -2145,7 +2150,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2218,7 +2223,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCustomersResponse>(parameters, callback);
@@ -2228,7 +2233,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Customers$Create {
+  export interface Params$Resource$Partners$Customers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2245,7 +2251,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$CreateCustomerRequest;
   }
-  export interface Params$Resource$Partners$Customers$List {
+  export interface Params$Resource$Partners$Customers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2268,15 +2275,7 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Partners$Devices {
-    root: Androiddeviceprovisioning;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2340,7 +2339,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ClaimDeviceResponse>(parameters, callback);
@@ -2411,7 +2410,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2491,7 +2490,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
@@ -2571,7 +2570,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FindDevicesByOwnerResponse>(
@@ -2634,7 +2633,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2651,7 +2650,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deviceId Required. The ID of the reseller partner.
+     * @param {string} params.deviceId Required. The ID of the device.
      * @param {string} params.metadataOwnerId Required. The owner of the newly set metadata. Set this to the partner ID.
      * @param {().UpdateDeviceMetadataRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2706,7 +2705,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['metadataOwnerId', 'deviceId'],
         pathParams: ['deviceId', 'metadataOwnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceMetadata>(parameters, callback);
@@ -2775,7 +2774,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2846,7 +2845,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2919,7 +2918,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2929,7 +2928,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Devices$Claim {
+  export interface Params$Resource$Partners$Devices$Claim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2945,7 +2945,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$ClaimDeviceRequest;
   }
-  export interface Params$Resource$Partners$Devices$Claimasync {
+  export interface Params$Resource$Partners$Devices$Claimasync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2961,7 +2962,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$ClaimDevicesRequest;
   }
-  export interface Params$Resource$Partners$Devices$Findbyidentifier {
+  export interface Params$Resource$Partners$Devices$Findbyidentifier extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2977,7 +2979,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$FindDevicesByDeviceIdentifierRequest;
   }
-  export interface Params$Resource$Partners$Devices$Findbyowner {
+  export interface Params$Resource$Partners$Devices$Findbyowner extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2993,7 +2996,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$FindDevicesByOwnerRequest;
   }
-  export interface Params$Resource$Partners$Devices$Get {
+  export interface Params$Resource$Partners$Devices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3005,14 +3009,15 @@ export namespace androiddeviceprovisioning_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Partners$Devices$Metadata {
+  export interface Params$Resource$Partners$Devices$Metadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The ID of the reseller partner.
+     * Required. The ID of the device.
      */
     deviceId?: string;
     /**
@@ -3026,7 +3031,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UpdateDeviceMetadataRequest;
   }
-  export interface Params$Resource$Partners$Devices$Unclaim {
+  export interface Params$Resource$Partners$Devices$Unclaim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3042,7 +3048,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UnclaimDeviceRequest;
   }
-  export interface Params$Resource$Partners$Devices$Unclaimasync {
+  export interface Params$Resource$Partners$Devices$Unclaimasync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3058,7 +3065,8 @@ export namespace androiddeviceprovisioning_v1 {
      */
     requestBody?: Schema$UnclaimDevicesRequest;
   }
-  export interface Params$Resource$Partners$Devices$Updatemetadataasync {
+  export interface Params$Resource$Partners$Devices$Updatemetadataasync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3077,16 +3085,9 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Partners$Vendors {
-    root: Androiddeviceprovisioning;
     customers: Resource$Partners$Vendors$Customers;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.customers = new Resource$Partners$Vendors$Customers(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.customers = new Resource$Partners$Vendors$Customers();
     }
 
 
@@ -3150,7 +3151,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVendorsResponse>(parameters, callback);
@@ -3160,7 +3161,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Vendors$List {
+  export interface Params$Resource$Partners$Vendors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3181,15 +3183,7 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   export class Resource$Partners$Vendors$Customers {
-    root: Androiddeviceprovisioning;
-    constructor(root: Androiddeviceprovisioning) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3257,7 +3251,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVendorCustomersResponse>(
@@ -3268,7 +3262,8 @@ export namespace androiddeviceprovisioning_v1 {
     }
   }
 
-  export interface Params$Resource$Partners$Vendors$Customers$List {
+  export interface Params$Resource$Partners$Vendors$Customers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

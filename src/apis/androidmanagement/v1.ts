@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace androidmanagement_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,24 +99,14 @@ export namespace androidmanagement_v1 {
    * @param {object=} options Options for Androidmanagement
    */
   export class Androidmanagement {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     enterprises: Resource$Enterprises;
     signupUrls: Resource$Signupurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.enterprises = new Resource$Enterprises(this);
-      this.signupUrls = new Resource$Signupurls(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.enterprises = new Resource$Enterprises();
+      this.signupUrls = new Resource$Signupurls();
     }
   }
 
@@ -193,7 +236,13 @@ export namespace androidmanagement_v1 {
      * &lt;tr&gt;&lt;td&gt;BUNDLE_ARRAY&lt;/td&gt;&lt;td&gt;array of
      * objects&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;
      */
-    managedConfiguration?: any;
+    managedConfiguration?: {[key: string]: any;};
+    /**
+     * The managed configurations template for the app, saved from the managed
+     * configurations iframe. This field is ignored if managed_configuration is
+     * set.
+     */
+    managedConfigurationTemplate?: Schema$ManagedConfigurationTemplate;
     /**
      * The minimum version of the app that runs on the device. If set, the
      * device attempts to update the app to at least this version code. If the
@@ -702,6 +751,11 @@ export namespace androidmanagement_v1 {
      */
     pubsubTopic?: string;
     /**
+     * Sign-in details of the enterprise. Maximum of 1 SigninDetail is
+     * supported.
+     */
+    signinDetails?: Schema$SigninDetail[];
+    /**
      * Terms and conditions that must be accepted when provisioning a device for
      * this enterprise. A page of terms is generated for each value in this
      * list.
@@ -872,6 +926,21 @@ export namespace androidmanagement_v1 {
      * The list of policies.
      */
     policies?: Schema$Policy[];
+  }
+  /**
+   * The managed configurations template for the app, saved from the managed
+   * configurations iframe.
+   */
+  export interface Schema$ManagedConfigurationTemplate {
+    /**
+     * Optional, a map containing &lt;key, value&gt; configuration variables
+     * defined for the configuration.
+     */
+    configurationVariables?: {[key: string]: string;};
+    /**
+     * The ID of the managed configurations template.
+     */
+    templateId?: string;
   }
   /**
    * Managed property.
@@ -1064,7 +1133,7 @@ export namespace androidmanagement_v1 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -1080,7 +1149,7 @@ export namespace androidmanagement_v1 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A list of package names.
@@ -1150,6 +1219,10 @@ export namespace androidmanagement_v1 {
      * The required password quality.
      */
     passwordQuality?: string;
+    /**
+     * The scope that the password requirement applies to.
+     */
+    passwordScope?: string;
   }
   /**
    * Configuration for an Android permission and its grant state.
@@ -1402,7 +1475,7 @@ export namespace androidmanagement_v1 {
      * Network configuration for the device. See configure networks for more
      * information.
      */
-    openNetworkConfiguration?: any;
+    openNetworkConfiguration?: {[key: string]: any;};
     /**
      * Whether using NFC to beam data from apps is disabled.
      */
@@ -1412,7 +1485,13 @@ export namespace androidmanagement_v1 {
      */
     outgoingCallsDisabled?: boolean;
     /**
-     * Password requirements.
+     * Password requirement policies. Different policies can be set for work
+     * profile or fully managed devices by setting the password_scope field in
+     * the policy.
+     */
+    passwordPolicies?: Schema$PasswordRequirements[];
+    /**
+     * Password requirements. DEPRECATED - Use password_policies
      */
     passwordRequirements?: Schema$PasswordRequirements;
     /**
@@ -1528,7 +1607,7 @@ export namespace androidmanagement_v1 {
      */
     usbFileTransferDisabled?: boolean;
     /**
-     * Whether USB storage is enabled.
+     * Whether USB storage is enabled. Deprecated.
      */
     usbMassStorageEnabled?: boolean;
     /**
@@ -1590,6 +1669,33 @@ export namespace androidmanagement_v1 {
      * The port of the direct proxy.
      */
     port?: number;
+  }
+  /**
+   * A resource containing sign in details for an enterprise.
+   */
+  export interface Schema$SigninDetail {
+    /**
+     * A JSON string whose UTF-8 representation can be used to generate a QR
+     * code to enroll a device with this enrollment token. To enroll a device
+     * using NFC, the NFC record must contain a serialized java.util.Properties
+     * representation of the properties in the JSON. This is a read-only field
+     * generated by the server.
+     */
+    qrCode?: string;
+    /**
+     * An enterprise wide enrollment token used to trigger custom sign-in flow.
+     * This is a read-only field generated by the server.
+     */
+    signinEnrollmentToken?: string;
+    /**
+     * Sign-in URL for authentication when device is provisioned with a sign-in
+     * enrollment token. The sign-in endpoint should finish authentication flow
+     * with a URL in the form of
+     * https://enterprise.google.com/android/enroll?et=&lt;token&gt; for a
+     * successful login, or https://enterprise.google.com/android/enroll/invalid
+     * for a failed login.
+     */
+    signinUrl?: string;
   }
   /**
    * An enterprise signup URL.
@@ -1699,7 +1805,7 @@ export namespace androidmanagement_v1 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1812,7 +1918,7 @@ export namespace androidmanagement_v1 {
      * (https://www.w3.org/International/articles/language-tags/) code, such as
      * en-US, es-ES, or fr.
      */
-    localizedMessages?: any;
+    localizedMessages?: {[key: string]: string;};
   }
   /**
    * A web token used to access the managed Google Play iframe.
@@ -1843,24 +1949,17 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises {
-    root: Androidmanagement;
     applications: Resource$Enterprises$Applications;
     devices: Resource$Enterprises$Devices;
     enrollmentTokens: Resource$Enterprises$Enrollmenttokens;
     policies: Resource$Enterprises$Policies;
     webTokens: Resource$Enterprises$Webtokens;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.applications = new Resource$Enterprises$Applications(root);
-      this.devices = new Resource$Enterprises$Devices(root);
-      this.enrollmentTokens = new Resource$Enterprises$Enrollmenttokens(root);
-      this.policies = new Resource$Enterprises$Policies(root);
-      this.webTokens = new Resource$Enterprises$Webtokens(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.applications = new Resource$Enterprises$Applications();
+      this.devices = new Resource$Enterprises$Devices();
+      this.enrollmentTokens = new Resource$Enterprises$Enrollmenttokens();
+      this.policies = new Resource$Enterprises$Policies();
+      this.webTokens = new Resource$Enterprises$Webtokens();
     }
 
 
@@ -1925,7 +2024,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -1987,7 +2086,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2055,7 +2154,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2065,7 +2164,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Create {
+  export interface Params$Resource$Enterprises$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2090,7 +2190,7 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$Enterprise;
   }
-  export interface Params$Resource$Enterprises$Get {
+  export interface Params$Resource$Enterprises$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2101,7 +2201,8 @@ export namespace androidmanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Patch {
+  export interface Params$Resource$Enterprises$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2124,15 +2225,7 @@ export namespace androidmanagement_v1 {
   }
 
   export class Resource$Enterprises$Applications {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2189,7 +2282,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -2199,7 +2292,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Applications$Get {
+  export interface Params$Resource$Enterprises$Applications$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2220,16 +2314,9 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Devices {
-    root: Androidmanagement;
     operations: Resource$Enterprises$Devices$Operations;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Enterprises$Devices$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Enterprises$Devices$Operations();
     }
 
 
@@ -2290,7 +2377,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2352,7 +2439,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2423,7 +2510,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2493,7 +2580,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
@@ -2561,7 +2648,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2571,7 +2658,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Devices$Delete {
+  export interface Params$Resource$Enterprises$Devices$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2585,9 +2673,10 @@ export namespace androidmanagement_v1 {
     /**
      * Optional flags that control the device wiping behavior.
      */
-    wipeDataFlags?: string;
+    wipeDataFlags?: string[];
   }
-  export interface Params$Resource$Enterprises$Devices$Get {
+  export interface Params$Resource$Enterprises$Devices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2599,7 +2688,8 @@ export namespace androidmanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Issuecommand {
+  export interface Params$Resource$Enterprises$Devices$Issuecommand extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2616,7 +2706,8 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$Command;
   }
-  export interface Params$Resource$Enterprises$Devices$List {
+  export interface Params$Resource$Enterprises$Devices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2636,7 +2727,8 @@ export namespace androidmanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Patch {
+  export interface Params$Resource$Enterprises$Devices$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2660,15 +2752,7 @@ export namespace androidmanagement_v1 {
   }
 
   export class Resource$Enterprises$Devices$Operations {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2737,7 +2821,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2807,7 +2891,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2872,7 +2956,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2951,7 +3035,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2961,7 +3045,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Devices$Operations$Cancel {
+  export interface Params$Resource$Enterprises$Devices$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2972,7 +3057,8 @@ export namespace androidmanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Operations$Delete {
+  export interface Params$Resource$Enterprises$Devices$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2983,7 +3069,8 @@ export namespace androidmanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Operations$Get {
+  export interface Params$Resource$Enterprises$Devices$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2994,7 +3081,8 @@ export namespace androidmanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Devices$Operations$List {
+  export interface Params$Resource$Enterprises$Devices$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3021,15 +3109,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Enrollmenttokens {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3091,7 +3171,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EnrollmentToken>(parameters, callback);
@@ -3158,7 +3238,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3168,7 +3248,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Enrollmenttokens$Create {
+  export interface Params$Resource$Enterprises$Enrollmenttokens$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3184,7 +3265,8 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$EnrollmentToken;
   }
-  export interface Params$Resource$Enterprises$Enrollmenttokens$Delete {
+  export interface Params$Resource$Enterprises$Enrollmenttokens$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3199,15 +3281,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Policies {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3267,7 +3341,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3329,7 +3403,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3400,7 +3474,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPoliciesResponse>(parameters, callback);
@@ -3468,7 +3542,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3478,7 +3552,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Policies$Delete {
+  export interface Params$Resource$Enterprises$Policies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3490,7 +3565,8 @@ export namespace androidmanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Policies$Get {
+  export interface Params$Resource$Enterprises$Policies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3502,7 +3578,8 @@ export namespace androidmanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Enterprises$Policies$List {
+  export interface Params$Resource$Enterprises$Policies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3522,7 +3599,8 @@ export namespace androidmanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Enterprises$Policies$Patch {
+  export interface Params$Resource$Enterprises$Policies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3547,15 +3625,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Webtokens {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3617,7 +3687,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WebToken>(parameters, callback);
@@ -3627,7 +3697,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Enterprises$Webtokens$Create {
+  export interface Params$Resource$Enterprises$Webtokens$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3647,15 +3718,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Signupurls {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3715,7 +3778,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignupUrl>(parameters, callback);
@@ -3725,7 +3788,8 @@ export namespace androidmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Signupurls$Create {
+  export interface Params$Resource$Signupurls$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

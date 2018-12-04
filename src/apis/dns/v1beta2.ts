@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace dns_v1beta2 {
   export interface Options extends GlobalOptions {
     version: 'v1beta2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,32 +81,24 @@ export namespace dns_v1beta2 {
    * @param {object=} options Options for Dns
    */
   export class Dns {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     changes: Resource$Changes;
     dnsKeys: Resource$Dnskeys;
     managedZoneOperations: Resource$Managedzoneoperations;
     managedZones: Resource$Managedzones;
+    policies: Resource$Policies;
     projects: Resource$Projects;
     resourceRecordSets: Resource$Resourcerecordsets;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.changes = new Resource$Changes(this);
-      this.dnsKeys = new Resource$Dnskeys(this);
-      this.managedZoneOperations = new Resource$Managedzoneoperations(this);
-      this.managedZones = new Resource$Managedzones(this);
-      this.projects = new Resource$Projects(this);
-      this.resourceRecordSets = new Resource$Resourcerecordsets(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.changes = new Resource$Changes();
+      this.dnsKeys = new Resource$Dnskeys();
+      this.managedZoneOperations = new Resource$Managedzoneoperations();
+      this.managedZones = new Resource$Managedzones();
+      this.policies = new Resource$Policies();
+      this.projects = new Resource$Projects();
+      this.resourceRecordSets = new Resource$Resourcerecordsets();
     }
   }
 
@@ -294,6 +322,12 @@ export namespace dns_v1beta2 {
      */
     dnssecConfig?: Schema$ManagedZoneDnsSecConfig;
     /**
+     * The presence for this field indicates that outbound forwarding is enabled
+     * for this zone. The value of this field contains the set of destinations
+     * to forward to.
+     */
+    forwardingConfig?: Schema$ManagedZoneForwardingConfig;
+    /**
      * Unique identifier for the resource; defined by the server (output only)
      */
     id?: string;
@@ -305,7 +339,7 @@ export namespace dns_v1beta2 {
     /**
      * User labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * User assigned name for this resource. Must be unique within the project.
      * The name must be 1-63 characters long, must begin with a letter, end with
@@ -323,6 +357,16 @@ export namespace dns_v1beta2 {
      * ManagedZones. Most users will leave this field unset.
      */
     nameServerSet?: string;
+    /**
+     * For privately visible zones, the set of GCP resources that the zone is
+     * visible from.
+     */
+    privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
+    /**
+     * The zone&#39;s visibility: public zones are exposed to the Internet,
+     * while private zones are visible only to GCP resources.
+     */
+    visibility?: string;
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     /**
@@ -344,6 +388,29 @@ export namespace dns_v1beta2 {
      * Specifies whether DNSSEC is enabled, and what mode it is in.
      */
     state?: string;
+  }
+  export interface Schema$ManagedZoneForwardingConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZoneForwardingConfig&quot;.
+     */
+    kind?: string;
+    /**
+     * List of target name servers to forward to. Cloud DNS will select the best
+     * available name server if more than one target is given.
+     */
+    targetNameServers?: Schema$ManagedZoneForwardingConfigNameServerTarget[];
+  }
+  export interface Schema$ManagedZoneForwardingConfigNameServerTarget {
+    /**
+     * IPv4 address of a target name server.
+     */
+    ipv4Address?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZoneForwardingConfigNameServerTarget&quot;.
+     */
+    kind?: string;
   }
   export interface Schema$ManagedZoneOperationsListResponse {
     header?: Schema$ResponseHeader;
@@ -367,6 +434,30 @@ export namespace dns_v1beta2 {
      * The operation resources.
      */
     operations?: Schema$Operation[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePrivateVisibilityConfig&quot;.
+     */
+    kind?: string;
+    /**
+     * The list of GCE private network IDs that can see this zone.
+     */
+    networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePrivateVisibilityConfigNetwork&quot;.
+     */
+    kind?: string;
+    /**
+     * The fully qualified URL of the GCE private network to bind to. This
+     * should be formatted like
+     * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     */
+    networkUrl?: string;
   }
   export interface Schema$ManagedZonesListResponse {
     header?: Schema$ResponseHeader;
@@ -460,6 +551,120 @@ export namespace dns_v1beta2 {
      */
     oldValue?: Schema$ManagedZone;
   }
+  export interface Schema$PoliciesListResponse {
+    header?: Schema$ResponseHeader;
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * The presence of this field indicates that there exist more results
+     * following your last page of results in pagination order. To fetch them,
+     * make another list request using this value as your page token.  In this
+     * way you can retrieve the complete contents of even very large collections
+     * one page at a time. However, if the contents of the collection change
+     * between the first and last paginated list request, the set of all
+     * elements returned will be an inconsistent view of the collection. There
+     * is no way to retrieve a consistent snapshot of a collection larger than
+     * the maximum page size.
+     */
+    nextPageToken?: string;
+    /**
+     * The policy resources.
+     */
+    policies?: Schema$Policy[];
+  }
+  export interface Schema$PoliciesPatchResponse {
+    header?: Schema$ResponseHeader;
+    policy?: Schema$Policy;
+  }
+  export interface Schema$PoliciesUpdateResponse {
+    header?: Schema$ResponseHeader;
+    policy?: Schema$Policy;
+  }
+  /**
+   * A policy is a collection of rules applied to one or more networks that
+   * specify forwarding behavior for that network.
+   */
+  export interface Schema$Policy {
+    /**
+     * Sets an alternative name server for the associated networks. When
+     * specified, all DNS queries are forwarded to a name server that you
+     * choose. Names such as .internal are not available when an alternative
+     * name server is specified.
+     */
+    alternativeNameServerConfig?: Schema$PolicyAlternativeNameServerConfig;
+    /**
+     * A mutable string of at most 1024 characters associated with this resource
+     * for the user&#39;s convenience. Has no effect on the policy&#39;s
+     * function.
+     */
+    description?: string;
+    /**
+     * Allows networks bound to this policy to receive DNS queries sent by VMs
+     * or applications over VPN connections. When enabled, a virtual IP address
+     * will be allocated from each of the sub-networks that are bound to this
+     * policy.
+     */
+    enableInboundForwarding?: boolean;
+    /**
+     * Unique identifier for the resource; defined by the server (output only).
+     */
+    id?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#policy&quot;.
+     */
+    kind?: string;
+    /**
+     * User assigned name for this policy.
+     */
+    name?: string;
+    /**
+     * List of network names specifying networks to which this policy is
+     * applied.
+     */
+    networks?: Schema$PolicyNetwork[];
+  }
+  export interface Schema$PolicyAlternativeNameServerConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#policyAlternativeNameServerConfig&quot;.
+     */
+    kind?: string;
+    /**
+     * Sets an alternative name server for the associated networks. When
+     * specified, all DNS queries are forwarded to a name server that you
+     * choose. Names such as .internal are not available when an alternative
+     * name server is specified.
+     */
+    targetNameServers?:
+        Schema$PolicyAlternativeNameServerConfigTargetNameServer[];
+  }
+  export interface Schema$PolicyAlternativeNameServerConfigTargetNameServer {
+    /**
+     * IPv4 address to forward to.
+     */
+    ipv4Address?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#policyAlternativeNameServerConfigTargetNameServer&quot;.
+     */
+    kind?: string;
+  }
+  export interface Schema$PolicyNetwork {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#policyNetwork&quot;.
+     */
+    kind?: string;
+    /**
+     * The fully qualified URL of the GCE private network to bind to. This
+     * should be formatted like
+     * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     */
+    networkUrl?: string;
+  }
   /**
    * A project resource. The project is a top level container for resources
    * including Cloud DNS ManagedZones. Projects can be created only in the APIs
@@ -503,6 +708,24 @@ export namespace dns_v1beta2 {
      */
     managedZones?: number;
     /**
+     * Maximum allowed number of managed zones which can be attached to a
+     * network.
+     */
+    managedZonesPerNetwork?: number;
+    /**
+     * Maximum allowed number of networks to which a privately scoped zone can
+     * be attached.
+     */
+    networksPerManagedZone?: number;
+    /**
+     * Maximum allowed number of networks per policy.
+     */
+    networksPerPolicy?: number;
+    /**
+     * Maximum allowed number of policies per project.
+     */
+    policies?: number;
+    /**
      * Maximum allowed number of ResourceRecords per ResourceRecordSet.
      */
     resourceRecordsPerRrset?: number;
@@ -520,6 +743,15 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of ResourceRecordSets per zone in the project.
      */
     rrsetsPerManagedZone?: number;
+    /**
+     * Maximum allowed number of target name servers per managed forwarding
+     * zone.
+     */
+    targetNameServersPerManagedZone?: number;
+    /**
+     * Maximum allowed number of alternative target name servers per policy.
+     */
+    targetNameServersPerPolicy?: number;
     /**
      * Maximum allowed size for total rrdata in one ChangesCreateRequest in
      * bytes.
@@ -598,15 +830,7 @@ export namespace dns_v1beta2 {
 
 
   export class Resource$Changes {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -668,7 +892,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -734,7 +958,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone', 'changeId'],
         pathParams: ['changeId', 'managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -806,7 +1030,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChangesListResponse>(parameters, callback);
@@ -816,7 +1040,7 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Changes$Create {
+  export interface Params$Resource$Changes$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -843,7 +1067,7 @@ export namespace dns_v1beta2 {
      */
     requestBody?: Schema$Change;
   }
-  export interface Params$Resource$Changes$Get {
+  export interface Params$Resource$Changes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -870,7 +1094,7 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Changes$List {
+  export interface Params$Resource$Changes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -907,15 +1131,7 @@ export namespace dns_v1beta2 {
 
 
   export class Resource$Dnskeys {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -975,7 +1191,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone', 'dnsKeyId'],
         pathParams: ['dnsKeyId', 'managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DnsKey>(parameters, callback);
@@ -1046,7 +1262,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DnsKeysListResponse>(parameters, callback);
@@ -1056,7 +1272,7 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Dnskeys$Get {
+  export interface Params$Resource$Dnskeys$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1088,7 +1304,7 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Dnskeys$List {
+  export interface Params$Resource$Dnskeys$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1123,15 +1339,7 @@ export namespace dns_v1beta2 {
 
 
   export class Resource$Managedzoneoperations {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1192,7 +1400,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone', 'operation'],
         pathParams: ['managedZone', 'operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1274,7 +1482,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
@@ -1286,7 +1494,8 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Managedzoneoperations$Get {
+  export interface Params$Resource$Managedzoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1311,7 +1520,8 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzoneoperations$List {
+  export interface Params$Resource$Managedzoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1343,15 +1553,7 @@ export namespace dns_v1beta2 {
 
 
   export class Resource$Managedzones {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1413,7 +1615,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(parameters, callback);
@@ -1482,7 +1684,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1548,7 +1750,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(parameters, callback);
@@ -1618,7 +1820,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZonesListResponse>(parameters, callback);
@@ -1689,7 +1891,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1761,7 +1963,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1771,7 +1973,8 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Managedzones$Create {
+  export interface Params$Resource$Managedzones$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1793,7 +1996,8 @@ export namespace dns_v1beta2 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Delete {
+  export interface Params$Resource$Managedzones$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1815,7 +2019,7 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Get {
+  export interface Params$Resource$Managedzones$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1837,7 +2041,8 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$List {
+  export interface Params$Resource$Managedzones$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1862,7 +2067,8 @@ export namespace dns_v1beta2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Patch {
+  export interface Params$Resource$Managedzones$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1889,7 +2095,8 @@ export namespace dns_v1beta2 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Update {
+  export interface Params$Resource$Managedzones$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1915,19 +2122,559 @@ export namespace dns_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$ManagedZone;
+  }
+
+
+  export class Resource$Policies {
+    constructor() {}
+
+
+    /**
+     * dns.policies.create
+     * @desc Create a new Policy
+     * @alias dns.policies.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {().Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(params?: Params$Resource$Policies$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Policy>;
+    create(
+        params: Params$Resource$Policies$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    create(
+        params: Params$Resource$Policies$Create,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    create(callback: BodyResponseCallback<Schema$Policy>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Policies$Create|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/dns/v1beta2/projects/{project}/policies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dns.policies.delete
+     * @desc Delete a previously created Policy. Will fail if the policy is
+     * still being referenced by a network.
+     * @alias dns.policies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.policy User given friendly name of the policy addressed by this request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(params?: Params$Resource$Policies$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
+    delete(
+        params: Params$Resource$Policies$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Policies$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Policies$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/dns/v1beta2/projects/{project}/policies/{policy}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'policy'],
+        pathParams: ['policy', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+
+    /**
+     * dns.policies.get
+     * @desc Fetch the representation of an existing Policy.
+     * @alias dns.policies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.policy User given friendly name of the policy addressed by this request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Policies$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    get(params: Params$Resource$Policies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    get(params: Params$Resource$Policies$Get,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    get(callback: BodyResponseCallback<Schema$Policy>): void;
+    get(paramsOrCallback?: Params$Resource$Policies$Get|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/dns/v1beta2/projects/{project}/policies/{policy}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'policy'],
+        pathParams: ['policy', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * dns.policies.list
+     * @desc Enumerate all Policies associated with a project.
+     * @alias dns.policies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Policies$List, options?: MethodOptions):
+        AxiosPromise<Schema$PoliciesListResponse>;
+    list(
+        params: Params$Resource$Policies$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$PoliciesListResponse>,
+        callback: BodyResponseCallback<Schema$PoliciesListResponse>): void;
+    list(
+        params: Params$Resource$Policies$List,
+        callback: BodyResponseCallback<Schema$PoliciesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$PoliciesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Policies$List|
+        BodyResponseCallback<Schema$PoliciesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PoliciesListResponse>,
+        callback?: BodyResponseCallback<Schema$PoliciesListResponse>):
+        void|AxiosPromise<Schema$PoliciesListResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/dns/v1beta2/projects/{project}/policies')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$PoliciesListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$PoliciesListResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * dns.policies.patch
+     * @desc Apply a partial update to an existing Policy.
+     * @alias dns.policies.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.policy User given friendly name of the policy addressed by this request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {().Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(params?: Params$Resource$Policies$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$PoliciesPatchResponse>;
+    patch(
+        params: Params$Resource$Policies$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$PoliciesPatchResponse>,
+        callback: BodyResponseCallback<Schema$PoliciesPatchResponse>): void;
+    patch(
+        params: Params$Resource$Policies$Patch,
+        callback: BodyResponseCallback<Schema$PoliciesPatchResponse>): void;
+    patch(callback: BodyResponseCallback<Schema$PoliciesPatchResponse>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Policies$Patch|
+        BodyResponseCallback<Schema$PoliciesPatchResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PoliciesPatchResponse>,
+        callback?: BodyResponseCallback<Schema$PoliciesPatchResponse>):
+        void|AxiosPromise<Schema$PoliciesPatchResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/dns/v1beta2/projects/{project}/policies/{policy}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'policy'],
+        pathParams: ['policy', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$PoliciesPatchResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$PoliciesPatchResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * dns.policies.update
+     * @desc Update an existing Policy.
+     * @alias dns.policies.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     * @param {string} params.policy User given friendly name of the policy addressed by this request.
+     * @param {string} params.project Identifies the project addressed by this request.
+     * @param {().Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(params?: Params$Resource$Policies$Update, options?: MethodOptions):
+        AxiosPromise<Schema$PoliciesUpdateResponse>;
+    update(
+        params: Params$Resource$Policies$Update,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$PoliciesUpdateResponse>,
+        callback: BodyResponseCallback<Schema$PoliciesUpdateResponse>): void;
+    update(
+        params: Params$Resource$Policies$Update,
+        callback: BodyResponseCallback<Schema$PoliciesUpdateResponse>): void;
+    update(callback: BodyResponseCallback<Schema$PoliciesUpdateResponse>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Policies$Update|
+        BodyResponseCallback<Schema$PoliciesUpdateResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PoliciesUpdateResponse>,
+        callback?: BodyResponseCallback<Schema$PoliciesUpdateResponse>):
+        void|AxiosPromise<Schema$PoliciesUpdateResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/dns/v1beta2/projects/{project}/policies/{policy}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'policy'],
+        pathParams: ['policy', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$PoliciesUpdateResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$PoliciesUpdateResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Policies$Create extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Policy;
+  }
+  export interface Params$Resource$Policies$Delete extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * User given friendly name of the policy addressed by this request.
+     */
+    policy?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Policies$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * User given friendly name of the policy addressed by this request.
+     */
+    policy?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Policies$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the
+     * server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated.
+     * Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Policies$Patch extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * User given friendly name of the policy addressed by this request.
+     */
+    policy?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Policy;
+  }
+  export interface Params$Resource$Policies$Update extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * For mutating operation requests only. An optional identifier specified by
+     * the client. Must be unique for operation resources in the Operations
+     * collection.
+     */
+    clientOperationId?: string;
+    /**
+     * User given friendly name of the policy addressed by this request.
+     */
+    policy?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Policy;
   }
 
 
   export class Resource$Projects {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1982,7 +2729,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1992,7 +2739,7 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2012,15 +2759,7 @@ export namespace dns_v1beta2 {
 
 
   export class Resource$Resourcerecordsets {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2093,7 +2832,7 @@ export namespace dns_v1beta2 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResourceRecordSetsListResponse>(
@@ -2105,7 +2844,8 @@ export namespace dns_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Resourcerecordsets$List {
+  export interface Params$Resource$Resourcerecordsets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

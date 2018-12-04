@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -27,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace fusiontables_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -45,10 +81,6 @@ export namespace fusiontables_v2 {
    * @param {object=} options Options for Fusiontables
    */
   export class Fusiontables {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     column: Resource$Column;
     query: Resource$Query;
     style: Resource$Style;
@@ -57,20 +89,14 @@ export namespace fusiontables_v2 {
     template: Resource$Template;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.column = new Resource$Column(this);
-      this.query = new Resource$Query(this);
-      this.style = new Resource$Style(this);
-      this.table = new Resource$Table(this);
-      this.task = new Resource$Task(this);
-      this.template = new Resource$Template(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.column = new Resource$Column();
+      this.query = new Resource$Query();
+      this.style = new Resource$Style();
+      this.table = new Resource$Table();
+      this.task = new Resource$Task();
+      this.template = new Resource$Template();
     }
   }
 
@@ -114,7 +140,7 @@ export namespace fusiontables_v2 {
      * Identifier of the base column. If present, this column is derived from
      * the specified base column.
      */
-    baseColumn?: any;
+    baseColumn?: {columnId?: number; tableIndex?: number;};
     /**
      * Identifier for the column.
      */
@@ -396,7 +422,11 @@ export namespace fusiontables_v2 {
      * Gradient function that interpolates a range of colors based on column
      * value.
      */
-    gradient?: any;
+    gradient?: {
+      colors?: Array<{color?: string; opacity?: number;}>;
+      max?: number;
+      min?: number;
+    };
     /**
      * Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the
      * column value is to be used as is, i.e., the column values can have colors
@@ -654,15 +684,7 @@ export namespace fusiontables_v2 {
 
 
   export class Resource$Column {
-    root: Fusiontables;
-    constructor(root: Fusiontables) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -720,7 +742,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -783,7 +805,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -848,7 +870,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -915,7 +937,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ColumnList>(parameters, callback);
@@ -983,7 +1005,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -1050,7 +1072,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -1060,7 +1082,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Column$Delete {
+  export interface Params$Resource$Column$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1075,7 +1097,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Column$Get {
+  export interface Params$Resource$Column$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1090,7 +1112,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Column$Insert {
+  export interface Params$Resource$Column$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1106,7 +1128,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Column;
   }
-  export interface Params$Resource$Column$List {
+  export interface Params$Resource$Column$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1125,7 +1147,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Column$Patch {
+  export interface Params$Resource$Column$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1145,7 +1167,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Column;
   }
-  export interface Params$Resource$Column$Update {
+  export interface Params$Resource$Column$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1168,15 +1190,7 @@ export namespace fusiontables_v2 {
 
 
   export class Resource$Query {
-    root: Fusiontables;
-    constructor(root: Fusiontables) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1234,7 +1248,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['sql'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Sqlresponse>(parameters, callback);
@@ -1302,7 +1316,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['sql'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Sqlresponse>(parameters, callback);
@@ -1312,7 +1326,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Query$Sql {
+  export interface Params$Resource$Query$Sql extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1333,7 +1347,7 @@ export namespace fusiontables_v2 {
      */
     typed?: boolean;
   }
-  export interface Params$Resource$Query$Sqlget {
+  export interface Params$Resource$Query$Sqlget extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1356,15 +1370,7 @@ export namespace fusiontables_v2 {
 
 
   export class Resource$Style {
-    root: Fusiontables;
-    constructor(root: Fusiontables) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1422,7 +1428,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1486,7 +1492,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1552,7 +1558,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1619,7 +1625,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSettingList>(parameters, callback);
@@ -1687,7 +1693,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1755,7 +1761,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1765,7 +1771,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Style$Delete {
+  export interface Params$Resource$Style$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1780,7 +1786,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Style$Get {
+  export interface Params$Resource$Style$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1795,7 +1801,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Style$Insert {
+  export interface Params$Resource$Style$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1811,7 +1817,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$StyleSetting;
   }
-  export interface Params$Resource$Style$List {
+  export interface Params$Resource$Style$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1830,7 +1836,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Style$Patch {
+  export interface Params$Resource$Style$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1850,7 +1856,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$StyleSetting;
   }
-  export interface Params$Resource$Style$Update {
+  export interface Params$Resource$Style$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1873,15 +1879,7 @@ export namespace fusiontables_v2 {
 
 
   export class Resource$Table {
-    root: Fusiontables;
-    constructor(root: Fusiontables) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1939,7 +1937,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2002,7 +2000,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2063,7 +2061,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2138,7 +2136,7 @@ export namespace fusiontables_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Import>(parameters, callback);
@@ -2211,7 +2209,7 @@ export namespace fusiontables_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['name'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2275,7 +2273,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2341,7 +2339,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -2409,7 +2407,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2477,7 +2475,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2554,7 +2552,7 @@ export namespace fusiontables_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2621,7 +2619,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2631,7 +2629,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Table$Copy {
+  export interface Params$Resource$Table$Copy extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2646,7 +2644,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Delete {
+  export interface Params$Resource$Table$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2657,7 +2655,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Get {
+  export interface Params$Resource$Table$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2668,7 +2666,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Importrows {
+  export interface Params$Resource$Table$Importrows extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2723,7 +2721,8 @@ export namespace fusiontables_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Table$Importtable {
+  export interface Params$Resource$Table$Importtable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2760,7 +2759,7 @@ export namespace fusiontables_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Table$Insert {
+  export interface Params$Resource$Table$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2772,7 +2771,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Table$List {
+  export interface Params$Resource$Table$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2787,7 +2786,7 @@ export namespace fusiontables_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Table$Patch {
+  export interface Params$Resource$Table$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2809,7 +2808,8 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Table$Refetchsheet {
+  export interface Params$Resource$Table$Refetchsheet extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2820,7 +2820,8 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Table$Replacerows {
+  export interface Params$Resource$Table$Replacerows extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2876,7 +2877,7 @@ export namespace fusiontables_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Table$Update {
+  export interface Params$Resource$Table$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2901,15 +2902,7 @@ export namespace fusiontables_v2 {
 
 
   export class Resource$Task {
-    root: Fusiontables;
-    constructor(root: Fusiontables) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2968,7 +2961,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3031,7 +3024,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3098,7 +3091,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -3108,7 +3101,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Task$Delete {
+  export interface Params$Resource$Task$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3123,7 +3116,7 @@ export namespace fusiontables_v2 {
      */
     taskId?: string;
   }
-  export interface Params$Resource$Task$Get {
+  export interface Params$Resource$Task$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3138,7 +3131,7 @@ export namespace fusiontables_v2 {
      */
     taskId?: string;
   }
-  export interface Params$Resource$Task$List {
+  export interface Params$Resource$Task$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3164,15 +3157,7 @@ export namespace fusiontables_v2 {
 
 
   export class Resource$Template {
-    root: Fusiontables;
-    constructor(root: Fusiontables) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3230,7 +3215,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3293,7 +3278,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3358,7 +3343,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3425,7 +3410,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TemplateList>(parameters, callback);
@@ -3492,7 +3477,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3559,7 +3544,7 @@ export namespace fusiontables_v2 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3569,7 +3554,7 @@ export namespace fusiontables_v2 {
     }
   }
 
-  export interface Params$Resource$Template$Delete {
+  export interface Params$Resource$Template$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3584,7 +3569,7 @@ export namespace fusiontables_v2 {
      */
     templateId?: number;
   }
-  export interface Params$Resource$Template$Get {
+  export interface Params$Resource$Template$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3599,7 +3584,7 @@ export namespace fusiontables_v2 {
      */
     templateId?: number;
   }
-  export interface Params$Resource$Template$Insert {
+  export interface Params$Resource$Template$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3615,7 +3600,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Template;
   }
-  export interface Params$Resource$Template$List {
+  export interface Params$Resource$Template$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3634,7 +3619,7 @@ export namespace fusiontables_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Template$Patch {
+  export interface Params$Resource$Template$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3654,7 +3639,7 @@ export namespace fusiontables_v2 {
      */
     requestBody?: Schema$Template;
   }
-  export interface Params$Resource$Template$Update {
+  export interface Params$Resource$Template$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

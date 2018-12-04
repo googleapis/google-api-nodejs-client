@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "google-auth-library": "^2.0.0",
-    "googleapis-common": "^0.3.0"
+    "googleapis-common": "^0.4.0"
   },
   "files": [
     "LICENSE",
@@ -20,37 +20,7 @@
   ],
   "repository": "google/google-api-nodejs-client",
   "name": "googleapis",
-  "contributors": [
-    {
-      "email": "jbd@google.com",
-      "name": "Burcu Dogan"
-    },
-    {
-      "email": "jasonall@google.com",
-      "name": "Jason Allor"
-    },
-    {
-      "email": "jason.dobry@gmail.com",
-      "name": "Jason Dobry"
-    },
-    {
-      "email": "ryanseys@google.com",
-      "name": "Ryan Seys"
-    },
-    {
-      "email": "tbetbetbe@google.com",
-      "name": "Tim Emiola"
-    },
-    {
-      "email": "beckwith@google.com",
-      "name": "Justin Beckwith"
-    },
-    {
-      "email": "fenster@google.com",
-      "name": "Alexander Fenster"
-    }
-  ],
-  "version": "34.0.0",
+  "version": "35.0.0",
   "scripts": {
     "pretest": "npm run compile",
     "prepare": "npm run compile",
@@ -59,15 +29,14 @@
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
     "lint": "gts check && eslint 'samples/**/*.js'",
-    "compile": "tsc -v && tsc -p . && copyfiles src/apis/**/README.md src/apis/**/package.json build",
+    "compile": "tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
-    "codecov": "nyc --cache mocha build/test -t 10000 -S -R spec && nyc report --reporter=html",
-    "fix": "eslint --fix 'samples/**/*.js' && prettier --write samples/**/*.js && gts fix",
+    "codecov": "nyc report && codecov -f .coverage/*.json",
+    "fix": "eslint --fix '**/*.js' && gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
-    "postgenerate": "npm run fix",
-    "prettier": "prettier --write samples/**/*.js"
+    "postgenerate": "npm run fix"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -92,7 +61,7 @@
     "@types/nock": "^9.1.3",
     "@types/node": "^10.0.8",
     "@types/nunjucks": "^3.0.0",
-    "@types/p-queue": "^2.3.1",
+    "@types/p-queue": "^3.0.0",
     "@types/pify": "^3.0.2",
     "@types/qs": "^6.5.1",
     "@types/rimraf": "^2.0.2",
@@ -102,12 +71,11 @@
     "assert-rejects": "^1.0.0",
     "axios": "^0.18.0",
     "codecov": "^3.0.2",
-    "copyfiles": "^2.0.0",
     "eslint": "^5.6.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "gts": "^0.8.0",
+    "gts": "^0.9.0",
     "hard-rejection": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
     "js-green-licenses": "^0.5.0",
@@ -127,6 +95,6 @@
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.5",
     "tmp": "^0.0.33",
-    "typescript": "~3.1.0"
+    "typescript": "~3.2.0"
   }
 }

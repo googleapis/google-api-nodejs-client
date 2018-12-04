@@ -1,5 +1,7 @@
 # Samples by API
-The following samples show basic usage of various APIs. Throughout these samples, you will find code that relies on various authentication methods.
+The following samples show basic usage of various APIs.  **All samples require Node.js 8.x or greater**.  
+
+Throughout these samples, you will find code that relies on various authentication methods.
 - **OAuth2** - To use the OAuth2 samples, create a credential in the cloud developer console, and save the file as `oauth2.keys.json` in the samples directory.
 - **Service account** - To use the service account based samples, create a new service account in the cloud developer console, and save the file as `jwt.keys.json` in the samples directory.
 - **API Key** - To use simple API keys, create a new API Key in the cloud developer console, then store the key in the `api_key` field of `config.json`.
