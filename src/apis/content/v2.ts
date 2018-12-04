@@ -3601,13 +3601,14 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values are:   -
+     * The carrier handling the shipment.  Acceptable values for US are:   -
      * &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  -
      * &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  -
      * &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  -
      * &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  -
      * &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  -
-     * &quot;uds&quot;
+     * &quot;uds&quot;    Acceptable values for FR are:   -
+     * &quot;colissimo&quot;  - &quot;chronopost&quot;
      */
     carrier?: string;
     /**
@@ -4936,8 +4937,7 @@ export namespace content_v2 {
   }
   export interface Schema$ProductShippingDimension {
     /**
-     * The unit of value.  Acceptable values are:   - &quot;cm&quot;  -
-     * &quot;in&quot;
+     * The unit of value.
      */
     unit?: string;
     /**
@@ -6949,7 +6949,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
@@ -6968,7 +6968,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * The maximum number of account statuses to return in the response, used
      * for paging.
@@ -12907,7 +12907,7 @@ export namespace content_v2 {
      * completed is a shortcut for shipped , partiallyDelivered, delivered,
      * partiallyReturned, returned, and canceled.
      */
-    statuses?: string;
+    statuses?: string[];
   }
   export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
@@ -14463,7 +14463,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * Flag to include full product data in the result of this get request. The
      * default value is false.
@@ -14490,7 +14490,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * Flag to include full product data in the results of the list request. The
      * default value is false.

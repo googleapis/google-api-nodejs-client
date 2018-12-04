@@ -390,7 +390,7 @@ export namespace sqladmin_v1beta4 {
      * The name and status of the failover replica. This property is applicable
      * only to Second Generation instances.
      */
-    failoverReplica?: any;
+    failoverReplica?: {available?: boolean; name?: string;};
     /**
      * The Compute Engine zone that the instance is currently serving from. This
      * value could be different from the zone that was specified when the
@@ -586,7 +586,7 @@ export namespace sqladmin_v1beta4 {
      * Options for exporting data as CSV. Exporting in CSV format using the
      * Cloud SQL Admin API is not supported for PostgreSQL instances.
      */
-    csvExportOptions?: any;
+    csvExportOptions?: {selectQuery?: string;};
     /**
      * Databases to be exported. MySQL instances: If fileType is SQL and no
      * database is specified, all databases are exported, except for the mysql
@@ -610,7 +610,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for exporting data as SQL statements.
      */
-    sqlExportOptions?: any;
+    sqlExportOptions?: {
+      mysqlExportOptions?: {masterData?: number;};
+      schemaOnly?: boolean;
+      tables?: string[];
+    };
     /**
      * The path to the file in Google Cloud Storage where the export will be
      * stored. The URI is in the form gs://bucketName/fileName. If the file
@@ -698,7 +702,7 @@ export namespace sqladmin_v1beta4 {
      * Options for importing data as CSV. Importing CSV data using the Cloud SQL
      * Admin API is not supported for PostgreSQL instances.
      */
-    csvImportOptions?: any;
+    csvImportOptions?: {columns?: string[]; table?: string;};
     /**
      * The target database for the import. If fileType is SQL, this field is
      * required only if the import file does not specify a database, and is
@@ -1302,7 +1306,7 @@ export namespace sqladmin_v1beta4 {
      * User-provided labels, represented as a dictionary where each label is a
      * single key value pair.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * SslCerts Resource

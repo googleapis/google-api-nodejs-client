@@ -138,7 +138,12 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * Your bidder locations that have distinct URLs.
      */
-    bidderLocation?: any[];
+    bidderLocation?: Array<{
+      bidProtocol?: string;
+      maximumQps?: number;
+      region?: string;
+      url?: string;
+    }>;
     /**
      * The nid parameter value used in cookie match requests. Please contact
      * your technical account manager if you need to change this.
@@ -371,7 +376,16 @@ export namespace adexchangebuyer_v1_4 {
      * Shows any corrections that were applied to this creative. Read-only. This
      * field should not be set in requests.
      */
-    corrections?: any[];
+    corrections?: Array<{
+      contexts?: Array<{
+        auctionType?: string[];
+        contextType?: string;
+        geoCriteriaId?: number[];
+        platform?: string[];
+      }>;
+      details?: string[];
+      reason?: string;
+    }>;
     /**
      * Creative status identity type that the creative item applies to. Ad
      * Exchange real-time bidding is migrating to the sizeless creative
@@ -401,7 +415,10 @@ export namespace adexchangebuyer_v1_4 {
      * The filtering reasons for the creative. Read-only. This field should not
      * be set in requests.
      */
-    filteringReasons?: any;
+    filteringReasons?: {
+      date?: string;
+      reasons?: Array<{filteringCount?: string; filteringStatus?: number;}>;
+    };
     /**
      * Ad height.
      */
@@ -428,7 +445,22 @@ export namespace adexchangebuyer_v1_4 {
      * If nativeAd is set, HTMLSnippet, videoVastXML, and the videoURL outside
      * of nativeAd should not be set. (The videoURL inside nativeAd can be set.)
      */
-    nativeAd?: any;
+    nativeAd?: {
+      advertiser?: string;
+      appIcon?: {height?: number; url?: string; width?: number;};
+      body?: string;
+      callToAction?: string;
+      clickLinkUrl?: string;
+      clickTrackingUrl?: string;
+      headline?: string;
+      image?: {height?: number; url?: string; width?: number;};
+      impressionTrackingUrl?: string[];
+      logo?: {height?: number; url?: string; width?: number;};
+      price?: string;
+      starRating?: number;
+      store?: string;
+      videoURL?: string;
+    };
     /**
      * Top-level open auction status. Read-only. This field should not be set in
      * requests. If disapproved, an entry for auctionType=OPEN_AUCTION (or ALL)
@@ -462,7 +494,16 @@ export namespace adexchangebuyer_v1_4 {
      * Read-only. This field should not be set in requests. See the examples in
      * the Creatives guide for more details.
      */
-    servingRestrictions?: any[];
+    servingRestrictions?: Array<{
+      contexts?: Array<{
+        auctionType?: string[];
+        contextType?: string;
+        geoCriteriaId?: number[];
+        platform?: string[];
+      }>;
+      disapprovalReasons?: Array<{details?: string[]; reason?: string;}>;
+      reason?: string;
+    }>;
     /**
      * List of vendor types for the ads that may be shown from this snippet.
      * Each vendor type is represented by an integer as defined in vendors.txt.
@@ -497,7 +538,8 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * A list of external deal ids and ARC approval status.
      */
-    dealStatuses?: any[];
+    dealStatuses?:
+        Array<{arcStatus?: string; dealId?: string; webPropertyId?: number;}>;
     /**
      * Resource type.
      */
@@ -1140,7 +1182,7 @@ export namespace adexchangebuyer_v1_4 {
      * Requests which allow one of these (width, height) pairs will match. All
      * pairs must be supported ad dimensions.
      */
-    dimensions?: any[];
+    dimensions?: Array<{height?: string; width?: string;}>;
     /**
      * Requests with any of these content labels will not match. Values are from
      * content-labels.txt in the downloadable files section.
@@ -1153,7 +1195,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * Requests containing any of these placements will not match.
      */
-    excludedPlacements?: any[];
+    excludedPlacements?: Array<{token?: string; type?: string;}>;
     /**
      * Requests containing any of these users list ids will not match.
      */
@@ -1205,7 +1247,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * Requests containing any of these placements will match.
      */
-    placements?: any[];
+    placements?: Array<{token?: string; type?: string;}>;
     /**
      * Requests matching any of these platforms will match. Possible values are
      * PRETARGETING_PLATFORM_MOBILE, PRETARGETING_PLATFORM_DESKTOP, and
@@ -1244,7 +1286,8 @@ export namespace adexchangebuyer_v1_4 {
      * Video requests satisfying any of these player size constraints will
      * match.
      */
-    videoPlayerSizes?: any[];
+    videoPlayerSizes?:
+        Array<{aspectRatio?: string; minHeight?: string; minWidth?: string;}>;
   }
   export interface Schema$PretargetingConfigList {
     /**
@@ -3024,12 +3067,12 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * When specified, only creatives for the given account ids are returned.
      */
-    accountId?: number;
+    accountId?: number[];
     /**
      * When specified, only creatives for the given buyer creative ids are
      * returned.
      */
-    buyerCreativeId?: string;
+    buyerCreativeId?: string[];
     /**
      * When specified, only creatives having the given deals status are
      * returned.

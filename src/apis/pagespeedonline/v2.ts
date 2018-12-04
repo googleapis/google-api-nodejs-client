@@ -103,7 +103,15 @@ export namespace pagespeedonline_v2 {
     /**
      * List of arguments for the format string.
      */
-    args?: any[];
+    args?: Array<{
+      key?: string;
+      rects?: Array<
+          {height?: number; left?: number; top?: number; width?: number;}>;
+      secondary_rects?: Array<
+          {height?: number; left?: number; top?: number; width?: number;}>;
+      type?: string;
+      value?: string;
+    }>;
     /**
      * A localized format string with {{FOO}} placeholders, where &#39;FOO&#39;
      * is the key of the argument whose value should be substituted. For
@@ -133,7 +141,7 @@ export namespace pagespeedonline_v2 {
      * The region of the page that is captured by this image, with dimensions
      * measured in CSS pixels.
      */
-    page_rect?: any;
+    page_rect?: {height?: number; left?: number; top?: number; width?: number;};
     /**
      * Width of screenshot in pixels.
      */
@@ -148,7 +156,24 @@ export namespace pagespeedonline_v2 {
      * Localized PageSpeed results. Contains a ruleResults entry for each
      * PageSpeed rule instantiated and run by the server.
      */
-    formattedResults?: any;
+    formattedResults?: {
+      locale?: string;
+      ruleResults?: {
+        [key: string]: {
+          groups?: string[];
+          localizedRuleName?: string;
+          ruleImpact?: number;
+          summary?: Schema$PagespeedApiFormatStringV2;
+          urlBlocks?: Array<{
+            header?: Schema$PagespeedApiFormatStringV2;
+            urls?: Array<{
+              details?: Schema$PagespeedApiFormatStringV2[];
+              result?: Schema$PagespeedApiFormatStringV2;
+            }>;
+          }>;
+        };
+      };
+    };
     /**
      * Canonicalized and final URL for the document, after following page
      * redirects (if any).
@@ -167,7 +192,21 @@ export namespace pagespeedonline_v2 {
      * Summary statistics for the page, such as number of JavaScript bytes,
      * number of HTML bytes, etc.
      */
-    pageStats?: any;
+    pageStats?: {
+      cssResponseBytes?: string;
+      flashResponseBytes?: string;
+      htmlResponseBytes?: string;
+      imageResponseBytes?: string;
+      javascriptResponseBytes?: string;
+      numberCssResources?: number;
+      numberHosts?: number;
+      numberJsResources?: number;
+      numberResources?: number;
+      numberStaticResources?: number;
+      otherResponseBytes?: string;
+      textResponseBytes?: string;
+      totalRequestBytes?: string;
+    };
     /**
      * Response code for the document. 200 indicates a normal page load. 4xx/5xx
      * indicates an error.
@@ -176,7 +215,7 @@ export namespace pagespeedonline_v2 {
     /**
      * A map with one entry for each rule group in these results.
      */
-    ruleGroups?: any;
+    ruleGroups?: {[key: string]: {score?: number;};};
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
@@ -188,7 +227,7 @@ export namespace pagespeedonline_v2 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: any;
+    version?: {major?: number; minor?: number;};
   }
 
 
@@ -296,7 +335,7 @@ export namespace pagespeedonline_v2 {
     /**
      * A PageSpeed rule to run; if none are given, all rules are run
      */
-    rule?: string;
+    rule?: string[];
     /**
      * Indicates if binary data containing a screenshot should be included
      */

@@ -136,7 +136,13 @@ export namespace books_v1 {
     /**
      * Selection ranges sent from the client.
      */
-    clientVersionRanges?: any;
+    clientVersionRanges?: {
+      cfiRange?: Schema$BooksAnnotationsRange;
+      contentVersion?: string;
+      gbImageRange?: Schema$BooksAnnotationsRange;
+      gbTextRange?: Schema$BooksAnnotationsRange;
+      imageCfiRange?: Schema$BooksAnnotationsRange;
+    };
     /**
      * Timestamp for the created time of this annotation.
      */
@@ -144,7 +150,13 @@ export namespace books_v1 {
     /**
      * Selection ranges for the most recent content version.
      */
-    currentVersionRanges?: any;
+    currentVersionRanges?: {
+      cfiRange?: Schema$BooksAnnotationsRange;
+      contentVersion?: string;
+      gbImageRange?: Schema$BooksAnnotationsRange;
+      gbTextRange?: Schema$BooksAnnotationsRange;
+      imageCfiRange?: Schema$BooksAnnotationsRange;
+    };
     /**
      * User-created data for this annotation.
      */
@@ -169,7 +181,11 @@ export namespace books_v1 {
      * The layer this annotation is for.
      */
     layerId?: string;
-    layerSummary?: any;
+    layerSummary?: {
+      allowedCharacterCount?: number;
+      limitType?: string;
+      remainingCharacterCount?: number;
+    };
     /**
      * Pages that this annotation spans.
      */
@@ -268,7 +284,13 @@ export namespace books_v1 {
   }
   export interface Schema$AnnotationsSummary {
     kind?: string;
-    layers?: any[];
+    layers?: Array<{
+      allowedCharacterCount?: number;
+      layerId?: string;
+      limitType?: string;
+      remainingCharacterCount?: number;
+      updated?: string;
+    }>;
   }
   export interface Schema$BooksAnnotationsRange {
     /**
@@ -356,7 +378,7 @@ export namespace books_v1 {
     /**
      * A list of onboarding categories.
      */
-    items?: any[];
+    items?: Array<{badgeUrl?: string; categoryId?: string; name?: string;}>;
     /**
      * Resource type.
      */
@@ -411,12 +433,54 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Schema$Dictlayerdata {
-    common?: any;
-    dict?: any;
+    common?: {title?: string;};
+    dict?: {
+      source?: {attribution?: string; url?: string;};
+      words?: Array<{
+        derivatives?: Array<
+            {source?: {attribution?: string; url?: string;}; text?: string;}>;
+        examples?: Array<
+            {source?: {attribution?: string; url?: string;}; text?: string;}>;
+        senses?: Array<{
+          conjugations?: Array<{type?: string; value?: string;}>;
+          definitions?: Array<{
+            definition?: string;
+            examples?: Array<{
+              source?: {attribution?: string; url?: string;};
+              text?: string;
+            }>;
+          }>;
+          partOfSpeech?: string;
+          pronunciation?: string;
+          pronunciationUrl?: string;
+          source?: {attribution?: string; url?: string;};
+          syllabification?: string;
+          synonyms?: Array<{
+            source?: {attribution?: string; url?: string;};
+            text?: string;
+          }>;
+        }>;
+        source?: {attribution?: string; url?: string;};
+      }>;
+    };
     kind?: string;
   }
   export interface Schema$Discoveryclusters {
-    clusters?: any[];
+    clusters?: Array<{
+      banner_with_content_container?: {
+        fillColorArgb?: string;
+        imageUrl?: string;
+        maskColorArgb?: string;
+        moreButtonText?: string;
+        moreButtonUrl?: string;
+        textColorArgb?: string;
+      };
+      subTitle?: string;
+      title?: string;
+      totalVolumes?: number;
+      uid?: string;
+      volumes?: Schema$Volume[];
+    }>;
     /**
      * Resorce type.
      */
@@ -497,11 +561,35 @@ export namespace books_v1 {
     /**
      * Family membership info of the user that made the request.
      */
-    membership?: any;
+    membership?: {
+      acquirePermission?: string;
+      ageGroup?: string;
+      allowedMaturityRating?: string;
+      isInFamily?: boolean;
+      role?: string;
+    };
   }
   export interface Schema$Geolayerdata {
-    common?: any;
-    geo?: any;
+    common?: {
+      lang?: string;
+      previewImageUrl?: string;
+      snippet?: string;
+      snippetUrl?: string;
+      title?: string;
+    };
+    geo?: {
+      boundary?: Array<Array<{latitude?: number; longitude?: number;}>>;
+      cachePolicy?: string;
+      countryCode?: string;
+      latitude?: number;
+      longitude?: number;
+      mapType?: string;
+      viewport?: {
+        hi?: {latitude?: number; longitude?: number;};
+        lo?: {latitude?: number; longitude?: number;};
+      };
+      zoom?: number;
+    };
     kind?: string;
   }
   export interface Schema$Layersummaries {
@@ -580,7 +668,13 @@ export namespace books_v1 {
     /**
      * A list of offline dictionary metadata.
      */
-    items?: any[];
+    items?: Array<{
+      download_url?: string;
+      encrypted_key?: string;
+      language?: string;
+      size?: string;
+      version?: string;
+    }>;
     /**
      * Resource type.
      */
@@ -613,7 +707,19 @@ export namespace books_v1 {
     /**
      * A list of offers.
      */
-    items?: any[];
+    items?: Array<{
+      artUrl?: string;
+      gservicesKey?: string;
+      id?: string;
+      items?: Array<{
+        author?: string;
+        canonicalVolumeLink?: string;
+        coverUrl?: string;
+        description?: string;
+        title?: string;
+        volumeId?: string;
+      }>;
+    }>;
     /**
      * Resource type.
      */
@@ -668,7 +774,7 @@ export namespace books_v1 {
     /**
      * Author of this review.
      */
-    author?: any;
+    author?: {displayName?: string;};
     /**
      * Review text.
      */
@@ -694,7 +800,7 @@ export namespace books_v1 {
      * Information regarding the source of this review, when the review is not
      * from a Google Books user.
      */
-    source?: any;
+    source?: {description?: string; extraDescription?: string; url?: string;};
     /**
      * Title for this review.
      */
@@ -714,7 +820,13 @@ export namespace books_v1 {
      * Resource type.
      */
     kind?: string;
-    series?: any[];
+    series?: Array<{
+      bannerImageUrl?: string;
+      imageUrl?: string;
+      seriesId?: string;
+      seriesType?: string;
+      title?: string;
+    }>;
   }
   export interface Schema$Seriesmembership {
     /**
@@ -732,8 +844,14 @@ export namespace books_v1 {
     /**
      * User settings in sub-objects, each for different purposes.
      */
-    notesExport?: any;
-    notification?: any;
+    notesExport?: {folderName?: string; isEnabled?: boolean;};
+    notification?: {
+      matchMyInterests?: {opted_state?: string;};
+      moreFromAuthors?: {opted_state?: string;};
+      moreFromSeries?: {opted_state?: string;};
+      priceDrop?: {opted_state?: string;};
+      rewardExpirations?: {opted_state?: string;};
+    };
   }
   export interface Schema$Volume {
     /**
@@ -741,7 +859,30 @@ export namespace books_v1 {
      * volume text. This information can depend on country (books may be public
      * domain in one country but not in another, e.g.).
      */
-    accessInfo?: any;
+    accessInfo?: {
+      accessViewStatus?: string;
+      country?: string;
+      downloadAccess?: Schema$DownloadAccessRestriction;
+      driveImportedContentLink?: string;
+      embeddable?: boolean;
+      epub?: {
+        acsTokenLink?: string;
+        downloadLink?: string;
+        isAvailable?: boolean;
+      };
+      explicitOfflineLicenseManagement?: boolean;
+      pdf?: {
+        acsTokenLink?: string;
+        downloadLink?: string;
+        isAvailable?: boolean;
+      };
+      publicDomain?: boolean;
+      quoteSharingAllowed?: boolean;
+      textToSpeechPermission?: string;
+      viewOrderUrl?: string;
+      viewability?: string;
+      webReaderLink?: string;
+    };
     /**
      * Opaque identifier for a specific version of a volume resource. (In LITE
      * projection)
@@ -758,22 +899,39 @@ export namespace books_v1 {
     /**
      * What layers exist in this volume and high level information about them.
      */
-    layerInfo?: any;
+    layerInfo?: {
+      layers?: Array<{layerId?: string; volumeAnnotationsVersion?: string;}>;
+    };
     /**
      * Recommendation related information for this volume.
      */
-    recommendedInfo?: any;
+    recommendedInfo?: {explanation?: string;};
     /**
      * Any information about a volume related to the eBookstore and/or
      * purchaseability. This information can depend on the country where the
      * request originates from (i.e. books may not be for sale in certain
      * countries).
      */
-    saleInfo?: any;
+    saleInfo?: {
+      buyLink?: string;
+      country?: string;
+      isEbook?: boolean;
+      listPrice?: {amount?: number; currencyCode?: string;};
+      offers?: Array<{
+        finskyOfferType?: number;
+        giftable?: boolean;
+        listPrice?: {amountInMicros?: number; currencyCode?: string;};
+        rentalDuration?: {count?: number; unit?: string;};
+        retailPrice?: {amountInMicros?: number; currencyCode?: string;};
+      }>;
+      onSaleDate?: string;
+      retailPrice?: {amount?: number; currencyCode?: string;};
+      saleability?: string;
+    };
     /**
      * Search result information related to this volume.
      */
-    searchInfo?: any;
+    searchInfo?: {textSnippet?: string;};
     /**
      * URL to this resource. (In LITE projection.)
      */
@@ -782,11 +940,81 @@ export namespace books_v1 {
      * User specific information related to this volume. (e.g. page this user
      * last read or whether they purchased this book)
      */
-    userInfo?: any;
+    userInfo?: {
+      acquiredTime?: string;
+      acquisitionType?: number;
+      copy?: {
+        allowedCharacterCount?: number;
+        limitType?: string;
+        remainingCharacterCount?: number;
+        updated?: string;
+      };
+      entitlementType?: number;
+      familySharing?: {
+        familyRole?: string;
+        isSharingAllowed?: boolean;
+        isSharingDisabledByFop?: boolean;
+      };
+      isFamilySharedFromUser?: boolean;
+      isFamilySharedToUser?: boolean;
+      isFamilySharingAllowed?: boolean;
+      isFamilySharingDisabledByFop?: boolean;
+      isInMyBooks?: boolean;
+      isPreordered?: boolean;
+      isPurchased?: boolean;
+      isUploaded?: boolean;
+      readingPosition?: Schema$ReadingPosition;
+      rentalPeriod?: {endUtcSec?: string; startUtcSec?: string;};
+      rentalState?: string;
+      review?: Schema$Review;
+      updated?: string;
+      userUploadedVolumeInfo?: {processingState?: string;};
+    };
     /**
      * General volume information.
      */
-    volumeInfo?: any;
+    volumeInfo?: {
+      allowAnonLogging?: boolean;
+      authors?: string[];
+      averageRating?: number;
+      canonicalVolumeLink?: string;
+      categories?: string[];
+      comicsContent?: boolean;
+      contentVersion?: string;
+      description?: string;
+      dimensions?: {height?: string; thickness?: string; width?: string;};
+      imageLinks?: {
+        extraLarge?: string;
+        large?: string;
+        medium?: string;
+        small?: string;
+        smallThumbnail?: string;
+        thumbnail?: string;
+      };
+      industryIdentifiers?: Array<{identifier?: string; type?: string;}>;
+      infoLink?: string;
+      language?: string;
+      mainCategory?: string;
+      maturityRating?: string;
+      pageCount?: number;
+      panelizationSummary?: {
+        containsEpubBubbles?: boolean;
+        containsImageBubbles?: boolean;
+        epubBubbleVersion?: string;
+        imageBubbleVersion?: string;
+      };
+      previewLink?: string;
+      printType?: string;
+      printedPageCount?: number;
+      publishedDate?: string;
+      publisher?: string;
+      ratingsCount?: number;
+      readingModes?: any;
+      samplePageCount?: number;
+      seriesInfo?: Schema$Volumeseriesinfo;
+      subtitle?: string;
+      title?: string;
+    };
   }
   export interface Schema$Volume2 {
     /**
@@ -815,7 +1043,12 @@ export namespace books_v1 {
     /**
      * The content ranges to identify the selected text.
      */
-    contentRanges?: any;
+    contentRanges?: {
+      cfiRange?: Schema$BooksAnnotationsRange;
+      contentVersion?: string;
+      gbImageRange?: Schema$BooksAnnotationsRange;
+      gbTextRange?: Schema$BooksAnnotationsRange;
+    };
     /**
      * Data for this annotation.
      */
@@ -913,7 +1146,12 @@ export namespace books_v1 {
      * Short book title in the context of the series.
      */
     shortSeriesBookTitle?: string;
-    volumeSeries?: any[];
+    volumeSeries?: Array<{
+      issue?: Array<{issueDisplayNumber?: string; issueOrderNumber?: number;}>;
+      orderNumber?: number;
+      seriesBookType?: string;
+      seriesId?: string;
+    }>;
   }
 
 
@@ -2278,7 +2516,7 @@ export namespace books_v1 {
      * The list of Annotation Data Ids to retrieve. Pagination is ignored if
      * this is set.
      */
-    annotationDataId?: string;
+    annotationDataId?: string[];
     /**
      * The content version for the requested volume.
      */
@@ -2995,7 +3233,7 @@ export namespace books_v1 {
     /**
      * The volume(s) to release restrictions for.
      */
-    volumeIds?: string;
+    volumeIds?: string[];
   }
   export interface Params$Resource$Myconfig$Requestaccess extends
       StandardParameters {
@@ -3044,7 +3282,7 @@ export namespace books_v1 {
     /**
      * List of features supported by the client, i.e., 'RENTALS'
      */
-    features?: string;
+    features?: string[];
     /**
      * Set to true to include non-comics series. Defaults to false.
      */
@@ -3068,7 +3306,7 @@ export namespace books_v1 {
     /**
      * The volume(s) to request download restrictions for.
      */
-    volumeIds?: string;
+    volumeIds?: string[];
   }
   export interface Params$Resource$Myconfig$Updateusersettings extends
       StandardParameters {
@@ -3530,7 +3768,7 @@ export namespace books_v1 {
     /**
      * The layer ID(s) to limit annotation by.
      */
-    layerIds?: string;
+    layerIds?: string[];
     /**
      * Maximum number of results to return
      */
@@ -3573,7 +3811,7 @@ export namespace books_v1 {
     /**
      * Array of layer IDs to get the summary for.
      */
-    layerIds?: string;
+    layerIds?: string[];
     /**
      * Volume id to get the summary for.
      */
@@ -4748,7 +4986,7 @@ export namespace books_v1 {
     /**
      * List of category ids requested.
      */
-    categoryId?: string;
+    categoryId?: string[];
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if
      * unset.
@@ -5282,7 +5520,7 @@ export namespace books_v1 {
     /**
      * String that identifies the series
      */
-    series_id?: string;
+    series_id?: string[];
   }
 
   export class Resource$Series$Membership {
@@ -5857,7 +6095,7 @@ export namespace books_v1 {
     /**
      * How the book was acquired
      */
-    acquireMethod?: string;
+    acquireMethod?: string[];
     /**
      * ISO-3166-1 code to override the IP-based location.
      */
@@ -5875,7 +6113,7 @@ export namespace books_v1 {
      * The processing state of the user uploaded volumes to be returned.
      * Applicable only if the UPLOADED is specified in the acquireMethod.
      */
-    processingState?: string;
+    processingState?: string[];
     /**
      * String to identify the originator of this request.
      */
@@ -6199,7 +6437,7 @@ export namespace books_v1 {
     /**
      * The processing state of the user uploaded volumes to be returned.
      */
-    processingState?: string;
+    processingState?: string[];
     /**
      * String to identify the originator of this request.
      */
@@ -6212,6 +6450,6 @@ export namespace books_v1 {
      * The ids of the volumes to be returned. If not specified all that match
      * the processingState are returned.
      */
-    volumeId?: string;
+    volumeId?: string[];
   }
 }

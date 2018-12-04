@@ -207,7 +207,7 @@ export namespace cloudtrace_v1 {
      * `/http/status_code` *   `/http/url` *   `/http/user_agent` *   `/pid` *
      * `/stacktrace` *   `/tid`
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the span. Must be less than 128 bytes. The span name is sanitized
      * and displayed in the Stackdriver Trace tool in the Google Cloud Platform

@@ -347,7 +347,7 @@ export namespace binaryauthorization_v1beta1 {
      * region (e.g. us-central1). For `clusterId` syntax restrictions see
      * https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.
      */
-    clusterAdmissionRules?: any;
+    clusterAdmissionRules?: {[key: string]: Schema$AdmissionRule;};
     /**
      * Required. Default admission rule for a cluster without a per-cluster
      * admission rule.

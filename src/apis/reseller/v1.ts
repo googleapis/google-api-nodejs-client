@@ -375,7 +375,11 @@ export namespace reseller_v1 {
      * trial plan. For more information about the API&quot;s payment plans, see
      * the API concepts.
      */
-    plan?: any;
+    plan?: {
+      commitmentInterval?: {endTime?: string; startTime?: string;};
+      isCommitmentPlan?: boolean;
+      planName?: string;
+    };
     /**
      * This is an optional property. This purchase order (PO) information is for
      * resellers to use for their company tracking usage. If a purchaseOrderId
@@ -445,12 +449,15 @@ export namespace reseller_v1 {
      * Read-only transfer related information for the subscription. For more
      * information, see retrieve transferable subscriptions for a customer.
      */
-    transferInfo?: any;
+    transferInfo?: {
+      minimumTransferableSeats?: number;
+      transferabilityExpirationTime?: string;
+    };
     /**
      * The G Suite annual commitment and flexible payment plans can be in a
      * 30-day free trial. For more information, see the API concepts.
      */
-    trialSettings?: any;
+    trialSettings?: {isInTrial?: boolean; trialEndTime?: string;};
   }
   /**
    * JSON template for a subscription list.

@@ -232,7 +232,7 @@ export namespace kgsearch_v1 {
      * specify multiple ids in the HTTP request, repeat the parameter in the URL
      * as in ...?ids=A&ids=B
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Enables indenting of json results.
      */
@@ -241,7 +241,7 @@ export namespace kgsearch_v1 {
      * The list of language codes (defined in ISO 693) to run the query with,
      * e.g. 'en'.
      */
-    languages?: string;
+    languages?: string[];
     /**
      * Limits the number of entities to be returned.
      */
@@ -259,6 +259,6 @@ export namespace kgsearch_v1 {
      * http://schema.org/Person). If multiple types are specified, returned
      * entities will contain one or more of these types.
      */
-    types?: string;
+    types?: string[];
   }
 }

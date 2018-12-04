@@ -3985,7 +3985,7 @@ export namespace dfareporting_v3_2 {
     /**
      * The URLs where the completed report file can be downloaded.
      */
-    urls?: any;
+    urls?: {apiUrl?: string; browserUrl?: string;};
   }
   /**
    * Represents the list of File resources.
@@ -6530,16 +6530,36 @@ export namespace dfareporting_v3_2 {
     /**
      * The report criteria for a report of type &quot;STANDARD&quot;.
      */
-    criteria?: any;
+    criteria?: {
+      activities?: Schema$Activities;
+      customRichMediaEvents?: Schema$CustomRichMediaEvents;
+      dateRange?: Schema$DateRange;
+      dimensionFilters?: Schema$DimensionValue[];
+      dimensions?: Schema$SortedDimension[];
+      metricNames?: string[];
+    };
     /**
      * The report criteria for a report of type
      * &quot;CROSS_DIMENSION_REACH&quot;.
      */
-    crossDimensionReachCriteria?: any;
+    crossDimensionReachCriteria?: {
+      breakdown?: Schema$SortedDimension[];
+      dateRange?: Schema$DateRange;
+      dimension?: string;
+      dimensionFilters?: Schema$DimensionValue[];
+      metricNames?: string[];
+      overlapMetricNames?: string[];
+      pivoted?: boolean;
+    };
     /**
      * The report&#39;s email delivery settings.
      */
-    delivery?: any;
+    delivery?: {
+      emailOwner?: boolean;
+      emailOwnerDeliveryType?: string;
+      message?: string;
+      recipients?: Schema$Recipient[];
+    };
     /**
      * The eTag of this response for caching purposes.
      */
@@ -6551,7 +6571,19 @@ export namespace dfareporting_v3_2 {
     /**
      * The report criteria for a report of type &quot;FLOODLIGHT&quot;.
      */
-    floodlightCriteria?: any;
+    floodlightCriteria?: {
+      customRichMediaEvents?: Schema$DimensionValue[];
+      dateRange?: Schema$DateRange;
+      dimensionFilters?: Schema$DimensionValue[];
+      dimensions?: Schema$SortedDimension[];
+      floodlightConfigId?: Schema$DimensionValue;
+      metricNames?: string[];
+      reportProperties?: {
+        includeAttributedIPConversions?: boolean;
+        includeUnattributedCookieConversions?: boolean;
+        includeUnattributedIPConversions?: boolean;
+      };
+    };
     /**
      * The output format of the report. If not specified, default format is
      * &quot;CSV&quot;. Note that the actual format in the completed report file
@@ -6584,17 +6616,54 @@ export namespace dfareporting_v3_2 {
     /**
      * The report criteria for a report of type &quot;PATH_TO_CONVERSION&quot;.
      */
-    pathToConversionCriteria?: any;
+    pathToConversionCriteria?: {
+      activityFilters?: Schema$DimensionValue[];
+      conversionDimensions?: Schema$SortedDimension[];
+      customFloodlightVariables?: Schema$SortedDimension[];
+      customRichMediaEvents?: Schema$DimensionValue[];
+      dateRange?: Schema$DateRange;
+      floodlightConfigId?: Schema$DimensionValue;
+      metricNames?: string[];
+      perInteractionDimensions?: Schema$SortedDimension[];
+      reportProperties?: {
+        clicksLookbackWindow?: number;
+        impressionsLookbackWindow?: number;
+        includeAttributedIPConversions?: boolean;
+        includeUnattributedCookieConversions?: boolean;
+        includeUnattributedIPConversions?: boolean;
+        maximumClickInteractions?: number;
+        maximumImpressionInteractions?: number;
+        maximumInteractionGap?: number;
+        pivotOnInteractionPath?: boolean;
+      };
+    };
     /**
      * The report criteria for a report of type &quot;REACH&quot;.
      */
-    reachCriteria?: any;
+    reachCriteria?: {
+      activities?: Schema$Activities;
+      customRichMediaEvents?: Schema$CustomRichMediaEvents;
+      dateRange?: Schema$DateRange;
+      dimensionFilters?: Schema$DimensionValue[];
+      dimensions?: Schema$SortedDimension[];
+      enableAllDimensionCombinations?: boolean;
+      metricNames?: string[];
+      reachByFrequencyMetricNames?: string[];
+    };
     /**
      * The report&#39;s schedule. Can only be set if the report&#39;s
      * &#39;dateRange&#39; is a relative date range and the relative date range
      * is not &quot;TODAY&quot;.
      */
-    schedule?: any;
+    schedule?: {
+      active?: boolean;
+      every?: number;
+      expirationDate?: string;
+      repeats?: string;
+      repeatsOnWeekDays?: string[];
+      runsOnDayOfMonth?: string;
+      startDate?: string;
+    };
     /**
      * The subaccount ID to which this report belongs if applicable.
      */
@@ -8460,7 +8529,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only accounts with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -8954,7 +9023,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only user profiles with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -9446,11 +9515,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only ads with these audience segment IDs.
      */
-    audienceSegmentIds?: string;
+    audienceSegmentIds?: string[];
     /**
      * Select only ads with these campaign IDs.
      */
-    campaignIds?: string;
+    campaignIds?: string[];
     /**
      * Select default ads with the specified compatibility. Applicable when type
      * is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to
@@ -9463,11 +9532,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only ads with these creative IDs assigned.
      */
-    creativeIds?: string;
+    creativeIds?: string[];
     /**
      * Select only ads with these creative optimization configuration IDs.
      */
-    creativeOptimizationConfigurationIds?: string;
+    creativeOptimizationConfigurationIds?: string[];
     /**
      * Select only dynamic click trackers. Applicable when type is
      * AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If
@@ -9477,11 +9546,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only ads with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Select only ads with these landing page IDs.
      */
-    landingPageIds?: string;
+    landingPageIds?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -9497,7 +9566,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only ads with these placement IDs assigned.
      */
-    placementIds?: string;
+    placementIds?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -9506,7 +9575,7 @@ export namespace dfareporting_v3_2 {
      * Select only ads whose list targeting expression use these remarketing
      * list IDs.
      */
-    remarketingListIds?: string;
+    remarketingListIds?: string[];
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "ad*2015" will return objects with names like "ad June
@@ -9519,7 +9588,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only ads with these size IDs.
      */
-    sizeIds?: string;
+    sizeIds?: string[];
     /**
      * Field by which to sort the list.
      */
@@ -9539,7 +9608,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only ads with these types.
      */
-    type?: string;
+    type?: string[];
   }
   export interface Params$Resource$Ads$Patch extends StandardParameters {
     /**
@@ -10079,7 +10148,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only advertiser groups with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -10574,7 +10643,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only landing pages that belong to these advertisers.
      */
-    advertiserIds?: string;
+    advertiserIds?: string[];
     /**
      * Select only archived landing pages. Don't set this field to select both
      * archived and non-archived landing pages.
@@ -10583,11 +10652,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only landing pages that are associated with these campaigns.
      */
-    campaignIds?: string;
+    campaignIds?: string[];
     /**
      * Select only landing pages with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -11069,15 +11138,15 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only advertisers with these advertiser group IDs.
      */
-    advertiserGroupIds?: string;
+    advertiserGroupIds?: string[];
     /**
      * Select only advertisers with these floodlight configuration IDs.
      */
-    floodlightConfigurationIds?: string;
+    floodlightConfigurationIds?: string[];
     /**
      * Select only advertisers with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Select only advertisers which do not belong to any advertiser group.
      */
@@ -11879,11 +11948,11 @@ export namespace dfareporting_v3_2 {
      * Select only campaigns whose advertisers belong to these advertiser
      * groups.
      */
-    advertiserGroupIds?: string;
+    advertiserGroupIds?: string[];
     /**
      * Select only campaigns that belong to these advertisers.
      */
-    advertiserIds?: string;
+    advertiserIds?: string[];
     /**
      * Select only archived campaigns. Don't set this field to select both
      * archived and non-archived campaigns.
@@ -11896,11 +11965,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Exclude campaigns with these IDs.
      */
-    excludedIds?: string;
+    excludedIds?: string[];
     /**
      * Select only campaigns with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -12160,7 +12229,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only change logs with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Select only change logs whose change time is before the specified
      * maxChangeTime.The time should be formatted as an RFC3339 date/time
@@ -12186,7 +12255,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only change logs with these object IDs.
      */
-    objectIds?: string;
+    objectIds?: string[];
     /**
      * Select only change logs with the specified object type.
      */
@@ -12207,7 +12276,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only change logs with these user profile IDs.
      */
-    userProfileIds?: string;
+    userProfileIds?: string[];
   }
 
 
@@ -12302,11 +12371,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only cities from these countries.
      */
-    countryDartIds?: string;
+    countryDartIds?: string[];
     /**
      * Select only cities with these DART IDs.
      */
-    dartIds?: string;
+    dartIds?: string[];
     /**
      * Select only cities with names starting with this prefix.
      */
@@ -12318,7 +12387,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only cities from these regions.
      */
-    regionDartIds?: string;
+    regionDartIds?: string[];
   }
 
 
@@ -13004,7 +13073,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only content categories with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -14078,11 +14147,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only creative fields that belong to these advertisers.
      */
-    advertiserIds?: string;
+    advertiserIds?: string[];
     /**
      * Select only creative fields with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -14678,7 +14747,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only creative field values with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -15168,7 +15237,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only creative groups that belong to these advertisers.
      */
-    advertiserIds?: string;
+    advertiserIds?: string[];
     /**
      * Select only creative groups that belong to this subgroup.
      */
@@ -15176,7 +15245,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only creative groups with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -15665,15 +15734,15 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only in-stream video creatives with these companion IDs.
      */
-    companionCreativeIds?: string;
+    companionCreativeIds?: string[];
     /**
      * Select only creatives with these creative field IDs.
      */
-    creativeFieldIds?: string;
+    creativeFieldIds?: string[];
     /**
      * Select only creatives with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -15689,7 +15758,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only creatives with these rendering IDs.
      */
-    renderingIds?: string;
+    renderingIds?: string[];
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "creative*2015" will return objects with names like
@@ -15703,7 +15772,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only creatives with these size IDs.
      */
-    sizeIds?: string;
+    sizeIds?: string[];
     /**
      * Field by which to sort the list.
      */
@@ -15719,7 +15788,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only creatives with these creative types.
      */
-    types?: string;
+    types?: string[];
   }
   export interface Params$Resource$Creatives$Patch extends StandardParameters {
     /**
@@ -16064,11 +16133,11 @@ export namespace dfareporting_v3_2 {
      * Select only directory site contacts with these directory site IDs. This
      * is a required field.
      */
-    directorySiteIds?: string;
+    directorySiteIds?: string[];
     /**
      * Select only directory site contacts with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -16409,7 +16478,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only directory sites with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -16745,7 +16814,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only dynamic targeting keys exactly matching these names.
      */
-    names?: string;
+    names?: string[];
     /**
      * Select only dynamic targeting keys with this object ID.
      */
@@ -17269,11 +17338,11 @@ export namespace dfareporting_v3_2 {
      * third-party JavaScript URL, or a third-party click-through URL for either
      * impression or click tracking.
      */
-    eventTagTypes?: string;
+    eventTagTypes?: string[];
     /**
      * Select only event tags with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -18141,7 +18210,7 @@ export namespace dfareporting_v3_2 {
      * Select only floodlight activities with the specified floodlight activity
      * group IDs.
      */
-    floodlightActivityGroupIds?: string;
+    floodlightActivityGroupIds?: string[];
     /**
      * Select only floodlight activities with the specified floodlight activity
      * group name.
@@ -18168,7 +18237,7 @@ export namespace dfareporting_v3_2 {
      * either ids, advertiserId, or floodlightConfigurationId for a non-empty
      * result.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -18688,7 +18757,7 @@ export namespace dfareporting_v3_2 {
      * specify either advertiserId or floodlightConfigurationId for a non-empty
      * result.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -19098,7 +19167,7 @@ export namespace dfareporting_v3_2 {
      * Set of IDs of floodlight configurations to retrieve. Required field;
      * otherwise an empty list will be returned.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -19337,7 +19406,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only inventory items with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Select only inventory items that are in plan.
      */
@@ -19349,7 +19418,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only inventory items that belong to specified orders.
      */
-    orderId?: string;
+    orderId?: string[];
     /**
      * Value of the nextPageToken from the previous result page.
      */
@@ -19365,7 +19434,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only inventory items that are associated with these sites.
      */
-    siteId?: string;
+    siteId?: string[];
     /**
      * Field by which to sort the list.
      */
@@ -19737,11 +19806,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only apps from these directories.
      */
-    directories?: string;
+    directories?: string[];
     /**
      * Select only apps with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -20517,7 +20586,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only order documents with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -20525,7 +20594,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only order documents for specified orders.
      */
-    orderId?: string;
+    orderId?: string[];
     /**
      * Value of the nextPageToken from the previous result page.
      */
@@ -20551,7 +20620,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only order documents that are associated with these sites.
      */
-    siteId?: string;
+    siteId?: string[];
     /**
      * Field by which to sort the list.
      */
@@ -20744,7 +20813,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only orders with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -20773,7 +20842,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only orders that are associated with these site IDs.
      */
-    siteId?: string;
+    siteId?: string[];
     /**
      * Field by which to sort the list.
      */
@@ -21212,7 +21281,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only placement groups that belong to these advertisers.
      */
-    advertiserIds?: string;
+    advertiserIds?: string[];
     /**
      * Select only archived placements. Don't set this field to select both
      * archived and non-archived placements.
@@ -21221,21 +21290,21 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only placement groups that belong to these campaigns.
      */
-    campaignIds?: string;
+    campaignIds?: string[];
     /**
      * Select only placement groups that are associated with these content
      * categories.
      */
-    contentCategoryIds?: string;
+    contentCategoryIds?: string[];
     /**
      * Select only placement groups that are associated with these directory
      * sites.
      */
-    directorySiteIds?: string;
+    directorySiteIds?: string[];
     /**
      * Select only placement groups with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Select only placements or placement groups whose end date is on or before
      * the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
@@ -21279,11 +21348,11 @@ export namespace dfareporting_v3_2 {
      * Select only placement groups that are associated with these placement
      * strategies.
      */
-    placementStrategyIds?: string;
+    placementStrategyIds?: string[];
     /**
      * Select only placement groups with these pricing types.
      */
-    pricingTypes?: string;
+    pricingTypes?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -21301,7 +21370,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only placement groups that are associated with these sites.
      */
-    siteIds?: string;
+    siteIds?: string[];
     /**
      * Field by which to sort the list.
      */
@@ -21817,7 +21886,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Generate tags for these placements.
      */
-    placementIds?: string;
+    placementIds?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -21826,7 +21895,7 @@ export namespace dfareporting_v3_2 {
      * Tag formats to generate for these placements.  Note:
      * PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
      */
-    tagFormats?: string;
+    tagFormats?: string[];
   }
   export interface Params$Resource$Placements$Get extends StandardParameters {
     /**
@@ -21869,7 +21938,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only placements that belong to these advertisers.
      */
-    advertiserIds?: string;
+    advertiserIds?: string[];
     /**
      * Select only archived placements. Don't set this field to select both
      * archived and non-archived placements.
@@ -21878,7 +21947,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only placements that belong to these campaigns.
      */
-    campaignIds?: string;
+    campaignIds?: string[];
     /**
      * Select only placements that are associated with these compatibilities.
      * DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or
@@ -21886,23 +21955,23 @@ export namespace dfareporting_v3_2 {
      * APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers
      * to rendering in in-stream video ads developed with the VAST standard.
      */
-    compatibilities?: string;
+    compatibilities?: string[];
     /**
      * Select only placements that are associated with these content categories.
      */
-    contentCategoryIds?: string;
+    contentCategoryIds?: string[];
     /**
      * Select only placements that are associated with these directory sites.
      */
-    directorySiteIds?: string;
+    directorySiteIds?: string[];
     /**
      * Select only placements that belong to these placement groups.
      */
-    groupIds?: string;
+    groupIds?: string[];
     /**
      * Select only placements with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Select only placements or placement groups whose end date is on or before
      * the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
@@ -21941,11 +22010,11 @@ export namespace dfareporting_v3_2 {
      * Select only placements that are associated with these placement
      * strategies.
      */
-    placementStrategyIds?: string;
+    placementStrategyIds?: string[];
     /**
      * Select only placements with these pricing types.
      */
-    pricingTypes?: string;
+    pricingTypes?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -21963,11 +22032,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only placements that are associated with these sites.
      */
-    siteIds?: string;
+    siteIds?: string[];
     /**
      * Select only placements that are associated with these sizes.
      */
-    sizeIds?: string;
+    sizeIds?: string[];
     /**
      * Field by which to sort the list.
      */
@@ -22518,7 +22587,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only placement strategies with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -23115,11 +23184,11 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only projects with these advertiser IDs.
      */
-    advertiserIds?: string;
+    advertiserIds?: string[];
     /**
      * Select only projects with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -25367,15 +25436,15 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only sites with these campaign IDs.
      */
-    campaignIds?: string;
+    campaignIds?: string[];
     /**
      * Select only sites with these directory site IDs.
      */
-    directorySiteIds?: string;
+    directorySiteIds?: string[];
     /**
      * Select only sites with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -25714,7 +25783,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only sizes with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -26126,7 +26195,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only subaccounts with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -26849,7 +26918,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only targeting templates with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */
@@ -27452,7 +27521,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only user role permissions with these IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * User profile ID associated with this request.
      */
@@ -27938,7 +28007,7 @@ export namespace dfareporting_v3_2 {
     /**
      * Select only user roles with the specified IDs.
      */
-    ids?: string;
+    ids?: string[];
     /**
      * Maximum number of results to return.
      */

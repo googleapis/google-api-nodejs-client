@@ -1,7 +1,7 @@
 {
-  "name": "@google/partners",
+  "name": "@google/cloudscheduler",
   "version": "0.1.0",
-  "description": "partners",
+  "description": "cloudscheduler",
   "main": "index.js",
   "types": "index.d.ts",
   "keywords": ["google"],

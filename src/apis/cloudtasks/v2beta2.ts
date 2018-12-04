@@ -195,7 +195,7 @@ export namespace cloudtasks_v2beta2 {
      * there is a limit on the maximum size of the Task. For more information,
      * see the CreateTask documentation.
      */
-    headers?: any;
+    headers?: {[key: string]: string;};
     /**
      * The HTTP method to use for the request. The default is POST.  The
      * app&#39;s request handler for the task&#39;s target URL must be able to
@@ -596,7 +596,7 @@ export namespace cloudtasks_v2beta2 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -605,7 +605,7 @@ export namespace cloudtasks_v2beta2 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -983,7 +983,7 @@ export namespace cloudtasks_v2beta2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

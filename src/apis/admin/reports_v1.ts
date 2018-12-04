@@ -135,7 +135,12 @@ export namespace admin_reports_v1 {
     /**
      * User doing the action.
      */
-    actor?: any;
+    actor?: {
+      callerType?: string;
+      email?: string;
+      key?: string;
+      profileId?: string;
+    };
     /**
      * ETag of the entry.
      */
@@ -143,11 +148,27 @@ export namespace admin_reports_v1 {
     /**
      * Activity events.
      */
-    events?: any[];
+    events?: Array<{
+      name?: string;
+      parameters?: Array<{
+        boolValue?: boolean;
+        intValue?: string;
+        multiIntValue?: string[];
+        multiValue?: string[];
+        name?: string;
+        value?: string;
+      }>;
+      type?: string;
+    }>;
     /**
      * Unique identifier for each activity record.
      */
-    id?: any;
+    id?: {
+      applicationName?: string;
+      customerId?: string;
+      time?: string;
+      uniqueQualifier?: string;
+    };
     /**
      * IP Address of the user doing the action.
      */
@@ -186,7 +207,7 @@ export namespace admin_reports_v1 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -221,7 +242,13 @@ export namespace admin_reports_v1 {
     /**
      * Information about the type of the item.
      */
-    entity?: any;
+    entity?: {
+      customerId?: string;
+      entityId?: string;
+      profileId?: string;
+      type?: string;
+      userEmail?: string;
+    };
     /**
      * ETag of the resource.
      */
@@ -233,7 +260,14 @@ export namespace admin_reports_v1 {
     /**
      * Parameter value pairs for various applications.
      */
-    parameters?: any[];
+    parameters?: Array<{
+      boolValue?: boolean;
+      datetimeValue?: string;
+      intValue?: string;
+      msgValue?: Array<{[key: string]: any;}>;
+      name?: string;
+      stringValue?: string;
+    }>;
   }
   /**
    * JSON template for a collection of usage reports.
@@ -258,7 +292,11 @@ export namespace admin_reports_v1 {
     /**
      * Warnings if any.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
 
 

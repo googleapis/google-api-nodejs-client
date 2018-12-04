@@ -1918,7 +1918,7 @@ export namespace gmail_v1 {
     /**
      * History types to be returned by the function
      */
-    historyTypes?: string;
+    historyTypes?: string[];
     /**
      * Only return messages with a label matching the ID.
      */
@@ -3286,7 +3286,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * When given and format is METADATA, only include headers specified.
      */
-    metadataHeaders?: string;
+    metadataHeaders?: string[];
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
@@ -3402,7 +3402,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * Only return messages with labels that match all of the specified label
      * IDs.
      */
-    labelIds?: string;
+    labelIds?: string[];
     /**
      * Maximum number of messages to return.
      */
@@ -6957,7 +6957,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * When given and format is METADATA, only include headers specified.
      */
-    metadataHeaders?: string;
+    metadataHeaders?: string[];
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
@@ -6979,7 +6979,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * Only return threads with labels that match all of the specified label
      * IDs.
      */
-    labelIds?: string;
+    labelIds?: string[];
     /**
      * Maximum number of threads to return.
      */

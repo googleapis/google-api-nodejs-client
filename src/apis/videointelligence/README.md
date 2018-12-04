@@ -2,7 +2,7 @@
 
 # @google/videointelligence
 
-> Cloud Video Intelligence API.
+> Detects objects, explicit content, and scene changes in videos. It also specifies the region for annotation and transcribes speech to text.
 
 ## Installation
 

@@ -296,7 +296,14 @@ export namespace bigquery_v2 {
      * access.specialGroup: projectOwners; access.role: OWNER;
      * access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
-    access?: any[];
+    access?: Array<{
+      domain?: string;
+      groupByEmail?: string;
+      role?: string;
+      specialGroup?: string;
+      userByEmail?: string;
+      view?: Schema$TableReference;
+    }>;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds
      * since the epoch.
@@ -364,7 +371,7 @@ export namespace bigquery_v2 {
      * updating a dataset. See Creating and Updating Dataset Labels for more
      * information.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output-only] The date when this dataset or any of its tables was last
      * modified, in milliseconds since the epoch.
@@ -389,7 +396,14 @@ export namespace bigquery_v2 {
      * resource, use the Datasets: get method. This property is omitted when
      * there are no datasets in the project.
      */
-    datasets?: any[];
+    datasets?: Array<{
+      datasetReference?: Schema$DatasetReference;
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      labels?: {[key: string]: string;};
+      location?: string;
+    }>;
     /**
      * A hash value of the results page. You can use this property to determine
      * if the page has changed since the last request.
@@ -876,7 +890,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Pick one] Configures a load job.
      */
@@ -1229,7 +1243,7 @@ export namespace bigquery_v2 {
      * source. By defining these properties, the data source can then be queried
      * as if it were a standard BigQuery table.
      */
-    tableDefinitions?: any;
+    tableDefinitions?: {[key: string]: Schema$ExternalDataConfiguration;};
     /**
      * Time-based partitioning specification for the destination table. Only one
      * of timePartitioning and rangePartitioning should be specified.
@@ -1317,7 +1331,17 @@ export namespace bigquery_v2 {
     /**
      * List of jobs that were requested.
      */
-    jobs?: any[];
+    jobs?: Array<{
+      configuration?: Schema$JobConfiguration;
+      errorResult?: Schema$ErrorProto;
+      id?: string;
+      jobReference?: Schema$JobReference;
+      kind?: string;
+      state?: string;
+      statistics?: Schema$JobStatistics;
+      status?: Schema$JobStatus;
+      user_email?: string;
+    }>;
     /**
      * The resource type of the response.
      */
@@ -1446,7 +1470,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: any[];
+    reservationUsage?: Array<{name?: string; slotMs?: string;}>;
     /**
      * [Output-only] The schema of the results. Present only for successful dry
      * run of non-legacy SQL queries.
@@ -1561,7 +1585,7 @@ export namespace bigquery_v2 {
      * options are immutable for subsequent training runs. Default values are
      * used for any options not specified in the input query.
      */
-    modelOptions?: any;
+    modelOptions?: {labels?: string[]; lossType?: string; modelType?: string;};
     /**
      * [Output-only, Beta] Information about ml training runs, each training run
      * comprises of multiple iterations and there may be multiple training runs
@@ -1586,7 +1610,13 @@ export namespace bigquery_v2 {
     /**
      * Projects to which you have at least READ access.
      */
-    projects?: any[];
+    projects?: Array<{
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      numericId?: string;
+      projectReference?: Schema$ProjectReference;
+    }>;
     /**
      * The total number of projects in the list.
      */
@@ -1623,7 +1653,11 @@ export namespace bigquery_v2 {
      * [Optional] The types of the fields of this struct, in order, if this is a
      * struct.
      */
-    structTypes?: any[];
+    structTypes?: Array<{
+      description?: string;
+      name?: string;
+      type?: Schema$QueryParameterType;
+    }>;
     /**
      * [Required] The top level type of this field.
      */
@@ -1638,7 +1672,7 @@ export namespace bigquery_v2 {
      * [Optional] The struct field values, in order of the struct type&#39;s
      * declaration.
      */
-    structValues?: any;
+    structValues?: {[key: string]: Schema$QueryParameterValue;};
     /**
      * [Optional] The value of this value, if a simple scalar type.
      */
@@ -1818,7 +1852,7 @@ export namespace bigquery_v2 {
     /**
      * [Experimental] [Required] Defines the ranges for range partitioning.
      */
-    range?: any;
+    range?: {end?: string; interval?: string; start?: string;};
   }
   export interface Schema$Streamingbuffer {
     /**
@@ -1899,7 +1933,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output-only] The time when this table was last modified, in milliseconds
      * since the epoch.
@@ -2001,7 +2035,7 @@ export namespace bigquery_v2 {
     /**
      * The rows to insert.
      */
-    rows?: any[];
+    rows?: Array<{insertId?: string; json?: Schema$JsonObject;}>;
     /**
      * [Optional] Insert all valid rows of a request, even if invalid rows
      * exist. The default value is false, which causes the entire request to
@@ -2022,7 +2056,7 @@ export namespace bigquery_v2 {
     /**
      * An array of errors for rows that were not inserted.
      */
-    insertErrors?: any[];
+    insertErrors?: Array<{errors?: Schema$ErrorProto[]; index?: number;}>;
     /**
      * The resource type of the response.
      */
@@ -2098,7 +2132,19 @@ export namespace bigquery_v2 {
     /**
      * Tables in the requested dataset.
      */
-    tables?: any[];
+    tables?: Array<{
+      clustering?: Schema$Clustering;
+      creationTime?: string;
+      expirationTime?: string;
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      labels?: {[key: string]: string;};
+      tableReference?: Schema$TableReference;
+      timePartitioning?: Schema$TimePartitioning;
+      type?: string;
+      view?: {useLegacySql?: boolean;};
+    }>;
     /**
      * The total number of tables in the dataset.
      */
@@ -2185,7 +2231,17 @@ export namespace bigquery_v2 {
      * explicitly specified in the input query will be copied from the previous
      * training run.
      */
-    trainingOptions?: any;
+    trainingOptions?: {
+      earlyStop?: boolean;
+      l1Reg?: number;
+      l2Reg?: number;
+      learnRate?: number;
+      learnRateStrategy?: string;
+      lineSearchInitLearnRate?: number;
+      maxIteration?: string;
+      minRelProgress?: number;
+      warmStart?: boolean;
+    };
   }
   export interface Schema$UserDefinedFunctionResource {
     /**
@@ -4076,7 +4132,7 @@ export namespace bigquery_v2 {
     /**
      * Filter for job state
      */
-    stateFilter?: string;
+    stateFilter?: string[];
   }
   export interface Params$Resource$Jobs$Query extends StandardParameters {
     /**

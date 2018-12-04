@@ -387,7 +387,7 @@ export namespace bigquerydatatransfer_v1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -396,7 +396,7 @@ export namespace bigquerydatatransfer_v1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -472,7 +472,7 @@ export namespace bigquerydatatransfer_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -535,7 +535,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Data transfer specific parameters.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * Data transfer schedule. If the data source does not support a custom
      * schedule, this should be empty. If it is empty, the default value for the
@@ -611,7 +611,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. Data transfer specific parameters.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * For batch transfer runs, specifies the date and time that data should be
      * ingested.
@@ -1951,7 +1951,7 @@ export namespace bigquerydatatransfer_v1 {
      * When specified, only configurations of requested data sources are
      * returned.
      */
-    dataSourceIds?: string;
+    dataSourceIds?: string[];
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -2314,7 +2314,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * When specified, only transfer runs with requested states are returned.
      */
-    states?: string;
+    states?: string[];
   }
 
   export class Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs {
@@ -2418,7 +2418,7 @@ export namespace bigquerydatatransfer_v1 {
      * Message types to return. If not populated - INFO, WARNING and ERROR
      * messages are returned.
      */
-    messageTypes?: string;
+    messageTypes?: string[];
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -2957,7 +2957,7 @@ export namespace bigquerydatatransfer_v1 {
      * When specified, only configurations of requested data sources are
      * returned.
      */
-    dataSourceIds?: string;
+    dataSourceIds?: string[];
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */
@@ -3312,7 +3312,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * When specified, only transfer runs with requested states are returned.
      */
-    states?: string;
+    states?: string[];
   }
 
   export class Resource$Projects$Transferconfigs$Runs$Transferlogs {
@@ -3414,7 +3414,7 @@ export namespace bigquerydatatransfer_v1 {
      * Message types to return. If not populated - INFO, WARNING and ERROR
      * messages are returned.
      */
-    messageTypes?: string;
+    messageTypes?: string[];
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      */

@@ -625,7 +625,7 @@ export namespace script_v1 {
      * If the script function returns successfully, this field contains an
      * ExecutionResponse object with the function&#39;s return value.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * The script project resource.
@@ -692,7 +692,7 @@ export namespace script_v1 {
      * An array that contains a single ExecutionError object that provides
      * information about the nature of the error.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which is in English. Any user-facing
      * error message is localized and sent in the details field, or localized by
@@ -960,17 +960,17 @@ export namespace script_v1 {
      * Optional field used to limit returned processes to those having one of
      * the specified process statuses.
      */
-    'userProcessFilter.statuses'?: string;
+    'userProcessFilter.statuses'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified process types.
      */
-    'userProcessFilter.types'?: string;
+    'userProcessFilter.types'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified user access levels.
      */
-    'userProcessFilter.userAccessLevels'?: string;
+    'userProcessFilter.userAccessLevels'?: string[];
   }
   export interface Params$Resource$Processes$Listscriptprocesses extends
       StandardParameters {
@@ -1017,17 +1017,17 @@ export namespace script_v1 {
      * Optional field used to limit returned processes to those having one of
      * the specified process statuses.
      */
-    'scriptProcessFilter.statuses'?: string;
+    'scriptProcessFilter.statuses'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified process types.
      */
-    'scriptProcessFilter.types'?: string;
+    'scriptProcessFilter.types'?: string[];
     /**
      * Optional field used to limit returned processes to those having one of
      * the specified user access levels.
      */
-    'scriptProcessFilter.userAccessLevels'?: string;
+    'scriptProcessFilter.userAccessLevels'?: string[];
   }
 
 

@@ -150,7 +150,7 @@ export namespace alertcenter_v1beta1 {
      * Optional. The data associated with this alert, for example
      * google.apps.alertcenter.type.DeviceCompromised.
      */
-    data?: any;
+    data?: {[key: string]: any;};
     /**
      * Output only. `True` if this alert is marked for deletion.
      */
@@ -726,7 +726,7 @@ export namespace alertcenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
-     * @param {string=} params.filter Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields).
+     * @param {string=} params.filter Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      * @param {string=} params.orderBy Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, only sorting by `create_time desc` is supported.
      * @param {integer=} params.pageSize Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
      * @param {string=} params.pageToken Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
@@ -837,7 +837,7 @@ export namespace alertcenter_v1beta1 {
      * Optional. A query string for filtering alert results. For more details,
      * see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and
      * [Supported query filter
-     * fields](/admin-sdk/alertcenter/reference/filter-fields).
+     * fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      */
     filter?: string;
     /**
@@ -951,7 +951,7 @@ export namespace alertcenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.alertId Required. The alert identifier. The "-" wildcard could be used to represent all alerts. If alert does not exist returns a `NOT_FOUND` error.
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
-     * @param {string=} params.filter
+     * @param {string=} params.filter Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1058,7 +1058,10 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
     /**
-     *
+     * Optional. A query string for filtering alert feedback results. For more
+     * details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters)
+     * and [Supported query filter
+     * fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      */
     filter?: string;
   }

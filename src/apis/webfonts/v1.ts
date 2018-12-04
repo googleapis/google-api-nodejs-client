@@ -113,7 +113,7 @@ export namespace webfonts_v1 {
      * The font files (with all supported scripts) for each one of the available
      * variants, as a key : value map.
      */
-    files?: any;
+    files?: {[key: string]: string;};
     /**
      * This kind represents a webfont object in the webfonts service.
      */

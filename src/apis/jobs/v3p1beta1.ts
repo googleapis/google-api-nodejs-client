@@ -209,7 +209,7 @@ export namespace jobs_v3p1beta1 {
      * application specific context or details.  At most 20 keys are supported.
      * The maximum total size of all keys and values is 2 KB.
      */
-    extraInfo?: any;
+    extraInfo?: {[key: string]: string;};
     /**
      * A event issued when a job seeker interacts with the application that
      * implements Cloud Talent Solution.
@@ -253,7 +253,7 @@ export namespace jobs_v3p1beta1 {
      */
     departureTime?: Schema$TimeOfDay;
     /**
-     * Optional.  Specifies the traffic density to use when caculating commute
+     * Optional.  Specifies the traffic density to use when calculating commute
      * time.
      */
     roadTraffic?: string;
@@ -637,7 +637,7 @@ export namespace jobs_v3p1beta1 {
      * Stores a map from the values of string custom field associated with `key`
      * to the number of jobs with that value in this histogram result.
      */
-    stringValueHistogramResult?: any;
+    stringValueHistogramResult?: {[key: string]: number;};
   }
   /**
    * Input only.  Custom ranking information for SearchJobsRequest.
@@ -797,7 +797,7 @@ export namespace jobs_v3p1beta1 {
      * `non-negative`. * (for anonymous numeric bucket) range formatted as
      * `&lt;low&gt;-&lt;high&gt;`, for example, `0-1000`, `MIN-0`, and `0-MAX`.
      */
-    histogram?: any;
+    histogram?: {[key: string]: string;};
     /**
      * Requested histogram expression.
      */
@@ -820,7 +820,7 @@ export namespace jobs_v3p1beta1 {
      * companyName).  Values: the count of jobs that match the filter for this
      * search.
      */
-    values?: any;
+    values?: {[key: string]: number;};
   }
   /**
    * Output only.  Histogram results that match HistogramFacets specified in
@@ -894,7 +894,7 @@ export namespace jobs_v3p1beta1 {
      * `string_values`, the maximum total size of `string_values` across all
      * keys is 50KB.
      */
-    customAttributes?: any;
+    customAttributes?: {[key: string]: Schema$CustomAttribute;};
     /**
      * Optional.  The desired education degrees for the job, such as Bachelors,
      * Masters.
@@ -1199,7 +1199,7 @@ export namespace jobs_v3p1beta1 {
      * location value isn&#39;t specified, jobs fitting the other search
      * criteria are retrieved regardless of where they&#39;re located.  If
      * multiple values are specified, jobs are retrieved from any of the
-     * specified locations, and, if different values are specified for the
+     * specified locations. If different values are specified for the
      * LocationFilter.distance_in_miles parameter, the maximum provided distance
      * is used for all locations.  At most 5 location filters are allowed.
      */
@@ -1296,8 +1296,8 @@ export namespace jobs_v3p1beta1 {
     /**
      * Radius in miles of the job location. This value is derived from the
      * location bounding box in which a circle with the specified radius
-     * centered from LatLng coves the area associated with the job location. For
-     * example, currently, &quot;Mountain View, CA, USA&quot; has a radius
+     * centered from LatLng covers the area associated with the job location.
+     * For example, currently, &quot;Mountain View, CA, USA&quot; has a radius
      * of 6.17 miles.
      */
     radiusInMiles?: number;
@@ -1656,12 +1656,12 @@ export namespace jobs_v3p1beta1 {
     disableKeywordMatch?: boolean;
     /**
      * Optional.  Controls whether highly similar jobs are returned next to each
-     * other in the search results. Jobs are determined to be highly similar
-     * based on their titles, job categories, and locations. Highly similar
-     * results will be clustered so that only one representative job of the
-     * cluster will be displayed to the job seeker higher up in the results,
-     * with the other jobs being displayed lower down in the results.  Defaults
-     * to DiversificationLevel.SIMPLE if no value is specified.
+     * other in the search results. Jobs are identified as highly similar based
+     * on their titles, job categories, and locations. Highly similar results
+     * are clustered so that only one representative job of the cluster is
+     * displayed to the job seeker higher up in the results, with the other jobs
+     * being displayed lower down in the results.  Defaults to
+     * DiversificationLevel.SIMPLE if no value is specified.
      */
     diversificationLevel?: string;
     /**
@@ -1816,7 +1816,7 @@ export namespace jobs_v3p1beta1 {
     spellCorrection?: Schema$SpellingCorrection;
     /**
      * The precise result count, which is available only if the client set
-     * enable_precise_result_size to `true` or if the response is the last page
+     * enable_precise_result_size to `true`, or if the response is the last page
      * of results. Otherwise, the value is `-1`.
      */
     totalSize?: number;
@@ -1937,8 +1937,8 @@ export namespace jobs_v3p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.companyName Optional.  If provided, restricts completion to specified company.  The format is "projects/{project_id}/companies/{company_id}", for example, "projects/api-test-project/companies/foo".
-     * @param {string=} params.languageCode Deprecated. Use language_codes instead.  Optional.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with same language_code are returned.  For CompletionType.COMBINED type, only open jobs with same language_code or companies having open jobs with same language_code are returned.  The maximum number of allowed characters is 255.
-     * @param {string=} params.languageCodes Optional.  The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with same language_codes are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with same language_codes are returned.  For CompletionType.COMBINED type, only open jobs with same language_codes or companies having open jobs with same language_codes are returned.  The maximum number of allowed characters is 255.
+     * @param {string=} params.languageCode Deprecated. Use language_codes instead.  Optional.  The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with the same language_code are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_code are returned.  For CompletionType.COMBINED type, only open jobs with the same language_code or companies having open jobs with the same language_code are returned.  The maximum number of allowed characters is 255.
+     * @param {string=} params.languageCodes Optional.  The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For CompletionType.JOB_TITLE type, only open jobs with the same language_codes are returned.  For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_codes are returned.  For CompletionType.COMBINED type, only open jobs with the same language_codes or companies having open jobs with the same language_codes are returned.  The maximum number of allowed characters is 255.
      * @param {string} params.name Required.  Resource name of project the completion is performed within.  The format is "projects/{project_id}", for example, "projects/api-test-project".
      * @param {integer=} params.pageSize Required.  Completion result count.  The maximum allowed page size is 10.
      * @param {string=} params.query Required.  The query used to generate suggestions.  The maximum number of allowed characters is 255.
@@ -2023,26 +2023,26 @@ export namespace jobs_v3p1beta1 {
      * query. This is the BCP-47 language code, such as "en-US" or "sr-Latn".
      * For more information, see [Tags for Identifying
      * Languages](https://tools.ietf.org/html/bcp47).  For
-     * CompletionType.JOB_TITLE type, only open jobs with same language_code are
-     * returned.  For CompletionType.COMPANY_NAME type, only companies having
-     * open jobs with same language_code are returned.  For
-     * CompletionType.COMBINED type, only open jobs with same language_code or
-     * companies having open jobs with same language_code are returned.  The
-     * maximum number of allowed characters is 255.
+     * CompletionType.JOB_TITLE type, only open jobs with the same language_code
+     * are returned.  For CompletionType.COMPANY_NAME type, only companies
+     * having open jobs with the same language_code are returned.  For
+     * CompletionType.COMBINED type, only open jobs with the same language_code
+     * or companies having open jobs with the same language_code are returned.
+     * The maximum number of allowed characters is 255.
      */
     languageCode?: string;
     /**
      * Optional.  The list of languages of the query. This is the BCP-47
      * language code, such as "en-US" or "sr-Latn". For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).  For
-     * CompletionType.JOB_TITLE type, only open jobs with same language_codes
-     * are returned.  For CompletionType.COMPANY_NAME type, only companies
-     * having open jobs with same language_codes are returned.  For
-     * CompletionType.COMBINED type, only open jobs with same language_codes or
-     * companies having open jobs with same language_codes are returned.  The
-     * maximum number of allowed characters is 255.
+     * CompletionType.JOB_TITLE type, only open jobs with the same
+     * language_codes are returned.  For CompletionType.COMPANY_NAME type, only
+     * companies having open jobs with the same language_codes are returned. For
+     * CompletionType.COMBINED type, only open jobs with the same language_codes
+     * or companies having open jobs with the same language_codes are returned.
+     * The maximum number of allowed characters is 255.
      */
-    languageCodes?: string;
+    languageCodes?: string[];
     /**
      * Required.  Resource name of project the completion is performed within.
      * The format is "projects/{project_id}", for example,

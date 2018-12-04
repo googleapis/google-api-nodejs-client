@@ -302,7 +302,7 @@ export namespace firestore_v1beta1 {
      * a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and ``
      * `bak\`tik` `` represents `` bak`tik ``.
      */
-    fields?: any;
+    fields?: {[key: string]: Schema$Value;};
     /**
      * The resource name of the document, for example
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -757,7 +757,7 @@ export namespace firestore_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -773,7 +773,7 @@ export namespace firestore_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a
@@ -842,7 +842,7 @@ export namespace firestore_v1beta1 {
     /**
      * Labels associated with this target change.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The ID of a target to remove from this stream.
      */
@@ -886,7 +886,7 @@ export namespace firestore_v1beta1 {
      * names are forbidden except in certain documented contexts. The map keys,
      * represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
      */
-    fields?: any;
+    fields?: {[key: string]: Schema$Value;};
   }
   /**
    * An order on a field.
@@ -1068,7 +1068,7 @@ export namespace firestore_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1325,7 +1325,7 @@ export namespace firestore_v1beta1 {
     /**
      * Labels associated with this write request.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The ID of the write stream to resume. This may only be set in the first
      * message. When left empty, a new write stream will be created.
@@ -2619,7 +2619,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The parent resource. For example:
      * `projects/{project_id}/databases/{database_id}/documents` or
@@ -2666,7 +2666,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The resource name of the Document to get. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -2698,7 +2698,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The order to sort results by. For example: `priority desc, name`.
      */
@@ -2797,7 +2797,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'mask.fieldPaths'?: string;
+    'mask.fieldPaths'?: string[];
     /**
      * The resource name of the document, for example
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -2807,7 +2807,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    'updateMask.fieldPaths'?: string;
+    'updateMask.fieldPaths'?: string[];
 
     /**
      * Request body metadata

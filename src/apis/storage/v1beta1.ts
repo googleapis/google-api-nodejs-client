@@ -133,7 +133,7 @@ export namespace storage_v1beta1 {
      * The owner of the bucket. This will always be the project team&#39;s owner
      * group.
      */
-    owner?: any;
+    owner?: {entity?: string; entityId?: string;};
     /**
      * The project the bucket belongs to.
      */
@@ -149,7 +149,7 @@ export namespace storage_v1beta1 {
     /**
      * The bucket&#39;s website configuration.
      */
-    website?: any;
+    website?: {mainPageSuffix?: string; notFoundPage?: string;};
   }
   /**
    * An access-control entry.
@@ -272,11 +272,19 @@ export namespace storage_v1beta1 {
      * Object media data. Provided on your behalf when uploading raw media or
      * multipart/related with an auxiliary media part.
      */
-    media?: any;
+    media?: {
+      algorithm?: string;
+      contentType?: string;
+      data?: string;
+      hash?: string;
+      length?: string;
+      link?: string;
+      timeCreated?: string;
+    };
     /**
      * User-provided metadata, in key/value pairs.
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * The name of this object. Required if not specified by URL parameter.
      */
@@ -284,7 +292,7 @@ export namespace storage_v1beta1 {
     /**
      * The owner of the object. This will always be the uploader of the object.
      */
-    owner?: any;
+    owner?: {entity?: string; entityId?: string;};
     /**
      * The link to this object.
      */

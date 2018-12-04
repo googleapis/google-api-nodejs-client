@@ -464,6 +464,11 @@ export namespace servicenetworking_v1beta {
      * service producer subnetworks.
      */
     reservedPeeringRanges?: string[];
+    /**
+     * Output only. Name of the peering service associated with this connection.
+     * &quot;services/{service name}
+     */
+    service?: string;
   }
   /**
    * `Context` defines which contexts an API requests.  Example:      context:
@@ -1303,7 +1308,7 @@ export namespace servicenetworking_v1beta {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: any;
+    metricCosts?: {[key: string]: string;};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1504,7 +1509,7 @@ export namespace servicenetworking_v1beta {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1520,7 +1525,7 @@ export namespace servicenetworking_v1beta {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1541,7 +1546,7 @@ export namespace servicenetworking_v1beta {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: any;
+    value?: {[key: string]: any;};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1691,7 +1696,7 @@ export namespace servicenetworking_v1beta {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: any;
+    values?: {[key: string]: string;};
   }
   /**
    * `Service` is the root object of Google service configuration schema. It
@@ -1864,7 +1869,7 @@ export namespace servicenetworking_v1beta {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: any[];
+    sourceFiles?: Array<{[key: string]: any;}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1911,7 +1916,7 @@ export namespace servicenetworking_v1beta {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2268,6 +2273,75 @@ export namespace servicenetworking_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * servicenetworking.services.patch
+     * @desc Allocated ranges specified for the connection may be updated.
+     * Operation<response: Connection>.
+     * @alias servicenetworking.services.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.force If a previously defined allocated range is removed, force flag must be set to true.
+     * @param {string} params.name Provider peering service that is managing peering connectivity for a service provider organization. For Google services that support this functionality it is 'services/servicenetworking.googleapis.com'.
+     * @param {string=} params.updateMask The update mask. If this is omitted, it defaults to "*".   Only reserved peering ranges list may be updated.
+     * @param {().Connection} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(params?: Params$Resource$Services$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Operation>;
+    patch(
+        params: Params$Resource$Services$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Services$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Services$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Services$Addsubnetwork extends
@@ -2292,6 +2366,34 @@ export namespace servicenetworking_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$AddSubnetworkRequest;
+  }
+  export interface Params$Resource$Services$Patch extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If a previously defined allocated range is removed, force flag must be
+     * set to true.
+     */
+    force?: boolean;
+    /**
+     * Provider peering service that is managing peering connectivity for a
+     * service provider organization. For Google services that support this
+     * functionality it is 'services/servicenetworking.googleapis.com'.
+     */
+    name?: string;
+    /**
+     * The update mask. If this is omitted, it defaults to "*".   Only reserved
+     * peering ranges list may be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Connection;
   }
 
   export class Resource$Services$Connections {
@@ -2391,7 +2493,7 @@ export namespace servicenetworking_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.network Network name in the consumer project.   This network must have been already peered with a shared VPC network using CreateConnection method. Must be in a form 'projects/{project}/global/networks/{network}'. {project} is a project number, as in '12345' {network} is network name.
-     * @param {string} params.parent Provider peering service that is managing peering connectivity for a service provider organization. For Google services that support this functionality it is 'services/servicenetworking.googleapis.com'.
+     * @param {string} params.parent Provider peering service that is managing peering connectivity for a service provider organization. For Google services that support this functionality it is 'services/servicenetworking.googleapis.com'. For "-" all configured public peering services will be queried.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2489,7 +2591,8 @@ export namespace servicenetworking_v1beta {
     /**
      * Provider peering service that is managing peering connectivity for a
      * service provider organization. For Google services that support this
-     * functionality it is 'services/servicenetworking.googleapis.com'.
+     * functionality it is 'services/servicenetworking.googleapis.com'. For "-"
+     * all configured public peering services will be queried.
      */
     parent?: string;
   }

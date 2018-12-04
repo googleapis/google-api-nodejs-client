@@ -164,10 +164,9 @@ export namespace cloudfunctions_v1beta2 {
      */
     entryPoint?: string;
     /**
-     * **Beta Feature**  Environment variables that shall be available during
-     * function execution.
+     * Environment variables that shall be available during function execution.
      */
-    environmentVariables?: any;
+    environmentVariables?: {[key: string]: string;};
     /**
      * A source that fires events in response to a condition in another service.
      */
@@ -179,7 +178,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * Labels associated with this Cloud Function.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. Name of the most recent operation modifying the function. If
      * the function status is `DEPLOYING` or `DELETING`, then it points to the
@@ -423,7 +422,7 @@ export namespace cloudfunctions_v1beta2 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -432,7 +431,7 @@ export namespace cloudfunctions_v1beta2 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -460,7 +459,7 @@ export namespace cloudfunctions_v1beta2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -476,7 +475,7 @@ export namespace cloudfunctions_v1beta2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata describing an Operation
@@ -485,7 +484,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * The original request that started the operation.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Target of the operation - for example
      * projects/project-1/locations/region-1/functions/function-1
@@ -501,7 +500,7 @@ export namespace cloudfunctions_v1beta2 {
     updateTime?: string;
     /**
      * Version id of the function created or updated by an API call. This field
-     * is only pupulated for Create and Update operations.
+     * is only populated for Create and Update operations.
      */
     versionId?: string;
   }
@@ -512,7 +511,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * The original request that started the operation.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Target of the operation - for example
      * projects/project-1/locations/region-1/functions/function-1
@@ -528,7 +527,7 @@ export namespace cloudfunctions_v1beta2 {
     updateTime?: string;
     /**
      * Version id of the function created or updated by an API call. This field
-     * is only pupulated for Create and Update operations.
+     * is only populated for Create and Update operations.
      */
     versionId?: string;
   }
@@ -624,7 +623,7 @@ export namespace cloudfunctions_v1beta2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

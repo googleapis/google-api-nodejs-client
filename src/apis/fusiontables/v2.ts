@@ -148,7 +148,7 @@ export namespace fusiontables_v2 {
      * Identifier of the base column. If present, this column is derived from
      * the specified base column.
      */
-    baseColumn?: any;
+    baseColumn?: {columnId?: number; tableIndex?: number;};
     /**
      * Identifier for the column.
      */
@@ -430,7 +430,11 @@ export namespace fusiontables_v2 {
      * Gradient function that interpolates a range of colors based on column
      * value.
      */
-    gradient?: any;
+    gradient?: {
+      colors?: Array<{color?: string; opacity?: number;}>;
+      max?: number;
+      min?: number;
+    };
     /**
      * Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the
      * column value is to be used as is, i.e., the column values can have colors

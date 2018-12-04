@@ -198,6 +198,10 @@ export namespace testing_v1 {
      */
     appApk?: Schema$FileReference;
     /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
+    /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
      */
@@ -350,6 +354,10 @@ export namespace testing_v1 {
      */
     appApk?: Schema$FileReference;
     /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
+    /**
      * The initial activity that should be used to start the app. Optional
      */
     appInitialActivity?: string;
@@ -410,6 +418,10 @@ export namespace testing_v1 {
      * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
+    /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
@@ -513,6 +525,18 @@ export namespace testing_v1 {
      * &quot;com.example.foo&quot;.
      */
     packageName?: string;
+  }
+  /**
+   * An Android App Bundle file format, containing a BundleConfig.pb file, a
+   * base module directory, zero or more dynamic feature module directories.
+   * &lt;p&gt;See https://developer.android.com/guide/app-bundle/build for
+   * guidance on building App Bundles.
+   */
+  export interface Schema$AppBundle {
+    /**
+     * .aab file representing the app bundle under test.
+     */
+    bundleLocation?: Schema$FileReference;
   }
   /**
    * Response containing the current state of the specified test matrix.

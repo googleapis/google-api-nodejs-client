@@ -236,7 +236,7 @@ export namespace datastore_v1beta3 {
      * name is forbidden in certain documented contexts. The name must not
      * contain more than 500 characters. The name cannot be `&quot;&quot;`.
      */
-    properties?: any;
+    properties?: {[key: string]: Schema$Value;};
   }
   /**
    * The result of fetching an entity from Datastore.
@@ -285,7 +285,7 @@ export namespace datastore_v1beta3 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -422,7 +422,7 @@ export namespace datastore_v1beta3 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -580,7 +580,7 @@ export namespace datastore_v1beta3 {
      * must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not
      * be `&quot;&quot;`.
      */
-    namedBindings?: any;
+    namedBindings?: {[key: string]: Schema$GqlQueryParameter;};
     /**
      * Numbered binding site @1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.  For each

@@ -327,7 +327,7 @@ export namespace language_v1beta1 {
      * Knowledge Graph MIDs are provided, if available. The associated keys are
      * &quot;wikipedia_url&quot; and &quot;mid&quot;, respectively.
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * The representative name for the entity.
      */
@@ -512,7 +512,7 @@ export namespace language_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

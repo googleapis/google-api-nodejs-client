@@ -1552,7 +1552,7 @@ export namespace serviceusage_v1beta1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: any;
+    metricCosts?: {[key: string]: string;};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1753,7 +1753,7 @@ export namespace serviceusage_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1769,7 +1769,7 @@ export namespace serviceusage_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * The operation metadata returned for the batchend services operation.
@@ -1800,7 +1800,7 @@ export namespace serviceusage_v1beta1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: any;
+    value?: {[key: string]: any;};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1950,7 +1950,7 @@ export namespace serviceusage_v1beta1 {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: any;
+    values?: {[key: string]: string;};
   }
   /**
    * A service that is available for use by the consumer.
@@ -2037,7 +2037,7 @@ export namespace serviceusage_v1beta1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: any[];
+    sourceFiles?: Array<{[key: string]: any;}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2084,7 +2084,7 @@ export namespace serviceusage_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

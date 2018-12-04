@@ -1330,7 +1330,7 @@ export namespace games_v1 {
      * An object representation of the individual components of the player&#39;s
      * name. For some players, these fields may not be present.
      */
-    name?: any;
+    name?: {familyName?: string; givenName?: string;};
     /**
      * The player ID that was used for this player the first time they signed
      * into the game in question. This is only populated for calls to player.get
@@ -1735,7 +1735,7 @@ export namespace games_v1 {
     /**
      * A push token ID for iOS devices.
      */
-    ios?: any;
+    ios?: {apns_device_token?: string; apns_environment?: string;};
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#pushTokenId.

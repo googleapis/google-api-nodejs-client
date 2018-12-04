@@ -135,7 +135,15 @@ export namespace plusDomains_v1 {
     /**
      * The person who performed this activity.
      */
-    actor?: any;
+    actor?: {
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      name?: {familyName?: string; givenName?: string;};
+      url?: string;
+      verification?: {adHocVerified?: string;};
+    };
     /**
      * Street address where this activity occurred.
      */
@@ -175,7 +183,49 @@ export namespace plusDomains_v1 {
     /**
      * The object of this activity.
      */
-    object?: any;
+    object?: {
+      actor?: {
+        clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+        displayName?: string;
+        id?: string;
+        image?: {url?: string;};
+        url?: string;
+        verification?: {adHocVerified?: string;};
+      };
+      attachments?: Array<{
+        content?: string;
+        displayName?: string;
+        embed?: {type?: string; url?: string;};
+        fullImage?:
+            {height?: number; type?: string; url?: string; width?: number;};
+        id?: string;
+        image?: {height?: number; type?: string; url?: string; width?: number;};
+        objectType?: string;
+        previewThumbnails?: Array<{url?: string;}>;
+        thumbnails?: Array<{
+          description?: string;
+          image?:
+              {height?: number; type?: string; url?: string; width?: number;};
+          url?: string;
+        }>;
+        url?: string;
+      }>;
+      content?: string;
+      id?: string;
+      objectType?: string;
+      originalContent?: string;
+      plusoners?: {selfLink?: string; totalItems?: number;};
+      replies?: {selfLink?: string; totalItems?: number;};
+      resharers?: {selfLink?: string; totalItems?: number;};
+      statusForViewer?: {
+        canComment?: boolean;
+        canPlusone?: boolean;
+        canUpdate?: boolean;
+        isPlusOned?: boolean;
+        resharingDisabled?: boolean;
+      };
+      url?: string;
+    };
     /**
      * ID of the place where this activity occurred.
      */
@@ -187,7 +237,7 @@ export namespace plusDomains_v1 {
     /**
      * The service provider that initially published this activity.
      */
-    provider?: any;
+    provider?: {title?: string;};
     /**
      * The time at which this activity was initially published. Formatted as an
      * RFC 3339 timestamp.
@@ -341,7 +391,7 @@ export namespace plusDomains_v1 {
     /**
      * The people in this circle.
      */
-    people?: any;
+    people?: {totalItems?: number;};
     /**
      * Link to this circle resource
      */
@@ -389,7 +439,14 @@ export namespace plusDomains_v1 {
     /**
      * The person who posted this comment.
      */
-    actor?: any;
+    actor?: {
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+      verification?: {adHocVerified?: string;};
+    };
     /**
      * ETag of this response for caching purposes.
      */
@@ -401,7 +458,7 @@ export namespace plusDomains_v1 {
     /**
      * The activity this comment replied to.
      */
-    inReplyTo?: any[];
+    inReplyTo?: Array<{id?: string; url?: string;}>;
     /**
      * Identifies this resource as a comment. Value: &quot;plus#comment&quot;.
      */
@@ -409,11 +466,11 @@ export namespace plusDomains_v1 {
     /**
      * The object of this comment.
      */
-    object?: any;
+    object?: {content?: string; objectType?: string; originalContent?: string;};
     /**
      * People who +1&#39;d this comment.
      */
-    plusoners?: any;
+    plusoners?: {totalItems?: number;};
     /**
      * The time at which this comment was initially published. Formatted as an
      * RFC 3339 timestamp.
@@ -476,7 +533,12 @@ export namespace plusDomains_v1 {
     /**
      * The person who uploaded this media.
      */
-    author?: any;
+    author?: {
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+    };
     /**
      * The display name for this media.
      */
@@ -488,7 +550,7 @@ export namespace plusDomains_v1 {
     /**
      * Exif information of the media item.
      */
-    exif?: any;
+    exif?: {time?: string;};
     /**
      * The height in pixels of the original image.
      */
@@ -613,7 +675,11 @@ export namespace plusDomains_v1 {
     /**
      * The cover photo content.
      */
-    cover?: any;
+    cover?: {
+      coverInfo?: {leftImageOffset?: number; topImageOffset?: number;};
+      coverPhoto?: {height?: number; url?: string; width?: number;};
+      layout?: string;
+    };
     /**
      * (this field is not currently used)
      */
@@ -635,7 +701,7 @@ export namespace plusDomains_v1 {
      * these email addresses, or the email scope can be used to retrieve just
      * the Google account email address.
      */
-    emails?: any[];
+    emails?: Array<{type?: string; value?: string;}>;
     /**
      * ETag of this response for caching purposes.
      */
@@ -653,7 +719,7 @@ export namespace plusDomains_v1 {
     /**
      * The representation of the person&#39;s profile photo.
      */
-    image?: any;
+    image?: {isDefault?: boolean; url?: string;};
     /**
      * Whether this user has signed up for Google+.
      */
@@ -666,7 +732,14 @@ export namespace plusDomains_v1 {
      * An object representation of the individual components of a person&#39;s
      * name.
      */
-    name?: any;
+    name?: {
+      familyName?: string;
+      formatted?: string;
+      givenName?: string;
+      honorificPrefix?: string;
+      honorificSuffix?: string;
+      middleName?: string;
+    };
     /**
      * The nickname of this person.
      */
@@ -685,11 +758,21 @@ export namespace plusDomains_v1 {
      * A list of current or past organizations with which this person is
      * associated.
      */
-    organizations?: any[];
+    organizations?: Array<{
+      department?: string;
+      description?: string;
+      endDate?: string;
+      location?: string;
+      name?: string;
+      primary?: boolean;
+      startDate?: string;
+      title?: string;
+      type?: string;
+    }>;
     /**
      * A list of places where this person has lived.
      */
-    placesLived?: any[];
+    placesLived?: Array<{primary?: boolean; value?: string;}>;
     /**
      * If a Google+ Page, the number of people who have +1&#39;d this page.
      */
@@ -721,7 +804,7 @@ export namespace plusDomains_v1 {
     /**
      * A list of URLs for this person.
      */
-    urls?: any[];
+    urls?: Array<{label?: string; type?: string; value?: string;}>;
     /**
      * Whether the person or Google+ Page has been verified.
      */
@@ -731,7 +814,7 @@ export namespace plusDomains_v1 {
     /**
      * The physical address of the place.
      */
-    address?: any;
+    address?: {formatted?: string;};
     /**
      * The display name of the place.
      */
@@ -747,7 +830,7 @@ export namespace plusDomains_v1 {
     /**
      * The position of the place.
      */
-    position?: any;
+    position?: {latitude?: number; longitude?: number;};
   }
   export interface Schema$PlusDomainsAclentryResource {
     /**
@@ -1721,11 +1804,11 @@ export namespace plusDomains_v1 {
     /**
      * Email of the people to add to the circle. Optional, can be repeated.
      */
-    email?: string;
+    email?: string[];
     /**
      * IDs of the people to add to the circle. Optional, can be repeated.
      */
-    userId?: string;
+    userId?: string[];
   }
   export interface Params$Resource$Circles$Get extends StandardParameters {
     /**
@@ -1820,11 +1903,11 @@ export namespace plusDomains_v1 {
     /**
      * Email of the people to add to the circle. Optional, can be repeated.
      */
-    email?: string;
+    email?: string[];
     /**
      * IDs of the people to remove from the circle. Optional, can be repeated.
      */
-    userId?: string;
+    userId?: string[];
   }
   export interface Params$Resource$Circles$Update extends StandardParameters {
     /**

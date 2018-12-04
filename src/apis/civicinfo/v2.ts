@@ -771,7 +771,7 @@ export namespace civicinfo_v2 {
     /**
      * Political geographic divisions that contain the requested address.
      */
-    divisions?: any;
+    divisions?: {[key: string]: Schema$GeographicDivision;};
     /**
      * Elected offices referenced by the divisions listed above. Will only be
      * present if includeOffices was true in the request.
@@ -797,7 +797,7 @@ export namespace civicinfo_v2 {
     /**
      * Political geographic divisions that contain the requested address.
      */
-    divisions?: any;
+    divisions?: {[key: string]: Schema$GeographicDivision;};
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;civicinfo#representativeInfoResponse&quot;.
@@ -1489,13 +1489,13 @@ export namespace civicinfo_v2 {
      * one of these levels will be returned. Divisions that don't contain a
      * matching office will not be returned.
      */
-    levels?: string;
+    levels?: string[];
     /**
      * A list of office roles to filter by. Only offices fulfilling one of these
      * roles will be returned. Divisions that don't contain a matching office
      * will not be returned.
      */
-    roles?: string;
+    roles?: string[];
 
     /**
      * Request body metadata
@@ -1514,7 +1514,7 @@ export namespace civicinfo_v2 {
      * one of these levels will be returned. Divisions that don't contain a
      * matching office will not be returned.
      */
-    levels?: string;
+    levels?: string[];
     /**
      * The Open Civic Data division identifier of the division to look up.
      */
@@ -1531,7 +1531,7 @@ export namespace civicinfo_v2 {
      * roles will be returned. Divisions that don't contain a matching office
      * will not be returned.
      */
-    roles?: string;
+    roles?: string[];
 
     /**
      * Request body metadata

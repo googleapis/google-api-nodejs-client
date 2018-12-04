@@ -244,7 +244,7 @@ export namespace datastore_v1 {
      * name is forbidden in certain documented contexts. The name must not
      * contain more than 500 characters. The name cannot be `&quot;&quot;`.
      */
-    properties?: any;
+    properties?: {[key: string]: Schema$Value;};
   }
   /**
    * The result of fetching an entity from Datastore.
@@ -293,7 +293,7 @@ export namespace datastore_v1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -430,7 +430,7 @@ export namespace datastore_v1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -511,7 +511,7 @@ export namespace datastore_v1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Location for the export metadata and data files.  The full resource URL
      * of the external storage location. Currently, only Google Cloud Storage is
@@ -596,7 +596,7 @@ export namespace datastore_v1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   /**
    * A minimal index definition. Next tag: 8
@@ -722,7 +722,7 @@ export namespace datastore_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -738,7 +738,7 @@ export namespace datastore_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A [GQL
@@ -758,7 +758,7 @@ export namespace datastore_v1 {
      * must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not
      * be `&quot;&quot;`.
      */
-    namedBindings?: any;
+    namedBindings?: {[key: string]: Schema$GqlQueryParameter;};
     /**
      * Numbered binding site @1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.  For each
@@ -1257,7 +1257,7 @@ export namespace datastore_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

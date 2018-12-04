@@ -3008,7 +3008,7 @@ export namespace dlp_v2 {
      */
     fieldTransformations?: Schema$GooglePrivacyDlpV2FieldTransformation[];
     /**
-     * Set if the transformation was limited to a specific info_type.
+     * Set if the transformation was limited to a specific InfoType.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
@@ -3208,7 +3208,7 @@ export namespace dlp_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

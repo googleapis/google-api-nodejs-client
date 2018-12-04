@@ -99,14 +99,16 @@ export namespace customsearch_v1 {
   }
 
   export interface Schema$Context {
-    facets?: any[][];
+    facets?: Array<
+        Array<{anchor?: string; label?: string; label_with_op?: string;}>>;
     title?: string;
   }
   export interface Schema$Promotion {
-    bodyLines?: any[];
+    bodyLines?: Array<
+        {htmlTitle?: string; link?: string; title?: string; url?: string;}>;
     displayLink?: string;
     htmlTitle?: string;
-    image?: any;
+    image?: {height?: number; source?: string; width?: number;};
     link?: string;
     title?: string;
   }
@@ -156,12 +158,21 @@ export namespace customsearch_v1 {
     htmlFormattedUrl?: string;
     htmlSnippet?: string;
     htmlTitle?: string;
-    image?: any;
+    image?: {
+      byteSize?: number;
+      contextLink?: string;
+      height?: number;
+      thumbnailHeight?: number;
+      thumbnailLink?: string;
+      thumbnailWidth?: number;
+      width?: number;
+    };
     kind?: string;
-    labels?: any[];
+    labels?:
+        Array<{displayName?: string; label_with_op?: string; name?: string;}>;
     link?: string;
     mime?: string;
-    pagemap?: any;
+    pagemap?: {[key: string]: Array<{[key: string]: any;}>;};
     snippet?: string;
     title?: string;
   }
@@ -170,10 +181,15 @@ export namespace customsearch_v1 {
     items?: Schema$Result[];
     kind?: string;
     promotions?: Schema$Promotion[];
-    queries?: any;
-    searchInformation?: any;
-    spelling?: any;
-    url?: any;
+    queries?: {[key: string]: Schema$Query[];};
+    searchInformation?: {
+      formattedSearchTime?: string;
+      formattedTotalResults?: string;
+      searchTime?: number;
+      totalResults?: string;
+    };
+    spelling?: {correctedQuery?: string; htmlCorrectedQuery?: string;};
+    url?: {template?: string; type?: string;};
   }
 
 

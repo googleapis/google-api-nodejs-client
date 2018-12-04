@@ -576,7 +576,7 @@ export namespace sheets_v4 {
      * The criteria for showing/hiding values per column. The map&#39;s key is
      * the column index, and the value is the criteria for that column.
      */
-    criteria?: any;
+    criteria?: {[key: string]: Schema$FilterCriteria;};
     /**
      * The range the filter covers.
      */
@@ -2113,7 +2113,7 @@ export namespace sheets_v4 {
      * The criteria for showing/hiding values per column. The map&#39;s key is
      * the column index, and the value is the criteria for that column.
      */
-    criteria?: any;
+    criteria?: {[key: string]: Schema$FilterCriteria;};
     /**
      * The ID of the filter view.
      */
@@ -2970,7 +2970,7 @@ export namespace sheets_v4 {
      * `C10:E15`, a key of `0` will have the filter for column `C`, whereas the
      * key `1` is for column `D`.
      */
-    criteria?: any;
+    criteria?: {[key: string]: Schema$PivotFilterCriteria;};
     /**
      * Each row grouping in the pivot table.
      */
@@ -5033,7 +5033,7 @@ export namespace sheets_v4 {
     /**
      * The ranges to retrieve from the spreadsheet.
      */
-    ranges?: string;
+    ranges?: string[];
     /**
      * The spreadsheet to request.
      */
@@ -7043,7 +7043,7 @@ export namespace sheets_v4 {
     /**
      * The A1 notation of the values to retrieve.
      */
-    ranges?: string;
+    ranges?: string[];
     /**
      * The ID of the spreadsheet to retrieve data from.
      */

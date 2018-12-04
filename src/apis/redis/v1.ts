@@ -137,7 +137,7 @@ export namespace redis_v1 {
      * specified in `location_id` or `alternative_location_id` fields when
      * creating a Redis instance.
      */
-    availableZones?: any;
+    availableZones?: {[key: string]: Schema$GoogleCloudRedisV1ZoneMetadata;};
   }
   /**
    * Represents the v1 metadata of the long-running operation.
@@ -218,7 +218,7 @@ export namespace redis_v1 {
     /**
      * Resource labels to represent user provided metadata
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Optional. The zone where the instance will be provisioned. If not
      * provided, the service will choose a zone for the instance. For
@@ -251,7 +251,7 @@ export namespace redis_v1 {
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:   *   maxmemory-policy  *   notify-keyspace-events
      */
-    redisConfigs?: any;
+    redisConfigs?: {[key: string]: string;};
     /**
      * Optional. The version of Redis software. If not provided, latest
      * supported version will be used. Updating the version will perform an
@@ -345,7 +345,7 @@ export namespace redis_v1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Resource ID for the region. For example: &quot;us-east1&quot;.
      */
@@ -356,7 +356,7 @@ export namespace redis_v1 {
      * keys can be specified in `location_id` or `alternative_location_id`
      * fields when creating a Redis instance.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Full resource name for the region. For example:
      * &quot;projects/example-project/locations/us-east1&quot;.
@@ -389,7 +389,7 @@ export namespace redis_v1 {
      * corresponding to `Code.CANCELLED`.  `apiVersion`: API version used to
      * start the operation.  }
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -405,7 +405,7 @@ export namespace redis_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -452,7 +452,7 @@ export namespace redis_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

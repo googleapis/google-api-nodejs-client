@@ -350,7 +350,7 @@ export namespace spanner_v1 {
      * whose keys are parameter names, and whose values are the corresponding
      * parameter values.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -359,7 +359,7 @@ export namespace spanner_v1 {
      * of the SQL statement parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: any;
+    paramTypes?: {[key: string]: Schema$Type;};
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionQuery().  There must be an exact match
@@ -506,7 +506,7 @@ export namespace spanner_v1 {
      * as the string:  name + &quot;_&quot; + value  would prove problematic if
      * we were to allow &quot;_&quot; in a future release.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
@@ -759,7 +759,7 @@ export namespace spanner_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -775,7 +775,7 @@ export namespace spanner_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Partial results from a streaming read or SQL query. Streaming reads and SQL
@@ -913,7 +913,7 @@ export namespace spanner_v1 {
      * are parameter names, and whose values are the corresponding parameter
      * values.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -922,7 +922,7 @@ export namespace spanner_v1 {
      * of the SQL query parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: any;
+    paramTypes?: {[key: string]: Schema$Type;};
     /**
      * Additional options that affect how many partitions are created.
      */
@@ -1011,7 +1011,7 @@ export namespace spanner_v1 {
      * a profile query. For example, number of executions, number of rows/time
      * per execution etc.
      */
-    executionStats?: any;
+    executionStats?: {[key: string]: any;};
     /**
      * The `PlanNode`&#39;s index in node list.
      */
@@ -1029,7 +1029,7 @@ export namespace spanner_v1 {
      * information in its metadata:      { &quot;parameter_reference&quot;:
      * &quot;param1&quot;,       &quot;parameter_type&quot;: &quot;array&quot; }
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Condensed representation for SCALAR nodes.
      */
@@ -1269,7 +1269,7 @@ export namespace spanner_v1 {
      * &quot;elapsed_time&quot;: &quot;1.22 secs&quot;, &quot;cpu_time&quot;:
      * &quot;1.19 secs&quot;     }
      */
-    queryStats?: any;
+    queryStats?: {[key: string]: any;};
     /**
      * Standard DML returns an exact count of rows that were modified.
      */
@@ -1311,7 +1311,7 @@ export namespace spanner_v1 {
      * associated with a given session.  See https://goo.gl/xmQnxf for more
      * information on and examples of labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The name of the session. This is always system-assigned; values provided
      * when creating a session are ignored.
@@ -1346,7 +1346,7 @@ export namespace spanner_v1 {
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
      */
-    subqueries?: any;
+    subqueries?: {[key: string]: number;};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1393,7 +1393,7 @@ export namespace spanner_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

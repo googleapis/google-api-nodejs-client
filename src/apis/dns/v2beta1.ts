@@ -339,7 +339,7 @@ export namespace dns_v2beta1 {
     /**
      * User labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * User assigned name for this resource. Must be unique within the project.
      * The name must be 1-63 characters long, must begin with a letter, end with

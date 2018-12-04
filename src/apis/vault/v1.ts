@@ -347,6 +347,10 @@ export namespace vault_v1 {
      * Option available for mail export.
      */
     mailOptions?: Schema$MailExportOptions;
+    /**
+     * The requested export location.
+     */
+    region?: string;
   }
   /**
    * Stats of an export.
@@ -599,10 +603,6 @@ export namespace vault_v1 {
      * The export file format.
      */
     exportFormat?: string;
-    /**
-     * Set to true to export confidential mode content
-     */
-    showConfidentialModeContent?: boolean;
   }
   /**
    * Mail search advanced options
@@ -854,7 +854,7 @@ export namespace vault_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

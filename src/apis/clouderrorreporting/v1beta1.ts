@@ -1108,7 +1108,7 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
      */
-    groupId?: string;
+    groupId?: string[];
     /**
      * [Optional] The sort order in which the results are returned. Default is
      * `COUNT_DESC`.

@@ -14,19 +14,14 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
-import {dfareporting_v3_0} from './v3.0';
 import {dfareporting_v3_1} from './v3.1';
 import {dfareporting_v3_2} from './v3.2';
 
 export const VERSIONS = {
-  'v3.0': dfareporting_v3_0.Dfareporting,
   'v3.1': dfareporting_v3_1.Dfareporting,
   'v3.2': dfareporting_v3_2.Dfareporting,
 };
 
-export function dfareporting(version: 'v3_0'): dfareporting_v3_0.Dfareporting;
-export function dfareporting(options: dfareporting_v3_0.Options):
-    dfareporting_v3_0.Dfareporting;
 export function dfareporting(version: 'v3_1'): dfareporting_v3_1.Dfareporting;
 export function dfareporting(options: dfareporting_v3_1.Options):
     dfareporting_v3_1.Dfareporting;
@@ -34,10 +29,9 @@ export function dfareporting(version: 'v3_2'): dfareporting_v3_2.Dfareporting;
 export function dfareporting(options: dfareporting_v3_2.Options):
     dfareporting_v3_2.Dfareporting;
 export function dfareporting<
-    T = dfareporting_v3_0.Dfareporting | dfareporting_v3_1.Dfareporting |
-        dfareporting_v3_2.Dfareporting>(
+    T = dfareporting_v3_1.Dfareporting | dfareporting_v3_2.Dfareporting>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v3_0'|dfareporting_v3_0.Options|'v3_1'|
-    dfareporting_v3_1.Options|'v3_2'|dfareporting_v3_2.Options) {
+    versionOrOptions: 'v3_1'|dfareporting_v3_1.Options|'v3_2'|
+    dfareporting_v3_2.Options) {
   return getAPI<T>('dfareporting', versionOrOptions, VERSIONS, this);
 }

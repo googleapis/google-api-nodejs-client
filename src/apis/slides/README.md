@@ -2,7 +2,7 @@
 
 # @google/slides
 
-> An API for creating and editing Google Slides presentations.
+> Reads and writes Google Slides presentations.
 
 ## Installation
 
