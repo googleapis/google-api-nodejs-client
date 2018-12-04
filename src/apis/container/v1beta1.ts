@@ -83,9 +83,8 @@ export namespace container_v1beta1 {
   /**
    * Kubernetes Engine API
    *
-   * The Google Kubernetes Engine API is used for building and managing
-   * container based applications, powered by the open source Kubernetes
-   * technology.
+   * Builds and manages container-based applications, powered by the open source
+   * Kubernetes technology.
    *
    * @example
    * const {google} = require('googleapis');
@@ -271,7 +270,8 @@ export namespace container_v1beta1 {
      */
     currentMasterVersion?: string;
     /**
-     * [Output only] The number of nodes currently in the cluster.
+     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Call Kubernetes API directly to retrieve node information.
      */
     currentNodeCount?: number;
     /**
@@ -366,9 +366,8 @@ export namespace container_v1beta1 {
      */
     location?: string;
     /**
-     * The list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster&#39;s
-     * nodes should be located.
+     * The list of Google Compute Engine [zones](/compute/docs/zones#available)
+     * in which the cluster&#39;s nodes should be located.
      */
     locations?: string[];
     /**
@@ -383,7 +382,11 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
-     * The authentication information for accessing the master endpoint.
+     * The authentication information for accessing the master endpoint. If
+     * unspecified, the defaults are used: For clusters before v1.12, if
+     * master_auth is unspecified, `username` will be set to &quot;admin&quot;,
+     * a random password will be generated, and a client certificate will be
+     * issued.
      */
     masterAuth?: Schema$MasterAuth;
     /**
@@ -469,7 +472,7 @@ export namespace container_v1beta1 {
      * The resource labels for the cluster to use to annotate any related Google
      * Compute Engine resources.
      */
-    resourceLabels?: any;
+    resourceLabels?: {[key: string]: string;};
     /**
      * [Output only] Server-defined URL for the resource.
      */
@@ -503,6 +506,10 @@ export namespace container_v1beta1 {
      * notation (e.g. `1.2.3.4/29`).
      */
     tpuIpv4CidrBlock?: string;
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     */
+    verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
     /**
      * [Output only] The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster resides. This
@@ -551,11 +558,11 @@ export namespace container_v1beta1 {
     desiredImageType?: string;
     /**
      * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster&#39;s
-     * nodes should be located. Changing the locations a cluster is in will
-     * result in nodes being either created or removed from the cluster,
-     * depending on whether locations are being added or removed.  This list
-     * must always include the cluster&#39;s primary zone.
+     * [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes
+     * should be located. Changing the locations a cluster is in will result in
+     * nodes being either created or removed from the cluster, depending on
+     * whether locations are being added or removed.  This list must always
+     * include the cluster&#39;s primary zone.
      */
     desiredLocations?: string[];
     /**
@@ -621,6 +628,10 @@ export namespace container_v1beta1 {
      * The desired configuration options for the PodSecurityPolicy feature.
      */
     desiredPodSecurityPolicyConfig?: Schema$PodSecurityPolicyConfig;
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     */
+    desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP
@@ -1040,8 +1051,8 @@ export namespace container_v1beta1 {
     password?: string;
     /**
      * The username to use for HTTP basic authentication to the master endpoint.
-     * For clusters v1.6.0 and later, you can disable basic authentication by
-     * providing an empty username.
+     * For clusters v1.6.0 and later, basic authentication can be disabled by
+     * leaving username unspecified (or setting it to the empty string).
      */
     username?: string;
   }
@@ -1172,7 +1183,7 @@ export namespace container_v1beta1 {
      * For more information, including usage and the valid values, see:
      * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The number of local SSD disks to be attached to the node.  The limit for
      * this value is dependant upon the maximum number of disks available on a
@@ -1203,7 +1214,7 @@ export namespace container_v1beta1 {
      * that each value&#39;s size must be less than or equal to 32 KB.  The
      * total size of all keys and values must be less than 512 KB.
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are
@@ -1669,7 +1680,7 @@ export namespace container_v1beta1 {
     /**
      * The labels to set for that cluster.
      */
-    resourceLabels?: any;
+    resourceLabels?: {[key: string]: string;};
     /**
      * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster resides. This
@@ -1721,11 +1732,11 @@ export namespace container_v1beta1 {
     clusterId?: string;
     /**
      * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster&#39;s
-     * nodes should be located. Changing the locations a cluster is in will
-     * result in nodes being either created or removed from the cluster,
-     * depending on whether locations are being added or removed.  This list
-     * must always include the cluster&#39;s primary zone.
+     * [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes
+     * should be located. Changing the locations a cluster is in will result in
+     * nodes being either created or removed from the cluster, depending on
+     * whether locations are being added or removed.  This list must always
+     * include the cluster&#39;s primary zone.
      */
     locations?: string[];
     /**
@@ -2235,6 +2246,17 @@ export namespace container_v1beta1 {
      * programmably.
      */
     status?: string;
+  }
+  /**
+   * VerticalPodAutoscaling contains global, per-cluster information required by
+   * Vertical Pod Autoscaler to automatically adjust the resources of pods
+   * controlled by it.
+   */
+  export interface Schema$VerticalPodAutoscaling {
+    /**
+     * Enables vertical pod autoscaling.
+     */
+    enabled?: boolean;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to

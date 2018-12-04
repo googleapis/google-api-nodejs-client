@@ -200,7 +200,13 @@ export namespace adsensehost_v4_1 {
      * hexadecimal characters, similar to HTML color codes, but without the
      * leading hash.
      */
-    colors?: any;
+    colors?: {
+      background?: string;
+      border?: string;
+      text?: string;
+      title?: string;
+      url?: string;
+    };
     /**
      * The style of the corners in the ad (deprecated: never populated,
      * ignored).
@@ -209,7 +215,7 @@ export namespace adsensehost_v4_1 {
     /**
      * The font which is included in the style.
      */
-    font?: any;
+    font?: {family?: string; size?: string;};
     /**
      * Kind this is, in this case adsensehost#adStyle.
      */
@@ -224,7 +230,11 @@ export namespace adsensehost_v4_1 {
      * Settings specific to content ads (AFC) and highend mobile content ads
      * (AFMC - deprecated).
      */
-    contentAdsSettings?: any;
+    contentAdsSettings?: {
+      backupOption?: {color?: string; type?: string; url?: string;};
+      size?: string;
+      type?: string;
+    };
     /**
      * Custom style information specific to this ad unit.
      */
@@ -241,7 +251,12 @@ export namespace adsensehost_v4_1 {
     /**
      * Settings specific to WAP mobile content ads (AFMC - deprecated).
      */
-    mobileContentAdsSettings?: any;
+    mobileContentAdsSettings?: {
+      markupLanguage?: string;
+      scriptingLanguage?: string;
+      size?: string;
+      type?: string;
+    };
     /**
      * Name of this ad unit.
      */
@@ -369,7 +384,7 @@ export namespace adsensehost_v4_1 {
      * list of headers; one for each dimension in the request, followed by one
      * for each metric in the request.
      */
-    headers?: any[];
+    headers?: Array<{currency?: string; name?: string; type?: string;}>;
     /**
      * Kind this is, in this case adsensehost#report.
      */
@@ -600,7 +615,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad clients to list accounts for.
      */
-    filterAdClientId?: string;
+    filterAdClientId?: string[];
   }
 
   export class Resource$Accounts$Adclients {
@@ -1361,7 +1376,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Host custom channel to attach to the ad code.
      */
-    hostCustomChannelId?: string;
+    hostCustomChannelId?: string[];
   }
   export interface Params$Resource$Accounts$Adunits$Insert extends
       StandardParameters {
@@ -1566,7 +1581,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Dimensions to base the report on.
      */
-    dimension?: string;
+    dimension?: string[];
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -1574,7 +1589,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Filters to be run on the report.
      */
-    filter?: string;
+    filter?: string[];
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -1587,13 +1602,13 @@ export namespace adsensehost_v4_1 {
     /**
      * Numeric columns to include in the report.
      */
-    metric?: string;
+    metric?: string[];
     /**
      * The name of a dimension or metric to sort the resulting report on,
      * optionally prefixed with "+" to sort ascending or "-" to sort descending.
      * If no prefix is specified, the column is sorted ascending.
      */
-    sort?: string;
+    sort?: string[];
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -1938,7 +1953,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Products to associate with the user.
      */
-    productCode?: string;
+    productCode?: string[];
     /**
      * The preferred locale of the user.
      */
@@ -2600,7 +2615,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Dimensions to base the report on.
      */
-    dimension?: string;
+    dimension?: string[];
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -2608,7 +2623,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Filters to be run on the report.
      */
-    filter?: string;
+    filter?: string[];
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -2621,13 +2636,13 @@ export namespace adsensehost_v4_1 {
     /**
      * Numeric columns to include in the report.
      */
-    metric?: string;
+    metric?: string[];
     /**
      * The name of a dimension or metric to sort the resulting report on,
      * optionally prefixed with "+" to sort ascending or "-" to sort descending.
      * If no prefix is specified, the column is sorted ascending.
      */
-    sort?: string;
+    sort?: string[];
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */

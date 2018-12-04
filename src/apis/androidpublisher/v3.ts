@@ -432,7 +432,7 @@ export namespace androidpublisher_v3 {
     /**
      * List of localized title and description data.
      */
-    listings?: any;
+    listings?: {[key: string]: Schema$InAppProductListing;};
     /**
      * The package name of the parent app.
      */
@@ -441,7 +441,7 @@ export namespace androidpublisher_v3 {
      * Prices per buyer region. None of these prices should be zero. In-app
      * products can never be free.
      */
-    prices?: any;
+    prices?: {[key: string]: Schema$Price;};
     /**
      * Purchase type enum value. Unmodifiable after creation.
      */
@@ -732,6 +732,12 @@ export namespace androidpublisher_v3 {
      * its current expiry time.
      */
     autoRenewing?: boolean;
+    /**
+     * Time at which the subscription will be automatically resumed, in
+     * milliseconds since the Epoch. Only present if the user has requested to
+     * pause the subscription.
+     */
+    autoResumeTimeMillis?: string;
     /**
      * The reason why a subscription was canceled or is not auto-renewing.
      * Possible values are:   - User canceled the subscription  - Subscription

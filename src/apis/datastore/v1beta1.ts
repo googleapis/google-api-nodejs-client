@@ -128,7 +128,7 @@ export namespace datastore_v1beta1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -210,7 +210,7 @@ export namespace datastore_v1beta1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Location for the export metadata and data files.  The full resource URL
      * of the external storage location. Currently, only Google Cloud Storage is
@@ -298,7 +298,7 @@ export namespace datastore_v1beta1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   /**
    * Measures the progress of a particular metric.
@@ -327,7 +327,7 @@ export namespace datastore_v1beta1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -488,7 +488,7 @@ export namespace datastore_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -504,7 +504,7 @@ export namespace datastore_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -551,7 +551,7 @@ export namespace datastore_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

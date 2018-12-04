@@ -119,7 +119,8 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Your bidder locations that have distinct URLs.
      */
-    bidderLocation?: any[];
+    bidderLocation?:
+        Array<{maximumQps?: number; region?: string; url?: string;}>;
     /**
      * The nid parameter value used in cookie match requests. Please contact
      * your technical account manager if you need to change this.
@@ -279,7 +280,7 @@ export namespace adexchangebuyer_v1_3 {
      * Shows any corrections that were applied to this creative. Read-only. This
      * field should not be set in requests.
      */
-    corrections?: any[];
+    corrections?: Array<{details?: string[]; reason?: string;}>;
     /**
      * The reasons for disapproval, if any. Note that not all disapproval
      * reasons may be categorized, so it is possible for the creative to have a
@@ -287,12 +288,15 @@ export namespace adexchangebuyer_v1_3 {
      * case, please reach out to your TAM to help debug the issue. Read-only.
      * This field should not be set in requests.
      */
-    disapprovalReasons?: any[];
+    disapprovalReasons?: Array<{details?: string[]; reason?: string;}>;
     /**
      * The filtering reasons for the creative. Read-only. This field should not
      * be set in requests.
      */
-    filteringReasons?: any;
+    filteringReasons?: {
+      date?: string;
+      reasons?: Array<{filteringCount?: string; filteringStatus?: number;}>;
+    };
     /**
      * Ad height.
      */
@@ -313,7 +317,20 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * If nativeAd is set, HTMLSnippet and videoURL should not be set.
      */
-    nativeAd?: any;
+    nativeAd?: {
+      advertiser?: string;
+      appIcon?: {height?: number; url?: string; width?: number;};
+      body?: string;
+      callToAction?: string;
+      clickTrackingUrl?: string;
+      headline?: string;
+      image?: {height?: number; url?: string; width?: number;};
+      impressionTrackingUrl?: string[];
+      logo?: {height?: number; url?: string; width?: number;};
+      price?: string;
+      starRating?: number;
+      store?: string;
+    };
     /**
      * Detected product categories, if any. Read-only. This field should not be
      * set in requests.
@@ -604,7 +621,7 @@ export namespace adexchangebuyer_v1_3 {
      * Requests which allow one of these (width, height) pairs will match. All
      * pairs must be supported ad dimensions.
      */
-    dimensions?: any[];
+    dimensions?: Array<{height?: string; width?: string;}>;
     /**
      * Requests with any of these content labels will not match. Values are from
      * content-labels.txt in the downloadable files section.
@@ -617,7 +634,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Requests containing any of these placements will not match.
      */
-    excludedPlacements?: any[];
+    excludedPlacements?: Array<{token?: string; type?: string;}>;
     /**
      * Requests containing any of these users list ids will not match.
      */
@@ -662,7 +679,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * Requests containing any of these placements will match.
      */
-    placements?: any[];
+    placements?: Array<{token?: string; type?: string;}>;
     /**
      * Requests matching any of these platforms will match. Possible values are
      * PRETARGETING_PLATFORM_MOBILE, PRETARGETING_PLATFORM_DESKTOP, and
@@ -1696,12 +1713,12 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * When specified, only creatives for the given account ids are returned.
      */
-    accountId?: number;
+    accountId?: number[];
     /**
      * When specified, only creatives for the given buyer creative ids are
      * returned.
      */
-    buyerCreativeId?: string;
+    buyerCreativeId?: string[];
     /**
      * Maximum number of entries returned on one result page. If not set, the
      * default is 100. Optional.

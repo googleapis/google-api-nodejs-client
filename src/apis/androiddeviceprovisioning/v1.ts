@@ -133,6 +133,10 @@ export namespace androiddeviceprovisioning_v1 {
      */
     deviceIdentifier?: Schema$DeviceIdentifier;
     /**
+     * Optional. The metadata to attach to the device.
+     */
+    deviceMetadata?: Schema$DeviceMetadata;
+    /**
      * Required. The section type of the device&#39;s provisioning record.
      */
     sectionType?: string;
@@ -461,7 +465,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Metadata entries recorded as key-value pairs.
      */
-    entries?: any;
+    entries?: {[key: string]: string;};
   }
   /**
    * A `DeviceReference` is an API abstraction that lets you supply a _device_
@@ -714,7 +718,7 @@ export namespace androiddeviceprovisioning_v1 {
      * the operation is created by `claimAsync`, `unclaimAsync`, or
      * `updateMetadataAsync`.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -726,7 +730,7 @@ export namespace androiddeviceprovisioning_v1 {
      * the operation is created by `claimAsync`, `unclaimAsync`, or
      * `updateMetadataAsync`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A task for each device in the operation. Corresponds to each device change
@@ -854,7 +858,7 @@ export namespace androiddeviceprovisioning_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2716,7 +2720,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deviceId Required. The ID of the reseller partner.
+     * @param {string} params.deviceId Required. The ID of the device.
      * @param {string} params.metadataOwnerId Required. The owner of the newly set metadata. Set this to the partner ID.
      * @param {().UpdateDeviceMetadataRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3083,7 +3087,7 @@ export namespace androiddeviceprovisioning_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The ID of the reseller partner.
+     * Required. The ID of the device.
      */
     deviceId?: string;
     /**

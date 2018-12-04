@@ -345,7 +345,7 @@ export namespace pubsub_v1beta2 {
     /**
      * Optional attributes for this message.
      */
-    attributes?: any;
+    attributes?: {[key: string]: string;};
     /**
      * The message payload. For JSON requests, the value of this field must be
      * [base64-encoded](https://tools.ietf.org/html/rfc4648).
@@ -416,7 +416,7 @@ export namespace pubsub_v1beta2 {
      * API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub
      * API.
      */
-    attributes?: any;
+    attributes?: {[key: string]: string;};
     /**
      * A URL locating the endpoint to which messages should be pushed. For
      * example, a Webhook endpoint might use

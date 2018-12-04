@@ -117,6 +117,26 @@ export namespace cloudiot_v1 {
   }
 
   /**
+   * Request for `BindDeviceToGateway`.
+   */
+  export interface Schema$BindDeviceToGatewayRequest {
+    /**
+     * The device to associate with the specified gateway. The value of
+     * `device_id` can be either the device numeric ID or the user-defined
+     * device identifier.
+     */
+    deviceId?: string;
+    /**
+     * The value of `gateway_id` can be either the device numeric ID or the
+     * user-defined device identifier.
+     */
+    gatewayId?: string;
+  }
+  /**
+   * Response for `BindDeviceToGateway`.
+   */
+  export interface Schema$BindDeviceToGatewayResponse {}
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -176,6 +196,10 @@ export namespace cloudiot_v1 {
      * description of the `DeviceRegistry.credentials` field.
      */
     credentials?: Schema$DeviceCredential[];
+    /**
+     * Gateway-related configuration and state.
+     */
+    gatewayConfig?: Schema$GatewayConfig;
     /**
      * The user-defined device identifier. The device ID must be unique within a
      * device registry.
@@ -240,7 +264,7 @@ export namespace cloudiot_v1 {
      * size.  The total size of all keys and values must be less than 256 KB,
      * and the maximum number of key-value pairs is 500.
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * The resource path name. For example,
      * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
@@ -447,6 +471,29 @@ export namespace cloudiot_v1 {
      * expression.
      */
     title?: string;
+  }
+  /**
+   * Gateway-related configuration and state.
+   */
+  export interface Schema$GatewayConfig {
+    /**
+     * Indicates how to authorize and/or authenticate devices to access the
+     * gateway.
+     */
+    gatewayAuthMethod?: string;
+    /**
+     * Indicates whether the device is a gateway.
+     */
+    gatewayType?: string;
+    /**
+     * [Output only] The ID of the gateway the device accessed most recently.
+     */
+    lastAccessedGatewayId?: string;
+    /**
+     * [Output only] The most recent time at which the device accessed the
+     * gateway specified in `last_accessed_gateway`.
+     */
+    lastAccessedGatewayTime?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -709,7 +756,7 @@ export namespace cloudiot_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -739,6 +786,26 @@ export namespace cloudiot_v1 {
      */
     permissions?: string[];
   }
+  /**
+   * Request for `UnbindDeviceFromGateway`.
+   */
+  export interface Schema$UnbindDeviceFromGatewayRequest {
+    /**
+     * The device to disassociate from the specified gateway. The value of
+     * `device_id` can be either the device numeric ID or the user-defined
+     * device identifier.
+     */
+    deviceId?: string;
+    /**
+     * The value of `gateway_id` can be either the device numeric ID or the
+     * user-defined device identifier.
+     */
+    gatewayId?: string;
+  }
+  /**
+   * Response for `UnbindDeviceFromGateway`.
+   */
+  export interface Schema$UnbindDeviceFromGatewayResponse {}
   /**
    * Details of an X.509 certificate. For informational purposes only.
    */
@@ -813,6 +880,86 @@ export namespace cloudiot_v1 {
 
     getRoot() {
       return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.bindDeviceToGateway
+     * @desc Associates the device with the gateway.
+     * @alias cloudiot.projects.locations.registries.bindDeviceToGateway
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {().BindDeviceToGatewayRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bindDeviceToGateway(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
+        options?: MethodOptions):
+        AxiosPromise<Schema$BindDeviceToGatewayResponse>;
+    bindDeviceToGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
+        callback: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void;
+    bindDeviceToGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
+        callback: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void;
+    bindDeviceToGateway(
+        callback: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void;
+    bindDeviceToGateway(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Binddevicetogateway|
+        BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
+        callback?: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void|AxiosPromise<Schema$BindDeviceToGatewayResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Binddevicetogateway;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Binddevicetogateway;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}:bindDeviceToGateway')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$BindDeviceToGatewayResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$BindDeviceToGatewayResponse>(parameters);
+      }
     }
 
 
@@ -1375,8 +1522,108 @@ export namespace cloudiot_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+
+    /**
+     * cloudiot.projects.locations.registries.unbindDeviceFromGateway
+     * @desc Deletes the association between the device and the gateway.
+     * @alias cloudiot.projects.locations.registries.unbindDeviceFromGateway
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {().UnbindDeviceFromGatewayRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    unbindDeviceFromGateway(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
+        options?: MethodOptions):
+        AxiosPromise<Schema$UnbindDeviceFromGatewayResponse>;
+    unbindDeviceFromGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
+        callback: BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void;
+    unbindDeviceFromGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
+        callback: BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void;
+    unbindDeviceFromGateway(
+        callback: BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void;
+    unbindDeviceFromGateway(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway|
+        BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
+        callback?:
+            BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void|AxiosPromise<Schema$UnbindDeviceFromGatewayResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}:unbindDeviceFromGateway')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
+            parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Registries$Binddevicetogateway
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the registry. For example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BindDeviceToGatewayRequest;
+  }
   export interface Params$Resource$Projects$Locations$Registries$Create extends
       StandardParameters {
     /**
@@ -1526,6 +1773,24 @@ export namespace cloudiot_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the registry. For example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnbindDeviceFromGatewayRequest;
   }
 
   export class Resource$Projects$Locations$Registries$Devices {
@@ -1758,6 +2023,9 @@ export namespace cloudiot_v1 {
      * @param {string=} params.deviceIds A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
      * @param {string=} params.deviceNumIds A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
      * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
+     * @param {string=} params.gatewayListOptions.associationsDeviceId If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `456` is specified, returns only the gateways to which the device with `num_id` 456 is bound.
+     * @param {string=} params.gatewayListOptions.associationsGatewayId If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `123` is specified, only devices bound to the gateway with `num_id` 123 are returned.
+     * @param {string=} params.gatewayListOptions.gatewayType If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` is specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
      * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call and the system should return the next page of data.
      * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
@@ -2125,18 +2393,38 @@ export namespace cloudiot_v1 {
      * A list of device string IDs. For example, `['device0', 'device12']`. If
      * empty, this field is ignored. Maximum IDs: 10,000
      */
-    deviceIds?: string;
+    deviceIds?: string[];
     /**
      * A list of device numeric IDs. If empty, this field is ignored. Maximum
      * IDs: 10,000.
      */
-    deviceNumIds?: string;
+    deviceNumIds?: string[];
     /**
      * The fields of the `Device` resource to be returned in the response. The
      * fields `id` and `num_id` are always returned, along with any other fields
      * specified.
      */
     fieldMask?: string;
+    /**
+     * If set, returns only the gateways with which the specified device is
+     * associated. The device ID can be numeric (`num_id`) or the user-defined
+     * string (`id`). For example, if `456` is specified, returns only the
+     * gateways to which the device with `num_id` 456 is bound.
+     */
+    'gatewayListOptions.associationsDeviceId'?: string;
+    /**
+     * If set, only devices associated with the specified gateway are returned.
+     * The gateway ID can be numeric (`num_id`) or the user-defined string
+     * (`id`). For example, if `123` is specified, only devices bound to the
+     * gateway with `num_id` 123 are returned.
+     */
+    'gatewayListOptions.associationsGatewayId'?: string;
+    /**
+     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
+     * is specified, only non-gateway devices are returned. If
+     * `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
+     */
+    'gatewayListOptions.gatewayType'?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer
@@ -2472,6 +2760,86 @@ export namespace cloudiot_v1 {
 
 
     /**
+     * cloudiot.projects.locations.registries.groups.bindDeviceToGateway
+     * @desc Associates the device with the gateway.
+     * @alias cloudiot.projects.locations.registries.groups.bindDeviceToGateway
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {().BindDeviceToGatewayRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bindDeviceToGateway(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway,
+        options?: MethodOptions):
+        AxiosPromise<Schema$BindDeviceToGatewayResponse>;
+    bindDeviceToGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
+        callback: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void;
+    bindDeviceToGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway,
+        callback: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void;
+    bindDeviceToGateway(
+        callback: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void;
+    bindDeviceToGateway(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway|
+        BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
+        callback?: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
+        void|AxiosPromise<Schema$BindDeviceToGatewayResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}:bindDeviceToGateway')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$BindDeviceToGatewayResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$BindDeviceToGatewayResponse>(parameters);
+      }
+    }
+
+
+    /**
      * cloudiot.projects.locations.registries.groups.getIamPolicy
      * @desc Gets the access control policy for a resource. Returns an empty
      * policy if the resource exists and does not have a policy set.
@@ -2697,8 +3065,109 @@ export namespace cloudiot_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.unbindDeviceFromGateway
+     * @desc Deletes the association between the device and the gateway.
+     * @alias
+     * cloudiot.projects.locations.registries.groups.unbindDeviceFromGateway
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
+     * @param {().UnbindDeviceFromGatewayRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    unbindDeviceFromGateway(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway,
+        options?: MethodOptions):
+        AxiosPromise<Schema$UnbindDeviceFromGatewayResponse>;
+    unbindDeviceFromGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
+        callback: BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void;
+    unbindDeviceFromGateway(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway,
+        callback: BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void;
+    unbindDeviceFromGateway(
+        callback: BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void;
+    unbindDeviceFromGateway(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway|
+        BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
+        callback?:
+            BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
+        void|AxiosPromise<Schema$UnbindDeviceFromGatewayResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}:unbindDeviceFromGateway')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
+            parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the registry. For example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BindDeviceToGatewayRequest;
+  }
   export interface Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy
       extends StandardParameters {
     /**
@@ -2752,6 +3221,24 @@ export namespace cloudiot_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the registry. For example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnbindDeviceFromGatewayRequest;
   }
 
   export class Resource$Projects$Locations$Registries$Groups$Devices {
@@ -2852,6 +3339,9 @@ export namespace cloudiot_v1 {
      * @param {string=} params.deviceIds A list of device string IDs. For example, `['device0', 'device12']`. If empty, this field is ignored. Maximum IDs: 10,000
      * @param {string=} params.deviceNumIds A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
      * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
+     * @param {string=} params.gatewayListOptions.associationsDeviceId If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `456` is specified, returns only the gateways to which the device with `num_id` 456 is bound.
+     * @param {string=} params.gatewayListOptions.associationsGatewayId If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `123` is specified, only devices bound to the gateway with `num_id` 123 are returned.
+     * @param {string=} params.gatewayListOptions.gatewayType If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY` is specified, only non-gateway devices are returned. If `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
      * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.
      * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call and the system should return the next page of data.
      * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
@@ -3192,18 +3682,38 @@ export namespace cloudiot_v1 {
      * A list of device string IDs. For example, `['device0', 'device12']`. If
      * empty, this field is ignored. Maximum IDs: 10,000
      */
-    deviceIds?: string;
+    deviceIds?: string[];
     /**
      * A list of device numeric IDs. If empty, this field is ignored. Maximum
      * IDs: 10,000.
      */
-    deviceNumIds?: string;
+    deviceNumIds?: string[];
     /**
      * The fields of the `Device` resource to be returned in the response. The
      * fields `id` and `num_id` are always returned, along with any other fields
      * specified.
      */
     fieldMask?: string;
+    /**
+     * If set, returns only the gateways with which the specified device is
+     * associated. The device ID can be numeric (`num_id`) or the user-defined
+     * string (`id`). For example, if `456` is specified, returns only the
+     * gateways to which the device with `num_id` 456 is bound.
+     */
+    'gatewayListOptions.associationsDeviceId'?: string;
+    /**
+     * If set, only devices associated with the specified gateway are returned.
+     * The gateway ID can be numeric (`num_id`) or the user-defined string
+     * (`id`). For example, if `123` is specified, only devices bound to the
+     * gateway with `num_id` 123 are returned.
+     */
+    'gatewayListOptions.associationsGatewayId'?: string;
+    /**
+     * If `GATEWAY` is specified, only gateways are returned. If `NON_GATEWAY`
+     * is specified, only non-gateway devices are returned. If
+     * `GATEWAY_TYPE_UNSPECIFIED` is specified, all devices are returned.
+     */
+    'gatewayListOptions.gatewayType'?: string;
     /**
      * The maximum number of devices to return in the response. If this value is
      * zero, the service will select a default size. A call may return fewer

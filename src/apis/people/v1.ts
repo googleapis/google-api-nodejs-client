@@ -1279,7 +1279,7 @@ export namespace people_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1800,7 +1800,7 @@ export namespace people_v1 {
     /**
      * The resource names of the contact groups to get.
      */
-    resourceNames?: string;
+    resourceNames?: string[];
   }
   export interface Params$Resource$Contactgroups$Create extends
       StandardParameters {
@@ -2457,7 +2457,7 @@ export namespace people_v1 {
      * [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      * You can include up to 50 resource names in one request.
      */
-    resourceNames?: string;
+    resourceNames?: string[];
   }
   export interface Params$Resource$People$Updatecontact extends
       StandardParameters {

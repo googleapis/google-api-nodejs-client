@@ -124,11 +124,16 @@ export namespace storage_v1 {
     /**
      * The bucket&#39;s billing configuration.
      */
-    billing?: any;
+    billing?: {requesterPays?: boolean;};
     /**
      * The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
      */
-    cors?: any[];
+    cors?: Array<{
+      maxAgeSeconds?: number;
+      method?: string[];
+      origin?: string[];
+      responseHeader?: string[];
+    }>;
     /**
      * The default value for event-based hold on newly created objects in this
      * bucket. Event-based hold is a way to retain objects indefinitely until an
@@ -152,11 +157,16 @@ export namespace storage_v1 {
     /**
      * Encryption configuration for a bucket.
      */
-    encryption?: any;
+    encryption?: {defaultKmsKeyName?: string;};
     /**
      * HTTP 1.1 Entity tag for the bucket.
      */
     etag?: string;
+    /**
+     * The bucket&#39;s IAM configuration.
+     */
+    iamConfiguration?:
+        {bucketPolicyOnly?: {enabled?: boolean; lockedTime?: string;};};
     /**
      * The ID of the bucket. For buckets, the id and name properties are the
      * same.
@@ -169,12 +179,24 @@ export namespace storage_v1 {
     /**
      * User-provided labels, in key/value pairs.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The bucket&#39;s lifecycle configuration. See lifecycle management for
      * more information.
      */
-    lifecycle?: any;
+    lifecycle?: {
+      rule?: Array<{
+        action?: {storageClass?: string; type?: string;};
+        condition?: {
+          age?: number;
+          createdBefore?: string;
+          isLive?: boolean;
+          matchesPattern?: string;
+          matchesStorageClass?: string[];
+          numNewerVersions?: number;
+        };
+      }>;
+    };
     /**
      * The location of the bucket. Object data for objects in the bucket resides
      * in physical storage within this region. Defaults to US. See the
@@ -185,7 +207,7 @@ export namespace storage_v1 {
      * The bucket&#39;s logging configuration, which defines the destination
      * bucket and optional name prefix for the current bucket&#39;s logs.
      */
-    logging?: any;
+    logging?: {logBucket?: string; logObjectPrefix?: string;};
     /**
      * The metadata generation of this bucket.
      */
@@ -198,7 +220,7 @@ export namespace storage_v1 {
      * The owner of the bucket. This is always the project team&#39;s owner
      * group.
      */
-    owner?: any;
+    owner?: {entity?: string; entityId?: string;};
     /**
      * The project number of the project the bucket belongs to.
      */
@@ -214,7 +236,8 @@ export namespace storage_v1 {
      * Attempting to remove or decrease period of a locked retention policy will
      * result in a PERMISSION_DENIED error.
      */
-    retentionPolicy?: any;
+    retentionPolicy?:
+        {effectiveTime?: string; isLocked?: boolean; retentionPeriod?: string;};
     /**
      * The URI of this bucket.
      */
@@ -240,13 +263,13 @@ export namespace storage_v1 {
     /**
      * The bucket&#39;s versioning configuration.
      */
-    versioning?: any;
+    versioning?: {enabled?: boolean;};
     /**
      * The bucket&#39;s website configuration, controlling how the service
      * behaves when accessing bucket contents as a web site. See the Static
      * Website Examples for more information.
      */
-    website?: any;
+    website?: {mainPageSuffix?: string; notFoundPage?: string;};
   }
   /**
    * An access-control entry.
@@ -295,7 +318,7 @@ export namespace storage_v1 {
     /**
      * The project team associated with the entity, if any.
      */
-    projectTeam?: any;
+    projectTeam?: {projectNumber?: string; team?: string;};
     /**
      * The access permission for the entity.
      */
@@ -363,7 +386,7 @@ export namespace storage_v1 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -403,7 +426,11 @@ export namespace storage_v1 {
      * The list of source objects that will be concatenated into a single
      * object.
      */
-    sourceObjects?: any[];
+    sourceObjects?: Array<{
+      generation?: string;
+      name?: string;
+      objectPreconditions?: {ifGenerationMatch?: string;};
+    }>;
   }
   /**
    * A subscription to receive Google PubSub notifications.
@@ -413,7 +440,7 @@ export namespace storage_v1 {
      * An optional list of additional attributes to attach to each Cloud PubSub
      * message published for this notification subscription.
      */
-    custom_attributes?: any;
+    custom_attributes?: {[key: string]: string;};
     /**
      * HTTP 1.1 Entity tag for this subscription notification.
      */
@@ -516,7 +543,7 @@ export namespace storage_v1 {
      * Metadata of customer-supplied encryption key, if the object is encrypted
      * by such a key.
      */
-    customerEncryption?: any;
+    customerEncryption?: {encryptionAlgorithm?: string; keySha256?: string;};
     /**
      * HTTP 1.1 Entity tag for the object.
      */
@@ -566,7 +593,7 @@ export namespace storage_v1 {
     /**
      * User-provided metadata, in key/value pairs.
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * The version of the metadata for this object at this generation. Used for
      * preconditions and for detecting changes in metadata. A metageneration
@@ -581,7 +608,7 @@ export namespace storage_v1 {
     /**
      * The owner of the object. This will always be the uploader of the object.
      */
-    owner?: any;
+    owner?: {entity?: string; entityId?: string;};
     /**
      * A server-determined value that specifies the earliest time that the
      * object&#39;s retention period expires. This value is in RFC 3339 format.
@@ -687,7 +714,7 @@ export namespace storage_v1 {
     /**
      * The project team associated with the entity, if any.
      */
-    projectTeam?: any;
+    projectTeam?: {projectNumber?: string; team?: string;};
     /**
      * The access permission for the entity.
      */
@@ -743,7 +770,7 @@ export namespace storage_v1 {
      * An association between a role, which comes with a set of permissions, and
      * members who may assume that role.
      */
-    bindings?: any[];
+    bindings?: Array<{condition?: any; members?: string[]; role?: string;}>;
     /**
      * HTTP 1.1  Entity tag for the policy.
      */
@@ -3212,7 +3239,7 @@ export namespace storage_v1 {
     /**
      * Permissions to test.
      */
-    permissions?: string;
+    permissions?: string[];
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -8413,7 +8440,7 @@ export namespace storage_v1 {
     /**
      * Permissions to test.
      */
-    permissions?: string;
+    permissions?: string[];
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.

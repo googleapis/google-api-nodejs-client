@@ -450,7 +450,7 @@ export namespace androidpublisher_v2 {
     /**
      * List of localized title and description data.
      */
-    listings?: any;
+    listings?: {[key: string]: Schema$InAppProductListing;};
     /**
      * The package name of the parent app.
      */
@@ -459,7 +459,7 @@ export namespace androidpublisher_v2 {
      * Prices per buyer region. None of these prices should be zero. In-app
      * products can never be free.
      */
-    prices?: any;
+    prices?: {[key: string]: Schema$Price;};
     /**
      * Purchase type enum value. Unmodifiable after creation.
      */

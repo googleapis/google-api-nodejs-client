@@ -130,7 +130,7 @@ export namespace drive_v3 {
     /**
      * A map of source MIME type to possible targets for all supported exports.
      */
-    exportFormats?: any;
+    exportFormats?: {[key: string]: string[];};
     /**
      * The currently supported folder colors as RGB hex strings.
      */
@@ -138,7 +138,7 @@ export namespace drive_v3 {
     /**
      * A map of source MIME type to possible targets for all supported imports.
      */
-    importFormats?: any;
+    importFormats?: {[key: string]: string[];};
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;drive#about&quot;.
@@ -147,7 +147,7 @@ export namespace drive_v3 {
     /**
      * A map of maximum import sizes by MIME type, in bytes.
      */
-    maxImportSizes?: any;
+    maxImportSizes?: {[key: string]: string;};
     /**
      * The maximum upload size in bytes.
      */
@@ -156,11 +156,17 @@ export namespace drive_v3 {
      * The user&#39;s storage quota limits and usage. All fields are measured in
      * bytes.
      */
-    storageQuota?: any;
+    storageQuota?: {
+      limit?: string;
+      usage?: string;
+      usageInDrive?: string;
+      usageInDriveTrash?: string;
+    };
     /**
      * A list of themes that are supported for Team Drives.
      */
-    teamDriveThemes?: any[];
+    teamDriveThemes?:
+        Array<{backgroundImageLink?: string; colorRgb?: string; id?: string;}>;
     /**
      * The authenticated user.
      */
@@ -260,7 +266,7 @@ export namespace drive_v3 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -334,7 +340,7 @@ export namespace drive_v3 {
      * region. For a text file, for example, this would be the text at the
      * location of the comment.
      */
-    quotedFileContent?: any;
+    quotedFileContent?: {mimeType?: string; value?: string;};
     /**
      * The full list of replies to the comment in chronological order.
      */
@@ -375,17 +381,45 @@ export namespace drive_v3 {
      * requesting app. Entries with null values are cleared in update and copy
      * requests.
      */
-    appProperties?: any;
+    appProperties?: {[key: string]: string;};
     /**
      * Capabilities the current user has on this file. Each capability
      * corresponds to a fine-grained action that a user may take.
      */
-    capabilities?: any;
+    capabilities?: {
+      canAddChildren?: boolean;
+      canChangeCopyRequiresWriterPermission?: boolean;
+      canChangeViewersCanCopyContent?: boolean;
+      canComment?: boolean;
+      canCopy?: boolean;
+      canDelete?: boolean;
+      canDeleteChildren?: boolean;
+      canDownload?: boolean;
+      canEdit?: boolean;
+      canListChildren?: boolean;
+      canMoveChildrenOutOfTeamDrive?: boolean;
+      canMoveChildrenWithinTeamDrive?: boolean;
+      canMoveItemIntoTeamDrive?: boolean;
+      canMoveItemOutOfTeamDrive?: boolean;
+      canMoveItemWithinTeamDrive?: boolean;
+      canMoveTeamDriveItem?: boolean;
+      canReadRevisions?: boolean;
+      canReadTeamDrive?: boolean;
+      canRemoveChildren?: boolean;
+      canRename?: boolean;
+      canShare?: boolean;
+      canTrash?: boolean;
+      canTrashChildren?: boolean;
+      canUntrash?: boolean;
+    };
     /**
      * Additional information about the content of the file. These fields are
      * never populated in responses.
      */
-    contentHints?: any;
+    contentHints?: {
+      indexableText?: string;
+      thumbnail?: {image?: string; mimeType?: string;};
+    };
     /**
      * Whether the options to copy, print, or download this file, should be
      * disabled for readers and commenters.
@@ -451,7 +485,29 @@ export namespace drive_v3 {
     /**
      * Additional metadata about image media, if available.
      */
-    imageMediaMetadata?: any;
+    imageMediaMetadata?: {
+      aperture?: number;
+      cameraMake?: string;
+      cameraModel?: string;
+      colorSpace?: string;
+      exposureBias?: number;
+      exposureMode?: string;
+      exposureTime?: number;
+      flashUsed?: boolean;
+      focalLength?: number;
+      height?: number;
+      isoSpeed?: number;
+      lens?: string;
+      location?: {altitude?: number; latitude?: number; longitude?: number;};
+      maxApertureValue?: number;
+      meteringMode?: string;
+      rotation?: number;
+      sensor?: string;
+      subjectDistance?: number;
+      time?: string;
+      whiteBalance?: string;
+      width?: number;
+    };
     /**
      * Whether the file was created or opened by the requesting app.
      */
@@ -536,7 +592,7 @@ export namespace drive_v3 {
      * A collection of arbitrary key-value pairs which are visible to all apps.
      * Entries with null values are cleared in update and copy requests.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The number of storage quota bytes used by the file. This includes the
      * head revision as well as previous revisions with keepForever enabled.
@@ -609,7 +665,8 @@ export namespace drive_v3 {
      * Additional metadata about video media. This may not be available
      * immediately upon upload.
      */
-    videoMediaMetadata?: any;
+    videoMediaMetadata?:
+        {durationMillis?: string; height?: number; width?: number;};
     /**
      * Whether the file has been viewed by this user.
      */
@@ -747,7 +804,12 @@ export namespace drive_v3 {
      * or directly on this item. This is an output-only field which is present
      * only for Team Drive items.
      */
-    teamDrivePermissionDetails?: any[];
+    teamDrivePermissionDetails?: Array<{
+      inherited?: boolean;
+      inheritedFrom?: string;
+      role?: string;
+      teamDrivePermissionType?: string;
+    }>;
     /**
      * The type of the grantee. Valid values are:   - user  - group  - domain  -
      * anyone
@@ -950,7 +1012,12 @@ export namespace drive_v3 {
      * drive.teamdrives.update requests that don&#39;t set themeId. When
      * specified, all fields of the backgroundImageFile must be set.
      */
-    backgroundImageFile?: any;
+    backgroundImageFile?: {
+      id?: string;
+      width?: number;
+      xCoordinate?: number;
+      yCoordinate?: number;
+    };
     /**
      * A short-lived link to this Team Drive&#39;s background image.
      */
@@ -958,7 +1025,27 @@ export namespace drive_v3 {
     /**
      * Capabilities the current user has on this Team Drive.
      */
-    capabilities?: any;
+    capabilities?: {
+      canAddChildren?: boolean;
+      canChangeCopyRequiresWriterPermissionRestriction?: boolean;
+      canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeTeamDriveBackground?: boolean;
+      canChangeTeamMembersOnlyRestriction?: boolean;
+      canComment?: boolean;
+      canCopy?: boolean;
+      canDeleteChildren?: boolean;
+      canDeleteTeamDrive?: boolean;
+      canDownload?: boolean;
+      canEdit?: boolean;
+      canListChildren?: boolean;
+      canManageMembers?: boolean;
+      canReadRevisions?: boolean;
+      canRemoveChildren?: boolean;
+      canRename?: boolean;
+      canRenameTeamDrive?: boolean;
+      canShare?: boolean;
+      canTrashChildren?: boolean;
+    };
     /**
      * The color of this Team Drive as an RGB hex string. It can only be set on
      * a drive.teamdrives.update request that does not set themeId.
@@ -986,7 +1073,12 @@ export namespace drive_v3 {
      * A set of restrictions that apply to this Team Drive or items inside this
      * Team Drive.
      */
-    restrictions?: any;
+    restrictions?: {
+      adminManagedRestrictions?: boolean;
+      copyRequiresWriterPermission?: boolean;
+      domainUsersOnly?: boolean;
+      teamMembersOnly?: boolean;
+    };
     /**
      * The ID of the theme from which the background image and color will be
      * set. The set of possible teamDriveThemes can be retrieved from a

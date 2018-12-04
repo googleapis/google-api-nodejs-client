@@ -109,7 +109,8 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * Your bidder locations that have distinct URLs.
      */
-    bidderLocation?: any[];
+    bidderLocation?:
+        Array<{maximumQps?: number; region?: string; url?: string;}>;
     /**
      * The nid parameter value used in cookie match requests. Please contact
      * your technical account manager if you need to change this.
@@ -201,7 +202,7 @@ export namespace adexchangebuyer_v1_2 {
      * Shows any corrections that were applied to this creative. Read-only. This
      * field should not be set in requests.
      */
-    corrections?: any[];
+    corrections?: Array<{details?: string[]; reason?: string;}>;
     /**
      * The reasons for disapproval, if any. Note that not all disapproval
      * reasons may be categorized, so it is possible for the creative to have a
@@ -209,12 +210,15 @@ export namespace adexchangebuyer_v1_2 {
      * case, please reach out to your TAM to help debug the issue. Read-only.
      * This field should not be set in requests.
      */
-    disapprovalReasons?: any[];
+    disapprovalReasons?: Array<{details?: string[]; reason?: string;}>;
     /**
      * The filtering reasons for the creative. Read-only. This field should not
      * be set in requests.
      */
-    filteringReasons?: any;
+    filteringReasons?: {
+      date?: string;
+      reasons?: Array<{filteringCount?: string; filteringStatus?: number;}>;
+    };
     /**
      * Ad height.
      */

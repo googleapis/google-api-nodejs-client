@@ -102,7 +102,7 @@ export namespace siteVerification_v1 {
     /**
      * The site for which a verification token will be generated.
      */
-    site?: any;
+    site?: {identifier?: string; type?: string;};
     /**
      * The verification method that will be used to verify this site. For sites,
      * &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only
@@ -145,7 +145,7 @@ export namespace siteVerification_v1 {
     /**
      * The address and type of a site that is verified or will be verified.
      */
-    site?: any;
+    site?: {identifier?: string; type?: string;};
   }
 
 

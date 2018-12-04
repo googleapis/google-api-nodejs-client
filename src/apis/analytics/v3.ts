@@ -114,7 +114,7 @@ export namespace analytics_v3 {
      * Child link for an account entry. Points to the list of web properties for
      * this account.
      */
-    childLink?: any;
+    childLink?: {href?: string; type?: string;};
     /**
      * Time the account was created.
      */
@@ -134,7 +134,7 @@ export namespace analytics_v3 {
     /**
      * Permissions the user has for this account.
      */
-    permissions?: any;
+    permissions?: {effective?: string[];};
     /**
      * Link for this account.
      */
@@ -324,7 +324,12 @@ export namespace analytics_v3 {
    */
   export interface Schema$AccountTreeRequest {
     accountName?: string;
-    accountSettings?: any;
+    accountSettings?: {
+      shareAnonymouslyWithOthers?: boolean;
+      shareWithGoogleProducts?: boolean;
+      shareWithSpecialists?: boolean;
+      shareWithSupport?: boolean;
+    };
     /**
      * Resource type for account ticket.
      */
@@ -344,7 +349,12 @@ export namespace analytics_v3 {
      * The account created.
      */
     account?: Schema$Account;
-    accountSettings?: any;
+    accountSettings?: {
+      shareAnonymouslyWithOthers?: boolean;
+      shareWithGoogleProducts?: boolean;
+      shareWithSpecialists?: boolean;
+      shareWithSupport?: boolean;
+    };
     /**
      * Resource type for account ticket.
      */
@@ -392,7 +402,7 @@ export namespace analytics_v3 {
     /**
      * Map of attribute name and value for this column.
      */
-    attributes?: any;
+    attributes?: {[key: string]: string;};
     /**
      * Column id.
      */
@@ -436,7 +446,7 @@ export namespace analytics_v3 {
      * Account ID to which this custom data source belongs.
      */
     accountId?: string;
-    childLink?: any;
+    childLink?: {href?: string; type?: string;};
     /**
      * Time this custom data source was created.
      */
@@ -462,7 +472,7 @@ export namespace analytics_v3 {
      * Parent link for this custom data source. Points to the web property to
      * which this custom data source belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * IDs of views (profiles) linked to the custom data source.
      */
@@ -574,7 +584,7 @@ export namespace analytics_v3 {
      * Parent link for the custom dimension. Points to the property to which the
      * custom dimension belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * Scope of the custom dimension: HIT, SESSION, USER or PRODUCT.
      */
@@ -681,7 +691,7 @@ export namespace analytics_v3 {
      * Parent link for the custom metric. Points to the property to which the
      * custom metric belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * Scope of the custom metric: HIT or PRODUCT.
      */
@@ -759,7 +769,7 @@ export namespace analytics_v3 {
     /**
      * Web property being linked.
      */
-    entity?: any;
+    entity?: {webPropertyRef?: Schema$WebPropertyRef;};
     /**
      * Entity AdWords link ID
      */
@@ -829,7 +839,11 @@ export namespace analytics_v3 {
      * Entity for this link. It can be an account, a web property, or a view
      * (profile).
      */
-    entity?: any;
+    entity?: {
+      accountRef?: Schema$AccountRef;
+      profileRef?: Schema$ProfileRef;
+      webPropertyRef?: Schema$WebPropertyRef;
+    };
     /**
      * Entity user link ID
      */
@@ -841,7 +855,7 @@ export namespace analytics_v3 {
     /**
      * Permissions the user has for this entity.
      */
-    permissions?: any;
+    permissions?: {effective?: string[]; local?: string[];};
     /**
      * Self link for this resource.
      */
@@ -971,7 +985,7 @@ export namespace analytics_v3 {
      * Parent link for an experiment. Points to the view (profile) to which this
      * experiment belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * View (Profile) ID to which this experiment belongs. This field is
      * read-only.
@@ -1045,7 +1059,13 @@ export namespace analytics_v3 {
      * RUNNING state. At least two variations are required before status can be
      * set to RUNNING.
      */
-    variations?: any[];
+    variations?: Array<{
+      name?: string;
+      status?: string;
+      url?: string;
+      weight?: number;
+      won?: boolean;
+    }>;
     /**
      * Web property ID to which this experiment belongs. The web property ID is
      * of the form UA-XXXXX-YY. This field is read-only.
@@ -1118,7 +1138,21 @@ export namespace analytics_v3 {
     /**
      * Details for the filter of the type ADVANCED.
      */
-    advancedDetails?: any;
+    advancedDetails?: {
+      caseSensitive?: boolean;
+      extractA?: string;
+      extractB?: string;
+      fieldA?: string;
+      fieldAIndex?: number;
+      fieldARequired?: boolean;
+      fieldB?: string;
+      fieldBIndex?: number;
+      fieldBRequired?: boolean;
+      outputConstructor?: string;
+      outputToField?: string;
+      outputToFieldIndex?: number;
+      overrideOutputField?: boolean;
+    };
     /**
      * Time this filter was created.
      */
@@ -1142,7 +1176,7 @@ export namespace analytics_v3 {
     /**
      * Details for the filter of the type LOWER.
      */
-    lowercaseDetails?: any;
+    lowercaseDetails?: {field?: string; fieldIndex?: number;};
     /**
      * Name of this filter.
      */
@@ -1151,11 +1185,17 @@ export namespace analytics_v3 {
      * Parent link for this filter. Points to the account to which this filter
      * belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * Details for the filter of the type SEARCH_AND_REPLACE.
      */
-    searchAndReplaceDetails?: any;
+    searchAndReplaceDetails?: {
+      caseSensitive?: boolean;
+      field?: string;
+      fieldIndex?: number;
+      replaceString?: string;
+      searchString?: string;
+    };
     /**
      * Link for this filter.
      */
@@ -1172,7 +1212,7 @@ export namespace analytics_v3 {
     /**
      * Details for the filter of the type UPPER.
      */
-    uppercaseDetails?: any;
+    uppercaseDetails?: {field?: string; fieldIndex?: number;};
   }
   /**
    * JSON template for an Analytics filter expression.
@@ -1313,7 +1353,8 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders?: any[];
+    columnHeaders?:
+        Array<{columnType?: string; dataType?: string; name?: string;}>;
     /**
      * Determines if Analytics data contains samples.
      */
@@ -1322,7 +1363,10 @@ export namespace analytics_v3 {
      * The last refreshed time in seconds for Analytics data.
      */
     dataLastRefreshed?: string;
-    dataTable?: any;
+    dataTable?: {
+      cols?: Array<{id?: string; label?: string; type?: string;}>;
+      rows?: Array<{c?: Array<{v?: string;}>;}>;
+    };
     /**
      * Unique ID for this data response.
      */
@@ -1350,11 +1394,30 @@ export namespace analytics_v3 {
      * Information for the view (profile), for which the Analytics data was
      * requested.
      */
-    profileInfo?: any;
+    profileInfo?: {
+      accountId?: string;
+      internalWebPropertyId?: string;
+      profileId?: string;
+      profileName?: string;
+      tableId?: string;
+      webPropertyId?: string;
+    };
     /**
      * Analytics data request query parameters.
      */
-    query?: any;
+    query?: {
+      dimensions?: string;
+      'end-date'?: string;
+      filters?: string;
+      ids?: string;
+      'max-results'?: number;
+      metrics?: string[];
+      samplingLevel?: string;
+      segment?: string;
+      sort?: string[];
+      'start-date'?: string;
+      'start-index'?: number;
+    };
     /**
      * Analytics data rows, where each row contains a list of dimension values
      * followed by the metric values. The order of dimensions and metrics is
@@ -1383,7 +1446,7 @@ export namespace analytics_v3 {
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults?: any;
+    totalsForAllResults?: {[key: string]: string;};
   }
   /**
    * JSON template for Analytics goal resource.
@@ -1404,7 +1467,16 @@ export namespace analytics_v3 {
     /**
      * Details for the goal of the type EVENT.
      */
-    eventDetails?: any;
+    eventDetails?: {
+      eventConditions?: Array<{
+        comparisonType?: string;
+        comparisonValue?: string;
+        expression?: string;
+        matchType?: string;
+        type?: string;
+      }>;
+      useEventValue?: boolean;
+    };
     /**
      * Goal ID.
      */
@@ -1425,7 +1497,7 @@ export namespace analytics_v3 {
      * Parent link for a goal. Points to the view (profile) to which this goal
      * belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * View (Profile) ID to which this goal belongs.
      */
@@ -1446,7 +1518,13 @@ export namespace analytics_v3 {
     /**
      * Details for the goal of the type URL_DESTINATION.
      */
-    urlDestinationDetails?: any;
+    urlDestinationDetails?: {
+      caseSensitive?: boolean;
+      firstStepRequired?: boolean;
+      matchType?: string;
+      steps?: Array<{name?: string; number?: number; url?: string;}>;
+      url?: string;
+    };
     /**
      * Goal value.
      */
@@ -1454,11 +1532,12 @@ export namespace analytics_v3 {
     /**
      * Details for the goal of the type VISIT_NUM_PAGES.
      */
-    visitNumPagesDetails?: any;
+    visitNumPagesDetails?: {comparisonType?: string; comparisonValue?: string;};
     /**
      * Details for the goal of the type VISIT_TIME_ON_SITE.
      */
-    visitTimeOnSiteDetails?: any;
+    visitTimeOnSiteDetails?:
+        {comparisonType?: string; comparisonValue?: string;};
     /**
      * Web property ID to which this goal belongs. The web property ID is of the
      * form UA-XXXXX-YY.
@@ -1614,7 +1693,8 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders?: any[];
+    columnHeaders?:
+        Array<{columnType?: string; dataType?: string; name?: string;}>;
     /**
      * Determines if the Analytics data contains sampled data.
      */
@@ -1646,17 +1726,40 @@ export namespace analytics_v3 {
      * Information for the view (profile), for which the Analytics data was
      * requested.
      */
-    profileInfo?: any;
+    profileInfo?: {
+      accountId?: string;
+      internalWebPropertyId?: string;
+      profileId?: string;
+      profileName?: string;
+      tableId?: string;
+      webPropertyId?: string;
+    };
     /**
      * Analytics data request query parameters.
      */
-    query?: any;
+    query?: {
+      dimensions?: string;
+      'end-date'?: string;
+      filters?: string;
+      ids?: string;
+      'max-results'?: number;
+      metrics?: string[];
+      samplingLevel?: string;
+      segment?: string;
+      sort?: string[];
+      'start-date'?: string;
+      'start-index'?: number;
+    };
     /**
      * Analytics data rows, where each row contains a list of dimension values
      * followed by the metric values. The order of dimensions and metrics is
      * same as specified in the request.
      */
-    rows?: any[][];
+    rows?: Array<Array<{
+      conversionPathValue?:
+          Array<{interactionType?: string; nodeValue?: string;}>;
+      primitiveValue?: string;
+    }>>;
     /**
      * The number of samples used to calculate the result.
      */
@@ -1679,7 +1782,7 @@ export namespace analytics_v3 {
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults?: any;
+    totalsForAllResults?: {[key: string]: string;};
   }
   /**
    * JSON template for an Analytics view (profile).
@@ -1697,7 +1800,7 @@ export namespace analytics_v3 {
      * Child link for this view (profile). Points to the list of goals for this
      * view (profile).
      */
-    childLink?: any;
+    childLink?: {href?: string; type?: string;};
     /**
      * Time this view (profile) was created.
      */
@@ -1748,11 +1851,11 @@ export namespace analytics_v3 {
      * Parent link for this view (profile). Points to the web property to which
      * this view (profile) belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * Permissions the user has for this view (profile).
      */
-    permissions?: any;
+    permissions?: {effective?: string[];};
     /**
      * Link for this view (profile).
      */
@@ -1997,7 +2100,8 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders?: any[];
+    columnHeaders?:
+        Array<{columnType?: string; dataType?: string; name?: string;}>;
     /**
      * Unique ID for this data response.
      */
@@ -2010,11 +2114,25 @@ export namespace analytics_v3 {
      * Information for the view (profile), for which the real time data was
      * requested.
      */
-    profileInfo?: any;
+    profileInfo?: {
+      accountId?: string;
+      internalWebPropertyId?: string;
+      profileId?: string;
+      profileName?: string;
+      tableId?: string;
+      webPropertyId?: string;
+    };
     /**
      * Real time data request query parameters.
      */
-    query?: any;
+    query?: {
+      dimensions?: string;
+      filters?: string;
+      ids?: string;
+      'max-results'?: number;
+      metrics?: string[];
+      sort?: string[];
+    };
     /**
      * Real time data rows, where each row contains a list of dimension values
      * followed by the metric values. The order of dimensions and metrics is
@@ -2035,7 +2153,7 @@ export namespace analytics_v3 {
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults?: any;
+    totalsForAllResults?: {[key: string]: string;};
   }
   /**
    * JSON template for an Analytics remarketing audience.
@@ -2049,7 +2167,7 @@ export namespace analytics_v3 {
      * The simple audience definition that will cause a user to be added to an
      * audience.
      */
-    audienceDefinition?: any;
+    audienceDefinition?: {includeConditions?: Schema$IncludeConditions;};
     /**
      * The type of audience, either SIMPLE or STATE_BASED.
      */
@@ -2092,7 +2210,10 @@ export namespace analytics_v3 {
      * A state based audience definition that will cause a user to be added or
      * removed from an audience.
      */
-    stateBasedAudienceDefinition?: any;
+    stateBasedAudienceDefinition?: {
+      excludeConditions?: {exclusionDuration?: string; segment?: string;};
+      includeConditions?: Schema$IncludeConditions;
+    };
     /**
      * Time this remarketing audience was last modified.
      */
@@ -2244,7 +2365,7 @@ export namespace analytics_v3 {
     /**
      * Download details for a file stored in Google Cloud Storage.
      */
-    cloudStorageDownloadDetails?: any;
+    cloudStorageDownloadDetails?: {bucketId?: string; objectId?: string;};
     /**
      * Time this unsampled report was created.
      */
@@ -2263,7 +2384,7 @@ export namespace analytics_v3 {
     /**
      * Download details for a file stored in Google Drive.
      */
-    driveDownloadDetails?: any;
+    driveDownloadDetails?: {documentId?: string;};
     /**
      * The end date for the unsampled report.
      */
@@ -2454,7 +2575,7 @@ export namespace analytics_v3 {
     /**
      * User ID.
      */
-    id?: any;
+    id?: {type?: string; userId?: string;};
     /**
      * Value is &quot;analytics#userDeletionRequest&quot;.
      */
@@ -2534,7 +2655,7 @@ export namespace analytics_v3 {
      * Child link for this web property. Points to the list of views (profiles)
      * for this web property.
      */
-    childLink?: any;
+    childLink?: {href?: string; type?: string;};
     /**
      * Time this web property was created.
      */
@@ -2584,11 +2705,11 @@ export namespace analytics_v3 {
      * Parent link for this web property. Points to the account to which this
      * web property belongs.
      */
-    parentLink?: any;
+    parentLink?: {href?: string; type?: string;};
     /**
      * Permissions the user has for this web property.
      */
-    permissions?: any;
+    permissions?: {effective?: string[];};
     /**
      * View (Profile) count for this web property.
      */

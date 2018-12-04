@@ -184,7 +184,7 @@ export namespace clouddebugger_v2 {
      * A set of custom breakpoint properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Breakpoint source location.
      */
@@ -330,7 +330,7 @@ export namespace clouddebugger_v2 {
      * A set of custom debuggee properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Project the debuggee is associated with. Use project number or id when
      * registering a Google Cloud Platform project.
@@ -348,10 +348,10 @@ export namespace clouddebugger_v2 {
      */
     status?: Schema$StatusMessage;
     /**
-     * Uniquifier to further distiguish the application. It is possible that
+     * Uniquifier to further distinguish the application. It is possible that
      * different applications might have identical values in the debuggee
      * message, thus, incorrectly identified as a single application by the
-     * Controller service. This field adds salt to further distiguish the
+     * Controller service. This field adds salt to further distinguish the
      * application. Agents should consider seeding this field with value that
      * identifies the code, binary, configuration and environment.
      */
@@ -377,7 +377,7 @@ export namespace clouddebugger_v2 {
     /**
      * Labels with user defined metadata.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   /**
    * Represents a message with parameters.
@@ -527,7 +527,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$RegisterDebuggeeResponse {
     /**
-     * Debuggee resource. The field `id` is guranteed to be set (in addition to
+     * Debuggee resource. The field `id` is guaranteed to be set (in addition to
      * the echoed fields). If the field `is_disabled` is set to `true`, the
      * agent should disable itself by removing all breakpoints and detaching
      * from the application. It should however continue to poll

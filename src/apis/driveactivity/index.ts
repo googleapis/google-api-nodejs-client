@@ -14,15 +14,16 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
-import {partners_v2} from './v2';
+import {driveactivity_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': partners_v2.Partners,
+  'v2': driveactivity_v2.Driveactivity,
 };
 
-export function partners(version: 'v2'): partners_v2.Partners;
-export function partners(options: partners_v2.Options): partners_v2.Partners;
-export function partners<T = partners_v2.Partners>(
-    this: GoogleConfigurable, versionOrOptions: 'v2'|partners_v2.Options) {
-  return getAPI<T>('partners', versionOrOptions, VERSIONS, this);
+export function driveactivity(version: 'v2'): driveactivity_v2.Driveactivity;
+export function driveactivity(options: driveactivity_v2.Options):
+    driveactivity_v2.Driveactivity;
+export function driveactivity<T = driveactivity_v2.Driveactivity>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|driveactivity_v2.Options) {
+  return getAPI<T>('driveactivity', versionOrOptions, VERSIONS, this);
 }

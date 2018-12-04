@@ -122,7 +122,7 @@ export namespace blogger_v2 {
     /**
      * The locale this Blog is set to.
      */
-    locale?: any;
+    locale?: {country?: string; language?: string; variant?: string;};
     /**
      * The name of this blog. This is displayed as the title.
      */
@@ -130,11 +130,11 @@ export namespace blogger_v2 {
     /**
      * The container of pages in this blog.
      */
-    pages?: any;
+    pages?: {selfLink?: string; totalItems?: number;};
     /**
      * The container of posts in this blog.
      */
-    posts?: any;
+    posts?: {selfLink?: string; totalItems?: number;};
     /**
      * RFC 3339 date-time when this blog was published.
      */
@@ -166,11 +166,16 @@ export namespace blogger_v2 {
     /**
      * The author of this Comment.
      */
-    author?: any;
+    author?: {
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+    };
     /**
      * Data about the blog containing this comment.
      */
-    blog?: any;
+    blog?: {id?: string;};
     /**
      * The actual content of the comment. May include HTML markup.
      */
@@ -182,7 +187,7 @@ export namespace blogger_v2 {
     /**
      * Data about the comment this is in reply to.
      */
-    inReplyTo?: any;
+    inReplyTo?: {id?: string;};
     /**
      * The kind of this entry. Always blogger#comment
      */
@@ -190,7 +195,7 @@ export namespace blogger_v2 {
     /**
      * Data about the post containing this comment.
      */
-    post?: any;
+    post?: {id?: string;};
     /**
      * RFC 3339 date-time when this comment was published.
      */
@@ -226,11 +231,16 @@ export namespace blogger_v2 {
     /**
      * The author of this Page.
      */
-    author?: any;
+    author?: {
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+    };
     /**
      * Data about the blog containing this Page.
      */
-    blog?: any;
+    blog?: {id?: string;};
     /**
      * The body content of this Page, in HTML.
      */
@@ -279,11 +289,16 @@ export namespace blogger_v2 {
     /**
      * The author of this Post.
      */
-    author?: any;
+    author?: {
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+    };
     /**
      * Data about the blog containing this Post.
      */
-    blog?: any;
+    blog?: {id?: string;};
     /**
      * The content of the Post. May contain HTML markup.
      */
@@ -307,7 +322,7 @@ export namespace blogger_v2 {
     /**
      * The container of comments on this Post.
      */
-    replies?: any;
+    replies?: {selfLink?: string; totalItems?: string;};
     /**
      * The API REST URL to fetch this resource from.
      */
@@ -351,7 +366,7 @@ export namespace blogger_v2 {
     /**
      * The container of blogs for this user.
      */
-    blogs?: any;
+    blogs?: {selfLink?: string;};
     /**
      * The timestamp of when this profile was created, in seconds since epoch.
      */
@@ -371,7 +386,7 @@ export namespace blogger_v2 {
     /**
      * This user&#39;s locale
      */
-    locale?: any;
+    locale?: {country?: string; language?: string; variant?: string;};
     /**
      * The API REST URL to fetch this resource from.
      */

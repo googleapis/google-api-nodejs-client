@@ -200,7 +200,7 @@ export namespace dataproc_v1 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature:
      * This report is available for testing purposes only. It may be changed
@@ -283,11 +283,11 @@ export namespace dataproc_v1 {
     /**
      * The HDFS metrics.
      */
-    hdfsMetrics?: any;
+    hdfsMetrics?: {[key: string]: string;};
     /**
      * The YARN metrics.
      */
-    yarnMetrics?: any;
+    yarnMetrics?: {[key: string]: string;};
   }
   /**
    * The cluster operation triggered by a workflow.
@@ -325,7 +325,7 @@ export namespace dataproc_v1 {
     /**
      * Output only. Labels associated with the operation
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The operation type.
      */
@@ -371,7 +371,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster labels. Cluster must have all labels to match.
      */
-    clusterLabels?: any;
+    clusterLabels?: {[key: string]: string;};
     /**
      * Optional. The zone where workflow process executes. This parameter does
      * not affect the selection of the cluster.If unspecified, the zone of the
@@ -504,7 +504,7 @@ export namespace dataproc_v1 {
      * and instance metadata
      * (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
@@ -619,7 +619,7 @@ export namespace dataproc_v1 {
      * API may be overwritten. Can include properties set in
      * /etc/hadoop/conf/*-site and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
   }
   /**
    * A Cloud Dataproc job for running Apache Hive (https://hive.apache.org/)
@@ -643,7 +643,7 @@ export namespace dataproc_v1 {
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The HCFS URI of the script that contains Hive queries.
      */
@@ -656,7 +656,7 @@ export namespace dataproc_v1 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: any;
+    scriptVariables?: {[key: string]: string;};
   }
   /**
    * Optional. The config settings for Compute Engine resources in an instance
@@ -717,7 +717,7 @@ export namespace dataproc_v1 {
      * Optional. Map from parameter names to values that should be used for
      * those parameters. Values may not exceed 100 characters.
      */
-    parameters?: any;
+    parameters?: {[key: string]: string;};
     /**
      * Optional. A tag that prevents multiple concurrent workflow instances with
      * the same tag from running. This mitigates risk of concurrent instances
@@ -772,7 +772,7 @@ export namespace dataproc_v1 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Job is a Pig job.
      */
@@ -957,7 +957,7 @@ export namespace dataproc_v1 {
      * &#39;com.google = FATAL&#39;, &#39;root = INFO&#39;, &#39;org.apache =
      * DEBUG&#39;
      */
-    driverLogLevels?: any;
+    driverLogLevels?: {[key: string]: string;};
   }
   /**
    * Cluster that is managed by the workflow.
@@ -983,7 +983,7 @@ export namespace dataproc_v1 {
      * expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be
      * associated with a given cluster.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   /**
    * Specifies the resources used to actively manage an instance group.
@@ -1037,7 +1037,7 @@ export namespace dataproc_v1 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -1053,7 +1053,7 @@ export namespace dataproc_v1 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A job executed by the workflow.
@@ -1075,7 +1075,7 @@ export namespace dataproc_v1 {
      * \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a
      * given job.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Job is a Pig job.
      */
@@ -1150,7 +1150,7 @@ export namespace dataproc_v1 {
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The HCFS URI of the script that contains the Pig queries.
      */
@@ -1163,7 +1163,7 @@ export namespace dataproc_v1 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Pig command: name=[value]).
      */
-    scriptVariables?: any;
+    scriptVariables?: {[key: string]: string;};
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -1250,7 +1250,7 @@ export namespace dataproc_v1 {
      * API may be overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
@@ -1316,7 +1316,7 @@ export namespace dataproc_v1 {
      * pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more
      * information, see Cluster properties.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
   }
   /**
    * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/)
@@ -1364,7 +1364,7 @@ export namespace dataproc_v1 {
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
   }
   /**
    * A Cloud Dataproc job for running Apache Spark SQL
@@ -1384,7 +1384,7 @@ export namespace dataproc_v1 {
      * SQL&#39;s SparkConf. Properties that conflict with values set by the
      * Cloud Dataproc API may be overwritten.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The HCFS URI of the script that contains SQL queries.
      */
@@ -1397,7 +1397,7 @@ export namespace dataproc_v1 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: any;
+    scriptVariables?: {[key: string]: string;};
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -1443,7 +1443,7 @@ export namespace dataproc_v1 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1595,7 +1595,7 @@ export namespace dataproc_v1 {
     /**
      * Map from parameter names to values that were used for those parameters.
      */
-    parameters?: any;
+    parameters?: {[key: string]: string;};
     /**
      * Output only. Workflow start time.
      */
@@ -1666,7 +1666,7 @@ export namespace dataproc_v1 {
      * to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels
      * can be associated with a template.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The &quot;resource name&quot; of the template, as described
      * in https://cloud.google.com/apis/design/resource_names of the form

@@ -730,7 +730,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$ChannelLocalization;};
     /**
      * The snippet object contains basic details about the channel, such as its
      * title, description, and thumbnail images.
@@ -820,7 +820,13 @@ export namespace youtube_v3 {
    * Details about the content of a channel.
    */
   export interface Schema$ChannelContentDetails {
-    relatedPlaylists?: any;
+    relatedPlaylists?: {
+      favorites?: string;
+      likes?: string;
+      uploads?: string;
+      watchHistory?: string;
+      watchLater?: string;
+    };
   }
   /**
    * The contentOwnerDetails object encapsulates channel data that is relevant
@@ -959,7 +965,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$ChannelSectionLocalization;};
     /**
      * The snippet object contains basic details about the channel section, such
      * as its type, style and title.
@@ -3113,7 +3119,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$PlaylistLocalization;};
     /**
      * The player object contains information that you would use to play the
      * playlist in an embedded player.
@@ -4046,7 +4052,7 @@ export namespace youtube_v3 {
     /**
      * List with all localizations.
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$VideoLocalization;};
     /**
      * The monetizationDetails object encapsulates information about the
      * monetization status of the video.

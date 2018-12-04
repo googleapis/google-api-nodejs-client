@@ -143,7 +143,7 @@ export namespace composer_v1beta1 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
      * constrained to be &lt;= 128 bytes in size.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The resource name of the environment, in the form:
      * &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
@@ -335,7 +335,7 @@ export namespace composer_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -351,7 +351,7 @@ export namespace composer_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata describing an operation.
@@ -405,7 +405,7 @@ export namespace composer_v1beta1 {
      * [blacklisted](/composer/docs/how-to/managing/setting-airflow-configurations#airflow_configuration_blacklists),
      * and cannot be overridden.
      */
-    airflowConfigOverrides?: any;
+    airflowConfigOverrides?: {[key: string]: string;};
     /**
      * Optional. Additional environment variables to provide to the Apache
      * Airflow scheduler, worker, and webserver processes.  Environment variable
@@ -417,7 +417,7 @@ export namespace composer_v1beta1 {
      * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` *
      * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
      */
-    envVariables?: any;
+    envVariables?: {[key: string]: string;};
     /**
      * Immutable. The version of the software running in the environment. This
      * encapsulates both the version of Cloud Composer functionality and the
@@ -450,7 +450,7 @@ export namespace composer_v1beta1 {
      * &quot;[devel]&gt;=1.8.2, &lt;1.9.2&quot;. To specify a package without
      * pinning it to a version specifier, use the empty string as the value.
      */
-    pypiPackages?: any;
+    pypiPackages?: {[key: string]: string;};
     /**
      * Optional. The major version of Python used to run the Apache Airflow
      * scheduler, worker, and webserver processes.  Can be set to &#39;2&#39; or
@@ -504,7 +504,7 @@ export namespace composer_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

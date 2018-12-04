@@ -132,7 +132,7 @@ export namespace servicebroker_v1beta1 {
      * A JSON object that contains data for platform resources associated with
      * the binding to be created.
      */
-    bind_resource?: any;
+    bind_resource?: {[key: string]: any;};
     /**
      * Output only. Timestamp for when the binding was created.
      */
@@ -145,7 +145,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Configuration options for the service binding.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
     /**
      * The ID of the plan. See `Service` and `Plan` resources for details.
      * Maximum length is 64, GUID recommended. Required.
@@ -197,7 +197,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Credentials to use the binding.
      */
-    credentials?: any;
+    credentials?: {[key: string]: any;};
     /**
      * Used to communicate description of the response. Usually for non-standard
      * error codes.
@@ -222,7 +222,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * An array of configuration for mounting volumes.
      */
-    volume_mounts?: any[];
+    volume_mounts?: Array<{[key: string]: any;}>;
   }
   /**
    * Response for the `CreateServiceInstance()` method.
@@ -298,7 +298,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Credentials to use the binding.
      */
-    credentials?: any;
+    credentials?: {[key: string]: any;};
     /**
      * String containing the Deployment Manager deployment name that was created
      * for this binding,
@@ -327,7 +327,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * An array of configurations for mounting volumes.
      */
-    volume_mounts?: any[];
+    volume_mounts?: Array<{[key: string]: any;}>;
   }
   /**
    * The response for the `ListBindings()` method.
@@ -455,7 +455,7 @@ export namespace servicebroker_v1beta1 {
      * A list of metadata for a service offering. Metadata is an arbitrary JSON
      * object.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * User friendly name of the plan. The name must be globally unique within
      * GCP project. Note, which is different from (&quot;This must be globally
@@ -465,7 +465,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Schema definitions for service instances and bindings for the plan.
      */
-    schemas?: any;
+    schemas?: {[key: string]: any;};
   }
   /**
    * The resource model mostly follows the Open Service Broker API, as described
@@ -508,7 +508,7 @@ export namespace servicebroker_v1beta1 {
      * A list of metadata for a service offering. Metadata is an arbitrary JSON
      * object.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * User friendly service name. Name must match [a-z0-9]+ regexp. The name
      * must be globally unique within GCP project. Note, which is different from
@@ -541,7 +541,7 @@ export namespace servicebroker_v1beta1 {
      * can also contain anything. Currently only used for logging context
      * information.
      */
-    context?: any;
+    context?: {[key: string]: any;};
     /**
      * Output only. Timestamp for when the instance was created.
      */
@@ -570,7 +570,7 @@ export namespace servicebroker_v1beta1 {
      * Configuration options for the service instance. Parameters is JSON object
      * serialized to string.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
     /**
      * The ID of the plan. See `Service` and `Plan` resources for details.
      * Maximum length is 64, GUID recommended. Required.
@@ -580,7 +580,7 @@ export namespace servicebroker_v1beta1 {
      * Used only in UpdateServiceInstance request to optionally specify previous
      * fields.
      */
-    previous_values?: any;
+    previous_values?: {[key: string]: any;};
     /**
      * Output only. The resource name of the instance, e.g.
      * projects/project_id/brokers/broker_id/service_instances/instance_id

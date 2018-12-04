@@ -308,7 +308,7 @@ export namespace compute_alpha {
     /**
      * A list of AcceleratorTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$AcceleratorTypesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#acceleratorTypeAggregatedList for aggregated lists of accelerator
@@ -330,7 +330,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of accelerator types.
@@ -364,7 +368,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AcceleratorTypesScopedList {
     /**
@@ -375,7 +383,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the accelerator
      * types list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An access configuration attached to an instance&#39;s network interface.
@@ -486,7 +498,7 @@ export namespace compute_alpha {
      * the setLabels method. Each label key/value must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -555,7 +567,7 @@ export namespace compute_alpha {
     /**
      * A list of AddressesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$AddressesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#addressAggregatedList for
      * aggregated lists of addresses.
@@ -576,7 +588,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AddressesScopedList {
     /**
@@ -587,7 +603,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of addresses
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of addresses.
@@ -621,7 +641,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An alias IP range attached to an instance&#39;s network interface.
@@ -717,7 +741,7 @@ export namespace compute_alpha {
     /**
      * A list of Allocation resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$AllocationsScopedList;};
     /**
      * Type of resource.
      */
@@ -737,7 +761,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AllocationList {
     /**
@@ -769,7 +797,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * This allocation type allows to pre allocate specific instance
@@ -833,7 +865,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of allocations when the
      * list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AllocationsUpdateResourceShapeRequest {
     /**
@@ -1003,7 +1039,7 @@ export namespace compute_alpha {
      * disks.setLabels method. This field is only applicable for persistent
      * disks.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The source image to create this disk. When creating a new instance, one
      * of initializeParams.sourceImage or disks.source is required except for
@@ -1198,7 +1234,7 @@ export namespace compute_alpha {
     /**
      * A list of AutoscalersScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$AutoscalersScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#autoscalerAggregatedList
      * for aggregated lists of autoscalers.
@@ -1219,7 +1255,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Autoscaler resources.
@@ -1253,7 +1293,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AutoscalersScopedList {
     /**
@@ -1264,7 +1308,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of
      * autoscalers when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AutoscalerStatusDetails {
     /**
@@ -1665,7 +1713,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A BackendService resource. This resource defines a group of backend virtual
@@ -1825,7 +1877,7 @@ export namespace compute_alpha {
     /**
      * A list of BackendServicesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$BackendServicesScopedList;};
     /**
      * Type of resource.
      */
@@ -1845,7 +1897,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Configuration of a App Engine backend.
@@ -1937,7 +1993,7 @@ export namespace compute_alpha {
     /**
      * Metadata defined as annotations on the network endpoint group.
      */
-    annotations?: any;
+    annotations?: {[key: string]: string;};
     /**
      * Health state of the backend instances or endpoints in requested instance
      * or network endpoint group, determined based on configured health checks.
@@ -2013,7 +2069,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$BackendServiceReference {
     backendService?: string;
@@ -2027,7 +2087,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Associates `members` with a `role`.
@@ -2202,7 +2266,7 @@ export namespace compute_alpha {
     /**
      * A list of CommitmentsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$CommitmentsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#commitmentAggregatedList
      * for aggregated lists of commitments.
@@ -2223,7 +2287,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Commitment resources.
@@ -2257,7 +2325,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$CommitmentsScopedList {
     /**
@@ -2268,7 +2340,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of
      * commitments when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A condition to be met.
@@ -2444,7 +2520,7 @@ export namespace compute_alpha {
      * Labels to apply to this disk. These can be later modified by the
      * setLabels method.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output Only] Last attach timestamp in RFC3339 text format.
      */
@@ -2596,7 +2672,7 @@ export namespace compute_alpha {
     /**
      * A list of DisksScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$DisksScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#diskAggregatedList for
      * aggregated lists of persistent disks.
@@ -2617,7 +2693,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A specification of the desired way to instantiate a disk in the instance
@@ -2686,7 +2766,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$DiskMoveRequest {
     /**
@@ -2731,7 +2815,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of disks when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A DiskType resource. (== resource_for beta.diskTypes ==) (== resource_for
@@ -2798,7 +2886,7 @@ export namespace compute_alpha {
     /**
      * A list of DiskTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$DiskTypesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#diskTypeAggregatedList.
      */
@@ -2818,7 +2906,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of disk types.
@@ -2852,7 +2944,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$DiskTypesScopedList {
     /**
@@ -2863,7 +2959,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of disk types
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$DistributionPolicy {
     /**
@@ -2930,7 +3030,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents an expression text. Example:  title: &quot;User account
@@ -2969,7 +3073,7 @@ export namespace compute_alpha {
      * The list of ALLOW rules specified by this firewall. Each rule specifies a
      * protocol and port-range tuple that describes a permitted connection.
      */
-    allowed?: any[];
+    allowed?: Array<{IPProtocol?: string; ports?: string[];}>;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -2978,7 +3082,7 @@ export namespace compute_alpha {
      * The list of DENY rules specified by this firewall. Each rule specifies a
      * protocol and port-range tuple that describes a denied connection.
      */
-    denied?: any[];
+    denied?: Array<{IPProtocol?: string; ports?: string[];}>;
     /**
      * An optional description of this resource. Provide this property when you
      * create the resource.
@@ -3142,7 +3246,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Encapsulates numeric value that can be either absolute or relative.
@@ -3284,7 +3392,7 @@ export namespace compute_alpha {
      * setLabels method. Each label key/value pair must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * This signifies what the ForwardingRule will be used for and can only take
      * the following values: INTERNAL, INTERNAL_SELF_MANAGED, EXTERNAL. The
@@ -3396,7 +3504,7 @@ export namespace compute_alpha {
     /**
      * A list of ForwardingRulesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$ForwardingRulesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#forwardingRuleAggregatedList for lists of forwarding rules.
@@ -3417,7 +3525,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of ForwardingRule resources.
@@ -3450,7 +3562,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$ForwardingRuleReference {
     forwardingRule?: string;
@@ -3464,7 +3580,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of forwarding rules when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$GlobalSetLabelsRequest {
     /**
@@ -3486,7 +3606,7 @@ export namespace compute_alpha {
      * &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can
      * also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$GlobalSetPolicyRequest {
     /**
@@ -3679,7 +3799,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A full or valid partial URL to a health check. For example, the following
@@ -3699,7 +3823,7 @@ export namespace compute_alpha {
     /**
      * A list of HealthChecksScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$HealthChecksScopedList;};
     /**
      * Type of resource.
      */
@@ -3719,7 +3843,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$HealthChecksScopedList {
     /**
@@ -3730,13 +3858,17 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$HealthStatus {
     /**
      * Metadata defined as annotations for network endpoint.
      */
-    annotations?: any;
+    annotations?: {[key: string]: string;};
     /**
      * Health state of the instance.
      */
@@ -3995,7 +4127,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$HTTPSHealthCheck {
     /**
@@ -4148,7 +4284,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Image resource. (== resource_for beta.images ==) (== resource_for
@@ -4222,7 +4362,7 @@ export namespace compute_alpha {
      * Labels to apply to this image. These can be later modified by the
      * setLabels method.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Integer license codes indicating which licenses are attached to this
      * image.
@@ -4245,7 +4385,7 @@ export namespace compute_alpha {
     /**
      * The parameters of the raw disk image.
      */
-    rawDisk?: any;
+    rawDisk?: {containerType?: string; sha1Checksum?: string; source?: string;};
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -4350,7 +4490,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Instance resource. (== resource_for beta.instances ==) (== resource_for
@@ -4435,7 +4579,7 @@ export namespace compute_alpha {
      * Labels to apply to this instance. These can be later modified by the
      * setLabels method.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Full or partial URL of the machine type resource to use for this
      * instance, in the format: zones/zone/machineTypes/machine-type. This is
@@ -4549,7 +4693,7 @@ export namespace compute_alpha {
     /**
      * A list of InstancesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InstancesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#instanceAggregatedList for
      * aggregated lists of Instance resources.
@@ -4570,7 +4714,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * InstanceGroups (== resource_for beta.instanceGroups ==) (== resource_for
@@ -4655,7 +4803,7 @@ export namespace compute_alpha {
     /**
      * A list of InstanceGroupsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InstanceGroupsScopedList;};
     /**
      * [Output Only] The resource type, which is always
      * compute#instanceGroupAggregatedList for aggregated lists of instance
@@ -4677,7 +4825,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A list of InstanceGroup resources.
@@ -4711,7 +4863,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Instance Group Manager resource. (== resource_for
@@ -4926,7 +5082,7 @@ export namespace compute_alpha {
     /**
      * A list of InstanceGroupManagersScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InstanceGroupManagersScopedList;};
     /**
      * [Output Only] The resource type, which is always
      * compute#instanceGroupManagerAggregatedList for an aggregated list of
@@ -4948,7 +5104,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagerAutoHealingPolicy {
     /**
@@ -5005,7 +5165,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagerPendingActionsSummary {
     /**
@@ -5104,7 +5268,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagersRecreateInstancesRequest {
     /**
@@ -5150,7 +5318,11 @@ export namespace compute_alpha {
      * [Output Only] The warning that replaces the list of managed instance
      * groups when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagersSetAutoHealingRequest {
     autoHealingPolicies?: Schema$InstanceGroupManagerAutoHealingPolicy[];
@@ -5322,7 +5494,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupsListInstancesRequest {
     /**
@@ -5348,7 +5524,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that replaces the list of instance
      * groups when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupsSetNamedPortsRequest {
     /**
@@ -5397,7 +5577,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of instance referrers.
@@ -5431,7 +5615,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceMoveRequest {
     /**
@@ -5483,7 +5671,7 @@ export namespace compute_alpha {
     /**
      * Labels to apply to instances that are created from this template.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The machine type to use for instances that are created from this
      * template.
@@ -5576,7 +5764,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of instances
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstancesSetLabelsRequest {
     /**
@@ -5585,7 +5777,7 @@ export namespace compute_alpha {
      * request to add or change labels.
      */
     labelFingerprint?: string;
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$InstancesSetMachineResourcesRequest {
     /**
@@ -5724,7 +5916,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceWithNamedPorts {
     /**
@@ -5821,7 +6017,7 @@ export namespace compute_alpha {
      * modified by the setLabels method. Each label key/value must comply with
      * RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Type of link requested. This field indicates speed of each of the links
      * in the bundle, not the entire bundle. Only 10G per link is allowed for a
@@ -5972,7 +6168,7 @@ export namespace compute_alpha {
      * later modified by the setLabels method. Each label key/value must comply
      * with RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -6051,7 +6247,7 @@ export namespace compute_alpha {
     /**
      * A list of InterconnectAttachmentsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InterconnectAttachmentsScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#interconnectAttachmentAggregatedList for aggregated lists of
@@ -6073,7 +6269,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Response to the list request, and contains a list of interconnect
@@ -6108,7 +6308,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Informational metadata about Partner attachments from Partners to display
@@ -6154,7 +6358,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Describes a single physical circuit between the Customer and Google.
@@ -6279,7 +6487,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents an InterconnectLocations resource. The InterconnectLocations
@@ -6395,7 +6607,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Information about any potential InterconnectAttachments between an
@@ -6531,7 +6747,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of IP owners.
@@ -6565,7 +6785,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A license resource.
@@ -6704,7 +6928,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Specifies what kind of log the caller must write
@@ -6872,7 +7100,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A Machine Type resource. (== resource_for v1.machineTypes ==) (==
@@ -6946,7 +7178,7 @@ export namespace compute_alpha {
     /**
      * A list of MachineTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$MachineTypesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#machineTypeAggregatedList
      * for aggregated lists of machine types.
@@ -6967,7 +7199,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of machine types.
@@ -7001,7 +7237,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$MachineTypesScopedList {
     /**
@@ -7012,7 +7252,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the machine
      * types list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A Managed Instance resource.
@@ -7099,7 +7343,9 @@ export namespace compute_alpha {
      * [Output Only] Encountered errors during the last attempt to create or
      * delete the instance.
      */
-    errors?: any;
+    errors?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
   }
   /**
    * Overrides of stateful properties for a given instance
@@ -7116,7 +7362,7 @@ export namespace compute_alpha {
      * Metadata overrides defined for this instance. TODO(b/69785416) validate
      * the total length is &lt;9 KB
      */
-    metadata?: any[];
+    metadata?: Array<{key?: string; value?: string;}>;
     /**
      * [Output Only] Indicates where does the override come from.
      */
@@ -7166,7 +7412,7 @@ export namespace compute_alpha {
      * Array of key/value pairs. The total size of all keys and values must be
      * less than 512 KB.
      */
-    items?: any[];
+    items?: Array<{key?: string; value?: string;}>;
     /**
      * [Output Only] Type of the resource. Always compute#metadata for metadata.
      */
@@ -7274,7 +7520,7 @@ export namespace compute_alpha {
     /**
      * Metadata defined as annotations on the network endpoint.
      */
-    annotations?: any;
+    annotations?: {[key: string]: string;};
     /**
      * The name for a specific VM instance that the IP address belongs to. This
      * is required for network endpoints of type GCE_VM_IP_PORT. The instance
@@ -7304,7 +7550,7 @@ export namespace compute_alpha {
     /**
      * Metadata defined as annotations on the network endpoint group.
      */
-    annotations?: any;
+    annotations?: {[key: string]: string;};
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -7386,7 +7632,7 @@ export namespace compute_alpha {
     /**
      * A list of NetworkEndpointGroupsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NetworkEndpointGroupsScopedList;};
     /**
      * [Output Only] The resource type, which is always
      * compute#networkEndpointGroupAggregatedList for aggregated lists of
@@ -7408,7 +7654,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Load balancing specific fields for network endpoint group.
@@ -7465,7 +7715,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NetworkEndpointGroupsAttachEndpointsRequest {
     /**
@@ -7513,7 +7767,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NetworkEndpointGroupsScopedList {
     /**
@@ -7525,7 +7783,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that replaces the list of network
      * endpoint groups when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NetworkEndpointWithHealthStatus {
     /**
@@ -7632,7 +7894,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A network peering attached to a network resource. The message includes the
@@ -7802,7 +8068,7 @@ export namespace compute_alpha {
     /**
      * A list of NodeGroupsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NodeGroupsScopedList;};
     /**
      * [Output Only] Type of resource.Always compute#nodeGroupAggregatedList for
      * aggregated lists of node groups.
@@ -7823,7 +8089,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of nodeGroups.
@@ -7857,7 +8127,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeGroupNode {
     /**
@@ -7917,7 +8191,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeGroupsScopedList {
     /**
@@ -7928,7 +8206,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the nodeGroup
      * list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeGroupsSetNodeTemplateRequest {
     /**
@@ -7974,7 +8256,7 @@ export namespace compute_alpha {
      * Labels to use for node affinity, which will be used in instance
      * scheduling.
      */
-    nodeAffinityLabels?: any;
+    nodeAffinityLabels?: {[key: string]: string;};
     /**
      * The node type to use for nodes group that are created from this template.
      */
@@ -8017,7 +8299,7 @@ export namespace compute_alpha {
     /**
      * A list of NodeTemplatesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NodeTemplatesScopedList;};
     /**
      * [Output Only] Type of resource.Always compute#nodeTemplateAggregatedList
      * for aggregated lists of node templates.
@@ -8038,7 +8320,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of node templates.
@@ -8072,7 +8358,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeTemplateNodeTypeFlexibility {
     cpus?: string;
@@ -8088,7 +8378,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the node
      * templates list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A Node Type resource.
@@ -8156,7 +8450,7 @@ export namespace compute_alpha {
     /**
      * A list of NodeTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NodeTypesScopedList;};
     /**
      * [Output Only] Type of resource.Always compute#nodeTypeAggregatedList for
      * aggregated lists of node types.
@@ -8177,7 +8471,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of node types.
@@ -8211,7 +8509,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeTypesScopedList {
     /**
@@ -8222,7 +8524,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the node types
      * list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Operation resource, used to manage asynchronous API requests. (==
@@ -8255,7 +8561,9 @@ export namespace compute_alpha {
      * [Output Only] If errors are generated during processing of the operation,
      * this field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as NOT FOUND.
@@ -8345,7 +8653,11 @@ export namespace compute_alpha {
      * [Output Only] If warning messages are generated during processing of the
      * operation, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
     /**
      * [Output Only] The URL of the zone where the operation resides. Only
      * available when performing per-zone operations. You must specify this
@@ -8363,7 +8675,7 @@ export namespace compute_alpha {
     /**
      * [Output Only] A map of scoped operation lists.
      */
-    items?: any;
+    items?: {[key: string]: Schema$OperationsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#operationAggregatedList
      * for aggregated lists of operations.
@@ -8384,7 +8696,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Operation resources.
@@ -8419,7 +8735,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$OperationsScopedList {
     /**
@@ -8430,7 +8750,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of operations
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A matcher for the path portion of the URL. The BackendService from the
@@ -8815,7 +9139,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionDisksAddResourcePoliciesRequest {
     /**
@@ -8864,7 +9192,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of InstanceGroup resources.
@@ -8897,7 +9229,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * RegionInstanceGroupManagers.deletePerInstanceConfigs
@@ -8942,7 +9278,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionInstanceGroupManagersAbandonInstancesRequest {
     /**
@@ -8994,7 +9334,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionInstanceGroupManagersListInstancesResponse {
     /**
@@ -9079,7 +9423,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionInstanceGroupsListInstancesRequest {
     /**
@@ -9141,7 +9489,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionSetLabelsRequest {
     /**
@@ -9156,7 +9508,7 @@ export namespace compute_alpha {
     /**
      * The labels to set for this resource.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$RegionSetPolicyRequest {
     /**
@@ -9230,7 +9582,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of resourcePolicies when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$ResourcePolicy {
     /**
@@ -9284,7 +9640,7 @@ export namespace compute_alpha {
     /**
      * A list of ResourcePolicy resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$ResourcePoliciesScopedList;};
     /**
      * Type of resource.
      */
@@ -9304,7 +9660,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A backup schedule policy specifies when and how frequently snapshots are to
@@ -9369,7 +9729,7 @@ export namespace compute_alpha {
      * Labels to apply to scheduled snapshots. These can be later modified by
      * the setLabels method. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * GCS bucket storage location of the auto snapshot (regional or
      * multi-regional).
@@ -9445,7 +9805,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$ResourcePolicyVmMaintenancePolicy {
     /**
@@ -9602,7 +9966,11 @@ export namespace compute_alpha {
      * [Output Only] If potential misconfigurations are detected for this route,
      * this field will be populated with warning messages.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   /**
    * Contains a list of Route resources.
@@ -9635,7 +10003,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Router resource.
@@ -9728,7 +10100,7 @@ export namespace compute_alpha {
     /**
      * A list of Router resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$RoutersScopedList;};
     /**
      * Type of resource.
      */
@@ -9748,7 +10120,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RouterBgp {
     /**
@@ -9905,7 +10281,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents a Nat resource. It enables the VMs within the specified
@@ -10026,7 +10406,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of routers when the list is
      * empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RouterStatus {
     /**
@@ -10403,7 +10787,7 @@ export namespace compute_alpha {
      * modified by the setLabels method. Each label key/value must comply with
      * RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -10467,7 +10851,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SecurityPolicyReference {
     securityPolicy?: string;
@@ -10753,7 +11141,7 @@ export namespace compute_alpha {
      * Labels to apply to this snapshot. These can be later modified by the
      * setLabels method. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output Only] Integer license codes indicating which licenses are
      * attached to this snapshot.
@@ -10860,7 +11248,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A specification of the parameters to use when creating the instance
@@ -10908,7 +11300,7 @@ export namespace compute_alpha {
     /**
      * Labels to apply to instances that are created from this machine image.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The machine type to use for instances that are created from this machine
      * image.
@@ -11041,7 +11433,7 @@ export namespace compute_alpha {
     /**
      * A list of SslCertificatesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$SslCertificatesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#sslCertificateAggregatedList for lists of SSL Certificates.
@@ -11062,7 +11454,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of SslCertificate resources.
@@ -11095,7 +11491,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Configuration and status of a managed SSL certificate.
@@ -11110,7 +11510,7 @@ export namespace compute_alpha {
      * [Output only] Detailed statuses of the domains specified for managed
      * certificate resource.
      */
-    domainStatus?: any;
+    domainStatus?: {[key: string]: string;};
     /**
      * [Output only] Status of the managed certificate resource.
      */
@@ -11141,7 +11541,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SSLHealthCheck {
     /**
@@ -11213,7 +11617,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SslPoliciesListAvailableFeaturesResponse {
     features?: string[];
@@ -11292,7 +11700,11 @@ export namespace compute_alpha {
      * [Output Only] If potential misconfigurations are detected for this SSL
      * policy, this field will be populated with warning messages.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   export interface Schema$SslPolicyReference {
     /**
@@ -11491,7 +11903,7 @@ export namespace compute_alpha {
     /**
      * A list of SubnetworksScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$SubnetworksScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#subnetworkAggregatedList
      * for aggregated lists of subnetworks.
@@ -11512,7 +11924,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Subnetwork resources.
@@ -11546,7 +11962,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents a secondary IP range of a subnetwork.
@@ -11585,7 +12005,11 @@ export namespace compute_alpha {
      * An informational warning that appears when the list of addresses is
      * empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SubnetworksSetPrivateIpGoogleAccessRequest {
     privateIpGoogleAccess?: boolean;
@@ -11618,7 +12042,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A TargetHttpProxy resource. This resource defines an HTTP proxy. (==
@@ -11678,7 +12106,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetHttpProxiesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetHttpProxiesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#targetHttpProxyAggregatedList for lists of Target HTTP Proxies.
@@ -11699,7 +12127,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A list of TargetHttpProxy resources.
@@ -11733,7 +12165,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetHttpsProxiesScopedList {
     /**
@@ -11744,7 +12180,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetHttpsProxiesSetQuicOverrideRequest {
     /**
@@ -11844,7 +12284,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetHttpsProxiesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetHttpsProxiesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#targetHttpsProxyAggregatedList for lists of Target HTTP Proxies.
@@ -11865,7 +12305,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of TargetHttpsProxy resources.
@@ -11899,7 +12343,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A TargetInstance resource. This resource defines an endpoint instance that
@@ -11970,7 +12418,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetInstance resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetInstancesScopedList;};
     /**
      * Type of resource.
      */
@@ -11990,7 +12438,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of TargetInstance resources.
@@ -12023,7 +12475,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetInstancesScopedList {
     /**
@@ -12034,7 +12490,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A TargetPool resource. This resource defines a pool of instances, an
@@ -12140,7 +12600,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetPool resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetPoolsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#targetPoolAggregatedList
      * for aggregated lists of target pools.
@@ -12161,7 +12621,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetPoolInstanceHealth {
     healthStatus?: Schema$HealthStatus[];
@@ -12203,7 +12667,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetPoolsAddHealthCheckRequest {
     /**
@@ -12246,7 +12714,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetReference {
     target?: string;
@@ -12363,7 +12835,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetTcpProxiesSetBackendServiceRequest {
     /**
@@ -12458,7 +12934,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents a Target VPN gateway resource. (== resource_for
@@ -12505,7 +12985,7 @@ export namespace compute_alpha {
      * modified by the setLabels method. Each label key/value must comply with
      * RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -12550,7 +13030,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetVpnGateway resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetVpnGatewaysScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#targetVpnGateway for
      * target VPN gateways.
@@ -12571,7 +13051,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of TargetVpnGateway resources.
@@ -12605,7 +13089,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetVpnGatewaysScopedList {
     /**
@@ -12616,7 +13104,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of addresses
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TCPHealthCheck {
     /**
@@ -12809,7 +13301,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$UrlMapReference {
     urlMap?: string;
@@ -12822,7 +13318,7 @@ export namespace compute_alpha {
     /**
      * A list of UrlMapsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$UrlMapsScopedList;};
     /**
      * Type of resource.
      */
@@ -12842,7 +13338,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$UrlMapsScopedList {
     /**
@@ -12853,7 +13353,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$UrlMapsValidateRequest {
     /**
@@ -12955,7 +13459,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Secondary IP range of a usable subnetwork.
@@ -13066,7 +13574,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents a VPN gateway resource.
@@ -13105,7 +13617,7 @@ export namespace compute_alpha {
      * by the setLabels method. Each label key/value must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -13142,7 +13654,7 @@ export namespace compute_alpha {
     /**
      * A list of VpnGateway resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$VpnGatewaysScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#vpnGateway for VPN
      * gateways.
@@ -13163,7 +13675,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of VpnGateway resources.
@@ -13197,7 +13713,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$VpnGatewaysScopedList {
     /**
@@ -13208,7 +13728,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of addresses
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A VPN gateway interface.
@@ -13269,7 +13793,7 @@ export namespace compute_alpha {
      * setLabels method. Each label key/value pair must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Local traffic selector to use when establishing the VPN tunnel with peer
      * VPN gateway. The value should be a CIDR formatted string, for example:
@@ -13350,7 +13874,7 @@ export namespace compute_alpha {
     /**
      * A list of VpnTunnelsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$VpnTunnelsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
      */
@@ -13370,7 +13894,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of VpnTunnel resources.
@@ -13403,7 +13931,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$VpnTunnelsScopedList {
     /**
@@ -13414,7 +13946,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$WafExpressionSet {
     /**
@@ -13473,7 +14009,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Service resource (a.k.a service project) ID.
@@ -13568,7 +14108,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$ZoneSetLabelsRequest {
     /**
@@ -13583,7 +14127,7 @@ export namespace compute_alpha {
     /**
      * The labels to set for this resource.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$ZoneSetPolicyRequest {
     /**

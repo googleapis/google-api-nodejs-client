@@ -467,7 +467,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt;
      * Read-write.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The Project lifecycle state.  Read-only.
      */

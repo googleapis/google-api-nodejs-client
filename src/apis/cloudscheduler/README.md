@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/partners
+# @google/cloudscheduler
 
-> Searches certified companies and creates contact leads with them, and also audits the usage of clients.
+> Creates and manages jobs run on a regular recurring schedule.
 
 ## Installation
 
 ```sh
-$ npm install @google/partners
+$ npm install @google/cloudscheduler
 ```
 
 ## Usage

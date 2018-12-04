@@ -559,7 +559,7 @@ export namespace dataflow_v1b3 {
     /**
      * The runtime parameters to pass to the job.
      */
-    parameters?: any;
+    parameters?: {[key: string]: string;};
   }
   /**
    * Identifies the location of a custom souce.
@@ -780,14 +780,14 @@ export namespace dataflow_v1b3 {
     /**
      * Experimental settings.
      */
-    internalExperiments?: any;
+    internalExperiments?: {[key: string]: any;};
     /**
      * The Cloud Dataflow SDK pipeline options specified by the user. These
      * options are passed through the service and are used to recreate the SDK
      * pipeline options on the worker in a language agnostic and platform
      * independent way.
      */
-    sdkPipelineOptions?: any;
+    sdkPipelineOptions?: {[key: string]: any;};
     /**
      * Identity to run virtual machines as. Defaults to the default account.
      */
@@ -806,12 +806,12 @@ export namespace dataflow_v1b3 {
     /**
      * A description of the process that generated the request.
      */
-    userAgent?: any;
+    userAgent?: {[key: string]: any;};
     /**
      * A structure describing which components and their versions of the service
      * are required in order to run the job.
      */
-    version?: any;
+    version?: {[key: string]: any;};
     /**
      * The worker pools. At least one &quot;harness&quot; worker pool must be
      * specified in order for the job to have workers.
@@ -1007,7 +1007,7 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use to encode data being written via this output.
      */
-    codec?: any;
+    codec?: {[key: string]: any;};
     /**
      * The user-provided name of this output.
      */
@@ -1083,6 +1083,11 @@ export namespace dataflow_v1b3 {
      */
     clientRequestId?: string;
     /**
+     * If this is specified, the job&#39;s initial state is populated from the
+     * given snapshot.
+     */
+    createdFromSnapshotId?: string;
+    /**
      * The timestamp when the job was initially created. Immutable and set by
      * the Cloud Dataflow service.
      */
@@ -1128,7 +1133,7 @@ export namespace dataflow_v1b3 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
      * constrained to be &lt;= 128 bytes in size.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The location that contains this job.
      */
@@ -1188,9 +1193,14 @@ export namespace dataflow_v1b3 {
      */
     startTime?: string;
     /**
-     * The top-level steps that constitute the entire job.
+     * Exactly one of step or steps_location should be specified.  The top-level
+     * steps that constitute the entire job.
      */
     steps?: Schema$Step[];
+    /**
+     * The GCS location where the steps are stored.
+     */
+    stepsLocation?: string;
     /**
      * A set of files the system should be aware of that are used for temporary
      * storage. These temporary files will be removed on job completion. No
@@ -1204,7 +1214,7 @@ export namespace dataflow_v1b3 {
      * The map of transform name prefixes of the job to be replaced to the
      * corresponding name prefixes of the new job.
      */
-    transformNameMapping?: any;
+    transformNameMapping?: {[key: string]: string;};
     /**
      * The type of Cloud Dataflow job.
      */
@@ -1218,7 +1228,7 @@ export namespace dataflow_v1b3 {
     /**
      * A mapping from each stage to the information about that stage.
      */
-    stages?: any;
+    stages?: {[key: string]: Schema$JobExecutionStageInfo;};
   }
   /**
    * Contains information about how a particular google.dataflow.v1beta3.Step
@@ -1372,7 +1382,7 @@ export namespace dataflow_v1b3 {
     /**
      * The runtime parameters to pass to the job.
      */
-    parameters?: any;
+    parameters?: {[key: string]: string;};
   }
   /**
    * Response to the request to launch a template.
@@ -1512,7 +1522,7 @@ export namespace dataflow_v1b3 {
      * PCollections in the SDK will have context[&#39;pcollection&#39;] =
      * &lt;pcollection-name&gt;.
      */
-    context?: any;
+    context?: {[key: string]: string;};
     /**
      * Worker-defined metric name.
      */
@@ -1754,7 +1764,7 @@ export namespace dataflow_v1b3 {
     /**
      * The user function to invoke.
      */
-    userFn?: any;
+    userFn?: {[key: string]: any;};
   }
   /**
    * An instruction that does a partial group-by-key. One input and one output.
@@ -1767,7 +1777,7 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use for interpreting an element in the input PTable.
      */
-    inputElementCodec?: any;
+    inputElementCodec?: {[key: string]: any;};
     /**
      * If this instruction includes a combining function this is the name of the
      * intermediate store between the GBK and the CombineValues.
@@ -1785,7 +1795,7 @@ export namespace dataflow_v1b3 {
     /**
      * The value combining function to invoke.
      */
-    valueCombiningFn?: any;
+    valueCombiningFn?: {[key: string]: any;};
   }
   /**
    * A descriptive representation of submitted pipeline as well as the executed
@@ -2113,7 +2123,7 @@ export namespace dataflow_v1b3 {
     /**
      * The user function to invoke.
      */
-    userFn?: any;
+    userFn?: {[key: string]: any;};
   }
   /**
    * Information about an output of a SeqMapTask.
@@ -2148,7 +2158,7 @@ export namespace dataflow_v1b3 {
     /**
      * How to interpret the source element(s) as a side input value.
      */
-    kind?: any;
+    kind?: {[key: string]: any;};
     /**
      * The source(s) to read element(s) from to get the value of this side
      * input. If more than one source, then the elements are taken from the
@@ -2169,11 +2179,49 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use to encode data written to the sink.
      */
-    codec?: any;
+    codec?: {[key: string]: any;};
     /**
      * The sink to write to, plus its parameters.
      */
-    spec?: any;
+    spec?: {[key: string]: any;};
+  }
+  /**
+   * Represents a snapshot of a job.
+   */
+  export interface Schema$Snapshot {
+    /**
+     * The time this snapshot was created.
+     */
+    creationTime?: string;
+    /**
+     * The unique ID of this snapshot.
+     */
+    id?: string;
+    /**
+     * The project this snapshot belongs to.
+     */
+    projectId?: string;
+    /**
+     * The job this snapshot was created from.
+     */
+    sourceJobId?: string;
+    /**
+     * The time after which this snapshot will be automatically deleted.
+     */
+    ttl?: string;
+  }
+  /**
+   * Request to create a snapshot of a job.
+   */
+  export interface Schema$SnapshotJobRequest {
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * TTL for the snapshot.
+     */
+    ttl?: string;
   }
   /**
    * A source that records can be read and decoded from.
@@ -2188,11 +2236,11 @@ export namespace dataflow_v1b3 {
      * order: base_specs (later items win), spec (overrides anything in
      * base_specs).
      */
-    baseSpecs?: any[];
+    baseSpecs?: Array<{[key: string]: any;}>;
     /**
      * The codec to use to decode data read from the source.
      */
-    codec?: any;
+    codec?: {[key: string]: any;};
     /**
      * Setting this value to true hints to the framework that the source
      * doesn&#39;t need splitting, and using SourceSplitRequest on it would
@@ -2219,7 +2267,7 @@ export namespace dataflow_v1b3 {
     /**
      * The source to read from, plus its parameters.
      */
-    spec?: any;
+    spec?: {[key: string]: any;};
   }
   /**
    * DEPRECATED in favor of DynamicSourceSplit.
@@ -2515,7 +2563,7 @@ export namespace dataflow_v1b3 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2552,7 +2600,7 @@ export namespace dataflow_v1b3 {
      * has its own required set of properties. Must be provided on Create.  Only
      * retrieved with JOB_VIEW_ALL.
      */
-    properties?: any;
+    properties?: {[key: string]: any;};
   }
   /**
    * Streaming appliance snapshot configuration.
@@ -2631,7 +2679,7 @@ export namespace dataflow_v1b3 {
     /**
      * Map from user step names to state families.
      */
-    userStepToStateFamilyNameMap?: any;
+    userStepToStateFamilyNameMap?: {[key: string]: string;};
     /**
      * If present, the worker must use this endpoint to communicate with
      * Windmill Service dispatchers, otherwise the worker must continue to use
@@ -2884,7 +2932,7 @@ export namespace dataflow_v1b3 {
     /**
      * Maps user stage names to stable computation names.
      */
-    userStageToComputationNameMap?: any;
+    userStageToComputationNameMap?: {[key: string]: string;};
   }
   /**
    * Description of the type, names/ids, and input/outputs for a transform.
@@ -2927,7 +2975,7 @@ export namespace dataflow_v1b3 {
      * This field is used by the worker to send the status of the indvidual
      * containers running on each worker.
      */
-    pods?: any[];
+    pods?: Array<{[key: string]: any;}>;
     /**
      * The interval at which the worker is sending health reports. The default
      * value of 0 should be interpreted as the field is not being explicitly set
@@ -2976,7 +3024,7 @@ export namespace dataflow_v1b3 {
      * Other stats that can accompany an event. E.g. {
      * &quot;downloaded_bytes&quot; : &quot;123456&quot; }
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
   }
   /**
    * WorkerMessage provides information to the backend about a worker.
@@ -2992,7 +3040,7 @@ export namespace dataflow_v1b3 {
      * of development other strings can be used as tags. LABEL_UNSPECIFIED
      * should not be used here.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The timestamp of the worker_message.
      */
@@ -3052,7 +3100,7 @@ export namespace dataflow_v1b3 {
      * other worker identifiers should almost always be passed  as labels since
      * they will be included on most messages.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
   }
   /**
    * A worker_message response allows the server to pass information to the
@@ -3125,7 +3173,7 @@ export namespace dataflow_v1b3 {
     /**
      * Metadata to set on the Google Compute Engine VMs.
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * Network to which VMs will be assigned.  If empty or unspecified, the
      * service will use the network &quot;default&quot;.
@@ -3156,7 +3204,7 @@ export namespace dataflow_v1b3 {
     /**
      * Extra arguments for this worker pool.
      */
-    poolArgs?: any;
+    poolArgs?: {[key: string]: any;};
     /**
      * Subnetwork to which VMs will be assigned, if desired.  Expected to be of
      * the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
@@ -3326,7 +3374,7 @@ export namespace dataflow_v1b3 {
      * Other data returned by the service, specific to the particular worker
      * harness.
      */
-    harnessData?: any;
+    harnessData?: {[key: string]: any;};
     /**
      * Time at which the current lease will expire.
      */
@@ -3953,6 +4001,75 @@ export namespace dataflow_v1b3 {
 
 
     /**
+     * dataflow.projects.jobs.snapshot
+     * @desc Snapshot the state of a streaming job.
+     * @alias dataflow.projects.jobs.snapshot
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId The job to be snapshotted.
+     * @param {string} params.projectId The project which owns the job to be snapshotted.
+     * @param {().SnapshotJobRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    snapshot(
+        params?: Params$Resource$Projects$Jobs$Snapshot,
+        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
+    snapshot(
+        params: Params$Resource$Projects$Jobs$Snapshot,
+        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(
+        params: Params$Resource$Projects$Jobs$Snapshot,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Snapshot|
+        BodyResponseCallback<Schema$Snapshot>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback?: BodyResponseCallback<Schema$Snapshot>):
+        void|AxiosPromise<Schema$Snapshot> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Snapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Snapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}:snapshot')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+
+    /**
      * dataflow.projects.jobs.update
      * @desc Updates the state of an existing Cloud Dataflow job.
      * @alias dataflow.projects.jobs.update
@@ -4170,6 +4287,27 @@ export namespace dataflow_v1b3 {
      * `JOB_VIEW_SUMMARY`.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$Snapshot extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job to be snapshotted.
+     */
+    jobId?: string;
+    /**
+     * The project which owns the job to be snapshotted.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SnapshotJobRequest;
   }
   export interface Params$Resource$Projects$Jobs$Update extends
       StandardParameters {
@@ -5157,6 +5295,77 @@ export namespace dataflow_v1b3 {
 
 
     /**
+     * dataflow.projects.locations.jobs.snapshot
+     * @desc Snapshot the state of a streaming job.
+     * @alias dataflow.projects.locations.jobs.snapshot
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.jobId The job to be snapshotted.
+     * @param {string} params.location The location that contains this job.
+     * @param {string} params.projectId The project which owns the job to be snapshotted.
+     * @param {().SnapshotJobRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    snapshot(
+        params?: Params$Resource$Projects$Locations$Jobs$Snapshot,
+        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
+    snapshot(
+        params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+        options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(
+        params: Params$Resource$Projects$Locations$Jobs$Snapshot,
+        callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    snapshot(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Snapshot|
+        BodyResponseCallback<Schema$Snapshot>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
+        callback?: BodyResponseCallback<Schema$Snapshot>):
+        void|AxiosPromise<Schema$Snapshot> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Snapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Snapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}:snapshot')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'location', 'jobId'],
+        pathParams: ['jobId', 'location', 'projectId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+
+    /**
      * dataflow.projects.locations.jobs.update
      * @desc Updates the state of an existing Cloud Dataflow job.
      * @alias dataflow.projects.locations.jobs.update
@@ -5340,6 +5549,31 @@ export namespace dataflow_v1b3 {
      * `JOB_VIEW_SUMMARY`.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Snapshot extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job to be snapshotted.
+     */
+    jobId?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The project which owns the job to be snapshotted.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SnapshotJobRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Update extends
       StandardParameters {
@@ -6028,7 +6262,7 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      * @param {string} params.location The location to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
@@ -6096,7 +6330,9 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * @param {string=} params.dynamicTemplate.gcsPath Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * @param {string=} params.dynamicTemplate.stagingLocation Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * @param {string=} params.gcsPath A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      * @param {string} params.location The location to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
@@ -6193,7 +6429,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * Required. A Cloud Storage path to the template from which to create the
-     * job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**
@@ -6217,8 +6453,18 @@ export namespace dataflow_v1b3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. A Cloud Storage path to the template from which to create the
-     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * Path to dynamic template spec file on GCS. The file must be a Json
+     * serialized DynamicTemplateFieSpec object.
+     */
+    'dynamicTemplate.gcsPath'?: string;
+    /**
+     * Cloud Storage path for staging dependencies. Must be a valid Cloud
+     * Storage URL, beginning with `gs://`.
+     */
+    'dynamicTemplate.stagingLocation'?: string;
+    /**
+     * A Cloud Storage path to the template from which to create the job. Must
+     * be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**
@@ -6329,7 +6575,7 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      * @param {string=} params.location The location to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
@@ -6395,7 +6641,9 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * @param {string=} params.dynamicTemplate.gcsPath Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * @param {string=} params.dynamicTemplate.stagingLocation Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * @param {string=} params.gcsPath A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      * @param {string=} params.location The location to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
@@ -6486,7 +6734,7 @@ export namespace dataflow_v1b3 {
 
     /**
      * Required. A Cloud Storage path to the template from which to create the
-     * job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**
@@ -6510,8 +6758,18 @@ export namespace dataflow_v1b3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. A Cloud Storage path to the template from which to create the
-     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * Path to dynamic template spec file on GCS. The file must be a Json
+     * serialized DynamicTemplateFieSpec object.
+     */
+    'dynamicTemplate.gcsPath'?: string;
+    /**
+     * Cloud Storage path for staging dependencies. Must be a valid Cloud
+     * Storage URL, beginning with `gs://`.
+     */
+    'dynamicTemplate.stagingLocation'?: string;
+    /**
+     * A Cloud Storage path to the template from which to create the job. Must
+     * be valid Cloud Storage URL, beginning with 'gs://'.
      */
     gcsPath?: string;
     /**

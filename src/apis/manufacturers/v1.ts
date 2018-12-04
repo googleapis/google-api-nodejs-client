@@ -862,7 +862,7 @@ export namespace manufacturers_v1 {
      * The information to be included in the response. Only sections listed here
      * will be returned.
      */
-    include?: string;
+    include?: string[];
     /**
      * Name in the format `{target_country}:{content_language}:{product_id}`.
      * `target_country`   - The target country of the product as a CLDR
@@ -890,7 +890,7 @@ export namespace manufacturers_v1 {
      * The information to be included in the response. Only sections listed here
      * will be returned.
      */
-    include?: string;
+    include?: string[];
     /**
      * Maximum number of product statuses to return in the response, used for
      * paging.

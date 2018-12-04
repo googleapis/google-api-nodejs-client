@@ -348,7 +348,7 @@ export namespace doubleclicksearch_v2 {
      * Asynchronous report only. Contains a list of generated report files once
      * the report has succesfully completed.
      */
-    files?: any[];
+    files?: Array<{byteCount?: string; url?: string;}>;
     /**
      * Asynchronous report only. Id of the report.
      */
@@ -479,7 +479,10 @@ export namespace doubleclicksearch_v2 {
      * A list of filters to be applied to the report. The maximum number of
      * filters per request is 300.
      */
-    filters?: any[];
+    filters?: Array<{
+      column?: Schema$ReportApiColumnSpec; operator?: string;
+      values?: any[];
+    }>;
     /**
      * Determines if removed entities should be included in the report. Defaults
      * to false. Deprecated, please use includeRemovedEntities instead.
@@ -501,13 +504,21 @@ export namespace doubleclicksearch_v2 {
      * sorting to be performed on the report rows. The maximum number of
      * orderings per request is 300.
      */
-    orderBy?: any[];
+    orderBy?: Array<{column?: Schema$ReportApiColumnSpec; sortOrder?: string;}>;
     /**
      * The reportScope is a set of IDs that are used to determine which subset
      * of entities will be returned in the report. The full lineage of IDs from
      * the lowest scoped level desired up through agency is required.
      */
-    reportScope?: any;
+    reportScope?: {
+      adGroupId?: string;
+      adId?: string;
+      advertiserId?: string;
+      agencyId?: string;
+      campaignId?: string;
+      engineAccountId?: string;
+      keywordId?: string;
+    };
     /**
      * Determines the type of rows that are returned in the report. For example,
      * if you specify reportType: keyword, each row in the report will contain
@@ -538,7 +549,12 @@ export namespace doubleclicksearch_v2 {
      * If metrics are requested in a report, this argument will be used to
      * restrict the metrics to a specific time range.
      */
-    timeRange?: any;
+    timeRange?: {
+      changedAttributesSinceTimestamp?: string;
+      changedMetricsSinceTimestamp?: string;
+      endDate?: string;
+      startDate?: string;
+    };
     /**
      * If true, the report would only be created if all the requested stat data
      * are sourced from a single timezone. Defaults to false.

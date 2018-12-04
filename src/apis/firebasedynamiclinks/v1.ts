@@ -333,14 +333,15 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * E.g. https://maps.app.goo.gl, https://maps.page.link, https://g.co/maps
      * More examples can be found in description of getNormalizedUriPrefix in
-     * j/c/g/firebase/dynamiclinks/uri/DdlDomain.java
+     * j/c/g/firebase/dynamiclinks/uri/DdlDomain.java  Will fallback to
+     * dynamic_link_domain is this field is missing
      */
     domainUriPrefix?: string;
     /**
      * Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl [Learn
      * more](https://firebase.google.com/docs/dynamic-links/android/receive) on
      * how to set up Dynamic Link domain associated with your Firebase project.
-     * Required.
+     * Required if missing domain_uri_prefix.
      */
     dynamicLinkDomain?: string;
     /**
@@ -640,6 +641,10 @@ export namespace firebasedynamiclinks_v1 {
      * If specified, this overrides the ios_fallback_link value on iPads.
      */
     iosIpadFallbackLink?: string;
+    /**
+     * iOS minimum version.
+     */
+    iosMinimumVersion?: string;
   }
   /**
    * Parameters for iTunes Connect App Analytics.

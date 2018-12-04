@@ -103,7 +103,15 @@ export namespace pagespeedonline_v4 {
     /**
      * List of arguments for the format string.
      */
-    args?: any[];
+    args?: Array<{
+      key?: string;
+      rects?: Array<
+          {height?: number; left?: number; top?: number; width?: number;}>;
+      secondary_rects?: Array<
+          {height?: number; left?: number; top?: number; width?: number;}>;
+      type?: string;
+      value?: string;
+    }>;
     /**
      * A localized format string with {{FOO}} placeholders, where &#39;FOO&#39;
      * is the key of the argument whose value should be substituted. For
@@ -129,7 +137,7 @@ export namespace pagespeedonline_v4 {
      * Mime type of image data (e.g. &quot;image/jpeg&quot;).
      */
     mime_type?: string;
-    page_rect?: any;
+    page_rect?: {height?: number; left?: number; top?: number; width?: number;};
     /**
      * Width of screenshot in pixels.
      */
@@ -144,7 +152,25 @@ export namespace pagespeedonline_v4 {
      * Localized PageSpeed results. Contains a ruleResults entry for each
      * PageSpeed rule instantiated and run by the server.
      */
-    formattedResults?: any;
+    formattedResults?: {
+      locale?: string;
+      ruleResults?: {
+        [key: string]: {
+          beta?: boolean;
+          groups?: string[];
+          localizedRuleName?: string;
+          ruleImpact?: number;
+          summary?: Schema$PagespeedApiFormatStringV4;
+          urlBlocks?: Array<{
+            header?: Schema$PagespeedApiFormatStringV4;
+            urls?: Array<{
+              details?: Schema$PagespeedApiFormatStringV4[];
+              result?: Schema$PagespeedApiFormatStringV4;
+            }>;
+          }>;
+        };
+      };
+    };
     /**
      * Canonicalized and final URL for the document, after following page
      * redirects (if any).
@@ -162,12 +188,46 @@ export namespace pagespeedonline_v4 {
     /**
      * Metrics of end users&#39; page loading experience.
      */
-    loadingExperience?: any;
+    loadingExperience?: {
+      id?: string;
+      initial_url?: string;
+      metrics?: {
+        [key: string]: {
+          category?: string;
+          distributions?:
+              Array<{max?: number; min?: number; proportion?: number;}>;
+          median?: number;
+        };
+      };
+      overall_category?: string;
+    };
     /**
      * Summary statistics for the page, such as number of JavaScript bytes,
      * number of HTML bytes, etc.
      */
-    pageStats?: any;
+    pageStats?: {
+      cms?: string;
+      cssResponseBytes?: string;
+      flashResponseBytes?: string;
+      htmlResponseBytes?: string;
+      imageResponseBytes?: string;
+      javascriptResponseBytes?: string;
+      numRenderBlockingRoundTrips?: number;
+      numTotalRoundTrips?: number;
+      numberCssResources?: number;
+      numberHosts?: number;
+      numberJsResources?: number;
+      numberResources?: number;
+      numberRobotedResources?: number;
+      numberStaticResources?: number;
+      numberTransientFetchFailureResources?: number;
+      otherResponseBytes?: string;
+      overTheWireResponseBytes?: string;
+      robotedUrls?: string[];
+      textResponseBytes?: string;
+      totalRequestBytes?: string;
+      transientFetchFailureUrls?: string[];
+    };
     /**
      * Response code for the document. 200 indicates a normal page load. 4xx/5xx
      * indicates an error.
@@ -176,7 +236,7 @@ export namespace pagespeedonline_v4 {
     /**
      * A map with one entry for each rule group in these results.
      */
-    ruleGroups?: any;
+    ruleGroups?: {[key: string]: {pass?: boolean; score?: number;};};
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
@@ -193,7 +253,7 @@ export namespace pagespeedonline_v4 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: any;
+    version?: {major?: number; minor?: number;};
   }
 
 
@@ -314,7 +374,7 @@ export namespace pagespeedonline_v4 {
     /**
      * A PageSpeed rule to run; if none are given, all rules are run
      */
-    rule?: string;
+    rule?: string[];
     /**
      * Indicates if binary data containing a screenshot should be included
      */

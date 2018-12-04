@@ -83,7 +83,8 @@ export namespace firebasehosting_v1beta1 {
   /**
    * Firebase Hosting API
    *
-   *
+   * The Firebase Hosting REST API enables programmatic custom deployment for
+   * releasing versions of your Firebase hosted content and configuration files.
    *
    * @example
    * const {google} = require('googleapis');
@@ -252,20 +253,20 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * A `Header` defines custom headers to add to a response should the request
-   * URL path match the pattern.
+   * A [`header`](/docs/hosting/full-config#headers) defines custom headers to
+   * add to a response should the request URL path match the pattern.
    */
   export interface Schema$Header {
     /**
      * Required. The user-supplied [glob
-     * pattern](/docs/hosting/full-config#section-glob) to match against the
-     * request URL path.
+     * pattern](/docs/hosting/full-config#glob_pattern_matching) to match
+     * against the request URL path.
      */
     glob?: string;
     /**
      * Required. The additional headers to add to the response.
      */
-    headers?: any;
+    headers?: {[key: string]: string;};
   }
   export interface Schema$ListDomainsResponse {
     /**
@@ -307,7 +308,7 @@ export namespace firebasehosting_v1beta1 {
      * the path from the version. Calculate a hash by Gzipping the file then
      * taking the SHA256 hash of the newly compressed file.
      */
-    files?: any;
+    files?: {[key: string]: string;};
   }
   export interface Schema$PopulateVersionFilesResponse {
     /**
@@ -324,23 +325,24 @@ export namespace firebasehosting_v1beta1 {
     uploadUrl?: string;
   }
   /**
-   * A `Redirect` represents the configuration for returning an HTTP redirect
-   * response given a matching request URL path.
+   * A [`redirect`](/docs/hosting/full-config#redirects) represents the
+   * configuration for returning an HTTP redirect response given a matching
+   * request URL path.
    */
   export interface Schema$Redirect {
     /**
      * Required. The user-supplied [glob
-     * pattern](/docs/hosting/full-config#section-glob) to match against the
-     * request URL path.
+     * pattern](/docs/hosting/full-config#glob_pattern_matching) to match
+     * against the request URL path.
      */
     glob?: string;
     /**
      * Required. The value to put in the HTTP location header of the response.
      * &lt;br&gt;The location can contain capture group values from the pattern
-     * using a `&quot;:&quot;` prefix to identify the segment and an optional
-     * `&quot;*&quot;` to capture the rest of the URL. For example:
-     * &lt;code&gt;&quot;glob&quot;: &quot;/:capture*&quot;,
-     * &lt;br&gt;&quot;statusCode&quot;: 301, &lt;br&gt;&quot;location&quot;:
+     * using a `:` prefix to identify the segment and an optional `*` to capture
+     * the rest of the URL. For example: &lt;code&gt;&quot;glob&quot;:
+     * &quot;/:capture*&quot;, &lt;br&gt;&quot;statusCode&quot;: 301,
+     * &lt;br&gt;&quot;location&quot;:
      * &quot;https://example.com/foo/:capture&quot;&lt;/code&gt;
      */
     location?: string;
@@ -386,9 +388,10 @@ export namespace firebasehosting_v1beta1 {
     version?: Schema$Version;
   }
   /**
-   * A `Rewrite` represents an internal content rewrite on the version. If the
-   * pattern matches, the request will be handled as if it were to the
-   * destination path specified in the configuration.
+   * A [`rewrite`](/docs/hosting/full-config#rewrites) represents an internal
+   * content rewrite on the version. If the pattern matches, the request will be
+   * handled as if it were to the destination path specified in the
+   * configuration.
    */
   export interface Schema$Rewrite {
     /**
@@ -402,8 +405,8 @@ export namespace firebasehosting_v1beta1 {
     function?: string;
     /**
      * Required. The user-supplied [glob
-     * pattern](/docs/hosting/full-config#section-glob) to match against the
-     * request URL path.
+     * pattern](/docs/hosting/full-config#glob_pattern_matching) to match
+     * against the request URL path.
      */
     glob?: string;
     /**
@@ -415,7 +418,7 @@ export namespace firebasehosting_v1beta1 {
    * The configuration for how incoming requests to a site should be routed and
    * processed before serving content. The patterns are matched and applied
    * according to a specific [priority
-   * order](/docs/hosting/url-redirects-rewrites#section-priorities).
+   * order](/docs/hosting/full-config#hosting_priority_order).
    */
   export interface Schema$ServingConfig {
     /**
@@ -445,6 +448,20 @@ export namespace firebasehosting_v1beta1 {
      * Defines how to handle a trailing slash in the URL path.
      */
     trailingSlashBehavior?: string;
+  }
+  /**
+   * A `SiteConfig` contains metadata associated with a specific site that
+   * controls Firebase Hosting serving behavior
+   */
+  export interface Schema$SiteConfig {
+    /**
+     * The number of FINALIZED versions that will be held for a site before
+     * automatic deletion. When a new version is deployed, content for versions
+     * in storage in excess of this number will be deleted, and will no longer
+     * be billed for storage usage. Oldest versions will be deleted first; sites
+     * are created with an unlimited number of max_versions by default.
+     */
+    maxVersions?: string;
   }
   /**
    * A `Version` is the collection of configuration and [static
@@ -488,7 +505,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The labels used for extra metadata and/or filtering.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The unique identifier for a version, in the format:
      * &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;&lt;/code&gt;
@@ -552,8 +569,180 @@ export namespace firebasehosting_v1beta1 {
     getRoot() {
       return this.root;
     }
+
+
+    /**
+     * firebasehosting.sites.getConfig
+     * @desc Gets the Hosting metadata for a specific site.
+     * @alias firebasehosting.sites.getConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The site for which to get the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getConfig(
+        params?: Params$Resource$Sites$Getconfig,
+        options?: MethodOptions): AxiosPromise<Schema$SiteConfig>;
+    getConfig(
+        params: Params$Resource$Sites$Getconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$SiteConfig>,
+        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+    getConfig(
+        params: Params$Resource$Sites$Getconfig,
+        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+    getConfig(callback: BodyResponseCallback<Schema$SiteConfig>): void;
+    getConfig(
+        paramsOrCallback?: Params$Resource$Sites$Getconfig|
+        BodyResponseCallback<Schema$SiteConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SiteConfig>,
+        callback?: BodyResponseCallback<Schema$SiteConfig>):
+        void|AxiosPromise<Schema$SiteConfig> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SiteConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SiteConfig>(parameters);
+      }
+    }
+
+
+    /**
+     * firebasehosting.sites.updateConfig
+     * @desc Sets the Hosting metadata for a specific site.
+     * @alias firebasehosting.sites.updateConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The site for which to update the SiteConfig, in the format: <code>sites/<var>site-name</var>/config</code>
+     * @param {string=} params.updateMask A set of field names from your [site configuration](../sites.SiteConfig) that you want to update. <br>A field will be overwritten if, and only if, it's in the mask. <br>If a mask is not provided then a default mask of only [`max_versions`](../sites.SiteConfig.max_versions) will be used.
+     * @param {().SiteConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateConfig(
+        params?: Params$Resource$Sites$Updateconfig,
+        options?: MethodOptions): AxiosPromise<Schema$SiteConfig>;
+    updateConfig(
+        params: Params$Resource$Sites$Updateconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$SiteConfig>,
+        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+    updateConfig(
+        params: Params$Resource$Sites$Updateconfig,
+        callback: BodyResponseCallback<Schema$SiteConfig>): void;
+    updateConfig(callback: BodyResponseCallback<Schema$SiteConfig>): void;
+    updateConfig(
+        paramsOrCallback?: Params$Resource$Sites$Updateconfig|
+        BodyResponseCallback<Schema$SiteConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SiteConfig>,
+        callback?: BodyResponseCallback<Schema$SiteConfig>):
+        void|AxiosPromise<Schema$SiteConfig> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Sites$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SiteConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SiteConfig>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Sites$Getconfig extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The site for which to get the SiteConfig, in the format:
+     * <code>sites/<var>site-name</var>/config</code>
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Sites$Updateconfig extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The site for which to update the SiteConfig, in the format:
+     * <code>sites/<var>site-name</var>/config</code>
+     */
+    name?: string;
+    /**
+     * A set of field names from your [site configuration](../sites.SiteConfig)
+     * that you want to update. <br>A field will be overwritten if, and only if,
+     * it's in the mask. <br>If a mask is not provided then a default mask of
+     * only [`max_versions`](../sites.SiteConfig.max_versions) will be used.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SiteConfig;
+  }
 
   export class Resource$Sites$Domains {
     root: Firebasehosting;

@@ -135,7 +135,7 @@ export namespace tasks_v1 {
     /**
      * Collection of links. This collection is read-only.
      */
-    links?: any[];
+    links?: Array<{description?: string; link?: string; type?: string;}>;
     /**
      * Notes describing the task. Optional.
      */

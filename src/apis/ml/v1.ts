@@ -148,7 +148,7 @@ export namespace ml_v1 {
      * Application specific response metadata. Must be set in the first response
      * for streaming APIs.
      */
-    extensions?: any[];
+    extensions?: Array<{[key: string]: any;}>;
   }
   /**
    * An observed value of a metric.
@@ -256,7 +256,7 @@ export namespace ml_v1 {
     /**
      * The hyperparameters given to this trial.
      */
-    hyperparameters?: any;
+    hyperparameters?: {[key: string]: string;};
     /**
      * True if the trial is stopped early.
      */
@@ -359,7 +359,7 @@ export namespace ml_v1 {
      * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
      * labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Input parameters to create a prediction job.
      */
@@ -492,7 +492,7 @@ export namespace ml_v1 {
      * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
      * labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The name specified for the model when it was created.  The
      * model name must be unique within the project it is created in.
@@ -536,7 +536,7 @@ export namespace ml_v1 {
      * The user labels, inherited from the model or the model version being
      * operated on.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Contains the name of the model associated with the operation.
      */
@@ -960,7 +960,7 @@ export namespace ml_v1 {
      * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
      * labels&lt;/a&gt;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The time the version was last used for prediction.
      */
@@ -1215,7 +1215,7 @@ export namespace ml_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1231,7 +1231,7 @@ export namespace ml_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -1286,7 +1286,7 @@ export namespace ml_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

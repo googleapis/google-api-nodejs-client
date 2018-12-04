@@ -255,7 +255,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:  * when the text is horizontal it might look
      * like:          0----1         |    |         3----2  * when it&#39;s
      * rotated 180 degrees around the top-left corner it becomes: 2----3 |    |
-     * 1----0    and the vertice order will still be (0, 1, 2, 3).
+     * 1----0    and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$BoundingPoly;
     /**
@@ -801,7 +801,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:  * when the text is horizontal it might look
      * like:          0----1         |    |         3----2  * when it&#39;s
      * rotated 180 degrees around the top-left corner it becomes: 2----3 |    |
-     * 1----0    and the vertice order will still be (0, 1, 2, 3).
+     * 1----0    and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -821,6 +821,10 @@ export namespace vision_v1p1beta1 {
    * A bounding polygon for the detected image annotation.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1BoundingPoly {
+    /**
+     * The bounding polygon normalized vertices.
+     */
+    normalizedVertices?: Schema$GoogleCloudVisionV1p1beta1NormalizedVertex[];
     /**
      * The bounding polygon vertices.
      */
@@ -1262,6 +1266,20 @@ export namespace vision_v1p1beta1 {
     latLng?: Schema$LatLng;
   }
   /**
+   * A vertex represents a 2D point in the image. NOTE: the normalized vertex
+   * coordinates are relative to the original image and range from 0 to 1.
+   */
+  export interface Schema$GoogleCloudVisionV1p1beta1NormalizedVertex {
+    /**
+     * X coordinate.
+     */
+    x?: number;
+    /**
+     * Y coordinate.
+     */
+    y?: number;
+  }
+  /**
    * Contains metadata for the BatchAnnotateImages operation.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1OperationMetadata {
@@ -1337,7 +1355,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:   * when the text is horizontal it might look
      * like:      0----1      |    |      3----2   * when it&#39;s rotated 180
      * degrees around the top-left corner it becomes:      2----3      |    |
-     * 1----0   and the vertice order will still be (0, 1, 2, 3).
+     * 1----0   and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -1797,7 +1815,7 @@ export namespace vision_v1p1beta1 {
      * example:   * when the text is horizontal it might look like:      0----1
      * |    |      3----2   * when it&#39;s rotated 180 degrees around the
      * top-left corner it becomes:      2----3      |    |      1----0   and the
-     * vertice order will still be (0, 1, 2, 3).
+     * vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -1934,7 +1952,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:  * when the text is horizontal it might look
      * like:          0----1         |    |         3----2  * when it&#39;s
      * rotated 180 degrees around the top-left corner it becomes: 2----3 |    |
-     * 1----0    and the vertice order will still be (0, 1, 2, 3).
+     * 1----0    and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -2362,7 +2380,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:   * when the text is horizontal it might look
      * like:      0----1      |    |      3----2   * when it&#39;s rotated 180
      * degrees around the top-left corner it becomes:      2----3      |    |
-     * 1----0   and the vertice order will still be (0, 1, 2, 3).
+     * 1----0   and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -2782,7 +2800,7 @@ export namespace vision_v1p1beta1 {
      * example:   * when the text is horizontal it might look like:      0----1
      * |    |      3----2   * when it&#39;s rotated 180 degrees around the
      * top-left corner it becomes:      2----3      |    |      1----0   and the
-     * vertice order will still be (0, 1, 2, 3).
+     * vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -2939,7 +2957,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:  * when the text is horizontal it might look
      * like:          0----1         |    |         3----2  * when it&#39;s
      * rotated 180 degrees around the top-left corner it becomes: 2----3 |    |
-     * 1----0    and the vertice order will still be (0, 1, 2, 3).
+     * 1----0    and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -3385,7 +3403,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:   * when the text is horizontal it might look
      * like:      0----1      |    |      3----2   * when it&#39;s rotated 180
      * degrees around the top-left corner it becomes:      2----3      |    |
-     * 1----0   and the vertice order will still be (0, 1, 2, 3).
+     * 1----0   and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -3831,7 +3849,7 @@ export namespace vision_v1p1beta1 {
      * example:   * when the text is horizontal it might look like:      0----1
      * |    |      3----2   * when it&#39;s rotated 180 degrees around the
      * top-left corner it becomes:      2----3      |    |      1----0   and the
-     * vertice order will still be (0, 1, 2, 3).
+     * vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -4034,7 +4052,7 @@ export namespace vision_v1p1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -4050,7 +4068,7 @@ export namespace vision_v1p1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -4128,7 +4146,7 @@ export namespace vision_v1p1beta1 {
      * orientation. For example:   * when the text is horizontal it might look
      * like:      0----1      |    |      3----2   * when it&#39;s rotated 180
      * degrees around the top-left corner it becomes:      2----3      |    |
-     * 1----0   and the vertice order will still be (0, 1, 2, 3).
+     * 1----0   and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$BoundingPoly;
     /**
@@ -4360,7 +4378,7 @@ export namespace vision_v1p1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -4561,7 +4579,7 @@ export namespace vision_v1p1beta1 {
      * example:   * when the text is horizontal it might look like:      0----1
      * |    |      3----2   * when it&#39;s rotated 180 degrees around the
      * top-left corner it becomes:      2----3      |    |      1----0   and the
-     * vertice order will still be (0, 1, 2, 3).
+     * vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$BoundingPoly;
     /**

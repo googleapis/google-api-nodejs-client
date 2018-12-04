@@ -191,7 +191,7 @@ export namespace servicecontrol_v1 {
      * Other service-specific data about the request, response, and other
      * information associated with the current audited event.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The name of the service method or operation. For API calls, this should
      * be the name of the API method. For example,
@@ -211,7 +211,7 @@ export namespace servicecontrol_v1 {
      * file contents. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Metadata about the operation.
      */
@@ -235,7 +235,7 @@ export namespace servicecontrol_v1 {
      * `service_data` fields. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    resourceOriginalState?: any;
+    resourceOriginalState?: {[key: string]: any;};
     /**
      * The operation response. This may not include all response elements, such
      * as those that are too large, privacy-sensitive, or duplicated elsewhere
@@ -243,12 +243,12 @@ export namespace servicecontrol_v1 {
      * file contents. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    response?: any;
+    response?: {[key: string]: any;};
     /**
      * Deprecated, use `metadata` field instead. Other service-specific data
      * about the request, response, and other activities.
      */
-    serviceData?: any;
+    serviceData?: {[key: string]: any;};
     /**
      * The name of the API service performing the operation. For example,
      * `&quot;datastore.googleapis.com&quot;`.
@@ -300,7 +300,7 @@ export namespace servicecontrol_v1 {
      * &#39;exp&#39;: 1353604926}  SAML assertions are similarly specified, but
      * with an identity provider dependent structure.
      */
-    claims?: any;
+    claims?: {[key: string]: any;};
     /**
      * The authorized presenter of the credential. Reflects the optional
      * Authorized Presenter (`azp`) claim within a JWT or the OAuth client id.
@@ -338,7 +338,7 @@ export namespace servicecontrol_v1 {
      * the request. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    thirdPartyPrincipal?: any;
+    thirdPartyPrincipal?: {[key: string]: any;};
   }
   /**
    * Authorization information for the operation.
@@ -696,7 +696,7 @@ export namespace servicecontrol_v1 {
      * A set of user-defined (key, value) data that provides additional
      * information about the log entry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The log to which this log entry belongs. Examples:
      * `&quot;syslog&quot;`, `&quot;book_log&quot;`.
@@ -711,7 +711,7 @@ export namespace servicecontrol_v1 {
      * The log entry payload, represented as a protocol buffer that is expressed
      * as a JSON object. The only accepted type currently is AuditLog.
      */
-    protoPayload?: any;
+    protoPayload?: {[key: string]: any;};
     /**
      * The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
@@ -721,7 +721,7 @@ export namespace servicecontrol_v1 {
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    structPayload?: any;
+    structPayload?: {[key: string]: any;};
     /**
      * The log entry payload, represented as a Unicode string (UTF-8).
      */
@@ -797,7 +797,7 @@ export namespace servicecontrol_v1 {
      * google.api.servicecontrol.v1.Operation.labels for the overriding
      * relationship.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * A money value.
      */
@@ -889,7 +889,7 @@ export namespace servicecontrol_v1 {
      * the API is served, such as App Engine, Compute Engine, or Kubernetes
      * Engine.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Represents information to be logged.
      */
@@ -947,7 +947,7 @@ export namespace servicecontrol_v1 {
      * with. Only a combination of 1000 user labels per consumer project are
      * allowed.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * This message defines attributes for a node that handles a network request.
@@ -963,7 +963,7 @@ export namespace servicecontrol_v1 {
     /**
      * The labels associated with the peer.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The network port of the peer.
      */
@@ -1026,7 +1026,7 @@ export namespace servicecontrol_v1 {
      * Castor (that scales quota usage) and &#39;quota_metrics&#39; for
      * SuperQuota (that doesn&#39;t scale quota usage).
      */
-    quotaConsumed?: any;
+    quotaConsumed?: {[key: string]: number;};
     /**
      * Quota metrics to indicate the usage. Depending on the check request, one
      * or more of the following metrics will be included:  1. For rate quota,
@@ -1056,7 +1056,7 @@ export namespace servicecontrol_v1 {
     /**
      * Labels describing the operation.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Fully qualified name of the API method for which this quota operation is
      * requested. This name is used for matching quota rules or metric rules and
@@ -1200,7 +1200,7 @@ export namespace servicecontrol_v1 {
      * must be merged according to the HTTP spec. All header keys must be
      * lowercased, because HTTP header keys are case-insensitive.
      */
-    headers?: any;
+    headers?: {[key: string]: string;};
     /**
      * The HTTP request `Host` header value.
      */
@@ -1313,7 +1313,7 @@ export namespace servicecontrol_v1 {
      * The labels or tags on the resource, such as AWS resource tags and
      * Kubernetes resource labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The stable identifier (name) of a resource on the `service`. A resource
      * can be logically identified as
@@ -1424,7 +1424,7 @@ export namespace servicecontrol_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

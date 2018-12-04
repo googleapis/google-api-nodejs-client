@@ -244,7 +244,7 @@ export namespace androidmanagement_v1 {
      * &lt;tr&gt;&lt;td&gt;BUNDLE_ARRAY&lt;/td&gt;&lt;td&gt;array of
      * objects&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;
      */
-    managedConfiguration?: any;
+    managedConfiguration?: {[key: string]: any;};
     /**
      * The managed configurations template for the app, saved from the managed
      * configurations iframe. This field is ignored if managed_configuration is
@@ -944,7 +944,7 @@ export namespace androidmanagement_v1 {
      * Optional, a map containing &lt;key, value&gt; configuration variables
      * defined for the configuration.
      */
-    configurationVariables?: any;
+    configurationVariables?: {[key: string]: string;};
     /**
      * The ID of the managed configurations template.
      */
@@ -1141,7 +1141,7 @@ export namespace androidmanagement_v1 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -1157,7 +1157,7 @@ export namespace androidmanagement_v1 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A list of package names.
@@ -1483,7 +1483,7 @@ export namespace androidmanagement_v1 {
      * Network configuration for the device. See configure networks for more
      * information.
      */
-    openNetworkConfiguration?: any;
+    openNetworkConfiguration?: {[key: string]: any;};
     /**
      * Whether using NFC to beam data from apps is disabled.
      */
@@ -1615,7 +1615,7 @@ export namespace androidmanagement_v1 {
      */
     usbFileTransferDisabled?: boolean;
     /**
-     * Whether USB storage is enabled.
+     * Whether USB storage is enabled. Deprecated.
      */
     usbMassStorageEnabled?: boolean;
     /**
@@ -1813,7 +1813,7 @@ export namespace androidmanagement_v1 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1926,7 +1926,7 @@ export namespace androidmanagement_v1 {
      * (https://www.w3.org/International/articles/language-tags/) code, such as
      * en-US, es-ES, or fr.
      */
-    localizedMessages?: any;
+    localizedMessages?: {[key: string]: string;};
   }
   /**
    * A web token used to access the managed Google Play iframe.
@@ -2703,7 +2703,7 @@ export namespace androidmanagement_v1 {
     /**
      * Optional flags that control the device wiping behavior.
      */
-    wipeDataFlags?: string;
+    wipeDataFlags?: string[];
   }
   export interface Params$Resource$Enterprises$Devices$Get extends
       StandardParameters {

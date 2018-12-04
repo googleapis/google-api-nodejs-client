@@ -300,11 +300,25 @@ export namespace slides_v1 {
    */
   export interface Schema$CreateLineRequest {
     /**
+     * The category of the line to be created.  The exact line type created is
+     * determined based on the category and how it&#39;s routed to connect to
+     * other page elements.  If you specify both a `category` and a
+     * `line_category`, the `category` takes precedence.  If you do not specify
+     * a value for `category`, but specify a value for `line_category`, then the
+     * specified `line_category` value is used.  If you do not specify either,
+     * then STRAIGHT is used.
+     */
+    category?: string;
+    /**
      * The element properties for the line.
      */
     elementProperties?: Schema$PageElementProperties;
     /**
-     * The category of line to be created.
+     * The category of the line to be created.  &lt;b&gt;Deprecated&lt;/b&gt;:
+     * use `category` instead.  The exact line type created is determined based
+     * on the category and how it&#39;s routed to connect to other page
+     * elements.  If you specify both a `category` and a `line_category`, the
+     * `category` takes precedence.
      */
     lineCategory?: string;
     /**
@@ -751,7 +765,7 @@ export namespace slides_v1 {
      * a new random ID will be assigned. If the map is empty or unset, all
      * duplicate objects will receive a new random ID.
      */
-    objectIds?: any;
+    objectIds?: {[key: string]: string;};
   }
   /**
    * The response of duplicating an object.
@@ -1022,6 +1036,11 @@ export namespace slides_v1 {
    */
   export interface Schema$Line {
     /**
+     * The category of the line.  It matches the `category` specified in
+     * CreateLineRequest, and can be updated with UpdateLineCategoryRequest.
+     */
+    lineCategory?: string;
+    /**
      * The properties of the line.
      */
     lineProperties?: Schema$LineProperties;
@@ -1029,6 +1048,30 @@ export namespace slides_v1 {
      * The type of the line.
      */
     lineType?: string;
+  }
+  /**
+   * The properties for one end of a Line connection.
+   */
+  export interface Schema$LineConnection {
+    /**
+     * The object ID of the connected page element.  Some page elements, such as
+     * groups, tables, and lines do not have connection sites and therefore
+     * cannot be connected to a connector line.
+     */
+    connectedObjectId?: string;
+    /**
+     * The index of the connection site on the connected page element.  In most
+     * cases, it corresponds to the predefined connection site index from the
+     * ECMA-376 standard. More information on those connection sites can be
+     * found in the description of the &quot;cnx&quot; attribute in
+     * section 20.1.9.9 and Annex H. &quot;Predefined DrawingML Shape and Text
+     * Geometries&quot; of &quot;Office Open XML File Formats-Fundamentals and
+     * Markup Language Reference&quot;, part 1 of [ECMA-376 5th edition]
+     * (http://www.ecma-international.org/publications/standards/Ecma-376.htm).
+     * The position of each connection site can also be viewed from Slides
+     * editor.
+     */
+    connectionSiteIndex?: number;
   }
   /**
    * The fill of the line.
@@ -1053,6 +1096,12 @@ export namespace slides_v1 {
      */
     endArrow?: string;
     /**
+     * The connection at the end of the line. If unset, there is no connection.
+     * Only lines with a Type indicating it is a &quot;connector&quot; can have
+     * an `end_connection`.
+     */
+    endConnection?: Schema$LineConnection;
+    /**
      * The fill of the line. The default line fill matches the defaults for new
      * lines created in the Slides editor.
      */
@@ -1065,6 +1114,12 @@ export namespace slides_v1 {
      * The style of the arrow at the beginning of the line.
      */
     startArrow?: string;
+    /**
+     * The connection at the beginning of the line. If unset, there is no
+     * connection.  Only lines with a Type indicating it is a
+     * &quot;connector&quot; can have a `start_connection`.
+     */
+    startConnection?: Schema$LineConnection;
     /**
      * The thickness of the line.
      */
@@ -1109,7 +1164,7 @@ export namespace slides_v1 {
      * level. A list has at most nine levels of nesting, so the possible values
      * for the keys of this map are 0 through 8, inclusive.
      */
-    nestingLevel?: any;
+    nestingLevel?: {[key: string]: Schema$NestingLevel;};
   }
   /**
    * The properties of Page that are only relevant for pages with page_type
@@ -1650,9 +1705,10 @@ export namespace slides_v1 {
      */
     pageObjectIds?: string[];
     /**
-     * The replace method. Deprecated: use `image_replace_method` instead.  If
-     * you specify both a `replace_method` and an `image_replace_method`, the
-     * `image_replace_method` takes precedence.
+     * The replace method.  &lt;b&gt;Deprecated&lt;/b&gt;: use
+     * `image_replace_method` instead.  If you specify both a `replace_method`
+     * and an `image_replace_method`, the `image_replace_method` takes
+     * precedence.
      */
     replaceMethod?: string;
   }
@@ -1862,6 +1918,11 @@ export namespace slides_v1 {
      */
     replaceImage?: Schema$ReplaceImageRequest;
     /**
+     * Reroutes a line such that it&#39;s connected at the two closest
+     * connection sites on the connected page elements.
+     */
+    rerouteLine?: Schema$RerouteLineRequest;
+    /**
      * Ungroups objects, such as groups.
      */
     ungroupObjects?: Schema$UngroupObjectsRequest;
@@ -1874,6 +1935,10 @@ export namespace slides_v1 {
      */
     updateImageProperties?: Schema$UpdateImagePropertiesRequest;
     /**
+     * Updates the category of a line.
+     */
+    updateLineCategory?: Schema$UpdateLineCategoryRequest;
+    /**
      * Updates the properties of a Line.
      */
     updateLineProperties?: Schema$UpdateLinePropertiesRequest;
@@ -1881,6 +1946,10 @@ export namespace slides_v1 {
      * Updates the alt text title and/or description of a page element.
      */
     updatePageElementAltText?: Schema$UpdatePageElementAltTextRequest;
+    /**
+     * Updates the Z-order of page elements.
+     */
+    updatePageElementsZOrder?: Schema$UpdatePageElementsZOrderRequest;
     /**
      * Updates the transform of a page element.
      */
@@ -1925,6 +1994,18 @@ export namespace slides_v1 {
      * Updates the properties of a Video.
      */
     updateVideoProperties?: Schema$UpdateVideoPropertiesRequest;
+  }
+  /**
+   * Reroutes a line such that it&#39;s connected at the two closest connection
+   * sites on the connected page elements.
+   */
+  export interface Schema$RerouteLineRequest {
+    /**
+     * The object ID of the line to reroute.  Only a line with a category
+     * indicating it is a &quot;connector&quot; can be rerouted. The start and
+     * end connections of the line must be on different page elements.
+     */
+    objectId?: string;
   }
   /**
    * A single response from an update.
@@ -2487,7 +2568,7 @@ export namespace slides_v1 {
     /**
      * The bulleted lists contained in this text, keyed by list ID.
      */
-    lists?: any;
+    lists?: {[key: string]: Schema$List;};
     /**
      * The text contents broken down into its component parts, including styling
      * information. This property is read-only.
@@ -2746,6 +2827,23 @@ export namespace slides_v1 {
     objectId?: string;
   }
   /**
+   * Updates the category of a line.
+   */
+  export interface Schema$UpdateLineCategoryRequest {
+    /**
+     * The line category to update to.  The exact line type is determined based
+     * on the category to update to and how it&#39;s routed to connect to other
+     * page elements.
+     */
+    lineCategory?: string;
+    /**
+     * The object ID of the line the update is applied to.  Only a line with a
+     * category indicating it is a &quot;connector&quot; can be updated.  The
+     * line may be rerouted after updating its category.
+     */
+    objectId?: string;
+  }
+  /**
    * Updates the properties of a Line.
    */
   export interface Schema$UpdateLinePropertiesRequest {
@@ -2790,6 +2888,24 @@ export namespace slides_v1 {
      * the content of the page element.
      */
     title?: string;
+  }
+  /**
+   * Updates the Z-order of page elements. Z-order is an ordering of the
+   * elements on the page from back to front. The page element in the front may
+   * cover the elements that are behind it.
+   */
+  export interface Schema$UpdatePageElementsZOrderRequest {
+    /**
+     * The Z-order operation to apply on the page elements.  When applying the
+     * operation on multiple page elements, the relative Z-orders within these
+     * page elements before the operation is maintained.
+     */
+    operation?: string;
+    /**
+     * The object IDs of the page elements to update.  All the page elements
+     * must be on the same page and must not be grouped.
+     */
+    pageElementObjectIds?: string[];
   }
   /**
    * Updates the transform of a page element.  Updating the transform of a group
@@ -3299,9 +3415,10 @@ export namespace slides_v1 {
 
     /**
      * slides.presentations.create
-     * @desc Creates a new presentation using the title given in the request. If
-     * a presentationId is provided, uses it as the ID of the new presentation.
-     * Otherwise, a new presentationId is generated. Returns the created
+     * @desc Creates a blank presentation using the title given in the request.
+     * If a `presentationId` is provided, it is used as the ID of the new
+     * presentation. Otherwise, a new ID is generated. Other fields in the
+     * request, including any provided content, are ignored. Returns the created
      * presentation.
      * @alias slides.presentations.create
      * @memberOf! ()

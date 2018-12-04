@@ -148,7 +148,7 @@ export namespace oslogin_v1beta {
     /**
      * A map from SSH public key fingerprint to the associated key object.
      */
-    sshPublicKeys?: any;
+    sshPublicKeys?: {[key: string]: Schema$SshPublicKey;};
   }
   /**
    * The POSIX account information associated with a Google account.

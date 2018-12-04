@@ -462,7 +462,7 @@ export namespace admin_directory_v1 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -493,7 +493,7 @@ export namespace admin_directory_v1 {
     /**
      * List of active time ranges (Read-only)
      */
-    activeTimeRanges?: any[];
+    activeTimeRanges?: Array<{activeTime?: number; date?: string;}>;
     /**
      * AssetId specified during enrollment or through later annotation
      */
@@ -513,11 +513,20 @@ export namespace admin_directory_v1 {
     /**
      * Reports of CPU utilization and temperature (Read-only)
      */
-    cpuStatusReports?: any[];
+    cpuStatusReports?: Array<{
+      cpuTemperatureInfo?: Array<{label?: string; temperature?: number;}>;
+      cpuUtilizationPercentageInfo?: number[];
+      reportTime?: string;
+    }>;
     /**
      * List of device files to download (Read-only)
      */
-    deviceFiles?: any[];
+    deviceFiles?: Array<{
+      createTime?: string;
+      downloadUrl?: string;
+      name?: string;
+      type?: string;
+    }>;
     /**
      * Unique identifier of Chrome OS Device (Read-only)
      */
@@ -525,7 +534,10 @@ export namespace admin_directory_v1 {
     /**
      * Reports of disk space and other info about mounted/connected volumes.
      */
-    diskVolumeReports?: any[];
+    diskVolumeReports?: Array<{
+      volumeInfo?: Array<
+          {storageFree?: string; storageTotal?: string; volumeId?: string;}>;
+    }>;
     /**
      * ETag of the resource.
      */
@@ -588,7 +600,7 @@ export namespace admin_directory_v1 {
      * List of recent device users, in descending order by last login time
      * (Read-only)
      */
-    recentUsers?: any[];
+    recentUsers?: Array<{email?: string; type?: string;}>;
     /**
      * Chromebook serial number (Read-only)
      */
@@ -604,7 +616,8 @@ export namespace admin_directory_v1 {
     /**
      * Reports of amounts of available RAM memory (Read-only)
      */
-    systemRamFreeReports?: any[];
+    systemRamFreeReports?:
+        Array<{reportTime?: string; systemRamFreeInfo?: string[];}>;
     /**
      * Total RAM on the device [in bytes] (Read-only)
      */
@@ -612,7 +625,14 @@ export namespace admin_directory_v1 {
     /**
      * Trusted Platform Module (TPM) (Read-only)
      */
-    tpmVersionInfo?: any;
+    tpmVersionInfo?: {
+      family?: string;
+      firmwareVersion?: string;
+      manufacturer?: string;
+      specLevel?: string;
+      tpmModel?: string;
+      vendorSpecific?: string;
+    };
     /**
      * Will Chromebook auto renew after support end date (Read-only)
      */
@@ -1052,7 +1072,13 @@ export namespace admin_directory_v1 {
     /**
      * List of applications installed on Mobile Device
      */
-    applications?: any[];
+    applications?: Array<{
+      displayName?: string;
+      packageName?: string;
+      permission?: string[];
+      versionCode?: number;
+      versionName?: string;
+    }>;
     /**
      * Mobile Device Baseband version (Read-only)
      */
@@ -1445,7 +1471,7 @@ export namespace admin_directory_v1 {
     /**
      * The set of privileges that are granted to this role.
      */
-    rolePrivileges?: any[];
+    rolePrivileges?: Array<{privilegeName?: string; serviceId?: string;}>;
   }
   /**
    * JSON template for roleAssignment resource in Directory API.
@@ -1590,7 +1616,7 @@ export namespace admin_directory_v1 {
      * will be supported for numeric fields. Setting the numericIndexingSpec
      * allows range queries to be supported.
      */
-    numericIndexingSpec?: any;
+    numericIndexingSpec?: {maxValue?: number; minValue?: number;};
     /**
      * Read ACLs on the field specifying who can view values of this field.
      * Valid values are &quot;ALL_DOMAIN_USERS&quot; and
@@ -1743,7 +1769,7 @@ export namespace admin_directory_v1 {
     /**
      * Custom fields of the user.
      */
-    customSchemas?: any;
+    customSchemas?: {[key: string]: Schema$UserCustomProperties;};
     deletionTime?: string;
     emails?: any;
     /**
@@ -6956,7 +6982,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string;
+    orgUnitPath?: string[];
   }
   export interface Params$Resource$Orgunits$Get extends StandardParameters {
     /**
@@ -6971,7 +6997,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string;
+    orgUnitPath?: string[];
   }
   export interface Params$Resource$Orgunits$Insert extends StandardParameters {
     /**
@@ -7021,7 +7047,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string;
+    orgUnitPath?: string[];
 
     /**
      * Request body metadata
@@ -7041,7 +7067,7 @@ export namespace admin_directory_v1 {
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath?: string;
+    orgUnitPath?: string[];
 
     /**
      * Request body metadata

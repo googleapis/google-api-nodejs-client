@@ -240,7 +240,7 @@ export namespace adsense_v1_4 {
      * list of headers; one for each dimension in the request, followed by one
      * for each metric in the request.
      */
-    headers?: any[];
+    headers?: Array<{currency?: string; name?: string; type?: string;}>;
     /**
      * Kind this is, in this case adsense#report.
      */
@@ -278,7 +278,13 @@ export namespace adsense_v1_4 {
      * hexadecimal characters, similar to HTML color codes, but without the
      * leading hash.
      */
-    colors?: any;
+    colors?: {
+      background?: string;
+      border?: string;
+      text?: string;
+      title?: string;
+      url?: string;
+    };
     /**
      * The style of the corners in the ad (deprecated: never populated,
      * ignored).
@@ -287,7 +293,7 @@ export namespace adsense_v1_4 {
     /**
      * The font which is included in the style.
      */
-    font?: any;
+    font?: {family?: string; size?: string;};
     /**
      * Kind this is, in this case adsense#adStyle.
      */
@@ -302,7 +308,11 @@ export namespace adsense_v1_4 {
      * Settings specific to content ads (AFC) and highend mobile content ads
      * (AFMC - deprecated).
      */
-    contentAdsSettings?: any;
+    contentAdsSettings?: {
+      backupOption?: {color?: string; type?: string; url?: string;};
+      size?: string;
+      type?: string;
+    };
     /**
      * Custom style information specific to this ad unit.
      */
@@ -310,7 +320,12 @@ export namespace adsense_v1_4 {
     /**
      * Settings specific to feed ads (AFF) - deprecated.
      */
-    feedAdsSettings?: any;
+    feedAdsSettings?: {
+      adPosition?: string;
+      frequency?: number;
+      minimumWordCount?: number;
+      type?: string;
+    };
     /**
      * Unique identifier of this ad unit. This should be considered an opaque
      * identifier; it is not safe to rely on it being in any particular format.
@@ -323,7 +338,12 @@ export namespace adsense_v1_4 {
     /**
      * Settings specific to WAP mobile content ads (AFMC) - deprecated.
      */
-    mobileContentAdsSettings?: any;
+    mobileContentAdsSettings?: {
+      markupLanguage?: string;
+      scriptingLanguage?: string;
+      size?: string;
+      type?: string;
+    };
     /**
      * Name of this ad unit.
      */
@@ -423,7 +443,12 @@ export namespace adsense_v1_4 {
     /**
      * The targeting information of this custom channel, if activated.
      */
-    targetingInfo?: any;
+    targetingInfo?: {
+      adsAppearOn?: string;
+      description?: string;
+      location?: string;
+      siteLanguage?: string;
+    };
   }
   export interface Schema$CustomChannels {
     /**
@@ -2157,7 +2182,7 @@ export namespace adsense_v1_4 {
     /**
      * Dimensions to base the report on.
      */
-    dimension?: string;
+    dimension?: string[];
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -2165,7 +2190,7 @@ export namespace adsense_v1_4 {
     /**
      * Filters to be run on the report.
      */
-    filter?: string;
+    filter?: string[];
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -2178,13 +2203,13 @@ export namespace adsense_v1_4 {
     /**
      * Numeric columns to include in the report.
      */
-    metric?: string;
+    metric?: string[];
     /**
      * The name of a dimension or metric to sort the resulting report on,
      * optionally prefixed with "+" to sort ascending or "-" to sort descending.
      * If no prefix is specified, the column is sorted ascending.
      */
-    sort?: string;
+    sort?: string[];
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -4065,7 +4090,7 @@ export namespace adsense_v1_4 {
     /**
      * Accounts upon which to report.
      */
-    accountId?: string;
+    accountId?: string[];
     /**
      * Optional currency to use when reporting on monetary metrics. Defaults to
      * the account's currency if not set.
@@ -4074,7 +4099,7 @@ export namespace adsense_v1_4 {
     /**
      * Dimensions to base the report on.
      */
-    dimension?: string;
+    dimension?: string[];
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -4082,7 +4107,7 @@ export namespace adsense_v1_4 {
     /**
      * Filters to be run on the report.
      */
-    filter?: string;
+    filter?: string[];
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -4095,13 +4120,13 @@ export namespace adsense_v1_4 {
     /**
      * Numeric columns to include in the report.
      */
-    metric?: string;
+    metric?: string[];
     /**
      * The name of a dimension or metric to sort the resulting report on,
      * optionally prefixed with "+" to sort ascending or "-" to sort descending.
      * If no prefix is specified, the column is sorted ascending.
      */
-    sort?: string;
+    sort?: string[];
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */

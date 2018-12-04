@@ -133,7 +133,10 @@ export namespace drive_v2 {
      * Information about supported additional roles per file type. The most
      * specific type takes precedence.
      */
-    additionalRoleInfo?: any[];
+    additionalRoleInfo?: Array<{
+      roleSets?: Array<{additionalRoles?: string[]; primaryRole?: string;}>;
+      type?: string;
+    }>;
     /**
      * Whether the user can create Team Drives.
      */
@@ -150,11 +153,11 @@ export namespace drive_v2 {
     /**
      * The allowable export formats.
      */
-    exportFormats?: any[];
+    exportFormats?: Array<{source?: string; targets?: string[];}>;
     /**
      * List of additional features enabled on this account.
      */
-    features?: any[];
+    features?: Array<{featureName?: string; featureRate?: number;}>;
     /**
      * The palette of allowable folder colors as RGB hex strings.
      */
@@ -162,7 +165,7 @@ export namespace drive_v2 {
     /**
      * The allowable import formats.
      */
-    importFormats?: any[];
+    importFormats?: Array<{source?: string; targets?: string[];}>;
     /**
      * A boolean indicating whether the authenticated app is installed by the
      * authenticated user.
@@ -186,7 +189,7 @@ export namespace drive_v2 {
      * List of max upload sizes for each file type. The most specific type takes
      * precedence.
      */
-    maxUploadSizes?: any[];
+    maxUploadSizes?: Array<{size?: string; type?: string;}>;
     /**
      * The name of the current user.
      */
@@ -198,7 +201,7 @@ export namespace drive_v2 {
     /**
      * The amount of storage quota used by different Google services.
      */
-    quotaBytesByService?: any[];
+    quotaBytesByService?: Array<{bytesUsed?: string; serviceName?: string;}>;
     /**
      * The total number of quota bytes.
      */
@@ -235,7 +238,8 @@ export namespace drive_v2 {
     /**
      * A list of themes that are supported for Team Drives.
      */
-    teamDriveThemes?: any[];
+    teamDriveThemes?:
+        Array<{backgroundImageLink?: string; colorRgb?: string; id?: string;}>;
     /**
      * The authenticated user.
      */
@@ -269,7 +273,7 @@ export namespace drive_v2 {
     /**
      * The various icons for the app.
      */
-    icons?: any[];
+    icons?: Array<{category?: string; iconUrl?: string; size?: number;}>;
     /**
      * The ID of the app.
      */
@@ -494,7 +498,7 @@ export namespace drive_v2 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -599,7 +603,7 @@ export namespace drive_v2 {
     /**
      * The context of the file which is being commented on.
      */
-    context?: any;
+    context?: {type?: string; value?: string;};
     /**
      * The date when this comment was first created.
      */
@@ -777,7 +781,32 @@ export namespace drive_v2 {
      * Capabilities the current user has on this file. Each capability
      * corresponds to a fine-grained action that a user may take.
      */
-    capabilities?: any;
+    capabilities?: {
+      canAddChildren?: boolean;
+      canChangeCopyRequiresWriterPermission?: boolean;
+      canChangeRestrictedDownload?: boolean;
+      canComment?: boolean;
+      canCopy?: boolean;
+      canDelete?: boolean;
+      canDeleteChildren?: boolean;
+      canDownload?: boolean;
+      canEdit?: boolean;
+      canListChildren?: boolean;
+      canMoveChildrenOutOfTeamDrive?: boolean;
+      canMoveChildrenWithinTeamDrive?: boolean;
+      canMoveItemIntoTeamDrive?: boolean;
+      canMoveItemOutOfTeamDrive?: boolean;
+      canMoveItemWithinTeamDrive?: boolean;
+      canMoveTeamDriveItem?: boolean;
+      canReadRevisions?: boolean;
+      canReadTeamDrive?: boolean;
+      canRemoveChildren?: boolean;
+      canRename?: boolean;
+      canShare?: boolean;
+      canTrash?: boolean;
+      canTrashChildren?: boolean;
+      canUntrash?: boolean;
+    };
     /**
      * Deprecated: use capabilities/canCopy.
      */
@@ -826,7 +855,7 @@ export namespace drive_v2 {
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks?: any;
+    exportLinks?: {[key: string]: string;};
     /**
      * The final component of fullFileExtension with trailing text that does not
      * appear to be part of the extension removed. This field is only populated
@@ -886,11 +915,33 @@ export namespace drive_v2 {
      * and its contents will depend on what can be parsed from the image
      * content.
      */
-    imageMediaMetadata?: any;
+    imageMediaMetadata?: {
+      aperture?: number;
+      cameraMake?: string;
+      cameraModel?: string;
+      colorSpace?: string;
+      date?: string;
+      exposureBias?: number;
+      exposureMode?: string;
+      exposureTime?: number;
+      flashUsed?: boolean;
+      focalLength?: number;
+      height?: number;
+      isoSpeed?: number;
+      lens?: string;
+      location?: {altitude?: number; latitude?: number; longitude?: number;};
+      maxApertureValue?: number;
+      meteringMode?: string;
+      rotation?: number;
+      sensor?: string;
+      subjectDistance?: number;
+      whiteBalance?: string;
+      width?: number;
+    };
     /**
      * Indexable text attributes for the file (can only be written)
      */
-    indexableText?: any;
+    indexableText?: {text?: string;};
     /**
      * Whether the file was created or opened by the requesting app.
      */
@@ -902,7 +953,14 @@ export namespace drive_v2 {
     /**
      * A group of labels for the file.
      */
-    labels?: any;
+    labels?: {
+      hidden?: boolean;
+      modified?: boolean;
+      restricted?: boolean;
+      starred?: boolean;
+      trashed?: boolean;
+      viewed?: boolean;
+    };
     /**
      * The last user to modify this file.
      */
@@ -949,7 +1007,7 @@ export namespace drive_v2 {
      * file with that app. Only populated when the drive.apps.readonly scope is
      * used.
      */
-    openWithLinks?: any;
+    openWithLinks?: {[key: string]: string;};
     /**
      * The original filename of the uploaded content if available, or else the
      * original value of the title field. This is only available for files with
@@ -1029,7 +1087,7 @@ export namespace drive_v2 {
      * A thumbnail for the file. This will only be used if Drive cannot generate
      * a standard thumbnail.
      */
-    thumbnail?: any;
+    thumbnail?: {image?: string; mimeType?: string;};
     /**
      * A short-lived link to the file&#39;s thumbnail. Typically lasts on the
      * order of hours. Only populated when the requesting app can access the
@@ -1069,7 +1127,8 @@ export namespace drive_v2 {
     /**
      * Metadata about video media. This will only be present for video types.
      */
-    videoMediaMetadata?: any;
+    videoMediaMetadata?:
+        {durationMillis?: string; height?: number; width?: number;};
     /**
      * A link for downloading the content of the file in a browser using cookie
      * based authentication. In cases where the content is shared publicly, the
@@ -1270,7 +1329,13 @@ export namespace drive_v2 {
      * or directly on this item. This is an output-only field which is present
      * only for Team Drive items.
      */
-    teamDrivePermissionDetails?: any[];
+    teamDrivePermissionDetails?: Array<{
+      additionalRoles?: string[];
+      inherited?: boolean;
+      inheritedFrom?: string;
+      role?: string;
+      teamDrivePermissionType?: string;
+    }>;
     /**
      * The account type. Allowed values are:   - user  - group  - domain  -
      * anyone
@@ -1402,7 +1467,7 @@ export namespace drive_v2 {
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks?: any;
+    exportLinks?: {[key: string]: string;};
     /**
      * The size of the revision in bytes. This will only be populated on files
      * with content stored in Drive.
@@ -1524,7 +1589,12 @@ export namespace drive_v2 {
      * drive.teamdrives.update requests that don&#39;t set themeId. When
      * specified, all fields of the backgroundImageFile must be set.
      */
-    backgroundImageFile?: any;
+    backgroundImageFile?: {
+      id?: string;
+      width?: number;
+      xCoordinate?: number;
+      yCoordinate?: number;
+    };
     /**
      * A short-lived link to this Team Drive&#39;s background image.
      */
@@ -1532,7 +1602,27 @@ export namespace drive_v2 {
     /**
      * Capabilities the current user has on this Team Drive.
      */
-    capabilities?: any;
+    capabilities?: {
+      canAddChildren?: boolean;
+      canChangeCopyRequiresWriterPermissionRestriction?: boolean;
+      canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeTeamDriveBackground?: boolean;
+      canChangeTeamMembersOnlyRestriction?: boolean;
+      canComment?: boolean;
+      canCopy?: boolean;
+      canDeleteChildren?: boolean;
+      canDeleteTeamDrive?: boolean;
+      canDownload?: boolean;
+      canEdit?: boolean;
+      canListChildren?: boolean;
+      canManageMembers?: boolean;
+      canReadRevisions?: boolean;
+      canRemoveChildren?: boolean;
+      canRename?: boolean;
+      canRenameTeamDrive?: boolean;
+      canShare?: boolean;
+      canTrashChildren?: boolean;
+    };
     /**
      * The color of this Team Drive as an RGB hex string. It can only be set on
      * a drive.teamdrives.update request that does not set themeId.
@@ -1559,7 +1649,12 @@ export namespace drive_v2 {
      * A set of restrictions that apply to this Team Drive or items inside this
      * Team Drive.
      */
-    restrictions?: any;
+    restrictions?: {
+      adminManagedRestrictions?: boolean;
+      copyRequiresWriterPermission?: boolean;
+      domainUsersOnly?: boolean;
+      teamMembersOnly?: boolean;
+    };
     /**
      * The ID of the theme from which the background image and color will be
      * set. The set of possible teamDriveThemes can be retrieved from a
@@ -1615,7 +1710,7 @@ export namespace drive_v2 {
     /**
      * The user&#39;s profile picture.
      */
-    picture?: any;
+    picture?: {url?: string;};
   }
 
 

@@ -462,13 +462,13 @@ export namespace classroom_v1 {
      */
     description?: string;
     /**
-     * Optional date, in UTC, that submissions for this this course work are
-     * due. This must be specified if `due_time` is specified.
+     * Optional date, in UTC, that submissions for this course work are due.
+     * This must be specified if `due_time` is specified.
      */
     dueDate?: Schema$Date;
     /**
-     * Optional time of day, in UTC, that submissions for this this course work
-     * are due. This must be specified if `due_date` is specified.
+     * Optional time of day, in UTC, that submissions for this course work are
+     * due. This must be specified if `due_date` is specified.
      */
     dueTime?: Schema$TimeOfDay;
     /**
@@ -1833,7 +1833,7 @@ export namespace classroom_v1 {
      * Restricts returned courses to those in one of the specified states The
      * default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
      */
-    courseStates?: string;
+    courseStates?: string[];
     /**
      * Maximum number of items to return. Zero or unspecified indicates that the
      * server may assign a maximum.  The server may return fewer than the
@@ -2729,7 +2729,7 @@ export namespace classroom_v1 {
      * Restriction on the `state` of announcements returned. If this argument is
      * left unspecified, the default value is `PUBLISHED`.
      */
-    announcementStates?: string;
+    announcementStates?: string[];
     /**
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
@@ -3356,7 +3356,7 @@ export namespace classroom_v1 {
      * returned. If unspecified, items with a work status of `PUBLISHED` is
      * returned.
      */
-    courseWorkStates?: string;
+    courseWorkStates?: string[];
     /**
      * Optional sort ordering for results. A comma-separated list of fields with
      * an optional sort direction keyword. Supported fields are `updateTime` and
@@ -3792,7 +3792,7 @@ export namespace classroom_v1 {
      * classroom.courses.courseWork.studentSubmissions.reclaim
      * @desc Reclaims a student submission on behalf of the student that owns
      * it.  Reclaiming a student submission transfers ownership of attached
-     * Drive files to the student and update the submission state.  Only the
+     * Drive files to the student and updates the submission state.  Only the
      * student that owns the requested student submission may call this method,
      * and only for a student submission that has been turned in.  This request
      * must be made by the Developer Console project of the [OAuth client
@@ -4105,7 +4105,7 @@ export namespace classroom_v1 {
      * Requested submission states. If specified, returned student submissions
      * match one of the specified submission states.
      */
-    states?: string;
+    states?: string[];
     /**
      * Optional argument to restrict returned student work to those owned by the
      * student with the specified identifier. The identifier can be one of the
@@ -6182,7 +6182,7 @@ export namespace classroom_v1 {
      * returned. Otherwise, results with a `state` of `PENDING` will be
      * returned.
      */
-    states?: string;
+    states?: string[];
     /**
      * The ID of the student whose guardian invitations are to be returned. The
      * identifier can be one of the following:  * the numeric identifier for the

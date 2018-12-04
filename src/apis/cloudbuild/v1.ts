@@ -280,7 +280,7 @@ export namespace cloudbuild_v1 {
     /**
      * Substitutions data for `Build` resource.
      */
-    substitutions?: any;
+    substitutions?: {[key: string]: string;};
     /**
      * Tags for annotation of a `Build`. These are not docker tags.
      */
@@ -297,7 +297,7 @@ export namespace cloudbuild_v1 {
      * all specified images. * FETCHSOURCE: time to fetch source.  If the build
      * does not specify source or images, these keys will not be included.
      */
-    timing?: any;
+    timing?: {[key: string]: Schema$TimeSpan;};
   }
   /**
    * Metadata for build operations.
@@ -531,7 +531,7 @@ export namespace cloudbuild_v1 {
     /**
      * Substitutions data for Build resource.
      */
-    substitutions?: any;
+    substitutions?: {[key: string]: string;};
     /**
      * Template describing the types of source changes to trigger a build.
      * Branch and tag names in trigger templates are interpreted as regular
@@ -653,7 +653,7 @@ export namespace cloudbuild_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -669,7 +669,7 @@ export namespace cloudbuild_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Location of the source in a Google Cloud Source Repository.
@@ -755,7 +755,7 @@ export namespace cloudbuild_v1 {
      * in size. There can be at most 100 secret values across all of a
      * build&#39;s secrets.
      */
-    secretEnv?: any;
+    secretEnv?: {[key: string]: string;};
   }
   /**
    * Location of the source in a supported storage service.
@@ -785,7 +785,7 @@ export namespace cloudbuild_v1 {
      * the build source came in a single package such as a gzipped tarfile
      * (`.tar.gz`), the `FileHash` will be for the single path to that file.
      */
-    fileHashes?: any;
+    fileHashes?: {[key: string]: Schema$FileHashes;};
     /**
      * A copy of the build&#39;s `source.repo_source`, if exists, with any
      * revisions resolved.
@@ -842,7 +842,7 @@ export namespace cloudbuild_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the

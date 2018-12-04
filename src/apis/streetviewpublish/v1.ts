@@ -258,7 +258,7 @@ export namespace streetviewpublish_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -274,7 +274,7 @@ export namespace streetviewpublish_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Photo is used to store 360 photos along with photo metadata.
@@ -296,6 +296,11 @@ export namespace streetviewpublish_v1 {
      */
     downloadUrl?: string;
     /**
+     * Output only. Status in Google Maps, whether this photo was published, or
+     * rejected for a possibly specified reason.
+     */
+    mapsPublishStatus?: string;
+    /**
      * Required when updating a photo. Output only when creating a photo.
      * Identifier for the photo, which is unique among all photos in Google.
      */
@@ -316,6 +321,10 @@ export namespace streetviewpublish_v1 {
      * Output only. The thumbnail URL for showing a preview of the given photo.
      */
     thumbnailUrl?: string;
+    /**
+     * Output only. Status of rights transfer on this photo.
+     */
+    transferStatus?: string;
     /**
      * Required when creating a photo. Input only. The resource URL where the
      * photo bytes are uploaded to.
@@ -465,7 +474,7 @@ export namespace streetviewpublish_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1332,7 +1341,7 @@ export namespace streetviewpublish_v1 {
      * Required. IDs of the Photos. For HTTP GET requests, the URL query
      * parameter should be `photoIds=<id1>&photoIds=<id2>&...`.
      */
-    photoIds?: string;
+    photoIds?: string[];
     /**
      * Specifies if a download URL for the photo bytes should be returned in the
      * Photo response.

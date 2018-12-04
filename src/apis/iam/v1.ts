@@ -362,7 +362,7 @@ export namespace iam_v1 {
      * field is non-operational and it will not be used during the lint
      * operation.
      */
-    context?: any;
+    context?: {[key: string]: any;};
     /**
      * The full resource name of the policy this lint request is about.  The
      * name follows the Google Cloud Platform (GCP) resource format. For
@@ -3567,7 +3567,7 @@ export namespace iam_v1 {
      * Duplicate key types are not allowed. If no key type is provided, all keys
      * are returned.
      */
-    keyTypes?: string;
+    keyTypes?: string[];
     /**
      * The resource name of the service account in the following format:
      * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Using `-` as a

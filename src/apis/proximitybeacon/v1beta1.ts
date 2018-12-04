@@ -231,7 +231,7 @@ export namespace proximitybeacon_v1beta1 {
      * Properties of the beacon device, for example battery type or firmware
      * version. Optional.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * Some beacons may require a user to provide an authorization key before
      * changing any of its configuration (e.g. broadcast frames, transmit

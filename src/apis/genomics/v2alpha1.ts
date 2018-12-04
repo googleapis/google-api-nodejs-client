@@ -175,7 +175,7 @@ export namespace genomics_v2alpha1 {
      * authors to determine whether an individual action has succeeded or
      * failed.
      */
-    environment?: any;
+    environment?: {[key: string]: string;};
     /**
      * The set of flags to apply to this action.
      */
@@ -194,7 +194,7 @@ export namespace genomics_v2alpha1 {
      * what sort of action they perform, such as localization or debugging).
      * They are returned in the operation metadata, but are otherwise ignored.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * A list of mounts to make available to the action.  In addition to the
      * values specified here, every action has a special virtual disk mounted
@@ -232,7 +232,7 @@ export namespace genomics_v2alpha1 {
      * determine the resulting port number, consult the `ContainerStartedEvent`
      * in the operation metadata.
      */
-    portMappings?: any;
+    portMappings?: {[key: string]: number;};
     /**
      * The maximum amount of time to give the action to complete. If the action
      * fails to complete before the timeout, it will be terminated and the exit
@@ -256,7 +256,7 @@ export namespace genomics_v2alpha1 {
     /**
      * A workflow specific event occurred.
      */
-    event?: any;
+    event?: {[key: string]: any;};
     /**
      * The operation has finished with the given result.
      */
@@ -280,7 +280,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The metadata that describes the operation assigned to the worker.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
   }
   /**
    * Describes a Compute Engine resource that is being managed by a running
@@ -335,7 +335,7 @@ export namespace genomics_v2alpha1 {
      * set will contain any ports exposed using the `PUBLISH_EXPOSED_PORTS` flag
      * as well as any specified in the `Action` definition.
      */
-    portMappings?: any;
+    portMappings?: {[key: string]: number;};
   }
   /**
    * An event generated when a container exits.
@@ -443,7 +443,7 @@ export namespace genomics_v2alpha1 {
     /**
      * Machine-readable details about the event.
      */
-    details?: any;
+    details?: {[key: string]: any;};
     /**
      * The time at which the event occurred.
      */
@@ -515,7 +515,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The user-defined labels associated with this operation.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The pipeline this operation represents.
      */
@@ -590,7 +590,7 @@ export namespace genomics_v2alpha1 {
      * An OperationMetadata or Metadata object. This will always be returned
      * with the Operation.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. For example&amp;#58;
@@ -602,7 +602,7 @@ export namespace genomics_v2alpha1 {
      * If importing Variants, an ImportVariantsResponse is returned. For
      * pipelines and exports, an Empty response is returned.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * An event that occurred during an Operation.
@@ -650,7 +650,7 @@ export namespace genomics_v2alpha1 {
      * Optionally provided by the caller when submitting the request that
      * creates the operation.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The Google Cloud Project in which the job is scoped.
      */
@@ -661,11 +661,11 @@ export namespace genomics_v2alpha1 {
      * API and a GetOperation is performed on v1 API, a v1 request will be
      * returned.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Runtime metadata on this Operation.
      */
-    runtimeMetadata?: any;
+    runtimeMetadata?: {[key: string]: any;};
     /**
      * The time at which the job began to run.
      */
@@ -684,7 +684,7 @@ export namespace genomics_v2alpha1 {
      * additional environment variables but cannot delete an entry from this map
      * (though they can overwrite it with a different value).
      */
-    environment?: any;
+    environment?: {[key: string]: string;};
     /**
      * The resources required for execution.
      */
@@ -753,7 +753,7 @@ export namespace genomics_v2alpha1 {
      * resources created while executing the operation, see the appropriate
      * resource message (for example, `VirtualMachine`).
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The description of the pipeline to run.
      */
@@ -852,7 +852,7 @@ export namespace genomics_v2alpha1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -924,11 +924,16 @@ export namespace genomics_v2alpha1 {
      * the VM. Applied on a best-effort basis to attached disk resources shortly
      * after VM creation.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The machine type of the virtual machine to create. Must be the short name
      * of a standard machine type (such as &quot;n1-standard-1&quot;) or a
-     * custom machine type (such as &quot;custom-1-4096&quot;).
+     * custom machine type (such as &quot;custom-1-4096&quot;, where
+     * &quot;1&quot; indicates the number of vCPUs and &quot;4096&quot;
+     * indicates the memory in MB). See [Creating an instance with a custom
+     * machine
+     * type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create)
+     * for more specifications on creating a custom machine type.
      */
     machineType?: string;
     /**
@@ -987,7 +992,7 @@ export namespace genomics_v2alpha1 {
     /**
      * Status of attached disks.
      */
-    attachedDisks?: any;
+    attachedDisks?: {[key: string]: Schema$DiskStatus;};
     /**
      * Status of the boot disk.
      */

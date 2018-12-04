@@ -311,7 +311,7 @@ export namespace gamesManagement_v1management {
      * An object representation of the individual components of the player&#39;s
      * name. For some players, these fields may not be present.
      */
-    name?: any;
+    name?: {familyName?: string; givenName?: string;};
     /**
      * The player ID that was used for this player the first time they signed
      * into the game in question. This is only populated for calls to player.get

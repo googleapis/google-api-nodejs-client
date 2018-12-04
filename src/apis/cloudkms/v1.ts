@@ -257,7 +257,7 @@ export namespace cloudkms_v1 {
      * Labels with user-defined metadata. For more information, see [Labeling
      * Keys](/kms/docs/labeling-keys).
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The resource name for this CryptoKey in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x.
@@ -591,7 +591,7 @@ export namespace cloudkms_v1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -600,7 +600,7 @@ export namespace cloudkms_v1 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`

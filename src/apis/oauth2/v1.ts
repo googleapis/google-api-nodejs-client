@@ -482,10 +482,22 @@ export namespace oauth2_v1 {
   }
 
   export interface Schema$Jwk {
-    keys?: any[];
+    keys?: Array<{
+      alg?: string;
+      e?: string;
+      kid?: string;
+      kty?: string;
+      n?: string;
+      use?: string;
+    }>;
   }
   export interface Schema$Raw {
-    keyvalues?: any[];
+    keyvalues?: Array<{
+      algorithm?: string;
+      exponent?: string;
+      keyid?: string;
+      modulus?: string;
+    }>;
   }
   export interface Schema$Tokeninfo {
     /**

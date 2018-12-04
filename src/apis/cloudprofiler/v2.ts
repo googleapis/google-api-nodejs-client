@@ -149,7 +149,7 @@ export namespace cloudprofiler_v2 {
      * a zone is &quot;us-central1-a&quot;, an example of a region is
      * &quot;us-central1&quot; or &quot;us-central&quot;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Project ID is the ID of a cloud project. Validation regex:
      * `^a-z{4,61}[a-z0-9]$`.
@@ -185,7 +185,7 @@ export namespace cloudprofiler_v2 {
      * get merged with the deployment labels for the final data set.  See
      * documentation on deployment labels for validation rules and limits.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      */

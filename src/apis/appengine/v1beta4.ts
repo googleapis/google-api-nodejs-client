@@ -379,7 +379,7 @@ export namespace appengine_v1beta4 {
      * part of this version. All files must be readable using the credentials
      * supplied with this call.
      */
-    files?: any;
+    files?: {[key: string]: Schema$FileInfo;};
     /**
      * Origin of the source code for this deployment. There can be more than one
      * source reference per version if source code is distributed among multiple
@@ -713,7 +713,7 @@ export namespace appengine_v1beta4 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: &quot;us-east1&quot;.
      */
@@ -722,7 +722,7 @@ export namespace appengine_v1beta4 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: &quot;projects/example-project/locations/us-east1&quot;
@@ -843,7 +843,7 @@ export namespace appengine_v1beta4 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -859,7 +859,7 @@ export namespace appengine_v1beta4 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata for the given google.longrunning.Operation.
@@ -1118,7 +1118,7 @@ export namespace appengine_v1beta4 {
     /**
      * HTTP headers to use for all responses from these URLs.
      */
-    httpHeaders?: any;
+    httpHeaders?: {[key: string]: string;};
     /**
      * MIME type used to serve all files served by this handler. Defaults to
      * file-specific MIME types, which are direved from each file&#39;s filename
@@ -1153,7 +1153,7 @@ export namespace appengine_v1beta4 {
     /**
      * HTTP headers to use for all responses from these URLs.
      */
-    httpHeaders?: any;
+    httpHeaders?: {[key: string]: string;};
     /**
      * MIME type used to serve all files served by this handler. Defaults to
      * file-specific MIME types, which are derived from each file&#39;s filename
@@ -1221,7 +1221,7 @@ export namespace appengine_v1beta4 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1244,7 +1244,7 @@ export namespace appengine_v1beta4 {
      * for IP-based splits and up to three decimal places is supported for
      * cookie-based splits.
      */
-    allocations?: any;
+    allocations?: {[key: string]: number;};
     /**
      * Mechanism used to determine which version a request is sent to. The
      * traffic selection algorithm will be stable for either type until
@@ -1351,7 +1351,7 @@ export namespace appengine_v1beta4 {
      * Metadata settings that are supplied to this version to enable beta
      * runtime features.
      */
-    betaSettings?: any;
+    betaSettings?: {[key: string]: string;};
     /**
      * Time that this version was created.@OutputOnly
      */
@@ -1387,7 +1387,7 @@ export namespace appengine_v1beta4 {
      * Environment variables made available to the application.Only returned in
      * GET requests if view=FULL is set.
      */
-    envVariables?: any;
+    envVariables?: {[key: string]: string;};
     /**
      * Custom static error pages. Limited to 10KB per page.Only returned in GET
      * requests if view=FULL is set.

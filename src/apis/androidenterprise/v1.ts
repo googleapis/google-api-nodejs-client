@@ -98,6 +98,7 @@ export namespace androidenterprise_v1 {
     storelayoutclusters: Resource$Storelayoutclusters;
     storelayoutpages: Resource$Storelayoutpages;
     users: Resource$Users;
+    webapps: Resource$Webapps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this._options = options || {};
@@ -122,6 +123,7 @@ export namespace androidenterprise_v1 {
       this.storelayoutclusters = new Resource$Storelayoutclusters(this);
       this.storelayoutpages = new Resource$Storelayoutpages(this);
       this.users = new Resource$Users(this);
+      this.webapps = new Resource$Webapps(this);
     }
 
     getRoot() {
@@ -1839,6 +1841,70 @@ export namespace androidenterprise_v1 {
      * The value of the placeholder, specific to the user.
      */
     userValue?: string;
+  }
+  /**
+   * WebApp resource info.
+   */
+  export interface Schema$WebApp {
+    /**
+     * The display mode of the web app.
+     */
+    displayMode?: string;
+    /**
+     * A list of icons representing this website. Must have at least one
+     * element.
+     */
+    icons?: Schema$WebAppIcon[];
+    /**
+     * A flag whether the app has been published to the Play store yet.
+     */
+    isPublished?: boolean;
+    /**
+     * The start URL, i.e. the URL that should load when the user opens the
+     * application.
+     */
+    startUrl?: string;
+    /**
+     * The title of the web application as displayed to the user (e.g., amongst
+     * a list of other applications, or as a label for an icon).
+     */
+    title?: string;
+    /**
+     * The current version of the app.   Note that the version can automatically
+     * increase during the lifetime of the web app, while Google does internal
+     * housekeeping to keep the web app up-to-date.
+     */
+    versionCode?: string;
+    /**
+     * The ID of the application.
+     */
+    webAppId?: string;
+  }
+  /**
+   * Icon for a web app.
+   */
+  export interface Schema$WebAppIcon {
+    /**
+     * The actual bytes of the image in a base64url encoded string (c.f.
+     * RFC4648, section 5 &quot;Base 64 Encoding with URL and Filename Safe
+     * Alphabet&quot;).   - The image type can be png or jpg. - The image should
+     * ideally be square. - The image should ideally have a size of 512x512.
+     */
+    imageData?: string;
+  }
+  /**
+   * The web app details for an enterprise.
+   */
+  export interface Schema$WebAppsListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;androidenterprise#webAppsListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The manifest describing a web app.
+     */
+    webApp?: Schema$WebApp[];
   }
 
 
@@ -8503,8 +8569,9 @@ export namespace androidenterprise_v1 {
      * androidenterprise.users.generateAuthenticationToken
      * @desc Generates an authentication token which the device policy client
      * can use to provision the given EMM-managed user account on a device. The
-     * generated token is single-use and expires after a few minutes.  This call
-     * only works with EMM-managed accounts.
+     * generated token is single-use and expires after a few minutes.  You can
+     * provision a maximum of 10 devices per user.  This call only works with
+     * EMM-managed accounts.
      * @alias androidenterprise.users.generateAuthenticationToken
      * @memberOf! ()
      *
@@ -9479,5 +9546,514 @@ export namespace androidenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$User;
+  }
+
+
+  export class Resource$Webapps {
+    root: Androidenterprise;
+    constructor(root: Androidenterprise) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * androidenterprise.webapps.delete
+     * @desc Deletes an existing web app.
+     * @alias androidenterprise.webapps.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(params?: Params$Resource$Webapps$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
+    delete(
+        params: Params$Resource$Webapps$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Webapps$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Webapps$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.get
+     * @desc Gets an existing web app.
+     * @alias androidenterprise.webapps.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Webapps$Get,
+        options?: MethodOptions): AxiosPromise<Schema$WebApp>;
+    get(params: Params$Resource$Webapps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    get(params: Params$Resource$Webapps$Get,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    get(callback: BodyResponseCallback<Schema$WebApp>): void;
+    get(paramsOrCallback?: Params$Resource$Webapps$Get|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.insert
+     * @desc Creates a new web app for the enterprise.
+     * @alias androidenterprise.webapps.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {().WebApp} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(params?: Params$Resource$Webapps$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$WebApp>;
+    insert(
+        params: Params$Resource$Webapps$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    insert(
+        params: Params$Resource$Webapps$Insert,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    insert(callback: BodyResponseCallback<Schema$WebApp>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Webapps$Insert|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/webApps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.list
+     * @desc Retrieves the details of all web apps for a given enterprise.
+     * @alias androidenterprise.webapps.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Webapps$List, options?: MethodOptions):
+        AxiosPromise<Schema$WebAppsListResponse>;
+    list(
+        params: Params$Resource$Webapps$List,
+        options: MethodOptions|BodyResponseCallback<Schema$WebAppsListResponse>,
+        callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+    list(
+        params: Params$Resource$Webapps$List,
+        callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$WebAppsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Webapps$List|
+        BodyResponseCallback<Schema$WebAppsListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WebAppsListResponse>,
+        callback?: BodyResponseCallback<Schema$WebAppsListResponse>):
+        void|AxiosPromise<Schema$WebAppsListResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/androidenterprise/v1/enterprises/{enterpriseId}/webApps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebAppsListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebAppsListResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.patch
+     * @desc Updates an existing web app. This method supports patch semantics.
+     * @alias androidenterprise.webapps.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {().WebApp} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(params?: Params$Resource$Webapps$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$WebApp>;
+    patch(
+        params: Params$Resource$Webapps$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    patch(
+        params: Params$Resource$Webapps$Patch,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    patch(callback: BodyResponseCallback<Schema$WebApp>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Webapps$Patch|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+
+
+    /**
+     * androidenterprise.webapps.update
+     * @desc Updates an existing web app.
+     * @alias androidenterprise.webapps.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {string} params.webAppId The ID of the web app.
+     * @param {().WebApp} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(params?: Params$Resource$Webapps$Update, options?: MethodOptions):
+        AxiosPromise<Schema$WebApp>;
+    update(
+        params: Params$Resource$Webapps$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    update(
+        params: Params$Resource$Webapps$Update,
+        callback: BodyResponseCallback<Schema$WebApp>): void;
+    update(callback: BodyResponseCallback<Schema$WebApp>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Webapps$Update|
+        BodyResponseCallback<Schema$WebApp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
+        callback?: BodyResponseCallback<Schema$WebApp>):
+        void|AxiosPromise<Schema$WebApp> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webapps$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['enterpriseId', 'webAppId'],
+        pathParams: ['enterpriseId', 'webAppId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebApp>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$WebApp>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Webapps$Delete extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+  }
+  export interface Params$Resource$Webapps$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+  }
+  export interface Params$Resource$Webapps$Insert extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WebApp;
+  }
+  export interface Params$Resource$Webapps$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+  }
+  export interface Params$Resource$Webapps$Patch extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WebApp;
+  }
+  export interface Params$Resource$Webapps$Update extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+    /**
+     * The ID of the web app.
+     */
+    webAppId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WebApp;
   }
 }

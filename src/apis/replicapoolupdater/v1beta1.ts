@@ -109,7 +109,9 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Errors that occurred during the instance update.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * Fully-qualified URL of the instance being updated.
      */
@@ -164,7 +166,9 @@ export namespace replicapoolupdater_v1beta1 {
      * [Output Only] If errors occurred during processing of this operation,
      * this field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     httpErrorMessage?: string;
     httpErrorStatusCode?: number;
     /**
@@ -220,7 +224,11 @@ export namespace replicapoolupdater_v1beta1 {
      */
     targetLink?: string;
     user?: string;
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
     /**
      * [Output Only] URL of the zone where the operation resides.
      */
@@ -277,7 +285,9 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * [Output Only] Errors that occurred during the rolling update.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      */
@@ -308,7 +318,13 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Parameters of the update process.
      */
-    policy?: any;
+    policy?: {
+      autoPauseAfterInstances?: number;
+      instanceStartupTimeoutSec?: number;
+      maxNumConcurrentInstances?: number;
+      maxNumFailedInstances?: number;
+      minInstanceUpdateTimeSec?: number;
+    };
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100.
      * There is no requirement that this be linear or support any granularity of

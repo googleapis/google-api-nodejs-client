@@ -3017,15 +3017,15 @@ export namespace tagmanager_v1 {
     /**
      * The tags to be moved to the folder.
      */
-    tagId?: string;
+    tagId?: string[];
     /**
      * The triggers to be moved to the folder.
      */
-    triggerId?: string;
+    triggerId?: string[];
     /**
      * The variables to be moved to the folder.
      */
-    variableId?: string;
+    variableId?: string[];
 
     /**
      * Request body metadata

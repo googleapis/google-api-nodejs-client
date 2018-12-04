@@ -51,6 +51,7 @@ import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
 import * as cloudprofiler from './cloudprofiler';
 import * as cloudresourcemanager from './cloudresourcemanager';
+import * as cloudscheduler from './cloudscheduler';
 import * as cloudsearch from './cloudsearch';
 import * as cloudshell from './cloudshell';
 import * as cloudtasks from './cloudtasks';
@@ -73,6 +74,7 @@ import * as dns from './dns';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
+import * as driveactivity from './driveactivity';
 import * as file from './file';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebasehosting from './firebasehosting';
@@ -104,7 +106,6 @@ import * as monitoring from './monitoring';
 import * as oauth2 from './oauth2';
 import * as oslogin from './oslogin';
 import * as pagespeedonline from './pagespeedonline';
-import * as partners from './partners';
 import * as people from './people';
 import * as playcustomapp from './playcustomapp';
 import * as plus from './plus';
@@ -199,6 +200,7 @@ export const APIS: APIList = {
   cloudkms: cloudkms.VERSIONS,
   cloudprofiler: cloudprofiler.VERSIONS,
   cloudresourcemanager: cloudresourcemanager.VERSIONS,
+  cloudscheduler: cloudscheduler.VERSIONS,
   cloudsearch: cloudsearch.VERSIONS,
   cloudshell: cloudshell.VERSIONS,
   cloudtasks: cloudtasks.VERSIONS,
@@ -221,6 +223,7 @@ export const APIS: APIList = {
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
+  driveactivity: driveactivity.VERSIONS,
   file: file.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebasehosting: firebasehosting.VERSIONS,
@@ -252,7 +255,6 @@ export const APIS: APIList = {
   oauth2: oauth2.VERSIONS,
   oslogin: oslogin.VERSIONS,
   pagespeedonline: pagespeedonline.VERSIONS,
-  partners: partners.VERSIONS,
   people: people.VERSIONS,
   playcustomapp: playcustomapp.VERSIONS,
   plus: plus.VERSIONS,
@@ -344,6 +346,7 @@ export class GeneratedAPIs {
   cloudkms = cloudkms.cloudkms;
   cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
+  cloudscheduler = cloudscheduler.cloudscheduler;
   cloudsearch = cloudsearch.cloudsearch;
   cloudshell = cloudshell.cloudshell;
   cloudtasks = cloudtasks.cloudtasks;
@@ -366,6 +369,7 @@ export class GeneratedAPIs {
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
+  driveactivity = driveactivity.driveactivity;
   file = file.file;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebasehosting = firebasehosting.firebasehosting;
@@ -397,7 +401,6 @@ export class GeneratedAPIs {
   oauth2 = oauth2.oauth2;
   oslogin = oslogin.oslogin;
   pagespeedonline = pagespeedonline.pagespeedonline;
-  partners = partners.partners;
   people = people.people;
   playcustomapp = playcustomapp.playcustomapp;
   plus = plus.plus;

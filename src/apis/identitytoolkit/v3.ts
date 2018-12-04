@@ -313,7 +313,7 @@ export namespace identitytoolkit_v3 {
      * customized by clients: client_id, response_type, scope, redirect_uri,
      * state, oauth_token.
      */
-    customParameter?: any;
+    customParameter?: {[key: string]: string;};
     /**
      * The hosted domain to restrict sign-in to accounts at that domain for
      * Google Apps hosted accounts.
@@ -1189,7 +1189,12 @@ export namespace identitytoolkit_v3 {
     /**
      * The user&#39;s profiles at the associated IdPs.
      */
-    providerUserInfo?: any[];
+    providerUserInfo?: Array<{
+      displayName?: string;
+      federatedId?: string;
+      photoUrl?: string;
+      providerId?: string;
+    }>;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
@@ -1237,7 +1242,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The error encountered while processing the account info.
      */
-    error?: any[];
+    error?: Array<{index?: number; message?: string;}>;
     /**
      * The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
      */
@@ -1302,7 +1307,16 @@ export namespace identitytoolkit_v3 {
     /**
      * The IDP of the user.
      */
-    providerUserInfo?: any[];
+    providerUserInfo?: Array<{
+      displayName?: string;
+      email?: string;
+      federatedId?: string;
+      phoneNumber?: string;
+      photoUrl?: string;
+      providerId?: string;
+      rawId?: string;
+      screenName?: string;
+    }>;
     /**
      * The user&#39;s plain text password.
      */

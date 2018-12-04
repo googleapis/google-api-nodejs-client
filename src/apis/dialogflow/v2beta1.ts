@@ -362,10 +362,12 @@ export namespace dialogflow_v2beta1 {
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
      * ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project
      * ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User
-     * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`. The
-     * `Context ID` is always converted to lowercase. If `Environment ID` is not
-     * specified, we assume default &#39;draft&#39; environment. If `User ID` is
-     * not specified, we assume default &#39;-&#39; user.
+     * ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.  The
+     * `Context ID` is always converted to lowercase, may only contain
+     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If
+     * `Environment ID` is not specified, we assume default &#39;draft&#39;
+     * environment. If `User ID` is not specified, we assume default &#39;-&#39;
+     * user.
      */
     name?: string;
     /**
@@ -373,7 +375,7 @@ export namespace dialogflow_v2beta1 {
      * Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters)
      * for syntax.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
   }
   /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for
@@ -588,7 +590,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * Optional. The collection of parameters associated with the event.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
   }
   /**
    * The request message for Agents.ExportAgent.
@@ -808,7 +810,8 @@ export namespace dialogflow_v2beta1 {
     parentFollowupIntentName?: string;
     /**
      * Optional. The priority of this intent. Higher numbers represent higher
-     * priorities. Zero or negative numbers mean that the intent is disabled.
+     * priorities. If this is zero or unspecified, we use the default priority
+     * 500000.  Negative numbers mean that the intent is disabled.
      */
     priority?: number;
     /**
@@ -892,7 +895,7 @@ export namespace dialogflow_v2beta1 {
      * the Intent.Message.Platform type for a description of the structure that
      * may be required for your platform.
      */
-    payload?: any;
+    payload?: {[key: string]: any;};
     /**
      * Optional. The platform that this message is intended for.
      */
@@ -1519,7 +1522,7 @@ export namespace dialogflow_v2beta1 {
      * with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164)
      * for Enterprise Edition agents.
      */
-    payload?: any;
+    payload?: {[key: string]: any;};
     /**
      * The source of this request, e.g., `google`, `facebook`, `slack`. It is
      * set by Dialogflow-owned servers.
@@ -1596,7 +1599,7 @@ export namespace dialogflow_v2beta1 {
      * Optional. This field can be used to pass custom data into the webhook
      * associated with the agent. Arbitrary JSON objects are supported.
      */
-    payload?: any;
+    payload?: {[key: string]: any;};
     /**
      * Optional. Specifies whether to delete all contexts in the current session
      * before the new ones are activated.
@@ -1642,7 +1645,7 @@ export namespace dialogflow_v2beta1 {
      * The free-form diagnostic info. For example, this field could contain
      * webhook call latency.
      */
-    diagnosticInfo?: any;
+    diagnosticInfo?: {[key: string]: any;};
     /**
      * The collection of rich messages to present to the user.
      */
@@ -1685,7 +1688,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * The collection of extracted parameters.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
     /**
      * The original conversational query text: - If natural language text was
      * provided as input, `query_text` contains   a copy of the input. - If
@@ -1715,13 +1718,17 @@ export namespace dialogflow_v2beta1 {
      * If the query was fulfilled by a webhook call, this field is set to the
      * value of the `payload` field returned in the webhook response.
      */
-    webhookPayload?: any;
+    webhookPayload?: {[key: string]: any;};
     /**
      * If the query was fulfilled by a webhook call, this field is set to the
      * value of the `source` field returned in the webhook response.
      */
     webhookSource?: string;
   }
+  /**
+   * Request message for Documents.ReloadDocument.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ReloadDocumentRequest {}
   /**
    * The request message for Agents.RestoreAgent.
    */
@@ -1983,7 +1990,7 @@ export namespace dialogflow_v2beta1 {
      * &quot;this is a simple response&quot;           }         }       ]     }
      * } }&lt;/pre&gt;
      */
-    payload?: any;
+    payload?: {[key: string]: any;};
     /**
      * Optional. This value is passed directly to `QueryResult.webhook_source`.
      */
@@ -2003,7 +2010,9 @@ export namespace dialogflow_v2beta1 {
     /**
      * Required. The unique identifier of the context. Format:
      * `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session
-     * ID&gt;/contexts/&lt;Context ID&gt;`.
+     * ID&gt;/contexts/&lt;Context ID&gt;`.  The `Context ID` is always
+     * converted to lowercase, may only contain characters in [a-zA-Z0-9_-%] and
+     * may be at most 250 bytes long.
      */
     name?: string;
     /**
@@ -2011,7 +2020,7 @@ export namespace dialogflow_v2beta1 {
      * Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters)
      * for syntax.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
   }
   /**
    * Represents an entity type. Entity types serve as a tool for extracting
@@ -2080,7 +2089,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * Optional. The collection of parameters associated with the event.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
   }
   /**
    * The response message for Agents.ExportAgent.
@@ -2189,7 +2198,8 @@ export namespace dialogflow_v2beta1 {
     parentFollowupIntentName?: string;
     /**
      * Optional. The priority of this intent. Higher numbers represent higher
-     * priorities. Zero or negative numbers mean that the intent is disabled.
+     * priorities. If this is zero or unspecified, we use the default priority
+     * 500000.  Negative numbers mean that the intent is disabled.
      */
     priority?: number;
     /**
@@ -2263,7 +2273,7 @@ export namespace dialogflow_v2beta1 {
      * the Intent.Message.Platform type for a description of the structure that
      * may be required for your platform.
      */
-    payload?: any;
+    payload?: {[key: string]: any;};
     /**
      * Optional. The platform that this message is intended for.
      */
@@ -2663,7 +2673,7 @@ export namespace dialogflow_v2beta1 {
      * with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164)
      * for Enterprise Edition agents.
      */
-    payload?: any;
+    payload?: {[key: string]: any;};
     /**
      * The source of this request, e.g., `google`, `facebook`, `slack`. It is
      * set by Dialogflow-owned servers.
@@ -2694,7 +2704,7 @@ export namespace dialogflow_v2beta1 {
      * The free-form diagnostic info. For example, this field could contain
      * webhook call latency.
      */
-    diagnosticInfo?: any;
+    diagnosticInfo?: {[key: string]: any;};
     /**
      * The collection of rich messages to present to the user.
      */
@@ -2732,7 +2742,7 @@ export namespace dialogflow_v2beta1 {
     /**
      * The collection of extracted parameters.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
     /**
      * The original conversational query text: - If natural language text was
      * provided as input, `query_text` contains   a copy of the input. - If
@@ -2756,7 +2766,7 @@ export namespace dialogflow_v2beta1 {
      * If the query was fulfilled by a webhook call, this field is set to the
      * value of the `payload` field returned in the webhook response.
      */
-    webhookPayload?: any;
+    webhookPayload?: {[key: string]: any;};
     /**
      * If the query was fulfilled by a webhook call, this field is set to the
      * value of the `source` field returned in the webhook response.
@@ -2829,7 +2839,7 @@ export namespace dialogflow_v2beta1 {
      * &quot;this is a simple response&quot;           }         }       ]     }
      * } }&lt;/pre&gt;
      */
-    payload?: any;
+    payload?: {[key: string]: any;};
     /**
      * Optional. This value is passed directly to `QueryResult.webhook_source`.
      */
@@ -2856,7 +2866,7 @@ export namespace dialogflow_v2beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -2872,7 +2882,7 @@ export namespace dialogflow_v2beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -2927,7 +2937,7 @@ export namespace dialogflow_v2beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -5137,7 +5147,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The `Context ID` is always converted to lowercase. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5306,10 +5316,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
      * ID>`, or `projects/<Project ID>/agent/environments/<Environment
-     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The
-     * `Context ID` is always converted to lowercase. If `Environment ID` is not
-     * specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The
+     * `Context ID` is always converted to lowercase, may only contain
+     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If
+     * `Environment ID` is not specified, we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
     /**
@@ -6896,6 +6907,82 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             parameters);
       }
     }
+
+
+    /**
+     * dialogflow.projects.agent.knowledgeBases.patch
+     * @desc Updates the specified knowledge base.
+     * @alias dialogflow.projects.agent.knowledgeBases.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string=} params.updateMask Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
+     * @param {().GoogleCloudDialogflowV2beta1KnowledgeBase} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Agent$Knowledgebases$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    patch(
+        params: Params$Resource$Projects$Agent$Knowledgebases$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>,
+        callback: BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>): void;
+    patch(
+        params: Params$Resource$Projects$Agent$Knowledgebases$Patch,
+        callback: BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>): void;
+    patch(callback: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Agent$Knowledgebases$Patch|
+        BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>,
+        callback?: BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>):
+        void|AxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Agent$Knowledgebases$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Knowledgebases$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Agent$Knowledgebases$Create extends
@@ -6969,6 +7056,31 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The knowledge base resource name. The name must be empty when creating a
+     * knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge
+     * Base ID>`.
+     */
+    name?: string;
+    /**
+     * Optional. Not specified means `update all`. Currently, only
+     * `display_name` can be updated, an InvalidArgument will be returned for
+     * attempting to update other fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1KnowledgeBase;
   }
 
   export class Resource$Projects$Agent$Knowledgebases$Documents {
@@ -7290,6 +7402,164 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             parameters);
       }
     }
+
+
+    /**
+     * dialogflow.projects.agent.knowledgeBases.documents.patch
+     * @desc Updates the specified document. Operation <response: Document,
+     * metadata: KnowledgeOperationMetadata>
+     * @alias dialogflow.projects.agent.knowledgeBases.documents.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * @param {string=} params.updateMask Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
+     * @param {().GoogleCloudDialogflowV2beta1Document} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+        params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    patch(
+        params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    patch(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+
+    /**
+     * dialogflow.projects.agent.knowledgeBases.documents.reload
+     * @desc Reloads the specified document from its specified source,
+     * content_uri or content. The previously loaded content of the document
+     * will be deleted. Note: Even when the content of the document has not
+     * changed, there still may be side effects because of internal
+     * implementation changes. Operation <response: Document, metadata:
+     * KnowledgeOperationMetadata>
+     * @alias dialogflow.projects.agent.knowledgeBases.documents.reload
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * @param {().GoogleCloudDialogflowV2beta1ReloadDocumentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reload(
+        params?: Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleLongrunningOperation>;
+    reload(
+        params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    reload(
+        params: Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    reload(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    reload(
+        paramsOrCallback?:
+            Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2beta1/{+name}:reload')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Create
@@ -7358,6 +7628,49 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Patch
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The document resource name. The name must be empty when creating a
+     * document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     * ID>/documents/<Document ID>`.
+     */
+    name?: string;
+    /**
+     * Optional. Not specified means `update all`. Currently, only
+     * `display_name` can be updated, an InvalidArgument will be returned for
+     * attempting to update other fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Document;
+  }
+  export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$Reload
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the document to reload. Format: `projects/<Project
+     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ReloadDocumentRequest;
   }
 
 
@@ -7894,7 +8207,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The `Context ID` is always converted to lowercase. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8059,10 +8372,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
      * ID>`, or `projects/<Project ID>/agent/environments/<Environment
-     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The
-     * `Context ID` is always converted to lowercase. If `Environment ID` is not
-     * specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The
+     * `Context ID` is always converted to lowercase, may only contain
+     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If
+     * `Environment ID` is not specified, we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
     /**
@@ -9070,7 +9384,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The `Context ID` is always converted to lowercase. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Context} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9239,10 +9553,11 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
      * ID>`, or `projects/<Project ID>/agent/environments/<Environment
-     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. The
-     * `Context ID` is always converted to lowercase. If `Environment ID` is not
-     * specified, we assume default 'draft' environment. If `User ID` is not
-     * specified, we assume default '-' user.
+     * ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The
+     * `Context ID` is always converted to lowercase, may only contain
+     * characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If
+     * `Environment ID` is not specified, we assume default 'draft' environment.
+     * If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
     /**
@@ -9567,6 +9882,82 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             parameters);
       }
     }
+
+
+    /**
+     * dialogflow.projects.knowledgeBases.patch
+     * @desc Updates the specified knowledge base.
+     * @alias dialogflow.projects.knowledgeBases.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The knowledge base resource name. The name must be empty when creating a knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param {string=} params.updateMask Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
+     * @param {().GoogleCloudDialogflowV2beta1KnowledgeBase} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Knowledgebases$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>;
+    patch(
+        params: Params$Resource$Projects$Knowledgebases$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>,
+        callback: BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>): void;
+    patch(
+        params: Params$Resource$Projects$Knowledgebases$Patch,
+        callback: BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>): void;
+    patch(callback: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Knowledgebases$Patch|
+        BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>,
+        callback?: BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>):
+        void|AxiosPromise<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Knowledgebases$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Knowledgebases$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GoogleCloudDialogflowV2beta1KnowledgeBase>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Knowledgebases$Create extends
@@ -9640,6 +10031,31 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Knowledgebases$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The knowledge base resource name. The name must be empty when creating a
+     * knowledge base. Format: `projects/<Project ID>/knowledgeBases/<Knowledge
+     * Base ID>`.
+     */
+    name?: string;
+    /**
+     * Optional. Not specified means `update all`. Currently, only
+     * `display_name` can be updated, an InvalidArgument will be returned for
+     * attempting to update other fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1KnowledgeBase;
   }
 
   export class Resource$Projects$Knowledgebases$Documents {
@@ -9957,6 +10373,162 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             parameters);
       }
     }
+
+
+    /**
+     * dialogflow.projects.knowledgeBases.documents.patch
+     * @desc Updates the specified document. Operation <response: Document,
+     * metadata: KnowledgeOperationMetadata>
+     * @alias dialogflow.projects.knowledgeBases.documents.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The document resource name. The name must be empty when creating a document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     * @param {string=} params.updateMask Optional. Not specified means `update all`. Currently, only `display_name` can be updated, an InvalidArgument will be returned for attempting to update other fields.
+     * @param {().GoogleCloudDialogflowV2beta1Document} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Knowledgebases$Documents$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+        params: Params$Resource$Projects$Knowledgebases$Documents$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    patch(
+        params: Params$Resource$Projects$Knowledgebases$Documents$Patch,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    patch(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Knowledgebases$Documents$Patch|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Knowledgebases$Documents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Knowledgebases$Documents$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+
+    /**
+     * dialogflow.projects.knowledgeBases.documents.reload
+     * @desc Reloads the specified document from its specified source,
+     * content_uri or content. The previously loaded content of the document
+     * will be deleted. Note: Even when the content of the document has not
+     * changed, there still may be side effects because of internal
+     * implementation changes. Operation <response: Document, metadata:
+     * KnowledgeOperationMetadata>
+     * @alias dialogflow.projects.knowledgeBases.documents.reload
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the document to reload. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     * @param {().GoogleCloudDialogflowV2beta1ReloadDocumentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reload(
+        params?: Params$Resource$Projects$Knowledgebases$Documents$Reload,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleLongrunningOperation>;
+    reload(
+        params: Params$Resource$Projects$Knowledgebases$Documents$Reload,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    reload(
+        params: Params$Resource$Projects$Knowledgebases$Documents$Reload,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    reload(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    reload(
+        paramsOrCallback?:
+            Params$Resource$Projects$Knowledgebases$Documents$Reload|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Knowledgebases$Documents$Reload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Knowledgebases$Documents$Reload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2beta1/{+name}:reload')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Knowledgebases$Documents$Create
@@ -10025,6 +10597,49 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/knowledgeBases/<Knowledge Base ID>`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Patch
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The document resource name. The name must be empty when creating a
+     * document. Format: `projects/<Project ID>/knowledgeBases/<Knowledge Base
+     * ID>/documents/<Document ID>`.
+     */
+    name?: string;
+    /**
+     * Optional. Not specified means `update all`. Currently, only
+     * `display_name` can be updated, an InvalidArgument will be returned for
+     * attempting to update other fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Document;
+  }
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Reload
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the document to reload. Format: `projects/<Project
+     * ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ReloadDocumentRequest;
   }
 
 

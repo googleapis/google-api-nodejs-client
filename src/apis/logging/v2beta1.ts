@@ -458,12 +458,12 @@ export namespace logging_v2beta1 {
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    jsonPayload?: any;
+    jsonPayload?: {[key: string]: any;};
     /**
      * Optional. A set of user-defined (key, value) data that provides
      * additional information about the log entry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The resource name of the log to which this log entry belongs:
      * &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
@@ -499,7 +499,7 @@ export namespace logging_v2beta1 {
      * The log entry payload, represented as a protocol buffer. Some Google
      * Cloud Platform services use this field for their log entry payloads.
      */
-    protoPayload?: any;
+    protoPayload?: {[key: string]: any;};
     /**
      * Output only. The time the log entry was received by Logging.
      */
@@ -675,7 +675,7 @@ export namespace logging_v2beta1 {
      * there are upper bounds on the maximum number of labels and the number of
      * active time series that are allowed in a project.
      */
-    labelExtractors?: any;
+    labelExtractors?: {[key: string]: string;};
     /**
      * Optional. The metric descriptor associated with the logs-based metric. If
      * unspecified, it uses a default metric descriptor with a DELTA metric
@@ -921,7 +921,7 @@ export namespace logging_v2beta1 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
@@ -993,11 +993,11 @@ export namespace logging_v2beta1 {
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: any;
+    systemLabels?: {[key: string]: any;};
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * Complete log information about a single HTTP request to an App Engine
@@ -1231,7 +1231,7 @@ export namespace logging_v2beta1 {
      * as a label in this parameter, then the log entry&#39;s label is not
      * changed. See LogEntry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Optional. A default log resource name that is assigned to all log entries
      * in entries that do not specify a value for log_name:

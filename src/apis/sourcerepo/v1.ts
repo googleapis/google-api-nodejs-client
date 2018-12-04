@@ -83,7 +83,7 @@ export namespace sourcerepo_v1 {
   /**
    * Cloud Source Repositories API
    *
-   * Access source code repositories hosted by Google.
+   * Accesses source code repositories hosted by Google.
    *
    * @example
    * const {google} = require('googleapis');
@@ -342,7 +342,7 @@ export namespace sourcerepo_v1 {
      * How this project publishes a change in the repositories through Cloud
      * Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: any;
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig;};
   }
   /**
    * Configuration to publish a Cloud Pub/Sub message.
@@ -387,7 +387,7 @@ export namespace sourcerepo_v1 {
      * How this repository publishes a change in the repository through Cloud
      * Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: any;
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig;};
     /**
      * The disk usage of the repo, in bytes. Read-only field. Size is only
      * returned by GetRepo.

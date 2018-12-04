@@ -103,18 +103,18 @@ export namespace youtubeAnalytics_v1 {
   }
 
   export interface Schema$Group {
-    contentDetails?: any;
+    contentDetails?: {itemCount?: string; itemType?: string;};
     etag?: string;
     id?: string;
     kind?: string;
-    snippet?: any;
+    snippet?: {publishedAt?: string; title?: string;};
   }
   export interface Schema$GroupItem {
     etag?: string;
     groupId?: string;
     id?: string;
     kind?: string;
-    resource?: any;
+    resource?: {id?: string; kind?: string;};
   }
   /**
    * A paginated list of grouList resources returned in response to a
@@ -154,7 +154,8 @@ export namespace youtubeAnalytics_v1 {
      * API response will return columns in this order:
      * ageGroup,gender,viewerPercentage.
      */
-    columnHeaders?: any[];
+    columnHeaders?:
+        Array<{columnType?: string; dataType?: string; name?: string;}>;
     /**
      * This value specifies the type of data included in the API response. For
      * the query method, the kind property value will be

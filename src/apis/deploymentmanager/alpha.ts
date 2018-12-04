@@ -817,7 +817,9 @@ export namespace deploymentmanager_alpha {
      * [Output Only] If errors are generated during processing of the operation,
      * this field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as NOT FOUND.
@@ -907,7 +909,11 @@ export namespace deploymentmanager_alpha {
      * [Output Only] If warning messages are generated during processing of the
      * operation, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
     /**
      * [Output Only] The URL of the zone where the operation resides. Only
      * available when performing per-zone operations. You must specify this
@@ -1100,7 +1106,11 @@ export namespace deploymentmanager_alpha {
      * Output only. If warning messages are generated during processing of this
      * resource, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   /**
    * The access controls set on the resource.
@@ -1140,7 +1150,9 @@ export namespace deploymentmanager_alpha {
      * Output only. If errors are generated during update of the resource, this
      * field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * Output only. The expanded properties of the resource with reference
      * values expanded. Returned as serialized YAML.
@@ -1173,7 +1185,11 @@ export namespace deploymentmanager_alpha {
      * Output only. If warning messages are generated during processing of this
      * resource, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   /**
    * A rule to be applied in a Policy.

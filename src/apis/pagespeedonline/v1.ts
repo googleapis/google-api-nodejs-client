@@ -108,7 +108,31 @@ export namespace pagespeedonline_v1 {
      * Localized PageSpeed results. Contains a ruleResults entry for each
      * PageSpeed rule instantiated and run by the server.
      */
-    formattedResults?: any;
+    formattedResults?: {
+      locale?: string;
+      ruleResults?: {
+        [key: string]: {
+          localizedRuleName?: string;
+          ruleImpact?: number;
+          urlBlocks?: Array<{
+            header?: {
+              args?: Array<{type?: string; value?: string;}>;
+              format?: string;
+            };
+            urls?: Array<{
+              details?: Array<{
+                args?: Array<{type?: string; value?: string;}>;
+                format?: string;
+              }>;
+              result?: {
+                args?: Array<{type?: string; value?: string;}>;
+                format?: string;
+              };
+            }>;
+          }>;
+        };
+      };
+    };
     /**
      * Canonicalized and final URL for the document, after following page
      * redirects (if any).
@@ -127,7 +151,21 @@ export namespace pagespeedonline_v1 {
      * Summary statistics for the page, such as number of JavaScript bytes,
      * number of HTML bytes, etc.
      */
-    pageStats?: any;
+    pageStats?: {
+      cssResponseBytes?: string;
+      flashResponseBytes?: string;
+      htmlResponseBytes?: string;
+      imageResponseBytes?: string;
+      javascriptResponseBytes?: string;
+      numberCssResources?: number;
+      numberHosts?: number;
+      numberJsResources?: number;
+      numberResources?: number;
+      numberStaticResources?: number;
+      otherResponseBytes?: string;
+      textResponseBytes?: string;
+      totalRequestBytes?: string;
+    };
     /**
      * Response code for the document. 200 indicates a normal page load. 4xx/5xx
      * indicates an error.
@@ -142,7 +180,8 @@ export namespace pagespeedonline_v1 {
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
-    screenshot?: any;
+    screenshot?:
+        {data?: string; height?: number; mime_type?: string; width?: number;};
     /**
      * Title of the page, as displayed in the browser&#39;s title bar.
      */
@@ -150,7 +189,7 @@ export namespace pagespeedonline_v1 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: any;
+    version?: {major?: number; minor?: number;};
   }
 
 
@@ -258,7 +297,7 @@ export namespace pagespeedonline_v1 {
     /**
      * A PageSpeed rule to run; if none are given, all rules are run
      */
-    rule?: string;
+    rule?: string[];
     /**
      * Indicates if binary data containing a screenshot should be included
      */

@@ -227,7 +227,14 @@ export namespace oauth2_v2 {
   }
 
   export interface Schema$Jwk {
-    keys?: any[];
+    keys?: Array<{
+      alg?: string;
+      e?: string;
+      kid?: string;
+      kty?: string;
+      n?: string;
+      use?: string;
+    }>;
   }
   export interface Schema$Tokeninfo {
     /**

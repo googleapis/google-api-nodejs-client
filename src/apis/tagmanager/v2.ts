@@ -5155,7 +5155,7 @@ export namespace tagmanager_v2 {
     /**
      * The types of built-in variables to enable.
      */
-    type?: string;
+    type?: string[];
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete
       extends StandardParameters {
@@ -5172,7 +5172,7 @@ export namespace tagmanager_v2 {
     /**
      * The types of built-in variables to delete.
      */
-    type?: string;
+    type?: string[];
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List
       extends StandardParameters {
@@ -5872,15 +5872,15 @@ export namespace tagmanager_v2 {
     /**
      * The tags to be moved to the folder.
      */
-    tagId?: string;
+    tagId?: string[];
     /**
      * The triggers to be moved to the folder.
      */
-    triggerId?: string;
+    triggerId?: string[];
     /**
      * The variables to be moved to the folder.
      */
-    variableId?: string;
+    variableId?: string[];
 
     /**
      * Request body metadata

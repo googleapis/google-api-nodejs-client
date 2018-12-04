@@ -157,6 +157,12 @@ export namespace cloudsearch_v1 {
      */
     operatorOptions?: Schema$BooleanOperatorOptions;
   }
+  export interface Schema$CheckAccessResponse {
+    /**
+     * Returns true if principal has access.  Returns false otherwise.
+     */
+    hasAccess?: boolean;
+  }
   export interface Schema$CompositeFilter {
     /**
      * The logic operator of the sub filter.
@@ -1362,7 +1368,7 @@ export namespace cloudsearch_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1378,7 +1384,7 @@ export namespace cloudsearch_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A people suggestion.
@@ -1960,6 +1966,29 @@ export namespace cloudsearch_v1 {
      */
     sourceConfig?: Schema$SourceConfig[];
   }
+  export interface Schema$SearchItemsByViewUrlRequest {
+    /**
+     * Common debug options.
+     */
+    debugOptions?: Schema$DebugOptions;
+    /**
+     * The next_page_token value returned from a previous request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Specify the full view URL to find the corresponding item. The maximum
+     * length is 2048 characters.
+     */
+    viewUrl?: string;
+  }
+  export interface Schema$SearchItemsByViewUrlResponse {
+    items?: Schema$Item[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
+     */
+    nextPageToken?: string;
+  }
   /**
    * Additional search quality metadata of the item.
    */
@@ -2275,7 +2304,7 @@ export namespace cloudsearch_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2585,8 +2614,195 @@ export namespace cloudsearch_v1 {
     getRoot() {
       return this.root;
     }
+
+
+    /**
+     * cloudsearch.debug.datasources.items.checkAccess
+     * @desc Checks whether an item is accessible by specified principal.
+     * @alias cloudsearch.debug.datasources.items.checkAccess
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {string} params.name Item name, format: datasources/{source_id}/items/{item_id}
+     * @param {().Principal} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    checkAccess(
+        params?: Params$Resource$Debug$Datasources$Items$Checkaccess,
+        options?: MethodOptions): AxiosPromise<Schema$CheckAccessResponse>;
+    checkAccess(
+        params: Params$Resource$Debug$Datasources$Items$Checkaccess,
+        options: MethodOptions|BodyResponseCallback<Schema$CheckAccessResponse>,
+        callback: BodyResponseCallback<Schema$CheckAccessResponse>): void;
+    checkAccess(
+        params: Params$Resource$Debug$Datasources$Items$Checkaccess,
+        callback: BodyResponseCallback<Schema$CheckAccessResponse>): void;
+    checkAccess(callback: BodyResponseCallback<Schema$CheckAccessResponse>):
+        void;
+    checkAccess(
+        paramsOrCallback?: Params$Resource$Debug$Datasources$Items$Checkaccess|
+        BodyResponseCallback<Schema$CheckAccessResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CheckAccessResponse>,
+        callback?: BodyResponseCallback<Schema$CheckAccessResponse>):
+        void|AxiosPromise<Schema$CheckAccessResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Debug$Datasources$Items$Checkaccess;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Debug$Datasources$Items$Checkaccess;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/debug/{+name}:checkAccess')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckAccessResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CheckAccessResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudsearch.debug.datasources.items.searchByViewUrl
+     * @desc Fetches the item whose viewUrl exactly matches that of the URL
+     * provided in the request.
+     * @alias cloudsearch.debug.datasources.items.searchByViewUrl
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Source name, format: datasources/{source_id}
+     * @param {().SearchItemsByViewUrlRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchByViewUrl(
+        params?: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+        options?: MethodOptions):
+        AxiosPromise<Schema$SearchItemsByViewUrlResponse>;
+    searchByViewUrl(
+        params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
+        callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
+        void;
+    searchByViewUrl(
+        params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
+        callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
+        void;
+    searchByViewUrl(
+        callback: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
+        void;
+    searchByViewUrl(
+        paramsOrCallback?:
+            Params$Resource$Debug$Datasources$Items$Searchbyviewurl|
+        BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
+        callback?: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
+        void|AxiosPromise<Schema$SearchItemsByViewUrlResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Debug$Datasources$Items$Searchbyviewurl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Debug$Datasources$Items$Searchbyviewurl;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/debug/{+name}/items:searchByViewUrl')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
+            parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Debug$Datasources$Items$Checkaccess extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If set, the request will enable debugging features of Cloud Search. Only
+     * turn on this field, if asked by Google to help with debugging.
+     */
+    'debugOptions.enableDebugging'?: boolean;
+    /**
+     * Item name, format: datasources/{source_id}/items/{item_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Principal;
+  }
+  export interface Params$Resource$Debug$Datasources$Items$Searchbyviewurl
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Source name, format: datasources/{source_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchItemsByViewUrlRequest;
+  }
 
   export class Resource$Debug$Datasources$Items$Unmappedids {
     root: Cloudsearch;
@@ -2607,6 +2823,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
      * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
      * @param {string} params.parent The name of the item, in the following format: datasources/{source_id}/items/{ID}
@@ -2685,6 +2902,11 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * If set, the request will enable debugging features of Cloud Search. Only
+     * turn on this field, if asked by Google to help with debugging.
+     */
+    'debugOptions.enableDebugging'?: boolean;
+    /**
      * Maximum number of items to fetch in a request. Defaults to 100.
      */
     pageSize?: number;
@@ -2737,6 +2959,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
      * @param {string=} params.groupResourceName
      * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
@@ -2823,6 +3046,11 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * If set, the request will enable debugging features of Cloud Search. Only
+     * turn on this field, if asked by Google to help with debugging.
+     */
+    'debugOptions.enableDebugging'?: boolean;
+    /**
      *
      */
     groupResourceName?: string;
@@ -2865,6 +3093,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
      * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
      * @param {string} params.parent The name of the identity source, in the following format: identitysources/{source_id}
@@ -2943,6 +3172,11 @@ export namespace cloudsearch_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * If set, the request will enable debugging features of Cloud Search. Only
+     * turn on this field, if asked by Google to help with debugging.
+     */
+    'debugOptions.enableDebugging'?: boolean;
     /**
      * Maximum number of items to fetch in a request. Defaults to 100.
      */
