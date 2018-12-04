@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace classroom_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,28 +98,18 @@ export namespace classroom_v1 {
    * @param {object=} options Options for Classroom
    */
   export class Classroom {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     courses: Resource$Courses;
     invitations: Resource$Invitations;
     registrations: Resource$Registrations;
     userProfiles: Resource$Userprofiles;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.courses = new Resource$Courses(this);
-      this.invitations = new Resource$Invitations(this);
-      this.registrations = new Resource$Registrations(this);
-      this.userProfiles = new Resource$Userprofiles(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.courses = new Resource$Courses();
+      this.invitations = new Resource$Invitations();
+      this.registrations = new Resource$Registrations();
+      this.userProfiles = new Resource$Userprofiles();
     }
   }
 
@@ -1355,24 +1347,17 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses {
-    root: Classroom;
     aliases: Resource$Courses$Aliases;
     announcements: Resource$Courses$Announcements;
     courseWork: Resource$Courses$Coursework;
     students: Resource$Courses$Students;
     teachers: Resource$Courses$Teachers;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.aliases = new Resource$Courses$Aliases(root);
-      this.announcements = new Resource$Courses$Announcements(root);
-      this.courseWork = new Resource$Courses$Coursework(root);
-      this.students = new Resource$Courses$Students(root);
-      this.teachers = new Resource$Courses$Teachers(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.aliases = new Resource$Courses$Aliases();
+      this.announcements = new Resource$Courses$Announcements();
+      this.courseWork = new Resource$Courses$Coursework();
+      this.students = new Resource$Courses$Students();
+      this.teachers = new Resource$Courses$Teachers();
     }
 
 
@@ -1436,7 +1421,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1502,7 +1487,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1565,7 +1550,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1638,7 +1623,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCoursesResponse>(parameters, callback);
@@ -1709,7 +1694,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1777,7 +1762,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1908,15 +1893,7 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Courses$Aliases {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1983,7 +1960,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseAlias>(parameters, callback);
@@ -2055,7 +2032,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'alias'],
         pathParams: ['alias', 'courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2129,7 +2106,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseAliasesResponse>(
@@ -2203,15 +2180,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Announcements {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2278,7 +2247,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2353,7 +2322,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2421,7 +2390,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2501,7 +2470,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnouncementsResponse>(
@@ -2579,7 +2548,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2655,7 +2624,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2814,17 +2783,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Coursework {
-    root: Classroom;
     studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.studentSubmissions =
-          new Resource$Courses$Coursework$Studentsubmissions(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Courses$Coursework$Studentsubmissions();
     }
 
 
@@ -2897,7 +2859,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -2972,7 +2934,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3040,7 +3002,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3118,7 +3080,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseWorkResponse>(parameters, callback);
@@ -3194,7 +3156,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3276,7 +3238,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3436,15 +3398,7 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Courses$Coursework$Studentsubmissions {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3510,7 +3464,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3601,7 +3555,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId'],
         pathParams: ['courseId', 'courseWorkId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentSubmissionsResponse>(
@@ -3692,7 +3646,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3778,7 +3732,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3864,7 +3818,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3950,7 +3904,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4034,7 +3988,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4255,15 +4209,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Students {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4332,7 +4278,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4403,7 +4349,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4470,7 +4416,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4543,7 +4489,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentsResponse>(parameters, callback);
@@ -4643,15 +4589,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Teachers {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4719,7 +4657,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4791,7 +4729,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4858,7 +4796,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4931,7 +4869,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTeachersResponse>(parameters, callback);
@@ -5025,15 +4963,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Invitations {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5100,7 +5030,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5174,7 +5104,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5243,7 +5173,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5308,7 +5238,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5380,7 +5310,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInvitationsResponse>(parameters, callback);
@@ -5471,15 +5401,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Registrations {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5559,7 +5481,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Registration>(parameters, callback);
@@ -5626,7 +5548,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['registrationId'],
         pathParams: ['registrationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5664,19 +5586,12 @@ export namespace classroom_v1 {
 
 
   export class Resource$Userprofiles {
-    root: Classroom;
     guardianInvitations: Resource$Userprofiles$Guardianinvitations;
     guardians: Resource$Userprofiles$Guardians;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.guardianInvitations =
-          new Resource$Userprofiles$Guardianinvitations(root);
-      this.guardians = new Resource$Userprofiles$Guardians(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Userprofiles$Guardianinvitations();
+      this.guardians = new Resource$Userprofiles$Guardians();
     }
 
 
@@ -5735,7 +5650,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserProfile>(parameters, callback);
@@ -5760,15 +5675,7 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Userprofiles$Guardianinvitations {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5854,7 +5761,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -5930,7 +5837,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -6022,7 +5929,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardianInvitationsResponse>(
@@ -6110,7 +6017,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -6225,15 +6132,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Userprofiles$Guardians {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6305,7 +6204,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6379,7 +6278,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Guardian>(parameters, callback);
@@ -6465,7 +6364,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardiansResponse>(parameters, callback);

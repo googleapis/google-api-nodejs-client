@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace translate_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -105,26 +107,16 @@ export namespace translate_v2 {
    * @param {object=} options Options for Translate
    */
   export class Translate {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     detections: Resource$Detections;
     languages: Resource$Languages;
     translations: Resource$Translations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.detections = new Resource$Detections(this);
-      this.languages = new Resource$Languages(this);
-      this.translations = new Resource$Translations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.detections = new Resource$Detections();
+      this.languages = new Resource$Languages();
+      this.translations = new Resource$Translations();
     }
   }
 
@@ -246,15 +238,7 @@ export namespace translate_v2 {
 
 
   export class Resource$Detections {
-    root: Translate;
-    constructor(root: Translate) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -314,7 +298,7 @@ export namespace translate_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
@@ -380,7 +364,7 @@ export namespace translate_v2 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
@@ -418,15 +402,7 @@ export namespace translate_v2 {
 
 
   export class Resource$Languages {
-    root: Translate;
-    constructor(root: Translate) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -486,7 +462,7 @@ export namespace translate_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
@@ -515,15 +491,7 @@ export namespace translate_v2 {
 
 
   export class Resource$Translations {
-    root: Translate;
-    constructor(root: Translate) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -588,7 +556,7 @@ export namespace translate_v2 {
         params,
         requiredParams: ['q', 'target'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
@@ -657,7 +625,7 @@ export namespace translate_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);

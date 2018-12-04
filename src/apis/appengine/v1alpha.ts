@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace appengine_v1alpha {
   export interface Options extends GlobalOptions {
     version: 'v1alpha';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace appengine_v1alpha {
    * @param {object=} options Options for Appengine
    */
   export class Appengine {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     apps: Resource$Apps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.apps = new Resource$Apps(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.apps = new Resource$Apps();
     }
   }
 
@@ -713,39 +705,23 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps {
-    root: Appengine;
     authorizedCertificates: Resource$Apps$Authorizedcertificates;
     authorizedDomains: Resource$Apps$Authorizeddomains;
     domainMappings: Resource$Apps$Domainmappings;
     locations: Resource$Apps$Locations;
     operations: Resource$Apps$Operations;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.authorizedCertificates =
-          new Resource$Apps$Authorizedcertificates(root);
-      this.authorizedDomains = new Resource$Apps$Authorizeddomains(root);
-      this.domainMappings = new Resource$Apps$Domainmappings(root);
-      this.locations = new Resource$Apps$Locations(root);
-      this.operations = new Resource$Apps$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.authorizedCertificates = new Resource$Apps$Authorizedcertificates();
+      this.authorizedDomains = new Resource$Apps$Authorizeddomains();
+      this.domainMappings = new Resource$Apps$Domainmappings();
+      this.locations = new Resource$Apps$Locations();
+      this.operations = new Resource$Apps$Operations();
     }
   }
 
 
   export class Resource$Apps$Authorizedcertificates {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -807,7 +783,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -876,7 +852,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -944,7 +920,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -1023,7 +999,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
@@ -1102,7 +1078,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -1223,15 +1199,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Authorizeddomains {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1298,7 +1266,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -1334,15 +1302,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Domainmappings {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1408,7 +1368,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1479,7 +1439,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1544,7 +1504,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -1618,7 +1578,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
@@ -1694,7 +1654,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1827,15 +1787,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Locations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1891,7 +1843,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'locationsId'],
         pathParams: ['appsId', 'locationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1961,7 +1913,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -2015,15 +1967,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Operations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2083,7 +2027,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'operationsId'],
         pathParams: ['appsId', 'operationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2162,7 +2106,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace adexchangebuyer_v1_2 {
   export interface Options extends GlobalOptions {
     version: 'v1_2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,24 +83,14 @@ export namespace adexchangebuyer_v1_2 {
    * @param {object=} options Options for Adexchangebuyer
    */
   export class Adexchangebuyer {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
     creatives: Resource$Creatives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-      this.creatives = new Resource$Creatives(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
+      this.creatives = new Resource$Creatives();
     }
   }
 
@@ -298,15 +290,7 @@ export namespace adexchangebuyer_v1_2 {
 
 
   export class Resource$Accounts {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -360,7 +344,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -424,7 +408,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsList>(parameters, callback);
@@ -489,7 +473,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -554,7 +538,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -616,15 +600,7 @@ export namespace adexchangebuyer_v1_2 {
 
 
   export class Resource$Creatives {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -682,7 +658,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['accountId', 'buyerCreativeId'],
         pathParams: ['accountId', 'buyerCreativeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -746,7 +722,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -814,7 +790,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreativesList>(parameters, callback);

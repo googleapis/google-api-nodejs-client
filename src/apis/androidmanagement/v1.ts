@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace androidmanagement_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,24 +99,14 @@ export namespace androidmanagement_v1 {
    * @param {object=} options Options for Androidmanagement
    */
   export class Androidmanagement {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     enterprises: Resource$Enterprises;
     signupUrls: Resource$Signupurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.enterprises = new Resource$Enterprises(this);
-      this.signupUrls = new Resource$Signupurls(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.enterprises = new Resource$Enterprises();
+      this.signupUrls = new Resource$Signupurls();
     }
   }
 
@@ -1957,24 +1949,17 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises {
-    root: Androidmanagement;
     applications: Resource$Enterprises$Applications;
     devices: Resource$Enterprises$Devices;
     enrollmentTokens: Resource$Enterprises$Enrollmenttokens;
     policies: Resource$Enterprises$Policies;
     webTokens: Resource$Enterprises$Webtokens;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.applications = new Resource$Enterprises$Applications(root);
-      this.devices = new Resource$Enterprises$Devices(root);
-      this.enrollmentTokens = new Resource$Enterprises$Enrollmenttokens(root);
-      this.policies = new Resource$Enterprises$Policies(root);
-      this.webTokens = new Resource$Enterprises$Webtokens(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.applications = new Resource$Enterprises$Applications();
+      this.devices = new Resource$Enterprises$Devices();
+      this.enrollmentTokens = new Resource$Enterprises$Enrollmenttokens();
+      this.policies = new Resource$Enterprises$Policies();
+      this.webTokens = new Resource$Enterprises$Webtokens();
     }
 
 
@@ -2039,7 +2024,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2101,7 +2086,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2169,7 +2154,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2240,15 +2225,7 @@ export namespace androidmanagement_v1 {
   }
 
   export class Resource$Enterprises$Applications {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2305,7 +2282,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -2337,16 +2314,9 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Devices {
-    root: Androidmanagement;
     operations: Resource$Enterprises$Devices$Operations;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Enterprises$Devices$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Enterprises$Devices$Operations();
     }
 
 
@@ -2407,7 +2377,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2469,7 +2439,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2540,7 +2510,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2610,7 +2580,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
@@ -2678,7 +2648,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2782,15 +2752,7 @@ export namespace androidmanagement_v1 {
   }
 
   export class Resource$Enterprises$Devices$Operations {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2859,7 +2821,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2929,7 +2891,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2994,7 +2956,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3073,7 +3035,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -3147,15 +3109,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Enrollmenttokens {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3217,7 +3171,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EnrollmentToken>(parameters, callback);
@@ -3284,7 +3238,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3327,15 +3281,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Policies {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3395,7 +3341,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3457,7 +3403,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3528,7 +3474,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPoliciesResponse>(parameters, callback);
@@ -3596,7 +3542,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3679,15 +3625,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Webtokens {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3749,7 +3687,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WebToken>(parameters, callback);
@@ -3780,15 +3718,7 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Signupurls {
-    root: Androidmanagement;
-    constructor(root: Androidmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3848,7 +3778,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SignupUrl>(parameters, callback);

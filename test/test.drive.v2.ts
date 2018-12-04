@@ -14,9 +14,7 @@
 import * as assert from 'assert';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-
 import {drive_v2, GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
@@ -113,18 +111,6 @@ describe('drive:v2', () => {
         req = remoteDrive.files.get({fileId: '123'}, Utils.noop);
         assert.strictEqual(req, undefined);
       });
-    });
-  });
-
-  describe('._options', () => {
-    it('should exist', () => {
-      assert.notEqual(typeof localDrive._options, 'undefined');
-      assert.notEqual(typeof remoteDrive._options, 'undefined');
-    });
-
-    it('should be an object', () => {
-      assert.strictEqual(typeof localDrive._options, 'object');
-      assert.strictEqual(typeof remoteDrive._options, 'object');
     });
   });
 

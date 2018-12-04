@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace deploymentmanager_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,10 +82,6 @@ export namespace deploymentmanager_v2 {
    * @param {object=} options Options for Deploymentmanager
    */
   export class Deploymentmanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     deployments: Resource$Deployments;
     manifests: Resource$Manifests;
     operations: Resource$Operations;
@@ -91,19 +89,13 @@ export namespace deploymentmanager_v2 {
     types: Resource$Types;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.deployments = new Resource$Deployments(this);
-      this.manifests = new Resource$Manifests(this);
-      this.operations = new Resource$Operations(this);
-      this.resources = new Resource$Resources(this);
-      this.types = new Resource$Types(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.deployments = new Resource$Deployments();
+      this.manifests = new Resource$Manifests();
+      this.operations = new Resource$Operations();
+      this.resources = new Resource$Resources();
+      this.types = new Resource$Types();
     }
   }
 
@@ -1003,15 +995,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Deployments {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1134,7 +1118,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1261,7 +1245,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1382,7 +1366,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1506,7 +1490,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1636,7 +1620,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1775,7 +1759,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeploymentsListResponse>(parameters, callback);
@@ -1911,7 +1895,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2040,7 +2024,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2170,7 +2154,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2301,7 +2285,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -2438,7 +2422,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2754,15 +2738,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Manifests {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2879,7 +2855,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Manifest>(parameters, callback);
@@ -3021,7 +2997,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManifestsListResponse>(parameters, callback);
@@ -3111,15 +3087,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Operations {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3233,7 +3201,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3372,7 +3340,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -3454,15 +3422,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Resources {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3579,7 +3539,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Resource>(parameters, callback);
@@ -3721,7 +3681,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcesListResponse>(parameters, callback);
@@ -3811,15 +3771,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Types {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3948,7 +3900,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TypesListResponse>(parameters, callback);

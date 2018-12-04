@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudbilling_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,26 +99,16 @@ export namespace cloudbilling_v1 {
    * @param {object=} options Options for Cloudbilling
    */
   export class Cloudbilling {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     billingAccounts: Resource$Billingaccounts;
     projects: Resource$Projects;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.billingAccounts = new Resource$Billingaccounts(this);
-      this.projects = new Resource$Projects(this);
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.billingAccounts = new Resource$Billingaccounts();
+      this.projects = new Resource$Projects();
+      this.services = new Resource$Services();
     }
   }
 
@@ -678,16 +670,9 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Billingaccounts {
-    root: Cloudbilling;
     projects: Resource$Billingaccounts$Projects;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.projects = new Resource$Billingaccounts$Projects(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.projects = new Resource$Billingaccounts$Projects();
     }
 
 
@@ -755,7 +740,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -874,7 +859,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -943,7 +928,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1082,7 +1067,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBillingAccountsResponse>(
@@ -1156,7 +1141,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -1226,7 +1211,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1303,7 +1288,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1441,15 +1426,7 @@ export namespace cloudbilling_v1 {
   }
 
   export class Resource$Billingaccounts$Projects {
-    root: Cloudbilling;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1589,7 +1566,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectBillingInfoResponse>(
@@ -1630,15 +1607,7 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Projects {
-    root: Cloudbilling;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1756,7 +1725,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1909,7 +1878,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1953,16 +1922,9 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Services {
-    root: Cloudbilling;
     skus: Resource$Services$Skus;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.skus = new Resource$Services$Skus(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.skus = new Resource$Services$Skus();
     }
 
 
@@ -2085,7 +2047,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -2114,15 +2076,7 @@ export namespace cloudbilling_v1 {
   }
 
   export class Resource$Services$Skus {
-    root: Cloudbilling;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2253,7 +2207,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSkusResponse>(parameters, callback);

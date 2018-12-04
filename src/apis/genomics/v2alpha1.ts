@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace genomics_v2alpha1 {
   export interface Options extends GlobalOptions {
     version: 'v2alpha1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,26 +98,16 @@ export namespace genomics_v2alpha1 {
    * @param {object=} options Options for Genomics
    */
   export class Genomics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     pipelines: Resource$Pipelines;
     projects: Resource$Projects;
     workers: Resource$Workers;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.pipelines = new Resource$Pipelines(this);
-      this.projects = new Resource$Projects(this);
-      this.workers = new Resource$Workers(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.pipelines = new Resource$Pipelines();
+      this.projects = new Resource$Projects();
+      this.workers = new Resource$Workers();
     }
   }
 
@@ -1013,15 +1005,7 @@ export namespace genomics_v2alpha1 {
 
 
   export class Resource$Pipelines {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1083,7 +1067,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1108,30 +1092,15 @@ export namespace genomics_v2alpha1 {
 
 
   export class Resource$Projects {
-    root: Genomics;
     operations: Resource$Projects$Operations;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Projects$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Projects$Operations();
     }
   }
 
 
   export class Resource$Projects$Operations {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1197,7 +1166,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1264,7 +1233,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1338,7 +1307,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1424,15 +1393,7 @@ export namespace genomics_v2alpha1 {
 
 
   export class Resource$Workers {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1492,7 +1453,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CheckInResponse>(parameters, callback);

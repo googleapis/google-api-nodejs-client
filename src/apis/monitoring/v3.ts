@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace monitoring_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,24 +100,14 @@ export namespace monitoring_v3 {
    * @param {object=} options Options for Monitoring
    */
   export class Monitoring {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
     uptimeCheckIps: Resource$Uptimecheckips;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-      this.uptimeCheckIps = new Resource$Uptimecheckips(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
+      this.uptimeCheckIps = new Resource$Uptimecheckips();
     }
   }
 
@@ -1995,7 +1987,6 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects {
-    root: Monitoring;
     alertPolicies: Resource$Projects$Alertpolicies;
     collectdTimeSeries: Resource$Projects$Collectdtimeseries;
     groups: Resource$Projects$Groups;
@@ -2007,39 +1998,24 @@ export namespace monitoring_v3 {
     notificationChannels: Resource$Projects$Notificationchannels;
     timeSeries: Resource$Projects$Timeseries;
     uptimeCheckConfigs: Resource$Projects$Uptimecheckconfigs;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.alertPolicies = new Resource$Projects$Alertpolicies(root);
-      this.collectdTimeSeries = new Resource$Projects$Collectdtimeseries(root);
-      this.groups = new Resource$Projects$Groups(root);
-      this.metricDescriptors = new Resource$Projects$Metricdescriptors(root);
+    constructor() {
+      this.alertPolicies = new Resource$Projects$Alertpolicies();
+      this.collectdTimeSeries = new Resource$Projects$Collectdtimeseries();
+      this.groups = new Resource$Projects$Groups();
+      this.metricDescriptors = new Resource$Projects$Metricdescriptors();
       this.monitoredResourceDescriptors =
-          new Resource$Projects$Monitoredresourcedescriptors(root);
+          new Resource$Projects$Monitoredresourcedescriptors();
       this.notificationChannelDescriptors =
-          new Resource$Projects$Notificationchanneldescriptors(root);
-      this.notificationChannels =
-          new Resource$Projects$Notificationchannels(root);
-      this.timeSeries = new Resource$Projects$Timeseries(root);
-      this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Notificationchanneldescriptors();
+      this.notificationChannels = new Resource$Projects$Notificationchannels();
+      this.timeSeries = new Resource$Projects$Timeseries();
+      this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs();
     }
   }
 
 
   export class Resource$Projects$Alertpolicies {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2100,7 +2076,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2165,7 +2141,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2227,7 +2203,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2301,7 +2277,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertPoliciesResponse>(
@@ -2373,7 +2349,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2515,15 +2491,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Collectdtimeseries {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2639,7 +2607,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
@@ -2672,16 +2640,9 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Groups {
-    root: Monitoring;
     members: Resource$Projects$Groups$Members;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.members = new Resource$Projects$Groups$Members(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.members = new Resource$Projects$Groups$Members();
     }
 
 
@@ -2790,7 +2751,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -2902,7 +2863,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3010,7 +2971,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -3135,7 +3096,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -3256,7 +3217,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -3385,15 +3346,7 @@ export namespace monitoring_v3 {
   }
 
   export class Resource$Projects$Groups$Members {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3513,7 +3466,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupMembersResponse>(parameters, callback);
@@ -3568,15 +3521,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Metricdescriptors {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3682,7 +3627,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -3795,7 +3740,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3905,7 +3850,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -4034,7 +3979,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMetricDescriptorsResponse>(
@@ -4126,15 +4071,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Monitoredresourcedescriptors {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4246,7 +4183,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MonitoredResourceDescriptor>(
@@ -4380,7 +4317,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -4439,15 +4376,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Notificationchanneldescriptors {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4511,7 +4440,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannelDescriptor>(
@@ -4592,7 +4521,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
@@ -4647,15 +4576,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Notificationchannels {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4718,7 +4639,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4784,7 +4705,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4850,7 +4771,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4950,7 +4871,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
@@ -5033,7 +4954,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelsResponse>(
@@ -5104,7 +5025,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5177,7 +5098,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5247,7 +5168,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5431,15 +5352,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Timeseries {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5549,7 +5462,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5682,7 +5595,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTimeSeriesResponse>(parameters, callback);
@@ -5814,15 +5727,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Uptimecheckconfigs {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5883,7 +5788,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -5951,7 +5856,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6013,7 +5918,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -6088,7 +5993,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
@@ -6161,7 +6066,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -6273,15 +6178,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Uptimecheckips {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6345,7 +6242,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckIpsResponse>(

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace proximitybeacon_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,28 +98,18 @@ export namespace proximitybeacon_v1beta1 {
    * @param {object=} options Options for Proximitybeacon
    */
   export class Proximitybeacon {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     beaconinfo: Resource$Beaconinfo;
     beacons: Resource$Beacons;
     namespaces: Resource$Namespaces;
     v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.beaconinfo = new Resource$Beaconinfo(this);
-      this.beacons = new Resource$Beacons(this);
-      this.namespaces = new Resource$Namespaces(this);
-      this.v1beta1 = new Resource$V1beta1(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.beaconinfo = new Resource$Beaconinfo();
+      this.beacons = new Resource$Beacons();
+      this.namespaces = new Resource$Namespaces();
+      this.v1beta1 = new Resource$V1beta1();
     }
   }
 
@@ -621,15 +613,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beaconinfo {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -704,7 +688,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
@@ -732,18 +716,11 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beacons {
-    root: Proximitybeacon;
     attachments: Resource$Beacons$Attachments;
     diagnostics: Resource$Beacons$Diagnostics;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.attachments = new Resource$Beacons$Attachments(root);
-      this.diagnostics = new Resource$Beacons$Diagnostics(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.attachments = new Resource$Beacons$Attachments();
+      this.diagnostics = new Resource$Beacons$Diagnostics();
     }
 
 
@@ -810,7 +787,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -885,7 +862,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -959,7 +936,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1031,7 +1008,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1103,7 +1080,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1176,7 +1153,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconsResponse>(parameters, callback);
@@ -1248,7 +1225,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1324,7 +1301,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1566,15 +1543,7 @@ export namespace proximitybeacon_v1beta1 {
   }
 
   export class Resource$Beacons$Attachments {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1648,7 +1617,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteAttachmentsResponse>(
@@ -1729,7 +1698,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BeaconAttachment>(parameters, callback);
@@ -1804,7 +1773,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['attachmentName'],
         pathParams: ['attachmentName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1887,7 +1856,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconAttachmentsResponse>(
@@ -2013,15 +1982,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beacons$Diagnostics {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2093,7 +2054,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDiagnosticsResponse>(parameters, callback);
@@ -2140,15 +2101,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Namespaces {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2214,7 +2167,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNamespacesResponse>(parameters, callback);
@@ -2284,7 +2237,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['namespaceName'],
         pathParams: ['namespaceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Namespace>(parameters, callback);
@@ -2332,15 +2285,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$V1beta1 {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2411,7 +2356,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EphemeralIdRegistrationParams>(

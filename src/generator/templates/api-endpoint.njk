@@ -19,7 +19,7 @@
  */
 
 import { OAuth2Client, JWT, Compute, UserRefreshClient } from 'google-auth-library';
-import { GoogleConfigurable, createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback } from 'googleapis-common';
+import { GoogleConfigurable, createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback, APIRequestContext } from 'googleapis-common';
 import { AxiosPromise } from 'axios';
 
 // tslint:disable: no-any
@@ -39,6 +39,8 @@ export namespace {{api.name}}_{{api.version|replace('\.', '_')}} {
 export interface Options extends GlobalOptions {
   version: '{{api.version|replace('\.', '_')}}';
 }
+
+let context: APIRequestContext;
 
 interface StandardParameters {
   {% for pname, p in api.parameters|dictsort %}
@@ -66,10 +68,6 @@ interface StandardParameters {
  */
 export class {{ Name }} {
 
-  _options: GlobalOptions;
-  google?: GoogleConfigurable;
-  root = this;
-
   {% if api.resources %}
     {% for rname, r in api.resources|dictsort %}
       {{ rname }}: Resource${{ rname|capitalize }};
@@ -77,19 +75,16 @@ export class {{ Name }} {
   {% endif %}
 
   constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-    this._options = options || {};
-    this.google = google;
-    this.getRoot.bind(this);
+    context = {
+      _options: options || {},
+      google
+    };
 
     {% if api.resources %}
       {% for rname, r in api.resources|dictsort %}
-        this.{{ rname }} = new Resource${{ rname|capitalize }}(this);
+        this.{{ rname }} = new Resource${{ rname|capitalize }}();
       {% endfor %}
     {% endif %}
-  }
-
-  getRoot() {
-    return this.root;
   }
 
 {% if api.methods %}

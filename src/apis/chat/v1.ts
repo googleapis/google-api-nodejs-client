@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace chat_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace chat_v1 {
    * @param {object=} options Options for Chat
    */
   export class Chat {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     spaces: Resource$Spaces;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.spaces = new Resource$Spaces(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.spaces = new Resource$Spaces();
     }
   }
 
@@ -649,18 +641,11 @@ export namespace chat_v1 {
 
 
   export class Resource$Spaces {
-    root: Chat;
     members: Resource$Spaces$Members;
     messages: Resource$Spaces$Messages;
-    constructor(root: Chat) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.members = new Resource$Spaces$Members(root);
-      this.messages = new Resource$Spaces$Messages(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.members = new Resource$Spaces$Members();
+      this.messages = new Resource$Spaces$Messages();
     }
 
 
@@ -714,7 +699,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Space>(parameters, callback);
@@ -779,7 +764,7 @@ export namespace chat_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSpacesResponse>(parameters, callback);
@@ -819,15 +804,7 @@ export namespace chat_v1 {
   }
 
   export class Resource$Spaces$Members {
-    root: Chat;
-    constructor(root: Chat) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -882,7 +859,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Membership>(parameters, callback);
@@ -951,7 +928,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
@@ -1000,15 +977,7 @@ export namespace chat_v1 {
 
 
   export class Resource$Spaces$Messages {
-    root: Chat;
-    constructor(root: Chat) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1069,7 +1038,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1134,7 +1103,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1195,7 +1164,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1262,7 +1231,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);

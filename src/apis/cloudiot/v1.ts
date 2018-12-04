@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudiot_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace cloudiot_v1 {
    * @param {object=} options Options for Cloudiot
    */
   export class Cloudiot {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -838,48 +830,27 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects {
-    root: Cloudiot;
     locations: Resource$Projects$Locations;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Cloudiot;
     registries: Resource$Projects$Locations$Registries;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.registries = new Resource$Projects$Locations$Registries(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.registries = new Resource$Projects$Locations$Registries();
     }
   }
 
 
   export class Resource$Projects$Locations$Registries {
-    root: Cloudiot;
     devices: Resource$Projects$Locations$Registries$Devices;
     groups: Resource$Projects$Locations$Registries$Groups;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.devices = new Resource$Projects$Locations$Registries$Devices(root);
-      this.groups = new Resource$Projects$Locations$Registries$Groups(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.devices = new Resource$Projects$Locations$Registries$Devices();
+      this.groups = new Resource$Projects$Locations$Registries$Groups();
     }
 
 
@@ -952,7 +923,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BindDeviceToGatewayResponse>(
@@ -1021,7 +992,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
@@ -1086,7 +1057,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1148,7 +1119,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
@@ -1218,7 +1189,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1292,7 +1263,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceRegistriesResponse>(
@@ -1362,7 +1333,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
@@ -1432,7 +1403,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1513,7 +1484,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1594,7 +1565,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
@@ -1794,22 +1765,13 @@ export namespace cloudiot_v1 {
   }
 
   export class Resource$Projects$Locations$Registries$Devices {
-    root: Cloudiot;
     configVersions:
         Resource$Projects$Locations$Registries$Devices$Configversions;
     states: Resource$Projects$Locations$Registries$Devices$States;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.configVersions =
-          new Resource$Projects$Locations$Registries$Devices$Configversions(
-              root);
-      this.states =
-          new Resource$Projects$Locations$Registries$Devices$States(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Registries$Devices$Configversions();
+      this.states = new Resource$Projects$Locations$Registries$Devices$States();
     }
 
 
@@ -1872,7 +1834,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -1939,7 +1901,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2003,7 +1965,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2080,7 +2042,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
@@ -2157,7 +2119,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceConfig>(parameters, callback);
@@ -2226,7 +2188,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2317,7 +2279,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SendCommandToDeviceResponse>(
@@ -2514,15 +2476,7 @@ export namespace cloudiot_v1 {
   }
 
   export class Resource$Projects$Locations$Registries$Devices$Configversions {
-    root: Cloudiot;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2598,7 +2552,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
@@ -2634,15 +2588,7 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects$Locations$Registries$Devices$States {
-    root: Cloudiot;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2710,7 +2656,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceStatesResponse>(parameters, callback);
@@ -2745,17 +2691,10 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects$Locations$Registries$Groups {
-    root: Cloudiot;
     devices: Resource$Projects$Locations$Registries$Groups$Devices;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.devices =
-          new Resource$Projects$Locations$Registries$Groups$Devices(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Registries$Groups$Devices();
     }
 
 
@@ -2828,7 +2767,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BindDeviceToGatewayResponse>(
@@ -2902,7 +2841,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2975,7 +2914,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3056,7 +2995,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3138,7 +3077,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
@@ -3242,23 +3181,14 @@ export namespace cloudiot_v1 {
   }
 
   export class Resource$Projects$Locations$Registries$Groups$Devices {
-    root: Cloudiot;
     configVersions:
         Resource$Projects$Locations$Registries$Groups$Devices$Configversions;
     states: Resource$Projects$Locations$Registries$Groups$Devices$States;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.configVersions =
-          new Resource$Projects$Locations$Registries$Groups$Devices$Configversions(
-              root);
+          new Resource$Projects$Locations$Registries$Groups$Devices$Configversions();
       this.states =
-          new Resource$Projects$Locations$Registries$Groups$Devices$States(
-              root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Registries$Groups$Devices$States();
     }
 
 
@@ -3319,7 +3249,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -3399,7 +3329,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
@@ -3476,7 +3406,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceConfig>(parameters, callback);
@@ -3548,7 +3478,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -3640,7 +3570,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SendCommandToDeviceResponse>(
@@ -3804,15 +3734,7 @@ export namespace cloudiot_v1 {
 
   export class
       Resource$Projects$Locations$Registries$Groups$Devices$Configversions {
-    root: Cloudiot;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3889,7 +3811,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
@@ -3925,15 +3847,7 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects$Locations$Registries$Groups$Devices$States {
-    root: Cloudiot;
-    constructor(root: Cloudiot) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4001,7 +3915,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceStatesResponse>(parameters, callback);

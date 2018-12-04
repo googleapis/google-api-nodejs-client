@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace script_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,26 +98,16 @@ export namespace script_v1 {
    * @param {object=} options Options for Script
    */
   export class Script {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     processes: Resource$Processes;
     projects: Resource$Projects;
     scripts: Resource$Scripts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.processes = new Resource$Processes(this);
-      this.projects = new Resource$Projects(this);
-      this.scripts = new Resource$Scripts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.processes = new Resource$Processes();
+      this.projects = new Resource$Projects();
+      this.scripts = new Resource$Scripts();
     }
   }
 
@@ -737,15 +729,7 @@ export namespace script_v1 {
 
 
   export class Resource$Processes {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -815,7 +799,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUserProcessesResponse>(
@@ -899,7 +883,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListScriptProcessesResponse>(
@@ -1032,18 +1016,11 @@ export namespace script_v1 {
 
 
   export class Resource$Projects {
-    root: Script;
     deployments: Resource$Projects$Deployments;
     versions: Resource$Projects$Versions;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.deployments = new Resource$Projects$Deployments(root);
-      this.versions = new Resource$Projects$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.deployments = new Resource$Projects$Deployments();
+      this.versions = new Resource$Projects$Versions();
     }
 
 
@@ -1101,7 +1078,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1162,7 +1139,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1230,7 +1207,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1299,7 +1276,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Metrics>(parameters, callback);
@@ -1370,7 +1347,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1459,15 +1436,7 @@ export namespace script_v1 {
   }
 
   export class Resource$Projects$Deployments {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1528,7 +1497,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1596,7 +1565,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1661,7 +1630,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1731,7 +1700,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeploymentsResponse>(parameters, callback);
@@ -1801,7 +1770,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1905,15 +1874,7 @@ export namespace script_v1 {
 
 
   export class Resource$Projects$Versions {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1974,7 +1935,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2038,7 +1999,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'versionNumber'],
         pathParams: ['scriptId', 'versionNumber'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2108,7 +2069,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
@@ -2176,15 +2137,7 @@ export namespace script_v1 {
 
 
   export class Resource$Scripts {
-    root: Script;
-    constructor(root: Script) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2251,7 +2204,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

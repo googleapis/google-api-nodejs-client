@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace analyticsreporting_v4 {
   export interface Options extends GlobalOptions {
     version: 'v4';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace analyticsreporting_v4 {
    * @param {object=} options Options for Analyticsreporting
    */
   export class Analyticsreporting {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     reports: Resource$Reports;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.reports = new Resource$Reports(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.reports = new Resource$Reports();
     }
   }
 
@@ -1002,15 +994,7 @@ export namespace analyticsreporting_v4 {
 
 
   export class Resource$Reports {
-    root: Analyticsreporting;
-    constructor(root: Analyticsreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1070,7 +1054,7 @@ export namespace analyticsreporting_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetReportsResponse>(parameters, callback);

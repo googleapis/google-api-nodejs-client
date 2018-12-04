@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudtasks_v2beta2 {
   export interface Options extends GlobalOptions {
     version: 'v2beta2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace cloudtasks_v2beta2 {
    * @param {object=} options Options for Cloudtasks
    */
   export class Cloudtasks {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -1099,31 +1091,17 @@ export namespace cloudtasks_v2beta2 {
 
 
   export class Resource$Projects {
-    root: Cloudtasks;
     locations: Resource$Projects$Locations;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Cloudtasks;
     queues: Resource$Projects$Locations$Queues;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.queues = new Resource$Projects$Locations$Queues(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.queues = new Resource$Projects$Locations$Queues();
     }
 
 
@@ -1232,7 +1210,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1369,7 +1347,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1417,16 +1395,9 @@ export namespace cloudtasks_v2beta2 {
   }
 
   export class Resource$Projects$Locations$Queues {
-    root: Cloudtasks;
     tasks: Resource$Projects$Locations$Queues$Tasks;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.tasks = new Resource$Projects$Locations$Queues$Tasks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.tasks = new Resource$Projects$Locations$Queues$Tasks();
     }
 
 
@@ -1555,7 +1526,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1680,7 +1651,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1795,7 +1766,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1925,7 +1896,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2064,7 +2035,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListQueuesResponse>(parameters, callback);
@@ -2208,7 +2179,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2336,7 +2307,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2464,7 +2435,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2595,7 +2566,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2726,7 +2697,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2865,7 +2836,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3103,15 +3074,7 @@ export namespace cloudtasks_v2beta2 {
   }
 
   export class Resource$Projects$Locations$Queues$Tasks {
-    root: Cloudtasks;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3235,7 +3198,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3366,7 +3329,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3496,7 +3459,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3617,7 +3580,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3735,7 +3698,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3812,7 +3775,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaseTasksResponse>(parameters, callback);
@@ -3955,7 +3918,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTasksResponse>(parameters, callback);
@@ -4086,7 +4049,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -4221,7 +4184,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);

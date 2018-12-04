@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace adsensehost_v4_1 {
   export interface Options extends GlobalOptions {
     version: 'v4_1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,10 +82,6 @@ export namespace adsensehost_v4_1 {
    * @param {object=} options Options for Adsensehost
    */
   export class Adsensehost {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
     adclients: Resource$Adclients;
     associationsessions: Resource$Associationsessions;
@@ -92,20 +90,14 @@ export namespace adsensehost_v4_1 {
     urlchannels: Resource$Urlchannels;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-      this.adclients = new Resource$Adclients(this);
-      this.associationsessions = new Resource$Associationsessions(this);
-      this.customchannels = new Resource$Customchannels(this);
-      this.reports = new Resource$Reports(this);
-      this.urlchannels = new Resource$Urlchannels(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
+      this.adclients = new Resource$Adclients();
+      this.associationsessions = new Resource$Associationsessions();
+      this.customchannels = new Resource$Customchannels();
+      this.reports = new Resource$Reports();
+      this.urlchannels = new Resource$Urlchannels();
     }
   }
 
@@ -452,20 +444,13 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Accounts {
-    root: Adsensehost;
     adclients: Resource$Accounts$Adclients;
     adunits: Resource$Accounts$Adunits;
     reports: Resource$Accounts$Reports;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.adclients = new Resource$Accounts$Adclients(root);
-      this.adunits = new Resource$Accounts$Adunits(root);
-      this.reports = new Resource$Accounts$Reports(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.adclients = new Resource$Accounts$Adclients();
+      this.adunits = new Resource$Accounts$Adunits();
+      this.reports = new Resource$Accounts$Reports();
     }
 
 
@@ -520,7 +505,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -585,7 +570,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['filterAdClientId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -619,15 +604,7 @@ export namespace adsensehost_v4_1 {
   }
 
   export class Resource$Accounts$Adclients {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -686,7 +663,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClient>(parameters, callback);
@@ -756,7 +733,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -808,15 +785,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Accounts$Adunits {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -880,7 +849,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -946,7 +915,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1018,7 +987,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -1089,7 +1058,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1161,7 +1130,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -1233,7 +1202,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1304,7 +1273,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1479,15 +1448,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Accounts$Reports {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1557,7 +1518,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'startDate', 'endDate'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1622,15 +1583,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Adclients {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1685,7 +1638,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClient>(parameters, callback);
@@ -1751,7 +1704,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -1793,15 +1746,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Associationsessions {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1865,7 +1810,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['productCode', 'websiteUrl'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(parameters, callback);
@@ -1933,7 +1878,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['token'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(parameters, callback);
@@ -1982,15 +1927,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Customchannels {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2053,7 +1990,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2119,7 +2056,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2188,7 +2125,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2257,7 +2194,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -2328,7 +2265,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2397,7 +2334,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2520,15 +2457,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Reports {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2596,7 +2525,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -2655,15 +2584,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Urlchannels {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2726,7 +2647,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'urlChannelId'],
         pathParams: ['adClientId', 'urlChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(parameters, callback);
@@ -2795,7 +2716,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(parameters, callback);
@@ -2863,7 +2784,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace firestore_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace firestore_v1beta1 {
    * @param {object=} options Options for Firestore
    */
   export class Firestore {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -1393,33 +1385,19 @@ export namespace firestore_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Firestore;
     databases: Resource$Projects$Databases;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.databases = new Resource$Projects$Databases(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.databases = new Resource$Projects$Databases();
     }
   }
 
 
   export class Resource$Projects$Databases {
-    root: Firestore;
     documents: Resource$Projects$Databases$Documents;
     indexes: Resource$Projects$Databases$Indexes;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.documents = new Resource$Projects$Databases$Documents(root);
-      this.indexes = new Resource$Projects$Databases$Indexes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.documents = new Resource$Projects$Databases$Documents();
+      this.indexes = new Resource$Projects$Databases$Indexes();
     }
 
 
@@ -1494,7 +1472,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1574,7 +1552,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1623,15 +1601,7 @@ export namespace firestore_v1beta1 {
   }
 
   export class Resource$Projects$Databases$Documents {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1697,7 +1667,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetDocumentsResponse>(
@@ -1770,7 +1740,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
@@ -1838,7 +1808,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -1910,7 +1880,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent', 'collectionId'],
         pathParams: ['collectionId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -1977,7 +1947,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2041,7 +2011,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -2117,7 +2087,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent', 'collectionId'],
         pathParams: ['collectionId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDocumentsResponse>(parameters, callback);
@@ -2190,7 +2160,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCollectionIdsResponse>(
@@ -2259,7 +2229,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListenResponse>(parameters, callback);
@@ -2329,7 +2299,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -2397,7 +2367,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2466,7 +2436,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
@@ -2534,7 +2504,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResponse>(parameters, callback);
@@ -2875,15 +2845,7 @@ export namespace firestore_v1beta1 {
 
 
   export class Resource$Projects$Databases$Indexes {
-    root: Firestore;
-    constructor(root: Firestore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2957,7 +2919,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3023,7 +2985,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3094,7 +3056,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta1Index>(
@@ -3173,7 +3135,7 @@ export namespace firestore_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>(

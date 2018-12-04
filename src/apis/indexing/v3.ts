@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace indexing_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace indexing_v3 {
    * @param {object=} options Options for Indexing
    */
   export class Indexing {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     urlNotifications: Resource$Urlnotifications;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.urlNotifications = new Resource$Urlnotifications(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.urlNotifications = new Resource$Urlnotifications();
     }
   }
 
@@ -166,15 +158,7 @@ export namespace indexing_v3 {
 
 
   export class Resource$Urlnotifications {
-    root: Indexing;
-    constructor(root: Indexing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -239,7 +223,7 @@ export namespace indexing_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlNotificationMetadata>(parameters, callback);
@@ -312,7 +296,7 @@ export namespace indexing_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublishUrlNotificationResponse>(

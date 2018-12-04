@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace genomics_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,10 +98,6 @@ export namespace genomics_v1 {
    * @param {object=} options Options for Genomics
    */
   export class Genomics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     annotations: Resource$Annotations;
     annotationsets: Resource$Annotationsets;
     callsets: Resource$Callsets;
@@ -113,25 +111,19 @@ export namespace genomics_v1 {
     variantsets: Resource$Variantsets;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.annotations = new Resource$Annotations(this);
-      this.annotationsets = new Resource$Annotationsets(this);
-      this.callsets = new Resource$Callsets(this);
-      this.datasets = new Resource$Datasets(this);
-      this.operations = new Resource$Operations(this);
-      this.readgroupsets = new Resource$Readgroupsets(this);
-      this.reads = new Resource$Reads(this);
-      this.references = new Resource$References(this);
-      this.referencesets = new Resource$Referencesets(this);
-      this.variants = new Resource$Variants(this);
-      this.variantsets = new Resource$Variantsets(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.annotations = new Resource$Annotations();
+      this.annotationsets = new Resource$Annotationsets();
+      this.callsets = new Resource$Callsets();
+      this.datasets = new Resource$Datasets();
+      this.operations = new Resource$Operations();
+      this.readgroupsets = new Resource$Readgroupsets();
+      this.reads = new Resource$Reads();
+      this.references = new Resource$References();
+      this.referencesets = new Resource$Referencesets();
+      this.variants = new Resource$Variants();
+      this.variantsets = new Resource$Variantsets();
     }
   }
 
@@ -2367,15 +2359,7 @@ export namespace genomics_v1 {
 
 
   export class Resource$Annotations {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2504,7 +2488,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreateAnnotationsResponse>(
@@ -2634,7 +2618,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -2751,7 +2735,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2867,7 +2851,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3010,7 +2994,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchAnnotationsResponse>(
@@ -3140,7 +3124,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3238,15 +3222,7 @@ export namespace genomics_v1 {
 
 
   export class Resource$Annotationsets {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3364,7 +3340,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationSet>(parameters, callback);
@@ -3482,7 +3458,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['annotationSetId'],
         pathParams: ['annotationSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3600,7 +3576,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['annotationSetId'],
         pathParams: ['annotationSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationSet>(parameters, callback);
@@ -3745,7 +3721,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchAnnotationSetsResponse>(
@@ -3878,7 +3854,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['annotationSetId'],
         pathParams: ['annotationSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationSet>(parameters, callback);
@@ -3964,15 +3940,7 @@ export namespace genomics_v1 {
 
 
   export class Resource$Callsets {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4082,7 +4050,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CallSet>(parameters, callback);
@@ -4196,7 +4164,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['callSetId'],
         pathParams: ['callSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4310,7 +4278,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['callSetId'],
         pathParams: ['callSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CallSet>(parameters, callback);
@@ -4435,7 +4403,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['callSetId'],
         pathParams: ['callSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CallSet>(parameters, callback);
@@ -4569,7 +4537,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchCallSetsResponse>(parameters, callback);
@@ -4650,15 +4618,7 @@ export namespace genomics_v1 {
 
 
   export class Resource$Datasets {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4768,7 +4728,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -4885,7 +4845,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4999,7 +4959,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -5128,7 +5088,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5258,7 +5218,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDatasetsResponse>(parameters, callback);
@@ -5383,7 +5343,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -5512,7 +5472,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5647,7 +5607,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -5774,7 +5734,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -5936,15 +5896,7 @@ export namespace genomics_v1 {
 
 
   export class Resource$Operations {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6063,7 +6015,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6181,7 +6133,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6319,7 +6271,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -6402,16 +6354,9 @@ export namespace genomics_v1 {
 
 
   export class Resource$Readgroupsets {
-    root: Genomics;
     coveragebuckets: Resource$Readgroupsets$Coveragebuckets;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.coveragebuckets = new Resource$Readgroupsets$Coveragebuckets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.coveragebuckets = new Resource$Readgroupsets$Coveragebuckets();
     }
 
 
@@ -6524,7 +6469,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6655,7 +6600,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6772,7 +6717,7 @@ export namespace genomics_v1 {
         params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReadGroupSet>(parameters, callback);
@@ -6871,7 +6816,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     options = {};
                                                                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                                                                              const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                              const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                               } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -6991,7 +6936,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReadGroupSet>(parameters, callback);
@@ -7131,7 +7076,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchReadGroupSetsResponse>(
@@ -7237,15 +7182,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
   }
 
   export class Resource$Readgroupsets$Coveragebuckets {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7392,7 +7329,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCoverageBucketsResponse>(
@@ -7455,15 +7392,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
 
 
   export class Resource$Reads {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7601,7 +7530,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchReadsResponse>(parameters, callback);
@@ -7626,16 +7555,9 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
 
 
   export class Resource$References {
-    root: Genomics;
     bases: Resource$References$Bases;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.bases = new Resource$References$Bases(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.bases = new Resource$References$Bases();
     }
 
 
@@ -7745,7 +7667,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: ['referenceId'],
         pathParams: ['referenceId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Reference>(parameters, callback);
@@ -7882,7 +7804,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchReferencesResponse>(parameters, callback);
@@ -7918,15 +7840,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
   }
 
   export class Resource$References$Bases {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8056,7 +7970,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: ['referenceId'],
         pathParams: ['referenceId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBasesResponse>(parameters, callback);
@@ -8103,15 +8017,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
 
 
   export class Resource$Referencesets {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8222,7 +8128,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: ['referenceSetId'],
         pathParams: ['referenceSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReferenceSet>(parameters, callback);
@@ -8363,7 +8269,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchReferenceSetsResponse>(
@@ -8402,15 +8308,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
 
 
   export class Resource$Variants {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8520,7 +8418,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variant>(parameters, callback);
@@ -8634,7 +8532,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: ['variantId'],
         pathParams: ['variantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -8748,7 +8646,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         params,
         requiredParams: ['variantId'],
         pathParams: ['variantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variant>(parameters, callback);
@@ -8848,7 +8746,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     options = {};
                                                                                                                                                                                                                                                                          }
 
-                                                                                                                                                                                                                                                                         const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                         const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                          } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -8956,7 +8854,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -9082,7 +8980,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: ['variantId'],
         pathParams: ['variantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variant>(parameters, callback);
@@ -9216,7 +9114,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchVariantsResponse>(parameters, callback);
@@ -9321,15 +9219,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
 
 
   export class Resource$Variantsets {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9444,7 +9334,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VariantSet>(parameters, callback);
@@ -9562,7 +9452,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -9690,7 +9580,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -9806,7 +9696,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VariantSet>(parameters, callback);
@@ -9934,7 +9824,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VariantSet>(parameters, callback);
@@ -10073,7 +9963,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchVariantSetsResponse>(

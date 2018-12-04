@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace vision_v1p1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1p1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,24 +100,14 @@ export namespace vision_v1p1beta1 {
    * @param {object=} options Options for Vision
    */
   export class Vision {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     files: Resource$Files;
     images: Resource$Images;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.files = new Resource$Files(this);
-      this.images = new Resource$Images(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.files = new Resource$Files();
+      this.images = new Resource$Images();
     }
   }
 
@@ -4599,15 +4591,7 @@ export namespace vision_v1p1beta1 {
 
 
   export class Resource$Files {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4672,7 +4656,7 @@ export namespace vision_v1p1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4699,15 +4683,7 @@ export namespace vision_v1p1beta1 {
 
 
   export class Resource$Images {
-    root: Vision;
-    constructor(root: Vision) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4775,7 +4751,7 @@ export namespace vision_v1p1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<

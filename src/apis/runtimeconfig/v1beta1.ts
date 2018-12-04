@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace runtimeconfig_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,22 +101,12 @@ export namespace runtimeconfig_v1beta1 {
    * @param {object=} options Options for Runtimeconfig
    */
   export class Runtimeconfig {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -595,35 +587,21 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Runtimeconfig;
     configs: Resource$Projects$Configs;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.configs = new Resource$Projects$Configs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.configs = new Resource$Projects$Configs();
     }
   }
 
 
   export class Resource$Projects$Configs {
-    root: Runtimeconfig;
     operations: Resource$Projects$Configs$Operations;
     variables: Resource$Projects$Configs$Variables;
     waiters: Resource$Projects$Configs$Waiters;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Projects$Configs$Operations(root);
-      this.variables = new Resource$Projects$Configs$Variables(root);
-      this.waiters = new Resource$Projects$Configs$Waiters(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Projects$Configs$Operations();
+      this.variables = new Resource$Projects$Configs$Variables();
+      this.waiters = new Resource$Projects$Configs$Waiters();
     }
 
 
@@ -688,7 +666,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -754,7 +732,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -817,7 +795,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -885,7 +863,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -955,7 +933,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListConfigsResponse>(parameters, callback);
@@ -1024,7 +1002,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1103,7 +1081,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1173,7 +1151,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -1330,15 +1308,7 @@ export namespace runtimeconfig_v1beta1 {
   }
 
   export class Resource$Projects$Configs$Operations {
-    root: Runtimeconfig;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1396,7 +1366,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1477,7 +1447,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1521,15 +1491,7 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects$Configs$Variables {
-    root: Runtimeconfig;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1596,7 +1558,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1666,7 +1628,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1728,7 +1690,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1804,7 +1766,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
@@ -1885,7 +1847,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1953,7 +1915,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -2030,7 +1992,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -2191,15 +2153,7 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects$Configs$Waiters {
-    root: Runtimeconfig;
-    constructor(root: Runtimeconfig) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2267,7 +2221,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2333,7 +2287,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2395,7 +2349,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Waiter>(parameters, callback);
@@ -2465,7 +2419,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListWaitersResponse>(parameters, callback);
@@ -2546,7 +2500,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

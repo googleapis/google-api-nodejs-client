@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace websecurityscanner_v1alpha {
   export interface Options extends GlobalOptions {
     version: 'v1alpha';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace websecurityscanner_v1alpha {
    * @param {object=} options Options for Websecurityscanner
    */
   export class Websecurityscanner {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -556,31 +548,17 @@ export namespace websecurityscanner_v1alpha {
 
 
   export class Resource$Projects {
-    root: Websecurityscanner;
     scanConfigs: Resource$Projects$Scanconfigs;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.scanConfigs = new Resource$Projects$Scanconfigs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.scanConfigs = new Resource$Projects$Scanconfigs();
     }
   }
 
 
   export class Resource$Projects$Scanconfigs {
-    root: Websecurityscanner;
     scanRuns: Resource$Projects$Scanconfigs$Scanruns;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.scanRuns = new Resource$Projects$Scanconfigs$Scanruns(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.scanRuns = new Resource$Projects$Scanconfigs$Scanruns();
     }
 
 
@@ -643,7 +621,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -709,7 +687,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -772,7 +750,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -843,7 +821,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(parameters, callback);
@@ -913,7 +891,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -981,7 +959,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1105,22 +1083,15 @@ export namespace websecurityscanner_v1alpha {
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns {
-    root: Websecurityscanner;
     crawledUrls: Resource$Projects$Scanconfigs$Scanruns$Crawledurls;
     findings: Resource$Projects$Scanconfigs$Scanruns$Findings;
     findingTypeStats: Resource$Projects$Scanconfigs$Scanruns$Findingtypestats;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.crawledUrls =
-          new Resource$Projects$Scanconfigs$Scanruns$Crawledurls(root);
-      this.findings = new Resource$Projects$Scanconfigs$Scanruns$Findings(root);
+          new Resource$Projects$Scanconfigs$Scanruns$Crawledurls();
+      this.findings = new Resource$Projects$Scanconfigs$Scanruns$Findings();
       this.findingTypeStats =
-          new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats();
     }
 
 
@@ -1176,7 +1147,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1248,7 +1219,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListScanRunsResponse>(parameters, callback);
@@ -1316,7 +1287,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1386,15 +1357,7 @@ export namespace websecurityscanner_v1alpha {
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns$Crawledurls {
-    root: Websecurityscanner;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1460,7 +1423,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCrawledUrlsResponse>(parameters, callback);
@@ -1499,15 +1462,7 @@ export namespace websecurityscanner_v1alpha {
 
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findings {
-    root: Websecurityscanner;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1564,7 +1519,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Finding>(parameters, callback);
@@ -1638,7 +1593,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingsResponse>(parameters, callback);
@@ -1697,15 +1652,7 @@ export namespace websecurityscanner_v1alpha {
 
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findingtypestats {
-    root: Websecurityscanner;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1777,7 +1724,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingTypeStatsResponse>(

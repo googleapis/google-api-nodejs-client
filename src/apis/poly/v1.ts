@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace poly_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -100,24 +102,14 @@ export namespace poly_v1 {
    * @param {object=} options Options for Poly
    */
   export class Poly {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     assets: Resource$Assets;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.assets = new Resource$Assets(this);
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.assets = new Resource$Assets();
+      this.users = new Resource$Users();
     }
   }
 
@@ -494,15 +486,7 @@ export namespace poly_v1 {
 
 
   export class Resource$Assets {
-    root: Poly;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -557,7 +541,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Asset>(parameters, callback);
@@ -629,7 +613,7 @@ export namespace poly_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
@@ -704,32 +688,17 @@ export namespace poly_v1 {
 
 
   export class Resource$Users {
-    root: Poly;
     assets: Resource$Users$Assets;
     likedassets: Resource$Users$Likedassets;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.assets = new Resource$Users$Assets(root);
-      this.likedassets = new Resource$Users$Likedassets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.assets = new Resource$Users$Assets();
+      this.likedassets = new Resource$Users$Likedassets();
     }
   }
 
 
   export class Resource$Users$Assets {
-    root: Poly;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -797,7 +766,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback);
@@ -851,15 +820,7 @@ export namespace poly_v1 {
 
 
   export class Resource$Users$Likedassets {
-    root: Poly;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -926,7 +887,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback);

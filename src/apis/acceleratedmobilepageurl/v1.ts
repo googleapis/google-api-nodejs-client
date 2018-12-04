@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace acceleratedmobilepageurl_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace acceleratedmobilepageurl_v1 {
    * @param {object=} options Options for Acceleratedmobilepageurl
    */
   export class Acceleratedmobilepageurl {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     ampUrls: Resource$Ampurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.ampUrls = new Resource$Ampurls(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.ampUrls = new Resource$Ampurls();
     }
   }
 
@@ -185,15 +177,7 @@ export namespace acceleratedmobilepageurl_v1 {
 
 
   export class Resource$Ampurls {
-    root: Acceleratedmobilepageurl;
-    constructor(root: Acceleratedmobilepageurl) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -256,7 +240,7 @@ export namespace acceleratedmobilepageurl_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);

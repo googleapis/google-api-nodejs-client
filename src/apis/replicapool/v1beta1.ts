@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace replicapool_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,24 +82,14 @@ export namespace replicapool_v1beta1 {
    * @param {object=} options Options for Replicapool
    */
   export class Replicapool {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     pools: Resource$Pools;
     replicas: Resource$Replicas;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.pools = new Resource$Pools(this);
-      this.replicas = new Resource$Replicas(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.pools = new Resource$Pools();
+      this.replicas = new Resource$Replicas();
     }
   }
 
@@ -613,15 +605,7 @@ export namespace replicapool_v1beta1 {
 
 
   export class Resource$Pools {
-    root: Replicapool;
-    constructor(root: Replicapool) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -682,7 +666,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -747,7 +731,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -815,7 +799,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -885,7 +869,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PoolsListResponse>(parameters, callback);
@@ -956,7 +940,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -1026,7 +1010,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1177,15 +1161,7 @@ export namespace replicapool_v1beta1 {
 
 
   export class Resource$Replicas {
-    root: Replicapool;
-    constructor(root: Replicapool) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1248,7 +1224,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);
@@ -1314,7 +1290,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);
@@ -1386,7 +1362,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReplicasListResponse>(parameters, callback);
@@ -1455,7 +1431,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);

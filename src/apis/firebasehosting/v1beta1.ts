@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace firebasehosting_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace firebasehosting_v1beta1 {
    * @param {object=} options Options for Firebasehosting
    */
   export class Firebasehosting {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     sites: Resource$Sites;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.sites = new Resource$Sites(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.sites = new Resource$Sites();
     }
   }
 
@@ -554,20 +546,13 @@ export namespace firebasehosting_v1beta1 {
 
 
   export class Resource$Sites {
-    root: Firebasehosting;
     domains: Resource$Sites$Domains;
     releases: Resource$Sites$Releases;
     versions: Resource$Sites$Versions;
-    constructor(root: Firebasehosting) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.domains = new Resource$Sites$Domains(root);
-      this.releases = new Resource$Sites$Releases(root);
-      this.versions = new Resource$Sites$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.domains = new Resource$Sites$Domains();
+      this.releases = new Resource$Sites$Releases();
+      this.versions = new Resource$Sites$Versions();
     }
 
 
@@ -627,7 +612,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(parameters, callback);
@@ -696,7 +681,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(parameters, callback);
@@ -745,15 +730,7 @@ export namespace firebasehosting_v1beta1 {
   }
 
   export class Resource$Sites$Domains {
-    root: Firebasehosting;
-    constructor(root: Firebasehosting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -814,7 +791,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -880,7 +857,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -942,7 +919,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -1011,7 +988,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainsResponse>(parameters, callback);
@@ -1079,7 +1056,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -1173,15 +1150,7 @@ export namespace firebasehosting_v1beta1 {
 
 
   export class Resource$Sites$Releases {
-    root: Firebasehosting;
-    constructor(root: Firebasehosting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1244,7 +1213,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -1314,7 +1283,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
@@ -1375,16 +1344,9 @@ export namespace firebasehosting_v1beta1 {
 
 
   export class Resource$Sites$Versions {
-    root: Firebasehosting;
     files: Resource$Sites$Versions$Files;
-    constructor(root: Firebasehosting) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.files = new Resource$Sites$Versions$Files(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.files = new Resource$Sites$Versions$Files();
     }
 
 
@@ -1448,7 +1410,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1514,7 +1476,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1587,7 +1549,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1662,7 +1624,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PopulateVersionFilesResponse>(
@@ -1762,15 +1724,7 @@ export namespace firebasehosting_v1beta1 {
   }
 
   export class Resource$Sites$Versions$Files {
-    root: Firebasehosting;
-    constructor(root: Firebasehosting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1835,7 +1789,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionFilesResponse>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace manufacturers_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace manufacturers_v1 {
    * @param {object=} options Options for Manufacturers
    */
   export class Manufacturers {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
     }
   }
 
@@ -513,30 +505,15 @@ export namespace manufacturers_v1 {
 
 
   export class Resource$Accounts {
-    root: Manufacturers;
     products: Resource$Accounts$Products;
-    constructor(root: Manufacturers) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.products = new Resource$Accounts$Products(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.products = new Resource$Accounts$Products();
     }
   }
 
 
   export class Resource$Accounts$Products {
-    root: Manufacturers;
-    constructor(root: Manufacturers) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -597,7 +574,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -666,7 +643,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -738,7 +715,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -818,7 +795,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace androidpublisher_v1_1 {
   export interface Options extends GlobalOptions {
     version: 'v1_1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,24 +81,14 @@ export namespace androidpublisher_v1_1 {
    * @param {object=} options Options for Androidpublisher
    */
   export class Androidpublisher {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     inapppurchases: Resource$Inapppurchases;
     purchases: Resource$Purchases;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.inapppurchases = new Resource$Inapppurchases(this);
-      this.purchases = new Resource$Purchases(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.inapppurchases = new Resource$Inapppurchases();
+      this.purchases = new Resource$Purchases();
     }
   }
 
@@ -171,15 +163,7 @@ export namespace androidpublisher_v1_1 {
 
 
   export class Resource$Inapppurchases {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -239,7 +223,7 @@ export namespace androidpublisher_v1_1 {
         params,
         requiredParams: ['packageName', 'productId', 'token'],
         pathParams: ['packageName', 'productId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InappPurchase>(parameters, callback);
@@ -274,15 +258,7 @@ export namespace androidpublisher_v1_1 {
 
 
   export class Resource$Purchases {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -343,7 +319,7 @@ export namespace androidpublisher_v1_1 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -411,7 +387,7 @@ export namespace androidpublisher_v1_1 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
