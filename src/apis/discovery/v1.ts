@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace discovery_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,22 +82,12 @@ export namespace discovery_v1 {
    * @param {object=} options Options for Discovery
    */
   export class Discovery {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     apis: Resource$Apis;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.apis = new Resource$Apis(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.apis = new Resource$Apis();
     }
   }
 
@@ -436,15 +428,7 @@ export namespace discovery_v1 {
 
 
   export class Resource$Apis {
-    root: Discovery;
-    constructor(root: Discovery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -503,7 +487,7 @@ export namespace discovery_v1 {
         params,
         requiredParams: ['api', 'version'],
         pathParams: ['api', 'version'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RestDescription>(parameters, callback);
@@ -569,7 +553,7 @@ export namespace discovery_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DirectoryList>(parameters, callback);

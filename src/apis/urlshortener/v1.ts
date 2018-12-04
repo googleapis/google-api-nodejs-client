@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace urlshortener_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace urlshortener_v1 {
    * @param {object=} options Options for Urlshortener
    */
   export class Urlshortener {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     url: Resource$Url;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.url = new Resource$Url(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.url = new Resource$Url();
     }
   }
 
@@ -224,15 +216,7 @@ export namespace urlshortener_v1 {
 
 
   export class Resource$Url {
-    root: Urlshortener;
-    constructor(root: Urlshortener) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -287,7 +271,7 @@ export namespace urlshortener_v1 {
         params,
         requiredParams: ['shortUrl'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Url>(parameters, callback);
@@ -351,7 +335,7 @@ export namespace urlshortener_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Url>(parameters, callback);
@@ -417,7 +401,7 @@ export namespace urlshortener_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlHistory>(parameters, callback);

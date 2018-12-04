@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace pagespeedonline_v4 {
   export interface Options extends GlobalOptions {
     version: 'v4';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,22 +82,12 @@ export namespace pagespeedonline_v4 {
    * @param {object=} options Options for Pagespeedonline
    */
   export class Pagespeedonline {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     pagespeedapi: Resource$Pagespeedapi;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.pagespeedapi = new Resource$Pagespeedapi(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.pagespeedapi = new Resource$Pagespeedapi();
     }
   }
 
@@ -258,15 +250,7 @@ export namespace pagespeedonline_v4 {
 
 
   export class Resource$Pagespeedapi {
-    root: Pagespeedonline;
-    constructor(root: Pagespeedonline) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -343,7 +327,7 @@ export namespace pagespeedonline_v4 {
         params,
         requiredParams: ['url'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PagespeedApiPagespeedResponseV4>(

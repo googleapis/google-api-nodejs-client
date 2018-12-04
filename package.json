@@ -32,7 +32,6 @@
     "compile": "tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
-    "codecov": "nyc report && codecov -f .coverage/*.json",
     "fix": "eslint --fix '**/*.js' && gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",

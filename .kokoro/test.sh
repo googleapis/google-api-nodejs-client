@@ -22,5 +22,6 @@ cd $(dirname $0)/..
 
 npm install
 npm test
+./node_modules/nyc/bin/nyc.js report
 
 bash $KOKORO_GFILE_DIR/codecov.sh

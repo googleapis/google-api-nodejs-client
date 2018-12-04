@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace people_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,24 +98,14 @@ export namespace people_v1 {
    * @param {object=} options Options for People
    */
   export class People {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     contactGroups: Resource$Contactgroups;
     people: Resource$People;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.contactGroups = new Resource$Contactgroups(this);
-      this.people = new Resource$People(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.contactGroups = new Resource$Contactgroups();
+      this.people = new Resource$People();
     }
   }
 
@@ -1355,16 +1347,9 @@ export namespace people_v1 {
 
 
   export class Resource$Contactgroups {
-    root: People;
     members: Resource$Contactgroups$Members;
-    constructor(root: People) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.members = new Resource$Contactgroups$Members(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.members = new Resource$Contactgroups$Members();
     }
 
 
@@ -1433,7 +1418,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetContactGroupsResponse>(
@@ -1502,7 +1487,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1570,7 +1555,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1635,7 +1620,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1706,7 +1691,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListContactGroupsResponse>(
@@ -1776,7 +1761,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1890,15 +1875,7 @@ export namespace people_v1 {
   }
 
   export class Resource$Contactgroups$Members {
-    root: People;
-    constructor(root: People) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1969,7 +1946,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
@@ -2002,16 +1979,9 @@ export namespace people_v1 {
 
 
   export class Resource$People {
-    root: People;
     connections: Resource$People$Connections;
-    constructor(root: People) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.connections = new Resource$People$Connections(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.connections = new Resource$People$Connections();
     }
 
 
@@ -2073,7 +2043,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2139,7 +2109,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2204,7 +2174,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2276,7 +2246,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetPeopleResponse>(parameters, callback);
@@ -2352,7 +2322,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2489,15 +2459,7 @@ export namespace people_v1 {
   }
 
   export class Resource$People$Connections {
-    root: People;
-    constructor(root: People) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2567,7 +2529,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);

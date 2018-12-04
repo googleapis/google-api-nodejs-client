@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace gmail_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace gmail_v1 {
    * @param {object=} options Options for Gmail
    */
   export class Gmail {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.users = new Resource$Users();
     }
   }
 
@@ -962,26 +954,19 @@ export namespace gmail_v1 {
 
 
   export class Resource$Users {
-    root: Gmail;
     drafts: Resource$Users$Drafts;
     history: Resource$Users$History;
     labels: Resource$Users$Labels;
     messages: Resource$Users$Messages;
     settings: Resource$Users$Settings;
     threads: Resource$Users$Threads;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.drafts = new Resource$Users$Drafts(root);
-      this.history = new Resource$Users$History(root);
-      this.labels = new Resource$Users$Labels(root);
-      this.messages = new Resource$Users$Messages(root);
-      this.settings = new Resource$Users$Settings(root);
-      this.threads = new Resource$Users$Threads(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.drafts = new Resource$Users$Drafts();
+      this.history = new Resource$Users$History();
+      this.labels = new Resource$Users$Labels();
+      this.messages = new Resource$Users$Messages();
+      this.settings = new Resource$Users$Settings();
+      this.threads = new Resource$Users$Threads();
     }
 
 
@@ -1040,7 +1025,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -1103,7 +1088,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1170,7 +1155,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WatchResponse>(parameters, callback);
@@ -1223,15 +1208,7 @@ export namespace gmail_v1 {
   }
 
   export class Resource$Users$Drafts {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1296,7 +1273,7 @@ export namespace gmail_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Draft>(parameters, callback);
@@ -1363,7 +1340,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1426,7 +1403,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Draft>(parameters, callback);
@@ -1496,7 +1473,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDraftsResponse>(parameters, callback);
@@ -1568,7 +1545,7 @@ export namespace gmail_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1641,7 +1618,7 @@ export namespace gmail_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Draft>(parameters, callback);
@@ -1825,15 +1802,7 @@ export namespace gmail_v1 {
 
 
   export class Resource$Users$History {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1898,7 +1867,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListHistoryResponse>(parameters, callback);
@@ -1954,15 +1923,7 @@ export namespace gmail_v1 {
 
 
   export class Resource$Users$Labels {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2022,7 +1983,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2089,7 +2050,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2151,7 +2112,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2217,7 +2178,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLabelsResponse>(parameters, callback);
@@ -2284,7 +2245,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2352,7 +2313,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Label>(parameters, callback);
@@ -2473,16 +2434,9 @@ export namespace gmail_v1 {
 
 
   export class Resource$Users$Messages {
-    root: Gmail;
     attachments: Resource$Users$Messages$Attachments;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.attachments = new Resource$Users$Messages$Attachments(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.attachments = new Resource$Users$Messages$Attachments();
     }
 
 
@@ -2543,7 +2497,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2609,7 +2563,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2676,7 +2630,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2741,7 +2695,7 @@ export namespace gmail_v1 {
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -2790,7 +2744,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     options = {};
                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                       const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), requiredParams: ['userId'], pathParams: ['userId'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                       const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), requiredParams: ['userId'], pathParams: ['userId'], context}; if(callback) {
     createAPIRequest<Schema$Message>(parameters, callback);
                                                                                                                                                                                                                                                                        } else {
     return createAPIRequest<Schema$Message>(parameters);
@@ -2859,7 +2813,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -2931,7 +2885,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMessagesResponse>(parameters, callback);
@@ -2999,7 +2953,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -3071,7 +3025,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -3138,7 +3092,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -3205,7 +3159,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -3516,15 +3470,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
   }
 
   export class Resource$Users$Messages$Attachments {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3584,7 +3530,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'messageId', 'id'],
         pathParams: ['id', 'messageId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MessagePartBody>(parameters, callback);
@@ -3619,23 +3565,16 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
 
 
   export class Resource$Users$Settings {
-    root: Gmail;
     delegates: Resource$Users$Settings$Delegates;
     filters: Resource$Users$Settings$Filters;
     forwardingAddresses: Resource$Users$Settings$Forwardingaddresses;
     sendAs: Resource$Users$Settings$Sendas;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.delegates = new Resource$Users$Settings$Delegates(root);
-      this.filters = new Resource$Users$Settings$Filters(root);
+    constructor() {
+      this.delegates = new Resource$Users$Settings$Delegates();
+      this.filters = new Resource$Users$Settings$Filters();
       this.forwardingAddresses =
-          new Resource$Users$Settings$Forwardingaddresses(root);
-      this.sendAs = new Resource$Users$Settings$Sendas(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Users$Settings$Forwardingaddresses();
+      this.sendAs = new Resource$Users$Settings$Sendas();
     }
 
 
@@ -3698,7 +3637,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AutoForwarding>(parameters, callback);
@@ -3765,7 +3704,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImapSettings>(parameters, callback);
@@ -3832,7 +3771,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PopSettings>(parameters, callback);
@@ -3899,7 +3838,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VacationSettings>(parameters, callback);
@@ -3972,7 +3911,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AutoForwarding>(parameters, callback);
@@ -4040,7 +3979,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImapSettings>(parameters, callback);
@@ -4108,7 +4047,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PopSettings>(parameters, callback);
@@ -4177,7 +4116,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VacationSettings>(parameters, callback);
@@ -4313,15 +4252,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
   }
 
   export class Resource$Users$Settings$Delegates {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4391,7 +4322,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Delegate>(parameters, callback);
@@ -4463,7 +4394,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'delegateEmail'],
         pathParams: ['delegateEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4531,7 +4462,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'delegateEmail'],
         pathParams: ['delegateEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Delegate>(parameters, callback);
@@ -4601,7 +4532,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDelegatesResponse>(parameters, callback);
@@ -4680,15 +4611,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
 
 
   export class Resource$Users$Settings$Filters {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4748,7 +4671,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -4814,7 +4737,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4877,7 +4800,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -4944,7 +4867,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFiltersResponse>(parameters, callback);
@@ -5022,15 +4945,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
 
 
   export class Resource$Users$Settings$Forwardingaddresses {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5099,7 +5014,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
@@ -5172,7 +5087,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'forwardingEmail'],
         pathParams: ['forwardingEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5239,7 +5154,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'forwardingEmail'],
         pathParams: ['forwardingEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingAddress>(parameters, callback);
@@ -5315,7 +5230,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListForwardingAddressesResponse>(
@@ -5395,16 +5310,9 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
 
 
   export class Resource$Users$Settings$Sendas {
-    root: Gmail;
     smimeInfo: Resource$Users$Settings$Sendas$Smimeinfo;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.smimeInfo = new Resource$Users$Settings$Sendas$Smimeinfo(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.smimeInfo = new Resource$Users$Settings$Sendas$Smimeinfo();
     }
 
 
@@ -5473,7 +5381,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5542,7 +5450,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5607,7 +5515,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5676,7 +5584,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSendAsResponse>(parameters, callback);
@@ -5749,7 +5657,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5821,7 +5729,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SendAs>(parameters, callback);
@@ -5892,7 +5800,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6030,15 +5938,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
   }
 
   export class Resource$Users$Settings$Sendas$Smimeinfo {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6102,7 +6002,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail', 'id'],
         pathParams: ['id', 'sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6169,7 +6069,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail', 'id'],
         pathParams: ['id', 'sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SmimeInfo>(parameters, callback);
@@ -6242,7 +6142,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SmimeInfo>(parameters, callback);
@@ -6313,7 +6213,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail'],
         pathParams: ['sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSmimeInfoResponse>(parameters, callback);
@@ -6384,7 +6284,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'sendAsEmail', 'id'],
         pathParams: ['id', 'sendAsEmail', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6505,15 +6405,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
 
 
   export class Resource$Users$Threads {
-    root: Gmail;
-    constructor(root: Gmail) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6573,7 +6465,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6638,7 +6530,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);
@@ -6709,7 +6601,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListThreadsResponse>(parameters, callback);
@@ -6778,7 +6670,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);
@@ -6845,7 +6737,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);
@@ -6912,7 +6804,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         params,
         requiredParams: ['userId', 'id'],
         pathParams: ['id', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Thread>(parameters, callback);

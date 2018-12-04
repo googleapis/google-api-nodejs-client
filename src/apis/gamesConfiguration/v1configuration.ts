@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace gamesConfiguration_v1configuration {
   export interface Options extends GlobalOptions {
     version: 'v1configuration';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,28 +81,16 @@ export namespace gamesConfiguration_v1configuration {
    * @param {object=} options Options for Gamesconfiguration
    */
   export class Gamesconfiguration {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     achievementConfigurations: Resource$Achievementconfigurations;
     imageConfigurations: Resource$Imageconfigurations;
     leaderboardConfigurations: Resource$Leaderboardconfigurations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.achievementConfigurations =
-          new Resource$Achievementconfigurations(this);
-      this.imageConfigurations = new Resource$Imageconfigurations(this);
-      this.leaderboardConfigurations =
-          new Resource$Leaderboardconfigurations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.achievementConfigurations = new Resource$Achievementconfigurations();
+      this.imageConfigurations = new Resource$Imageconfigurations();
+      this.leaderboardConfigurations = new Resource$Leaderboardconfigurations();
     }
   }
 
@@ -401,15 +391,7 @@ export namespace gamesConfiguration_v1configuration {
 
 
   export class Resource$Achievementconfigurations {
-    root: Gamesconfiguration;
-    constructor(root: Gamesconfiguration) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -468,7 +450,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -534,7 +516,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -606,7 +588,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -687,7 +669,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfigurationListResponse>(
@@ -761,7 +743,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -833,7 +815,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -943,15 +925,7 @@ export namespace gamesConfiguration_v1configuration {
 
 
   export class Resource$Imageconfigurations {
-    root: Gamesconfiguration;
-    constructor(root: Gamesconfiguration) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1021,7 +995,7 @@ export namespace gamesConfiguration_v1configuration {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['resourceId', 'imageType'],
         pathParams: ['imageType', 'resourceId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImageConfiguration>(parameters, callback);
@@ -1066,15 +1040,7 @@ export namespace gamesConfiguration_v1configuration {
 
 
   export class Resource$Leaderboardconfigurations {
-    root: Gamesconfiguration;
-    constructor(root: Gamesconfiguration) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1133,7 +1099,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1199,7 +1165,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
@@ -1271,7 +1237,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
@@ -1352,7 +1318,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
@@ -1426,7 +1392,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
@@ -1498,7 +1464,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);

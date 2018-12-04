@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace accesscontextmanager_v1beta {
   export interface Options extends GlobalOptions {
     version: 'v1beta';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,24 +99,14 @@ export namespace accesscontextmanager_v1beta {
    * @param {object=} options Options for Accesscontextmanager
    */
   export class Accesscontextmanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accessPolicies: Resource$Accesspolicies;
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accessPolicies = new Resource$Accesspolicies(this);
-      this.operations = new Resource$Operations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accessPolicies = new Resource$Accesspolicies();
+      this.operations = new Resource$Operations();
     }
   }
 
@@ -536,19 +528,11 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Accesspolicies {
-    root: Accesscontextmanager;
     accessLevels: Resource$Accesspolicies$Accesslevels;
     servicePerimeters: Resource$Accesspolicies$Serviceperimeters;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.accessLevels = new Resource$Accesspolicies$Accesslevels(root);
-      this.servicePerimeters =
-          new Resource$Accesspolicies$Serviceperimeters(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.accessLevels = new Resource$Accesspolicies$Accesslevels();
+      this.servicePerimeters = new Resource$Accesspolicies$Serviceperimeters();
     }
 
 
@@ -614,7 +598,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -683,7 +667,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -746,7 +730,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccessPolicy>(parameters, callback);
@@ -819,7 +803,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessPoliciesResponse>(
@@ -892,7 +876,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -987,15 +971,7 @@ export namespace accesscontextmanager_v1beta {
   }
 
   export class Resource$Accesspolicies$Accesslevels {
-    root: Accesscontextmanager;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1060,7 +1036,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1129,7 +1105,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1193,7 +1169,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccessLevel>(parameters, callback);
@@ -1265,7 +1241,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessLevelsResponse>(parameters, callback);
@@ -1337,7 +1313,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1454,15 +1430,7 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Accesspolicies$Serviceperimeters {
-    root: Accesscontextmanager;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1528,7 +1496,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1598,7 +1566,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1661,7 +1629,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServicePerimeter>(parameters, callback);
@@ -1737,7 +1705,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicePerimetersResponse>(
@@ -1813,7 +1781,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1916,15 +1884,7 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Operations {
-    root: Accesscontextmanager;
-    constructor(root: Accesscontextmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1981,7 +1941,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

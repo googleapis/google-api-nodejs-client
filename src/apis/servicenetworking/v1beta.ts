@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace servicenetworking_v1beta {
   export interface Options extends GlobalOptions {
     version: 'v1beta';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,24 +99,14 @@ export namespace servicenetworking_v1beta {
    * @param {object=} options Options for Servicenetworking
    */
   export class Servicenetworking {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.services = new Resource$Services();
     }
   }
 
@@ -2097,15 +2089,7 @@ export namespace servicenetworking_v1beta {
 
 
   export class Resource$Operations {
-    root: Servicenetworking;
-    constructor(root: Servicenetworking) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2162,7 +2146,7 @@ export namespace servicenetworking_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2186,16 +2170,9 @@ export namespace servicenetworking_v1beta {
 
 
   export class Resource$Services {
-    root: Servicenetworking;
     connections: Resource$Services$Connections;
-    constructor(root: Servicenetworking) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.connections = new Resource$Services$Connections(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.connections = new Resource$Services$Connections();
     }
 
 
@@ -2265,7 +2242,7 @@ export namespace servicenetworking_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2334,7 +2311,7 @@ export namespace servicenetworking_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2397,15 +2374,7 @@ export namespace servicenetworking_v1beta {
   }
 
   export class Resource$Services$Connections {
-    root: Servicenetworking;
-    constructor(root: Servicenetworking) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2474,7 +2443,7 @@ export namespace servicenetworking_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2545,7 +2514,7 @@ export namespace servicenetworking_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);

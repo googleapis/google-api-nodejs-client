@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace kgsearch_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace kgsearch_v1 {
    * @param {object=} options Options for Kgsearch
    */
   export class Kgsearch {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     entities: Resource$Entities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.entities = new Resource$Entities(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.entities = new Resource$Entities();
     }
   }
 
@@ -137,15 +129,7 @@ export namespace kgsearch_v1 {
 
 
   export class Resource$Entities {
-    root: Kgsearch;
-    constructor(root: Kgsearch) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -211,7 +195,7 @@ export namespace kgsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(parameters, callback);

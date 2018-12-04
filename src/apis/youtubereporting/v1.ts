@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace youtubereporting_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,26 +99,16 @@ export namespace youtubereporting_v1 {
    * @param {object=} options Options for Youtubereporting
    */
   export class Youtubereporting {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     jobs: Resource$Jobs;
     media: Resource$Media;
     reportTypes: Resource$Reporttypes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.jobs = new Resource$Jobs(this);
-      this.media = new Resource$Media(this);
-      this.reportTypes = new Resource$Reporttypes(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.jobs = new Resource$Jobs();
+      this.media = new Resource$Media();
+      this.reportTypes = new Resource$Reporttypes();
     }
   }
 
@@ -598,16 +590,9 @@ export namespace youtubereporting_v1 {
 
 
   export class Resource$Jobs {
-    root: Youtubereporting;
     reports: Resource$Jobs$Reports;
-    constructor(root: Youtubereporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.reports = new Resource$Jobs$Reports(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.reports = new Resource$Jobs$Reports();
     }
 
 
@@ -666,7 +651,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -731,7 +716,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -793,7 +778,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -861,7 +846,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -951,15 +936,7 @@ export namespace youtubereporting_v1 {
   }
 
   export class Resource$Jobs$Reports {
-    root: Youtubereporting;
-    constructor(root: Youtubereporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1016,7 +993,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId', 'reportId'],
         pathParams: ['jobId', 'reportId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1090,7 +1067,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
@@ -1166,15 +1143,7 @@ export namespace youtubereporting_v1 {
 
 
   export class Resource$Media {
-    root: Youtubereporting;
-    constructor(root: Youtubereporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1234,7 +1203,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GdataMedia>(parameters, callback);
@@ -1258,15 +1227,7 @@ export namespace youtubereporting_v1 {
 
 
   export class Resource$Reporttypes {
-    root: Youtubereporting;
-    constructor(root: Youtubereporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1328,7 +1289,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReportTypesResponse>(parameters, callback);

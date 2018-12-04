@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace testing_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,27 +99,16 @@ export namespace testing_v1 {
    * @param {object=} options Options for Testing
    */
   export class Testing {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     applicationDetailService: Resource$Applicationdetailservice;
     projects: Resource$Projects;
     testEnvironmentCatalog: Resource$Testenvironmentcatalog;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.applicationDetailService =
-          new Resource$Applicationdetailservice(this);
-      this.projects = new Resource$Projects(this);
-      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.applicationDetailService = new Resource$Applicationdetailservice();
+      this.projects = new Resource$Projects();
+      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog();
     }
   }
 
@@ -1402,15 +1393,7 @@ export namespace testing_v1 {
 
 
   export class Resource$Applicationdetailservice {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1473,7 +1456,7 @@ export namespace testing_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
@@ -1499,30 +1482,15 @@ export namespace testing_v1 {
 
 
   export class Resource$Projects {
-    root: Testing;
     testMatrices: Resource$Projects$Testmatrices;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.testMatrices = new Resource$Projects$Testmatrices(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.testMatrices = new Resource$Projects$Testmatrices();
     }
   }
 
 
   export class Resource$Projects$Testmatrices {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1592,7 +1560,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
@@ -1667,7 +1635,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1735,7 +1703,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1804,15 +1772,7 @@ export namespace testing_v1 {
 
 
   export class Resource$Testenvironmentcatalog {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1873,7 +1833,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['environmentType'],
         pathParams: ['environmentType'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);

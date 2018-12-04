@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace servicecontrol_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace servicecontrol_v1 {
    * @param {object=} options Options for Servicecontrol
    */
   export class Servicecontrol {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.services = new Resource$Services();
     }
   }
 
@@ -1435,15 +1427,7 @@ export namespace servicecontrol_v1 {
 
 
   export class Resource$Services {
-    root: Servicecontrol;
-    constructor(root: Servicecontrol) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1514,7 +1498,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback);
@@ -1591,7 +1575,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(parameters, callback);
@@ -1668,7 +1652,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReportResponse>(parameters, callback);

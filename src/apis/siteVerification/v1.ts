@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace siteVerification_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace siteVerification_v1 {
    * @param {object=} options Options for Siteverification
    */
   export class Siteverification {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     webResource: Resource$Webresource;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.webResource = new Resource$Webresource(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.webResource = new Resource$Webresource();
     }
   }
 
@@ -150,15 +142,7 @@ export namespace siteVerification_v1 {
 
 
   export class Resource$Webresource {
-    root: Siteverification;
-    constructor(root: Siteverification) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -216,7 +200,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -286,7 +270,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -361,7 +345,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
@@ -440,7 +424,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['verificationMethod'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -511,7 +495,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
@@ -589,7 +573,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -668,7 +652,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(

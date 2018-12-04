@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace dataproc_v1beta2 {
   export interface Options extends GlobalOptions {
     version: 'v1beta2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace dataproc_v1beta2 {
    * @param {object=} options Options for Dataproc
    */
   export class Dataproc {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -1852,48 +1844,26 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects {
-    root: Dataproc;
     locations: Resource$Projects$Locations;
     regions: Resource$Projects$Regions;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-      this.regions = new Resource$Projects$Regions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
+      this.regions = new Resource$Projects$Regions();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Dataproc;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.workflowTemplates =
-          new Resource$Projects$Locations$Workflowtemplates(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Workflowtemplates();
     }
   }
 
 
   export class Resource$Projects$Locations$Workflowtemplates {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1956,7 +1926,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -2025,7 +1995,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2090,7 +2060,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -2162,7 +2132,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2241,7 +2211,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2325,7 +2295,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2401,7 +2371,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -2476,7 +2446,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2559,7 +2529,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2630,7 +2600,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -2845,37 +2815,22 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions {
-    root: Dataproc;
     clusters: Resource$Projects$Regions$Clusters;
     jobs: Resource$Projects$Regions$Jobs;
     operations: Resource$Projects$Regions$Operations;
     workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.clusters = new Resource$Projects$Regions$Clusters(root);
-      this.jobs = new Resource$Projects$Regions$Jobs(root);
-      this.operations = new Resource$Projects$Regions$Operations(root);
+    constructor() {
+      this.clusters = new Resource$Projects$Regions$Clusters();
+      this.jobs = new Resource$Projects$Regions$Jobs();
+      this.operations = new Resource$Projects$Regions$Operations();
       this.workflowTemplates =
-          new Resource$Projects$Regions$Workflowtemplates(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Regions$Workflowtemplates();
     }
   }
 
 
   export class Resource$Projects$Regions$Clusters {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2939,7 +2894,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3012,7 +2967,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3085,7 +3040,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3151,7 +3106,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -3219,7 +3174,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3292,7 +3247,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -3367,7 +3322,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3436,7 +3391,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3516,7 +3471,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3809,15 +3764,7 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Jobs {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3883,7 +3830,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3954,7 +3901,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4020,7 +3967,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4087,7 +4034,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4161,7 +4108,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -4233,7 +4180,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4301,7 +4248,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4371,7 +4318,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4450,7 +4397,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4685,15 +4632,7 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Operations {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4760,7 +4699,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4828,7 +4767,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4892,7 +4831,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4960,7 +4899,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5038,7 +4977,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -5107,7 +5046,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5187,7 +5126,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -5310,15 +5249,7 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Workflowtemplates {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5381,7 +5312,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -5450,7 +5381,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5515,7 +5446,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -5585,7 +5516,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5661,7 +5592,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5745,7 +5676,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5820,7 +5751,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -5893,7 +5824,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5976,7 +5907,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -6047,7 +5978,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);

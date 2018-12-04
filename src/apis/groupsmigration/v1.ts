@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace groupsmigration_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace groupsmigration_v1 {
    * @param {object=} options Options for Groupsmigration
    */
   export class Groupsmigration {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     archive: Resource$Archive;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.archive = new Resource$Archive(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.archive = new Resource$Archive();
     }
   }
 
@@ -114,15 +106,7 @@ export namespace groupsmigration_v1 {
 
 
   export class Resource$Archive {
-    root: Groupsmigration;
-    constructor(root: Groupsmigration) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -184,7 +168,7 @@ export namespace groupsmigration_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace safebrowsing_v4 {
   export interface Options extends GlobalOptions {
     version: 'v4';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,10 +99,6 @@ export namespace safebrowsing_v4 {
    * @param {object=} options Options for Safebrowsing
    */
   export class Safebrowsing {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     encodedFullHashes: Resource$Encodedfullhashes;
     encodedUpdates: Resource$Encodedupdates;
     fullHashes: Resource$Fullhashes;
@@ -110,21 +108,15 @@ export namespace safebrowsing_v4 {
     threatMatches: Resource$Threatmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.encodedFullHashes = new Resource$Encodedfullhashes(this);
-      this.encodedUpdates = new Resource$Encodedupdates(this);
-      this.fullHashes = new Resource$Fullhashes(this);
-      this.threatHits = new Resource$Threathits(this);
-      this.threatLists = new Resource$Threatlists(this);
-      this.threatListUpdates = new Resource$Threatlistupdates(this);
-      this.threatMatches = new Resource$Threatmatches(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.encodedFullHashes = new Resource$Encodedfullhashes();
+      this.encodedUpdates = new Resource$Encodedupdates();
+      this.fullHashes = new Resource$Fullhashes();
+      this.threatHits = new Resource$Threathits();
+      this.threatLists = new Resource$Threatlists();
+      this.threatListUpdates = new Resource$Threatlistupdates();
+      this.threatMatches = new Resource$Threatmatches();
     }
   }
 
@@ -627,15 +619,7 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Encodedfullhashes {
-    root: Safebrowsing;
-    constructor(root: Safebrowsing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -693,7 +677,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: ['encodedRequest'],
         pathParams: ['encodedRequest'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
@@ -727,15 +711,7 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Encodedupdates {
-    root: Safebrowsing;
-    constructor(root: Safebrowsing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -796,7 +772,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: ['encodedRequest'],
         pathParams: ['encodedRequest'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -832,15 +808,7 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Fullhashes {
-    root: Safebrowsing;
-    constructor(root: Safebrowsing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -899,7 +867,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
@@ -924,15 +892,7 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threathits {
-    root: Safebrowsing;
-    constructor(root: Safebrowsing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -990,7 +950,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1016,15 +976,7 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threatlists {
-    root: Safebrowsing;
-    constructor(root: Safebrowsing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1081,7 +1033,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListThreatListsResponse>(parameters, callback);
@@ -1100,15 +1052,7 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threatlistupdates {
-    root: Safebrowsing;
-    constructor(root: Safebrowsing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1175,7 +1119,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -1203,15 +1147,7 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threatmatches {
-    root: Safebrowsing;
-    constructor(root: Safebrowsing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1272,7 +1208,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FindThreatMatchesResponse>(

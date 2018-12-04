@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace analytics_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,10 +81,6 @@ export namespace analytics_v3 {
    * @param {object=} options Options for Analytics
    */
   export class Analytics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     data: Resource$Data;
     management: Resource$Management;
     metadata: Resource$Metadata;
@@ -90,19 +88,13 @@ export namespace analytics_v3 {
     userDeletion: Resource$Userdeletion;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.data = new Resource$Data(this);
-      this.management = new Resource$Management(this);
-      this.metadata = new Resource$Metadata(this);
-      this.provisioning = new Resource$Provisioning(this);
-      this.userDeletion = new Resource$Userdeletion(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.data = new Resource$Data();
+      this.management = new Resource$Management();
+      this.metadata = new Resource$Metadata();
+      this.provisioning = new Resource$Provisioning();
+      this.userDeletion = new Resource$Userdeletion();
     }
   }
 
@@ -2801,34 +2793,19 @@ export namespace analytics_v3 {
 
 
   export class Resource$Data {
-    root: Analytics;
     ga: Resource$Data$Ga;
     mcf: Resource$Data$Mcf;
     realtime: Resource$Data$Realtime;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.ga = new Resource$Data$Ga(root);
-      this.mcf = new Resource$Data$Mcf(root);
-      this.realtime = new Resource$Data$Realtime(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.ga = new Resource$Data$Ga();
+      this.mcf = new Resource$Data$Mcf();
+      this.realtime = new Resource$Data$Realtime();
     }
   }
 
 
   export class Resource$Data$Ga {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2894,7 +2871,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GaData>(parameters, callback);
@@ -2977,15 +2954,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Data$Mcf {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3048,7 +3017,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$McfData>(parameters, callback);
@@ -3119,15 +3088,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Data$Realtime {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3188,7 +3149,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['ids', 'metrics'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RealtimeData>(parameters, callback);
@@ -3239,7 +3200,6 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management {
-    root: Analytics;
     accounts: Resource$Management$Accounts;
     accountSummaries: Resource$Management$Accountsummaries;
     accountUserLinks: Resource$Management$Accountuserlinks;
@@ -3260,51 +3220,35 @@ export namespace analytics_v3 {
     webproperties: Resource$Management$Webproperties;
     webPropertyAdWordsLinks: Resource$Management$Webpropertyadwordslinks;
     webpropertyUserLinks: Resource$Management$Webpropertyuserlinks;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.accounts = new Resource$Management$Accounts(root);
-      this.accountSummaries = new Resource$Management$Accountsummaries(root);
-      this.accountUserLinks = new Resource$Management$Accountuserlinks(root);
-      this.clientId = new Resource$Management$Clientid(root);
-      this.customDataSources = new Resource$Management$Customdatasources(root);
-      this.customDimensions = new Resource$Management$Customdimensions(root);
-      this.customMetrics = new Resource$Management$Custommetrics(root);
-      this.experiments = new Resource$Management$Experiments(root);
-      this.filters = new Resource$Management$Filters(root);
-      this.goals = new Resource$Management$Goals(root);
-      this.profileFilterLinks =
-          new Resource$Management$Profilefilterlinks(root);
-      this.profiles = new Resource$Management$Profiles(root);
-      this.profileUserLinks = new Resource$Management$Profileuserlinks(root);
-      this.remarketingAudience =
-          new Resource$Management$Remarketingaudience(root);
-      this.segments = new Resource$Management$Segments(root);
-      this.unsampledReports = new Resource$Management$Unsampledreports(root);
-      this.uploads = new Resource$Management$Uploads(root);
-      this.webproperties = new Resource$Management$Webproperties(root);
+    constructor() {
+      this.accounts = new Resource$Management$Accounts();
+      this.accountSummaries = new Resource$Management$Accountsummaries();
+      this.accountUserLinks = new Resource$Management$Accountuserlinks();
+      this.clientId = new Resource$Management$Clientid();
+      this.customDataSources = new Resource$Management$Customdatasources();
+      this.customDimensions = new Resource$Management$Customdimensions();
+      this.customMetrics = new Resource$Management$Custommetrics();
+      this.experiments = new Resource$Management$Experiments();
+      this.filters = new Resource$Management$Filters();
+      this.goals = new Resource$Management$Goals();
+      this.profileFilterLinks = new Resource$Management$Profilefilterlinks();
+      this.profiles = new Resource$Management$Profiles();
+      this.profileUserLinks = new Resource$Management$Profileuserlinks();
+      this.remarketingAudience = new Resource$Management$Remarketingaudience();
+      this.segments = new Resource$Management$Segments();
+      this.unsampledReports = new Resource$Management$Unsampledreports();
+      this.uploads = new Resource$Management$Uploads();
+      this.webproperties = new Resource$Management$Webproperties();
       this.webPropertyAdWordsLinks =
-          new Resource$Management$Webpropertyadwordslinks(root);
+          new Resource$Management$Webpropertyadwordslinks();
       this.webpropertyUserLinks =
-          new Resource$Management$Webpropertyuserlinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Management$Webpropertyuserlinks();
     }
   }
 
 
   export class Resource$Management$Accounts {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3364,7 +3308,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -3394,15 +3338,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Accountsummaries {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3464,7 +3400,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountSummaries>(parameters, callback);
@@ -3495,15 +3431,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Accountuserlinks {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3564,7 +3492,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'linkId'],
         pathParams: ['accountId', 'linkId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3634,7 +3562,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -3705,7 +3633,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -3776,7 +3704,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'linkId'],
         pathParams: ['accountId', 'linkId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -3864,15 +3792,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Clientid {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3934,7 +3854,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HashClientIdResponse>(parameters, callback);
@@ -3960,15 +3880,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Customdatasources {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4033,7 +3945,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDataSources>(parameters, callback);
@@ -4071,15 +3983,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Customdimensions {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4139,7 +4043,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4210,7 +4114,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4282,7 +4186,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimensions>(parameters, callback);
@@ -4356,7 +4260,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4429,7 +4333,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4568,15 +4472,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Custommetrics {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4636,7 +4532,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4707,7 +4603,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4779,7 +4675,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetrics>(parameters, callback);
@@ -4853,7 +4749,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4926,7 +4822,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -5065,15 +4961,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Experiments {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5137,7 +5025,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5206,7 +5094,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5278,7 +5166,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5351,7 +5239,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Experiments>(parameters, callback);
@@ -5426,7 +5314,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5500,7 +5388,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5673,15 +5561,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Filters {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5743,7 +5623,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5808,7 +5688,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5876,7 +5756,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5945,7 +5825,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filters>(parameters, callback);
@@ -6015,7 +5895,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -6085,7 +5965,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -6210,15 +6090,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Goals {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6278,7 +6150,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6349,7 +6221,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6421,7 +6293,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Goals>(parameters, callback);
@@ -6493,7 +6365,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6565,7 +6437,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6719,15 +6591,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Profilefilterlinks {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6790,7 +6654,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6858,7 +6722,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -6930,7 +6794,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -7003,7 +6867,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLinks>(parameters, callback);
@@ -7077,7 +6941,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -7150,7 +7014,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -7326,15 +7190,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Profiles {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7396,7 +7252,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7462,7 +7318,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7532,7 +7388,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7603,7 +7459,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profiles>(parameters, callback);
@@ -7675,7 +7531,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7746,7 +7602,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7899,15 +7755,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Profileuserlinks {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7970,7 +7818,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8042,7 +7890,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -8115,7 +7963,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -8189,7 +8037,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -8313,15 +8161,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Remarketingaudience {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8384,7 +8224,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8451,7 +8291,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8523,7 +8363,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8597,7 +8437,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudiences>(parameters, callback);
@@ -8670,7 +8510,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8743,7 +8583,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8896,15 +8736,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Segments {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8964,7 +8796,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Segments>(parameters, callback);
@@ -8994,15 +8826,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Unsampledreports {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9067,7 +8891,7 @@ export namespace analytics_v3 {
             ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
         pathParams:
             ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9137,7 +8961,7 @@ export namespace analytics_v3 {
             ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
         pathParams:
             ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(parameters, callback);
@@ -9209,7 +9033,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(parameters, callback);
@@ -9282,7 +9106,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReports>(parameters, callback);
@@ -9400,15 +9224,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Uploads {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9471,7 +9287,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9540,7 +9356,7 @@ export namespace analytics_v3 {
             ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
         pathParams:
             ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Upload>(parameters, callback);
@@ -9612,7 +9428,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Uploads>(parameters, callback);
@@ -9689,7 +9505,7 @@ export namespace analytics_v3 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Upload>(parameters, callback);
@@ -9816,15 +9632,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Webproperties {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9883,7 +9691,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -9955,7 +9763,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -10026,7 +9834,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperties>(parameters, callback);
@@ -10098,7 +9906,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -10169,7 +9977,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -10280,15 +10088,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Webpropertyadwordslinks {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -10353,7 +10153,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10422,7 +10222,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10495,7 +10295,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10568,7 +10368,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLinks>(parameters, callback);
@@ -10643,7 +10443,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10718,7 +10518,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10868,15 +10668,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Webpropertyuserlinks {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -10939,7 +10731,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11011,7 +10803,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -11083,7 +10875,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -11156,7 +10948,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'webPropertyId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -11263,30 +11055,15 @@ export namespace analytics_v3 {
 
 
   export class Resource$Metadata {
-    root: Analytics;
     columns: Resource$Metadata$Columns;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.columns = new Resource$Metadata$Columns(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.columns = new Resource$Metadata$Columns();
     }
   }
 
 
   export class Resource$Metadata$Columns {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11345,7 +11122,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['reportType'],
         pathParams: ['reportType'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Columns>(parameters, callback);
@@ -11372,15 +11149,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Provisioning {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11441,7 +11210,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTicket>(parameters, callback);
@@ -11509,7 +11278,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTreeResponse>(parameters, callback);
@@ -11548,31 +11317,16 @@ export namespace analytics_v3 {
 
 
   export class Resource$Userdeletion {
-    root: Analytics;
     userDeletionRequest: Resource$Userdeletion$Userdeletionrequest;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.userDeletionRequest =
-          new Resource$Userdeletion$Userdeletionrequest(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Userdeletion$Userdeletionrequest();
     }
   }
 
 
   export class Resource$Userdeletion$Userdeletionrequest {
-    root: Analytics;
-    constructor(root: Analytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11634,7 +11388,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserDeletionRequest>(parameters, callback);

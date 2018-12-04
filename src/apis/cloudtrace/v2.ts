@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudtrace_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -100,22 +102,12 @@ export namespace cloudtrace_v2 {
    * @param {object=} options Options for Cloudtrace
    */
   export class Cloudtrace {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -534,31 +526,17 @@ export namespace cloudtrace_v2 {
 
 
   export class Resource$Projects {
-    root: Cloudtrace;
     traces: Resource$Projects$Traces;
-    constructor(root: Cloudtrace) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.traces = new Resource$Projects$Traces(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.traces = new Resource$Projects$Traces();
     }
   }
 
 
   export class Resource$Projects$Traces {
-    root: Cloudtrace;
     spans: Resource$Projects$Traces$Spans;
-    constructor(root: Cloudtrace) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.spans = new Resource$Projects$Traces$Spans(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.spans = new Resource$Projects$Traces$Spans();
     }
 
 
@@ -620,7 +598,7 @@ export namespace cloudtrace_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -650,15 +628,7 @@ export namespace cloudtrace_v2 {
   }
 
   export class Resource$Projects$Traces$Spans {
-    root: Cloudtrace;
-    constructor(root: Cloudtrace) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -717,7 +687,7 @@ export namespace cloudtrace_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Span>(parameters, callback);

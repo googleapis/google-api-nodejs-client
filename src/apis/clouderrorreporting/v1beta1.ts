@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace clouderrorreporting_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,22 +100,12 @@ export namespace clouderrorreporting_v1beta1 {
    * @param {object=} options Options for Clouderrorreporting
    */
   export class Clouderrorreporting {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -479,20 +471,13 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Clouderrorreporting;
     events: Resource$Projects$Events;
     groups: Resource$Projects$Groups;
     groupStats: Resource$Projects$Groupstats;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.events = new Resource$Projects$Events(root);
-      this.groups = new Resource$Projects$Groups(root);
-      this.groupStats = new Resource$Projects$Groupstats(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.events = new Resource$Projects$Events();
+      this.groups = new Resource$Projects$Groups();
+      this.groupStats = new Resource$Projects$Groupstats();
     }
 
 
@@ -556,7 +541,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback);
@@ -583,15 +568,7 @@ export namespace clouderrorreporting_v1beta1 {
   }
 
   export class Resource$Projects$Events {
-    root: Clouderrorreporting;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -659,7 +636,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListEventsResponse>(parameters, callback);
@@ -735,7 +712,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReportErrorEventResponse>(parameters, callback);
@@ -814,15 +791,7 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects$Groups {
-    root: Clouderrorreporting;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -879,7 +848,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['groupName'],
         pathParams: ['groupName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -948,7 +917,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -997,15 +966,7 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects$Groupstats {
-    root: Clouderrorreporting;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1078,7 +1039,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback);

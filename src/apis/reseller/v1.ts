@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace reseller_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,26 +81,16 @@ export namespace reseller_v1 {
    * @param {object=} options Options for Reseller
    */
   export class Reseller {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     customers: Resource$Customers;
     resellernotify: Resource$Resellernotify;
     subscriptions: Resource$Subscriptions;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.customers = new Resource$Customers(this);
-      this.resellernotify = new Resource$Resellernotify(this);
-      this.subscriptions = new Resource$Subscriptions(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.customers = new Resource$Customers();
+      this.resellernotify = new Resource$Resellernotify();
+      this.subscriptions = new Resource$Subscriptions();
     }
   }
 
@@ -481,15 +473,7 @@ export namespace reseller_v1 {
 
 
   export class Resource$Customers {
-    root: Reseller;
-    constructor(root: Reseller) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -543,7 +527,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -608,7 +592,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -674,7 +658,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -739,7 +723,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -825,15 +809,7 @@ export namespace reseller_v1 {
 
 
   export class Resource$Resellernotify {
-    root: Reseller;
-    constructor(root: Reseller) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -903,7 +879,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
@@ -974,7 +950,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -1043,7 +1019,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -1087,15 +1063,7 @@ export namespace reseller_v1 {
 
 
   export class Resource$Subscriptions {
-    root: Reseller;
-    constructor(root: Reseller) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1158,7 +1126,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1231,7 +1199,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1304,7 +1272,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1375,7 +1343,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1444,7 +1412,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1510,7 +1478,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1580,7 +1548,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1652,7 +1620,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscriptions>(parameters, callback);
@@ -1723,7 +1691,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1793,7 +1761,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);

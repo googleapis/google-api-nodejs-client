@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudresourcemanager_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,24 +99,14 @@ export namespace cloudresourcemanager_v2 {
    * @param {object=} options Options for Cloudresourcemanager
    */
   export class Cloudresourcemanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     folders: Resource$Folders;
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.folders = new Resource$Folders(this);
-      this.operations = new Resource$Operations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.folders = new Resource$Folders();
+      this.operations = new Resource$Operations();
     }
   }
 
@@ -588,15 +580,7 @@ export namespace cloudresourcemanager_v2 {
 
 
   export class Resource$Folders {
-    root: Cloudresourcemanager;
-    constructor(root: Cloudresourcemanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -672,7 +656,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -741,7 +725,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -805,7 +789,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -877,7 +861,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -950,7 +934,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -1028,7 +1012,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1104,7 +1088,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1175,7 +1159,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchFoldersResponse>(parameters, callback);
@@ -1247,7 +1231,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1325,7 +1309,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1399,7 +1383,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1604,15 +1588,7 @@ export namespace cloudresourcemanager_v2 {
 
 
   export class Resource$Operations {
-    root: Cloudresourcemanager;
-    constructor(root: Cloudresourcemanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1669,7 +1645,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

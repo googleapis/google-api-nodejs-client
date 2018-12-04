@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace adexchangebuyer_v1_3 {
   export interface Options extends GlobalOptions {
     version: 'v1_3';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,10 +83,6 @@ export namespace adexchangebuyer_v1_3 {
    * @param {object=} options Options for Adexchangebuyer
    */
   export class Adexchangebuyer {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
     billingInfo: Resource$Billinginfo;
     budget: Resource$Budget;
@@ -94,21 +92,15 @@ export namespace adexchangebuyer_v1_3 {
     pretargetingConfig: Resource$Pretargetingconfig;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-      this.billingInfo = new Resource$Billinginfo(this);
-      this.budget = new Resource$Budget(this);
-      this.creatives = new Resource$Creatives(this);
-      this.directDeals = new Resource$Directdeals(this);
-      this.performanceReport = new Resource$Performancereport(this);
-      this.pretargetingConfig = new Resource$Pretargetingconfig(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
+      this.billingInfo = new Resource$Billinginfo();
+      this.budget = new Resource$Budget();
+      this.creatives = new Resource$Creatives();
+      this.directDeals = new Resource$Directdeals();
+      this.performanceReport = new Resource$Performancereport();
+      this.pretargetingConfig = new Resource$Pretargetingconfig();
     }
   }
 
@@ -720,15 +712,7 @@ export namespace adexchangebuyer_v1_3 {
 
 
   export class Resource$Accounts {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -782,7 +766,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -846,7 +830,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsList>(parameters, callback);
@@ -911,7 +895,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -976,7 +960,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1038,15 +1022,7 @@ export namespace adexchangebuyer_v1_3 {
 
 
   export class Resource$Billinginfo {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1102,7 +1078,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingInfo>(parameters, callback);
@@ -1167,7 +1143,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingInfoList>(parameters, callback);
@@ -1197,15 +1173,7 @@ export namespace adexchangebuyer_v1_3 {
 
 
   export class Resource$Budget {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1262,7 +1230,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Budget>(parameters, callback);
@@ -1331,7 +1299,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Budget>(parameters, callback);
@@ -1399,7 +1367,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Budget>(parameters, callback);
@@ -1467,15 +1435,7 @@ export namespace adexchangebuyer_v1_3 {
 
 
   export class Resource$Creatives {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1533,7 +1493,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'buyerCreativeId'],
         pathParams: ['accountId', 'buyerCreativeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -1597,7 +1557,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -1667,7 +1627,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreativesList>(parameters, callback);
@@ -1738,15 +1698,7 @@ export namespace adexchangebuyer_v1_3 {
 
 
   export class Resource$Directdeals {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1801,7 +1753,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DirectDeal>(parameters, callback);
@@ -1865,7 +1817,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DirectDealsList>(parameters, callback);
@@ -1895,15 +1847,7 @@ export namespace adexchangebuyer_v1_3 {
 
 
   export class Resource$Performancereport {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1968,7 +1912,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'endDateTime', 'startDateTime'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PerformanceReportList>(parameters, callback);
@@ -2012,15 +1956,7 @@ export namespace adexchangebuyer_v1_3 {
 
 
   export class Resource$Pretargetingconfig {
-    root: Adexchangebuyer;
-    constructor(root: Adexchangebuyer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2081,7 +2017,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2147,7 +2083,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
@@ -2216,7 +2152,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
@@ -2286,7 +2222,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfigList>(parameters, callback);
@@ -2358,7 +2294,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);
@@ -2429,7 +2365,7 @@ export namespace adexchangebuyer_v1_3 {
         params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(parameters, callback);

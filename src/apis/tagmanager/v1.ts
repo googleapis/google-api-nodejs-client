@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace tagmanager_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace tagmanager_v1 {
    * @param {object=} options Options for Tagmanager
    */
   export class Tagmanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
     }
   }
 
@@ -1046,18 +1038,11 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts {
-    root: Tagmanager;
     containers: Resource$Accounts$Containers;
     permissions: Resource$Accounts$Permissions;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.containers = new Resource$Accounts$Containers(root);
-      this.permissions = new Resource$Accounts$Permissions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.containers = new Resource$Accounts$Containers();
+      this.permissions = new Resource$Accounts$Permissions();
     }
 
 
@@ -1112,7 +1097,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1177,7 +1162,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccountsResponse>(parameters, callback);
@@ -1243,7 +1228,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1293,7 +1278,6 @@ export namespace tagmanager_v1 {
   }
 
   export class Resource$Accounts$Containers {
-    root: Tagmanager;
     environments: Resource$Accounts$Containers$Environments;
     folders: Resource$Accounts$Containers$Folders;
     move_folders: Resource$Accounts$Containers$Move_folders;
@@ -1303,22 +1287,16 @@ export namespace tagmanager_v1 {
     triggers: Resource$Accounts$Containers$Triggers;
     variables: Resource$Accounts$Containers$Variables;
     versions: Resource$Accounts$Containers$Versions;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.environments = new Resource$Accounts$Containers$Environments(root);
-      this.folders = new Resource$Accounts$Containers$Folders(root);
-      this.move_folders = new Resource$Accounts$Containers$Move_folders(root);
+    constructor() {
+      this.environments = new Resource$Accounts$Containers$Environments();
+      this.folders = new Resource$Accounts$Containers$Folders();
+      this.move_folders = new Resource$Accounts$Containers$Move_folders();
       this.reauthorize_environments =
-          new Resource$Accounts$Containers$Reauthorize_environments(root);
-      this.tags = new Resource$Accounts$Containers$Tags(root);
-      this.triggers = new Resource$Accounts$Containers$Triggers(root);
-      this.variables = new Resource$Accounts$Containers$Variables(root);
-      this.versions = new Resource$Accounts$Containers$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Accounts$Containers$Reauthorize_environments();
+      this.tags = new Resource$Accounts$Containers$Tags();
+      this.triggers = new Resource$Accounts$Containers$Triggers();
+      this.variables = new Resource$Accounts$Containers$Variables();
+      this.versions = new Resource$Accounts$Containers$Versions();
     }
 
 
@@ -1380,7 +1358,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1448,7 +1426,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1514,7 +1492,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1582,7 +1560,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListContainersResponse>(parameters, callback);
@@ -1654,7 +1632,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1753,15 +1731,7 @@ export namespace tagmanager_v1 {
   }
 
   export class Resource$Accounts$Containers$Environments {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1826,7 +1796,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -1896,7 +1866,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1963,7 +1933,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2035,7 +2005,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
@@ -2109,7 +2079,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2183,7 +2153,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2333,16 +2303,9 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Folders {
-    root: Tagmanager;
     entities: Resource$Accounts$Containers$Folders$Entities;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.entities = new Resource$Accounts$Containers$Folders$Entities(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.entities = new Resource$Accounts$Containers$Folders$Entities();
     }
 
 
@@ -2406,7 +2369,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -2475,7 +2438,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2541,7 +2504,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -2611,7 +2574,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -2683,7 +2646,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -2802,15 +2765,7 @@ export namespace tagmanager_v1 {
   }
 
   export class Resource$Accounts$Containers$Folders$Entities {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2876,7 +2831,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FolderEntities>(parameters, callback);
@@ -2910,15 +2865,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Move_folders {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2985,7 +2932,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3035,15 +2982,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Reauthorize_environments {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3113,7 +3052,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -3151,15 +3090,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Tags {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3222,7 +3153,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -3291,7 +3222,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'tagId'],
         pathParams: ['accountId', 'containerId', 'tagId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3357,7 +3288,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'tagId'],
         pathParams: ['accountId', 'containerId', 'tagId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -3427,7 +3358,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTagsResponse>(parameters, callback);
@@ -3499,7 +3430,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'tagId'],
         pathParams: ['accountId', 'containerId', 'tagId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -3619,15 +3550,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Triggers {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3690,7 +3613,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -3759,7 +3682,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'triggerId'],
         pathParams: ['accountId', 'containerId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3825,7 +3748,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'triggerId'],
         pathParams: ['accountId', 'containerId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -3896,7 +3819,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(parameters, callback);
@@ -3968,7 +3891,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'triggerId'],
         pathParams: ['accountId', 'containerId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -4088,15 +4011,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Variables {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4159,7 +4074,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -4228,7 +4143,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'variableId'],
         pathParams: ['accountId', 'containerId', 'variableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4294,7 +4209,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'variableId'],
         pathParams: ['accountId', 'containerId', 'variableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -4365,7 +4280,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
@@ -4437,7 +4352,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'variableId'],
         pathParams: ['accountId', 'containerId', 'variableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -4557,15 +4472,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Versions {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4635,7 +4542,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateContainerVersionResponse>(
@@ -4706,7 +4613,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4773,7 +4680,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -4850,7 +4757,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListContainerVersionsResponse>(
@@ -4931,7 +4838,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublishContainerVersionResponse>(
@@ -5007,7 +4914,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -5079,7 +4986,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -5152,7 +5059,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -5347,15 +5254,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Permissions {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5416,7 +5315,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserAccess>(parameters, callback);
@@ -5485,7 +5384,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'permissionId'],
         pathParams: ['accountId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5551,7 +5450,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'permissionId'],
         pathParams: ['accountId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserAccess>(parameters, callback);
@@ -5620,7 +5519,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccountUsersResponse>(parameters, callback);
@@ -5691,7 +5590,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'permissionId'],
         pathParams: ['accountId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserAccess>(parameters, callback);

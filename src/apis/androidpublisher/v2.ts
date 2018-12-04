@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace androidpublisher_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,10 +81,6 @@ export namespace androidpublisher_v2 {
    * @param {object=} options Options for Androidpublisher
    */
   export class Androidpublisher {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     edits: Resource$Edits;
     inappproducts: Resource$Inappproducts;
     orders: Resource$Orders;
@@ -90,19 +88,13 @@ export namespace androidpublisher_v2 {
     reviews: Resource$Reviews;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.edits = new Resource$Edits(this);
-      this.inappproducts = new Resource$Inappproducts(this);
-      this.orders = new Resource$Orders(this);
-      this.purchases = new Resource$Purchases(this);
-      this.reviews = new Resource$Reviews(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.edits = new Resource$Edits();
+      this.inappproducts = new Resource$Inappproducts();
+      this.orders = new Resource$Orders();
+      this.purchases = new Resource$Purchases();
+      this.reviews = new Resource$Reviews();
     }
   }
 
@@ -997,7 +989,6 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits {
-    root: Androidpublisher;
     apklistings: Resource$Edits$Apklistings;
     apks: Resource$Edits$Apks;
     bundles: Resource$Edits$Bundles;
@@ -1008,23 +999,17 @@ export namespace androidpublisher_v2 {
     listings: Resource$Edits$Listings;
     testers: Resource$Edits$Testers;
     tracks: Resource$Edits$Tracks;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.apklistings = new Resource$Edits$Apklistings(root);
-      this.apks = new Resource$Edits$Apks(root);
-      this.bundles = new Resource$Edits$Bundles(root);
-      this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles(root);
-      this.details = new Resource$Edits$Details(root);
-      this.expansionfiles = new Resource$Edits$Expansionfiles(root);
-      this.images = new Resource$Edits$Images(root);
-      this.listings = new Resource$Edits$Listings(root);
-      this.testers = new Resource$Edits$Testers(root);
-      this.tracks = new Resource$Edits$Tracks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.apklistings = new Resource$Edits$Apklistings();
+      this.apks = new Resource$Edits$Apks();
+      this.bundles = new Resource$Edits$Bundles();
+      this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles();
+      this.details = new Resource$Edits$Details();
+      this.expansionfiles = new Resource$Edits$Expansionfiles();
+      this.images = new Resource$Edits$Images();
+      this.listings = new Resource$Edits$Listings();
+      this.testers = new Resource$Edits$Testers();
+      this.tracks = new Resource$Edits$Tracks();
     }
 
 
@@ -1085,7 +1070,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1153,7 +1138,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1219,7 +1204,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1286,7 +1271,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1354,7 +1339,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1447,15 +1432,7 @@ export namespace androidpublisher_v2 {
   }
 
   export class Resource$Edits$Apklistings {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1519,7 +1496,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1589,7 +1566,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode'],
         pathParams: ['apkVersionCode', 'editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1658,7 +1635,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListing>(parameters, callback);
@@ -1730,7 +1707,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode'],
         pathParams: ['apkVersionCode', 'editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListingsListResponse>(parameters, callback);
@@ -1804,7 +1781,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListing>(parameters, callback);
@@ -1878,7 +1855,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListing>(parameters, callback);
@@ -2057,15 +2034,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Apks {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2139,7 +2108,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
@@ -2208,7 +2177,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApksListResponse>(parameters, callback);
@@ -2282,7 +2251,7 @@ export namespace androidpublisher_v2 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Apk>(parameters, callback);
@@ -2366,15 +2335,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Bundles {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2435,7 +2396,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BundlesListResponse>(parameters, callback);
@@ -2517,7 +2478,7 @@ export namespace androidpublisher_v2 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bundle>(parameters, callback);
@@ -2586,15 +2547,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Deobfuscationfiles {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2680,7 +2633,7 @@ export namespace androidpublisher_v2 {
         pathParams: [
           'apkVersionCode', 'deobfuscationFileType', 'editId', 'packageName'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
@@ -2736,15 +2689,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Details {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2804,7 +2749,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2876,7 +2821,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2947,7 +2892,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -3021,15 +2966,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Expansionfiles {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3092,7 +3029,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -3169,7 +3106,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -3245,7 +3182,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -3331,7 +3268,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFilesUploadResponse>(
@@ -3476,15 +3413,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Images {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3550,7 +3479,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'language', 'imageType', 'imageId'],
         pathParams:
             ['editId', 'imageId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3624,7 +3553,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters, callback);
@@ -3695,7 +3624,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImagesListResponse>(parameters, callback);
@@ -3776,7 +3705,7 @@ export namespace androidpublisher_v2 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImagesUploadResponse>(parameters, callback);
@@ -3918,15 +3847,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Listings {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3988,7 +3909,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4056,7 +3977,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4122,7 +4043,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -4192,7 +4113,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListingsListResponse>(parameters, callback);
@@ -4264,7 +4185,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -4335,7 +4256,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -4480,15 +4401,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Testers {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4546,7 +4459,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -4616,7 +4529,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -4686,7 +4599,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -4775,15 +4688,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Tracks {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4842,7 +4747,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -4911,7 +4816,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TracksListResponse>(parameters, callback);
@@ -4984,7 +4889,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -5057,7 +4962,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -5160,15 +5065,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Inappproducts {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5229,7 +5126,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5295,7 +5192,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5366,7 +5263,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5440,7 +5337,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InappproductsListResponse>(
@@ -5514,7 +5411,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5586,7 +5483,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5736,15 +5633,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Orders {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5804,7 +5693,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'orderId'],
         pathParams: ['orderId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5841,34 +5730,19 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Purchases {
-    root: Androidpublisher;
     products: Resource$Purchases$Products;
     subscriptions: Resource$Purchases$Subscriptions;
     voidedpurchases: Resource$Purchases$Voidedpurchases;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.products = new Resource$Purchases$Products(root);
-      this.subscriptions = new Resource$Purchases$Subscriptions(root);
-      this.voidedpurchases = new Resource$Purchases$Voidedpurchases(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.products = new Resource$Purchases$Products();
+      this.subscriptions = new Resource$Purchases$Subscriptions();
+      this.voidedpurchases = new Resource$Purchases$Voidedpurchases();
     }
   }
 
 
   export class Resource$Purchases$Products {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5928,7 +5802,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'productId', 'token'],
         pathParams: ['packageName', 'productId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductPurchase>(parameters, callback);
@@ -5963,15 +5837,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Purchases$Subscriptions {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6034,7 +5900,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6116,7 +5982,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
@@ -6187,7 +6053,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
@@ -6257,7 +6123,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6328,7 +6194,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6456,15 +6322,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Purchases$Voidedpurchases {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6536,7 +6394,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VoidedPurchasesListResponse>(
@@ -6594,15 +6452,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Reviews {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6660,7 +6510,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Review>(parameters, callback);
@@ -6731,7 +6581,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReviewsListResponse>(parameters, callback);
@@ -6801,7 +6651,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReviewsReplyResponse>(parameters, callback);

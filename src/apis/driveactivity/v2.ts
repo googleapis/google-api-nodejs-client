@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace driveactivity_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace driveactivity_v2 {
    * @param {object=} options Options for Driveactivity
    */
   export class Driveactivity {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     activity: Resource$Activity;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.activity = new Resource$Activity(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.activity = new Resource$Activity();
     }
   }
 
@@ -848,15 +840,7 @@ export namespace driveactivity_v2 {
 
 
   export class Resource$Activity {
-    root: Driveactivity;
-    constructor(root: Driveactivity) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -919,7 +903,7 @@ export namespace driveactivity_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryDriveActivityResponse>(

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace oauth2_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,22 +81,12 @@ export namespace oauth2_v1 {
    * @param {object=} options Options for Oauth2
    */
   export class Oauth2 {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     userinfo: Resource$Userinfo;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.userinfo = new Resource$Userinfo(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.userinfo = new Resource$Userinfo();
     }
 
 
@@ -150,7 +142,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$X509>(parameters, callback);
@@ -215,7 +207,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Raw>(parameters, callback);
@@ -277,7 +269,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: ['robotEmail'],
         pathParams: ['robotEmail'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Jwk>(parameters, callback);
@@ -341,7 +333,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: ['robotEmail'],
         pathParams: ['robotEmail'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Raw>(parameters, callback);
@@ -405,7 +397,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: ['robotEmail'],
         pathParams: ['robotEmail'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$X509>(parameters, callback);
@@ -471,7 +463,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tokeninfo>(parameters, callback);
@@ -665,16 +657,9 @@ export namespace oauth2_v1 {
   }
 
   export class Resource$Userinfo {
-    root: Oauth2;
     v2: Resource$Userinfo$V2;
-    constructor(root: Oauth2) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.v2 = new Resource$Userinfo$V2(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.v2 = new Resource$Userinfo$V2();
     }
 
 
@@ -729,7 +714,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);
@@ -747,30 +732,15 @@ export namespace oauth2_v1 {
   }
 
   export class Resource$Userinfo$V2 {
-    root: Oauth2;
     me: Resource$Userinfo$V2$Me;
-    constructor(root: Oauth2) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.me = new Resource$Userinfo$V2$Me(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.me = new Resource$Userinfo$V2$Me();
     }
   }
 
 
   export class Resource$Userinfo$V2$Me {
-    root: Oauth2;
-    constructor(root: Oauth2) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -824,7 +794,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);

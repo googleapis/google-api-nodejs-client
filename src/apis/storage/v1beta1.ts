@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace storage_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,28 +81,18 @@ export namespace storage_v1beta1 {
    * @param {object=} options Options for Storage
    */
   export class Storage {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     bucketAccessControls: Resource$Bucketaccesscontrols;
     buckets: Resource$Buckets;
     objectAccessControls: Resource$Objectaccesscontrols;
     objects: Resource$Objects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.bucketAccessControls = new Resource$Bucketaccesscontrols(this);
-      this.buckets = new Resource$Buckets(this);
-      this.objectAccessControls = new Resource$Objectaccesscontrols(this);
-      this.objects = new Resource$Objects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.bucketAccessControls = new Resource$Bucketaccesscontrols();
+      this.buckets = new Resource$Buckets();
+      this.objectAccessControls = new Resource$Objectaccesscontrols();
+      this.objects = new Resource$Objects();
     }
   }
 
@@ -391,15 +383,7 @@ export namespace storage_v1beta1 {
 
 
   export class Resource$Bucketaccesscontrols {
-    root: Storage;
-    constructor(root: Storage) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -459,7 +443,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -524,7 +508,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -592,7 +576,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -660,7 +644,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControls>(parameters, callback);
@@ -730,7 +714,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -799,7 +783,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -919,15 +903,7 @@ export namespace storage_v1beta1 {
 
 
   export class Resource$Buckets {
-    root: Storage;
-    constructor(root: Storage) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -983,7 +959,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1045,7 +1021,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1110,7 +1086,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1177,7 +1153,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Buckets>(parameters, callback);
@@ -1243,7 +1219,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1309,7 +1285,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -1430,15 +1406,7 @@ export namespace storage_v1beta1 {
 
 
   export class Resource$Objectaccesscontrols {
-    root: Storage;
-    constructor(root: Storage) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1500,7 +1468,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1567,7 +1535,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -1636,7 +1604,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -1705,7 +1673,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControls>(parameters, callback);
@@ -1777,7 +1745,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -1848,7 +1816,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -1992,15 +1960,7 @@ export namespace storage_v1beta1 {
 
 
   export class Resource$Objects {
-    root: Storage;
-    constructor(root: Storage) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2057,7 +2017,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2120,7 +2080,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -2192,7 +2152,7 @@ export namespace storage_v1beta1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -2261,7 +2221,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Objects>(parameters, callback);
@@ -2329,7 +2289,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -2396,7 +2356,7 @@ export namespace storage_v1beta1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace civicinfo_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,26 +82,16 @@ export namespace civicinfo_v2 {
    * @param {object=} options Options for Civicinfo
    */
   export class Civicinfo {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     divisions: Resource$Divisions;
     elections: Resource$Elections;
     representatives: Resource$Representatives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.divisions = new Resource$Divisions(this);
-      this.elections = new Resource$Elections(this);
-      this.representatives = new Resource$Representatives(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.divisions = new Resource$Divisions();
+      this.elections = new Resource$Elections();
+      this.representatives = new Resource$Representatives();
     }
   }
 
@@ -994,15 +986,7 @@ export namespace civicinfo_v2 {
 
 
   export class Resource$Divisions {
-    root: Civicinfo;
-    constructor(root: Civicinfo) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1062,7 +1046,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback);
@@ -1095,15 +1079,7 @@ export namespace civicinfo_v2 {
 
 
   export class Resource$Elections {
-    root: Civicinfo;
-    constructor(root: Civicinfo) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1165,7 +1141,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback);
@@ -1238,7 +1214,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: ['address'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VoterInfoResponse>(parameters, callback);
@@ -1299,15 +1275,7 @@ export namespace civicinfo_v2 {
 
 
   export class Resource$Representatives {
-    root: Civicinfo;
-    constructor(root: Civicinfo) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1380,7 +1348,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoResponse>(
@@ -1457,7 +1425,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: ['ocdId'],
         pathParams: ['ocdId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback);

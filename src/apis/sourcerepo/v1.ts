@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace sourcerepo_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,22 +98,12 @@ export namespace sourcerepo_v1 {
    * @param {object=} options Options for Sourcerepo
    */
   export class Sourcerepo {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -473,16 +465,9 @@ export namespace sourcerepo_v1 {
 
 
   export class Resource$Projects {
-    root: Sourcerepo;
     repos: Resource$Projects$Repos;
-    constructor(root: Sourcerepo) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.repos = new Resource$Projects$Repos(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.repos = new Resource$Projects$Repos();
     }
 
 
@@ -543,7 +528,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -611,7 +596,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -654,15 +639,7 @@ export namespace sourcerepo_v1 {
   }
 
   export class Resource$Projects$Repos {
-    root: Sourcerepo;
-    constructor(root: Sourcerepo) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -723,7 +700,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -788,7 +765,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -849,7 +826,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -916,7 +893,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -985,7 +962,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReposResponse>(parameters, callback);
@@ -1051,7 +1028,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -1119,7 +1096,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1195,7 +1172,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

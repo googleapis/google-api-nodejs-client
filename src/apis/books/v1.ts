@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace books_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -79,10 +81,6 @@ export namespace books_v1 {
    * @param {object=} options Options for Books
    */
   export class Books {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     bookshelves: Resource$Bookshelves;
     cloudloading: Resource$Cloudloading;
     dictionary: Resource$Dictionary;
@@ -98,27 +96,21 @@ export namespace books_v1 {
     volumes: Resource$Volumes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.bookshelves = new Resource$Bookshelves(this);
-      this.cloudloading = new Resource$Cloudloading(this);
-      this.dictionary = new Resource$Dictionary(this);
-      this.familysharing = new Resource$Familysharing(this);
-      this.layers = new Resource$Layers(this);
-      this.myconfig = new Resource$Myconfig(this);
-      this.mylibrary = new Resource$Mylibrary(this);
-      this.notification = new Resource$Notification(this);
-      this.onboarding = new Resource$Onboarding(this);
-      this.personalizedstream = new Resource$Personalizedstream(this);
-      this.promooffer = new Resource$Promooffer(this);
-      this.series = new Resource$Series(this);
-      this.volumes = new Resource$Volumes(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.bookshelves = new Resource$Bookshelves();
+      this.cloudloading = new Resource$Cloudloading();
+      this.dictionary = new Resource$Dictionary();
+      this.familysharing = new Resource$Familysharing();
+      this.layers = new Resource$Layers();
+      this.myconfig = new Resource$Myconfig();
+      this.mylibrary = new Resource$Mylibrary();
+      this.notification = new Resource$Notification();
+      this.onboarding = new Resource$Onboarding();
+      this.personalizedstream = new Resource$Personalizedstream();
+      this.promooffer = new Resource$Promooffer();
+      this.series = new Resource$Series();
+      this.volumes = new Resource$Volumes();
     }
   }
 
@@ -1156,16 +1148,9 @@ export namespace books_v1 {
 
 
   export class Resource$Bookshelves {
-    root: Books;
     volumes: Resource$Bookshelves$Volumes;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.volumes = new Resource$Bookshelves$Volumes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.volumes = new Resource$Bookshelves$Volumes();
     }
 
 
@@ -1223,7 +1208,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -1289,7 +1274,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -1335,15 +1320,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Bookshelves$Volumes {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1408,7 +1385,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -1454,15 +1431,7 @@ export namespace books_v1 {
 
 
   export class Resource$Cloudloading {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1526,7 +1495,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
@@ -1592,7 +1561,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1661,7 +1630,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
@@ -1725,15 +1694,7 @@ export namespace books_v1 {
 
 
   export class Resource$Dictionary {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1792,7 +1753,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -1817,15 +1778,7 @@ export namespace books_v1 {
 
 
   export class Resource$Familysharing {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1885,7 +1838,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FamilyInfo>(parameters, callback);
@@ -1953,7 +1906,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2021,7 +1974,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2086,18 +2039,11 @@ export namespace books_v1 {
 
 
   export class Resource$Layers {
-    root: Books;
     annotationData: Resource$Layers$Annotationdata;
     volumeAnnotations: Resource$Layers$Volumeannotations;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.annotationData = new Resource$Layers$Annotationdata(root);
-      this.volumeAnnotations = new Resource$Layers$Volumeannotations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.annotationData = new Resource$Layers$Annotationdata();
+      this.volumeAnnotations = new Resource$Layers$Volumeannotations();
     }
 
 
@@ -2157,7 +2103,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'summaryId'],
         pathParams: ['summaryId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Layersummary>(parameters, callback);
@@ -2226,7 +2172,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Layersummaries>(parameters, callback);
@@ -2288,15 +2234,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Layers$Annotationdata {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2364,7 +2302,7 @@ export namespace books_v1 {
         requiredParams:
             ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
         pathParams: ['annotationDataId', 'layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotationdata>(parameters, callback);
@@ -2444,7 +2382,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotationsdata>(parameters, callback);
@@ -2574,15 +2512,7 @@ export namespace books_v1 {
 
 
   export class Resource$Layers$Volumeannotations {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2644,7 +2574,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'annotationId'],
         pathParams: ['annotationId', 'layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotation>(parameters, callback);
@@ -2725,7 +2655,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotations>(parameters, callback);
@@ -2840,15 +2770,7 @@ export namespace books_v1 {
 
 
   export class Resource$Myconfig {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2907,7 +2829,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -2978,7 +2900,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeIds', 'cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadAccesses>(parameters, callback);
@@ -3050,7 +2972,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RequestAccess>(parameters, callback);
@@ -3124,7 +3046,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['source', 'nonce', 'cpksver'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -3194,7 +3116,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -3324,34 +3246,19 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary {
-    root: Books;
     annotations: Resource$Mylibrary$Annotations;
     bookshelves: Resource$Mylibrary$Bookshelves;
     readingpositions: Resource$Mylibrary$Readingpositions;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.annotations = new Resource$Mylibrary$Annotations(root);
-      this.bookshelves = new Resource$Mylibrary$Bookshelves(root);
-      this.readingpositions = new Resource$Mylibrary$Readingpositions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.annotations = new Resource$Mylibrary$Annotations();
+      this.bookshelves = new Resource$Mylibrary$Bookshelves();
+      this.readingpositions = new Resource$Mylibrary$Readingpositions();
     }
   }
 
 
   export class Resource$Mylibrary$Annotations {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3410,7 +3317,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3481,7 +3388,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3557,7 +3464,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotations>(parameters, callback);
@@ -3625,7 +3532,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['layerIds', 'volumeId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationsSummary>(parameters, callback);
@@ -3694,7 +3601,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3841,16 +3748,9 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary$Bookshelves {
-    root: Books;
     volumes: Resource$Mylibrary$Bookshelves$Volumes;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.volumes = new Resource$Mylibrary$Bookshelves$Volumes(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.volumes = new Resource$Mylibrary$Bookshelves$Volumes();
     }
 
 
@@ -3913,7 +3813,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3980,7 +3880,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4045,7 +3945,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -4113,7 +4013,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -4182,7 +4082,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId', 'volumePosition'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4251,7 +4151,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4380,15 +4280,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Mylibrary$Bookshelves$Volumes {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4454,7 +4346,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -4508,15 +4400,7 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary$Readingpositions {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4574,7 +4458,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReadingPosition>(parameters, callback);
@@ -4648,7 +4532,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'timestamp', 'position'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4718,15 +4602,7 @@ export namespace books_v1 {
 
 
   export class Resource$Notification {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4783,7 +4659,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['notification_id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -4816,15 +4692,7 @@ export namespace books_v1 {
 
 
   export class Resource$Onboarding {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4883,7 +4751,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Category>(parameters, callback);
@@ -4953,7 +4821,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volume2>(parameters, callback);
@@ -5009,15 +4877,7 @@ export namespace books_v1 {
 
 
   export class Resource$Personalizedstream {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5075,7 +4935,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Discoveryclusters>(parameters, callback);
@@ -5110,15 +4970,7 @@ export namespace books_v1 {
 
 
   export class Resource$Promooffer {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5181,7 +5033,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5251,7 +5103,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5317,7 +5169,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Offers>(parameters, callback);
@@ -5437,16 +5289,9 @@ export namespace books_v1 {
 
 
   export class Resource$Series {
-    root: Books;
     membership: Resource$Series$Membership;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.membership = new Resource$Series$Membership(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.membership = new Resource$Series$Membership();
     }
 
 
@@ -5501,7 +5346,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Series>(parameters, callback);
@@ -5524,15 +5369,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Series$Membership {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5590,7 +5427,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Seriesmembership>(parameters, callback);
@@ -5624,22 +5461,15 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes {
-    root: Books;
     associated: Resource$Volumes$Associated;
     mybooks: Resource$Volumes$Mybooks;
     recommended: Resource$Volumes$Recommended;
     useruploaded: Resource$Volumes$Useruploaded;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.associated = new Resource$Volumes$Associated(root);
-      this.mybooks = new Resource$Volumes$Mybooks(root);
-      this.recommended = new Resource$Volumes$Recommended(root);
-      this.useruploaded = new Resource$Volumes$Useruploaded(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.associated = new Resource$Volumes$Associated();
+      this.mybooks = new Resource$Volumes$Mybooks();
+      this.recommended = new Resource$Volumes$Recommended();
+      this.useruploaded = new Resource$Volumes$Useruploaded();
     }
 
 
@@ -5700,7 +5530,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volume>(parameters, callback);
@@ -5777,7 +5607,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5888,15 +5718,7 @@ export namespace books_v1 {
   }
 
   export class Resource$Volumes$Associated {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5959,7 +5781,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -6002,15 +5824,7 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Mybooks {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6075,7 +5889,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -6126,15 +5940,7 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Recommended {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6195,7 +6001,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -6274,7 +6080,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['rating', 'volumeId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
@@ -6336,15 +6142,7 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Useruploaded {
-    root: Books;
-    constructor(root: Books) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6408,7 +6206,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);

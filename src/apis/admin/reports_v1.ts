@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace admin_reports_v1 {
   export interface Options extends GlobalOptions {
     version: 'reports_v1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,10 +82,6 @@ export namespace admin_reports_v1 {
    * @param {object=} options Options for Admin
    */
   export class Admin {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     activities: Resource$Activities;
     channels: Resource$Channels;
     customerUsageReports: Resource$Customerusagereports;
@@ -91,19 +89,13 @@ export namespace admin_reports_v1 {
     userUsageReport: Resource$Userusagereport;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities(this);
-      this.channels = new Resource$Channels(this);
-      this.customerUsageReports = new Resource$Customerusagereports(this);
-      this.entityUsageReports = new Resource$Entityusagereports(this);
-      this.userUsageReport = new Resource$Userusagereport(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.activities = new Resource$Activities();
+      this.channels = new Resource$Channels();
+      this.customerUsageReports = new Resource$Customerusagereports();
+      this.entityUsageReports = new Resource$Entityusagereports();
+      this.userUsageReport = new Resource$Userusagereport();
     }
   }
 
@@ -301,15 +293,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Activities {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -379,7 +363,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Activities>(parameters, callback);
@@ -455,7 +439,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -575,15 +559,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Channels {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -640,7 +616,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -665,15 +641,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Customerusagereports {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -733,7 +701,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['date'],
         pathParams: ['date'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -772,15 +740,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Entityusagereports {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -846,7 +806,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['entityType', 'entityKey', 'date'],
         pathParams: ['date', 'entityKey', 'entityType'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -901,15 +861,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Userusagereport {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -973,7 +925,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'date'],
         pathParams: ['date', 'userKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);

@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace youtubeAnalytics_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -96,26 +98,16 @@ export namespace youtubeAnalytics_v2 {
    * @param {object=} options Options for Youtubeanalytics
    */
   export class Youtubeanalytics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     groupItems: Resource$Groupitems;
     groups: Resource$Groups;
     reports: Resource$Reports;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.groupItems = new Resource$Groupitems(this);
-      this.groups = new Resource$Groups(this);
-      this.reports = new Resource$Reports(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.groupItems = new Resource$Groupitems();
+      this.groups = new Resource$Groups();
+      this.reports = new Resource$Reports();
     }
   }
 
@@ -415,15 +407,7 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Groupitems {
-    root: Youtubeanalytics;
-    constructor(root: Youtubeanalytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -483,7 +467,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -550,7 +534,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GroupItem>(parameters, callback);
@@ -618,7 +602,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupItemsResponse>(parameters, callback);
@@ -708,15 +692,7 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Groups {
-    root: Youtubeanalytics;
-    constructor(root: Youtubeanalytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -775,7 +751,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -840,7 +816,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -911,7 +887,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -976,7 +952,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -1105,15 +1081,7 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Reports {
-    root: Youtubeanalytics;
-    constructor(root: Youtubeanalytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1181,7 +1149,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);

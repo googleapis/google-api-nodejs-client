@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace adsense_v1_4 {
   export interface Options extends GlobalOptions {
     version: 'v1_4';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -80,10 +82,6 @@ export namespace adsense_v1_4 {
    * @param {object=} options Options for Adsense
    */
   export class Adsense {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
     adclients: Resource$Adclients;
     adunits: Resource$Adunits;
@@ -96,24 +94,18 @@ export namespace adsense_v1_4 {
     urlchannels: Resource$Urlchannels;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-      this.adclients = new Resource$Adclients(this);
-      this.adunits = new Resource$Adunits(this);
-      this.alerts = new Resource$Alerts(this);
-      this.customchannels = new Resource$Customchannels(this);
-      this.metadata = new Resource$Metadata(this);
-      this.payments = new Resource$Payments(this);
-      this.reports = new Resource$Reports(this);
-      this.savedadstyles = new Resource$Savedadstyles(this);
-      this.urlchannels = new Resource$Urlchannels(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
+      this.adclients = new Resource$Adclients();
+      this.adunits = new Resource$Adunits();
+      this.alerts = new Resource$Alerts();
+      this.customchannels = new Resource$Customchannels();
+      this.metadata = new Resource$Metadata();
+      this.payments = new Resource$Payments();
+      this.reports = new Resource$Reports();
+      this.savedadstyles = new Resource$Savedadstyles();
+      this.urlchannels = new Resource$Urlchannels();
     }
   }
 
@@ -666,7 +658,6 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts {
-    root: Adsense;
     adclients: Resource$Accounts$Adclients;
     adunits: Resource$Accounts$Adunits;
     alerts: Resource$Accounts$Alerts;
@@ -675,21 +666,15 @@ export namespace adsense_v1_4 {
     reports: Resource$Accounts$Reports;
     savedadstyles: Resource$Accounts$Savedadstyles;
     urlchannels: Resource$Accounts$Urlchannels;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.adclients = new Resource$Accounts$Adclients(root);
-      this.adunits = new Resource$Accounts$Adunits(root);
-      this.alerts = new Resource$Accounts$Alerts(root);
-      this.customchannels = new Resource$Accounts$Customchannels(root);
-      this.payments = new Resource$Accounts$Payments(root);
-      this.reports = new Resource$Accounts$Reports(root);
-      this.savedadstyles = new Resource$Accounts$Savedadstyles(root);
-      this.urlchannels = new Resource$Accounts$Urlchannels(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.adclients = new Resource$Accounts$Adclients();
+      this.adunits = new Resource$Accounts$Adunits();
+      this.alerts = new Resource$Accounts$Alerts();
+      this.customchannels = new Resource$Accounts$Customchannels();
+      this.payments = new Resource$Accounts$Payments();
+      this.reports = new Resource$Accounts$Reports();
+      this.savedadstyles = new Resource$Accounts$Savedadstyles();
+      this.urlchannels = new Resource$Accounts$Urlchannels();
     }
 
 
@@ -745,7 +730,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -810,7 +795,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -855,15 +840,7 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Adclients {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -925,7 +902,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -994,7 +971,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -1046,16 +1023,9 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Adunits {
-    root: Adsense;
     customchannels: Resource$Accounts$Adunits$Customchannels;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.customchannels = new Resource$Accounts$Adunits$Customchannels(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.customchannels = new Resource$Accounts$Adunits$Customchannels();
     }
 
 
@@ -1116,7 +1086,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1186,7 +1156,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -1259,7 +1229,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -1342,15 +1312,7 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Adunits$Customchannels {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1416,7 +1378,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -1461,15 +1423,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Alerts {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1530,7 +1484,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'alertId'],
         pathParams: ['accountId', 'alertId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1597,7 +1551,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Alerts>(parameters, callback);
@@ -1644,16 +1598,9 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Customchannels {
-    root: Adsense;
     adunits: Resource$Accounts$Customchannels$Adunits;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.adunits = new Resource$Accounts$Customchannels$Adunits(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.adunits = new Resource$Accounts$Customchannels$Adunits();
     }
 
 
@@ -1715,7 +1662,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'customChannelId'],
         pathParams: ['accountId', 'adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -1788,7 +1735,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -1847,15 +1794,7 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Customchannels$Adunits {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1921,7 +1860,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'customChannelId'],
         pathParams: ['accountId', 'adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -1970,15 +1909,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Payments {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2037,7 +1968,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Payments>(parameters, callback);
@@ -2062,16 +1993,9 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Reports {
-    root: Adsense;
     saved: Resource$Accounts$Reports$Saved;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.saved = new Resource$Accounts$Reports$Saved(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.saved = new Resource$Accounts$Reports$Saved();
     }
 
 
@@ -2151,7 +2075,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'startDate', 'endDate'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -2226,15 +2150,7 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Reports$Saved {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2307,7 +2223,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'savedReportId'],
         pathParams: ['accountId', 'savedReportId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -2379,7 +2295,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedReports>(parameters, callback);
@@ -2445,15 +2361,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Savedadstyles {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2512,7 +2420,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'savedAdStyleId'],
         pathParams: ['accountId', 'savedAdStyleId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
@@ -2582,7 +2490,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
@@ -2634,15 +2542,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Urlchannels {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2708,7 +2608,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(parameters, callback);
@@ -2749,15 +2649,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Adclients {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2816,7 +2708,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -2847,16 +2739,9 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Adunits {
-    root: Adsense;
     customchannels: Resource$Adunits$Customchannels;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.customchannels = new Resource$Adunits$Customchannels(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.customchannels = new Resource$Adunits$Customchannels();
     }
 
 
@@ -2913,7 +2798,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -2982,7 +2867,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -3050,7 +2935,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -3119,15 +3004,7 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Adunits$Customchannels {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3192,7 +3069,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -3233,15 +3110,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Alerts {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3298,7 +3167,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3362,7 +3231,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Alerts>(parameters, callback);
@@ -3399,16 +3268,9 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Customchannels {
-    root: Adsense;
     adunits: Resource$Customchannels$Adunits;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.adunits = new Resource$Customchannels$Adunits(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.adunits = new Resource$Customchannels$Adunits();
     }
 
 
@@ -3468,7 +3330,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -3538,7 +3400,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -3589,15 +3451,7 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Customchannels$Adunits {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3662,7 +3516,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -3707,32 +3561,17 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Metadata {
-    root: Adsense;
     dimensions: Resource$Metadata$Dimensions;
     metrics: Resource$Metadata$Metrics;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.dimensions = new Resource$Metadata$Dimensions(root);
-      this.metrics = new Resource$Metadata$Metrics(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.dimensions = new Resource$Metadata$Dimensions();
+      this.metrics = new Resource$Metadata$Metrics();
     }
   }
 
 
   export class Resource$Metadata$Dimensions {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3791,7 +3630,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -3811,15 +3650,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Metadata$Metrics {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3878,7 +3709,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -3899,15 +3730,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Payments {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3963,7 +3786,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Payments>(parameters, callback);
@@ -3982,16 +3805,9 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Reports {
-    root: Adsense;
     saved: Resource$Reports$Saved;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.saved = new Resource$Reports$Saved(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.saved = new Resource$Reports$Saved();
     }
 
 
@@ -4069,7 +3885,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -4143,15 +3959,7 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Reports$Saved {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4221,7 +4029,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['savedReportId'],
         pathParams: ['savedReportId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -4290,7 +4098,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedReports>(parameters, callback);
@@ -4348,15 +4156,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Savedadstyles {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4412,7 +4212,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['savedAdStyleId'],
         pathParams: ['savedAdStyleId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
@@ -4479,7 +4279,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
@@ -4523,15 +4323,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Urlchannels {
-    root: Adsense;
-    constructor(root: Adsense) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4593,7 +4385,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(parameters, callback);

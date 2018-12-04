@@ -16,7 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +28,8 @@ export namespace cloudshell_v1alpha1 {
   export interface Options extends GlobalOptions {
     version: 'v1alpha1';
   }
+
+  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -97,22 +99,12 @@ export namespace cloudshell_v1alpha1 {
    * @param {object=} options Options for Cloudshell
    */
   export class Cloudshell {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.users = new Resource$Users();
     }
   }
 
@@ -345,31 +337,17 @@ export namespace cloudshell_v1alpha1 {
 
 
   export class Resource$Users {
-    root: Cloudshell;
     environments: Resource$Users$Environments;
-    constructor(root: Cloudshell) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.environments = new Resource$Users$Environments(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.environments = new Resource$Users$Environments();
     }
   }
 
 
   export class Resource$Users$Environments {
-    root: Cloudshell;
     publicKeys: Resource$Users$Environments$Publickeys;
-    constructor(root: Cloudshell) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.publicKeys = new Resource$Users$Environments$Publickeys(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.publicKeys = new Resource$Users$Environments$Publickeys();
     }
 
 
@@ -432,7 +410,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -496,7 +474,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -565,7 +543,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -638,7 +616,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -725,15 +703,7 @@ export namespace cloudshell_v1alpha1 {
   }
 
   export class Resource$Users$Environments$Publickeys {
-    root: Cloudshell;
-    constructor(root: Cloudshell) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -797,7 +767,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublicKey>(parameters, callback);
@@ -865,7 +835,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
