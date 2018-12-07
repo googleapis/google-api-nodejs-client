@@ -4,6 +4,46 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v36.0.0
+
+12-06-2018 17:35 PST
+
+### New APIs
+- cloudscheduler_v1beta1
+- driveactivity_v2
+- pagespeedonline_v5
+- speech_v1p1beta1
+
+### Removed APIs
+- dfareporting_v3_0
+- partners_v2
+- speech_v1beta1
+
+### Features
+- feat: run the generator ([#1474](https://github.com/google/google-api-nodejs-client/pull/1474))
+- feat: Add support for repeated fields ([#1451](https://github.com/google/google-api-nodejs-client/pull/1451))
+
+### Bug fixes
+- fix: Fix [#1383](https://github.com/google/google-api-nodejs-client/pull/1383) Poor Typings for Schema ([#1433](https://github.com/google/google-api-nodejs-client/pull/1433))
+
+### Documentation
+- docs: be more explicit about supported version of nodejs for docs ([#1473](https://github.com/google/google-api-nodejs-client/pull/1473))
+- docs: add note about minimum Node.js version required ([#1464](https://github.com/google/google-api-nodejs-client/pull/1464))
+- fix(samples): fix url parsing in sampleClient ([#1462](https://github.com/google/google-api-nodejs-client/pull/1462))
+- docs: Added information to run the quickstart sample ([#1460](https://github.com/google/google-api-nodejs-client/pull/1460))
+
+### Internal / Testing Changes
+- chore: always nyc report before calling codecov ([#1482](https://github.com/google/google-api-nodejs-client/pull/1482))
+- chore: nyc ignore build/test by default ([#1481](https://github.com/google/google-api-nodejs-client/pull/1481))
+- refactor: remove weird root binding ([#1476](https://github.com/google/google-api-nodejs-client/pull/1476))
+- refactor: add dev dependencies to APIs ([#1475](https://github.com/google/google-api-nodejs-client/pull/1475))
+- chore(deps): update dependency typescript to ~3.2.0 ([#1465](https://github.com/google/google-api-nodejs-client/pull/1465))
+- fix(build): fix system key decryption ([#1467](https://github.com/google/google-api-nodejs-client/pull/1467))
+- chore(deps): update dependency @types/p-queue to v3 ([#1449](https://github.com/google/google-api-nodejs-client/pull/1449))
+- chore: try to fix codecov ([#1439](https://github.com/google/google-api-nodejs-client/pull/1439))
+- chore(deps): update dependency gts to ^0.9.0 ([#1440](https://github.com/google/google-api-nodejs-client/pull/1440))
+- chore: update eslintignore config ([#1438](https://github.com/google/google-api-nodejs-client/pull/1438))
+
 ## v35.0.0
 
 **This release has breaking changes**.  Please take care with your upgrade!
