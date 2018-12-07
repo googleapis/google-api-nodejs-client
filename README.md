@@ -17,7 +17,6 @@
   * [Installation](#installation)
   * [First example](#first-example)
   * [Samples](#samples)
-  * [Reference API][googlecloudapis]
 * [Authentication and authorization](#authentication-and-authorization)
   * [OAuth2 client](#oauth2-client)
   * [Using API keys](#using-api-keys)
