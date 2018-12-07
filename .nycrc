@@ -3,7 +3,8 @@
   "exclude": [
     "src/*{/*,/**/*}.js",
     "src/*/v*/*.js",
-    "test/**/*.js"
+    "test/**/*.js",
+    "build/test"
   ],
   "watermarks": {
     "branches": [
