@@ -25,7 +25,7 @@
     "pretest": "npm run compile",
     "prepare": "npm run compile",
     "test": "nyc mocha build/test",
-    "docs": "Your docs are in another castle 🏰",
+    "docs": "echo your docs are in another castle 🏰",
     "pregenerate-docs": "npm run build-tools",
     "generate-docs": "node build/src/generator/docs",
     "system-test": "mocha build/system-test",

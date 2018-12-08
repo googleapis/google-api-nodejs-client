@@ -16,10 +16,10 @@
 
 import * as execa from 'execa';
 import * as fs from 'fs';
+import * as nunjucks from 'nunjucks';
+import * as Q from 'p-queue';
 import * as path from 'path';
 import {promisify} from 'util';
-import * as Q from 'p-queue';
-import * as nunjucks from 'nunjucks';
 
 const readdir = promisify(fs.readdir);
 const writeFile = promisify(fs.writeFile);
@@ -38,23 +38,20 @@ const indexPath = path.join(__dirname, '../../../docs/index.html');
 async function main() {
   const children = await readdir(apiPath);
   const dirs = children.filter(x => !x.endsWith('.ts'));
-  const contents = nunjucks.render(templatePath, { apis: dirs });
+  const contents = nunjucks.render(templatePath, {apis: dirs});
   await writeFile(indexPath, contents);
   const q = new Q({concurrency: 10});
   console.log(`Generating docs for ${dirs.length} APIs...`);
   let i = 0;
   const promises = dirs.map(dir => {
-    return q.add(() =>
-      execa('npx', [
-        'compodoc',
-        `src/apis/${dir}`,
-        '-d',
-        `./docs/${dir}`
-      ])
-    ).then(() => {
-      i++;
-      console.log(`[${i}/${dirs.length}] ${dir}`);
-    });
+    return q
+        .add(
+            () => execa(
+                'npx', ['compodoc', `src/apis/${dir}`, '-d', `./docs/${dir}`]))
+        .then(() => {
+          i++;
+          console.log(`[${i}/${dirs.length}] ${dir}`);
+        });
   });
   await Promise.all(promises);
 }
