@@ -1,0 +1,10 @@
+---
+tsconfig: ./tsconfig.json
+output: ./docs
+theme: material
+hideGenerator: true
+disablePrivate: true
+disableProtected: true
+disableInternal: true
+disableCoverage: true
+disableGraph: true
