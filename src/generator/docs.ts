@@ -40,22 +40,22 @@ async function main() {
   const dirs = children.filter(x => !x.endsWith('.ts'));
   const contents = nunjucks.render(templatePath, { apis: dirs });
   await writeFile(indexPath, contents);
-  // const q = new Q({concurrency: 10});
-  // console.log(`Generating docs for ${dirs.length} APIs...`);
-  // let i = 0;
-  // const promises = dirs.map(dir => {
-  //   return q.add(() =>
-  //     execa('npx', [
-  //       'compodoc',
-  //       `src/apis/${dir}`,
-  //       '-d',
-  //       `./docs/${dir}`
-  //     ])
-  //   ).then(() => {
-  //     i++;
-  //     console.log(`[${i}/${dirs.length}] ${dir}`);
-  //   });
-  // });
-  // await Promise.all(promises);
+  const q = new Q({concurrency: 10});
+  console.log(`Generating docs for ${dirs.length} APIs...`);
+  let i = 0;
+  const promises = dirs.map(dir => {
+    return q.add(() =>
+      execa('npx', [
+        'compodoc',
+        `src/apis/${dir}`,
+        '-d',
+        `./docs/${dir}`
+      ])
+    ).then(() => {
+      i++;
+      console.log(`[${i}/${dirs.length}] ${dir}`);
+    });
+  });
+  await Promise.all(promises);
 }
 main().catch(console.error);
