@@ -108,6 +108,9 @@ runSample().catch(console.error);
 ### Samples
 There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
 
+### API Reference
+You can find a full generated API reference at https://apis-nodejs.firebaseapp.com/.  This is not the final location for the reference docs.
+
 ## Authentication and authorization
 The are three primary ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
 
