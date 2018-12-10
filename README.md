@@ -502,7 +502,7 @@ import { drive_v3 } from 'googleapis';
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [COPYING][copying].
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE][license].
 
 ## Contributing
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING][contributing].
@@ -529,7 +529,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [apiexplorer]: https://developers.google.com/apis-explorer
 [usingkeys]: https://support.google.com/cloud/answer/6158862?hl=en
 [contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
-[copying]: https://github.com/googleapis/google-api-nodejs-client/tree/master/COPYING
+[license]: https://github.com/googleapis/google-api-nodejs-client/tree/master/LICENSE
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
 [axios]: https://github.com/axios/axios
 [requestopts]: https://github.com/axios/axios#request-config
