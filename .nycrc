@@ -1,5 +1,6 @@
 {
   "report-dir": "./.coverage",
+  "reporter": "lcov",
   "exclude": [
     "src/*{/*,/**/*}.js",
     "src/*/v*/*.js",
