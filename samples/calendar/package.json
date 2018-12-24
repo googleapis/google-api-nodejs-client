@@ -1,0 +1,15 @@
+{
+  "name": "google-calendar-api-quickstart",
+  "version": "1.0.0",
+  "description": "A quick start for running google's Calendar API with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stephen Weiss <stephencweiss@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^5.11.0",
+    "googleapis": "^27.0.0"
+  }
+}
