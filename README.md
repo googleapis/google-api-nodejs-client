@@ -204,7 +204,7 @@ oauth2client.setCredentials({
 Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API.
 
 ### Using API keys
-You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
+You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Blogger API service to retrieve a blog's name, its total amount of posts, and url:
 
 ``` js
 const {google} = require('googleapis');
