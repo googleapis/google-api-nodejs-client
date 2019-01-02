@@ -144,9 +144,9 @@ const oauth2Client = new google.auth.OAuth2(
   YOUR_REDIRECT_URL
 );
 
-// generate a url that asks permissions for Google+ and Google Calendar scopes
+// generate a url that asks permissions for Blogger and Google Calendar scopes
 const scopes = [
-  'https://www.googleapis.com/auth/plus.me',
+  'https://www.googleapis.com/auth/blogger',
   'https://www.googleapis.com/auth/calendar'
 ];
 
@@ -204,18 +204,22 @@ oauth2client.setCredentials({
 Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API.
 
 ### Using API keys
-You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
+You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Blogger API service to retrieve a blog's name, url, and its total amount of posts:
 
 ``` js
 const {google} = require('googleapis');
-const plus = google.plus({
-  version: 'v1',
+const blogger = google.blogger_v3({
+  version: 'v3',
   auth: 'YOUR_API_KEY' // specify your API key here
 });
 
-async function main() {
-  const res = await plus.people.get({ userId: 'me' });
-  console.log(`Hello ${res.data.displayName}!`);
+const params = {
+  blogId: 3213900
+};
+
+async function main(params) {
+  const res = await blogger.blogs.get({blogId: params.blogId});
+  console.log(`${res.data.name} has ${res.data.posts.totalItems} posts! The blog url is ${res.data.url}`)
 };
 
 main().catch(console.error);
