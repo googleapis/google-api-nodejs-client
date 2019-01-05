@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace tagmanager_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,22 +81,12 @@ export namespace tagmanager_v1 {
    * @param {object=} options Options for Tagmanager
    */
   export class Tagmanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
     }
   }
 
@@ -1013,18 +1038,11 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts {
-    root: Tagmanager;
     containers: Resource$Accounts$Containers;
     permissions: Resource$Accounts$Permissions;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.containers = new Resource$Accounts$Containers(root);
-      this.permissions = new Resource$Accounts$Permissions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.containers = new Resource$Accounts$Containers();
+      this.permissions = new Resource$Accounts$Permissions();
     }
 
 
@@ -1079,7 +1097,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1144,7 +1162,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccountsResponse>(parameters, callback);
@@ -1210,7 +1228,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1220,7 +1238,7 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1231,13 +1249,13 @@ export namespace tagmanager_v1 {
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Accounts$Update {
+  export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1260,7 +1278,6 @@ export namespace tagmanager_v1 {
   }
 
   export class Resource$Accounts$Containers {
-    root: Tagmanager;
     environments: Resource$Accounts$Containers$Environments;
     folders: Resource$Accounts$Containers$Folders;
     move_folders: Resource$Accounts$Containers$Move_folders;
@@ -1270,22 +1287,16 @@ export namespace tagmanager_v1 {
     triggers: Resource$Accounts$Containers$Triggers;
     variables: Resource$Accounts$Containers$Variables;
     versions: Resource$Accounts$Containers$Versions;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.environments = new Resource$Accounts$Containers$Environments(root);
-      this.folders = new Resource$Accounts$Containers$Folders(root);
-      this.move_folders = new Resource$Accounts$Containers$Move_folders(root);
+    constructor() {
+      this.environments = new Resource$Accounts$Containers$Environments();
+      this.folders = new Resource$Accounts$Containers$Folders();
+      this.move_folders = new Resource$Accounts$Containers$Move_folders();
       this.reauthorize_environments =
-          new Resource$Accounts$Containers$Reauthorize_environments(root);
-      this.tags = new Resource$Accounts$Containers$Tags(root);
-      this.triggers = new Resource$Accounts$Containers$Triggers(root);
-      this.variables = new Resource$Accounts$Containers$Variables(root);
-      this.versions = new Resource$Accounts$Containers$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Accounts$Containers$Reauthorize_environments();
+      this.tags = new Resource$Accounts$Containers$Tags();
+      this.triggers = new Resource$Accounts$Containers$Triggers();
+      this.variables = new Resource$Accounts$Containers$Variables();
+      this.versions = new Resource$Accounts$Containers$Versions();
     }
 
 
@@ -1347,7 +1358,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1415,7 +1426,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1481,7 +1492,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1549,7 +1560,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListContainersResponse>(parameters, callback);
@@ -1621,7 +1632,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1631,7 +1642,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Create {
+  export interface Params$Resource$Accounts$Containers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1647,7 +1659,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$Container;
   }
-  export interface Params$Resource$Accounts$Containers$Delete {
+  export interface Params$Resource$Accounts$Containers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1662,7 +1675,8 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Get {
+  export interface Params$Resource$Accounts$Containers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1677,7 +1691,8 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$List {
+  export interface Params$Resource$Accounts$Containers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1688,7 +1703,8 @@ export namespace tagmanager_v1 {
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Update {
+  export interface Params$Resource$Accounts$Containers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1715,15 +1731,7 @@ export namespace tagmanager_v1 {
   }
 
   export class Resource$Accounts$Containers$Environments {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1788,7 +1796,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -1858,7 +1866,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1925,7 +1933,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -1997,7 +2005,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
@@ -2071,7 +2079,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2145,7 +2153,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2155,7 +2163,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Environments$Create {
+  export interface Params$Resource$Accounts$Containers$Environments$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2175,7 +2184,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Delete {
+  export interface Params$Resource$Accounts$Containers$Environments$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2194,7 +2204,8 @@ export namespace tagmanager_v1 {
      */
     environmentId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Get {
+  export interface Params$Resource$Accounts$Containers$Environments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2213,7 +2224,8 @@ export namespace tagmanager_v1 {
      */
     environmentId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$List {
+  export interface Params$Resource$Accounts$Containers$Environments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2228,7 +2240,8 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Patch {
+  export interface Params$Resource$Accounts$Containers$Environments$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2257,7 +2270,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Accounts$Containers$Environments$Update {
+  export interface Params$Resource$Accounts$Containers$Environments$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2289,16 +2303,9 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Folders {
-    root: Tagmanager;
     entities: Resource$Accounts$Containers$Folders$Entities;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.entities = new Resource$Accounts$Containers$Folders$Entities(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.entities = new Resource$Accounts$Containers$Folders$Entities();
     }
 
 
@@ -2362,7 +2369,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -2431,7 +2438,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2497,7 +2504,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -2567,7 +2574,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -2639,7 +2646,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -2649,7 +2656,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Folders$Create {
+  export interface Params$Resource$Accounts$Containers$Folders$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2669,7 +2677,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$Folder;
   }
-  export interface Params$Resource$Accounts$Containers$Folders$Delete {
+  export interface Params$Resource$Accounts$Containers$Folders$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2688,7 +2697,8 @@ export namespace tagmanager_v1 {
      */
     folderId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Folders$Get {
+  export interface Params$Resource$Accounts$Containers$Folders$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2707,7 +2717,8 @@ export namespace tagmanager_v1 {
      */
     folderId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Folders$List {
+  export interface Params$Resource$Accounts$Containers$Folders$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2722,7 +2733,8 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Folders$Update {
+  export interface Params$Resource$Accounts$Containers$Folders$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2753,15 +2765,7 @@ export namespace tagmanager_v1 {
   }
 
   export class Resource$Accounts$Containers$Folders$Entities {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2827,7 +2831,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FolderEntities>(parameters, callback);
@@ -2837,7 +2841,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Folders$Entities$List {
+  export interface Params$Resource$Accounts$Containers$Folders$Entities$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2860,15 +2865,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Move_folders {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2935,7 +2932,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'folderId'],
         pathParams: ['accountId', 'containerId', 'folderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2945,7 +2942,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Move_folders$Update {
+  export interface Params$Resource$Accounts$Containers$Move_folders$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2966,15 +2964,15 @@ export namespace tagmanager_v1 {
     /**
      * The tags to be moved to the folder.
      */
-    tagId?: string;
+    tagId?: string[];
     /**
      * The triggers to be moved to the folder.
      */
-    triggerId?: string;
+    triggerId?: string[];
     /**
      * The variables to be moved to the folder.
      */
-    variableId?: string;
+    variableId?: string[];
 
     /**
      * Request body metadata
@@ -2984,15 +2982,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Reauthorize_environments {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3062,7 +3052,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'environmentId'],
         pathParams: ['accountId', 'containerId', 'environmentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -3072,7 +3062,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Reauthorize_environments$Update {
+  export interface Params$Resource$Accounts$Containers$Reauthorize_environments$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3099,15 +3090,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Tags {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3170,7 +3153,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -3239,7 +3222,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'tagId'],
         pathParams: ['accountId', 'containerId', 'tagId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3305,7 +3288,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'tagId'],
         pathParams: ['accountId', 'containerId', 'tagId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -3375,7 +3358,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTagsResponse>(parameters, callback);
@@ -3447,7 +3430,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'tagId'],
         pathParams: ['accountId', 'containerId', 'tagId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -3457,7 +3440,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Tags$Create {
+  export interface Params$Resource$Accounts$Containers$Tags$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3477,7 +3461,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$Tag;
   }
-  export interface Params$Resource$Accounts$Containers$Tags$Delete {
+  export interface Params$Resource$Accounts$Containers$Tags$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3496,7 +3481,8 @@ export namespace tagmanager_v1 {
      */
     tagId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Tags$Get {
+  export interface Params$Resource$Accounts$Containers$Tags$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3515,7 +3501,8 @@ export namespace tagmanager_v1 {
      */
     tagId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Tags$List {
+  export interface Params$Resource$Accounts$Containers$Tags$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3530,7 +3517,8 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Tags$Update {
+  export interface Params$Resource$Accounts$Containers$Tags$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3562,15 +3550,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Triggers {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3633,7 +3613,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -3702,7 +3682,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'triggerId'],
         pathParams: ['accountId', 'containerId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3768,7 +3748,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'triggerId'],
         pathParams: ['accountId', 'containerId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -3839,7 +3819,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(parameters, callback);
@@ -3911,7 +3891,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'triggerId'],
         pathParams: ['accountId', 'containerId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -3921,7 +3901,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Triggers$Create {
+  export interface Params$Resource$Accounts$Containers$Triggers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3941,7 +3922,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$Trigger;
   }
-  export interface Params$Resource$Accounts$Containers$Triggers$Delete {
+  export interface Params$Resource$Accounts$Containers$Triggers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3960,7 +3942,8 @@ export namespace tagmanager_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Triggers$Get {
+  export interface Params$Resource$Accounts$Containers$Triggers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3979,7 +3962,8 @@ export namespace tagmanager_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Triggers$List {
+  export interface Params$Resource$Accounts$Containers$Triggers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3994,7 +3978,8 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Triggers$Update {
+  export interface Params$Resource$Accounts$Containers$Triggers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4026,15 +4011,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Variables {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4097,7 +4074,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -4166,7 +4143,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'variableId'],
         pathParams: ['accountId', 'containerId', 'variableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4232,7 +4209,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'variableId'],
         pathParams: ['accountId', 'containerId', 'variableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -4303,7 +4280,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
@@ -4375,7 +4352,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'variableId'],
         pathParams: ['accountId', 'containerId', 'variableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -4385,7 +4362,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Variables$Create {
+  export interface Params$Resource$Accounts$Containers$Variables$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4405,7 +4383,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$Variable;
   }
-  export interface Params$Resource$Accounts$Containers$Variables$Delete {
+  export interface Params$Resource$Accounts$Containers$Variables$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4424,7 +4403,8 @@ export namespace tagmanager_v1 {
      */
     variableId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Variables$Get {
+  export interface Params$Resource$Accounts$Containers$Variables$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4443,7 +4423,8 @@ export namespace tagmanager_v1 {
      */
     variableId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Variables$List {
+  export interface Params$Resource$Accounts$Containers$Variables$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4458,7 +4439,8 @@ export namespace tagmanager_v1 {
      */
     containerId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Variables$Update {
+  export interface Params$Resource$Accounts$Containers$Variables$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4490,15 +4472,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Containers$Versions {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4568,7 +4542,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateContainerVersionResponse>(
@@ -4639,7 +4613,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4706,7 +4680,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -4783,7 +4757,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId'],
         pathParams: ['accountId', 'containerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListContainerVersionsResponse>(
@@ -4864,7 +4838,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PublishContainerVersionResponse>(
@@ -4940,7 +4914,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -5012,7 +4986,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -5085,7 +5059,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'containerId', 'containerVersionId'],
         pathParams: ['accountId', 'containerId', 'containerVersionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -5095,7 +5069,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Containers$Versions$Create {
+  export interface Params$Resource$Accounts$Containers$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5115,7 +5090,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$CreateContainerVersionRequestVersionOptions;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Delete {
+  export interface Params$Resource$Accounts$Containers$Versions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5134,7 +5110,8 @@ export namespace tagmanager_v1 {
      */
     containerVersionId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Get {
+  export interface Params$Resource$Accounts$Containers$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5154,7 +5131,8 @@ export namespace tagmanager_v1 {
      */
     containerVersionId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$List {
+  export interface Params$Resource$Accounts$Containers$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5177,7 +5155,8 @@ export namespace tagmanager_v1 {
      */
     includeDeleted?: boolean;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Publish {
+  export interface Params$Resource$Accounts$Containers$Versions$Publish extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5201,7 +5180,8 @@ export namespace tagmanager_v1 {
      */
     fingerprint?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Restore {
+  export interface Params$Resource$Accounts$Containers$Versions$Restore extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5220,7 +5200,8 @@ export namespace tagmanager_v1 {
      */
     containerVersionId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Undelete {
+  export interface Params$Resource$Accounts$Containers$Versions$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5239,7 +5220,8 @@ export namespace tagmanager_v1 {
      */
     containerVersionId?: string;
   }
-  export interface Params$Resource$Accounts$Containers$Versions$Update {
+  export interface Params$Resource$Accounts$Containers$Versions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5272,15 +5254,7 @@ export namespace tagmanager_v1 {
 
 
   export class Resource$Accounts$Permissions {
-    root: Tagmanager;
-    constructor(root: Tagmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5341,7 +5315,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserAccess>(parameters, callback);
@@ -5410,7 +5384,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'permissionId'],
         pathParams: ['accountId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5476,7 +5450,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'permissionId'],
         pathParams: ['accountId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserAccess>(parameters, callback);
@@ -5545,7 +5519,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccountUsersResponse>(parameters, callback);
@@ -5616,7 +5590,7 @@ export namespace tagmanager_v1 {
         params,
         requiredParams: ['accountId', 'permissionId'],
         pathParams: ['accountId', 'permissionId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserAccess>(parameters, callback);
@@ -5626,7 +5600,8 @@ export namespace tagmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Permissions$Create {
+  export interface Params$Resource$Accounts$Permissions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5642,7 +5617,8 @@ export namespace tagmanager_v1 {
      */
     requestBody?: Schema$UserAccess;
   }
-  export interface Params$Resource$Accounts$Permissions$Delete {
+  export interface Params$Resource$Accounts$Permissions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5657,7 +5633,8 @@ export namespace tagmanager_v1 {
      */
     permissionId?: string;
   }
-  export interface Params$Resource$Accounts$Permissions$Get {
+  export interface Params$Resource$Accounts$Permissions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5672,7 +5649,8 @@ export namespace tagmanager_v1 {
      */
     permissionId?: string;
   }
-  export interface Params$Resource$Accounts$Permissions$List {
+  export interface Params$Resource$Accounts$Permissions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5683,7 +5661,8 @@ export namespace tagmanager_v1 {
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$Permissions$Update {
+  export interface Params$Resource$Accounts$Permissions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {servicebroker_v1} from './v1';
 import {servicebroker_v1alpha1} from './v1alpha1';
 import {servicebroker_v1beta1} from './v1beta1';

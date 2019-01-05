@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace acceleratedmobilepageurl_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,22 +99,12 @@ export namespace acceleratedmobilepageurl_v1 {
    * @param {object=} options Options for Acceleratedmobilepageurl
    */
   export class Acceleratedmobilepageurl {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     ampUrls: Resource$Ampurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.ampUrls = new Resource$Ampurls(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.ampUrls = new Resource$Ampurls();
     }
   }
 
@@ -135,15 +177,7 @@ export namespace acceleratedmobilepageurl_v1 {
 
 
   export class Resource$Ampurls {
-    root: Acceleratedmobilepageurl;
-    constructor(root: Acceleratedmobilepageurl) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -206,7 +240,7 @@ export namespace acceleratedmobilepageurl_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
@@ -216,7 +250,7 @@ export namespace acceleratedmobilepageurl_v1 {
     }
   }
 
-  export interface Params$Resource$Ampurls$Batchget {
+  export interface Params$Resource$Ampurls$Batchget extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

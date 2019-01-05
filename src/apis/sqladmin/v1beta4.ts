@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,11 +29,47 @@ export namespace sqladmin_v1beta4 {
     version: 'v1beta4';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
-   * Cloud SQL Administration API
+   * Cloud SQL Admin API
    *
-   * Creates and configures Cloud SQL instances, which provide fully-managed
-   * MySQL databases.
+   * Creates and manages Cloud SQL instances, which provide fully managed MySQL
+   * or PostgreSQL databases.
    *
    * @example
    * const {google} = require('googleapis');
@@ -47,10 +82,6 @@ export namespace sqladmin_v1beta4 {
    * @param {object=} options Options for Sqladmin
    */
   export class Sqladmin {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     backupRuns: Resource$Backupruns;
     databases: Resource$Databases;
     flags: Resource$Flags;
@@ -61,22 +92,16 @@ export namespace sqladmin_v1beta4 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.backupRuns = new Resource$Backupruns(this);
-      this.databases = new Resource$Databases(this);
-      this.flags = new Resource$Flags(this);
-      this.instances = new Resource$Instances(this);
-      this.operations = new Resource$Operations(this);
-      this.sslCerts = new Resource$Sslcerts(this);
-      this.tiers = new Resource$Tiers(this);
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.backupRuns = new Resource$Backupruns();
+      this.databases = new Resource$Databases();
+      this.flags = new Resource$Flags();
+      this.instances = new Resource$Instances();
+      this.operations = new Resource$Operations();
+      this.sslCerts = new Resource$Sslcerts();
+      this.tiers = new Resource$Tiers();
+      this.users = new Resource$Users();
     }
   }
 
@@ -101,6 +126,19 @@ export namespace sqladmin_v1beta4 {
      * The whitelisted value for the access control list.
      */
     value?: string;
+  }
+  /**
+   * An Admin API warning message.
+   */
+  export interface Schema$ApiWarning {
+    /**
+     * Code to uniquely identify the warning type.
+     */
+    code?: string;
+    /**
+     * The warning message.
+     */
+    message?: string;
   }
   /**
    * Database instance backup configuration.
@@ -130,7 +168,7 @@ export namespace sqladmin_v1beta4 {
     startTime?: string;
   }
   /**
-   * A database instance backup run resource.
+   * A BackupRun resource.
    */
   export interface Schema$BackupRun {
     /**
@@ -153,8 +191,8 @@ export namespace sqladmin_v1beta4 {
      */
     error?: Schema$OperationError;
     /**
-     * A unique identifier for this backup run. Note that this is unique only
-     * within the scope of a particular Cloud SQL instance.
+     * The identifier for this backup run. Unique only for a specific Cloud SQL
+     * instance.
      */
     id?: string;
     /**
@@ -230,9 +268,9 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$CloneContext {
     /**
-     * Binary log coordinates, if specified, indentify the the position up to
-     * which the source instance should be cloned. If not specified, the source
-     * instance is cloned up to the most recent binary log coordintes.
+     * Binary log coordinates, if specified, identify the position up to which
+     * the source instance should be cloned. If not specified, the source
+     * instance is cloned up to the most recent binary log coordinates.
      */
     binLogCoordinates?: Schema$BinLogCoordinates;
     /**
@@ -249,7 +287,7 @@ export namespace sqladmin_v1beta4 {
     pitrTimestampMs?: string;
   }
   /**
-   * A database resource inside a Cloud SQL instance.
+   * Represents a SQL database on the Cloud SQL instance.
    */
   export interface Schema$Database {
     /**
@@ -261,7 +299,8 @@ export namespace sqladmin_v1beta4 {
      */
     collation?: string;
     /**
-     * HTTP 1.1 Entity tag for the resource.
+     * This field is deprecated and will be removed from a future version of the
+     * API.
      */
     etag?: string;
     /**
@@ -288,16 +327,14 @@ export namespace sqladmin_v1beta4 {
     selfLink?: string;
   }
   /**
-   * MySQL flags for Cloud SQL instances.
+   * Database flags for Cloud SQL instances.
    */
   export interface Schema$DatabaseFlags {
     /**
      * The name of the flag. These flags are passed at instance startup, so
-     * include both MySQL server options and MySQL system variables. Flags
-     * should be specified with underscores, not hyphens. For more information,
-     * see Configuring MySQL Flags in the Google Cloud SQL documentation, as
-     * well as the official MySQL documentation for server options and system
-     * variables.
+     * include both server options and system variables for MySQL. Flags should
+     * be specified with underscores, not hyphens. For more information, see
+     * Configuring Database Flags in the Cloud SQL documentation.
      */
     name?: string;
     /**
@@ -311,9 +348,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * FIRST_GEN: Basic Cloud SQL instance that runs in a Google-managed
-     * container. SECOND_GEN: A newer Cloud SQL backend that runs in a Compute
-     * Engine VM. EXTERNAL: A MySQL server that is not managed by Google.
+     * FIRST_GEN: First Generation instance. MySQL only. SECOND_GEN: Second
+     * Generation instance or PostgreSQL instance. EXTERNAL: A database server
+     * that is not managed by Google. This property is read-only; use the tier
+     * property in the settings object to determine the database type and Second
+     * or First Generation.
      */
     backendType?: string;
     /**
@@ -324,9 +363,7 @@ export namespace sqladmin_v1beta4 {
      * The current disk usage of the instance in bytes. This property has been
      * deprecated. Users should use the
      * &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in
-     * Cloud Monitoring API instead. Please see
-     * https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ
-     * for details.
+     * Cloud Monitoring API instead. Please see this announcement for details.
      */
     currentDiskSize?: string;
     /**
@@ -337,14 +374,15 @@ export namespace sqladmin_v1beta4 {
      */
     databaseVersion?: string;
     /**
-     * HTTP 1.1 Entity tag for the resource.
+     * This field is deprecated and will be removed from a future version of the
+     * API. Use the settings.settingsVersion field instead.
      */
     etag?: string;
     /**
      * The name and status of the failover replica. This property is applicable
      * only to Second Generation instances.
      */
-    failoverReplica?: any;
+    failoverReplica?: {available?: boolean; name?: string;};
     /**
      * The Compute Engine zone that the instance is currently serving from. This
      * value could be different from the zone that was specified when the
@@ -403,8 +441,7 @@ export namespace sqladmin_v1beta4 {
      */
     region?: string;
     /**
-     * Configuration specific to read-replicas replicating from on-premises
-     * masters.
+     * Configuration specific to failover replicas and read replicas.
      */
     replicaConfiguration?: Schema$ReplicaConfiguration;
     /**
@@ -538,20 +575,24 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ExportContext {
     /**
-     * Options for exporting data as CSV.
+     * Options for exporting data as CSV. Exporting in CSV format using the
+     * Cloud SQL Admin API is not supported for PostgreSQL instances.
      */
-    csvExportOptions?: any;
+    csvExportOptions?: {selectQuery?: string;};
     /**
-     * Databases (for example, guestbook) from which the export is made. If
-     * fileType is SQL and no database is specified, all databases are exported.
-     * If fileType is CSV, you can optionally specify at most one database to
-     * export. If csvExportOptions.selectQuery also specifies the database, this
-     * field will be ignored.
+     * Databases to be exported. MySQL instances: If fileType is SQL and no
+     * database is specified, all databases are exported, except for the mysql
+     * system database. If fileType is CSV, you can specify one database, either
+     * by using this property or by using the csvExportOptions.selectQuery
+     * property, which takes precedence over this property. PostgreSQL
+     * instances: If fileType is SQL, you must specify one database to be
+     * exported. A fileType of CSV is not supported for PostgreSQL instances.
      */
     databases?: string[];
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data.
+     * statements. CSV: The file contains CSV data. CSV is not supported for
+     * PostgreSQL instances.
      */
     fileType?: string;
     /**
@@ -561,7 +602,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for exporting data as SQL statements.
      */
-    sqlExportOptions?: any;
+    sqlExportOptions?: {
+      mysqlExportOptions?: {masterData?: number;};
+      schemaOnly?: boolean;
+      tables?: string[];
+    };
     /**
      * The path to the file in Google Cloud Storage where the export will be
      * stored. The URI is in the form gs://bucketName/fileName. If the file
@@ -586,7 +631,7 @@ export namespace sqladmin_v1beta4 {
     settingsVersion?: string;
   }
   /**
-   * A Google Cloud SQL service flag resource.
+   * A flag resource.
    */
   export interface Schema$Flag {
     /**
@@ -646,24 +691,26 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ImportContext {
     /**
-     * Options for importing data as CSV.
+     * Options for importing data as CSV. Importing CSV data using the Cloud SQL
+     * Admin API is not supported for PostgreSQL instances.
      */
-    csvImportOptions?: any;
+    csvImportOptions?: {columns?: string[]; table?: string;};
     /**
-     * The database (for example, guestbook) to which the import is made. If
-     * fileType is SQL and no database is specified, it is assumed that the
-     * database is specified in the file to be imported. If fileType is CSV, it
-     * must be specified.
+     * The target database for the import. If fileType is SQL, this field is
+     * required only if the import file does not specify a database, and is
+     * overridden by any database specification in the import file. If fileType
+     * is CSV, one database must be specified.
      */
     database?: string;
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data.
+     * statements. CSV: The file contains CSV data. Importing CSV data using the
+     * Cloud SQL Admin API is not supported for PostgreSQL instances.
      */
     fileType?: string;
     /**
      * The PostgreSQL user for this import operation. Defaults to
-     * cloudsqlsuperuser. Used only for PostgreSQL instances.
+     * cloudsqlsuperuser. PostgreSQL instances only.
      */
     importUser?: string;
     /**
@@ -671,9 +718,10 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * A path to the file in Google Cloud Storage from which the import is made.
-     * The URI is in the form gs://bucketName/fileName. Compressed gzip files
-     * (.gz) are supported when fileType is SQL.
+     * Path to the import file in Cloud Storage, in the form
+     * gs://bucketName/fileName. Compressed gzip files (.gz) are supported when
+     * fileType is SQL. The instance must have write permissions to the bucket
+     * and read access to the file.
      */
     uri?: string;
   }
@@ -739,6 +787,10 @@ export namespace sqladmin_v1beta4 {
      * this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string;
+    /**
+     * List of warnings that ocurred while handling the request.
+     */
+    warnings?: Schema$ApiWarning[];
   }
   /**
    * Instances ListServerCas response.
@@ -796,6 +848,13 @@ export namespace sqladmin_v1beta4 {
      */
     ipv4Enabled?: boolean;
     /**
+     * The resource link for the VPC network from which the Cloud SQL instance
+     * is accessible for private IP. For example,
+     * /projects/myProject/global/networks/default. This setting can be updated,
+     * but it cannot be removed after it is set.
+     */
+    privateNetwork?: string;
+    /**
      * Whether SSL connections over IP should be enforced or not.
      */
     requireSsl?: boolean;
@@ -839,14 +898,14 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string;
     /**
-     * The preferred Compute Engine zone (e.g. us-centra1-a, us-central1-b,
+     * The preferred Compute Engine zone (e.g. us-central1-a, us-central1-b,
      * etc.).
      */
     zone?: string;
   }
   /**
    * Maintenance window. This specifies when a v2 Cloud SQL instance should
-   * preferably be restarted for system maintenance puruposes.
+   * preferably be restarted for system maintenance purposes.
    */
   export interface Schema$MaintenanceWindow {
     /**
@@ -938,10 +997,9 @@ export namespace sqladmin_v1beta4 {
     kind?: string;
   }
   /**
-   * An Operations resource contains information about database instance
-   * operations such as create, delete, and restart. Operations resources are
-   * created in response to operations that were initiated; you never create
-   * them directly.
+   * An Operation resource. For successful operations that return an Operation
+   * resource, only the fields relevant to the operation are populated in the
+   * resource.
    */
   export interface Schema$Operation {
     /**
@@ -1134,8 +1192,8 @@ export namespace sqladmin_v1beta4 {
      */
     activationPolicy?: string;
     /**
-     * The App Engine app IDs that can access this instance. This property is
-     * only applicable to First Generation instances.
+     * The App Engine app IDs that can access this instance. First Generation
+     * instances only.
      */
     authorizedGaeApplications?: string[];
     /**
@@ -1166,13 +1224,13 @@ export namespace sqladmin_v1beta4 {
      */
     databaseReplicationEnabled?: boolean;
     /**
-     * The size of data disk, in GB. The data disk size minimum is 10GB. Applies
-     * only to Second Generation instances.
+     * The size of data disk, in GB. The data disk size minimum is 10GB. Not
+     * used for First Generation instances.
      */
     dataDiskSizeGb?: string;
     /**
-     * The type of data disk. Only supported for Second Generation instances.
-     * The default type is PD_SSD. Applies only to Second Generation instances.
+     * The type of data disk: PD_SSD (default) or PD_HDD. Not used for First
+     * Generation instances.
      */
     dataDiskType?: string;
     /**
@@ -1195,8 +1253,8 @@ export namespace sqladmin_v1beta4 {
     locationPreference?: Schema$LocationPreference;
     /**
      * The maintenance window for this instance. This specifies when the
-     * instance may be restarted for maintenance purposes. Applies only to
-     * Second Generation instances.
+     * instance can be restarted for maintenance purposes. Not used for First
+     * Generation instances.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
@@ -1219,25 +1277,28 @@ export namespace sqladmin_v1beta4 {
     settingsVersion?: string;
     /**
      * Configuration to increase storage size automatically. The default value
-     * is true. Applies only to Second Generation instances.
+     * is true. Not used for First Generation instances.
      */
     storageAutoResize?: boolean;
     /**
      * The maximum size to which storage capacity can be automatically
      * increased. The default value is 0, which specifies that there is no
-     * limit. Applies only to Second Generation instances.
+     * limit. Not used for First Generation instances.
      */
     storageAutoResizeLimit?: string;
     /**
-     * The tier of service for this instance, for example D1, D2. For more
-     * information, see pricing.
+     * The tier (or machine type) for this instance, for example
+     * db-n1-standard-1 (MySQL instances) or db-custom-1-3840 (PostgreSQL
+     * instances). For MySQL instances, this property determines whether the
+     * instance is First or Second Generation. For more information, see
+     * Instance Settings.
      */
     tier?: string;
     /**
      * User-provided labels, represented as a dictionary where each label is a
      * single key value pair.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * SslCerts Resource
@@ -1311,8 +1372,7 @@ export namespace sqladmin_v1beta4 {
   export interface Schema$SslCertsInsertRequest {
     /**
      * User supplied name. Must be a distinct name from the other certificates
-     * for this instance. New certificates will not be usable until the instance
-     * is restarted.
+     * for this instance.
      */
     commonName?: string;
   }
@@ -1375,8 +1435,8 @@ export namespace sqladmin_v1beta4 {
      */
     region?: string[];
     /**
-     * An identifier for the service tier, for example D1, D2 etc. For related
-     * information, see Pricing.
+     * An identifier for the machine type, for example, db-n1-standard-1. For
+     * related information, see Pricing.
      */
     tier?: string;
   }
@@ -1412,7 +1472,8 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$User {
     /**
-     * HTTP 1.1 Entity tag for the resource.
+     * This field is deprecated and will be removed from a future version of the
+     * API.
      */
     etag?: string;
     /**
@@ -1433,7 +1494,7 @@ export namespace sqladmin_v1beta4 {
     kind?: string;
     /**
      * The name of the user in the Cloud SQL instance. Can be omitted for update
-     * since it is already specified on the URL.
+     * since it is already specified in the URL.
      */
     name?: string;
     /**
@@ -1469,15 +1530,7 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Backupruns {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1540,7 +1593,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1606,7 +1659,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackupRun>(parameters, callback);
@@ -1677,7 +1730,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1690,7 +1743,8 @@ export namespace sqladmin_v1beta4 {
     /**
      * sql.backupRuns.list
      * @desc Lists all backup runs associated with a given instance and
-     * configuration in the reverse chronological order of the enqueued time.
+     * configuration in the reverse chronological order of the backup initiation
+     * time.
      * @alias sql.backupRuns.list
      * @memberOf! ()
      *
@@ -1749,7 +1803,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackupRunsListResponse>(parameters, callback);
@@ -1759,7 +1813,8 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Backupruns$Delete {
+  export interface Params$Resource$Backupruns$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1779,7 +1834,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Get {
+  export interface Params$Resource$Backupruns$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1798,7 +1853,8 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Backupruns$Insert {
+  export interface Params$Resource$Backupruns$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1818,7 +1874,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$BackupRun;
   }
-  export interface Params$Resource$Backupruns$List {
+  export interface Params$Resource$Backupruns$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1845,15 +1901,7 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Databases {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1915,7 +1963,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1981,7 +2029,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -2051,7 +2099,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2069,7 +2117,7 @@ export namespace sqladmin_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2120,7 +2168,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatabasesListResponse>(parameters, callback);
@@ -2191,7 +2239,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2262,7 +2310,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2272,7 +2320,7 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Databases$Delete {
+  export interface Params$Resource$Databases$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2291,7 +2339,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Get {
+  export interface Params$Resource$Databases$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2310,7 +2358,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Insert {
+  export interface Params$Resource$Databases$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2330,7 +2378,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Databases$List {
+  export interface Params$Resource$Databases$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2341,11 +2389,11 @@ export namespace sqladmin_v1beta4 {
      */
     instance?: string;
     /**
-     * Project ID of the project for which to list Cloud SQL instances.
+     * Project ID of the project that contains the instance.
      */
     project?: string;
   }
-  export interface Params$Resource$Databases$Patch {
+  export interface Params$Resource$Databases$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2369,7 +2417,7 @@ export namespace sqladmin_v1beta4 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Databases$Update {
+  export interface Params$Resource$Databases$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2396,25 +2444,17 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Flags {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * sql.flags.list
-     * @desc List all available database flags for Google Cloud SQL instances.
+     * @desc List all available database flags for Cloud SQL instances.
      * @alias sql.flags.list
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.databaseVersion Database version for flag retrieval. Flags are specific to the database version.
+     * @param {string=} params.databaseVersion Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2462,7 +2502,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FlagsListResponse>(parameters, callback);
@@ -2472,30 +2512,22 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
-  export interface Params$Resource$Flags$List {
+  export interface Params$Resource$Flags$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Database version for flag retrieval. Flags are specific to the database
-     * version.
+     * Database type and version you want to retrieve flags for. By default,
+     * this method returns flags for all database types and versions.
      */
     databaseVersion?: string;
   }
 
 
   export class Resource$Instances {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2503,7 +2535,7 @@ export namespace sqladmin_v1beta4 {
      * @desc Add a new trusted Certificate Authority (CA) version for the
      * specified instance. Required to prepare for a certificate rotation. If a
      * CA version was previously added but never used in a certificate rotation,
-     * this operation replaces that version. There can not be more than one CA
+     * this operation replaces that version. There cannot be more than one CA
      * version waiting to be rotated in.
      * @alias sql.instances.addServerCa
      * @memberOf! ()
@@ -2562,7 +2594,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2574,8 +2606,7 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.clone
-     * @desc Creates a Cloud SQL instance as a clone of the source instance. The
-     * API is not ready for Second Generation instances yet.
+     * @desc Creates a Cloud SQL instance as a clone of the source instance.
      * @alias sql.instances.clone
      * @memberOf! ()
      *
@@ -2632,7 +2663,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2699,7 +2730,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2711,7 +2742,8 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.demoteMaster
-     * @desc Reserved for future use.
+     * @desc Demotes the stand-alone instance to be a Cloud SQL read replica for
+     * an external database server.
      * @alias sql.instances.demoteMaster
      * @memberOf! ()
      *
@@ -2770,7 +2802,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2782,8 +2814,8 @@ export namespace sqladmin_v1beta4 {
 
     /**
      * sql.instances.export
-     * @desc Exports data from a Cloud SQL instance to a Google Cloud Storage
-     * bucket as a MySQL dump file.
+     * @desc Exports data from a Cloud SQL instance to a Cloud Storage bucket as
+     * a SQL dump or CSV file.
      * @alias sql.instances.export
      * @memberOf! ()
      *
@@ -2840,7 +2872,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2911,7 +2943,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2976,7 +3008,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatabaseInstance>(parameters, callback);
@@ -2988,7 +3020,7 @@ export namespace sqladmin_v1beta4 {
 
 /**
  * sql.instances.import
- * @desc Imports data into a Cloud SQL instance from a MySQL dump file in Google
+ * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in
  * Cloud Storage.
  * @alias sql.instances.import
  * @memberOf! ()
@@ -3018,7 +3050,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     options = {};
                                                                                                                                                                                                                                                                           }
 
-                                                                                                                                                                                                                                                                          const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                          const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                           } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -3080,7 +3112,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3150,7 +3182,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListResponse>(parameters, callback);
@@ -3230,7 +3262,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListServerCasResponse>(
@@ -3303,7 +3335,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3374,7 +3406,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3387,9 +3419,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * sql.instances.resetSslConfig
      * @desc Deletes all client certificates and generates a new server SSL
-     * certificate for the instance. The changes will not take effect until the
-     * instance is restarted. Existing instances without a server certificate
-     * will need to call this once to set a server certificate.
+     * certificate for the instance.
      * @alias sql.instances.resetSslConfig
      * @memberOf! ()
      *
@@ -3447,7 +3477,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3517,7 +3547,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3588,7 +3618,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3660,7 +3690,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3730,7 +3760,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3800,7 +3830,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3871,7 +3901,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3941,7 +3971,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3951,7 +3981,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Instances$Addserverca {
+  export interface Params$Resource$Instances$Addserverca extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3966,7 +3997,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Clone {
+  export interface Params$Resource$Instances$Clone extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3987,7 +4018,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesCloneRequest;
   }
-  export interface Params$Resource$Instances$Delete {
+  export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4002,7 +4033,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Demotemaster {
+  export interface Params$Resource$Instances$Demotemaster extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4022,7 +4054,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesDemoteMasterRequest;
   }
-  export interface Params$Resource$Instances$Export {
+  export interface Params$Resource$Instances$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4042,7 +4074,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesExportRequest;
   }
-  export interface Params$Resource$Instances$Failover {
+  export interface Params$Resource$Instances$Failover extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4062,7 +4095,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesFailoverRequest;
   }
-  export interface Params$Resource$Instances$Get {
+  export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4077,7 +4110,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Import {
+  export interface Params$Resource$Instances$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4097,7 +4130,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesImportRequest;
   }
-  export interface Params$Resource$Instances$Insert {
+  export interface Params$Resource$Instances$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4114,7 +4147,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$List {
+  export interface Params$Resource$Instances$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4139,7 +4172,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Listservercas {
+  export interface Params$Resource$Instances$Listservercas extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4154,7 +4188,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Patch {
+  export interface Params$Resource$Instances$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4174,7 +4208,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Instances$Promotereplica {
+  export interface Params$Resource$Instances$Promotereplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4189,7 +4224,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Resetsslconfig {
+  export interface Params$Resource$Instances$Resetsslconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4204,7 +4240,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restart {
+  export interface Params$Resource$Instances$Restart extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4219,7 +4256,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Restorebackup {
+  export interface Params$Resource$Instances$Restorebackup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4239,7 +4277,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
   }
-  export interface Params$Resource$Instances$Rotateserverca {
+  export interface Params$Resource$Instances$Rotateserverca extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4259,7 +4298,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesRotateServerCaRequest;
   }
-  export interface Params$Resource$Instances$Startreplica {
+  export interface Params$Resource$Instances$Startreplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4274,7 +4314,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Stopreplica {
+  export interface Params$Resource$Instances$Stopreplica extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4289,7 +4330,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Truncatelog {
+  export interface Params$Resource$Instances$Truncatelog extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4309,7 +4351,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$InstancesTruncateLogRequest;
   }
-  export interface Params$Resource$Instances$Update {
+  export interface Params$Resource$Instances$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4332,15 +4374,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Operations {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4398,7 +4432,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4468,7 +4502,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -4478,7 +4512,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4493,7 +4527,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4520,15 +4554,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Sslcerts {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4594,7 +4620,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4606,14 +4632,14 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
     /**
      * sql.sslCerts.delete
-     * @desc Deletes the SSL certificate. The change will not take effect until
-     * the instance is restarted.
+     * @desc Deletes the SSL certificate. For First Generation instances, the
+     * certificate remains valid until the instance is restarted.
      * @alias sql.sslCerts.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4664,7 +4690,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4731,7 +4757,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4751,7 +4777,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().SslCertsInsertRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4803,7 +4829,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsInsertResponse>(parameters, callback);
@@ -4821,7 +4847,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4872,7 +4898,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsListResponse>(parameters, callback);
@@ -4882,7 +4908,8 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Sslcerts$Createephemeral {
+  export interface Params$Resource$Sslcerts$Createephemeral extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4902,26 +4929,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$SslCertsCreateEphemeralRequest;
   }
-  export interface Params$Resource$Sslcerts$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Cloud SQL instance ID. This does not include the project ID.
-     */
-    instance?: string;
-    /**
-     * Project ID of the project that contains the instance to be deleted.
-     */
-    project?: string;
-    /**
-     * Sha1 FingerPrint.
-     */
-    sha1Fingerprint?: string;
-  }
-  export interface Params$Resource$Sslcerts$Get {
+  export interface Params$Resource$Sslcerts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4940,7 +4948,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     sha1Fingerprint?: string;
   }
-  export interface Params$Resource$Sslcerts$Insert {
+  export interface Params$Resource$Sslcerts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4951,8 +4959,26 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     instance?: string;
     /**
-     * Project ID of the project to which the newly created Cloud SQL instances
-     * should belong.
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+    /**
+     * Sha1 FingerPrint.
+     */
+    sha1Fingerprint?: string;
+  }
+  export interface Params$Resource$Sslcerts$Insert extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
      */
     project?: string;
 
@@ -4961,7 +4987,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$SslCertsInsertRequest;
   }
-  export interface Params$Resource$Sslcerts$List {
+  export interface Params$Resource$Sslcerts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4972,28 +4998,20 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     instance?: string;
     /**
-     * Project ID of the project for which to list Cloud SQL instances.
+     * Project ID of the project that contains the instance.
      */
     project?: string;
   }
 
 
   export class Resource$Tiers {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * sql.tiers.list
-     * @desc Lists all available service tiers for Google Cloud SQL, for example
-     * D1, D2. For related information, see Pricing.
+     * @desc Lists all available machine types (tiers) for Cloud SQL, for
+     * example, db-n1-standard-1. For related information, see Pricing.
      * @alias sql.tiers.list
      * @memberOf! ()
      *
@@ -5046,7 +5064,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TiersListResponse>(parameters, callback);
@@ -5056,7 +5074,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Tiers$List {
+  export interface Params$Resource$Tiers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5070,15 +5088,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Users {
-    root: Sqladmin;
-    constructor(root: Sqladmin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5141,7 +5151,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'host', 'name'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5210,7 +5220,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5278,7 +5288,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(parameters, callback);
@@ -5295,7 +5305,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.host Host of the user in the instance.
+     * @param {string=} params.host Host of the user in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
@@ -5347,9 +5357,9 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
             },
             options),
         params,
-        requiredParams: ['project', 'instance', 'host', 'name'],
+        requiredParams: ['project', 'instance', 'name'],
         pathParams: ['instance', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5359,7 +5369,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     }
   }
 
-  export interface Params$Resource$Users$Delete {
+  export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5382,7 +5392,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Users$Insert {
+  export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5402,7 +5412,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     requestBody?: Schema$User;
   }
-  export interface Params$Resource$Users$List {
+  export interface Params$Resource$Users$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5417,7 +5427,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     project?: string;
   }
-  export interface Params$Resource$Users$Update {
+  export interface Params$Resource$Users$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

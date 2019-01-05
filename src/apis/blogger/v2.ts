@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace blogger_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace blogger_v2 {
    * @param {object=} options Options for Blogger
    */
   export class Blogger {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     blogs: Resource$Blogs;
     comments: Resource$Comments;
     pages: Resource$Pages;
@@ -57,19 +88,13 @@ export namespace blogger_v2 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.blogs = new Resource$Blogs(this);
-      this.comments = new Resource$Comments(this);
-      this.pages = new Resource$Pages(this);
-      this.posts = new Resource$Posts(this);
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.blogs = new Resource$Blogs();
+      this.comments = new Resource$Comments();
+      this.pages = new Resource$Pages();
+      this.posts = new Resource$Posts();
+      this.users = new Resource$Users();
     }
   }
 
@@ -89,7 +114,7 @@ export namespace blogger_v2 {
     /**
      * The locale this Blog is set to.
      */
-    locale?: any;
+    locale?: {country?: string; language?: string; variant?: string;};
     /**
      * The name of this blog. This is displayed as the title.
      */
@@ -97,11 +122,11 @@ export namespace blogger_v2 {
     /**
      * The container of pages in this blog.
      */
-    pages?: any;
+    pages?: {selfLink?: string; totalItems?: number;};
     /**
      * The container of posts in this blog.
      */
-    posts?: any;
+    posts?: {selfLink?: string; totalItems?: number;};
     /**
      * RFC 3339 date-time when this blog was published.
      */
@@ -133,11 +158,16 @@ export namespace blogger_v2 {
     /**
      * The author of this Comment.
      */
-    author?: any;
+    author?: {
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+    };
     /**
      * Data about the blog containing this comment.
      */
-    blog?: any;
+    blog?: {id?: string;};
     /**
      * The actual content of the comment. May include HTML markup.
      */
@@ -149,7 +179,7 @@ export namespace blogger_v2 {
     /**
      * Data about the comment this is in reply to.
      */
-    inReplyTo?: any;
+    inReplyTo?: {id?: string;};
     /**
      * The kind of this entry. Always blogger#comment
      */
@@ -157,7 +187,7 @@ export namespace blogger_v2 {
     /**
      * Data about the post containing this comment.
      */
-    post?: any;
+    post?: {id?: string;};
     /**
      * RFC 3339 date-time when this comment was published.
      */
@@ -193,11 +223,16 @@ export namespace blogger_v2 {
     /**
      * The author of this Page.
      */
-    author?: any;
+    author?: {
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+    };
     /**
      * Data about the blog containing this Page.
      */
-    blog?: any;
+    blog?: {id?: string;};
     /**
      * The body content of this Page, in HTML.
      */
@@ -246,11 +281,16 @@ export namespace blogger_v2 {
     /**
      * The author of this Post.
      */
-    author?: any;
+    author?: {
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+    };
     /**
      * Data about the blog containing this Post.
      */
-    blog?: any;
+    blog?: {id?: string;};
     /**
      * The content of the Post. May contain HTML markup.
      */
@@ -274,7 +314,7 @@ export namespace blogger_v2 {
     /**
      * The container of comments on this Post.
      */
-    replies?: any;
+    replies?: {selfLink?: string; totalItems?: string;};
     /**
      * The API REST URL to fetch this resource from.
      */
@@ -318,7 +358,7 @@ export namespace blogger_v2 {
     /**
      * The container of blogs for this user.
      */
-    blogs?: any;
+    blogs?: {selfLink?: string;};
     /**
      * The timestamp of when this profile was created, in seconds since epoch.
      */
@@ -338,7 +378,7 @@ export namespace blogger_v2 {
     /**
      * This user&#39;s locale
      */
-    locale?: any;
+    locale?: {country?: string; language?: string; variant?: string;};
     /**
      * The API REST URL to fetch this resource from.
      */
@@ -351,15 +391,7 @@ export namespace blogger_v2 {
 
 
   export class Resource$Blogs {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -413,7 +445,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Blog>(parameters, callback);
@@ -423,7 +455,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Blogs$Get {
+  export interface Params$Resource$Blogs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -437,15 +469,7 @@ export namespace blogger_v2 {
 
 
   export class Resource$Comments {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -503,7 +527,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -574,7 +598,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -584,7 +608,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -603,7 +627,7 @@ export namespace blogger_v2 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -637,15 +661,7 @@ export namespace blogger_v2 {
 
 
   export class Resource$Pages {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -700,7 +716,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -765,7 +781,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PageList>(parameters, callback);
@@ -775,7 +791,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Pages$Get {
+  export interface Params$Resource$Pages$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -790,7 +806,7 @@ export namespace blogger_v2 {
      */
     pageId?: string;
   }
-  export interface Params$Resource$Pages$List {
+  export interface Params$Resource$Pages$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -808,15 +824,7 @@ export namespace blogger_v2 {
 
 
   export class Resource$Posts {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -871,7 +879,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -939,7 +947,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PostList>(parameters, callback);
@@ -949,7 +957,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Posts$Get {
+  export interface Params$Resource$Posts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -964,7 +972,7 @@ export namespace blogger_v2 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Posts$List {
+  export interface Params$Resource$Posts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -994,16 +1002,9 @@ export namespace blogger_v2 {
 
 
   export class Resource$Users {
-    root: Blogger;
     blogs: Resource$Users$Blogs;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.blogs = new Resource$Users$Blogs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.blogs = new Resource$Users$Blogs();
     }
 
 
@@ -1058,7 +1059,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -1068,7 +1069,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Users$Get {
+  export interface Params$Resource$Users$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1081,15 +1082,7 @@ export namespace blogger_v2 {
   }
 
   export class Resource$Users$Blogs {
-    root: Blogger;
-    constructor(root: Blogger) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1146,7 +1139,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BlogList>(parameters, callback);
@@ -1156,7 +1149,7 @@ export namespace blogger_v2 {
     }
   }
 
-  export interface Params$Resource$Users$Blogs$List {
+  export interface Params$Resource$Users$Blogs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

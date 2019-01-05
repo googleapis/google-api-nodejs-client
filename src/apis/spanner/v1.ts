@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace spanner_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,22 +99,12 @@ export namespace spanner_v1 {
    * @param {object=} options Options for Spanner
    */
   export class Spanner {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -79,6 +121,13 @@ export namespace spanner_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
     /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
@@ -97,7 +146,7 @@ export namespace spanner_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -293,7 +342,7 @@ export namespace spanner_v1 {
      * whose keys are parameter names, and whose values are the corresponding
      * parameter values.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -302,7 +351,7 @@ export namespace spanner_v1 {
      * of the SQL statement parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: any;
+    paramTypes?: {[key: string]: Schema$Type;};
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionQuery().  There must be an exact match
@@ -325,14 +374,60 @@ export namespace spanner_v1 {
      */
     resumeToken?: string;
     /**
+     * A per-transaction sequence number used to identify this request. This
+     * makes each request idempotent such that if the request is received
+     * multiple times, at most one will succeed.  The sequence number must be
+     * monotonically increasing within the transaction. If a request arrives for
+     * the first time with an out-of-order sequence number, the transaction may
+     * be aborted. Replays of previously handled requests will yield the same
+     * response as the first execution.  Required for DML statements. Ignored
+     * for queries.
+     */
+    seqno?: string;
+    /**
      * Required. The SQL string.
      */
     sql?: string;
     /**
      * The transaction to use. If none is provided, the default is a temporary
-     * read-only transaction with strong concurrency.
+     * read-only transaction with strong concurrency.  The transaction to use.
+     * For queries, if none is provided, the default is a temporary read-only
+     * transaction with strong concurrency.  Standard DML statements require a
+     * ReadWrite transaction. Single-use transactions are not supported (to
+     * avoid replay).  The caller must either supply an existing transaction ID
+     * or begin a new transaction.  Partitioned DML requires an existing
+     * PartitionedDml transaction ID.
      */
     transaction?: Schema$TransactionSelector;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * Message representing a single field of a struct.
@@ -403,7 +498,7 @@ export namespace spanner_v1 {
      * as the string:  name + &quot;_&quot; + value  would prove problematic if
      * we were to allow &quot;_&quot; in a future release.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
@@ -656,7 +751,7 @@ export namespace spanner_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -672,7 +767,7 @@ export namespace spanner_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Partial results from a streaming read or SQL query. Streaming reads and SQL
@@ -703,7 +798,8 @@ export namespace spanner_v1 {
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
      * ExecuteSqlRequest.query_mode and are sent only once with the last
-     * response in the stream.
+     * response in the stream. This field will also be present in the last
+     * response for DML statements.
      */
     stats?: Schema$ResultSetStats;
     /**
@@ -768,6 +864,10 @@ export namespace spanner_v1 {
     partitionToken?: string;
   }
   /**
+   * Message type to initiate a Partitioned DML transaction.
+   */
+  export interface Schema$PartitionedDml {}
+  /**
    * Options for a PartitionQueryRequest and PartitionReadRequest.
    */
   export interface Schema$PartitionOptions {
@@ -805,7 +905,7 @@ export namespace spanner_v1 {
      * are parameter names, and whose values are the corresponding parameter
      * values.
      */
-    params?: any;
+    params?: {[key: string]: any;};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -814,7 +914,7 @@ export namespace spanner_v1 {
      * of the SQL query parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: any;
+    paramTypes?: {[key: string]: Schema$Type;};
     /**
      * Additional options that affect how many partitions are created.
      */
@@ -825,7 +925,9 @@ export namespace spanner_v1 {
      * partitionable query has a single distributed union operator. A
      * distributed union operator conceptually divides one or more tables into
      * multiple splits, remotely evaluates a subquery independently on each
-     * split, and then unions all results.
+     * split, and then unions all results.  This must not contain DML commands,
+     * such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a
+     * PartitionedDml transaction for large, partition-friendly DML operations.
      */
     sql?: string;
     /**
@@ -901,7 +1003,7 @@ export namespace spanner_v1 {
      * a profile query. For example, number of executions, number of rows/time
      * per execution etc.
      */
-    executionStats?: any;
+    executionStats?: {[key: string]: any;};
     /**
      * The `PlanNode`&#39;s index in node list.
      */
@@ -919,7 +1021,7 @@ export namespace spanner_v1 {
      * information in its metadata:      { &quot;parameter_reference&quot;:
      * &quot;param1&quot;,       &quot;parameter_type&quot;: &quot;array&quot; }
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Condensed representation for SCALAR nodes.
      */
@@ -1116,6 +1218,10 @@ export namespace spanner_v1 {
     /**
      * Query plan and execution statistics for the SQL statement that produced
      * this result set. These can be requested by setting
+     * ExecuteSqlRequest.query_mode. DML statements always produce stats
+     * containing the number of rows modified, unless executed using the
+     * ExecuteSqlRequest.QueryMode.PLAN ExecuteSqlRequest.query_mode. Other
+     * fields may or may not be populated, based on the
      * ExecuteSqlRequest.query_mode.
      */
     stats?: Schema$ResultSetStats;
@@ -1155,7 +1261,16 @@ export namespace spanner_v1 {
      * &quot;elapsed_time&quot;: &quot;1.22 secs&quot;, &quot;cpu_time&quot;:
      * &quot;1.19 secs&quot;     }
      */
-    queryStats?: any;
+    queryStats?: {[key: string]: any;};
+    /**
+     * Standard DML returns an exact count of rows that were modified.
+     */
+    rowCountExact?: string;
+    /**
+     * Partitioned DML does not offer exactly-once semantics, so it returns a
+     * lower bound of the rows modified.
+     */
+    rowCountLowerBound?: string;
   }
   /**
    * The request for Rollback.
@@ -1188,7 +1303,7 @@ export namespace spanner_v1 {
      * associated with a given session.  See https://goo.gl/xmQnxf for more
      * information on and examples of labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The name of the session. This is always system-assigned; values provided
      * when creating a session are ignored.
@@ -1223,7 +1338,7 @@ export namespace spanner_v1 {
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
      */
-    subqueries?: any;
+    subqueries?: {[key: string]: number;};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1270,7 +1385,7 @@ export namespace spanner_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1337,15 +1452,20 @@ export namespace spanner_v1 {
    * time. After the active transaction is completed, the session can
    * immediately be re-used for the next transaction. It is not necessary to
    * create a new session for each transaction.  # Transaction Modes  Cloud
-   * Spanner supports two transaction modes:    1. Locking read-write. This type
-   * of transaction is the only way      to write data into Cloud Spanner. These
-   * transactions rely on      pessimistic locking and, if necessary, two-phase
-   * commit.      Locking read-write transactions may abort, requiring the
-   * application to retry.    2. Snapshot read-only. This transaction type
-   * provides guaranteed      consistency across several reads, but does not
-   * allow      writes. Snapshot read-only transactions can be configured to
+   * Spanner supports three transaction modes:    1. Locking read-write. This
+   * type of transaction is the only way      to write data into Cloud Spanner.
+   * These transactions rely on      pessimistic locking and, if necessary,
+   * two-phase commit.      Locking read-write transactions may abort, requiring
+   * the      application to retry.    2. Snapshot read-only. This transaction
+   * type provides guaranteed      consistency across several reads, but does
+   * not allow      writes. Snapshot read-only transactions can be configured to
    * read at timestamps in the past. Snapshot read-only      transactions do not
-   * need to be committed.   For transactions that only read, snapshot read-only
+   * need to be committed.    3. Partitioned DML. This type of transaction is
+   * used to execute      a single Partitioned DML statement. Partitioned DML
+   * partitions      the key space and runs the DML statement over each
+   * partition      in parallel using separate, internal transactions that
+   * commit      independently. Partitioned DML transactions do not need to be
+   * committed.  For transactions that only read, snapshot read-only
    * transactions provide simpler semantics and are almost always faster. In
    * particular, read-only transactions do not take locks, so they do not
    * conflict with read-write transactions. As a consequence of not taking
@@ -1360,10 +1480,8 @@ export namespace spanner_v1 {
    * locks active as long as the transaction continues to do reads, and the
    * transaction has not been terminated by Commit or Rollback.  Long periods of
    * inactivity at the client may cause Cloud Spanner to release a
-   * transaction&#39;s locks and abort it.  Reads performed within a transaction
-   * acquire locks on the data being read. Writes can only be done at commit
-   * time, after all reads have been completed. Conceptually, a read-write
-   * transaction consists of zero or more reads or SQL queries followed by
+   * transaction&#39;s locks and abort it.  Conceptually, a read-write
+   * transaction consists of zero or more reads or SQL statements followed by
    * Commit. At any time before Commit, the client can send a Rollback request
    * to abort the transaction.  ### Semantics  Cloud Spanner can commit the
    * transaction if all read locks it acquired are still valid at commit time,
@@ -1459,8 +1577,53 @@ export namespace spanner_v1 {
    * restriction also applies to in-progress reads and/or SQL queries whose
    * timestamp become too old while executing. Reads and SQL queries with
    * too-old read timestamps fail with the error `FAILED_PRECONDITION`.  ##
+   * Partitioned DML Transactions  Partitioned DML transactions are used to
+   * execute DML statements with a different execution strategy that provides
+   * different, and often better, scalability properties for large, table-wide
+   * operations than DML in a ReadWrite transaction. Smaller scoped statements,
+   * such as an OLTP workload, should prefer using ReadWrite transactions.
+   * Partitioned DML partitions the keyspace and runs the DML statement on each
+   * partition in separate, internal transactions. These transactions commit
+   * automatically when complete, and run independently from one another.  To
+   * reduce lock contention, this execution strategy only acquires read locks on
+   * rows that match the WHERE clause of the statement. Additionally, the
+   * smaller per-partition transactions hold locks for less time.  That said,
+   * Partitioned DML is not a drop-in replacement for standard DML used in
+   * ReadWrite transactions.   - The DML statement must be fully-partitionable.
+   * Specifically, the statement    must be expressible as the union of many
+   * statements which each access only    a single row of the table.   - The
+   * statement is not applied atomically to all rows of the table. Rather, the
+   * statement is applied atomically to partitions of the table, in independent
+   * transactions. Secondary index rows are updated atomically    with the base
+   * table rows.   - Partitioned DML does not guarantee exactly-once execution
+   * semantics    against a partition. The statement will be applied at least
+   * once to each    partition. It is strongly recommended that the DML
+   * statement should be    idempotent to avoid unexpected results. For
+   * instance, it is potentially    dangerous to run a statement such as `UPDATE
+   * table SET column = column + 1` as it could be run multiple times    against
+   * some rows.   - The partitions are committed automatically - there is no
+   * support for    Commit or Rollback. If the call returns an error, or if the
+   * client issuing    the ExecuteSql call dies, it is possible that some rows
+   * had the statement    executed on them successfully. It is also possible
+   * that statement was    never executed against other rows.   - Partitioned
+   * DML transactions may only contain the execution of a single    DML
+   * statement via ExecuteSql or ExecuteStreamingSql.   - If any error is
+   * encountered during the execution of the partitioned DML    operation (for
+   * instance, a UNIQUE INDEX violation, division by zero, or a    value that
+   * cannot be stored due to schema constraints), then the    operation is
+   * stopped at that point and an error is returned. It is    possible that at
+   * this point, some partitions have been committed (or even    committed
+   * multiple times), and other partitions have not been run at all.  Given the
+   * above, Partitioned DML is good fit for large, database-wide, operations
+   * that are idempotent, such as deleting old rows from a very large table.
    */
   export interface Schema$TransactionOptions {
+    /**
+     * Partitioned DML transaction.  Authorization to begin a Partitioned DML
+     * transaction requires `spanner.databases.beginPartitionedDmlTransaction`
+     * permission on the `session` resource.
+     */
+    partitionedDml?: Schema$PartitionedDml;
     /**
      * Transaction will not write.  Authorization to begin a read-only
      * transaction requires `spanner.databases.beginReadOnlyTransaction`
@@ -1642,32 +1805,17 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects {
-    root: Spanner;
     instanceConfigs: Resource$Projects$Instanceconfigs;
     instances: Resource$Projects$Instances;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instanceConfigs = new Resource$Projects$Instanceconfigs(root);
-      this.instances = new Resource$Projects$Instances(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instanceConfigs = new Resource$Projects$Instanceconfigs();
+      this.instances = new Resource$Projects$Instances();
     }
   }
 
 
   export class Resource$Projects$Instanceconfigs {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1722,7 +1870,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceConfig>(parameters, callback);
@@ -1796,7 +1944,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstanceConfigsResponse>(
@@ -1807,7 +1955,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigs$Get {
+  export interface Params$Resource$Projects$Instanceconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1819,7 +1968,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$List {
+  export interface Params$Resource$Projects$Instanceconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1844,18 +1994,11 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances {
-    root: Spanner;
     databases: Resource$Projects$Instances$Databases;
     operations: Resource$Projects$Instances$Operations;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.databases = new Resource$Projects$Instances$Databases(root);
-      this.operations = new Resource$Projects$Instances$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.databases = new Resource$Projects$Instances$Databases();
+      this.operations = new Resource$Projects$Instances$Operations();
     }
 
 
@@ -1936,7 +2079,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2005,7 +2148,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2066,7 +2209,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -2135,7 +2278,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2206,7 +2349,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -2295,7 +2438,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2364,7 +2507,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2443,7 +2586,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2454,7 +2597,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Create {
+  export interface Params$Resource$Projects$Instances$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2471,7 +2615,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Delete {
+  export interface Params$Resource$Projects$Instances$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2483,7 +2628,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Get {
+  export interface Params$Resource$Projects$Instances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2495,7 +2641,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Getiampolicy {
+  export interface Params$Resource$Projects$Instances$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2514,7 +2661,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$List {
+  export interface Params$Resource$Projects$Instances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2550,7 +2698,8 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Patch {
+  export interface Params$Resource$Projects$Instances$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2569,7 +2718,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$UpdateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Setiampolicy {
+  export interface Params$Resource$Projects$Instances$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2588,7 +2738,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Testiampermissions {
+  export interface Params$Resource$Projects$Instances$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2609,19 +2760,11 @@ export namespace spanner_v1 {
   }
 
   export class Resource$Projects$Instances$Databases {
-    root: Spanner;
     operations: Resource$Projects$Instances$Databases$Operations;
     sessions: Resource$Projects$Instances$Databases$Sessions;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations =
-          new Resource$Projects$Instances$Databases$Operations(root);
-      this.sessions = new Resource$Projects$Instances$Databases$Sessions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.operations = new Resource$Projects$Instances$Databases$Operations();
+      this.sessions = new Resource$Projects$Instances$Databases$Sessions();
     }
 
 
@@ -2688,7 +2831,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2755,7 +2898,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2816,7 +2959,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -2886,7 +3029,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters, callback);
@@ -2958,7 +3101,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3028,7 +3171,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDatabasesResponse>(parameters, callback);
@@ -3099,7 +3242,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3180,7 +3323,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3255,7 +3398,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3265,7 +3408,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Create {
+  export interface Params$Resource$Projects$Instances$Databases$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3282,7 +3426,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase {
+  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3293,7 +3438,8 @@ export namespace spanner_v1 {
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3305,7 +3451,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getddl {
+  export interface Params$Resource$Projects$Instances$Databases$Getddl extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3316,7 +3463,8 @@ export namespace spanner_v1 {
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy {
+  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3335,7 +3483,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$List {
+  export interface Params$Resource$Projects$Instances$Databases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3357,7 +3506,8 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy {
+  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3376,7 +3526,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions {
+  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3395,7 +3546,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Updateddl {
+  export interface Params$Resource$Projects$Instances$Databases$Updateddl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3413,15 +3565,7 @@ export namespace spanner_v1 {
   }
 
   export class Resource$Projects$Instances$Databases$Operations {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3490,7 +3634,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3560,7 +3704,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3626,7 +3770,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3706,7 +3850,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -3716,7 +3860,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3727,7 +3872,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3738,7 +3884,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3749,7 +3896,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$List {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3775,15 +3923,7 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances$Databases$Sessions {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3850,7 +3990,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Transaction>(parameters, callback);
@@ -3925,7 +4065,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -4006,7 +4146,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4073,7 +4213,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4153,7 +4293,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -4230,7 +4370,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -4294,7 +4434,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4367,7 +4507,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -4384,9 +4524,11 @@ export namespace spanner_v1 {
      * be used by ExecuteStreamingSql to specify a subset of the query result to
      * read.  The same session and read-only transaction must be used by the
      * PartitionQueryRequest used to create the partition tokens and the
-     * ExecuteSqlRequests that use the partition tokens. Partition tokens become
-     * invalid when the session used to create them is deleted or begins a new
-     * transaction.
+     * ExecuteSqlRequests that use the partition tokens.  Partition tokens
+     * become invalid when the session used to create them is deleted, is idle
+     * for too long, begins a new transaction, or becomes too old.  When any of
+     * these happen, it is not possible to resume the query, and the whole
+     * operation must be restarted from the beginning.
      * @alias spanner.projects.instances.databases.sessions.partitionQuery
      * @memberOf! ()
      *
@@ -4448,7 +4590,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4465,9 +4607,13 @@ export namespace spanner_v1 {
      * used by StreamingRead to specify a subset of the read result to read. The
      * same session and read-only transaction must be used by the
      * PartitionReadRequest used to create the partition tokens and the
-     * ReadRequests that use the partition tokens. Partition tokens become
-     * invalid when the session used to create them is deleted or begins a new
-     * transaction.
+     * ReadRequests that use the partition tokens.  There are no ordering
+     * guarantees on rows returned among the returned partition tokens, or even
+     * within each individual StreamingRead call issued with a partition_token.
+     * Partition tokens become invalid when the session used to create them is
+     * deleted, is idle for too long, begins a new transaction, or becomes too
+     * old.  When any of these happen, it is not possible to resume the read,
+     * and the whole operation must be restarted from the beginning.
      * @alias spanner.projects.instances.databases.sessions.partitionRead
      * @memberOf! ()
      *
@@ -4529,7 +4675,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4606,7 +4752,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -4680,7 +4826,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4757,7 +4903,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -4767,7 +4913,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4783,7 +4930,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4800,7 +4948,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4816,7 +4965,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateSessionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4827,7 +4977,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4843,7 +4994,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4859,7 +5011,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4870,7 +5023,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$List {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4900,7 +5054,8 @@ export namespace spanner_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4916,7 +5071,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionQueryRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4932,7 +5088,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4948,7 +5105,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4964,7 +5122,8 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4984,15 +5143,7 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances$Operations {
-    root: Spanner;
-    constructor(root: Spanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5059,7 +5210,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5127,7 +5278,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5191,7 +5342,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5269,7 +5420,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -5279,7 +5430,8 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Operations$Cancel {
+  export interface Params$Resource$Projects$Instances$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5290,7 +5442,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Delete {
+  export interface Params$Resource$Projects$Instances$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5301,7 +5454,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Get {
+  export interface Params$Resource$Projects$Instances$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5312,7 +5466,8 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$List {
+  export interface Params$Resource$Projects$Instances$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

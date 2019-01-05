@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,8 +29,61 @@ export namespace redis_v1beta1 {
     version: 'v1beta1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
-   * Cloud Memorystore for Redis API
+   * Google Cloud Memorystore for Redis API
    *
    * The Google Cloud Memorystore for Redis API is used for creating and
    * managing Redis instances on the Google Cloud Platform.
@@ -47,25 +99,23 @@ export namespace redis_v1beta1 {
    * @param {object=} options Options for Redis
    */
   export class Redis {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated
+   * empty messages in your APIs. A typical example is to use it as the request
+   * or the response type of an API method. For instance:      service Foo { rpc
+   * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+   * representation for `Empty` is empty JSON object `{}`.
+   */
+  export interface Schema$Empty {}
   /**
    * Represents the metadata of the long-running operation.
    */
@@ -116,7 +166,8 @@ export namespace redis_v1beta1 {
      * specified in `location_id` or `alternative_location_id` fields when
      * creating a Redis instance.
      */
-    availableZones?: any;
+    availableZones?:
+        {[key: string]: Schema$GoogleCloudRedisV1beta1ZoneMetadata;};
   }
   /**
    * Defines specific information for a particular zone. Currently empty and
@@ -164,7 +215,7 @@ export namespace redis_v1beta1 {
     /**
      * Resource labels to represent user provided metadata
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Optional. The zone where the instance will be provisioned. If not
      * provided, the service will choose a zone for the instance. For
@@ -189,6 +240,14 @@ export namespace redis_v1beta1 {
      */
     name?: string;
     /**
+     * Output only. IAM identity used by import / export operations to transfer
+     * data to/from GCS.  Format is
+     * &quot;serviceAccount:&lt;service_account_email&gt;&quot;.  The value may
+     * change over time for a given instance so should be checked before each
+     * import/export operation.
+     */
+    persistenceIamIdentity?: string;
+    /**
      * Output only. The port number of the exposed Redis endpoint.
      */
     port?: number;
@@ -197,7 +256,7 @@ export namespace redis_v1beta1 {
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:   *   maxmemory-policy  *   notify-keyspace-events
      */
-    redisConfigs?: any;
+    redisConfigs?: {[key: string]: string;};
     /**
      * Optional. The version of Redis software. If not provided, latest
      * supported version will be used. Updating the version will perform an
@@ -247,6 +306,10 @@ export namespace redis_v1beta1 {
      * results in the list.
      */
     nextPageToken?: string;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[];
   }
   /**
    * The response message for Locations.ListLocations.
@@ -287,36 +350,23 @@ export namespace redis_v1beta1 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * Resource ID for the region. For example: &quot;us-east1&quot;.
      */
     locationId?: string;
     /**
-     * Service-specific metadata. For example the available capacity at the
-     * given location.
+     * Output only. The set of available zones in the location. The map is keyed
+     * by the lowercase ID of each zone, as defined by Compute Engine. These
+     * keys can be specified in `location_id` or `alternative_location_id`
+     * fields when creating a Redis instance.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
-     * Resource name for the location, which may vary between implementations.
-     * For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Full resource name for the region. For example:
+     * &quot;projects/example-project/locations/us-east1&quot;.
      */
     name?: string;
-  }
-  /**
-   * This location metadata represents additional configuration options for a
-   * given location where a Redis instance may be created. All fields are output
-   * only. It is returned as content of the
-   * `google.cloud.location.Location.metadata` field.
-   */
-  export interface Schema$LocationMetadata {
-    /**
-     * Output only. The set of available zones in the location. The map is keyed
-     * by the lowercase ID of each zone, as defined by GCE. These keys can be
-     * specified in `location_id` or `alternative_location_id` fields when
-     * creating a Redis instance.
-     */
-    availableZones?: any;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -334,12 +384,17 @@ export namespace redis_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * Service-specific metadata associated with the operation.  It typically
-     * contains progress information and common metadata such as create time.
-     * Some services might not provide such metadata.  Any method that returns a
-     * long-running operation should document the metadata type, if any.
+     * {  `createTime`: The time the operation was created.  `endTime`: The time
+     * the operation finished running.  `target`: Server-defined resource path
+     * for the target of the operation.  `verb`: Name of the verb executed by
+     * the operation.  `statusDetail`: Human-readable status of the operation,
+     * if any.  `cancelRequested`: Identifies whether the user has requested
+     * cancellation of the operation. Operations that have successfully been
+     * cancelled have Operation.error value with a google.rpc.Status.code of 1,
+     * corresponding to `Code.CANCELLED`.  `apiVersion`: API version used to
+     * start the operation.  }
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -355,57 +410,7 @@ export namespace redis_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
-  }
-  /**
-   * This operation metadata represents the state of operations that may have
-   * happened or are happening on the instance. All fields are output only. It
-   * is returned as content of the `google.longrunning.Operation.metadata`
-   * field. The `google.longrunning.Operation.name` field will be of the form
-   * `projects/{project_id}/locations/{location_id}/operations/{operation_id}`
-   * and the name for a `ListOperations` request will be of the form
-   * `projects/{project_id}/locations/{location_id}`  On a ListOperations
-   * request where {location_id} is &quot;-&quot;, all regions available to the
-   * {project_id} are queried and the results aggregated. If a location is not
-   * available, a dummy `google.longrunning.Operation` entry will be included in
-   * the `operations` field of the response, with the `name` field set to a
-   * value of the form
-   * `projects/{project_id}/locations/{location_id}/operations/-` and the `done`
-   * field will be set and the `result.error` field set with the `code` field
-   * set to `google.rpc.Code.DEADLINE_EXCEEDED` and the `message` field set to
-   * `location unavailable for ListOperations`. The Operation metadata` field
-   * will not be set for such a dummy operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string;
-    /**
-     * Output only. Detailed operation progress, if available.
-     */
-    detail?: string;
-    /**
-     * Output only. The time the operation was completed.
-     */
-    endTime?: string;
-    /**
-     * Output only. The operation type.
-     */
-    operationType?: string;
-    /**
-     * Output only. The time the operation was started.
-     */
-    startTime?: string;
-    /**
-     * Output only. The current state of the operation.
-     */
-    state?: string;
-    /**
-     * Output only. Server-defined resource path for the target of the
-     * operation.
-     */
-    target?: string;
+    response?: {[key: string]: any;};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -452,7 +457,7 @@ export namespace redis_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -460,41 +465,22 @@ export namespace redis_v1beta1 {
      */
     message?: string;
   }
-  /**
-   * Defines specific information for a particular zone. Currently empty and
-   * reserved for future use only.
-   */
-  export interface Schema$ZoneMetadata {}
 
 
   export class Resource$Projects {
-    root: Redis;
     locations: Resource$Projects$Locations;
-    constructor(root: Redis) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Redis;
     instances: Resource$Projects$Locations$Instances;
     operations: Resource$Projects$Locations$Operations;
-    constructor(root: Redis) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instances = new Resource$Projects$Locations$Instances(root);
-      this.operations = new Resource$Projects$Locations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instances = new Resource$Projects$Locations$Instances();
+      this.operations = new Resource$Projects$Locations$Operations();
     }
 
 
@@ -549,7 +535,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -620,7 +606,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -630,7 +616,8 @@ export namespace redis_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -641,7 +628,8 @@ export namespace redis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -666,15 +654,7 @@ export namespace redis_v1beta1 {
   }
 
   export class Resource$Projects$Locations$Instances {
-    root: Redis;
-    constructor(root: Redis) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -744,7 +724,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -811,7 +791,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -872,7 +852,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -946,7 +926,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -1017,7 +997,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1027,7 +1007,8 @@ export namespace redis_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1053,7 +1034,8 @@ export namespace redis_v1beta1 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1066,7 +1048,8 @@ export namespace redis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1079,7 +1062,8 @@ export namespace redis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List {
+  export interface Params$Resource$Projects$Locations$Instances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1104,7 +1088,8 @@ export namespace redis_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Patch {
+  export interface Params$Resource$Projects$Locations$Instances$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1137,14 +1122,148 @@ export namespace redis_v1beta1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    root: Redis;
-    constructor(root: Redis) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {}
+
+
+    /**
+     * redis.projects.locations.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The
+     * server makes a best effort to cancel the operation, but success is not
+     * guaranteed.  If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
+     * or other methods to check whether the cancellation succeeded or whether
+     * the operation completed despite cancellation. On successful cancellation,
+     * the operation is not deleted; instead, it becomes an operation with an
+     * Operation.error value with a google.rpc.Status.code of 1, corresponding
+     * to `Code.CANCELLED`.
+     * @alias redis.projects.locations.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+        params?: Params$Resource$Projects$Locations$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    cancel(
+        params: Params$Resource$Projects$Locations$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Locations$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+name}:cancel')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * redis.projects.locations.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the
+     * client is no longer interested in the operation result. It does not
+     * cancel the operation. If the server doesn't support this method, it
+     * returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @alias redis.projects.locations.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Locations$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params: Params$Resource$Projects$Locations$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
 
@@ -1202,7 +1321,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1281,7 +1400,7 @@ export namespace redis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1291,7 +1410,32 @@ export namespace redis_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1302,7 +1446,8 @@ export namespace redis_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List {
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

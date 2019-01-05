@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,11 +29,63 @@ export namespace serviceconsumermanagement_v1 {
     version: 'v1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Service Consumer Management API
    *
-   * Provides management methods for configuring service producer resources on
-   * Google Cloud.
+   * Manages the service consumers of a Service Infrastructure service.
    *
    * @example
    * const {google} = require('googleapis');
@@ -47,24 +98,14 @@ export namespace serviceconsumermanagement_v1 {
    * @param {object=} options Options for Serviceconsumermanagement
    */
   export class Serviceconsumermanagement {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.services = new Resource$Services();
     }
   }
 
@@ -140,6 +181,41 @@ export namespace serviceconsumermanagement_v1 {
     version?: string;
   }
   /**
+   * Request to apply configuration to an existing tenant project.
+   */
+  export interface Schema$ApplyTenantProjectConfigRequest {
+    /**
+     * Configuration that should be applied to the existing tenant project.
+     */
+    projectConfig?: Schema$TenantProjectConfig;
+    /**
+     * Tag of the project. Must be less than 128 characters. Required.
+     */
+    tag?: string;
+  }
+  /**
+   * Request to attach an existing project to the tenancy unit as a new tenant
+   * resource.
+   */
+  export interface Schema$AttachTenantProjectRequest {
+    /**
+     * When attaching an external project, this is in the format of
+     * `projects/{project_number}’.
+     */
+    externalResource?: string;
+    /**
+     * When attaching a reserved project already in Tenancy Units, this is the
+     * tag of tenant resource under the tenancy unit for the service&#39;s
+     * producer project. The reserved tenant resource must be in active state.
+     */
+    reservedResource?: string;
+    /**
+     * Tag of the tenant resource after attachment. Must be less than 128
+     * characters. Required.
+     */
+    tag?: string;
+  }
+  /**
    * `Authentication` defines the authentication configuration for an API.
    * Example for an API targeted for external use:      name:
    * calendar.googleapis.com     authentication:       providers:       - id:
@@ -198,32 +274,6 @@ export namespace serviceconsumermanagement_v1 {
      * firebaserules.googleapis.com.
      */
     provider?: string;
-  }
-  /**
-   * Authorization rule for API services.  It specifies the permission(s)
-   * required for an API element for the overall API request to succeed. It is
-   * typically used to mark request message fields that contain the name of the
-   * resource and indicates the permissions that will be checked on that
-   * resource.  For example:      package google.storage.v1;      message
-   * CopyObjectRequest {       string source = 1 [
-   * (google.api.authz).permissions = &quot;storage.objects.get&quot;]; string
-   * destination = 2 [         (google.api.authz).permissions =
-   * &quot;storage.objects.create,storage.objects.update&quot;];     }
-   */
-  export interface Schema$AuthorizationRule {
-    /**
-     * The required permissions. The acceptable values vary depend on the
-     * authorization system used. For Google APIs, it should be a
-     * comma-separated Google IAM permission values. When multiple permissions
-     * are listed, the semantics is not defined by the system. Additional
-     * documentation must be provided manually.
-     */
-    permissions?: string;
-    /**
-     * Selects the API elements to which this rule applies.  Refer to selector
-     * for syntax details.
-     */
-    selector?: string;
   }
   /**
    * Configuration for an anthentication provider, including support for [JSON
@@ -330,6 +380,11 @@ export namespace serviceconsumermanagement_v1 {
      * value lower than this will be rejected.
      */
     minDeadline?: number;
+    /**
+     * The number of seconds to wait for the completion of a long running
+     * operation. The default is no deadline.
+     */
+    operationDeadline?: number;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -783,123 +838,157 @@ export namespace serviceconsumermanagement_v1 {
     rules?: Schema$HttpRule[];
   }
   /**
-   * `HttpRule` defines the mapping of an RPC method to one or more HTTP REST
-   * API methods. The mapping specifies how different portions of the RPC
-   * request message are mapped to URL path, URL query parameters, and HTTP
-   * request body. The mapping is typically specified as an `google.api.http`
-   * annotation on the RPC method, see &quot;google/api/annotations.proto&quot;
-   * for details.  The mapping consists of a field specifying the path template
-   * and method kind.  The path template can refer to fields in the request
-   * message, as in the example below which describes a REST GET operation on a
-   * resource collection of messages:       service Messaging {       rpc
+   * # gRPC Transcoding  gRPC Transcoding is a feature for mapping between a
+   * gRPC method and one or more HTTP REST endpoints. It allows developers to
+   * build a single API service that supports both gRPC APIs and REST APIs. Many
+   * systems, including [Google APIs](https://github.com/googleapis/googleapis),
+   * [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC
+   * Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and
+   * [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and
+   * use it for large scale production services.  `HttpRule` defines the schema
+   * of the gRPC/REST mapping. The mapping specifies how different portions of
+   * the gRPC request message are mapped to the URL path, URL query parameters,
+   * and HTTP request body. It also controls how the gRPC response message is
+   * mapped to the HTTP response body. `HttpRule` is typically specified as an
+   * `google.api.http` annotation on the gRPC method.  Each mapping specifies a
+   * URL path template and an HTTP method. The path template may refer to one or
+   * more fields in the gRPC request message, as long as each field is a
+   * non-repeated field with a primitive (non-message) type. The path template
+   * controls how fields of the request message are mapped to the URL path.
+   * Example:      service Messaging {       rpc GetMessage(GetMessageRequest)
+   * returns (Message) {         option (google.api.http) = {             get:
+   * &quot;/v1/{name=messages/*}&quot;         };       }     }     message
+   * GetMessageRequest {       string name = 1; // Mapped to URL path.     }
+   * message Message {       string text = 1; // The resource content.     }
+   * This enables an HTTP REST to gRPC mapping as below:  HTTP | gRPC
+   * -----|----- `GET /v1/messages/123456`  | `GetMessage(name:
+   * &quot;messages/123456&quot;)`  Any fields in the request message which are
+   * not bound by the path template automatically become HTTP query parameters
+   * if there is no HTTP request body. For example:      service Messaging { rpc
    * GetMessage(GetMessageRequest) returns (Message) {         option
-   * (google.api.http).get =
-   * &quot;/v1/messages/{message_id}/{sub.subfield}&quot;;       }     } message
-   * GetMessageRequest {       message SubMessage {         string subfield = 1;
-   * }       string message_id = 1; // mapped to the URL       SubMessage sub =
-   * 2;    // `sub.subfield` is url-mapped     }     message Message { string
-   * text = 1; // content of the resource     }  The same http annotation can
-   * alternatively be expressed inside the `GRPC API Configuration` YAML file.
-   * http:       rules:         - selector:
-   * &lt;proto_package_name&gt;.Messaging.GetMessage           get:
-   * /v1/messages/{message_id}/{sub.subfield}  This definition enables an
-   * automatic, bidrectional mapping of HTTP JSON to RPC. Example:  HTTP | RPC
-   * -----|----- `GET /v1/messages/123456/foo`  | `GetMessage(message_id:
-   * &quot;123456&quot; sub: SubMessage(subfield: &quot;foo&quot;))`  In
-   * general, not only fields but also field paths can be referenced from a path
-   * pattern. Fields mapped to the path pattern cannot be repeated and must have
-   * a primitive (non-message) type.  Any fields in the request message which
-   * are not bound by the path pattern automatically become (optional) HTTP
-   * query parameters. Assume the following definition of the request message:
-   * service Messaging {       rpc GetMessage(GetMessageRequest) returns
-   * (Message) {         option (google.api.http).get =
-   * &quot;/v1/messages/{message_id}&quot;;       }     }     message
-   * GetMessageRequest {       message SubMessage {         string subfield = 1;
-   * }       string message_id = 1; // mapped to the URL       int64 revision =
-   * 2;    // becomes a parameter       SubMessage sub = 3;    // `sub.subfield`
-   * becomes a parameter     }   This enables a HTTP JSON to RPC mapping as
-   * below:  HTTP | RPC -----|----- `GET
+   * (google.api.http) = {             get:&quot;/v1/messages/{message_id}&quot;
+   * };       }     }     message GetMessageRequest {       message SubMessage {
+   * string subfield = 1;       }       string message_id = 1; // Mapped to URL
+   * path.       int64 revision = 2;    // Mapped to URL query parameter
+   * `revision`.       SubMessage sub = 3;    // Mapped to URL query parameter
+   * `sub.subfield`.     }  This enables a HTTP JSON to RPC mapping as below:
+   * HTTP | gRPC -----|----- `GET
    * /v1/messages/123456?revision=2&amp;sub.subfield=foo` |
    * `GetMessage(message_id: &quot;123456&quot; revision: 2 sub:
    * SubMessage(subfield: &quot;foo&quot;))`  Note that fields which are mapped
-   * to HTTP parameters must have a primitive type or a repeated primitive type.
-   * Message types are not allowed. In the case of a repeated type, the
-   * parameter can be repeated in the URL, as in `...?param=A&amp;param=B`.  For
-   * HTTP method kinds which allow a request body, the `body` field specifies
-   * the mapping. Consider a REST update method on the message resource
-   * collection:       service Messaging {       rpc
-   * UpdateMessage(UpdateMessageRequest) returns (Message) {         option
-   * (google.api.http) = {           put: &quot;/v1/messages/{message_id}&quot;
-   * body: &quot;message&quot;         };       }     }     message
-   * UpdateMessageRequest {       string message_id = 1; // mapped to the URL
-   * Message message = 2;   // mapped to the body     }   The following HTTP
-   * JSON to RPC mapping is enabled, where the representation of the JSON in the
-   * request body is determined by protos JSON encoding:  HTTP | RPC -----|-----
-   * `PUT /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` |
-   * `UpdateMessage(message_id: &quot;123456&quot; message { text:
-   * &quot;Hi!&quot; })`  The special name `*` can be used in the body mapping
-   * to define that every field not bound by the path template should be mapped
-   * to the request body.  This enables the following alternative definition of
-   * the update method:      service Messaging {       rpc
-   * UpdateMessage(Message) returns (Message) {         option (google.api.http)
-   * = {           put: &quot;/v1/messages/{message_id}&quot;           body:
-   * &quot;*&quot;         };       }     }     message Message {       string
-   * message_id = 1;       string text = 2;     }   The following HTTP JSON to
-   * RPC mapping is enabled:  HTTP | RPC -----|----- `PUT /v1/messages/123456 {
+   * to URL query parameters must have a primitive type or a repeated primitive
+   * type or a non-repeated message type. In the case of a repeated type, the
+   * parameter can be repeated in the URL as `...?param=A&amp;param=B`. In the
+   * case of a message type, each field of the message is mapped to a separate
+   * parameter, such as `...?foo.a=A&amp;foo.b=B&amp;foo.c=C`.  For HTTP methods
+   * that allow a request body, the `body` field specifies the mapping. Consider
+   * a REST update method on the message resource collection:      service
+   * Messaging {       rpc UpdateMessage(UpdateMessageRequest) returns (Message)
+   * {         option (google.api.http) = {           patch:
+   * &quot;/v1/messages/{message_id}&quot;           body: &quot;message&quot;
+   * };       }     }     message UpdateMessageRequest {       string message_id
+   * = 1; // mapped to the URL       Message message = 2;   // mapped to the
+   * body     }  The following HTTP JSON to RPC mapping is enabled, where the
+   * representation of the JSON in the request body is determined by protos JSON
+   * encoding:  HTTP | gRPC -----|----- `PATCH /v1/messages/123456 {
    * &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id:
-   * &quot;123456&quot; text: &quot;Hi!&quot;)`  Note that when using `*` in the
-   * body mapping, it is not possible to have HTTP parameters, as all fields not
-   * bound by the path end in the body. This makes this option more rarely used
-   * in practice of defining REST APIs. The common usage of `*` is in custom
-   * methods which don&#39;t use the URL at all for transferring data.  It is
-   * possible to define multiple HTTP methods for one RPC by using the
-   * `additional_bindings` option. Example:      service Messaging {       rpc
-   * GetMessage(GetMessageRequest) returns (Message) {         option
-   * (google.api.http) = {           get: &quot;/v1/messages/{message_id}&quot;
-   * additional_bindings {             get:
+   * &quot;123456&quot; message { text: &quot;Hi!&quot; })`  The special name
+   * `*` can be used in the body mapping to define that every field not bound by
+   * the path template should be mapped to the request body.  This enables the
+   * following alternative definition of the update method:      service
+   * Messaging {       rpc UpdateMessage(Message) returns (Message) { option
+   * (google.api.http) = {           patch:
+   * &quot;/v1/messages/{message_id}&quot;           body: &quot;*&quot; }; } }
+   * message Message {       string message_id = 1;       string text = 2;     }
+   * The following HTTP JSON to RPC mapping is enabled:  HTTP | gRPC -----|-----
+   * `PATCH /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` |
+   * `UpdateMessage(message_id: &quot;123456&quot; text: &quot;Hi!&quot;)`  Note
+   * that when using `*` in the body mapping, it is not possible to have HTTP
+   * parameters, as all fields not bound by the path end in the body. This makes
+   * this option more rarely used in practice when defining REST APIs. The
+   * common usage of `*` is in custom methods which don&#39;t use the URL at all
+   * for transferring data.  It is possible to define multiple HTTP methods for
+   * one RPC by using the `additional_bindings` option. Example:      service
+   * Messaging {       rpc GetMessage(GetMessageRequest) returns (Message) {
+   * option (google.api.http) = {           get:
+   * &quot;/v1/messages/{message_id}&quot;           additional_bindings { get:
    * &quot;/v1/users/{user_id}/messages/{message_id}&quot;           } }; } }
    * message GetMessageRequest {       string message_id = 1;       string
-   * user_id = 2;     }   This enables the following two alternative HTTP JSON
-   * to RPC mappings:  HTTP | RPC -----|----- `GET /v1/messages/123456` |
+   * user_id = 2;     }  This enables the following two alternative HTTP JSON to
+   * RPC mappings:  HTTP | gRPC -----|----- `GET /v1/messages/123456` |
    * `GetMessage(message_id: &quot;123456&quot;)` `GET
    * /v1/users/me/messages/123456` | `GetMessage(user_id: &quot;me&quot;
-   * message_id: &quot;123456&quot;)`  # Rules for HTTP mapping  The rules for
-   * mapping HTTP path, query parameters, and body fields to the request message
-   * are as follows:  1. The `body` field specifies either `*` or a field path,
-   * or is    omitted. If omitted, it indicates there is no HTTP request
-   * body. 2. Leaf fields (recursive expansion of nested messages in the
-   * request) can be classified into three types:     (a) Matched in the URL
-   * template.     (b) Covered by body (if body is `*`, everything except (a)
-   * fields;         else everything under the body field)     (c) All other
-   * fields. 3. URL query parameters found in the HTTP request are mapped to (c)
-   * fields. 4. Any body sent with an HTTP request can contain only (b) fields.
-   * The syntax of the path template is as follows:      Template =
+   * message_id: &quot;123456&quot;)`  ## Rules for HTTP mapping  1. Leaf
+   * request fields (recursive expansion nested messages in the request message)
+   * are classified into three categories:    - Fields referred by the path
+   * template. They are passed via the URL path.    - Fields referred by the
+   * HttpRule.body. They are passed via the HTTP      request body.    - All
+   * other fields are passed via the URL query parameters, and the parameter
+   * name is the field path in the request message. A repeated      field can be
+   * represented as multiple query parameters under the same      name.  2. If
+   * HttpRule.body is &quot;*&quot;, there is no URL query parameter, all fields
+   * are passed via URL path and HTTP request body.  3. If HttpRule.body is
+   * omitted, there is no HTTP request body, all     fields are passed via URL
+   * path and URL query parameters.  ### Path template syntax      Template =
    * &quot;/&quot; Segments [ Verb ] ;     Segments = Segment { &quot;/&quot;
    * Segment } ;     Segment  = &quot;*&quot; | &quot;**&quot; | LITERAL |
    * Variable ;     Variable = &quot;{&quot; FieldPath [ &quot;=&quot; Segments
    * ] &quot;}&quot; ;     FieldPath = IDENT { &quot;.&quot; IDENT } ;     Verb
-   * = &quot;:&quot; LITERAL ;  The syntax `*` matches a single path segment.
-   * The syntax `**` matches zero or more path segments, which must be the last
-   * part of the path except the `Verb`. The syntax `LITERAL` matches literal
-   * text in the path.  The syntax `Variable` matches part of the URL path as
-   * specified by its template. A variable template must not contain other
-   * variables. If a variable matches a single path segment, its template may be
-   * omitted, e.g. `{var}` is equivalent to `{var=*}`.  If a variable contains
-   * exactly one path segment, such as `&quot;{var}&quot;` or
-   * `&quot;{var=*}&quot;`, when such a variable is expanded into a URL path,
-   * all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. Such variables
-   * show up in the Discovery Document as `{var}`.  If a variable contains one
-   * or more path segments, such as `&quot;{var=foo/*}&quot;` or
-   * `&quot;{var=**}&quot;`, when such a variable is expanded into a URL path,
-   * all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. Such
-   * variables show up in the Discovery Document as `{+var}`.  NOTE: While the
-   * single segment variable matches the semantics of [RFC
+   * = &quot;:&quot; LITERAL ;  The syntax `*` matches a single URL path
+   * segment. The syntax `**` matches zero or more URL path segments, which must
+   * be the last part of the URL path except the `Verb`.  The syntax `Variable`
+   * matches part of the URL path as specified by its template. A variable
+   * template must not contain other variables. If a variable matches a single
+   * path segment, its template may be omitted, e.g. `{var}` is equivalent to
+   * `{var=*}`.  The syntax `LITERAL` matches literal text in the URL path. If
+   * the `LITERAL` contains any reserved character, such characters should be
+   * percent-encoded before the matching.  If a variable contains exactly one
+   * path segment, such as `&quot;{var}&quot;` or `&quot;{var=*}&quot;`, when
+   * such a variable is expanded into a URL path on the client side, all
+   * characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side
+   * does the reverse decoding. Such variables show up in the [Discovery
+   * Document](https://developers.google.com/discovery/v1/reference/apis) as
+   * `{var}`.  If a variable contains multiple path segments, such as
+   * `&quot;{var=foo/*}&quot;` or `&quot;{var=**}&quot;`, when such a variable
+   * is expanded into a URL path on the client side, all characters except
+   * `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse
+   * decoding, except &quot;%2F&quot; and &quot;%2f&quot; are left unchanged.
+   * Such variables show up in the [Discovery
+   * Document](https://developers.google.com/discovery/v1/reference/apis) as
+   * `{+var}`.  ## Using gRPC API Service Configuration  gRPC API Service
+   * Configuration (service config) is a configuration language for configuring
+   * a gRPC service to become a user-facing product. The service config is
+   * simply the YAML representation of the `google.api.Service` proto message.
+   * As an alternative to annotating your proto file, you can configure gRPC
+   * transcoding in your service config YAML files. You do this by specifying a
+   * `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same
+   * effect as the proto annotation. This can be particularly useful if you have
+   * a proto that is reused in multiple services. Note that any transcoding
+   * specified in the service config will override any matching transcoding
+   * configuration in the proto.  Example:      http:       rules:         #
+   * Selects a gRPC method and applies HttpRule to it.         - selector:
+   * example.v1.Messaging.GetMessage           get:
+   * /v1/messages/{message_id}/{sub.subfield}  ## Special notes  When gRPC
+   * Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON
+   * conversion must follow the [proto3
+   * specification](https://developers.google.com/protocol-buffers/docs/proto3#json).
+   * While the single segment variable follows the semantics of [RFC
    * 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String
-   * Expansion, the multi segment variable **does not** match RFC 6570 Reserved
-   * Expansion. The reason is that the Reserved Expansion does not expand
-   * special characters like `?` and `#`, which would lead to invalid URLs.
-   * NOTE: the field paths in variables and in the `body` must not refer to
-   * repeated fields or map fields.
+   * Expansion, the multi segment variable **does not** follow RFC 6570
+   * Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion
+   * does not expand special characters like `?` and `#`, which would lead to
+   * invalid URLs. As the result, gRPC Transcoding uses a custom encoding for
+   * multi segment variables.  The path variables **must not** refer to any
+   * repeated or mapped field, because client libraries are not capable of
+   * handling such variable expansion.  The path variables **must not** capture
+   * the leading &quot;/&quot; character. The reason is that the most common use
+   * case &quot;{var}&quot; does not capture the leading &quot;/&quot;
+   * character. For consistency, all path variables must share the same
+   * behavior.  Repeated message fields must not be mapped to URL query
+   * parameters, because no client library can support such complicated mapping.
+   * If an API needs to use a JSON array for request or response body, it can
+   * map the request or response body to a repeated field. However, some gRPC
+   * Transcoding implementations may not support this feature.
    */
   export interface Schema$HttpRule {
     /**
@@ -909,17 +998,11 @@ export namespace serviceconsumermanagement_v1 {
      */
     additionalBindings?: Schema$HttpRule[];
     /**
-     * Specifies the permission(s) required for an API element for the overall
-     * API request to succeed. It is typically used to mark request message
-     * fields that contain the name of the resource and indicates the
-     * permissions that will be checked on that resource.
-     */
-    authorizations?: Schema$AuthorizationRule[];
-    /**
-     * The name of the request field whose value is mapped to the HTTP body, or
-     * `*` for mapping all fields not captured by the path pattern to the HTTP
-     * body. NOTE: the referred field must not be a repeated field and must be
-     * present at the top-level of request message type.
+     * The name of the request field whose value is mapped to the HTTP request
+     * body, or `*` for mapping all request fields not captured by the path
+     * pattern to the HTTP body, or omitted for not having any HTTP request
+     * body.  NOTE: the referred field must be present at the top-level of the
+     * request message type.
      */
     body?: string;
     /**
@@ -930,67 +1013,36 @@ export namespace serviceconsumermanagement_v1 {
      */
     custom?: Schema$CustomHttpPattern;
     /**
-     * Used for deleting a resource.
+     * Maps to HTTP DELETE. Used for deleting a resource.
      */
     delete?: string;
     /**
-     * Used for listing and getting information about resources.
+     * Maps to HTTP GET. Used for listing and getting information about
+     * resources.
      */
     get?: string;
     /**
-     * Use this only for Scotty Requests. Do not use this for bytestream
-     * methods. For media support, add instead
-     * [][google.bytestream.RestByteStream] as an API to your configuration.
-     */
-    mediaDownload?: Schema$MediaDownload;
-    /**
-     * Use this only for Scotty Requests. Do not use this for media support
-     * using Bytestream, add instead [][google.bytestream.RestByteStream] as an
-     * API to your configuration for Bytestream methods.
-     */
-    mediaUpload?: Schema$MediaUpload;
-    /**
-     * Used for updating a resource.
+     * Maps to HTTP PATCH. Used for updating a resource.
      */
     patch?: string;
     /**
-     * Used for creating a resource.
+     * Maps to HTTP POST. Used for creating a resource or performing an action.
      */
     post?: string;
     /**
-     * Used for updating a resource.
+     * Maps to HTTP PUT. Used for replacing a resource.
      */
     put?: string;
     /**
-     * DO NOT USE. This is an experimental field.  Optional. The REST collection
-     * name is by default derived from the URL pattern. If specified, this field
-     * overrides the default collection name. Example:      rpc
-     * AddressesAggregatedList(AddressesAggregatedListRequest)         returns
-     * (AddressesAggregatedListResponse) {       option (google.api.http) = {
-     * get: &quot;/v1/projects/{project_id}/aggregated/addresses&quot;
-     * rest_collection: &quot;projects.addresses&quot;       };     }  This
-     * method has the automatically derived collection name
-     * &quot;projects.aggregated&quot;. Because, semantically, this rpc is
-     * actually an operation on the &quot;projects.addresses&quot; collection,
-     * the `rest_collection` field is configured to override the derived
-     * collection name.
+     * Optional. The name of the response field whose value is mapped to the
+     * HTTP response body. When omitted, the entire response message will be
+     * used as the HTTP response body.  NOTE: The referred field must be present
+     * at the top-level of the response message type.
      */
-    restCollection?: string;
+    responseBody?: string;
     /**
-     * DO NOT USE. This is an experimental field.  Optional. The rest method
-     * name is by default derived from the URL pattern. If specified, this field
-     * overrides the default method name. Example:      rpc
-     * CreateResource(CreateResourceRequest)         returns
-     * (CreateResourceResponse) {       option (google.api.http) = { post:
-     * &quot;/v1/resources&quot;,         body: &quot;resource&quot;,
-     * rest_method_name: &quot;insert&quot;       };     }  This method has the
-     * automatically derived rest method name &quot;create&quot;, but for
-     * backwards compatibility with apiary, it is specified as insert.
-     */
-    restMethodName?: string;
-    /**
-     * Selects methods to which this rule applies.  Refer to selector for syntax
-     * details.
+     * Selects a method to which this rule applies.  Refer to selector for
+     * syntax details.
      */
     selector?: string;
   }
@@ -1118,87 +1170,6 @@ export namespace serviceconsumermanagement_v1 {
     monitoredResource?: string;
   }
   /**
-   * Defines the Media configuration for a service in case of a download. Use
-   * this only for Scotty Requests. Do not use this for media support using
-   * Bytestream, add instead [][google.bytestream.RestByteStream] as an API to
-   * your configuration for Bytestream methods.
-   */
-  export interface Schema$MediaDownload {
-    /**
-     * A boolean that determines whether a notification for the completion of a
-     * download should be sent to the backend.
-     */
-    completeNotification?: boolean;
-    /**
-     * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
-     * name of the download service if one is used for download.
-     */
-    downloadService?: string;
-    /**
-     * Name of the Scotty dropzone to use for the current API.
-     */
-    dropzone?: string;
-    /**
-     * Whether download is enabled.
-     */
-    enabled?: boolean;
-    /**
-     * Optional maximum acceptable size for direct download. The size is
-     * specified in bytes.
-     */
-    maxDirectDownloadSize?: string;
-    /**
-     * A boolean that determines if direct download from ESF should be used for
-     * download of this media.
-     */
-    useDirectDownload?: boolean;
-  }
-  /**
-   * Defines the Media configuration for a service in case of an upload. Use
-   * this only for Scotty Requests. Do not use this for media support using
-   * Bytestream, add instead [][google.bytestream.RestByteStream] as an API to
-   * your configuration for Bytestream methods.
-   */
-  export interface Schema$MediaUpload {
-    /**
-     * A boolean that determines whether a notification for the completion of an
-     * upload should be sent to the backend. These notifications will not be
-     * seen by the client and will not consume quota.
-     */
-    completeNotification?: boolean;
-    /**
-     * Name of the Scotty dropzone to use for the current API.
-     */
-    dropzone?: string;
-    /**
-     * Whether upload is enabled.
-     */
-    enabled?: boolean;
-    /**
-     * Optional maximum acceptable size for an upload. The size is specified in
-     * bytes.
-     */
-    maxSize?: string;
-    /**
-     * An array of mimetype patterns. Esf will only accept uploads that match
-     * one of the given patterns.
-     */
-    mimeTypes?: string[];
-    /**
-     * Whether to receive a notification for progress changes of media upload.
-     */
-    progressNotification?: boolean;
-    /**
-     * Whether to receive a notification on the start of media upload.
-     */
-    startNotification?: boolean;
-    /**
-     * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
-     * name of the upload service if one is used for upload.
-     */
-    uploadService?: string;
-  }
-  /**
    * Method represents a method of an API interface.
    */
   export interface Schema$Method {
@@ -1257,6 +1228,10 @@ export namespace serviceconsumermanagement_v1 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of `metric_kind` and `value_type` might not be
      * supported.
@@ -1268,10 +1243,11 @@ export namespace serviceconsumermanagement_v1 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded.  All user-defined custom metric types have the DNS name
-     * `custom.googleapis.com`.  Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded.  All user-defined metric types have the DNS name
+     * `custom.googleapis.com` or `external.googleapis.com`.  Metric types
+     * should use a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -1311,6 +1287,28 @@ export namespace serviceconsumermanagement_v1 {
     valueType?: string;
   }
   /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
+  }
+  /**
    * Bind API methods to metrics. Binding a method to a metric causes that
    * metric&#39;s configured quota behaviors to apply to the method call.
    */
@@ -1321,7 +1319,7 @@ export namespace serviceconsumermanagement_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: any;
+    metricCosts?: {[key: string]: string;};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1522,7 +1520,7 @@ export namespace serviceconsumermanagement_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1538,7 +1536,7 @@ export namespace serviceconsumermanagement_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1559,7 +1557,7 @@ export namespace serviceconsumermanagement_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: any;
+    value?: {[key: string]: any;};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1612,14 +1610,15 @@ export namespace serviceconsumermanagement_v1 {
    * defines a set of metrics. - For API calls, the quota.metric_rules maps
    * methods to metrics with   corresponding costs. - The quota.limits defines
    * limits on the metrics, which will be used for   quota checks at runtime. An
-   * example quota configuration in yaml format:     quota:       - name:
-   * apiWriteQpsPerProject        metric: library.googleapis.com/write_calls
-   * unit: &quot;1/min/{project}&quot;  # rate limit for consumer projects
-   * values:          STANDARD: 10000        # The metric rules bind all methods
-   * to the read_calls metric,      # except for the UpdateBook and DeleteBook
-   * methods. These two methods      # are mapped to the write_calls metric,
-   * with the UpdateBook method      # consuming at twice rate as the DeleteBook
-   * method.      metric_rules:      - selector: &quot;*&quot; metric_costs:
+   * example quota configuration in yaml format:     quota:      limits:       -
+   * name: apiWriteQpsPerProject        metric:
+   * library.googleapis.com/write_calls        unit: &quot;1/min/{project}&quot;
+   * # rate limit for consumer projects        values:          STANDARD: 10000
+   * # The metric rules bind all methods to the read_calls metric,      # except
+   * for the UpdateBook and DeleteBook methods. These two methods      # are
+   * mapped to the write_calls metric, with the UpdateBook method      #
+   * consuming at twice rate as the DeleteBook method.      metric_rules:      -
+   * selector: &quot;*&quot;        metric_costs:
    * library.googleapis.com/read_calls: 1      - selector:
    * google.example.library.v1.LibraryService.UpdateBook        metric_costs:
    * library.googleapis.com/write_calls: 2      - selector:
@@ -1724,7 +1723,7 @@ export namespace serviceconsumermanagement_v1 {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: any;
+    values?: {[key: string]: string;};
   }
   /**
    * Request message to remove tenant project resource from the tenancy unit.
@@ -1830,7 +1829,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A unique ID for a specific instance of this message, typically assigned
      * by the client for tracking purpose. If empty, the server may choose to
-     * generate one instead.
+     * generate one instead. Must be no longer than 60 characters.
      */
     id?: string;
     /**
@@ -1937,7 +1936,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: any[];
+    sourceFiles?: Array<{[key: string]: any;}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1984,7 +1983,7 @@ export namespace serviceconsumermanagement_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2095,8 +2094,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$TenantProjectConfig {
     /**
-     * Billing account properties. It might be specified explicitly, or created
-     * from the specified group during provisioning
+     * Billing account properties.  Billing account must be specified.
      */
     billingConfig?: Schema$BillingConfig;
     /**
@@ -2109,7 +2107,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Labels that will be applied to this project.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Configuration for IAM service account on tenant project.
      */
@@ -2250,15 +2248,7 @@ export namespace serviceconsumermanagement_v1 {
 
 
   export class Resource$Operations {
-    root: Serviceconsumermanagement;
-    constructor(root: Serviceconsumermanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2326,7 +2316,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2394,7 +2384,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2458,7 +2448,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2535,7 +2525,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2545,7 +2535,8 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2561,7 +2552,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete {
+  export interface Params$Resource$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2572,7 +2564,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2583,7 +2575,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2609,16 +2601,9 @@ export namespace serviceconsumermanagement_v1 {
 
 
   export class Resource$Services {
-    root: Serviceconsumermanagement;
     tenancyUnits: Resource$Services$Tenancyunits;
-    constructor(root: Serviceconsumermanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.tenancyUnits = new Resource$Services$Tenancyunits(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.tenancyUnits = new Resource$Services$Tenancyunits();
     }
 
 
@@ -2685,7 +2670,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchTenancyUnitsResponse>(
@@ -2696,7 +2681,7 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Search {
+  export interface Params$Resource$Services$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2738,15 +2723,7 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   export class Resource$Services$Tenancyunits {
-    root: Serviceconsumermanagement;
-    constructor(root: Serviceconsumermanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2812,7 +2789,164 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
+     * @desc Apply configuration to an existing tenant project. This project
+     * must exist in active state and have the original owner account. Caller
+     * must have the permission to add a project to the given tenancy unit.
+     * Configuration will be applied, but any existing settings on the project
+     * will not be modified. Specified policy bindings will be applied. Existing
+     * binding will not be modified. Specified services will be activated.   No
+     * service will be deactivated. New billing configuration will be applied if
+     * specified. Omit billing configuration to keep the existing one. Service
+     * account in the project will be created if previously non existing.
+     * Operation fails if any of the steps fail, but no rollback of already
+     * applied configuration changes is attempted. Operation<response: Empty>.
+     * @alias serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the tenancy unit.
+     * @param {().ApplyTenantProjectConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    applyProjectConfig(
+        params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    applyProjectConfig(
+        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    applyProjectConfig(
+        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    applyProjectConfig(callback: BodyResponseCallback<Schema$Operation>): void;
+    applyProjectConfig(
+        paramsOrCallback?:
+            Params$Resource$Services$Tenancyunits$Applyprojectconfig|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Applyprojectconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Applyprojectconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:applyProjectConfig')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * serviceconsumermanagement.services.tenancyUnits.attachProject
+     * @desc Attach an existing project to the tenancy unit as a new tenant
+     * resource. The project could be either the tenant project reserved by
+     * calling AddTenantProject under tenancy unit for the producer project of
+     * service, or from outside. Caller will be checked against the permission
+     * as if calling AddTenantProject on the same consumer. To trigger the
+     * attachement, the targeted tenant project must be in a folder. Please also
+     * make sure ServiceConsumerManagement service account is the owner of that
+     * project. Note that these two requirements are already met if the project
+     * is reserved through AddTenantProject. Operation<response: Empty>.
+     * @alias serviceconsumermanagement.services.tenancyUnits.attachProject
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the tenancy unit that project will be attached to.
+     * @param {().AttachTenantProjectRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    attachProject(
+        params?: Params$Resource$Services$Tenancyunits$Attachproject,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    attachProject(
+        params: Params$Resource$Services$Tenancyunits$Attachproject,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachProject(
+        params: Params$Resource$Services$Tenancyunits$Attachproject,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachProject(callback: BodyResponseCallback<Schema$Operation>): void;
+    attachProject(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Attachproject|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Attachproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Attachproject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:attachProject')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2881,7 +3015,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TenancyUnit>(parameters, callback);
@@ -2949,7 +3083,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3024,7 +3158,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters, callback);
@@ -3096,7 +3230,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3106,7 +3240,8 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Tenancyunits$Addproject {
+  export interface Params$Resource$Services$Tenancyunits$Addproject extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3122,7 +3257,42 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$AddTenantProjectRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Create {
+  export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApplyTenantProjectConfigRequest;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Attachproject extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit that project will be attached to.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AttachTenantProjectRequest;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3143,7 +3313,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     requestBody?: Schema$CreateTenancyUnitRequest;
   }
-  export interface Params$Resource$Services$Tenancyunits$Delete {
+  export interface Params$Resource$Services$Tenancyunits$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3154,7 +3325,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$List {
+  export interface Params$Resource$Services$Tenancyunits$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3184,7 +3356,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$Removeproject {
+  export interface Params$Resource$Services$Tenancyunits$Removeproject extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

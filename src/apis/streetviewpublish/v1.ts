@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace streetviewpublish_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -48,24 +100,14 @@ export namespace streetviewpublish_v1 {
    * @param {object=} options Options for Streetviewpublish
    */
   export class Streetviewpublish {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     photo: Resource$Photo;
     photos: Resource$Photos;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.photo = new Resource$Photo(this);
-      this.photos = new Resource$Photos(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.photo = new Resource$Photo();
+      this.photos = new Resource$Photos();
     }
   }
 
@@ -208,7 +250,7 @@ export namespace streetviewpublish_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -224,7 +266,7 @@ export namespace streetviewpublish_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Photo is used to store 360 photos along with photo metadata.
@@ -246,6 +288,11 @@ export namespace streetviewpublish_v1 {
      */
     downloadUrl?: string;
     /**
+     * Output only. Status in Google Maps, whether this photo was published, or
+     * rejected for a possibly specified reason.
+     */
+    mapsPublishStatus?: string;
+    /**
      * Required when updating a photo. Output only when creating a photo.
      * Identifier for the photo, which is unique among all photos in Google.
      */
@@ -266,6 +313,10 @@ export namespace streetviewpublish_v1 {
      * Output only. The thumbnail URL for showing a preview of the given photo.
      */
     thumbnailUrl?: string;
+    /**
+     * Output only. Status of rights transfer on this photo.
+     */
+    transferStatus?: string;
     /**
      * Required when creating a photo. Input only. The resource URL where the
      * photo bytes are uploaded to.
@@ -305,6 +356,16 @@ export namespace streetviewpublish_v1 {
    */
   export interface Schema$Place {
     /**
+     * Output-only. The language_code that the name is localized with. This
+     * should be the language_code specified in the request, but may be a
+     * fallback.
+     */
+    languageCode?: string;
+    /**
+     * Output-only. The name of the place, localized to the language_code.
+     */
+    name?: string;
+    /**
      * Place identifier, as described in
      * https://developers.google.com/places/place-id.
      */
@@ -314,6 +375,15 @@ export namespace streetviewpublish_v1 {
    * Raw pose measurement for an entity.
    */
   export interface Schema$Pose {
+    /**
+     * The estimated horizontal accuracy of this pose in meters with 68%
+     * confidence (one standard deviation). For example, on Android, this value
+     * is available from this method:
+     * https://developer.android.com/reference/android/location/Location#getAccuracy().
+     * Other platforms have different methods of obtaining similar accuracy
+     * estimations.
+     */
+    accuracyMeters?: number;
     /**
      * Altitude of the pose in meters above WGS84 ellipsoid. NaN indicates an
      * unmeasured quantity.
@@ -396,7 +466,7 @@ export namespace streetviewpublish_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -443,15 +513,7 @@ export namespace streetviewpublish_v1 {
 
 
   export class Resource$Photo {
-    root: Streetviewpublish;
-    constructor(root: Streetviewpublish) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -519,7 +581,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -587,7 +649,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -609,6 +671,7 @@ export namespace streetviewpublish_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services will be used.
      * @param {string} params.photoId Required. ID of the Photo.
      * @param {string=} params.view Specifies if a download URL for the photo bytes should be returned in the Photo response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -655,7 +718,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -735,7 +798,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UploadRef>(parameters, callback);
@@ -812,7 +875,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -822,7 +885,7 @@ export namespace streetviewpublish_v1 {
     }
   }
 
-  export interface Params$Resource$Photo$Create {
+  export interface Params$Resource$Photo$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -834,7 +897,7 @@ export namespace streetviewpublish_v1 {
      */
     requestBody?: Schema$Photo;
   }
-  export interface Params$Resource$Photo$Delete {
+  export interface Params$Resource$Photo$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -845,12 +908,20 @@ export namespace streetviewpublish_v1 {
      */
     photoId?: string;
   }
-  export interface Params$Resource$Photo$Get {
+  export interface Params$Resource$Photo$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If
+     * language_code is unspecified, the user's language preference for Google
+     * services will be used.
+     */
+    languageCode?: string;
     /**
      * Required. ID of the Photo.
      */
@@ -861,7 +932,8 @@ export namespace streetviewpublish_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Photo$Startupload {
+  export interface Params$Resource$Photo$Startupload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -873,7 +945,7 @@ export namespace streetviewpublish_v1 {
      */
     requestBody?: Schema$Empty;
   }
-  export interface Params$Resource$Photo$Update {
+  export interface Params$Resource$Photo$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -906,15 +978,7 @@ export namespace streetviewpublish_v1 {
 
 
   export class Resource$Photos {
-    root: Streetviewpublish;
-    constructor(root: Streetviewpublish) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -983,7 +1047,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchDeletePhotosResponse>(
@@ -1006,6 +1070,7 @@ export namespace streetviewpublish_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services will be used.
      * @param {string=} params.photoIds Required. IDs of the Photos. For HTTP GET requests, the URL query parameter should be `photoIds=<id1>&photoIds=<id2>&...`.
      * @param {string=} params.view Specifies if a download URL for the photo bytes should be returned in the Photo response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1058,7 +1123,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback);
@@ -1139,7 +1204,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePhotosResponse>(
@@ -1160,6 +1225,7 @@ export namespace streetviewpublish_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`.  The only filter supported at the moment is `placeId`.
+     * @param {string=} params.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services will be used.
      * @param {integer=} params.pageSize The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 will be used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
      * @param {string=} params.pageToken The nextPageToken value returned from a previous ListPhotos request, if any.
      * @param {string=} params.view Specifies if a download URL for the photos bytes should be returned in the Photos response.
@@ -1210,7 +1276,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPhotosResponse>(parameters, callback);
@@ -1220,7 +1286,8 @@ export namespace streetviewpublish_v1 {
     }
   }
 
-  export interface Params$Resource$Photos$Batchdelete {
+  export interface Params$Resource$Photos$Batchdelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1232,24 +1299,33 @@ export namespace streetviewpublish_v1 {
      */
     requestBody?: Schema$BatchDeletePhotosRequest;
   }
-  export interface Params$Resource$Photos$Batchget {
+  export interface Params$Resource$Photos$Batchget extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If
+     * language_code is unspecified, the user's language preference for Google
+     * services will be used.
+     */
+    languageCode?: string;
+    /**
      * Required. IDs of the Photos. For HTTP GET requests, the URL query
      * parameter should be `photoIds=<id1>&photoIds=<id2>&...`.
      */
-    photoIds?: string;
+    photoIds?: string[];
     /**
      * Specifies if a download URL for the photo bytes should be returned in the
      * Photo response.
      */
     view?: string;
   }
-  export interface Params$Resource$Photos$Batchupdate {
+  export interface Params$Resource$Photos$Batchupdate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1261,7 +1337,7 @@ export namespace streetviewpublish_v1 {
      */
     requestBody?: Schema$BatchUpdatePhotosRequest;
   }
-  export interface Params$Resource$Photos$List {
+  export interface Params$Resource$Photos$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1273,6 +1349,14 @@ export namespace streetviewpublish_v1 {
      * moment is `placeId`.
      */
     filter?: string;
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see
+     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If
+     * language_code is unspecified, the user's language preference for Google
+     * services will be used.
+     */
+    languageCode?: string;
     /**
      * The maximum number of photos to return. `pageSize` must be non-negative.
      * If `pageSize` is zero or is not provided, the default page size of 100

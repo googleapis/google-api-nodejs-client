@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace admin_datatransfer_v1 {
   export interface Options extends GlobalOptions {
     version: 'datatransfer_v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,24 +81,14 @@ export namespace admin_datatransfer_v1 {
    * @param {object=} options Options for Admin
    */
   export class Admin {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     applications: Resource$Applications;
     transfers: Resource$Transfers;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.applications = new Resource$Applications(this);
-      this.transfers = new Resource$Transfers(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.applications = new Resource$Applications();
+      this.transfers = new Resource$Transfers();
     }
   }
 
@@ -213,15 +238,7 @@ export namespace admin_datatransfer_v1 {
 
 
   export class Resource$Applications {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -278,7 +295,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -347,7 +364,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApplicationsListResponse>(parameters, callback);
@@ -357,7 +374,7 @@ export namespace admin_datatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Applications$Get {
+  export interface Params$Resource$Applications$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -368,7 +385,8 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string;
   }
-  export interface Params$Resource$Applications$List {
+  export interface Params$Resource$Applications$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -390,15 +408,7 @@ export namespace admin_datatransfer_v1 {
 
 
   export class Resource$Transfers {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -454,7 +464,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: ['dataTransferId'],
         pathParams: ['dataTransferId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(parameters, callback);
@@ -519,7 +529,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(parameters, callback);
@@ -592,7 +602,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfersListResponse>(
@@ -603,7 +613,7 @@ export namespace admin_datatransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transfers$Get {
+  export interface Params$Resource$Transfers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -615,7 +625,7 @@ export namespace admin_datatransfer_v1 {
      */
     dataTransferId?: string;
   }
-  export interface Params$Resource$Transfers$Insert {
+  export interface Params$Resource$Transfers$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -627,7 +637,7 @@ export namespace admin_datatransfer_v1 {
      */
     requestBody?: Schema$DataTransfer;
   }
-  export interface Params$Resource$Transfers$List {
+  export interface Params$Resource$Transfers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace adsensehost_v4_1 {
   export interface Options extends GlobalOptions {
     version: 'v4_1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,10 +82,6 @@ export namespace adsensehost_v4_1 {
    * @param {object=} options Options for Adsensehost
    */
   export class Adsensehost {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
     adclients: Resource$Adclients;
     associationsessions: Resource$Associationsessions;
@@ -59,20 +90,14 @@ export namespace adsensehost_v4_1 {
     urlchannels: Resource$Urlchannels;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-      this.adclients = new Resource$Adclients(this);
-      this.associationsessions = new Resource$Associationsessions(this);
-      this.customchannels = new Resource$Customchannels(this);
-      this.reports = new Resource$Reports(this);
-      this.urlchannels = new Resource$Urlchannels(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
+      this.adclients = new Resource$Adclients();
+      this.associationsessions = new Resource$Associationsessions();
+      this.customchannels = new Resource$Customchannels();
+      this.reports = new Resource$Reports();
+      this.urlchannels = new Resource$Urlchannels();
     }
   }
 
@@ -167,7 +192,13 @@ export namespace adsensehost_v4_1 {
      * hexadecimal characters, similar to HTML color codes, but without the
      * leading hash.
      */
-    colors?: any;
+    colors?: {
+      background?: string;
+      border?: string;
+      text?: string;
+      title?: string;
+      url?: string;
+    };
     /**
      * The style of the corners in the ad (deprecated: never populated,
      * ignored).
@@ -176,7 +207,7 @@ export namespace adsensehost_v4_1 {
     /**
      * The font which is included in the style.
      */
-    font?: any;
+    font?: {family?: string; size?: string;};
     /**
      * Kind this is, in this case adsensehost#adStyle.
      */
@@ -191,7 +222,11 @@ export namespace adsensehost_v4_1 {
      * Settings specific to content ads (AFC) and highend mobile content ads
      * (AFMC - deprecated).
      */
-    contentAdsSettings?: any;
+    contentAdsSettings?: {
+      backupOption?: {color?: string; type?: string; url?: string;};
+      size?: string;
+      type?: string;
+    };
     /**
      * Custom style information specific to this ad unit.
      */
@@ -208,7 +243,12 @@ export namespace adsensehost_v4_1 {
     /**
      * Settings specific to WAP mobile content ads (AFMC - deprecated).
      */
-    mobileContentAdsSettings?: any;
+    mobileContentAdsSettings?: {
+      markupLanguage?: string;
+      scriptingLanguage?: string;
+      size?: string;
+      type?: string;
+    };
     /**
      * Name of this ad unit.
      */
@@ -336,7 +376,7 @@ export namespace adsensehost_v4_1 {
      * list of headers; one for each dimension in the request, followed by one
      * for each metric in the request.
      */
-    headers?: any[];
+    headers?: Array<{currency?: string; name?: string; type?: string;}>;
     /**
      * Kind this is, in this case adsensehost#report.
      */
@@ -404,20 +444,13 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Accounts {
-    root: Adsensehost;
     adclients: Resource$Accounts$Adclients;
     adunits: Resource$Accounts$Adunits;
     reports: Resource$Accounts$Reports;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.adclients = new Resource$Accounts$Adclients(root);
-      this.adunits = new Resource$Accounts$Adunits(root);
-      this.reports = new Resource$Accounts$Reports(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.adclients = new Resource$Accounts$Adclients();
+      this.adunits = new Resource$Accounts$Adunits();
+      this.reports = new Resource$Accounts$Reports();
     }
 
 
@@ -472,7 +505,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -537,7 +570,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['filterAdClientId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -547,7 +580,7 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -558,7 +591,7 @@ export namespace adsensehost_v4_1 {
      */
     accountId?: string;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -567,19 +600,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad clients to list accounts for.
      */
-    filterAdClientId?: string;
+    filterAdClientId?: string[];
   }
 
   export class Resource$Accounts$Adclients {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -638,7 +663,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClient>(parameters, callback);
@@ -708,7 +733,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -718,7 +743,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adclients$Get {
+  export interface Params$Resource$Accounts$Adclients$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -733,7 +759,8 @@ export namespace adsensehost_v4_1 {
      */
     adClientId?: string;
   }
-  export interface Params$Resource$Accounts$Adclients$List {
+  export interface Params$Resource$Accounts$Adclients$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -758,15 +785,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Accounts$Adunits {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -830,7 +849,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -896,7 +915,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -968,7 +987,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -1039,7 +1058,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1111,7 +1130,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -1183,7 +1202,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1254,7 +1273,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1264,7 +1283,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$Delete {
+  export interface Params$Resource$Accounts$Adunits$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1283,7 +1303,8 @@ export namespace adsensehost_v4_1 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Get {
+  export interface Params$Resource$Accounts$Adunits$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1302,7 +1323,8 @@ export namespace adsensehost_v4_1 {
      */
     adUnitId?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Getadcode {
+  export interface Params$Resource$Accounts$Adunits$Getadcode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1323,9 +1345,10 @@ export namespace adsensehost_v4_1 {
     /**
      * Host custom channel to attach to the ad code.
      */
-    hostCustomChannelId?: string;
+    hostCustomChannelId?: string[];
   }
-  export interface Params$Resource$Accounts$Adunits$Insert {
+  export interface Params$Resource$Accounts$Adunits$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1345,7 +1368,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adunits$List {
+  export interface Params$Resource$Accounts$Adunits$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1375,7 +1399,8 @@ export namespace adsensehost_v4_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Adunits$Patch {
+  export interface Params$Resource$Accounts$Adunits$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1399,7 +1424,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adunits$Update {
+  export interface Params$Resource$Accounts$Adunits$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1422,15 +1448,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Accounts$Reports {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1500,7 +1518,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['accountId', 'startDate', 'endDate'],
         pathParams: ['accountId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1510,7 +1528,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Reports$Generate {
+  export interface Params$Resource$Accounts$Reports$Generate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1523,7 +1542,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Dimensions to base the report on.
      */
-    dimension?: string;
+    dimension?: string[];
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -1531,7 +1550,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Filters to be run on the report.
      */
-    filter?: string;
+    filter?: string[];
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -1544,13 +1563,13 @@ export namespace adsensehost_v4_1 {
     /**
      * Numeric columns to include in the report.
      */
-    metric?: string;
+    metric?: string[];
     /**
      * The name of a dimension or metric to sort the resulting report on,
      * optionally prefixed with "+" to sort ascending or "-" to sort descending.
      * If no prefix is specified, the column is sorted ascending.
      */
-    sort?: string;
+    sort?: string[];
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -1564,15 +1583,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Adclients {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1627,7 +1638,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClient>(parameters, callback);
@@ -1693,7 +1704,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -1703,7 +1714,7 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Adclients$Get {
+  export interface Params$Resource$Adclients$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1714,7 +1725,7 @@ export namespace adsensehost_v4_1 {
      */
     adClientId?: string;
   }
-  export interface Params$Resource$Adclients$List {
+  export interface Params$Resource$Adclients$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1735,15 +1746,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Associationsessions {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1807,7 +1810,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['productCode', 'websiteUrl'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(parameters, callback);
@@ -1875,7 +1878,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['token'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(parameters, callback);
@@ -1885,7 +1888,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Associationsessions$Start {
+  export interface Params$Resource$Associationsessions$Start extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1894,7 +1898,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Products to associate with the user.
      */
-    productCode?: string;
+    productCode?: string[];
     /**
      * The preferred locale of the user.
      */
@@ -1908,7 +1912,8 @@ export namespace adsensehost_v4_1 {
      */
     websiteUrl?: string;
   }
-  export interface Params$Resource$Associationsessions$Verify {
+  export interface Params$Resource$Associationsessions$Verify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1922,15 +1927,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Customchannels {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1993,7 +1990,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2059,7 +2056,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2128,7 +2125,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2197,7 +2194,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -2268,7 +2265,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2337,7 +2334,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -2347,7 +2344,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Customchannels$Delete {
+  export interface Params$Resource$Customchannels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2362,7 +2360,8 @@ export namespace adsensehost_v4_1 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Customchannels$Get {
+  export interface Params$Resource$Customchannels$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2377,7 +2376,8 @@ export namespace adsensehost_v4_1 {
      */
     customChannelId?: string;
   }
-  export interface Params$Resource$Customchannels$Insert {
+  export interface Params$Resource$Customchannels$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2393,7 +2393,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$CustomChannel;
   }
-  export interface Params$Resource$Customchannels$List {
+  export interface Params$Resource$Customchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2415,7 +2416,8 @@ export namespace adsensehost_v4_1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customchannels$Patch {
+  export interface Params$Resource$Customchannels$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2435,7 +2437,8 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$CustomChannel;
   }
-  export interface Params$Resource$Customchannels$Update {
+  export interface Params$Resource$Customchannels$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2454,15 +2457,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Reports {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2530,7 +2525,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -2540,7 +2535,7 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Reports$Generate {
+  export interface Params$Resource$Reports$Generate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2549,7 +2544,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Dimensions to base the report on.
      */
-    dimension?: string;
+    dimension?: string[];
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -2557,7 +2552,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Filters to be run on the report.
      */
-    filter?: string;
+    filter?: string[];
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -2570,13 +2565,13 @@ export namespace adsensehost_v4_1 {
     /**
      * Numeric columns to include in the report.
      */
-    metric?: string;
+    metric?: string[];
     /**
      * The name of a dimension or metric to sort the resulting report on,
      * optionally prefixed with "+" to sort ascending or "-" to sort descending.
      * If no prefix is specified, the column is sorted ascending.
      */
-    sort?: string;
+    sort?: string[];
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
@@ -2589,15 +2584,7 @@ export namespace adsensehost_v4_1 {
 
 
   export class Resource$Urlchannels {
-    root: Adsensehost;
-    constructor(root: Adsensehost) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2660,7 +2647,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId', 'urlChannelId'],
         pathParams: ['adClientId', 'urlChannelId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(parameters, callback);
@@ -2729,7 +2716,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(parameters, callback);
@@ -2797,7 +2784,7 @@ export namespace adsensehost_v4_1 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(parameters, callback);
@@ -2807,7 +2794,8 @@ export namespace adsensehost_v4_1 {
     }
   }
 
-  export interface Params$Resource$Urlchannels$Delete {
+  export interface Params$Resource$Urlchannels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2822,7 +2810,8 @@ export namespace adsensehost_v4_1 {
      */
     urlChannelId?: string;
   }
-  export interface Params$Resource$Urlchannels$Insert {
+  export interface Params$Resource$Urlchannels$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2838,7 +2827,7 @@ export namespace adsensehost_v4_1 {
      */
     requestBody?: Schema$UrlChannel;
   }
-  export interface Params$Resource$Urlchannels$List {
+  export interface Params$Resource$Urlchannels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

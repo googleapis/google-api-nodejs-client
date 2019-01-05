@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace gamesManagement_v1management {
   export interface Options extends GlobalOptions {
     version: 'v1management';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace gamesManagement_v1management {
    * @param {object=} options Options for Gamesmanagement
    */
   export class Gamesmanagement {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     achievements: Resource$Achievements;
     applications: Resource$Applications;
     events: Resource$Events;
@@ -60,22 +91,16 @@ export namespace gamesManagement_v1management {
     turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.achievements = new Resource$Achievements(this);
-      this.applications = new Resource$Applications(this);
-      this.events = new Resource$Events(this);
-      this.players = new Resource$Players(this);
-      this.quests = new Resource$Quests(this);
-      this.rooms = new Resource$Rooms(this);
-      this.scores = new Resource$Scores(this);
-      this.turnBasedMatches = new Resource$Turnbasedmatches(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.achievements = new Resource$Achievements();
+      this.applications = new Resource$Applications();
+      this.events = new Resource$Events();
+      this.players = new Resource$Players();
+      this.quests = new Resource$Quests();
+      this.rooms = new Resource$Rooms();
+      this.scores = new Resource$Scores();
+      this.turnBasedMatches = new Resource$Turnbasedmatches();
     }
   }
 
@@ -278,7 +303,7 @@ export namespace gamesManagement_v1management {
      * An object representation of the individual components of the player&#39;s
      * name. For some players, these fields may not be present.
      */
-    name?: any;
+    name?: {familyName?: string; givenName?: string;};
     /**
      * The player ID that was used for this player the first time they signed
      * into the game in question. This is only populated for calls to player.get
@@ -381,15 +406,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Achievements {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -453,7 +470,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementResetResponse>(parameters, callback);
@@ -527,7 +544,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementResetAllResponse>(
@@ -594,7 +611,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -663,7 +680,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -733,7 +750,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -743,7 +760,8 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Achievements$Reset {
+  export interface Params$Resource$Achievements$Reset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -754,19 +772,22 @@ export namespace gamesManagement_v1management {
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Resetall {
+  export interface Params$Resource$Achievements$Resetall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Achievements$Resetallforallplayers {
+  export interface Params$Resource$Achievements$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Achievements$Resetforallplayers {
+  export interface Params$Resource$Achievements$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -777,7 +798,8 @@ export namespace gamesManagement_v1management {
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Resetmultipleforallplayers {
+  export interface Params$Resource$Achievements$Resetmultipleforallplayers
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -792,15 +814,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Applications {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -865,7 +879,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HiddenPlayerList>(parameters, callback);
@@ -875,7 +889,8 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Applications$Listhidden {
+  export interface Params$Resource$Applications$Listhidden extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -899,15 +914,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Events {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -966,7 +973,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1031,7 +1038,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1098,7 +1105,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1166,7 +1173,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1235,7 +1242,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1245,7 +1252,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Events$Reset {
+  export interface Params$Resource$Events$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1256,19 +1263,21 @@ export namespace gamesManagement_v1management {
      */
     eventId?: string;
   }
-  export interface Params$Resource$Events$Resetall {
+  export interface Params$Resource$Events$Resetall extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Events$Resetallforallplayers {
+  export interface Params$Resource$Events$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Events$Resetforallplayers {
+  export interface Params$Resource$Events$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1279,7 +1288,8 @@ export namespace gamesManagement_v1management {
      */
     eventId?: string;
   }
-  export interface Params$Resource$Events$Resetmultipleforallplayers {
+  export interface Params$Resource$Events$Resetmultipleforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1294,15 +1304,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Players {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1363,7 +1365,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1431,7 +1433,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1441,7 +1443,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Players$Hide {
+  export interface Params$Resource$Players$Hide extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1457,7 +1459,7 @@ export namespace gamesManagement_v1management {
      */
     playerId?: string;
   }
-  export interface Params$Resource$Players$Unhide {
+  export interface Params$Resource$Players$Unhide extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1476,15 +1478,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Quests {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1542,7 +1536,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1606,7 +1600,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1672,7 +1666,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1740,7 +1734,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1808,7 +1802,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1818,7 +1812,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Quests$Reset {
+  export interface Params$Resource$Quests$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1829,19 +1823,21 @@ export namespace gamesManagement_v1management {
      */
     questId?: string;
   }
-  export interface Params$Resource$Quests$Resetall {
+  export interface Params$Resource$Quests$Resetall extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Quests$Resetallforallplayers {
+  export interface Params$Resource$Quests$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Quests$Resetforallplayers {
+  export interface Params$Resource$Quests$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1852,7 +1848,8 @@ export namespace gamesManagement_v1management {
      */
     questId?: string;
   }
-  export interface Params$Resource$Quests$Resetmultipleforallplayers {
+  export interface Params$Resource$Quests$Resetmultipleforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1867,15 +1864,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Rooms {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1932,7 +1921,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1998,7 +1987,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2008,13 +1997,14 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Rooms$Reset {
+  export interface Params$Resource$Rooms$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Rooms$Resetforallplayers {
+  export interface Params$Resource$Rooms$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2023,15 +2013,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Scores {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2095,7 +2077,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetResponse>(parameters, callback);
@@ -2166,7 +2148,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetAllResponse>(
@@ -2233,7 +2215,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2302,7 +2284,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2370,7 +2352,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2380,7 +2362,7 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Scores$Reset {
+  export interface Params$Resource$Scores$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2391,19 +2373,21 @@ export namespace gamesManagement_v1management {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Scores$Resetall {
+  export interface Params$Resource$Scores$Resetall extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Scores$Resetallforallplayers {
+  export interface Params$Resource$Scores$Resetallforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Scores$Resetforallplayers {
+  export interface Params$Resource$Scores$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2414,7 +2398,8 @@ export namespace gamesManagement_v1management {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Scores$Resetmultipleforallplayers {
+  export interface Params$Resource$Scores$Resetmultipleforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2429,15 +2414,7 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Turnbasedmatches {
-    root: Gamesmanagement;
-    constructor(root: Gamesmanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2495,7 +2472,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2562,7 +2539,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2572,13 +2549,15 @@ export namespace gamesManagement_v1management {
     }
   }
 
-  export interface Params$Resource$Turnbasedmatches$Reset {
+  export interface Params$Resource$Turnbasedmatches$Reset extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Turnbasedmatches$Resetforallplayers {
+  export interface Params$Resource$Turnbasedmatches$Resetforallplayers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

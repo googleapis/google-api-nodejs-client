@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,10 +29,63 @@ export namespace jobs_v2 {
     version: 'v2';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
-   * Cloud Job Discovery
+   * Cloud Talent Solution API
    *
-   * Cloud Job Discovery provides the capability to create, read, update, and
+   * Cloud Talent Solution provides the capability to create, read, update, and
    * delete job postings, as well as search jobs based on keywords and filters.
    *
    * @example
@@ -47,26 +99,16 @@ export namespace jobs_v2 {
    * @param {object=} options Options for Jobs
    */
   export class Jobs {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     companies: Resource$Companies;
     jobs: Resource$Jobs;
     v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.companies = new Resource$Companies(this);
-      this.jobs = new Resource$Jobs(this);
-      this.v2 = new Resource$V2(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.companies = new Resource$Companies();
+      this.jobs = new Resource$Jobs();
+      this.v2 = new Resource$V2();
     }
   }
 
@@ -118,7 +160,10 @@ export namespace jobs_v2 {
      */
     jobLocation?: Schema$JobLocation;
     /**
-     * Travel time to reach the job.
+     * The number of seconds required to travel to the job location from the
+     * query location. A duration of 0 seconds indicates that the job is not
+     * reachable within the requested duration, but was returned as part of an
+     * expanded query.
      */
     travelDuration?: string;
   }
@@ -146,7 +191,7 @@ export namespace jobs_v2 {
      */
     method?: string;
     /**
-     * Optional.  Specifies the traffic density to use when caculating commute
+     * Optional.  Specifies the traffic density to use when calculating commute
      * time. Must not be present if departure_hour_local is specified.
      */
     roadTraffic?: string;
@@ -449,11 +494,15 @@ export namespace jobs_v2 {
    */
   export interface Schema$CompensationRange {
     /**
-     * Required.  The maximum amount of compensation.
+     * Optional.  The maximum amount of compensation. If left empty, the value
+     * is set to a maximal compensation value and the currency code is set to
+     * match the currency code of min_compensation.
      */
     max?: Schema$Money;
     /**
-     * Required.  The minimum amount of compensation.
+     * Optional.  The minimum amount of compensation. If left empty, the value
+     * is set to zero and the currency code is set to match the currency code of
+     * max_compensation.
      */
     min?: Schema$Money;
   }
@@ -493,14 +542,19 @@ export namespace jobs_v2 {
    */
   export interface Schema$CreateJobRequest {
     /**
-     * If set to `true`, the service will not attempt to resolve a more precise
-     * address for the job.
+     * Deprecated. Please use processing_options. This flag is ignored if
+     * processing_options is set.  Optional.  If set to `true`, the service does
+     * not attempt to resolve a more precise address for the job.
      */
     disableStreetAddressResolution?: boolean;
     /**
      * Required.  The Job to be created.
      */
     job?: Schema$Job;
+    /**
+     * Optional.  Options for job processing.
+     */
+    processingOptions?: Schema$JobProcessingOptions;
   }
   /**
    * Custom attribute values that are either filterable or non-filterable.
@@ -537,9 +591,9 @@ export namespace jobs_v2 {
   export interface Schema$CustomAttributeHistogramRequest {
     /**
      * Required.  Specifies the custom field key to perform a histogram on. If
-     * specified without `long_value_buckets` or `long_value_min_max`, a
-     * histogram on string values of the given `key` is triggered, otherwise
-     * histogram is performed on long values.
+     * specified without `long_value_histogram_bucketing_option`, histogram on
+     * string values of the given `key` is triggered, otherwise histogram is
+     * performed on long values.
      */
     key?: string;
     /**
@@ -571,7 +625,7 @@ export namespace jobs_v2 {
      * Stores a map from the values of string custom field associated with `key`
      * to the number of jobs with that value in this histogram result.
      */
-    stringValueHistogramResult?: any;
+    stringValueHistogramResult?: {[key: string]: number;};
   }
   /**
    * Resource that represents the custom data not captured by the standard
@@ -597,23 +651,25 @@ export namespace jobs_v2 {
     type?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -843,8 +899,8 @@ export namespace jobs_v2 {
     query?: Schema$JobQuery;
     /**
      * Meta information, such as `user_id`, collected from the job searcher or
-     * other entity conducting the job search, which is used to improve the
-     * search quality of the service. Users determine identifier values, which
+     * other entity conducting a job search, is used to improve the
+     * service&#39;s search quality. Users determine identifier values, which
      * must be unique and consist.
      */
     requestMetadata?: Schema$RequestMetadata;
@@ -852,8 +908,8 @@ export namespace jobs_v2 {
      * Required.  A list of facets that specify the histogram data to be
      * calculated against and returned.  Histogram response times can be slow,
      * and counts can be approximations. This call may be temporarily or
-     * permanently removed prior to the production release of Cloud Job
-     * Discovery.
+     * permanently removed prior to the production release of Cloud Talent
+     * Solution.
      */
     searchTypes?: string[];
   }
@@ -911,7 +967,7 @@ export namespace jobs_v2 {
      * companyName).  Values: the count of jobs that match the filter for this
      * search.
      */
-    values?: any;
+    values?: {[key: string]: number;};
   }
   /**
    * Output only.  Histogram results that matches HistogramFacets specified in
@@ -1004,7 +1060,7 @@ export namespace jobs_v2 {
      * than 255 characters. For unfilterable `string_values`, the maximum total
      * size of `string_values` across all keys is 50KB.
      */
-    customAttributes?: any;
+    customAttributes?: {[key: string]: Schema$CustomAttribute;};
     /**
      * Optional.  The department or functional area within the company with the
      * open position.  The maximum number of allowed characters is 255.
@@ -1105,7 +1161,9 @@ export namespace jobs_v2 {
     expiryDate?: Schema$Date;
     /**
      * Deprecated. Always use compensation_info.  Optional.  Job compensation
-     * information.  This field replaces compensation_info.
+     * information.  This field replaces compensation_info. Only
+     * CompensationInfo.entries or extended_compensation_info can be set,
+     * otherwise an exception is thrown.
      */
     extendedCompensationInfo?: Schema$ExtendedCompensationInfo;
     /**
@@ -1116,12 +1174,11 @@ export namespace jobs_v2 {
      * structured fields. For the best search experience, use of the structured
      * rather than custom fields is recommended.  Data stored in these custom
      * fields fields are indexed and searched against by keyword searches (see
-     * SearchJobsRequest.custom_field_filters][]). To list jobs by custom
-     * fields, see ListCustomFieldsRequest.field_id.  The map key must be a
-     * number between 1-20. If an invalid key is provided on job create or
-     * update, an error is returned.
+     * SearchJobsRequest.custom_field_filters][]).  The map key must be a number
+     * between 1-20. If an invalid key is provided on job create or update, an
+     * error is returned.
      */
-    filterableCustomFields?: any;
+    filterableCustomFields?: {[key: string]: Schema$CustomField;};
     /**
      * Optional.  A description of bonus, commission, and other compensation
      * incentives associated with the job not including salary or pay.  The
@@ -1143,8 +1200,9 @@ export namespace jobs_v2 {
      * codes must be in BCP-47 format, such as &quot;en-US&quot; or
      * &quot;sr-Latn&quot;. For more information, see [Tags for Identifying
      * Languages](https://tools.ietf.org/html/bcp47){:
-     * class=&quot;external&quot; target=&quot;_blank&quot; }.  The default
-     * value is `en-US`.
+     * class=&quot;external&quot; target=&quot;_blank&quot; }.  If this field is
+     * unspecified and Job.description is present, detected language code based
+     * on Job.description is assigned, otherwise defaults to &#39;en_US&#39;.
      */
     languageCode?: string;
     /**
@@ -1240,7 +1298,7 @@ export namespace jobs_v2 {
      * them, nor can the client use them to list jobs.  The key of the map can
      * be any valid string.
      */
-    unindexedCustomFields?: any;
+    unindexedCustomFields?: {[key: string]: Schema$CustomField;};
     /**
      * Output only.  The timestamp when this job was last updated.
      */
@@ -1305,8 +1363,8 @@ export namespace jobs_v2 {
      * EMPTY(&lt;field_name&gt;) to filter on the existence of a key.  Boolean
      * expressions (AND/OR/NOT) are supported up to 3 levels of nesting (For
      * example, &quot;((A AND B AND C) OR NOT D) AND E&quot;), and there can be
-     * a maximum of 50 comparisons/functions in the expression. The expression
-     * must be &lt; 2000 characters in length.  Sample Query: (key1 =
+     * a maximum of 100 comparisons/functions in the expression. The expression
+     * must be &lt; 3000 bytes in length.  Sample Query: (key1 =
      * &quot;TEST&quot; OR LOWER(key1)=&quot;test&quot; OR NOT EMPTY(key1)) AND
      * key2 &gt; 100
      */
@@ -1319,7 +1377,7 @@ export namespace jobs_v2 {
      * to the desired custom field map value. If an invalid key is provided or
      * specified together with custom_attribute_filter, an error is thrown.
      */
-    customFieldFilters?: any;
+    customFieldFilters?: {[key: string]: Schema$CustomFieldFilter;};
     /**
      * Optional.  This flag controls the spell-check feature. If false, the
      * service attempts to correct a misspelled query, for example,
@@ -1356,12 +1414,11 @@ export namespace jobs_v2 {
     /**
      * Optional.  The location filter specifies geo-regions containing the jobs
      * to search against. See LocationFilter for more information.  If a
-     * location value is not specified, jobs are be retrieved from all
-     * locations.  If multiple values are specified, jobs are retrieved from any
-     * of the specified locations, and, if different values are specified for
-     * the LocationFilter.distance_in_miles parameter, the maximum provided
-     * distance is used for all locations.  At most 5 location filters are
-     * allowed.
+     * location value is not specified, jobs are retrieved from all locations.
+     * If multiple values are specified, jobs are retrieved from any of the
+     * specified locations. If different values are specified for the
+     * LocationFilter.distance_in_miles parameter, the maximum provided distance
+     * is used for all locations.  At most 5 location filters are allowed.
      */
     locationFilters?: Schema$LocationFilter[];
     /**
@@ -1415,6 +1472,24 @@ export namespace jobs_v2 {
      * 7885.79 meters.
      */
     radiusMeters?: number;
+  }
+  /**
+   * Input only.  Options for job processing.
+   */
+  export interface Schema$JobProcessingOptions {
+    /**
+     * Optional.  If set to `true`, the service does not attempt to resolve a
+     * more precise address for the job.
+     */
+    disableStreetAddressResolution?: boolean;
+    /**
+     * Optional.  Option for job HTML content sanitization. Applied fields are:
+     * * description * applicationInstruction * incentives * qualifications *
+     * responsibilities  HTML tags in these fields may be stripped if
+     * sanitiazation is not disabled.  Defaults to
+     * HtmlSanitization.SIMPLE_FORMATTING_ONLY.
+     */
+    htmlSanitization?: string;
   }
   /**
    * Input only.  The query required to perform a search query or histogram.
@@ -1484,9 +1559,9 @@ export namespace jobs_v2 {
     /**
      * Optional.  The employment type filter specifies the employment type of
      * jobs to search against, such as EmploymentType.FULL_TIME.  If a value is
-     * not specified, jobs in the search results includes any employment type.
-     * If multiple values are specified, jobs in the search results include any
-     * of the specified employment types.
+     * not specified, jobs in the search results include any employment type. If
+     * multiple values are specified, jobs in the search results include any of
+     * the specified employment types.
      */
     employmentTypes?: string[];
     /**
@@ -1502,10 +1577,10 @@ export namespace jobs_v2 {
     /**
      * Optional.  The location filter specifies geo-regions containing the jobs
      * to search against. See LocationFilter for more information.  If a
-     * location value isn&#39;tt specified, jobs fitting the other search
+     * location value isn&#39;t specified, jobs fitting the other search
      * criteria are retrieved regardless of where they&#39;re located.  If
      * multiple values are specified, jobs are retrieved from any of the
-     * specified locations, and, if different values are specified for the
+     * specified locations. If different values are specified for the
      * LocationFilter.distance_in_miles parameter, the maximum provided distance
      * is used for all locations.  At most 5 location filters are allowed.
      */
@@ -1608,8 +1683,9 @@ export namespace jobs_v2 {
    */
   export interface Schema$LocationFilter {
     /**
-     * Optional.  The distance from the address in miles to search. The default
-     * distance is 20 miles and maximum distance is 5,000 miles.
+     * Optional.   The distance_in_miles is applied when the location being
+     * searched for is identified as a city or smaller. When the location being
+     * searched for is a state or larger, this field is ignored.
      */
     distanceInMiles?: number;
     /**
@@ -1870,8 +1946,8 @@ export namespace jobs_v2 {
      * www.bar.com, then this field is set to &quot;foo.com&quot; for use on the
      * job board, and &quot;bar.com&quot; for use on the career site.  If this
      * field is not available for some reason, send &quot;UNKNOWN&quot;. Note
-     * that any improvements to the {{ api_name }} model for a particular tenant
-     * site, rely on this field being set correctly to some domain.
+     * that any improvements to the service model for a particular tenant site
+     * rely on this field being set correctly to some domain.
      */
     domain?: string;
     /**
@@ -1879,9 +1955,9 @@ export namespace jobs_v2 {
      * as the duration of an end user&#39;s interaction with the service over a
      * period. Obfuscate this field for privacy concerns before providing it to
      * the API.  If this field is not available for some reason, please send
-     * &quot;UNKNOWN&quot;. Note that any improvements to the {{ api_name }}
-     * model for a particular tenant site, rely on this field being set
-     * correctly to some unique session_id.
+     * &quot;UNKNOWN&quot;. Note that any improvements to the service model for
+     * a particular tenant site, rely on this field being set correctly to some
+     * unique session_id.
      */
     sessionId?: string;
     /**
@@ -1890,9 +1966,9 @@ export namespace jobs_v2 {
      * this value in order to have the strongest positive impact on search
      * quality. Obfuscate this field for privacy concerns before providing it to
      * the service.  If this field is not available for some reason, please send
-     * &quot;UNKNOWN&quot;. Note that any improvements to the {{ api_name }}
-     * model for a particular tenant site, rely on this field being set
-     * correctly to some unique user_id.
+     * &quot;UNKNOWN&quot;. Note that any improvements to the service model for
+     * a particular tenant site, rely on this field being set correctly to some
+     * unique user_id.
      */
     userId?: string;
   }
@@ -1922,8 +1998,7 @@ export namespace jobs_v2 {
    */
   export interface Schema$SearchJobsRequest {
     /**
-     * Deprecated. Any value provided in this field is ignored.  Optional.
-     * Controls whether to disable relevance thresholding. Relevance
+     * Optional.  Controls whether to disable relevance thresholding. Relevance
      * thresholding removes jobs that have low relevance in search results, for
      * example, removing &quot;Assistant to the CEO&quot; positions from the
      * search results of a search for &quot;CEO&quot;.  Disabling relevance
@@ -2000,7 +2075,7 @@ export namespace jobs_v2 {
     query?: Schema$JobQuery;
     /**
      * Required.  The meta information collected about the job searcher, used to
-     * improve the search quality of the service.. The identifiers, (such as
+     * improve the search quality of the service. The identifiers, (such as
      * `user_id`) are provided by users, and must be unique and consistent.
      */
     requestMetadata?: Schema$RequestMetadata;
@@ -2032,7 +2107,7 @@ export namespace jobs_v2 {
      */
     estimatedTotalSize?: string;
     /**
-     * The histogram results that match with specified
+     * The histogram results that match specified
      * SearchJobsRequest.HistogramFacets.
      */
     histogramResults?: Schema$HistogramResults;
@@ -2102,14 +2177,21 @@ export namespace jobs_v2 {
    */
   export interface Schema$UpdateJobRequest {
     /**
-     * If set to `true`, the service will not attempt resolve a more precise
-     * address for the job.
+     * Deprecated. Please use processing_options. This flag is ignored if
+     * processing_options is set.  Optional.  If set to `true`, the service does
+     * not attempt resolve a more precise address for the job.
      */
     disableStreetAddressResolution?: boolean;
     /**
      * Required.  The Job to be updated.
      */
     job?: Schema$Job;
+    /**
+     * Optional.  Options for job processing.
+     * UpdateJobRequest.disable_street_address_resolution is ignored if this
+     * flag is set.
+     */
+    processingOptions?: Schema$JobProcessingOptions;
     /**
      * Optional but strongly recommended to be provided for the best service
      * experience.  If update_job_fields is provided, only the specified fields
@@ -2128,16 +2210,9 @@ export namespace jobs_v2 {
 
 
   export class Resource$Companies {
-    root: Jobs;
     jobs: Resource$Companies$Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.jobs = new Resource$Companies$Jobs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.jobs = new Resource$Companies$Jobs();
     }
 
 
@@ -2194,7 +2269,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2257,7 +2332,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2317,7 +2392,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2329,7 +2404,8 @@ export namespace jobs_v2 {
 
     /**
      * jobs.companies.list
-     * @desc Lists all companies associated with a Cloud Job Discovery account.
+     * @desc Lists all companies associated with a Cloud Talent Solution
+     * account.
      * @alias jobs.companies.list
      * @memberOf! ()
      *
@@ -2384,7 +2460,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompaniesResponse>(parameters, callback);
@@ -2451,7 +2527,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2461,7 +2537,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Create {
+  export interface Params$Resource$Companies$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2473,7 +2549,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$Company;
   }
-  export interface Params$Resource$Companies$Delete {
+  export interface Params$Resource$Companies$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2485,7 +2561,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Companies$Get {
+  export interface Params$Resource$Companies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2497,7 +2573,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Companies$List {
+  export interface Params$Resource$Companies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2519,7 +2595,7 @@ export namespace jobs_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Companies$Patch {
+  export interface Params$Resource$Companies$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2550,15 +2626,7 @@ export namespace jobs_v2 {
   }
 
   export class Resource$Companies$Jobs {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2624,7 +2692,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['companyName'],
         pathParams: ['companyName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompanyJobsResponse>(parameters, callback);
@@ -2634,7 +2702,8 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Companies$Jobs$List {
+  export interface Params$Resource$Companies$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2678,15 +2747,7 @@ export namespace jobs_v2 {
 
 
   export class Resource$Jobs {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2744,7 +2805,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2808,7 +2869,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -2873,7 +2934,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2942,7 +3003,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3003,7 +3064,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3077,7 +3138,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetHistogramResponse>(parameters, callback);
@@ -3144,7 +3205,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3209,7 +3270,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3275,7 +3336,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3349,7 +3410,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3359,7 +3420,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$Jobs$Batchdelete {
+  export interface Params$Resource$Jobs$Batchdelete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3371,7 +3432,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$BatchDeleteJobsRequest;
   }
-  export interface Params$Resource$Jobs$Create {
+  export interface Params$Resource$Jobs$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3383,7 +3444,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$CreateJobRequest;
   }
-  export interface Params$Resource$Jobs$Delete {
+  export interface Params$Resource$Jobs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3402,7 +3463,8 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Jobs$Deletebyfilter {
+  export interface Params$Resource$Jobs$Deletebyfilter extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3414,7 +3476,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$DeleteJobsByFilterRequest;
   }
-  export interface Params$Resource$Jobs$Get {
+  export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3426,7 +3488,7 @@ export namespace jobs_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Jobs$Histogram {
+  export interface Params$Resource$Jobs$Histogram extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3438,7 +3500,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$GetHistogramRequest;
   }
-  export interface Params$Resource$Jobs$List {
+  export interface Params$Resource$Jobs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3470,7 +3532,7 @@ export namespace jobs_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Jobs$Patch {
+  export interface Params$Resource$Jobs$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3488,7 +3550,7 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$UpdateJobRequest;
   }
-  export interface Params$Resource$Jobs$Search {
+  export interface Params$Resource$Jobs$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3500,7 +3562,8 @@ export namespace jobs_v2 {
      */
     requestBody?: Schema$SearchJobsRequest;
   }
-  export interface Params$Resource$Jobs$Searchforalert {
+  export interface Params$Resource$Jobs$Searchforalert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3515,15 +3578,7 @@ export namespace jobs_v2 {
 
 
   export class Resource$V2 {
-    root: Jobs;
-    constructor(root: Jobs) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3588,7 +3643,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CompleteQueryResponse>(parameters, callback);
@@ -3598,7 +3653,7 @@ export namespace jobs_v2 {
     }
   }
 
-  export interface Params$Resource$V2$Complete {
+  export interface Params$Resource$V2$Complete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

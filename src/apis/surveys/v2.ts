@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace surveys_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,24 +82,14 @@ export namespace surveys_v2 {
    * @param {object=} options Options for Surveys
    */
   export class Surveys {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     results: Resource$Results;
     surveys: Resource$Surveys;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.results = new Resource$Results(this);
-      this.surveys = new Resource$Surveys(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.results = new Resource$Results();
+      this.surveys = new Resource$Surveys();
     }
   }
 
@@ -404,15 +429,7 @@ export namespace surveys_v2 {
 
 
   export class Resource$Results {
-    root: Surveys;
-    constructor(root: Surveys) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -470,7 +487,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveyResults>(parameters, callback);
@@ -480,7 +497,7 @@ export namespace surveys_v2 {
     }
   }
 
-  export interface Params$Resource$Results$Get {
+  export interface Params$Resource$Results$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -499,15 +516,7 @@ export namespace surveys_v2 {
 
 
   export class Resource$Surveys {
-    root: Surveys;
-    constructor(root: Surveys) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -566,7 +575,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysDeleteResponse>(parameters, callback);
@@ -627,7 +636,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -691,7 +700,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -758,7 +767,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysListResponse>(parameters, callback);
@@ -825,7 +834,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStartResponse>(parameters, callback);
@@ -890,7 +899,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStopResponse>(parameters, callback);
@@ -956,7 +965,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -966,7 +975,7 @@ export namespace surveys_v2 {
     }
   }
 
-  export interface Params$Resource$Surveys$Delete {
+  export interface Params$Resource$Surveys$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -977,7 +986,7 @@ export namespace surveys_v2 {
      */
     surveyUrlId?: string;
   }
-  export interface Params$Resource$Surveys$Get {
+  export interface Params$Resource$Surveys$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -988,7 +997,7 @@ export namespace surveys_v2 {
      */
     surveyUrlId?: string;
   }
-  export interface Params$Resource$Surveys$Insert {
+  export interface Params$Resource$Surveys$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1000,7 +1009,7 @@ export namespace surveys_v2 {
      */
     requestBody?: Schema$Survey;
   }
-  export interface Params$Resource$Surveys$List {
+  export interface Params$Resource$Surveys$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1019,7 +1028,7 @@ export namespace surveys_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Surveys$Start {
+  export interface Params$Resource$Surveys$Start extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1035,7 +1044,7 @@ export namespace surveys_v2 {
      */
     requestBody?: Schema$SurveysStartRequest;
   }
-  export interface Params$Resource$Surveys$Stop {
+  export interface Params$Resource$Surveys$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1046,7 +1055,7 @@ export namespace surveys_v2 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Surveys$Update {
+  export interface Params$Resource$Surveys$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

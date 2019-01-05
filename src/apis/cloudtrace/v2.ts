@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,12 +29,67 @@ export namespace cloudtrace_v2 {
     version: 'v2';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Stackdriver Trace API
    *
    * Sends application trace data to Stackdriver Trace for viewing. Trace data
    * is collected for all App Engine applications by default. Trace data from
-   * other applications can be provided using this API.
+   * other applications can be provided using this API. This library is used to
+   * interact with the Trace API directly. If you are looking to instrument your
+   * application for Stackdriver Trace, we recommend using OpenCensus.
    *
    * @example
    * const {google} = require('googleapis');
@@ -48,22 +102,12 @@ export namespace cloudtrace_v2 {
    * @param {object=} options Options for Cloudtrace
    */
   export class Cloudtrace {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -94,7 +138,7 @@ export namespace cloudtrace_v2 {
      * &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;:
      * true
      */
-    attributeMap?: any;
+    attributeMap?: {[key: string]: Schema$AttributeValue;};
     /**
      * The number of attributes that were discarded. Attributes can be discarded
      * because their keys are too long or because there are too many attributes.
@@ -237,12 +281,11 @@ export namespace cloudtrace_v2 {
     childSpanCount?: number;
     /**
      * A description of the span&#39;s operation (up to 128 bytes). Stackdriver
-     * Trace displays the description in the {% dynamic print
-     * site_values.console_name %}. For example, the display name can be a
-     * qualified method name or a file name and a line number where the
-     * operation is called. A best practice is to use the same display name
-     * within an application and at the same call point. This makes it easier to
-     * correlate spans in different traces.
+     * Trace displays the description in the Google Cloud Platform Console. For
+     * example, the display name can be a qualified method name or a file name
+     * and a line number where the operation is called. A best practice is to
+     * use the same display name within an application and at the same call
+     * point. This makes it easier to correlate spans in different traces.
      */
     displayName?: Schema$TruncatableString;
     /**
@@ -415,7 +458,7 @@ export namespace cloudtrace_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -483,31 +526,17 @@ export namespace cloudtrace_v2 {
 
 
   export class Resource$Projects {
-    root: Cloudtrace;
     traces: Resource$Projects$Traces;
-    constructor(root: Cloudtrace) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.traces = new Resource$Projects$Traces(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.traces = new Resource$Projects$Traces();
     }
   }
 
 
   export class Resource$Projects$Traces {
-    root: Cloudtrace;
     spans: Resource$Projects$Traces$Spans;
-    constructor(root: Cloudtrace) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.spans = new Resource$Projects$Traces$Spans(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.spans = new Resource$Projects$Traces$Spans();
     }
 
 
@@ -569,7 +598,7 @@ export namespace cloudtrace_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -579,7 +608,8 @@ export namespace cloudtrace_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Traces$Batchwrite {
+  export interface Params$Resource$Projects$Traces$Batchwrite extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -598,15 +628,7 @@ export namespace cloudtrace_v2 {
   }
 
   export class Resource$Projects$Traces$Spans {
-    root: Cloudtrace;
-    constructor(root: Cloudtrace) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -665,7 +687,7 @@ export namespace cloudtrace_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Span>(parameters, callback);
@@ -675,7 +697,8 @@ export namespace cloudtrace_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Traces$Spans$Createspan {
+  export interface Params$Resource$Projects$Traces$Spans$Createspan extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,10 +29,46 @@ export namespace androidpublisher_v2 {
     version: 'v2';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
    * Google Play Developer API
    *
-   * Lets Android application developers access their Google Play accounts.
+   * Accesses Android application developers&#39; Google Play accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -46,10 +81,6 @@ export namespace androidpublisher_v2 {
    * @param {object=} options Options for Androidpublisher
    */
   export class Androidpublisher {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     edits: Resource$Edits;
     inappproducts: Resource$Inappproducts;
     orders: Resource$Orders;
@@ -57,19 +88,13 @@ export namespace androidpublisher_v2 {
     reviews: Resource$Reviews;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.edits = new Resource$Edits(this);
-      this.inappproducts = new Resource$Inappproducts(this);
-      this.orders = new Resource$Orders(this);
-      this.purchases = new Resource$Purchases(this);
-      this.reviews = new Resource$Reviews(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.edits = new Resource$Edits();
+      this.inappproducts = new Resource$Inappproducts();
+      this.orders = new Resource$Orders();
+      this.purchases = new Resource$Purchases();
+      this.reviews = new Resource$Reviews();
     }
   }
 
@@ -417,7 +442,7 @@ export namespace androidpublisher_v2 {
     /**
      * List of localized title and description data.
      */
-    listings?: any;
+    listings?: {[key: string]: Schema$InAppProductListing;};
     /**
      * The package name of the parent app.
      */
@@ -426,7 +451,7 @@ export namespace androidpublisher_v2 {
      * Prices per buyer region. None of these prices should be zero. In-app
      * products can never be free.
      */
-    prices?: any;
+    prices?: {[key: string]: Schema$Price;};
     /**
      * Purchase type enum value. Unmodifiable after creation.
      */
@@ -675,6 +700,29 @@ export namespace androidpublisher_v2 {
     expectedExpiryTimeMillis?: string;
   }
   /**
+   * Contains the price change information for a subscription that can be used
+   * to control the user journey for the price change in the app. This can be in
+   * the form of seeking confirmation from the user or tailoring the experience
+   * for a successful conversion.
+   */
+  export interface Schema$SubscriptionPriceChange {
+    /**
+     * The new price the subscription will renew with if the price change is
+     * accepted by the user.
+     */
+    newPrice?: Schema$Price;
+    /**
+     * The current state of the price change. Possible values are:   -
+     * Outstanding: State for a pending price change waiting for the user to
+     * agree. In this state, you can optionally seek confirmation from the user
+     * using the In-App API.  - Accepted: State for an accepted price change
+     * that the subscription will renew with unless it&#39;s canceled. The price
+     * change takes effect on a future date when the subscription renews. Note
+     * that the change might not occur when the subscription is renewed next.
+     */
+    state?: number;
+  }
+  /**
    * A SubscriptionPurchase resource indicates the status of a user&#39;s
    * subscription purchase.
    */
@@ -752,7 +800,8 @@ export namespace androidpublisher_v2 {
     orderId?: string;
     /**
      * The payment state of the subscription. Possible values are:   - Payment
-     * pending  - Payment received  - Free trial
+     * pending  - Payment received  - Free trial  - Pending deferred
+     * upgrade/downgrade
      */
     paymentState?: number;
     /**
@@ -762,6 +811,13 @@ export namespace androidpublisher_v2 {
      * price_amount_micros is 1990000.
      */
     priceAmountMicros?: string;
+    /**
+     * The latest price change information available. This is present only when
+     * there is an upcoming price change for the subscription yet to be applied.
+     * Once the subscription renews with the new price or the subscription is
+     * canceled, no price change information will be returned.
+     */
+    priceChange?: Schema$SubscriptionPriceChange;
     /**
      * ISO 4217 currency code for the subscription price. For example, if the
      * price is specified in British pounds sterling, price_currency_code is
@@ -933,7 +989,6 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits {
-    root: Androidpublisher;
     apklistings: Resource$Edits$Apklistings;
     apks: Resource$Edits$Apks;
     bundles: Resource$Edits$Bundles;
@@ -944,23 +999,17 @@ export namespace androidpublisher_v2 {
     listings: Resource$Edits$Listings;
     testers: Resource$Edits$Testers;
     tracks: Resource$Edits$Tracks;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.apklistings = new Resource$Edits$Apklistings(root);
-      this.apks = new Resource$Edits$Apks(root);
-      this.bundles = new Resource$Edits$Bundles(root);
-      this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles(root);
-      this.details = new Resource$Edits$Details(root);
-      this.expansionfiles = new Resource$Edits$Expansionfiles(root);
-      this.images = new Resource$Edits$Images(root);
-      this.listings = new Resource$Edits$Listings(root);
-      this.testers = new Resource$Edits$Testers(root);
-      this.tracks = new Resource$Edits$Tracks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.apklistings = new Resource$Edits$Apklistings();
+      this.apks = new Resource$Edits$Apks();
+      this.bundles = new Resource$Edits$Bundles();
+      this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles();
+      this.details = new Resource$Edits$Details();
+      this.expansionfiles = new Resource$Edits$Expansionfiles();
+      this.images = new Resource$Edits$Images();
+      this.listings = new Resource$Edits$Listings();
+      this.testers = new Resource$Edits$Testers();
+      this.tracks = new Resource$Edits$Tracks();
     }
 
 
@@ -1021,7 +1070,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1089,7 +1138,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1155,7 +1204,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1222,7 +1271,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1290,7 +1339,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppEdit>(parameters, callback);
@@ -1300,7 +1349,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Commit {
+  export interface Params$Resource$Edits$Commit extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1316,7 +1365,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Delete {
+  export interface Params$Resource$Edits$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1332,7 +1381,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Get {
+  export interface Params$Resource$Edits$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1348,7 +1397,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Insert {
+  export interface Params$Resource$Edits$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1365,7 +1414,7 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$AppEdit;
   }
-  export interface Params$Resource$Edits$Validate {
+  export interface Params$Resource$Edits$Validate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1383,15 +1432,7 @@ export namespace androidpublisher_v2 {
   }
 
   export class Resource$Edits$Apklistings {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1455,7 +1496,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1525,7 +1566,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode'],
         pathParams: ['apkVersionCode', 'editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1594,7 +1635,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListing>(parameters, callback);
@@ -1666,7 +1707,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode'],
         pathParams: ['apkVersionCode', 'editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListingsListResponse>(parameters, callback);
@@ -1740,7 +1781,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListing>(parameters, callback);
@@ -1814,7 +1855,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
         pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApkListing>(parameters, callback);
@@ -1824,7 +1865,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Apklistings$Delete {
+  export interface Params$Resource$Edits$Apklistings$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1851,7 +1893,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$Deleteall {
+  export interface Params$Resource$Edits$Apklistings$Deleteall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1872,7 +1915,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$Get {
+  export interface Params$Resource$Edits$Apklistings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1899,7 +1943,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$List {
+  export interface Params$Resource$Edits$Apklistings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1920,7 +1965,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apklistings$Patch {
+  export interface Params$Resource$Edits$Apklistings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1952,7 +1998,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$ApkListing;
   }
-  export interface Params$Resource$Edits$Apklistings$Update {
+  export interface Params$Resource$Edits$Apklistings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1987,15 +2034,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Apks {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2069,7 +2108,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
@@ -2138,7 +2177,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApksListResponse>(parameters, callback);
@@ -2212,7 +2251,7 @@ export namespace androidpublisher_v2 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Apk>(parameters, callback);
@@ -2222,7 +2261,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Apks$Addexternallyhosted {
+  export interface Params$Resource$Edits$Apks$Addexternallyhosted extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2243,7 +2283,7 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$ApksAddExternallyHostedRequest;
   }
-  export interface Params$Resource$Edits$Apks$List {
+  export interface Params$Resource$Edits$Apks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2259,7 +2299,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apks$Upload {
+  export interface Params$Resource$Edits$Apks$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2294,15 +2335,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Bundles {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2363,7 +2396,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BundlesListResponse>(parameters, callback);
@@ -2385,6 +2418,7 @@ export namespace androidpublisher_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.ackBundleInstallationWarning Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      * @param {object} params.media Media object
@@ -2444,7 +2478,7 @@ export namespace androidpublisher_v2 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Bundle>(parameters, callback);
@@ -2454,7 +2488,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Bundles$List {
+  export interface Params$Resource$Edits$Bundles$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2470,12 +2505,19 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Bundles$Upload {
+  export interface Params$Resource$Edits$Bundles$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Must be set to true if the bundle installation may trigger a warning on
+     * user devices (for example, if installation size may be over a threshold,
+     * typically 100 MB).
+     */
+    ackBundleInstallationWarning?: boolean;
     /**
      * Unique identifier for this edit.
      */
@@ -2505,15 +2547,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Deobfuscationfiles {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2599,7 +2633,7 @@ export namespace androidpublisher_v2 {
         pathParams: [
           'apkVersionCode', 'deobfuscationFileType', 'editId', 'packageName'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
@@ -2611,7 +2645,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Deobfuscationfiles$Upload {
+  export interface Params$Resource$Edits$Deobfuscationfiles$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2654,15 +2689,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Details {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2722,7 +2749,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2794,7 +2821,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2865,7 +2892,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AppDetails>(parameters, callback);
@@ -2875,7 +2902,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Details$Get {
+  export interface Params$Resource$Edits$Details$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2891,7 +2919,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Details$Patch {
+  export interface Params$Resource$Edits$Details$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2912,7 +2941,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$AppDetails;
   }
-  export interface Params$Resource$Edits$Details$Update {
+  export interface Params$Resource$Edits$Details$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2936,15 +2966,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Expansionfiles {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3007,7 +3029,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -3084,7 +3106,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -3160,7 +3182,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFile>(parameters, callback);
@@ -3246,7 +3268,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
         pathParams:
             ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ExpansionFilesUploadResponse>(
@@ -3258,7 +3280,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Expansionfiles$Get {
+  export interface Params$Resource$Edits$Expansionfiles$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3283,37 +3306,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Patch {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The version code of the APK whose Expansion File configuration is being
-     * read or modified.
-     */
-    apkVersionCode?: number;
-    /**
-     * Unique identifier for this edit.
-     */
-    editId?: string;
-    /**
-     *
-     */
-    expansionFileType?: string;
-    /**
-     * Unique identifier for the Android app that is being updated; for example,
-     * "com.spiffygame".
-     */
-    packageName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ExpansionFile;
-  }
-  export interface Params$Resource$Edits$Expansionfiles$Update {
+  export interface Params$Resource$Edits$Expansionfiles$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3343,7 +3337,39 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$ExpansionFile;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Upload {
+  export interface Params$Resource$Edits$Expansionfiles$Update extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The version code of the APK whose Expansion File configuration is being
+     * read or modified.
+     */
+    apkVersionCode?: number;
+    /**
+     * Unique identifier for this edit.
+     */
+    editId?: string;
+    /**
+     *
+     */
+    expansionFileType?: string;
+    /**
+     * Unique identifier for the Android app that is being updated; for example,
+     * "com.spiffygame".
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExpansionFile;
+  }
+  export interface Params$Resource$Edits$Expansionfiles$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3387,15 +3413,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Images {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3461,7 +3479,7 @@ export namespace androidpublisher_v2 {
             ['packageName', 'editId', 'language', 'imageType', 'imageId'],
         pathParams:
             ['editId', 'imageId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3535,7 +3553,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters, callback);
@@ -3606,7 +3624,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImagesListResponse>(parameters, callback);
@@ -3687,7 +3705,7 @@ export namespace androidpublisher_v2 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['packageName', 'editId', 'language', 'imageType'],
         pathParams: ['editId', 'imageType', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImagesUploadResponse>(parameters, callback);
@@ -3697,7 +3715,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Images$Delete {
+  export interface Params$Resource$Edits$Images$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3728,7 +3747,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Deleteall {
+  export interface Params$Resource$Edits$Images$Deleteall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3754,7 +3774,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$List {
+  export interface Params$Resource$Edits$Images$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3780,7 +3801,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Upload {
+  export interface Params$Resource$Edits$Images$Upload extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3825,15 +3847,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Listings {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3895,7 +3909,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3963,7 +3977,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4029,7 +4043,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -4099,7 +4113,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListingsListResponse>(parameters, callback);
@@ -4171,7 +4185,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -4242,7 +4256,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'language'],
         pathParams: ['editId', 'language', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Listing>(parameters, callback);
@@ -4252,7 +4266,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Listings$Delete {
+  export interface Params$Resource$Edits$Listings$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4273,7 +4288,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Deleteall {
+  export interface Params$Resource$Edits$Listings$Deleteall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4289,7 +4305,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Get {
+  export interface Params$Resource$Edits$Listings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4310,7 +4327,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$List {
+  export interface Params$Resource$Edits$Listings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4326,7 +4344,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Patch {
+  export interface Params$Resource$Edits$Listings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4352,7 +4371,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$Listing;
   }
-  export interface Params$Resource$Edits$Listings$Update {
+  export interface Params$Resource$Edits$Listings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4381,15 +4401,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Testers {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4447,7 +4459,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -4517,7 +4529,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -4587,7 +4599,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Testers>(parameters, callback);
@@ -4597,7 +4609,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Testers$Get {
+  export interface Params$Resource$Edits$Testers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4618,7 +4631,8 @@ export namespace androidpublisher_v2 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Testers$Patch {
+  export interface Params$Resource$Edits$Testers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4644,7 +4658,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$Testers;
   }
-  export interface Params$Resource$Edits$Testers$Update {
+  export interface Params$Resource$Edits$Testers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4673,15 +4688,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Edits$Tracks {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4740,7 +4747,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -4809,7 +4816,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TracksListResponse>(parameters, callback);
@@ -4882,7 +4889,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -4955,7 +4962,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'editId', 'track'],
         pathParams: ['editId', 'packageName', 'track'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Track>(parameters, callback);
@@ -4965,7 +4972,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Edits$Tracks$Get {
+  export interface Params$Resource$Edits$Tracks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4985,7 +4992,8 @@ export namespace androidpublisher_v2 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Tracks$List {
+  export interface Params$Resource$Edits$Tracks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5001,7 +5009,8 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Tracks$Patch {
+  export interface Params$Resource$Edits$Tracks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5026,7 +5035,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$Track;
   }
-  export interface Params$Resource$Edits$Tracks$Update {
+  export interface Params$Resource$Edits$Tracks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5055,15 +5065,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Inappproducts {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5124,7 +5126,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5190,7 +5192,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5261,7 +5263,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5335,7 +5337,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InappproductsListResponse>(
@@ -5409,7 +5411,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5481,7 +5483,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InAppProduct>(parameters, callback);
@@ -5491,7 +5493,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Inappproducts$Delete {
+  export interface Params$Resource$Inappproducts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5507,7 +5510,8 @@ export namespace androidpublisher_v2 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Get {
+  export interface Params$Resource$Inappproducts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5522,7 +5526,8 @@ export namespace androidpublisher_v2 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Insert {
+  export interface Params$Resource$Inappproducts$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5544,7 +5549,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$List {
+  export interface Params$Resource$Inappproducts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5568,7 +5574,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Inappproducts$Patch {
+  export interface Params$Resource$Inappproducts$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5595,7 +5602,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$Update {
+  export interface Params$Resource$Inappproducts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5625,15 +5633,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Orders {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5693,7 +5693,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'orderId'],
         pathParams: ['orderId', 'packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5703,7 +5703,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Orders$Refund {
+  export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5730,34 +5730,19 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Purchases {
-    root: Androidpublisher;
     products: Resource$Purchases$Products;
     subscriptions: Resource$Purchases$Subscriptions;
     voidedpurchases: Resource$Purchases$Voidedpurchases;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.products = new Resource$Purchases$Products(root);
-      this.subscriptions = new Resource$Purchases$Subscriptions(root);
-      this.voidedpurchases = new Resource$Purchases$Voidedpurchases(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.products = new Resource$Purchases$Products();
+      this.subscriptions = new Resource$Purchases$Subscriptions();
+      this.voidedpurchases = new Resource$Purchases$Voidedpurchases();
     }
   }
 
 
   export class Resource$Purchases$Products {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5817,7 +5802,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'productId', 'token'],
         pathParams: ['packageName', 'productId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductPurchase>(parameters, callback);
@@ -5827,7 +5812,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Purchases$Products$Get {
+  export interface Params$Resource$Purchases$Products$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5851,15 +5837,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Purchases$Subscriptions {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5922,7 +5900,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6004,7 +5982,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
@@ -6075,7 +6053,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
@@ -6145,7 +6123,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6216,7 +6194,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6226,7 +6204,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Purchases$Subscriptions$Cancel {
+  export interface Params$Resource$Purchases$Subscriptions$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6247,7 +6226,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Defer {
+  export interface Params$Resource$Purchases$Subscriptions$Defer extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6273,7 +6253,8 @@ export namespace androidpublisher_v2 {
      */
     requestBody?: Schema$SubscriptionPurchasesDeferRequest;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Get {
+  export interface Params$Resource$Purchases$Subscriptions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6294,7 +6275,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Refund {
+  export interface Params$Resource$Purchases$Subscriptions$Refund extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6315,7 +6297,8 @@ export namespace androidpublisher_v2 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Revoke {
+  export interface Params$Resource$Purchases$Subscriptions$Revoke extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6339,15 +6322,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Purchases$Voidedpurchases {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6419,7 +6394,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VoidedPurchasesListResponse>(
@@ -6430,7 +6405,8 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Purchases$Voidedpurchases$List {
+  export interface Params$Resource$Purchases$Voidedpurchases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6476,15 +6452,7 @@ export namespace androidpublisher_v2 {
 
 
   export class Resource$Reviews {
-    root: Androidpublisher;
-    constructor(root: Androidpublisher) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6542,7 +6510,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Review>(parameters, callback);
@@ -6613,7 +6581,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReviewsListResponse>(parameters, callback);
@@ -6683,7 +6651,7 @@ export namespace androidpublisher_v2 {
         params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReviewsReplyResponse>(parameters, callback);
@@ -6693,7 +6661,7 @@ export namespace androidpublisher_v2 {
     }
   }
 
-  export interface Params$Resource$Reviews$Get {
+  export interface Params$Resource$Reviews$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6713,7 +6681,7 @@ export namespace androidpublisher_v2 {
      */
     translationLanguage?: string;
   }
-  export interface Params$Resource$Reviews$List {
+  export interface Params$Resource$Reviews$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6741,7 +6709,7 @@ export namespace androidpublisher_v2 {
      */
     translationLanguage?: string;
   }
-  export interface Params$Resource$Reviews$Reply {
+  export interface Params$Resource$Reviews$Reply extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

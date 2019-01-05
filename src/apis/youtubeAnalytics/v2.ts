@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace youtubeAnalytics_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,26 +98,16 @@ export namespace youtubeAnalytics_v2 {
    * @param {object=} options Options for Youtubeanalytics
    */
   export class Youtubeanalytics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     groupItems: Resource$Groupitems;
     groups: Resource$Groups;
     reports: Resource$Reports;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.groupItems = new Resource$Groupitems(this);
-      this.groups = new Resource$Groups(this);
-      this.reports = new Resource$Reports(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.groupItems = new Resource$Groupitems();
+      this.groups = new Resource$Groups();
+      this.reports = new Resource$Reports();
     }
   }
 
@@ -365,15 +407,7 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Groupitems {
-    root: Youtubeanalytics;
-    constructor(root: Youtubeanalytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -433,7 +467,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -500,7 +534,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GroupItem>(parameters, callback);
@@ -568,7 +602,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupItemsResponse>(parameters, callback);
@@ -578,7 +612,8 @@ export namespace youtubeAnalytics_v2 {
     }
   }
 
-  export interface Params$Resource$Groupitems$Delete {
+  export interface Params$Resource$Groupitems$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -603,7 +638,8 @@ export namespace youtubeAnalytics_v2 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Groupitems$Insert {
+  export interface Params$Resource$Groupitems$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -628,7 +664,7 @@ export namespace youtubeAnalytics_v2 {
      */
     requestBody?: Schema$GroupItem;
   }
-  export interface Params$Resource$Groupitems$List {
+  export interface Params$Resource$Groupitems$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -656,15 +692,7 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Groups {
-    root: Youtubeanalytics;
-    constructor(root: Youtubeanalytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -723,7 +751,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -788,7 +816,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -859,7 +887,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -924,7 +952,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -934,7 +962,7 @@ export namespace youtubeAnalytics_v2 {
     }
   }
 
-  export interface Params$Resource$Groups$Delete {
+  export interface Params$Resource$Groups$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -959,7 +987,7 @@ export namespace youtubeAnalytics_v2 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Groups$Insert {
+  export interface Params$Resource$Groups$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -984,7 +1012,7 @@ export namespace youtubeAnalytics_v2 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Groups$List {
+  export interface Params$Resource$Groups$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1025,7 +1053,7 @@ export namespace youtubeAnalytics_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Groups$Update {
+  export interface Params$Resource$Groups$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1053,15 +1081,7 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Reports {
-    root: Youtubeanalytics;
-    constructor(root: Youtubeanalytics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1129,7 +1149,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);
@@ -1139,7 +1159,7 @@ export namespace youtubeAnalytics_v2 {
     }
   }
 
-  export interface Params$Resource$Reports$Query {
+  export interface Params$Resource$Reports$Query extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

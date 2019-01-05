@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace fitness_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,22 +82,12 @@ export namespace fitness_v1 {
    * @param {object=} options Options for Fitness
    */
   export class Fitness {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.users = new Resource$Users();
     }
   }
 
@@ -249,8 +274,7 @@ export namespace fitness_v1 {
    */
   export interface Schema$DataPoint {
     /**
-     * Used for version checking during transformation; that is, a datapoint can
-     * only replace another datapoint that has an older computation time stamp.
+     * DO NOT USE THIS FIELD. It is ignored, and not stored.
      */
     computationTimeMillis?: string;
     /**
@@ -615,34 +639,19 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users {
-    root: Fitness;
     dataset: Resource$Users$Dataset;
     dataSources: Resource$Users$Datasources;
     sessions: Resource$Users$Sessions;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.dataset = new Resource$Users$Dataset(root);
-      this.dataSources = new Resource$Users$Datasources(root);
-      this.sessions = new Resource$Users$Sessions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.dataset = new Resource$Users$Dataset();
+      this.dataSources = new Resource$Users$Datasources();
+      this.sessions = new Resource$Users$Sessions();
     }
   }
 
 
   export class Resource$Users$Dataset {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -706,7 +715,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AggregateResponse>(parameters, callback);
@@ -716,7 +725,8 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Dataset$Aggregate {
+  export interface Params$Resource$Users$Dataset$Aggregate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -736,19 +746,11 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Datasources {
-    root: Fitness;
     dataPointChanges: Resource$Users$Datasources$Datapointchanges;
     datasets: Resource$Users$Datasources$Datasets;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.dataPointChanges =
-          new Resource$Users$Datasources$Datapointchanges(root);
-      this.datasets = new Resource$Users$Datasources$Datasets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.dataPointChanges = new Resource$Users$Datasources$Datapointchanges();
+      this.datasets = new Resource$Users$Datasources$Datasets();
     }
 
 
@@ -817,7 +819,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -887,7 +889,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -952,7 +954,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1024,7 +1026,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -1097,7 +1099,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1170,7 +1172,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1180,7 +1182,8 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Create {
+  export interface Params$Resource$Users$Datasources$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1197,7 +1200,8 @@ export namespace fitness_v1 {
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Users$Datasources$Delete {
+  export interface Params$Resource$Users$Datasources$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1213,7 +1217,8 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Get {
+  export interface Params$Resource$Users$Datasources$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1229,7 +1234,8 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$List {
+  export interface Params$Resource$Users$Datasources$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1239,14 +1245,15 @@ export namespace fitness_v1 {
      * The names of data types to include in the list. If not specified, all
      * data sources will be returned.
      */
-    dataTypeName?: string;
+    dataTypeName?: string[];
     /**
      * List data sources for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Patch {
+  export interface Params$Resource$Users$Datasources$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1267,7 +1274,8 @@ export namespace fitness_v1 {
      */
     requestBody?: Schema$DataSource;
   }
-  export interface Params$Resource$Users$Datasources$Update {
+  export interface Params$Resource$Users$Datasources$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1290,15 +1298,7 @@ export namespace fitness_v1 {
   }
 
   export class Resource$Users$Datasources$Datapointchanges {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1369,7 +1369,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataPointChangesResponse>(
@@ -1381,7 +1381,8 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Datapointchanges$List {
+  export interface Params$Resource$Users$Datasources$Datapointchanges$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1411,15 +1412,7 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Datasources$Datasets {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1489,7 +1482,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1561,7 +1554,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1636,7 +1629,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1646,7 +1639,8 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Datasources$Datasets$Delete {
+  export interface Params$Resource$Users$Datasources$Datasets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1677,7 +1671,8 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Datasets$Get {
+  export interface Params$Resource$Users$Datasources$Datasets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1714,7 +1709,8 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Datasources$Datasets$Patch {
+  export interface Params$Resource$Users$Datasources$Datasets$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1752,15 +1748,7 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Sessions {
-    root: Fitness;
-    constructor(root: Fitness) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1820,7 +1808,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1839,7 +1827,7 @@ export namespace fitness_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
      * @param {boolean=} params.includeDeleted If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param {string=} params.pageToken The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of nextPageToken from the previous response. This token is treated as a timestamp (in millis since epoch). If specified, the API returns sessions modified since this time. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 7 days are returned.
      * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
      * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1891,7 +1879,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -1960,7 +1948,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -1970,7 +1958,8 @@ export namespace fitness_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Sessions$Delete {
+  export interface Params$Resource$Users$Sessions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1990,7 +1979,8 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Sessions$List {
+  export interface Params$Resource$Users$Sessions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2008,9 +1998,13 @@ export namespace fitness_v1 {
      */
     includeDeleted?: boolean;
     /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * nextPageToken from the previous response.
+     * The continuation token, which is used for incremental syncing. To get the
+     * next batch of changes, set this parameter to the value of nextPageToken
+     * from the previous response. This token is treated as a timestamp (in
+     * millis since epoch). If specified, the API returns sessions modified
+     * since this time. The page token is ignored if either start or end time is
+     * specified. If none of start time, end time, and the page token is
+     * specified, sessions modified in the last 7 days are returned.
      */
     pageToken?: string;
     /**
@@ -2024,7 +2018,8 @@ export namespace fitness_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Users$Sessions$Update {
+  export interface Params$Resource$Users$Sessions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

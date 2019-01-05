@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace classroom_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,28 +98,18 @@ export namespace classroom_v1 {
    * @param {object=} options Options for Classroom
    */
   export class Classroom {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     courses: Resource$Courses;
     invitations: Resource$Invitations;
     registrations: Resource$Registrations;
     userProfiles: Resource$Userprofiles;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.courses = new Resource$Courses(this);
-      this.invitations = new Resource$Invitations(this);
-      this.registrations = new Resource$Registrations(this);
-      this.userProfiles = new Resource$Userprofiles(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.courses = new Resource$Courses();
+      this.invitations = new Resource$Invitations();
+      this.registrations = new Resource$Registrations();
+      this.userProfiles = new Resource$Userprofiles();
     }
   }
 
@@ -412,13 +454,13 @@ export namespace classroom_v1 {
      */
     description?: string;
     /**
-     * Optional date, in UTC, that submissions for this this course work are
-     * due. This must be specified if `due_time` is specified.
+     * Optional date, in UTC, that submissions for this course work are due.
+     * This must be specified if `due_time` is specified.
      */
     dueDate?: Schema$Date;
     /**
-     * Optional time of day, in UTC, that submissions for this this course work
-     * are due. This must be specified if `due_date` is specified.
+     * Optional time of day, in UTC, that submissions for this course work are
+     * due. This must be specified if `due_date` is specified.
      */
     dueTime?: Schema$TimeOfDay;
     /**
@@ -481,23 +523,34 @@ export namespace classroom_v1 {
     workType?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
+   */
+  export interface Schema$CourseWorkChangesInfo {
+    /**
+     * The `course_id` of the course to subscribe to work changes for.
+     */
+    courseId?: string;
+  }
+  /**
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -562,6 +615,11 @@ export namespace classroom_v1 {
      * This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`.
      */
     courseRosterChangesInfo?: Schema$CourseRosterChangesInfo;
+    /**
+     * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
+     * This field must be specified if `feed_type` is `COURSE_WORK_CHANGES`.
+     */
+    courseWorkChangesInfo?: Schema$CourseWorkChangesInfo;
     /**
      * The type of feed.
      */
@@ -1289,24 +1347,17 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses {
-    root: Classroom;
     aliases: Resource$Courses$Aliases;
     announcements: Resource$Courses$Announcements;
     courseWork: Resource$Courses$Coursework;
     students: Resource$Courses$Students;
     teachers: Resource$Courses$Teachers;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.aliases = new Resource$Courses$Aliases(root);
-      this.announcements = new Resource$Courses$Announcements(root);
-      this.courseWork = new Resource$Courses$Coursework(root);
-      this.students = new Resource$Courses$Students(root);
-      this.teachers = new Resource$Courses$Teachers(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.aliases = new Resource$Courses$Aliases();
+      this.announcements = new Resource$Courses$Announcements();
+      this.courseWork = new Resource$Courses$Coursework();
+      this.students = new Resource$Courses$Students();
+      this.teachers = new Resource$Courses$Teachers();
     }
 
 
@@ -1370,7 +1421,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1436,7 +1487,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1499,7 +1550,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1572,7 +1623,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCoursesResponse>(parameters, callback);
@@ -1643,7 +1694,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1711,7 +1762,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1721,7 +1772,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Create {
+  export interface Params$Resource$Courses$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1733,7 +1784,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Course;
   }
-  export interface Params$Resource$Courses$Delete {
+  export interface Params$Resource$Courses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1745,7 +1796,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Get {
+  export interface Params$Resource$Courses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1757,7 +1808,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$List {
+  export interface Params$Resource$Courses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1767,7 +1818,7 @@ export namespace classroom_v1 {
      * Restricts returned courses to those in one of the specified states The
      * default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
      */
-    courseStates?: string;
+    courseStates?: string[];
     /**
      * Maximum number of items to return. Zero or unspecified indicates that the
      * server may assign a maximum.  The server may return fewer than the
@@ -1795,7 +1846,7 @@ export namespace classroom_v1 {
      */
     teacherId?: string;
   }
-  export interface Params$Resource$Courses$Patch {
+  export interface Params$Resource$Courses$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1823,7 +1874,7 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Course;
   }
-  export interface Params$Resource$Courses$Update {
+  export interface Params$Resource$Courses$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1842,15 +1893,7 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Courses$Aliases {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1917,7 +1960,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseAlias>(parameters, callback);
@@ -1989,7 +2032,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'alias'],
         pathParams: ['alias', 'courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2063,7 +2106,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseAliasesResponse>(
@@ -2074,7 +2117,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Aliases$Create {
+  export interface Params$Resource$Courses$Aliases$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2091,7 +2135,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseAlias;
   }
-  export interface Params$Resource$Courses$Aliases$Delete {
+  export interface Params$Resource$Courses$Aliases$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2107,7 +2152,8 @@ export namespace classroom_v1 {
      */
     courseId?: string;
   }
-  export interface Params$Resource$Courses$Aliases$List {
+  export interface Params$Resource$Courses$Aliases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2134,15 +2180,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Announcements {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2209,7 +2247,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2284,7 +2322,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2352,7 +2390,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2432,7 +2470,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnouncementsResponse>(
@@ -2510,7 +2548,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2586,7 +2624,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2596,7 +2634,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Announcements$Create {
+  export interface Params$Resource$Courses$Announcements$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2613,7 +2652,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Announcement;
   }
-  export interface Params$Resource$Courses$Announcements$Delete {
+  export interface Params$Resource$Courses$Announcements$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2630,7 +2670,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Get {
+  export interface Params$Resource$Courses$Announcements$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2646,7 +2687,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Announcements$List {
+  export interface Params$Resource$Courses$Announcements$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2656,7 +2698,7 @@ export namespace classroom_v1 {
      * Restriction on the `state` of announcements returned. If this argument is
      * left unspecified, the default value is `PUBLISHED`.
      */
-    announcementStates?: string;
+    announcementStates?: string[];
     /**
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
@@ -2683,7 +2725,8 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Announcements$Modifyassignees {
+  export interface Params$Resource$Courses$Announcements$Modifyassignees extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2704,7 +2747,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyAnnouncementAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Announcements$Patch {
+  export interface Params$Resource$Courses$Announcements$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2739,17 +2783,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Coursework {
-    root: Classroom;
     studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.studentSubmissions =
-          new Resource$Courses$Coursework$Studentsubmissions(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Courses$Coursework$Studentsubmissions();
     }
 
 
@@ -2822,7 +2859,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -2897,7 +2934,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2965,7 +3002,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3043,7 +3080,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseWorkResponse>(parameters, callback);
@@ -3119,7 +3156,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3201,7 +3238,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3211,7 +3248,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Create {
+  export interface Params$Resource$Courses$Coursework$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3228,7 +3266,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$CourseWork;
   }
-  export interface Params$Resource$Courses$Coursework$Delete {
+  export interface Params$Resource$Courses$Coursework$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3245,7 +3284,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Get {
+  export interface Params$Resource$Courses$Coursework$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3261,7 +3301,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$List {
+  export interface Params$Resource$Courses$Coursework$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3277,7 +3318,7 @@ export namespace classroom_v1 {
      * returned. If unspecified, items with a work status of `PUBLISHED` is
      * returned.
      */
-    courseWorkStates?: string;
+    courseWorkStates?: string[];
     /**
      * Optional sort ordering for results. A comma-separated list of fields with
      * an optional sort direction keyword. Supported fields are `updateTime` and
@@ -3299,7 +3340,8 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Modifyassignees {
+  export interface Params$Resource$Courses$Coursework$Modifyassignees extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3320,7 +3362,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyCourseWorkAssigneesRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Patch {
+  export interface Params$Resource$Courses$Coursework$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3355,15 +3398,7 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Courses$Coursework$Studentsubmissions {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3429,7 +3464,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3520,7 +3555,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId'],
         pathParams: ['courseId', 'courseWorkId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentSubmissionsResponse>(
@@ -3611,7 +3646,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3697,7 +3732,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3711,7 +3746,7 @@ export namespace classroom_v1 {
      * classroom.courses.courseWork.studentSubmissions.reclaim
      * @desc Reclaims a student submission on behalf of the student that owns
      * it.  Reclaiming a student submission transfers ownership of attached
-     * Drive files to the student and update the submission state.  Only the
+     * Drive files to the student and updates the submission state.  Only the
      * student that owns the requested student submission may call this method,
      * and only for a student submission that has been turned in.  This request
      * must be made by the Developer Console project of the [OAuth client
@@ -3783,7 +3818,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3869,7 +3904,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3953,7 +3988,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3963,7 +3998,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3983,7 +4019,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$List {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4022,7 +4059,7 @@ export namespace classroom_v1 {
      * Requested submission states. If specified, returned student submissions
      * match one of the specified submission states.
      */
-    states?: string;
+    states?: string[];
     /**
      * Optional argument to restrict returned student work to those owned by the
      * student with the specified identifier. The identifier can be one of the
@@ -4031,7 +4068,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4056,7 +4094,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ModifyAttachmentsRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4088,7 +4127,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$StudentSubmission;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4113,7 +4153,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ReclaimStudentSubmissionRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Return
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4138,7 +4179,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$ReturnStudentSubmissionRequest;
   }
-  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin {
+  export interface Params$Resource$Courses$Coursework$Studentsubmissions$Turnin
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4167,15 +4209,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Students {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4244,7 +4278,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4315,7 +4349,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4382,7 +4416,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4455,7 +4489,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentsResponse>(parameters, callback);
@@ -4465,7 +4499,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Students$Create {
+  export interface Params$Resource$Courses$Students$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4489,7 +4524,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Student;
   }
-  export interface Params$Resource$Courses$Students$Delete {
+  export interface Params$Resource$Courses$Students$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4507,7 +4543,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$Get {
+  export interface Params$Resource$Courses$Students$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4525,7 +4562,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Students$List {
+  export interface Params$Resource$Courses$Students$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4551,15 +4589,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Teachers {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4627,7 +4657,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4699,7 +4729,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4766,7 +4796,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4839,7 +4869,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTeachersResponse>(parameters, callback);
@@ -4849,7 +4879,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Courses$Teachers$Create {
+  export interface Params$Resource$Courses$Teachers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4866,7 +4897,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Teacher;
   }
-  export interface Params$Resource$Courses$Teachers$Delete {
+  export interface Params$Resource$Courses$Teachers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4884,7 +4916,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$Get {
+  export interface Params$Resource$Courses$Teachers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4902,7 +4935,8 @@ export namespace classroom_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Courses$Teachers$List {
+  export interface Params$Resource$Courses$Teachers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4929,15 +4963,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Invitations {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5004,7 +5030,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5078,7 +5104,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5147,7 +5173,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5212,7 +5238,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5284,7 +5310,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInvitationsResponse>(parameters, callback);
@@ -5294,7 +5320,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Invitations$Accept {
+  export interface Params$Resource$Invitations$Accept extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5305,7 +5332,8 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$Create {
+  export interface Params$Resource$Invitations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5317,7 +5345,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Invitation;
   }
-  export interface Params$Resource$Invitations$Delete {
+  export interface Params$Resource$Invitations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5328,7 +5357,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$Get {
+  export interface Params$Resource$Invitations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5339,7 +5368,7 @@ export namespace classroom_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Invitations$List {
+  export interface Params$Resource$Invitations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5372,15 +5401,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Registrations {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5460,7 +5481,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Registration>(parameters, callback);
@@ -5527,7 +5548,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['registrationId'],
         pathParams: ['registrationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5537,7 +5558,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Registrations$Create {
+  export interface Params$Resource$Registrations$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5549,7 +5571,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$Registration;
   }
-  export interface Params$Resource$Registrations$Delete {
+  export interface Params$Resource$Registrations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5563,19 +5586,12 @@ export namespace classroom_v1 {
 
 
   export class Resource$Userprofiles {
-    root: Classroom;
     guardianInvitations: Resource$Userprofiles$Guardianinvitations;
     guardians: Resource$Userprofiles$Guardians;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.guardianInvitations =
-          new Resource$Userprofiles$Guardianinvitations(root);
-      this.guardians = new Resource$Userprofiles$Guardians(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Userprofiles$Guardianinvitations();
+      this.guardians = new Resource$Userprofiles$Guardians();
     }
 
 
@@ -5634,7 +5650,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UserProfile>(parameters, callback);
@@ -5644,7 +5660,7 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Get {
+  export interface Params$Resource$Userprofiles$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5659,15 +5675,7 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Userprofiles$Guardianinvitations {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5753,7 +5761,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -5829,7 +5837,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -5921,7 +5929,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardianInvitationsResponse>(
@@ -6009,7 +6017,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -6019,7 +6027,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Create {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6035,7 +6044,8 @@ export namespace classroom_v1 {
      */
     requestBody?: Schema$GuardianInvitation;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Get {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6050,7 +6060,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$List {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6078,7 +6089,7 @@ export namespace classroom_v1 {
      * returned. Otherwise, results with a `state` of `PENDING` will be
      * returned.
      */
-    states?: string;
+    states?: string[];
     /**
      * The ID of the student whose guardian invitations are to be returned. The
      * identifier can be one of the following:  * the numeric identifier for the
@@ -6089,7 +6100,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardianinvitations$Patch {
+  export interface Params$Resource$Userprofiles$Guardianinvitations$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6120,15 +6132,7 @@ export namespace classroom_v1 {
 
 
   export class Resource$Userprofiles$Guardians {
-    root: Classroom;
-    constructor(root: Classroom) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6200,7 +6204,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6274,7 +6278,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Guardian>(parameters, callback);
@@ -6360,7 +6364,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardiansResponse>(parameters, callback);
@@ -6370,7 +6374,8 @@ export namespace classroom_v1 {
     }
   }
 
-  export interface Params$Resource$Userprofiles$Guardians$Delete {
+  export interface Params$Resource$Userprofiles$Guardians$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6387,7 +6392,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$Get {
+  export interface Params$Resource$Userprofiles$Guardians$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6404,7 +6410,8 @@ export namespace classroom_v1 {
      */
     studentId?: string;
   }
-  export interface Params$Resource$Userprofiles$Guardians$List {
+  export interface Params$Resource$Userprofiles$Guardians$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

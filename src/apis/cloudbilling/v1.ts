@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudbilling_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,26 +99,16 @@ export namespace cloudbilling_v1 {
    * @param {object=} options Options for Cloudbilling
    */
   export class Cloudbilling {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     billingAccounts: Resource$Billingaccounts;
     projects: Resource$Projects;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.billingAccounts = new Resource$Billingaccounts(this);
-      this.projects = new Resource$Projects(this);
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.billingAccounts = new Resource$Billingaccounts();
+      this.projects = new Resource$Projects();
+      this.services = new Resource$Services();
     }
   }
 
@@ -152,8 +194,7 @@ export namespace cloudbilling_v1 {
      * If this account is a
      * [subaccount](https://cloud.google.com/billing/docs/concepts), then this
      * will be the resource name of the master billing account that it is being
-     * resold through. Otherwise this will be empty.  &gt; This field is
-     * currently in &gt; [Beta](https://cloud.google.com/terms/launch-stages).
+     * resold through. Otherwise this will be empty.
      */
     masterBillingAccount?: string;
     /**
@@ -176,25 +217,31 @@ export namespace cloudbilling_v1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -224,6 +271,35 @@ export namespace cloudbilling_v1 {
      * etc.
      */
     usageType?: string;
+  }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * Response message for `ListBillingAccounts`.
@@ -312,18 +388,22 @@ export namespace cloudbilling_v1 {
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -590,29 +670,22 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Billingaccounts {
-    root: Cloudbilling;
     projects: Resource$Billingaccounts$Projects;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.projects = new Resource$Billingaccounts$Projects(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.projects = new Resource$Billingaccounts$Projects();
     }
 
 
     /**
      * cloudbilling.billingAccounts.create
      * @desc Creates a billing account. This method can only be used to create
-     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts) for
+     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts) by
      * GCP resellers. When creating a subaccount, the current authenticated user
      * must have the `billing.accounts.update` IAM permission on the master
      * account, which is typically given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
+     * This method will return an error if the master account has not been
+     * provisioned as a reseller account.
      * @alias cloudbilling.billingAccounts.create
      * @memberOf! ()
      *
@@ -667,7 +740,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -786,7 +859,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -802,8 +875,6 @@ export namespace cloudbilling_v1 {
      * must have the `billing.accounts.getIamPolicy` permission on the account,
      * which is often given to billing account
      * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
      * @alias cloudbilling.billingAccounts.getIamPolicy
      * @memberOf! ()
      *
@@ -857,7 +928,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -940,7 +1011,7 @@ export namespace cloudbilling_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.  > This field is currently in > [Beta](https://cloud.google.com/terms/launch-stages).
+     * @param {string=} params.filter Options for how to filter the returned billing accounts. Currently this only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided reseller billing account. (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean algebra and other fields are not currently supported.
      * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
      * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -996,7 +1067,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBillingAccountsResponse>(
@@ -1014,8 +1085,7 @@ export namespace cloudbilling_v1 {
      * the `billing.accounts.update` IAM permission, which is typically given to
      * the
      * [administrator](https://cloud.google.com/billing/docs/how-to/billing-access)
-     * of the billing account.  > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
+     * of the billing account.
      * @alias cloudbilling.billingAccounts.patch
      * @memberOf! ()
      *
@@ -1071,7 +1141,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -1087,8 +1157,6 @@ export namespace cloudbilling_v1 {
      * existing policy. The caller must have the `billing.accounts.setIamPolicy`
      * permission on the account, which is often given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
      * @alias cloudbilling.billingAccounts.setIamPolicy
      * @memberOf! ()
      *
@@ -1143,7 +1211,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1158,8 +1226,7 @@ export namespace cloudbilling_v1 {
      * @desc Tests the access control policy for a billing account. This method
      * takes the resource and a set of permissions as input and returns the
      * subset of the input permissions that the caller is allowed for that
-     * resource.  > This method is currently in >
-     * [Beta](https://cloud.google.com/terms/launch-stages).
+     * resource.
      * @alias cloudbilling.billingAccounts.testIamPermissions
      * @memberOf! ()
      *
@@ -1221,7 +1288,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1232,7 +1299,8 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Create {
+  export interface Params$Resource$Billingaccounts$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1244,7 +1312,8 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Billingaccounts$Get {
+  export interface Params$Resource$Billingaccounts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1256,7 +1325,8 @@ export namespace cloudbilling_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Getiampolicy {
+  export interface Params$Resource$Billingaccounts$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1268,7 +1338,8 @@ export namespace cloudbilling_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Billingaccounts$List {
+  export interface Params$Resource$Billingaccounts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1280,8 +1351,7 @@ export namespace cloudbilling_v1 {
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
      * single provided reseller billing account. (e.g.
      * "master_billing_account=billingAccounts/012345-678901-ABCDEF"). Boolean
-     * algebra and other fields are not currently supported.  > This field is
-     * currently in > [Beta](https://cloud.google.com/terms/launch-stages).
+     * algebra and other fields are not currently supported.
      */
     filter?: string;
     /**
@@ -1296,7 +1366,8 @@ export namespace cloudbilling_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Billingaccounts$Patch {
+  export interface Params$Resource$Billingaccounts$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1317,7 +1388,8 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Billingaccounts$Setiampolicy {
+  export interface Params$Resource$Billingaccounts$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1334,7 +1406,8 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Billingaccounts$Testiampermissions {
+  export interface Params$Resource$Billingaccounts$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1353,15 +1426,7 @@ export namespace cloudbilling_v1 {
   }
 
   export class Resource$Billingaccounts$Projects {
-    root: Cloudbilling;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1501,7 +1566,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectBillingInfoResponse>(
@@ -1513,7 +1578,8 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Projects$List {
+  export interface Params$Resource$Billingaccounts$Projects$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1541,15 +1607,7 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Projects {
-    root: Cloudbilling;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1667,7 +1725,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1820,7 +1878,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1830,7 +1888,8 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getbillinginfo {
+  export interface Params$Resource$Projects$Getbillinginfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1842,7 +1901,8 @@ export namespace cloudbilling_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatebillinginfo {
+  export interface Params$Resource$Projects$Updatebillinginfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1862,16 +1922,9 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Services {
-    root: Cloudbilling;
     skus: Resource$Services$Skus;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.skus = new Resource$Services$Skus(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.skus = new Resource$Services$Skus();
     }
 
 
@@ -1994,7 +2047,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -2004,7 +2057,7 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Services$List {
+  export interface Params$Resource$Services$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2023,15 +2076,7 @@ export namespace cloudbilling_v1 {
   }
 
   export class Resource$Services$Skus {
-    root: Cloudbilling;
-    constructor(root: Cloudbilling) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2162,7 +2207,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSkusResponse>(parameters, callback);
@@ -2172,7 +2217,8 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Skus$List {
+  export interface Params$Resource$Services$Skus$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

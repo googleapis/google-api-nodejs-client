@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace ml_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +98,12 @@ export namespace ml_v1 {
    * @param {object=} options Options for Ml
    */
   export class Ml {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -98,7 +140,7 @@ export namespace ml_v1 {
      * Application specific response metadata. Must be set in the first response
      * for streaming APIs.
      */
-    extensions?: any[];
+    extensions?: Array<{[key: string]: any;}>;
   }
   /**
    * An observed value of a metric.
@@ -112,6 +154,19 @@ export namespace ml_v1 {
      * The global training step for this metric.
      */
     trainingStep?: string;
+  }
+  /**
+   * Represents a hardware accelerator request config.
+   */
+  export interface Schema$GoogleCloudMlV1__AcceleratorConfig {
+    /**
+     * The number of accelerators to attach to each machine running the job.
+     */
+    count?: string;
+    /**
+     * The available types of accelerators.
+     */
+    type?: string;
   }
   /**
    * Options for automatically scaling a model.
@@ -193,7 +248,7 @@ export namespace ml_v1 {
     /**
      * The hyperparameters given to this trial.
      */
-    hyperparameters?: any;
+    hyperparameters?: {[key: string]: string;};
     /**
      * True if the trial is stopped early.
      */
@@ -275,9 +330,28 @@ export namespace ml_v1 {
      */
     errorMessage?: string;
     /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a job from overwriting each other. It is
+     * strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform job updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `GetJob`, and
+     * systems are expected to put that etag in the request to `UpdateJob` to
+     * ensure that their change will be applied to the same version of the job.
+     */
+    etag?: string;
+    /**
      * Required. The user-specified id of the job.
      */
     jobId?: string;
+    /**
+     * Optional. One or more labels that you can add, to organize your jobs.
+     * Each label is a key-value pair, where both the key and the value are
+     * arbitrary strings that you supply. For more information, see the
+     * documentation on &lt;a
+     * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
+     * labels&lt;/a&gt;.
+     */
+    labels?: {[key: string]: string;};
     /**
      * Input parameters to create a prediction job.
      */
@@ -393,6 +467,25 @@ export namespace ml_v1 {
      */
     description?: string;
     /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a model from overwriting each other. It
+     * is strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform model updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `GetModel`, and
+     * systems are expected to put that etag in the request to `UpdateModel` to
+     * ensure that their change will be applied to the model as intended.
+     */
+    etag?: string;
+    /**
+     * Optional. One or more labels that you can add, to organize your models.
+     * Each label is a key-value pair, where both the key and the value are
+     * arbitrary strings that you supply. For more information, see the
+     * documentation on &lt;a
+     * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
+     * labels&lt;/a&gt;.
+     */
+    labels?: {[key: string]: string;};
+    /**
      * Required. The name specified for the model when it was created.  The
      * model name must be unique within the project it is created in.
      */
@@ -431,6 +524,11 @@ export namespace ml_v1 {
      * Indicates whether a request to cancel this operation has been made.
      */
     isCancellationRequested?: boolean;
+    /**
+     * The user labels, inherited from the model or the model version being
+     * operated on.
+     */
+    labels?: {[key: string]: string;};
     /**
      * Contains the name of the model associated with the operation.
      */
@@ -495,9 +593,14 @@ export namespace ml_v1 {
     type?: string;
   }
   /**
-   * Represents input parameters for a prediction job.
+   * Represents input parameters for a prediction job. Next field: 19
    */
   export interface Schema$GoogleCloudMlV1__PredictionInput {
+    /**
+     * Optional. The type and number of accelerators to be attached to each
+     * machine running the job.
+     */
+    accelerator?: Schema$GoogleCloudMlV1__AcceleratorConfig;
     /**
      * Optional. Number of records per batch, defaults to 64. The service will
      * buffer batch_size number of records in memory before invoking one
@@ -525,6 +628,10 @@ export namespace ml_v1 {
      * `&quot;projects/YOUR_PROJECT/models/YOUR_MODEL&quot;`
      */
     modelName?: string;
+    /**
+     * Optional. Format of the output data files, defaults to JSON.
+     */
+    outputDataFormat?: string;
     /**
      * Required. The output Google Cloud Storage location.
      */
@@ -657,15 +764,27 @@ export namespace ml_v1 {
      * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that also includes eight
      * NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;
      * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
-     * also includes a single NVIDIA Tesla P100 GPU. The availability of these
-     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * also includes a single NVIDIA Tesla P100 GPU.   &lt;/dd&gt;
      * &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine
      * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes four
-     * NVIDIA Tesla P100 GPUs. The availability of these GPUs is in   the
+     * NVIDIA Tesla P100 GPUs.   &lt;/dd&gt; &lt;dt&gt;standard_v100&lt;/dt&gt;
+     * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
+     * also includes a single NVIDIA Tesla V100 GPU. The availability of these
+     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;large_model_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent
+     * to &lt;i&gt;large_model&lt;/i&gt; that   also includes a single NVIDIA
+     * Tesla V100 GPU. The availability of these   GPUs is in the
+     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;complex_model_m_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
+     * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that   also includes
+     * four NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
+     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * &lt;dt&gt;complex_model_l_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
+     * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that   also includes
+     * eight NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
      * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
      * &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
-     * Cloud TPU. The availability of Cloud TPU is in   &lt;i&gt;Beta&lt;/i&gt;
-     * launch stage. See more about   &lt;a
+     * Cloud TPU. See more about   &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to
      * train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You must set
      * this value when `scaleTier` is set to `CUSTOM`.
@@ -800,11 +919,22 @@ export namespace ml_v1 {
      */
     errorMessage?: string;
     /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a model from overwriting each other. It
+     * is strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform model updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `GetVersion`, and
+     * systems are expected to put that etag in the request to `UpdateVersion`
+     * to ensure that their change will be applied to the model as intended.
+     */
+    etag?: string;
+    /**
      * Optional. The machine learning framework Cloud ML Engine uses to train
      * this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`,
-     * and `XGBOOST`. If you do not specify a framework, Cloud ML Engine uses
-     * TensorFlow. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set
-     * the runtime version of the model to 1.4 or greater.
+     * `XGBOOST`. If you do not specify a framework, Cloud ML Engine will
+     * analyze files in the deployment_uri to determine a framework. If you
+     * choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version
+     * of the model to 1.4 or greater.
      */
     framework?: string;
     /**
@@ -815,18 +945,25 @@ export namespace ml_v1 {
      */
     isDefault?: boolean;
     /**
+     * Optional. One or more labels that you can add, to organize your model
+     * versions. Each label is a key-value pair, where both the key and the
+     * value are arbitrary strings that you supply. For more information, see
+     * the documentation on &lt;a
+     * href=&quot;/ml-engine/docs/tensorflow/resource-labels&quot;&gt;using
+     * labels&lt;/a&gt;.
+     */
+    labels?: {[key: string]: string;};
+    /**
      * Output only. The time the version was last used for prediction.
      */
     lastUseTime?: string;
     /**
      * Optional. The type of machine on which to serve the model. Currently only
-     * applies to online prediction service. Naming design doc for CMLE online
-     * prediction Machine Types:
-     * https://docs.google.com/document/d/1V3tko3VJ64PcpsmNxCXiPoPGccL9_K8gX1YjC8UofzQ/edit#heading=h.7lvy6owfx4eh.
-     * The following are currently supported and will be deprecated in Beta
-     * release.   mls1-highmem-1    1 core    2 Gb RAM   mls1-highcpu-4    4
-     * core    2 Gb RAM The following are available in Beta:   mls1-c1-m2 1 core
-     * 2 Gb RAM   Default   mls1-c4-m2        1 core    4 Gb RAM
+     * applies to online prediction service. The following are currently
+     * supported and will be deprecated in Beta release.   mls1-highmem-1    1
+     * core    2 Gb RAM   mls1-highcpu-4    4 core    2 Gb RAM The following are
+     * available in Beta:   mls1-c1-m2        1 core    2 Gb RAM   Default
+     * mls1-c4-m2        4 core    2 Gb RAM
      */
     machineType?: string;
     /**
@@ -920,6 +1057,13 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleIamV1__Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$GoogleType__Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -937,7 +1081,7 @@ export namespace ml_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -1063,7 +1207,7 @@ export namespace ml_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1079,7 +1223,7 @@ export namespace ml_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -1134,7 +1278,7 @@ export namespace ml_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1142,25 +1286,47 @@ export namespace ml_v1 {
      */
     message?: string;
   }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$GoogleType__Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
 
 
   export class Resource$Projects {
-    root: Ml;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
     models: Resource$Projects$Models;
     operations: Resource$Projects$Operations;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.jobs = new Resource$Projects$Jobs(root);
-      this.locations = new Resource$Projects$Locations(root);
-      this.models = new Resource$Projects$Models(root);
-      this.operations = new Resource$Projects$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.jobs = new Resource$Projects$Jobs();
+      this.locations = new Resource$Projects$Locations();
+      this.models = new Resource$Projects$Models();
+      this.operations = new Resource$Projects$Operations();
     }
 
 
@@ -1234,7 +1400,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
@@ -1305,7 +1471,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback);
@@ -1315,7 +1481,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getconfig {
+  export interface Params$Resource$Projects$Getconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1326,7 +1493,7 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Predict {
+  export interface Params$Resource$Projects$Predict extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1345,15 +1512,7 @@ export namespace ml_v1 {
   }
 
   export class Resource$Projects$Jobs {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1415,7 +1574,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -1484,7 +1643,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -1547,7 +1706,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -1616,7 +1775,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -1694,7 +1853,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
@@ -1702,6 +1861,76 @@ export namespace ml_v1 {
       } else {
         return createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
             parameters);
+      }
+    }
+
+
+    /**
+     * ml.projects.jobs.patch
+     * @desc Updates a specific job resource.  Currently the only supported
+     * fields to update are `labels`.
+     * @alias ml.projects.jobs.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The job name.
+     * @param {string=} params.updateMask Required. Specifies the path, relative to `Job`, of the field to update. To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your job resource.  For example, to change the labels of a job, the `update_mask` parameter would be specified as `labels`, `etag`, and the `PATCH` request body would specify the new value, as follows:     {       "labels": {          "owner": "Google",          "color": "Blue"       }       "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4"     } If `etag` matches the one on the server, the labels of the job will be replaced with the given ones, and the server end `etag` will be recalculated.  Currently the only supported update masks are `labels` and `etag`.
+     * @param {().GoogleCloudMlV1__Job} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Jobs$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+    patch(
+        params: Params$Resource$Projects$Jobs$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    patch(
+        params: Params$Resource$Projects$Jobs$Patch,
+        callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    patch(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Patch|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
+        void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters);
       }
     }
 
@@ -1766,7 +1995,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -1844,7 +2073,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -1856,7 +2085,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobs$Cancel {
+  export interface Params$Resource$Projects$Jobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1872,7 +2102,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Create {
+  export interface Params$Resource$Projects$Jobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1888,7 +2119,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Job;
   }
-  export interface Params$Resource$Projects$Jobs$Get {
+  export interface Params$Resource$Projects$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1899,7 +2131,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Getiampolicy {
+  export interface Params$Resource$Projects$Jobs$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1911,7 +2144,8 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Jobs$List {
+  export interface Params$Resource$Projects$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1946,7 +2180,39 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobs$Setiampolicy {
+  export interface Params$Resource$Projects$Jobs$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job name.
+     */
+    name?: string;
+    /**
+     * Required. Specifies the path, relative to `Job`, of the field to update.
+     * To adopt etag mechanism, include `etag` field in the mask, and include
+     * the `etag` value in your job resource.  For example, to change the labels
+     * of a job, the `update_mask` parameter would be specified as `labels`,
+     * `etag`, and the `PATCH` request body would specify the new value, as
+     * follows:     {       "labels": {          "owner": "Google", "color":
+     * "Blue"       }       "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4"
+     * } If `etag` matches the one on the server, the labels of the job will be
+     * replaced with the given ones, and the server end `etag` will be
+     * recalculated.  Currently the only supported update masks are `labels` and
+     * `etag`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__Job;
+  }
+  export interface Params$Resource$Projects$Jobs$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1963,7 +2229,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Jobs$Testiampermissions {
+  export interface Params$Resource$Projects$Jobs$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1983,15 +2250,7 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Locations {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2049,7 +2308,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Location>(
@@ -2126,7 +2385,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
@@ -2138,7 +2397,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2149,7 +2409,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2177,16 +2438,9 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Models {
-    root: Ml;
     versions: Resource$Projects$Models$Versions;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.versions = new Resource$Projects$Models$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.versions = new Resource$Projects$Models$Versions();
     }
 
 
@@ -2252,7 +2506,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
@@ -2325,7 +2579,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -2392,7 +2646,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
@@ -2461,7 +2715,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2542,7 +2796,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
@@ -2618,7 +2872,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -2690,7 +2944,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2768,7 +3022,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -2780,7 +3034,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Create {
+  export interface Params$Resource$Projects$Models$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2796,7 +3051,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Delete {
+  export interface Params$Resource$Projects$Models$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2807,7 +3063,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Get {
+  export interface Params$Resource$Projects$Models$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2818,7 +3075,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Getiampolicy {
+  export interface Params$Resource$Projects$Models$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2830,7 +3088,8 @@ export namespace ml_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Models$List {
+  export interface Params$Resource$Projects$Models$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2858,7 +3117,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Patch {
+  export interface Params$Resource$Projects$Models$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2885,7 +3145,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Model;
   }
-  export interface Params$Resource$Projects$Models$Setiampolicy {
+  export interface Params$Resource$Projects$Models$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2902,7 +3163,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Models$Testiampermissions {
+  export interface Params$Resource$Projects$Models$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2921,15 +3183,7 @@ export namespace ml_v1 {
   }
 
   export class Resource$Projects$Models$Versions {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3001,7 +3255,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3077,7 +3331,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3146,7 +3400,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
@@ -3231,7 +3485,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
@@ -3246,13 +3500,13 @@ export namespace ml_v1 {
     /**
      * ml.projects.models.versions.patch
      * @desc Updates the specified Version resource.  Currently the only
-     * supported field to update is `description`.
+     * update-able fields are `description` and `autoScaling.minNodes`.
      * @alias ml.projects.models.versions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the model.
-     * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     }  Currently the only supported update mask is`description`.
+     * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo"     }  Currently the only supported update mask fields are `description` and `autoScaling.minNodes`.
      * @param {().GoogleCloudMlV1__Version} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3307,7 +3561,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3383,7 +3637,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
@@ -3393,7 +3647,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Versions$Create {
+  export interface Params$Resource$Projects$Models$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3409,7 +3664,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Delete {
+  export interface Params$Resource$Projects$Models$Versions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3422,7 +3678,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Get {
+  export interface Params$Resource$Projects$Models$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3433,7 +3690,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$List {
+  export interface Params$Resource$Projects$Models$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3461,7 +3719,8 @@ export namespace ml_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Versions$Patch {
+  export interface Params$Resource$Projects$Models$Versions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3477,7 +3736,8 @@ export namespace ml_v1 {
      * description of a version to "foo", the `update_mask` parameter would be
      * specified as `description`, and the `PATCH` request body would specify
      * the new value, as follows:     {       "description": "foo"     }
-     * Currently the only supported update mask is`description`.
+     * Currently the only supported update mask fields are `description` and
+     * `autoScaling.minNodes`.
      */
     updateMask?: string;
 
@@ -3486,7 +3746,8 @@ export namespace ml_v1 {
      */
     requestBody?: Schema$GoogleCloudMlV1__Version;
   }
-  export interface Params$Resource$Projects$Models$Versions$Setdefault {
+  export interface Params$Resource$Projects$Models$Versions$Setdefault extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3508,15 +3769,7 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Operations {
-    root: Ml;
-    constructor(root: Ml) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3585,7 +3838,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -3655,7 +3908,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -3724,7 +3977,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3810,7 +4063,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
@@ -3822,7 +4075,8 @@ export namespace ml_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel {
+  export interface Params$Resource$Projects$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3833,7 +4087,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Delete {
+  export interface Params$Resource$Projects$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3844,7 +4099,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get {
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3855,7 +4111,8 @@ export namespace ml_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List {
+  export interface Params$Resource$Projects$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

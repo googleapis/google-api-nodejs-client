@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace games_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace games_v1 {
    * @param {object=} options Options for Games
    */
   export class Games {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     achievementDefinitions: Resource$Achievementdefinitions;
     achievements: Resource$Achievements;
     applications: Resource$Applications;
@@ -67,29 +98,23 @@ export namespace games_v1 {
     turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.achievementDefinitions = new Resource$Achievementdefinitions(this);
-      this.achievements = new Resource$Achievements(this);
-      this.applications = new Resource$Applications(this);
-      this.events = new Resource$Events(this);
-      this.leaderboards = new Resource$Leaderboards(this);
-      this.metagame = new Resource$Metagame(this);
-      this.players = new Resource$Players(this);
-      this.pushtokens = new Resource$Pushtokens(this);
-      this.questMilestones = new Resource$Questmilestones(this);
-      this.quests = new Resource$Quests(this);
-      this.revisions = new Resource$Revisions(this);
-      this.rooms = new Resource$Rooms(this);
-      this.scores = new Resource$Scores(this);
-      this.snapshots = new Resource$Snapshots(this);
-      this.turnBasedMatches = new Resource$Turnbasedmatches(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.achievementDefinitions = new Resource$Achievementdefinitions();
+      this.achievements = new Resource$Achievements();
+      this.applications = new Resource$Applications();
+      this.events = new Resource$Events();
+      this.leaderboards = new Resource$Leaderboards();
+      this.metagame = new Resource$Metagame();
+      this.players = new Resource$Players();
+      this.pushtokens = new Resource$Pushtokens();
+      this.questMilestones = new Resource$Questmilestones();
+      this.quests = new Resource$Quests();
+      this.revisions = new Resource$Revisions();
+      this.rooms = new Resource$Rooms();
+      this.scores = new Resource$Scores();
+      this.snapshots = new Resource$Snapshots();
+      this.turnBasedMatches = new Resource$Turnbasedmatches();
     }
   }
 
@@ -1297,7 +1322,7 @@ export namespace games_v1 {
      * An object representation of the individual components of the player&#39;s
      * name. For some players, these fields may not be present.
      */
-    name?: any;
+    name?: {familyName?: string; givenName?: string;};
     /**
      * The player ID that was used for this player the first time they signed
      * into the game in question. This is only populated for calls to player.get
@@ -1702,7 +1727,7 @@ export namespace games_v1 {
     /**
      * A push token ID for iOS devices.
      */
-    ios?: any;
+    ios?: {apns_device_token?: string; apns_environment?: string;};
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string games#pushTokenId.
@@ -2920,15 +2945,7 @@ export namespace games_v1 {
 
 
   export class Resource$Achievementdefinitions {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2999,7 +3016,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementDefinitionsListResponse>(
@@ -3011,7 +3028,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Achievementdefinitions$List {
+  export interface Params$Resource$Achievementdefinitions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3035,15 +3053,7 @@ export namespace games_v1 {
 
 
   export class Resource$Achievements {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3113,7 +3123,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId', 'stepsToIncrement'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementIncrementResponse>(
@@ -3190,7 +3200,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerAchievementListResponse>(
@@ -3262,7 +3272,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementRevealResponse>(
@@ -3345,7 +3355,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId', 'steps'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
@@ -3365,6 +3375,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3416,7 +3427,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUnlockResponse>(
@@ -3435,6 +3446,7 @@ export namespace games_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {().AchievementUpdateMultipleRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3495,7 +3507,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
@@ -3507,7 +3519,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Achievements$Increment {
+  export interface Params$Resource$Achievements$Increment extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3528,7 +3541,8 @@ export namespace games_v1 {
      */
     stepsToIncrement?: number;
   }
-  export interface Params$Resource$Achievements$List {
+  export interface Params$Resource$Achievements$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3559,7 +3573,8 @@ export namespace games_v1 {
      */
     state?: string;
   }
-  export interface Params$Resource$Achievements$Reveal {
+  export interface Params$Resource$Achievements$Reveal extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3570,7 +3585,8 @@ export namespace games_v1 {
      */
     achievementId?: string;
   }
-  export interface Params$Resource$Achievements$Setstepsatleast {
+  export interface Params$Resource$Achievements$Setstepsatleast extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3585,7 +3601,8 @@ export namespace games_v1 {
      */
     steps?: number;
   }
-  export interface Params$Resource$Achievements$Unlock {
+  export interface Params$Resource$Achievements$Unlock extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3595,13 +3612,22 @@ export namespace games_v1 {
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
+    /**
+     * Override used only by built-in games in Play Games application.
+     */
+    builtinGameId?: string;
   }
-  export interface Params$Resource$Achievements$Updatemultiple {
+  export interface Params$Resource$Achievements$Updatemultiple extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Override used only by built-in games in Play Games application.
+     */
+    builtinGameId?: string;
 
     /**
      * Request body metadata
@@ -3611,15 +3637,7 @@ export namespace games_v1 {
 
 
   export class Resource$Applications {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3678,7 +3696,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -3696,6 +3714,7 @@ export namespace games_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
+     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3743,7 +3762,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3814,7 +3833,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ApplicationVerifyResponse>(
@@ -3825,7 +3844,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Applications$Get {
+  export interface Params$Resource$Applications$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3844,13 +3863,20 @@ export namespace games_v1 {
      */
     platformType?: string;
   }
-  export interface Params$Resource$Applications$Played {
+  export interface Params$Resource$Applications$Played extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Override used only by built-in games in Play Games application.
+     */
+    builtinGameId?: string;
   }
-  export interface Params$Resource$Applications$Verify {
+  export interface Params$Resource$Applications$Verify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3864,15 +3890,7 @@ export namespace games_v1 {
 
 
   export class Resource$Events {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3936,7 +3954,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerEventListResponse>(parameters, callback);
@@ -4011,7 +4029,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EventDefinitionListResponse>(
@@ -4078,7 +4096,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EventUpdateResponse>(parameters, callback);
@@ -4088,7 +4106,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Events$Listbyplayer {
+  export interface Params$Resource$Events$Listbyplayer extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4109,7 +4128,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Events$Listdefinitions {
+  export interface Params$Resource$Events$Listdefinitions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4130,7 +4150,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Events$Record {
+  export interface Params$Resource$Events$Record extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4149,15 +4169,7 @@ export namespace games_v1 {
 
 
   export class Resource$Leaderboards {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4213,7 +4225,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Leaderboard>(parameters, callback);
@@ -4282,7 +4294,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardListResponse>(parameters, callback);
@@ -4292,7 +4304,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Leaderboards$Get {
+  export interface Params$Resource$Leaderboards$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4307,7 +4319,8 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
   }
-  export interface Params$Resource$Leaderboards$List {
+  export interface Params$Resource$Leaderboards$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4331,15 +4344,7 @@ export namespace games_v1 {
 
 
   export class Resource$Metagame {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4399,7 +4404,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MetagameConfig>(parameters, callback);
@@ -4474,7 +4479,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId', 'collection'],
         pathParams: ['collection', 'playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CategoryListResponse>(parameters, callback);
@@ -4484,13 +4489,15 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Metagame$Getmetagameconfig {
+  export interface Params$Resource$Metagame$Getmetagameconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Metagame$Listcategoriesbyplayer {
+  export interface Params$Resource$Metagame$Listcategoriesbyplayer extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4523,15 +4530,7 @@ export namespace games_v1 {
 
 
   export class Resource$Players {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4587,7 +4586,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Player>(parameters, callback);
@@ -4655,7 +4654,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['collection'],
         pathParams: ['collection'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerListResponse>(parameters, callback);
@@ -4665,7 +4664,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Players$Get {
+  export interface Params$Resource$Players$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4681,7 +4680,7 @@ export namespace games_v1 {
      */
     playerId?: string;
   }
-  export interface Params$Resource$Players$List {
+  export interface Params$Resource$Players$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4709,15 +4708,7 @@ export namespace games_v1 {
 
 
   export class Resource$Pushtokens {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4775,7 +4766,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4839,7 +4830,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4849,7 +4840,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Pushtokens$Remove {
+  export interface Params$Resource$Pushtokens$Remove extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4861,7 +4853,8 @@ export namespace games_v1 {
      */
     requestBody?: Schema$PushTokenId;
   }
-  export interface Params$Resource$Pushtokens$Update {
+  export interface Params$Resource$Pushtokens$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4876,15 +4869,7 @@ export namespace games_v1 {
 
 
   export class Resource$Questmilestones {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4947,7 +4932,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['questId', 'milestoneId', 'requestId'],
         pathParams: ['milestoneId', 'questId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4957,7 +4942,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Questmilestones$Claim {
+  export interface Params$Resource$Questmilestones$Claim extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4980,15 +4966,7 @@ export namespace games_v1 {
 
 
   export class Resource$Quests {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5047,7 +5025,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Quest>(parameters, callback);
@@ -5116,7 +5094,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QuestListResponse>(parameters, callback);
@@ -5126,7 +5104,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Quests$Accept {
+  export interface Params$Resource$Quests$Accept extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5141,7 +5119,7 @@ export namespace games_v1 {
      */
     questId?: string;
   }
-  export interface Params$Resource$Quests$List {
+  export interface Params$Resource$Quests$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5171,15 +5149,7 @@ export namespace games_v1 {
 
 
   export class Resource$Revisions {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5238,7 +5208,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['clientRevision'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RevisionCheckResponse>(parameters, callback);
@@ -5248,7 +5218,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Revisions$Check {
+  export interface Params$Resource$Revisions$Check extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5265,15 +5235,7 @@ export namespace games_v1 {
 
 
   export class Resource$Rooms {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5332,7 +5294,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5398,7 +5360,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5462,7 +5424,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5524,7 +5486,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5591,7 +5553,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5658,7 +5620,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5723,7 +5685,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RoomList>(parameters, callback);
@@ -5794,7 +5756,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RoomStatus>(parameters, callback);
@@ -5804,7 +5766,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Rooms$Create {
+  export interface Params$Resource$Rooms$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5820,7 +5782,7 @@ export namespace games_v1 {
      */
     requestBody?: Schema$RoomCreateRequest;
   }
-  export interface Params$Resource$Rooms$Decline {
+  export interface Params$Resource$Rooms$Decline extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5835,7 +5797,7 @@ export namespace games_v1 {
      */
     roomId?: string;
   }
-  export interface Params$Resource$Rooms$Dismiss {
+  export interface Params$Resource$Rooms$Dismiss extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5846,7 +5808,7 @@ export namespace games_v1 {
      */
     roomId?: string;
   }
-  export interface Params$Resource$Rooms$Get {
+  export interface Params$Resource$Rooms$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5861,7 +5823,7 @@ export namespace games_v1 {
      */
     roomId?: string;
   }
-  export interface Params$Resource$Rooms$Join {
+  export interface Params$Resource$Rooms$Join extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5881,7 +5843,7 @@ export namespace games_v1 {
      */
     requestBody?: Schema$RoomJoinRequest;
   }
-  export interface Params$Resource$Rooms$Leave {
+  export interface Params$Resource$Rooms$Leave extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5901,7 +5863,7 @@ export namespace games_v1 {
      */
     requestBody?: Schema$RoomLeaveRequest;
   }
-  export interface Params$Resource$Rooms$List {
+  export interface Params$Resource$Rooms$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5922,7 +5884,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Rooms$Reportstatus {
+  export interface Params$Resource$Rooms$Reportstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5945,15 +5908,7 @@ export namespace games_v1 {
 
 
   export class Resource$Scores {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6028,7 +5983,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId', 'leaderboardId', 'timeSpan'],
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
@@ -6102,7 +6057,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6179,7 +6134,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6247,7 +6202,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'score'],
         pathParams: ['leaderboardId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResponse>(parameters, callback);
@@ -6317,7 +6272,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreListResponse>(parameters, callback);
@@ -6327,7 +6282,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Scores$Get {
+  export interface Params$Resource$Scores$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6367,7 +6322,7 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$List {
+  export interface Params$Resource$Scores$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6400,7 +6355,8 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$Listwindow {
+  export interface Params$Resource$Scores$Listwindow extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6445,7 +6401,7 @@ export namespace games_v1 {
      */
     timeSpan?: string;
   }
-  export interface Params$Resource$Scores$Submit {
+  export interface Params$Resource$Scores$Submit extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6475,7 +6431,8 @@ export namespace games_v1 {
      */
     scoreTag?: string;
   }
-  export interface Params$Resource$Scores$Submitmultiple {
+  export interface Params$Resource$Scores$Submitmultiple extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6494,15 +6451,7 @@ export namespace games_v1 {
 
 
   export class Resource$Snapshots {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6557,7 +6506,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['snapshotId'],
         pathParams: ['snapshotId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -6627,7 +6576,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SnapshotListResponse>(parameters, callback);
@@ -6637,7 +6586,7 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Snapshots$Get {
+  export interface Params$Resource$Snapshots$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6652,7 +6601,7 @@ export namespace games_v1 {
      */
     snapshotId?: string;
   }
-  export interface Params$Resource$Snapshots$List {
+  export interface Params$Resource$Snapshots$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6681,15 +6630,7 @@ export namespace games_v1 {
 
 
   export class Resource$Turnbasedmatches {
-    root: Games;
-    constructor(root: Games) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6747,7 +6688,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6815,7 +6756,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -6883,7 +6824,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -6949,7 +6890,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7020,7 +6961,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7085,7 +7026,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7153,7 +7094,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7222,7 +7163,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7293,7 +7234,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId', 'matchVersion'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7364,7 +7305,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchList>(parameters, callback);
@@ -7437,7 +7378,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchRematch>(parameters, callback);
@@ -7511,7 +7452,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchSync>(parameters, callback);
@@ -7580,7 +7521,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7590,7 +7531,8 @@ export namespace games_v1 {
     }
   }
 
-  export interface Params$Resource$Turnbasedmatches$Cancel {
+  export interface Params$Resource$Turnbasedmatches$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7601,7 +7543,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Create {
+  export interface Params$Resource$Turnbasedmatches$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7617,7 +7560,8 @@ export namespace games_v1 {
      */
     requestBody?: Schema$TurnBasedMatchCreateRequest;
   }
-  export interface Params$Resource$Turnbasedmatches$Decline {
+  export interface Params$Resource$Turnbasedmatches$Decline extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7632,7 +7576,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Dismiss {
+  export interface Params$Resource$Turnbasedmatches$Dismiss extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7643,7 +7588,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Finish {
+  export interface Params$Resource$Turnbasedmatches$Finish extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7663,7 +7609,8 @@ export namespace games_v1 {
      */
     requestBody?: Schema$TurnBasedMatchResults;
   }
-  export interface Params$Resource$Turnbasedmatches$Get {
+  export interface Params$Resource$Turnbasedmatches$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7682,7 +7629,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Join {
+  export interface Params$Resource$Turnbasedmatches$Join extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7697,7 +7645,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Leave {
+  export interface Params$Resource$Turnbasedmatches$Leave extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7712,7 +7661,8 @@ export namespace games_v1 {
      */
     matchId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Leaveturn {
+  export interface Params$Resource$Turnbasedmatches$Leaveturn extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7738,7 +7688,8 @@ export namespace games_v1 {
      */
     pendingParticipantId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$List {
+  export interface Params$Resource$Turnbasedmatches$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7773,7 +7724,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Rematch {
+  export interface Params$Resource$Turnbasedmatches$Rematch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7794,7 +7746,8 @@ export namespace games_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Sync {
+  export interface Params$Resource$Turnbasedmatches$Sync extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7829,7 +7782,8 @@ export namespace games_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Turnbasedmatches$Taketurn {
+  export interface Params$Resource$Turnbasedmatches$Taketurn extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

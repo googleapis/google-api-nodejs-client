@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace bigquery_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace bigquery_v2 {
    * @param {object=} options Options for Bigquery
    */
   export class Bigquery {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     datasets: Resource$Datasets;
     jobs: Resource$Jobs;
     projects: Resource$Projects;
@@ -57,22 +88,30 @@ export namespace bigquery_v2 {
     tables: Resource$Tables;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.datasets = new Resource$Datasets(this);
-      this.jobs = new Resource$Jobs(this);
-      this.projects = new Resource$Projects(this);
-      this.tabledata = new Resource$Tabledata(this);
-      this.tables = new Resource$Tables(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.datasets = new Resource$Datasets();
+      this.jobs = new Resource$Jobs();
+      this.projects = new Resource$Projects();
+      this.tabledata = new Resource$Tabledata();
+      this.tables = new Resource$Tables();
     }
   }
 
+  export interface Schema$BigQueryModelTraining {
+    /**
+     * [Output-only, Beta] Index of current ML training iteration. Updated
+     * during create model query job to show job progress.
+     */
+    currentIteration?: number;
+    /**
+     * [Output-only, Beta] Expected number of iterations for the create model
+     * query job specified as num_iterations in the input query. The actual
+     * total number of iterations may be less than this number due to early
+     * stop.
+     */
+    expectedTotalIterations?: string;
+  }
   export interface Schema$BigtableColumn {
     /**
      * [Optional] The encoding of the values when the type is not STRING.
@@ -185,9 +224,10 @@ export namespace bigquery_v2 {
   export interface Schema$Clustering {
     /**
      * [Repeated] One or more fields on which data should be clustered. Only
-     * top-level, non-repeated, simple-type fields are supported. The order of
-     * the fields will determine how clusters will be generated, so it is
-     * important.
+     * top-level, non-repeated, simple-type fields are supported. When you
+     * cluster a table using multiple columns, the order of columns you specify
+     * is important. The order of the specified columns determines the sort
+     * order of the data.
      */
     fields?: string[];
   }
@@ -248,7 +288,14 @@ export namespace bigquery_v2 {
      * access.specialGroup: projectOwners; access.role: OWNER;
      * access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
-    access?: any[];
+    access?: Array<{
+      domain?: string;
+      groupByEmail?: string;
+      role?: string;
+      specialGroup?: string;
+      userByEmail?: string;
+      view?: Schema$TableReference;
+    }>;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds
      * since the epoch.
@@ -258,6 +305,22 @@ export namespace bigquery_v2 {
      * [Required] A reference that identifies the dataset.
      */
     datasetReference?: Schema$DatasetReference;
+    /**
+     * [Optional] The default partition expiration for all partitioned tables in
+     * the dataset, in milliseconds. Once this property is set, all
+     * newly-created partitioned tables in the dataset will have an expirationMs
+     * property in the timePartitioning settings set to this value, and changing
+     * the value will only affect new tables, not existing ones. The storage in
+     * a partition will have an expiration time of its partition time plus this
+     * value. Setting this property overrides the use of
+     * defaultTableExpirationMs for partitioned tables: only one of
+     * defaultTableExpirationMs and defaultPartitionExpirationMs will be used
+     * for any new partitioned table. If you provide an explicit
+     * timePartitioning.expirationMs when creating or updating a partitioned
+     * table, that value takes precedence over the default partition expiration
+     * time indicated by this property.
+     */
+    defaultPartitionExpirationMs?: string;
     /**
      * [Optional] The default lifetime of all tables in the dataset, in
      * milliseconds. The minimum value is 3600000 milliseconds (one hour). Once
@@ -297,9 +360,10 @@ export namespace bigquery_v2 {
     /**
      * The labels associated with this dataset. You can use these to organize
      * and group your datasets. You can set this property when inserting or
-     * updating a dataset. See Labeling Datasets for more information.
+     * updating a dataset. See Creating and Updating Dataset Labels for more
+     * information.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output-only] The date when this dataset or any of its tables was last
      * modified, in milliseconds since the epoch.
@@ -324,7 +388,14 @@ export namespace bigquery_v2 {
      * resource, use the Datasets: get method. This property is omitted when
      * there are no datasets in the project.
      */
-    datasets?: any[];
+    datasets?: Array<{
+      datasetReference?: Schema$DatasetReference;
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      labels?: {[key: string]: string;};
+      location?: string;
+    }>;
     /**
      * A hash value of the results page. You can use this property to determine
      * if the page has changed since the last request.
@@ -565,9 +636,10 @@ export namespace bigquery_v2 {
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when reading data. If the number of bad records exceeds this value, an
-     * invalid error is returned in the job result. The default value is 0,
-     * which requires that all records are valid. This setting is ignored for
-     * Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
+     * invalid error is returned in the job result. This is only valid for CSV,
+     * JSON, and Google Sheets. The default value is 0, which requires that all
+     * records are valid. This setting is ignored for Google Cloud Bigtable,
+     * Google Cloud Datastore backups and Avro formats.
      */
     maxBadRecords?: number;
     /**
@@ -676,7 +748,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$GoogleSheetsOptions {
     /**
-     * [Experimental] [Optional] Range of a sheet to query from. Only used when
+     * [Beta] [Optional] Range of a sheet to query from. Only used when
      * non-empty. Typical format: !:
      */
     range?: string;
@@ -694,6 +766,37 @@ export namespace bigquery_v2 {
      * used to extract column names for the detected schema.
      */
     skipLeadingRows?: string;
+  }
+  export interface Schema$IterationResult {
+    /**
+     * [Output-only, Beta] Time taken to run the training iteration in
+     * milliseconds.
+     */
+    durationMs?: string;
+    /**
+     * [Output-only, Beta] Eval loss computed on the eval data at the end of the
+     * iteration. The eval loss is used for early stopping to avoid overfitting.
+     * No eval loss if eval_split_method option is specified as no_split or
+     * auto_split with input data size less than 500 rows.
+     */
+    evalLoss?: number;
+    /**
+     * [Output-only, Beta] Index of the ML training iteration, starting from
+     * zero for each training run.
+     */
+    index?: number;
+    /**
+     * [Output-only, Beta] Learning rate used for this iteration, it varies for
+     * different training iterations if learn_rate_strategy option is not
+     * constant.
+     */
+    learnRate?: number;
+    /**
+     * [Output-only, Beta] Training loss computed on the training data at the
+     * end of the iteration. The training loss function is defined by model
+     * type.
+     */
+    trainingLoss?: number;
   }
   export interface Schema$Job {
     /**
@@ -767,6 +870,11 @@ export namespace bigquery_v2 {
      */
     jobTimeoutMs?: string;
     /**
+     * [Output-only] The type of the job. Can be QUERY, LOAD, EXTRACT, COPY or
+     * UNKNOWN.
+     */
+    jobType?: string;
+    /**
      * The labels associated with this job. You can use these to organize and
      * group your jobs. Label keys and values can be no longer than 63
      * characters, can only contain lowercase letters, numeric characters,
@@ -774,7 +882,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Pick one] Configures a load job.
      */
@@ -843,9 +951,9 @@ export namespace bigquery_v2 {
      */
     autodetect?: boolean;
     /**
-     * [Experimental] Clustering specification for the destination table. Must
-     * be specified with time-based partitioning, data in the table will be
-     * first partitioned and subsequently clustered.
+     * [Beta] Clustering specification for the destination table. Must be
+     * specified with time-based partitioning, data in the table will be first
+     * partitioned and subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -866,8 +974,8 @@ export namespace bigquery_v2 {
      */
     destinationTable?: Schema$TableReference;
     /**
-     * [Experimental] [Optional] Properties with which to create the destination
-     * table if it is new.
+     * [Beta] [Optional] Properties with which to create the destination table
+     * if it is new.
      */
     destinationTableProperties?: Schema$DestinationTableProperties;
     /**
@@ -900,8 +1008,9 @@ export namespace bigquery_v2 {
     /**
      * [Optional] The maximum number of bad records that BigQuery can ignore
      * when running the job. If the number of bad records exceeds this value, an
-     * invalid error is returned in the job result. The default value is 0,
-     * which requires that all records are valid.
+     * invalid error is returned in the job result. This is only valid for CSV
+     * and JSON. The default value is 0, which requires that all records are
+     * valid.
      */
     maxBadRecords?: number;
     /**
@@ -933,6 +1042,11 @@ export namespace bigquery_v2 {
      * set the allowQuotedNewlines property to true.
      */
     quote?: string;
+    /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
     /**
      * [Optional] The schema for the destination table. The schema can be
      * omitted if the destination table already exists, or if you&#39;re loading
@@ -990,9 +1104,16 @@ export namespace bigquery_v2 {
      */
     sourceUris?: string[];
     /**
-     * Time-based partitioning specification for the destination table.
+     * Time-based partitioning specification for the destination table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
+    /**
+     * [Optional] If sourceFormat is set to &quot;AVRO&quot;, indicates whether
+     * to enable interpreting logical types into their corresponding types (ie.
+     * TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     */
+    useAvroLogicalTypes?: boolean;
     /**
      * [Optional] Specifies the action that occurs if the destination table
      * already exists. The following values are supported: WRITE_TRUNCATE: If
@@ -1017,9 +1138,9 @@ export namespace bigquery_v2 {
      */
     allowLargeResults?: boolean;
     /**
-     * [Experimental] Clustering specification for the destination table. Must
-     * be specified with time-based partitioning, data in the table will be
-     * first partitioned and subsequently clustered.
+     * [Beta] Clustering specification for the destination table. Must be
+     * specified with time-based partitioning, data in the table will be first
+     * partitioned and subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -1033,7 +1154,8 @@ export namespace bigquery_v2 {
     createDisposition?: string;
     /**
      * [Optional] Specifies the default dataset to use for unqualified table
-     * names in the query.
+     * names in the query. Note that this does not alter behavior of unqualified
+     * dataset names.
      */
     defaultDataset?: Schema$DatasetReference;
     /**
@@ -1091,6 +1213,11 @@ export namespace bigquery_v2 {
      */
     queryParameters?: Schema$QueryParameter[];
     /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
      * Allows the schema of the destination table to be updated as a side effect
      * of the query job. Schema update options are supported in two cases: when
      * writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE
@@ -1108,9 +1235,10 @@ export namespace bigquery_v2 {
      * source. By defining these properties, the data source can then be queried
      * as if it were a standard BigQuery table.
      */
-    tableDefinitions?: any;
+    tableDefinitions?: {[key: string]: Schema$ExternalDataConfiguration;};
     /**
-     * Time-based partitioning specification for the destination table.
+     * Time-based partitioning specification for the destination table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
@@ -1195,7 +1323,17 @@ export namespace bigquery_v2 {
     /**
      * List of jobs that were requested.
      */
-    jobs?: any[];
+    jobs?: Array<{
+      configuration?: Schema$JobConfiguration;
+      errorResult?: Schema$ErrorProto;
+      id?: string;
+      jobReference?: Schema$JobReference;
+      kind?: string;
+      state?: string;
+      statistics?: Schema$JobStatistics;
+      status?: Schema$JobStatus;
+      user_email?: string;
+    }>;
     /**
      * The resource type of the response.
      */
@@ -1213,9 +1351,8 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * [Experimental] The geographic location of the job. Required except for US
-     * and EU. See details at
-     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * The geographic location of the job. See details at
+     * https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -1225,7 +1362,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobStatistics {
     /**
-     * [Experimental] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and
+     * [TrustedTester] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and
      * EXTRACT jobs.
      */
     completionRatio?: number;
@@ -1252,6 +1389,10 @@ export namespace bigquery_v2 {
      */
     query?: Schema$JobStatistics2;
     /**
+     * [Output-only] Quotas which delayed this job&#39;s start time.
+     */
+    quotaDeferments?: string[];
+    /**
      * [Output-only] Start time of this job, in milliseconds since the epoch.
      * This field will be present when the job transitions from the PENDING
      * state to either RUNNING or DONE.
@@ -1273,26 +1414,37 @@ export namespace bigquery_v2 {
      */
     cacheHit?: boolean;
     /**
-     * [Output-only, Experimental] The DDL operation performed, possibly
-     * dependent on the pre-existence of the DDL target. Possible values (new
-     * values might be added in the future): &quot;CREATE&quot;: The query
-     * created the DDL target. &quot;SKIP&quot;: No-op. Example cases: the query
-     * is CREATE TABLE IF NOT EXISTS while the table already exists, or the
-     * query is DROP TABLE IF EXISTS while the table does not exist.
-     * &quot;REPLACE&quot;: The query replaced the DDL target. Example case: the
-     * query is CREATE OR REPLACE TABLE, and the table already exists.
-     * &quot;DROP&quot;: The query deleted the DDL target.
+     * The DDL operation performed, possibly dependent on the pre-existence of
+     * the DDL target. Possible values (new values might be added in the
+     * future): &quot;CREATE&quot;: The query created the DDL target.
+     * &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE IF NOT
+     * EXISTS while the table already exists, or the query is DROP TABLE IF
+     * EXISTS while the table does not exist. &quot;REPLACE&quot;: The query
+     * replaced the DDL target. Example case: the query is CREATE OR REPLACE
+     * TABLE, and the table already exists. &quot;DROP&quot;: The query deleted
+     * the DDL target.
      */
     ddlOperationPerformed?: string;
     /**
-     * [Output-only, Experimental] The DDL target table. Present only for
-     * CREATE/DROP TABLE/VIEW queries.
+     * The DDL target table. Present only for CREATE/DROP TABLE/VIEW queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
      * [Output-only] The original estimate of bytes processed for the job.
      */
     estimatedBytesProcessed?: string;
+    /**
+     * [Output-only, Beta] Information about create model query job progress.
+     */
+    modelTraining?: Schema$BigQueryModelTraining;
+    /**
+     * [Output-only, Beta] Deprecated; do not use.
+     */
+    modelTrainingCurrentIteration?: number;
+    /**
+     * [Output-only, Beta] Deprecated; do not use.
+     */
+    modelTrainingExpectedTotalIteration?: string;
     /**
      * [Output-only] The number of rows affected by a DML statement. Present
      * only for DML statements INSERT, UPDATE or DELETE.
@@ -1310,16 +1462,16 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: any[];
+    reservationUsage?: Array<{name?: string; slotMs?: string;}>;
     /**
      * [Output-only] The schema of the results. Present only for successful dry
      * run of non-legacy SQL queries.
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only, Experimental] The type of query statement, if valid.
-     * Possible values (new values might be added in the future):
-     * &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see
+     * The type of query statement, if valid. Possible values (new values might
+     * be added in the future): &quot;SELECT&quot;: SELECT query.
+     * &quot;INSERT&quot;: INSERT query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
      * &quot;UPDATE&quot;: UPDATE query; see
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
@@ -1335,7 +1487,7 @@ export namespace bigquery_v2 {
      */
     statementType?: string;
     /**
-     * [Output-only] [Experimental] Describes a timeline of job execution.
+     * [Output-only] [Beta] Describes a timeline of job execution.
      */
     timeline?: Schema$QueryTimelineSample[];
     /**
@@ -1356,8 +1508,8 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string;
     /**
-     * [Output-only, Experimental] Standard SQL only: list of undeclared query
-     * parameters detected during a dry run validation.
+     * Standard SQL only: list of undeclared query parameters detected during a
+     * dry run validation.
      */
     undeclaredQueryParameters?: Schema$QueryParameter[];
   }
@@ -1419,6 +1571,21 @@ export namespace bigquery_v2 {
    */
   export interface Schema$JsonObject {}
   export interface Schema$JsonValue {}
+  export interface Schema$ModelDefinition {
+    /**
+     * [Output-only, Beta] Model options used for the first training run. These
+     * options are immutable for subsequent training runs. Default values are
+     * used for any options not specified in the input query.
+     */
+    modelOptions?: {labels?: string[]; lossType?: string; modelType?: string;};
+    /**
+     * [Output-only, Beta] Information about ml training runs, each training run
+     * comprises of multiple iterations and there may be multiple training runs
+     * for the model if warm start is used or if a user decides to continue a
+     * previously cancelled query.
+     */
+    trainingRuns?: Schema$TrainingRun[];
+  }
   export interface Schema$ProjectList {
     /**
      * A hash of the page of results
@@ -1435,7 +1602,13 @@ export namespace bigquery_v2 {
     /**
      * Projects to which you have at least READ access.
      */
-    projects?: any[];
+    projects?: Array<{
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      numericId?: string;
+      projectReference?: Schema$ProjectReference;
+    }>;
     /**
      * The total number of projects in the list.
      */
@@ -1472,7 +1645,11 @@ export namespace bigquery_v2 {
      * [Optional] The types of the fields of this struct, in order, if this is a
      * struct.
      */
-    structTypes?: any[];
+    structTypes?: Array<{
+      description?: string;
+      name?: string;
+      type?: Schema$QueryParameterType;
+    }>;
     /**
      * [Required] The top level type of this field.
      */
@@ -1487,7 +1664,7 @@ export namespace bigquery_v2 {
      * [Optional] The struct field values, in order of the struct type&#39;s
      * declaration.
      */
-    structValues?: any;
+    structValues?: {[key: string]: Schema$QueryParameterValue;};
     /**
      * [Optional] The value of this value, if a simple scalar type.
      */
@@ -1513,8 +1690,8 @@ export namespace bigquery_v2 {
      */
     kind?: string;
     /**
-     * [Experimental] The geographic location where the job should run. Required
-     * except for US and EU.
+     * The geographic location where the job should run. Required except for US
+     * and EU.
      */
     location?: string;
     /**
@@ -1657,6 +1834,18 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string;
   }
+  export interface Schema$RangePartitioning {
+    /**
+     * [Experimental] [Required] The table is partitioned by this field. The
+     * field must be a top-level NULLABLE/REQUIRED field. The only supported
+     * type is INTEGER/INT64.
+     */
+    field?: string;
+    /**
+     * [Experimental] [Required] Defines the ranges for range partitioning.
+     */
+    range?: {end?: string; interval?: string; start?: string;};
+  }
   export interface Schema$Streamingbuffer {
     /**
      * [Output-only] A lower-bound estimate of the number of bytes currently in
@@ -1678,8 +1867,8 @@ export namespace bigquery_v2 {
   export interface Schema$Table {
     /**
      * [Experimental] Clustering specification for the table. Must be specified
-     * with time-based partitioning, data in the table will be first partitioned
-     * and subsequently clustered.
+     * with partitioning, data in the table will be first partitioned and
+     * subsequently clustered.
      */
     clustering?: Schema$Clustering;
     /**
@@ -1696,7 +1885,10 @@ export namespace bigquery_v2 {
      */
     encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
-     * [Output-only] A hash of this resource.
+     * [Output-only] A hash of the table metadata. Used to ensure there were no
+     * concurrent modifications to the resource when attempting an update. Not
+     * guaranteed to change when the table contents or the fields numRows,
+     * numBytes, numLongTermBytes or lastModifiedTime change.
      */
     etag?: string;
     /**
@@ -1733,7 +1925,7 @@ export namespace bigquery_v2 {
      * values are optional. Label keys must start with a letter and each label
      * in the list must have a different key.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output-only] The time when this table was last modified, in milliseconds
      * since the epoch.
@@ -1745,6 +1937,12 @@ export namespace bigquery_v2 {
      */
     location?: string;
     /**
+     * [Output-only, Beta] Present iff this table represents a ML model.
+     * Describes the training information for the model, and it is required to
+     * run &#39;PREDICT&#39; queries.
+     */
+    model?: Schema$ModelDefinition;
+    /**
      * [Output-only] The size of this table in bytes, excluding any data in the
      * streaming buffer.
      */
@@ -1755,10 +1953,27 @@ export namespace bigquery_v2 {
      */
     numLongTermBytes?: string;
     /**
+     * [Output-only] [Experimental] The physical size of this table in bytes,
+     * excluding any data in the streaming buffer. This includes compression and
+     * storage used for time travel.
+     */
+    numPhysicalBytes?: string;
+    /**
      * [Output-only] The number of rows of data in this table, excluding any
      * data in the streaming buffer.
      */
     numRows?: string;
+    /**
+     * [Experimental] Range partitioning specification for this table. Only one
+     * of timePartitioning and rangePartitioning should be specified.
+     */
+    rangePartitioning?: Schema$RangePartitioning;
+    /**
+     * [Experimental] [Optional] If set to true, queries over this table require
+     * a partition filter that can be used for partition elimination to be
+     * specified.
+     */
+    requirePartitionFilter?: boolean;
     /**
      * [Optional] Describes the schema of this table.
      */
@@ -1778,7 +1993,8 @@ export namespace bigquery_v2 {
      */
     tableReference?: Schema$TableReference;
     /**
-     * Time-based partitioning specification for this table.
+     * Time-based partitioning specification for this table. Only one of
+     * timePartitioning and rangePartitioning should be specified.
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
@@ -1811,7 +2027,7 @@ export namespace bigquery_v2 {
     /**
      * The rows to insert.
      */
-    rows?: any[];
+    rows?: Array<{insertId?: string; json?: Schema$JsonObject;}>;
     /**
      * [Optional] Insert all valid rows of a request, even if invalid rows
      * exist. The default value is false, which causes the entire request to
@@ -1832,7 +2048,7 @@ export namespace bigquery_v2 {
     /**
      * An array of errors for rows that were not inserted.
      */
-    insertErrors?: any[];
+    insertErrors?: Array<{errors?: Schema$ErrorProto[]; index?: number;}>;
     /**
      * The resource type of the response.
      */
@@ -1908,7 +2124,19 @@ export namespace bigquery_v2 {
     /**
      * Tables in the requested dataset.
      */
-    tables?: any[];
+    tables?: Array<{
+      clustering?: Schema$Clustering;
+      creationTime?: string;
+      expirationTime?: string;
+      friendlyName?: string;
+      id?: string;
+      kind?: string;
+      labels?: {[key: string]: string;};
+      tableReference?: Schema$TableReference;
+      timePartitioning?: Schema$TimePartitioning;
+      type?: string;
+      view?: {useLegacySql?: boolean;};
+    }>;
     /**
      * The total number of tables in the dataset.
      */
@@ -1951,16 +2179,16 @@ export namespace bigquery_v2 {
      */
     expirationMs?: string;
     /**
-     * [Experimental] [Optional] If not set, the table is partitioned by pseudo
-     * column, referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type,
-     * or &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the
-     * table is instead partitioned by this field. The field must be a top-level
+     * [Beta] [Optional] If not set, the table is partitioned by pseudo column,
+     * referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type, or
+     * &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the table
+     * is instead partitioned by this field. The field must be a top-level
      * TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
      */
     field?: string;
     /**
-     * [Experimental] [Optional] If set to true, queries over this table require
-     * a partition filter that can be used for partition elimination to be
+     * [Beta] [Optional] If set to true, queries over this table require a
+     * partition filter that can be used for partition elimination to be
      * specified.
      */
     requirePartitionFilter?: boolean;
@@ -1969,6 +2197,43 @@ export namespace bigquery_v2 {
      * partition per day.
      */
     type?: string;
+  }
+  export interface Schema$TrainingRun {
+    /**
+     * [Output-only, Beta] List of each iteration results.
+     */
+    iterationResults?: Schema$IterationResult[];
+    /**
+     * [Output-only, Beta] Training run start time in milliseconds since the
+     * epoch.
+     */
+    startTime?: string;
+    /**
+     * [Output-only, Beta] Different state applicable for a training run. IN
+     * PROGRESS: Training run is in progress. FAILED: Training run ended due to
+     * a non-retryable failure. SUCCEEDED: Training run successfully completed.
+     * CANCELLED: Training run cancelled by the user.
+     */
+    state?: string;
+    /**
+     * [Output-only, Beta] Training options used by this training run. These
+     * options are mutable for subsequent training runs. Default values are
+     * explicitly stored for options not specified in the input query of the
+     * first training run. For subsequent training runs, any option not
+     * explicitly specified in the input query will be copied from the previous
+     * training run.
+     */
+    trainingOptions?: {
+      earlyStop?: boolean;
+      l1Reg?: number;
+      l2Reg?: number;
+      learnRate?: number;
+      learnRateStrategy?: string;
+      lineSearchInitLearnRate?: number;
+      maxIteration?: string;
+      minRelProgress?: number;
+      warmStart?: boolean;
+    };
   }
   export interface Schema$UserDefinedFunctionResource {
     /**
@@ -2003,15 +2268,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Datasets {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2126,7 +2383,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2245,7 +2502,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2367,7 +2624,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2503,7 +2760,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatasetList>(parameters, callback);
@@ -2635,7 +2892,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2766,7 +3023,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2776,7 +3033,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Datasets$Delete {
+  export interface Params$Resource$Datasets$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2796,7 +3053,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Get {
+  export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2811,7 +3068,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Insert {
+  export interface Params$Resource$Datasets$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2827,7 +3084,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$List {
+  export interface Params$Resource$Datasets$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2859,7 +3116,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Datasets$Patch {
+  export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2879,7 +3136,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Dataset;
   }
-  export interface Params$Resource$Datasets$Update {
+  export interface Params$Resource$Datasets$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2902,15 +3159,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Jobs {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3030,7 +3279,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$JobCancelResponse>(parameters, callback);
@@ -3151,7 +3400,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3296,7 +3545,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetQueryResultsResponse>(parameters, callback);
@@ -3430,7 +3679,7 @@ export namespace bigquery_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3571,7 +3820,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$JobList>(parameters, callback);
@@ -3695,7 +3944,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);
@@ -3705,7 +3954,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Jobs$Cancel {
+  export interface Params$Resource$Jobs$Cancel extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3726,7 +3975,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Get {
+  export interface Params$Resource$Jobs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3747,7 +3996,8 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Jobs$Getqueryresults {
+  export interface Params$Resource$Jobs$Getqueryresults extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3787,7 +4037,7 @@ export namespace bigquery_v2 {
      */
     timeoutMs?: number;
   }
-  export interface Params$Resource$Jobs$Insert {
+  export interface Params$Resource$Jobs$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3818,7 +4068,7 @@ export namespace bigquery_v2 {
       body?: any;
     };
   }
-  export interface Params$Resource$Jobs$List {
+  export interface Params$Resource$Jobs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3858,9 +4108,9 @@ export namespace bigquery_v2 {
     /**
      * Filter for job state
      */
-    stateFilter?: string;
+    stateFilter?: string[];
   }
-  export interface Params$Resource$Jobs$Query {
+  export interface Params$Resource$Jobs$Query extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3879,15 +4129,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Projects {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4005,7 +4247,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetServiceAccountResponse>(
@@ -4135,7 +4377,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectList>(parameters, callback);
@@ -4145,7 +4387,8 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getserviceaccount {
+  export interface Params$Resource$Projects$Getserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4156,7 +4399,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$List {
+  export interface Params$Resource$Projects$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4175,15 +4418,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tabledata {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4317,7 +4552,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataInsertAllResponse>(
@@ -4464,7 +4699,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataList>(parameters, callback);
@@ -4474,7 +4709,8 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tabledata$Insertall {
+  export interface Params$Resource$Tabledata$Insertall extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4498,7 +4734,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$TableDataInsertAllRequest;
   }
-  export interface Params$Resource$Tabledata$List {
+  export interface Params$Resource$Tabledata$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4537,15 +4773,7 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tables {
-    root: Bigquery;
-    constructor(root: Bigquery) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4662,7 +4890,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4789,7 +5017,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -4917,7 +5145,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5057,7 +5285,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -5194,7 +5422,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5330,7 +5558,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5340,7 +5568,7 @@ export namespace bigquery_v2 {
     }
   }
 
-  export interface Params$Resource$Tables$Delete {
+  export interface Params$Resource$Tables$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5359,7 +5587,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Tables$Get {
+  export interface Params$Resource$Tables$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5383,7 +5611,7 @@ export namespace bigquery_v2 {
      */
     tableId?: string;
   }
-  export interface Params$Resource$Tables$Insert {
+  export interface Params$Resource$Tables$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5403,7 +5631,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Tables$List {
+  export interface Params$Resource$Tables$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5427,7 +5655,7 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Tables$Patch {
+  export interface Params$Resource$Tables$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5451,7 +5679,7 @@ export namespace bigquery_v2 {
      */
     requestBody?: Schema$Table;
   }
-  export interface Params$Resource$Tables$Update {
+  export interface Params$Resource$Tables$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

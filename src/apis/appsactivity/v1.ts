@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,8 +29,44 @@ export namespace appsactivity_v1 {
     version: 'v1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
+  }
+
   /**
-   * G Suite Activity API
+   * Drive Activity API
    *
    * Provides a historical view of activity.
    *
@@ -46,22 +81,12 @@ export namespace appsactivity_v1 {
    * @param {object=} options Options for Appsactivity
    */
   export class Appsactivity {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     activities: Resource$Activities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.activities = new Resource$Activities();
     }
   }
 
@@ -292,15 +317,7 @@ export namespace appsactivity_v1 {
 
 
   export class Resource$Activities {
-    root: Appsactivity;
-    constructor(root: Appsactivity) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -370,7 +387,7 @@ export namespace appsactivity_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListActivitiesResponse>(parameters, callback);
@@ -380,7 +397,7 @@ export namespace appsactivity_v1 {
     }
   }
 
-  export interface Params$Resource$Activities$List {
+  export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

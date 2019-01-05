@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace clouderrorreporting_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -48,22 +100,12 @@ export namespace clouderrorreporting_v1beta1 {
    * @param {object=} options Options for Clouderrorreporting
    */
   export class Clouderrorreporting {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -429,20 +471,13 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Clouderrorreporting;
     events: Resource$Projects$Events;
     groups: Resource$Projects$Groups;
     groupStats: Resource$Projects$Groupstats;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.events = new Resource$Projects$Events(root);
-      this.groups = new Resource$Projects$Groups(root);
-      this.groupStats = new Resource$Projects$Groupstats(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.events = new Resource$Projects$Events();
+      this.groups = new Resource$Projects$Groups();
+      this.groupStats = new Resource$Projects$Groupstats();
     }
 
 
@@ -506,7 +541,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback);
@@ -516,7 +551,8 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Deleteevents {
+  export interface Params$Resource$Projects$Deleteevents extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -532,15 +568,7 @@ export namespace clouderrorreporting_v1beta1 {
   }
 
   export class Resource$Projects$Events {
-    root: Clouderrorreporting;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -608,7 +636,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListEventsResponse>(parameters, callback);
@@ -620,12 +648,12 @@ export namespace clouderrorreporting_v1beta1 {
 
     /**
      * clouderrorreporting.projects.events.report
-     * @desc Report an individual error event.  This endpoint accepts
-     * <strong>either</strong> an OAuth token, <strong>or</strong> an <a
-     * href="https://support.google.com/cloud/answer/6158862">API key</a> for
-     * authentication. To use an API key, append it to the URL as the value of a
-     * `key` parameter. For example: <pre>POST
-     * https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456</pre>
+     * @desc Report an individual error event.  This endpoint accepts **either**
+     * an OAuth token, **or** an [API
+     * key](https://support.google.com/cloud/answer/6158862) for authentication.
+     * To use an API key, append it to the URL as the value of a `key`
+     * parameter. For example:  `POST
+     * https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456`
      * @alias clouderrorreporting.projects.events.report
      * @memberOf! ()
      *
@@ -684,7 +712,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReportErrorEventResponse>(parameters, callback);
@@ -694,7 +722,8 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Events$List {
+  export interface Params$Resource$Projects$Events$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -739,7 +768,8 @@ export namespace clouderrorreporting_v1beta1 {
      */
     'timeRange.period'?: string;
   }
-  export interface Params$Resource$Projects$Events$Report {
+  export interface Params$Resource$Projects$Events$Report extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -761,15 +791,7 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects$Groups {
-    root: Clouderrorreporting;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -826,7 +848,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['groupName'],
         pathParams: ['groupName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -895,7 +917,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -905,7 +927,8 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Get {
+  export interface Params$Resource$Projects$Groups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -922,7 +945,8 @@ export namespace clouderrorreporting_v1beta1 {
      */
     groupName?: string;
   }
-  export interface Params$Resource$Projects$Groups$Update {
+  export interface Params$Resource$Projects$Groups$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -942,15 +966,7 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects$Groupstats {
-    root: Clouderrorreporting;
-    constructor(root: Clouderrorreporting) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1023,7 +1039,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback);
@@ -1033,7 +1049,8 @@ export namespace clouderrorreporting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Groupstats$List {
+  export interface Params$Resource$Projects$Groupstats$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1052,7 +1069,7 @@ export namespace clouderrorreporting_v1beta1 {
     /**
      * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
      */
-    groupId?: string;
+    groupId?: string[];
     /**
      * [Optional] The sort order in which the results are returned. Default is
      * `COUNT_DESC`.

@@ -1,30 +1,22 @@
 {% import "method-partial.njk" as method %}
 {% macro render(api, rootApi, classPath) %}
-{% set rootName = rootApi.name|capitalize %}
 {% if api.resources %}
   {% for rname, r in api.resources|dictsort %}
     {% set ClassName = classPath + rname|capitalize %}
     export class {{ ClassName }} {
-      root: {{ rootName }};
       {% if r.resources %}
         {% for rname, r2 in r.resources|dictsort %}
           {% set innerClassName = ClassName + "$" + rname|capitalize %}
           {{ rname }}: {{ innerClassName }};
         {% endfor %}
       {% endif %}
-      constructor(root: {{ rootName }}) {
-        this.root = root;
-        this.getRoot.bind(this);
+      constructor() {
         {% if r.resources %}
           {% for rname, r2 in r.resources|dictsort %}
             {% set innerClassName = ClassName + "$" + rname|capitalize %}
-            this.{{ rname }} = new {{ innerClassName }}(root);
+            this.{{ rname }} = new {{ innerClassName }}();
           {% endfor %}
         {% endif %}
-      }
-
-      getRoot() {
-        return this.root;
       }
 
       {% if r.methods %}
@@ -36,7 +28,7 @@
 
     {% if r.methods %}
       {% for mname, m in r.methods|dictsort %}
-        export interface Params${{ClassName}}${{ mname|capitalize }} {
+        export interface Params${{ClassName}}${{ mname|capitalize }} extends StandardParameters {
           /**
            * Auth client or API Key for the request
            */
@@ -47,7 +39,7 @@
               /**
                * {{ p.description|oneLine|cleanComments|safe }}
                */
-              {{ pname|cleanPropertyName|safe }}?: {{ p|getType }};
+              {{ pname|cleanPropertyName|safe }}?: {{ p|getType }}{% if p.repeated %}[]{% endif %};
             {% endfor %}
           {% endif %}
 

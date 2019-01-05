@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace content_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,10 +82,6 @@ export namespace content_v2 {
    * @param {object=} options Options for Content
    */
   export class Content {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
     accountstatuses: Resource$Accountstatuses;
     accounttax: Resource$Accounttax;
@@ -60,6 +91,8 @@ export namespace content_v2 {
     liasettings: Resource$Liasettings;
     orderinvoices: Resource$Orderinvoices;
     orderpayments: Resource$Orderpayments;
+    orderreports: Resource$Orderreports;
+    orderreturns: Resource$Orderreturns;
     orders: Resource$Orders;
     pos: Resource$Pos;
     products: Resource$Products;
@@ -67,33 +100,30 @@ export namespace content_v2 {
     shippingsettings: Resource$Shippingsettings;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-      this.accountstatuses = new Resource$Accountstatuses(this);
-      this.accounttax = new Resource$Accounttax(this);
-      this.datafeeds = new Resource$Datafeeds(this);
-      this.datafeedstatuses = new Resource$Datafeedstatuses(this);
-      this.inventory = new Resource$Inventory(this);
-      this.liasettings = new Resource$Liasettings(this);
-      this.orderinvoices = new Resource$Orderinvoices(this);
-      this.orderpayments = new Resource$Orderpayments(this);
-      this.orders = new Resource$Orders(this);
-      this.pos = new Resource$Pos(this);
-      this.products = new Resource$Products(this);
-      this.productstatuses = new Resource$Productstatuses(this);
-      this.shippingsettings = new Resource$Shippingsettings(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
+      this.accountstatuses = new Resource$Accountstatuses();
+      this.accounttax = new Resource$Accounttax();
+      this.datafeeds = new Resource$Datafeeds();
+      this.datafeedstatuses = new Resource$Datafeedstatuses();
+      this.inventory = new Resource$Inventory();
+      this.liasettings = new Resource$Liasettings();
+      this.orderinvoices = new Resource$Orderinvoices();
+      this.orderpayments = new Resource$Orderpayments();
+      this.orderreports = new Resource$Orderreports();
+      this.orderreturns = new Resource$Orderreturns();
+      this.orders = new Resource$Orders();
+      this.pos = new Resource$Pos();
+      this.products = new Resource$Products();
+      this.productstatuses = new Resource$Productstatuses();
+      this.shippingsettings = new Resource$Shippingsettings();
     }
   }
 
   /**
-   * Account data.
+   * Account data. After the creation of a new account it may take a few minutes
+   * before it is fully operational.
    */
   export interface Schema$Account {
     /**
@@ -109,8 +139,12 @@ export namespace content_v2 {
      */
     adwordsLinks?: Schema$AccountAdwordsLink[];
     /**
+     * The business information of the account.
+     */
+    businessInformation?: Schema$AccountBusinessInformation;
+    /**
      * The GMB account which is linked or in the process of being linked with
-     * the Merchant Center accounnt.
+     * the Merchant Center account.
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
     /**
@@ -153,6 +187,31 @@ export namespace content_v2 {
      */
     youtubeChannelLinks?: Schema$AccountYouTubeChannelLink[];
   }
+  export interface Schema$AccountAddress {
+    /**
+     * CLDR country code (e.g. &quot;US&quot;).
+     */
+    country?: string;
+    /**
+     * City, town or commune. May also include dependent localities or
+     * sublocalities (e.g. neighborhoods or suburbs).
+     */
+    locality?: string;
+    /**
+     * Postal code or ZIP (e.g. &quot;94043&quot;).
+     */
+    postalCode?: string;
+    /**
+     * Top-level administrative subdivision of the country. For example, a state
+     * like California (&quot;CA&quot;) or a province like Quebec
+     * (&quot;QC&quot;).
+     */
+    region?: string;
+    /**
+     * Street-level part of the address.
+     */
+    streetAddress?: string;
+  }
   export interface Schema$AccountAdwordsLink {
     /**
      * Customer ID of the AdWords account.
@@ -171,6 +230,34 @@ export namespace content_v2 {
      * request if it was pending.
      */
     status?: string;
+  }
+  export interface Schema$AccountBusinessInformation {
+    /**
+     * The address of the business.
+     */
+    address?: Schema$AccountAddress;
+    /**
+     * The customer service information of the business.
+     */
+    customerService?: Schema$AccountCustomerService;
+    /**
+     * The phone number of the business.
+     */
+    phoneNumber?: string;
+  }
+  export interface Schema$AccountCustomerService {
+    /**
+     * Customer service email.
+     */
+    email?: string;
+    /**
+     * Customer service phone number.
+     */
+    phoneNumber?: string;
+    /**
+     * Customer service URL.
+     */
+    url?: string;
   }
   export interface Schema$AccountGoogleMyBusinessLink {
     /**
@@ -233,8 +320,7 @@ export namespace content_v2 {
      */
     account?: Schema$Account;
     /**
-     * The ID of the targeted account. Only defined if the method is get, delete
-     * or claimwebsite.
+     * The ID of the targeted account. Only defined if the method is not insert.
      */
     accountId?: string;
     /**
@@ -247,15 +333,37 @@ export namespace content_v2 {
      */
     force?: boolean;
     /**
+     * Details about the link request.
+     */
+    linkRequest?: Schema$AccountsCustomBatchRequestEntryLinkRequest;
+    /**
      * The ID of the managing account.
      */
     merchantId?: string;
+    /**
+     * The method of the batch entry.
+     */
     method?: string;
     /**
      * Only applicable if the method is claimwebsite. Indicates whether or not
      * to take the claim from another account in case there is a conflict.
      */
     overwrite?: boolean;
+  }
+  export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
+    /**
+     * Action to perform for this link. The &quot;request&quot; action is only
+     * available to select merchants.
+     */
+    action?: string;
+    /**
+     * The ID of the linked account.
+     */
+    linkedAccountId?: string;
+    /**
+     * Type of the link between the two accounts.
+     */
+    linkType?: string;
   }
   export interface Schema$AccountsCustomBatchResponse {
     /**
@@ -274,7 +382,7 @@ export namespace content_v2 {
   export interface Schema$AccountsCustomBatchResponseEntry {
     /**
      * The retrieved, created, or updated account. Not defined if the method was
-     * delete or claimwebsite.
+     * delete, claimwebsite or link.
      */
     account?: Schema$Account;
     /**
@@ -288,6 +396,32 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#accountsCustomBatchResponseEntry&quot;.
+     */
+    kind?: string;
+    /**
+     * Deprecated. This field is never set.
+     */
+    linkStatus?: string;
+  }
+  export interface Schema$AccountsLinkRequest {
+    /**
+     * Action to perform for this link. The &quot;request&quot; action is only
+     * available to select merchants.
+     */
+    action?: string;
+    /**
+     * The ID of the linked account.
+     */
+    linkedAccountId?: string;
+    /**
+     * Type of the link between the two accounts.
+     */
+    linkType?: string;
+  }
+  export interface Schema$AccountsLinkResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#accountsLinkResponse&quot;.
      */
     kind?: string;
   }
@@ -326,6 +460,11 @@ export namespace content_v2 {
      */
     kind?: string;
     /**
+     * List of product-related data by channel, destination, and country. Data
+     * in this field may be delayed by up to 30 minutes.
+     */
+    products?: Schema$AccountStatusProducts[];
+    /**
      * Whether the account&#39;s website is claimed or not.
      */
     websiteClaimed?: boolean;
@@ -343,6 +482,10 @@ export namespace content_v2 {
      * Additional details about the issue.
      */
     detail?: string;
+    /**
+     * The URL of a web page to help resolving this issue.
+     */
+    documentation?: string;
     /**
      * Issue identifier.
      */
@@ -501,6 +644,80 @@ export namespace content_v2 {
      */
     valueOnLandingPage?: string;
   }
+  export interface Schema$AccountStatusItemLevelIssue {
+    /**
+     * The attribute&#39;s name, if the issue is caused by a single attribute.
+     */
+    attributeName?: string;
+    /**
+     * The error code of the issue.
+     */
+    code?: string;
+    /**
+     * A short issue description in English.
+     */
+    description?: string;
+    /**
+     * A detailed issue description in English.
+     */
+    detail?: string;
+    /**
+     * The URL of a web page to help with resolving this issue.
+     */
+    documentation?: string;
+    /**
+     * Number of items with this issue.
+     */
+    numItems?: string;
+    /**
+     * Whether the issue can be resolved by the merchant.
+     */
+    resolution?: string;
+    /**
+     * How this issue affects serving of the offer.
+     */
+    servability?: string;
+  }
+  export interface Schema$AccountStatusProducts {
+    /**
+     * The channel the data applies to.
+     */
+    channel?: string;
+    /**
+     * The country the data applies to.
+     */
+    country?: string;
+    /**
+     * The destination the data applies to.
+     */
+    destination?: string;
+    /**
+     * List of item-level issues.
+     */
+    itemLevelIssues?: Schema$AccountStatusItemLevelIssue[];
+    /**
+     * Aggregated product statistics.
+     */
+    statistics?: Schema$AccountStatusStatistics;
+  }
+  export interface Schema$AccountStatusStatistics {
+    /**
+     * Number of active offers.
+     */
+    active?: string;
+    /**
+     * Number of disapproved offers.
+     */
+    disapproved?: string;
+    /**
+     * Number of expiring offers.
+     */
+    expiring?: string;
+    /**
+     * Number of pending offers.
+     */
+    pending?: string;
+  }
   /**
    * The tax settings of a merchant account.
    */
@@ -652,11 +869,11 @@ export namespace content_v2 {
   }
   export interface Schema$Amount {
     /**
-     * Value before taxes.
+     * [required] Value before taxes.
      */
     pretax?: Schema$Price;
     /**
-     * Tax value.
+     * [required] Tax value.
      */
     tax?: Schema$Price;
   }
@@ -711,6 +928,41 @@ export namespace content_v2 {
      * Contains at least one service.
      */
     services?: string[];
+  }
+  export interface Schema$CustomAttribute {
+    /**
+     * The name of the attribute. Underscores will be replaced by spaces upon
+     * insertion.
+     */
+    name?: string;
+    /**
+     * The type of the attribute.
+     */
+    type?: string;
+    /**
+     * Free-form unit of the attribute. Unit can only be used for values of type
+     * int, float, or price.
+     */
+    unit?: string;
+    /**
+     * The value of the attribute.
+     */
+    value?: string;
+  }
+  export interface Schema$CustomerReturnReason {
+    description?: string;
+    reasonCode?: string;
+  }
+  export interface Schema$CustomGroup {
+    /**
+     * The sub-attributes.
+     */
+    attributes?: Schema$CustomAttribute[];
+    /**
+     * The name of the group. Underscores will be replaced by spaces upon
+     * insertion.
+     */
+    name?: string;
   }
   export interface Schema$CutoffTime {
     /**
@@ -1346,9 +1598,38 @@ export namespace content_v2 {
      */
     availability?: string;
     /**
+     * Custom label 0 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel0?: string;
+    /**
+     * Custom label 1 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel1?: string;
+    /**
+     * Custom label 2 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel2?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel3?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel4?: string;
+    /**
      * Number and amount of installments to pay for an item. Brazil only.
      */
     installment?: Schema$Installment;
+    /**
+     * The instore product location. Supported only for local products.
+     */
+    instoreProductLocation?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;content#inventory&quot;.
@@ -1387,7 +1668,7 @@ export namespace content_v2 {
      */
     salePriceEffectiveDate?: string;
     /**
-     * The quantity of the product that is reserved for sell-on-google ads.
+     * The quantity of the product that is available for selling on Google.
      * Supported only for online products.
      */
     sellOnGoogleQuantity?: number;
@@ -1474,9 +1755,38 @@ export namespace content_v2 {
      */
     availability?: string;
     /**
+     * Custom label 0 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel0?: string;
+    /**
+     * Custom label 1 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel1?: string;
+    /**
+     * Custom label 2 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel2?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel3?: string;
+    /**
+     * Custom label 3 for custom grouping of items in a Shopping campaign. Only
+     * supported for online products.
+     */
+    customLabel4?: string;
+    /**
      * Number and amount of installments to pay for an item. Brazil only.
      */
     installment?: Schema$Installment;
+    /**
+     * The instore product location. Supported only for local products.
+     */
+    instoreProductLocation?: string;
     /**
      * Loyalty points that users receive after purchasing the item. Japan only.
      */
@@ -1510,7 +1820,7 @@ export namespace content_v2 {
      */
     salePriceEffectiveDate?: string;
     /**
-     * The quantity of the product that is reserved for sell-on-google ads.
+     * The quantity of the product that is available for selling on Google.
      * Supported only for online products.
      */
     sellOnGoogleQuantity?: number;
@@ -1528,27 +1838,30 @@ export namespace content_v2 {
      */
     additionalChargeSummaries?: Schema$InvoiceSummaryAdditionalChargeSummary[];
     /**
-     * Customer balance on this invoice. A positive amount means the customer is
-     * paying, a negative one means the customer is receiving money. Note that
-     * it must always be true that merchant_balance + customer_balance +
-     * google_balance = 0.
+     * [required] Customer balance on this invoice. A negative amount means the
+     * customer is paying, a positive one means the customer is receiving money.
+     * Note: the sum of merchant_balance, customer_balance and google_balance
+     * must always be zero.  Furthermore the absolute value of this amount is
+     * expected to be equal to the sum of product amount and additional charges,
+     * minus promotions.
      */
     customerBalance?: Schema$Amount;
     /**
-     * Google balance on this invoice. A positive amount means Google is paying,
-     * a negative one means Google is receiving money. Note that it must always
-     * be true that merchant_balance + customer_balance + google_balance = 0.
+     * [required] Google balance on this invoice. A negative amount means Google
+     * is paying, a positive one means Google is receiving money. Note: the sum
+     * of merchant_balance, customer_balance and google_balance must always be
+     * zero.
      */
     googleBalance?: Schema$Amount;
     /**
-     * Merchant balance on this invoice. A positive amount means the merchant is
-     * paying, a negative one means the merchant is receiving money. Note that
-     * it must always be true that merchant_balance + customer_balance +
-     * google_balance = 0.
+     * [required] Merchant balance on this invoice. A negative amount means the
+     * merchant is paying, a positive one means the merchant is receiving money.
+     * Note: the sum of merchant_balance, customer_balance and google_balance
+     * must always be zero.
      */
     merchantBalance?: Schema$Amount;
     /**
-     * Total price for the product.
+     * [required] Total price for the product.
      */
     productTotal?: Schema$Amount;
     /**
@@ -1558,11 +1871,11 @@ export namespace content_v2 {
   }
   export interface Schema$InvoiceSummaryAdditionalChargeSummary {
     /**
-     * Total additional charge for this type.
+     * [required] Total additional charge for this type.
      */
     totalAmount?: Schema$Amount;
     /**
-     * Type of the additional charge.
+     * [required] Type of the additional charge.
      */
     type?: string;
   }
@@ -1839,6 +2152,22 @@ export namespace content_v2 {
      */
     ratio?: number;
   }
+  export interface Schema$MerchantOrderReturn {
+    creationDate?: string;
+    merchantOrderId?: string;
+    orderId?: string;
+    orderReturnId?: string;
+    returnItems?: Schema$MerchantOrderReturnItem[];
+    returnShipments?: Schema$ReturnShipment[];
+  }
+  export interface Schema$MerchantOrderReturnItem {
+    customerReturnReason?: Schema$CustomerReturnReason;
+    itemId?: string;
+    merchantReturnReason?: Schema$RefundReason;
+    product?: Schema$OrderLineItemProduct;
+    returnShipmentIds?: string[];
+    state?: string;
+  }
   export interface Schema$Order {
     /**
      * Whether the order was acknowledged.
@@ -1894,10 +2223,10 @@ export namespace content_v2 {
      */
     placedDate?: string;
     /**
-     * The details of the merchant provided promotions applied to the order.
-     * More details about the program are here.
+     * Deprecated. The details of the merchant provided promotions applied to
+     * the order. More details about the program are here.
      */
-    promotions?: Schema$OrderPromotion[];
+    promotions?: Schema$OrderLegacyPromotion[];
     /**
      * Refunds for the order.
      */
@@ -1952,8 +2281,9 @@ export namespace content_v2 {
      */
     recipientName?: string;
     /**
-     * Top-level administrative subdivision of the country (e.g.
-     * &quot;CA&quot;).
+     * Top-level administrative subdivision of the country. For example, a state
+     * like California (&quot;CA&quot;) or a province like Quebec
+     * (&quot;QC&quot;).
      */
     region?: string;
     /**
@@ -1988,8 +2318,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderCustomer {
     /**
-     * Email address that should be used for order related communications. In
-     * certain cases this might not be a real users email, but a proxy email.
+     * Deprecated.
      */
     email?: string;
     /**
@@ -2034,23 +2363,24 @@ export namespace content_v2 {
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceRequest {
     /**
-     * The ID of the invoice.
+     * [required] The ID of the invoice.
      */
     invoiceId?: string;
     /**
-     * Invoice summary.
+     * [required] Invoice summary.
      */
     invoiceSummary?: Schema$InvoiceSummary;
     /**
-     * Invoice details per line item.
+     * [required] Invoice details per line item.
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * The ID of the operation, unique across all operations for a given order.
+     * [required] The ID of the operation, unique across all operations for a
+     * given order.
      */
     operationId?: string;
     /**
-     * ID of the shipment group.
+     * [required] ID of the shipment group.
      */
     shipmentGroupId?: string;
   }
@@ -2067,22 +2397,23 @@ export namespace content_v2 {
   }
   export interface Schema$OrderinvoicesCreateRefundInvoiceRequest {
     /**
-     * The ID of the invoice.
+     * [required] The ID of the invoice.
      */
     invoiceId?: string;
     /**
-     * The ID of the operation, unique across all operations for a given order.
+     * [required] The ID of the operation, unique across all operations for a
+     * given order.
      */
     operationId?: string;
     /**
-     * Option to create a refund-only invoice. Exactly one of refund_option and
-     * return_option must be provided.
+     * Option to create a refund-only invoice. Exactly one of refundOnlyOption
+     * or returnOption must be provided.
      */
     refundOnlyOption?:
         Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption;
     /**
      * Option to create an invoice for a refund and mark all items within the
-     * invoice as returned. Exactly one of refund_option and return_option must
+     * invoice as returned. Exactly one of refundOnlyOption or returnOption must
      * be provided.
      */
     returnOption?:
@@ -2109,7 +2440,7 @@ export namespace content_v2 {
      */
     description?: string;
     /**
-     * Reason for the refund.
+     * [required] Reason for the refund.
      */
     reason?: string;
   }
@@ -2119,9 +2450,69 @@ export namespace content_v2 {
      */
     description?: string;
     /**
-     * Reason for the return.
+     * [required] Reason for the return.
      */
     reason?: string;
+  }
+  export interface Schema$OrderLegacyPromotion {
+    benefits?: Schema$OrderLegacyPromotionBenefit[];
+    /**
+     * The date and time frame when the promotion is active and ready for
+     * validation review. Note that the promotion live time may be delayed for a
+     * few hours due to the validation review. Start date and end date are
+     * separated by a forward slash (/). The start date is specified by the
+     * format (YYYY-MM-DD), followed by the letter ?T?, the time of the day when
+     * the sale starts (in Greenwich Mean Time, GMT), followed by an expression
+     * of the time zone for the sale. The end date is in the same format.
+     */
+    effectiveDates?: string;
+    /**
+     * Optional. The text code that corresponds to the promotion when applied on
+     * the retailer?s website.
+     */
+    genericRedemptionCode?: string;
+    /**
+     * The unique ID of the promotion.
+     */
+    id?: string;
+    /**
+     * The full title of the promotion.
+     */
+    longTitle?: string;
+    /**
+     * Whether the promotion is applicable to all products or only specific
+     * products.
+     */
+    productApplicability?: string;
+    /**
+     * Indicates that the promotion is valid online.
+     */
+    redemptionChannel?: string;
+  }
+  export interface Schema$OrderLegacyPromotionBenefit {
+    /**
+     * The discount in the order price when the promotion is applied.
+     */
+    discount?: Schema$Price;
+    /**
+     * The OfferId(s) that were purchased in this order and map to this specific
+     * benefit of the promotion.
+     */
+    offerIds?: string[];
+    /**
+     * Further describes the benefit of the promotion. Note that we will expand
+     * on this enumeration as we support new promotion sub-types.
+     */
+    subType?: string;
+    /**
+     * The impact on tax when the promotion is applied.
+     */
+    taxImpact?: Schema$Price;
+    /**
+     * Describes whether the promotion applies to products (e.g. 20% off) or to
+     * shipping (e.g. Free Shipping).
+     */
+    type?: string;
   }
   export interface Schema$OrderLineItem {
     /**
@@ -2142,7 +2533,9 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * Product data from the time of the order placement.
+     * Product data as seen by customer from the time of the order placement.
+     * Note that certain attributes values (e.g. title or gtin) might be
+     * reformatted and no longer match values submitted via product feed.
      */
     product?: Schema$OrderLineItemProduct;
     /**
@@ -2206,6 +2599,10 @@ export namespace content_v2 {
      */
     contentLanguage?: string;
     /**
+     * Associated fees at order creation time.
+     */
+    fees?: Schema$OrderLineItemProductFee[];
+    /**
      * Global Trade Item Number (GTIN) of the item.
      */
     gtin?: string;
@@ -2251,6 +2648,16 @@ export namespace content_v2 {
      * comprehensive list of variant attributes here.
      */
     variantAttributes?: Schema$OrderLineItemProductVariantAttribute[];
+  }
+  export interface Schema$OrderLineItemProductFee {
+    /**
+     * Amount of the fee.
+     */
+    amount?: Schema$Price;
+    /**
+     * Name of the fee.
+     */
+    name?: string;
   }
   export interface Schema$OrderLineItemProductVariantAttribute {
     /**
@@ -2387,9 +2794,13 @@ export namespace content_v2 {
      */
     chargeState?: string;
     /**
-     * Invoice ID from orderInvoice service that corresponds to the charge.
+     * Deprecated. Please use invoiceIds instead.
      */
     invoiceId?: string;
+    /**
+     * Invoice IDs from the orderinvoices service that correspond to the charge.
+     */
+    invoiceIds?: string[];
   }
   export interface Schema$OrderpaymentsNotifyChargeResponse {
     /**
@@ -2404,9 +2815,13 @@ export namespace content_v2 {
   }
   export interface Schema$OrderpaymentsNotifyRefundRequest {
     /**
-     * Invoice ID from orderInvoice service that corresponds to the charge.
+     * Deprecated. Please use invoiceIds instead.
      */
     invoiceId?: string;
+    /**
+     * Invoice IDs from the orderinvoices service that correspond to the refund.
+     */
+    invoiceIds?: string[];
     /**
      * Whether refund was successful.
      */
@@ -2422,66 +2837,6 @@ export namespace content_v2 {
      * &quot;content#orderpaymentsNotifyRefundResponse&quot;.
      */
     kind?: string;
-  }
-  export interface Schema$OrderPromotion {
-    benefits?: Schema$OrderPromotionBenefit[];
-    /**
-     * The date and time frame when the promotion is active and ready for
-     * validation review. Note that the promotion live time may be delayed for a
-     * few hours due to the validation review. Start date and end date are
-     * separated by a forward slash (/). The start date is specified by the
-     * format (YYYY-MM-DD), followed by the letter ?T?, the time of the day when
-     * the sale starts (in Greenwich Mean Time, GMT), followed by an expression
-     * of the time zone for the sale. The end date is in the same format.
-     */
-    effectiveDates?: string;
-    /**
-     * Optional. The text code that corresponds to the promotion when applied on
-     * the retailer?s website.
-     */
-    genericRedemptionCode?: string;
-    /**
-     * The unique ID of the promotion.
-     */
-    id?: string;
-    /**
-     * The full title of the promotion.
-     */
-    longTitle?: string;
-    /**
-     * Whether the promotion is applicable to all products or only specific
-     * products.
-     */
-    productApplicability?: string;
-    /**
-     * Indicates that the promotion is valid online.
-     */
-    redemptionChannel?: string;
-  }
-  export interface Schema$OrderPromotionBenefit {
-    /**
-     * The discount in the order price when the promotion is applied.
-     */
-    discount?: Schema$Price;
-    /**
-     * The OfferId(s) that were purchased in this order and map to this specific
-     * benefit of the promotion.
-     */
-    offerIds?: string[];
-    /**
-     * Further describes the benefit of the promotion. Note that we will expand
-     * on this enumeration as we support new promotion sub-types.
-     */
-    subType?: string;
-    /**
-     * The impact on tax when the promotion is applied.
-     */
-    taxImpact?: Schema$Price;
-    /**
-     * Describes whether the promotion applies to products (e.g. 20% off) or to
-     * shipping (e.g. Free Shipping).
-     */
-    type?: string;
   }
   export interface Schema$OrderRefund {
     /**
@@ -2505,6 +2860,96 @@ export namespace content_v2 {
      */
     reasonText?: string;
   }
+  export interface Schema$OrderReportDisbursement {
+    /**
+     * The disbursement amount.
+     */
+    disbursementAmount?: Schema$Price;
+    /**
+     * The disbursement date, in ISO 8601 format.
+     */
+    disbursementCreationDate?: string;
+    /**
+     * The date the disbursement was initiated, in ISO 8601 format.
+     */
+    disbursementDate?: string;
+    /**
+     * The ID of the disbursement.
+     */
+    disbursementId?: string;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+  }
+  export interface Schema$OrderreportsListDisbursementsResponse {
+    /**
+     * The list of disbursements.
+     */
+    disbursements?: Schema$OrderReportDisbursement[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreportsListDisbursementsResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of disbursements.
+     */
+    nextPageToken?: string;
+  }
+  export interface Schema$OrderreportsListTransactionsResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreportsListTransactionsResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of transactions.
+     */
+    nextPageToken?: string;
+    /**
+     * The list of transactions.
+     */
+    transactions?: Schema$OrderReportTransaction[];
+  }
+  export interface Schema$OrderReportTransaction {
+    /**
+     * The disbursement amount.
+     */
+    disbursementAmount?: Schema$Price;
+    /**
+     * The date the disbursement was created, in ISO 8601 format.
+     */
+    disbursementCreationDate?: string;
+    /**
+     * The date the disbursement was initiated, in ISO 8601 format.
+     */
+    disbursementDate?: string;
+    /**
+     * The ID of the disbursement.
+     */
+    disbursementId?: string;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+    /**
+     * Merchant-provided id of the order.
+     */
+    merchantOrderId?: string;
+    /**
+     * The id of the order.
+     */
+    orderId?: string;
+    /**
+     * Total amount for the items.
+     */
+    productAmount?: Schema$Amount;
+    /**
+     * The date of the transaction, in ISO 8601 format.
+     */
+    transactionDate?: string;
+  }
   export interface Schema$OrderReturn {
     /**
      * The actor that created the refund.
@@ -2526,6 +2971,18 @@ export namespace content_v2 {
      * The explanation of the reason.
      */
     reasonText?: string;
+  }
+  export interface Schema$OrderreturnsListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#orderreturnsListResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The token for the retrieval of the next page of returns.
+     */
+    nextPageToken?: string;
+    resources?: Schema$MerchantOrderReturn[];
   }
   export interface Schema$OrdersAcknowledgeRequest {
     /**
@@ -2553,9 +3010,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCancelLineItemRequest {
     /**
-     * Amount to refund for the cancelation. Optional. If not set, Google will
-     * calculate the default based on the price and tax of the items involved.
-     * The amount must not be larger than the net amount left on the order.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -2631,7 +3086,27 @@ export namespace content_v2 {
      */
     kind?: string;
   }
+  export interface Schema$OrdersCancelTestOrderByCustomerRequest {
+    /**
+     * The reason for the cancellation.
+     */
+    reason?: string;
+  }
+  export interface Schema$OrdersCancelTestOrderByCustomerResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
+     */
+    kind?: string;
+  }
   export interface Schema$OrdersCreateTestOrderRequest {
+    /**
+     * The  CLDR territory code of the country of the test order to create.
+     * Affects the currency and addresses of orders created via template_name,
+     * or the addresses of orders created via test_order.  Acceptable values
+     * are:   - &quot;US&quot;  - &quot;FR&quot;  Defaults to US.
+     */
+    country?: string;
     /**
      * The test order template to use. Specify as an alternative to testOrder as
      * a shortcut for retrieving a template and then creating an order using
@@ -2653,6 +3128,23 @@ export namespace content_v2 {
      * The ID of the newly created test order.
      */
     orderId?: string;
+  }
+  export interface Schema$OrdersCreateTestReturnRequest {
+    /**
+     * Returned items.
+     */
+    items?: Schema$OrdersCustomBatchRequestEntryCreateTestReturnReturnItem[];
+  }
+  export interface Schema$OrdersCreateTestReturnResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#ordersCreateTestReturnResponse&quot;.
+     */
+    kind?: string;
+    /**
+     * The ID of the newly created test order return.
+     */
+    returnId?: string;
   }
   export interface Schema$OrdersCustomBatchRequest {
     /**
@@ -2750,9 +3242,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryCancelLineItem {
     /**
-     * Amount to refund for the cancelation. Optional. If not set, Google will
-     * calculate the default based on the price and tax of the items involved.
-     * The amount must not be larger than the net amount left on the order.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -2788,6 +3278,16 @@ export namespace content_v2 {
      */
     reasonText?: string;
   }
+  export interface Schema$OrdersCustomBatchRequestEntryCreateTestReturnReturnItem {
+    /**
+     * The ID of the line item to return.
+     */
+    lineItemId?: string;
+    /**
+     * Quantity that is returned.
+     */
+    quantity?: number;
+  }
   export interface Schema$OrdersCustomBatchRequestEntryInStoreRefundLineItem {
     /**
      * The amount that is refunded. Required.
@@ -2822,7 +3322,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryRefund {
     /**
-     * The amount that is refunded.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -2893,8 +3393,9 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryReturnRefundLineItem {
     /**
-     * The amount that is refunded. Optional, but if filled then both
-     * amountPretax and amountTax must be set.
+     * The amount that is refunded. If omitted, refundless return is assumed
+     * (same as calling returnLineItem method). Optional, but if filled then
+     * both amountPretax and amountTax must be set.
      */
     amountPretax?: Schema$Price;
     /**
@@ -3014,6 +3515,11 @@ export namespace content_v2 {
      */
     carrier?: string;
     /**
+     * Date on which the shipment has been delivered, in ISO 8601 format.
+     * Optional and can be provided only if status is delivered.
+     */
+    deliveryDate?: string;
+    /**
      * The ID of the shipment.
      */
     shipmentId?: string;
@@ -3047,8 +3553,9 @@ export namespace content_v2 {
      */
     errors?: Schema$Errors;
     /**
-     * The status of the execution. Only defined if the method is not get or
-     * getByMerchantOrderId and if the request was successful.
+     * The status of the execution. Only defined if   - the request was
+     * successful; and  - the method is not get, getByMerchantOrderId, or one of
+     * the test methods.
      */
     executionStatus?: string;
     /**
@@ -3086,13 +3593,14 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values are:   -
+     * The carrier handling the shipment.  Acceptable values for US are:   -
      * &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  -
      * &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  -
      * &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  -
      * &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  -
      * &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  -
-     * &quot;uds&quot;
+     * &quot;uds&quot;    Acceptable values for FR are:   -
+     * &quot;colissimo&quot;  - &quot;chronopost&quot;
      */
     carrier?: string;
     /**
@@ -3101,7 +3609,7 @@ export namespace content_v2 {
     creationDate?: string;
     /**
      * Date on which the shipment has been delivered, in ISO 8601 format.
-     * Present only if status is delievered
+     * Present only if status is delivered
      */
     deliveryDate?: string;
     /**
@@ -3198,7 +3706,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersRefundRequest {
     /**
-     * The amount that is refunded.
+     * Deprecated. Please use amountPretax and amountTax instead.
      */
     amount?: Schema$Price;
     /**
@@ -3314,8 +3822,9 @@ export namespace content_v2 {
   }
   export interface Schema$OrdersReturnRefundLineItemRequest {
     /**
-     * The amount that is refunded. Optional, but if filled then both
-     * amountPretax and amountTax must be set.
+     * The amount that is refunded. If omitted, refundless return is assumed
+     * (same as calling returnLineItem method). Optional, but if filled then
+     * both amountPretax and amountTax must be set.
      */
     amountPretax?: Schema$Price;
     /**
@@ -3501,6 +4010,11 @@ export namespace content_v2 {
      * acceptable values.
      */
     carrier?: string;
+    /**
+     * Date on which the shipment has been delivered, in ISO 8601 format.
+     * Optional and can be provided only if status is delivered.
+     */
+    deliveryDate?: string;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
@@ -3780,7 +4294,8 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items sold.
+     * The relative change of the available quantity. Negative for items
+     * returned.
      */
     quantity?: string;
     /**
@@ -3819,7 +4334,8 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items sold.
+     * The relative change of the available quantity. Negative for items
+     * returned.
      */
     quantity?: string;
     /**
@@ -3863,7 +4379,8 @@ export namespace content_v2 {
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items sold.
+     * The relative change of the available quantity. Negative for items
+     * returned.
      */
     quantity?: string;
     /**
@@ -3981,7 +4498,7 @@ export namespace content_v2 {
      */
     ageGroup?: string;
     /**
-     * Specifies the intended aspects for the product.
+     * Deprecated. Do not use.
      */
     aspects?: Schema$ProductAspect[];
     /**
@@ -4014,17 +4531,21 @@ export namespace content_v2 {
      */
     contentLanguage?: string;
     /**
+     * Cost of goods sold. Used for gross profit reporting.
+     */
+    costOfGoodsSold?: Schema$Price;
+    /**
      * A list of custom (merchant-provided) attributes. It can also be used for
      * submitting any attribute of the feed specification in its generic form
      * (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;type&quot;:
      * &quot;text&quot;, &quot;value&quot;: &quot;regular&quot; }). This is
      * useful for submitting attributes not explicitly exposed by the API.
      */
-    customAttributes?: Schema$ProductCustomAttribute[];
+    customAttributes?: Schema$CustomAttribute[];
     /**
      * A list of custom (merchant-provided) custom attribute groups.
      */
-    customGroups?: Schema$ProductCustomGroup[];
+    customGroups?: Schema$CustomGroup[];
     /**
      * Custom label 0 for custom grouping of items in a Shopping campaign.
      */
@@ -4145,9 +4666,17 @@ export namespace content_v2 {
      */
     material?: string;
     /**
+     * The energy efficiency class as defined in EU directive 2010/30/EU.
+     */
+    maxEnergyEfficiencyClass?: string;
+    /**
      * Maximal product handling time (in business days).
      */
     maxHandlingTime?: string;
+    /**
+     * The energy efficiency class as defined in EU directive 2010/30/EU.
+     */
+    minEnergyEfficiencyClass?: string;
     /**
      * Minimal product handling time (in business days).
      */
@@ -4173,7 +4702,7 @@ export namespace content_v2 {
      */
     offerId?: string;
     /**
-     * Whether an item is available for purchase only online.
+     * Deprecated. Whether an item is available for purchase only online.
      */
     onlineOnly?: boolean;
     /**
@@ -4202,7 +4731,8 @@ export namespace content_v2 {
      */
     salePriceEffectiveDate?: string;
     /**
-     * The quantity of the product that is reserved for sell-on-google ads.
+     * The quantity of the product that is available for selling on Google.
+     * Supported only for online products.
      */
     sellOnGoogleQuantity?: string;
     /**
@@ -4243,6 +4773,10 @@ export namespace content_v2 {
      */
     sizeType?: string;
     /**
+     * The source of the offer, i.e., how the offer was created.
+     */
+    source?: string;
+    /**
      * The CLDR territory code for the item.
      */
     targetCountry?: string;
@@ -4263,7 +4797,8 @@ export namespace content_v2 {
      */
     unitPricingMeasure?: Schema$ProductUnitPricingMeasure;
     /**
-     * The read-only list of intended destinations which passed validation.
+     * Deprecated. The read-only list of intended destinations which passed
+     * validation.
      */
     validatedDestinations?: string[];
     /**
@@ -4284,37 +4819,6 @@ export namespace content_v2 {
      * Whether the aspect is required, excluded or should be validated.
      */
     intention?: string;
-  }
-  export interface Schema$ProductCustomAttribute {
-    /**
-     * The name of the attribute. Underscores will be replaced by spaces upon
-     * insertion.
-     */
-    name?: string;
-    /**
-     * The type of the attribute.
-     */
-    type?: string;
-    /**
-     * Free-form unit of the attribute. Unit can only be used for values of type
-     * INT or FLOAT.
-     */
-    unit?: string;
-    /**
-     * The value of the attribute.
-     */
-    value?: string;
-  }
-  export interface Schema$ProductCustomGroup {
-    /**
-     * The sub-attributes.
-     */
-    attributes?: Schema$ProductCustomAttribute[];
-    /**
-     * The name of the group. Underscores will be replaced by spaces upon
-     * insertion.
-     */
-    name?: string;
   }
   export interface Schema$ProductDestination {
     /**
@@ -4425,8 +4929,7 @@ export namespace content_v2 {
   }
   export interface Schema$ProductShippingDimension {
     /**
-     * The unit of value.  Acceptable values are:   - &quot;cm&quot;  -
-     * &quot;in&quot;
+     * The unit of value.
      */
     unit?: string;
     /**
@@ -4728,12 +5231,12 @@ export namespace content_v2 {
   }
   export interface Schema$Promotion {
     /**
-     * Amount of the promotion. The values here are the promotion applied to the
-     * unit price pretax and to the total of the tax amounts.
+     * [required] Amount of the promotion. The values here are the promotion
+     * applied to the unit price pretax and to the total of the tax amounts.
      */
     promotionAmount?: Schema$Amount;
     /**
-     * ID of the promotion.
+     * [required] ID of the promotion.
      */
     promotionId?: string;
   }
@@ -4770,6 +5273,16 @@ export namespace content_v2 {
      * mainTable is set.
      */
     subtables?: Schema$Table[];
+  }
+  export interface Schema$RefundReason {
+    description?: string;
+    reasonCode?: string;
+  }
+  export interface Schema$ReturnShipment {
+    creationDate?: string;
+    returnMethodType?: string;
+    shipmentId?: string;
+    shipmentTrackingInfos?: Schema$ShipmentTrackingInfo[];
   }
   export interface Schema$Row {
     /**
@@ -4823,15 +5336,15 @@ export namespace content_v2 {
   }
   export interface Schema$ShipmentInvoice {
     /**
-     * Invoice summary.
+     * [required] Invoice summary.
      */
     invoiceSummary?: Schema$InvoiceSummary;
     /**
-     * Invoice details per line item.
+     * [required] Invoice details per line item.
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * ID of the shipment group.
+     * [required] ID of the shipment group.
      */
     shipmentGroupId?: string;
   }
@@ -4846,13 +5359,17 @@ export namespace content_v2 {
      */
     productId?: string;
     /**
-     * Unit IDs to define specific units within the line item.
+     * [required] Unit IDs to define specific units within the line item.
      */
     shipmentUnitIds?: string[];
     /**
-     * Invoice details for a single unit.
+     * [required] Invoice details for a single unit.
      */
     unitInvoice?: Schema$UnitInvoice;
+  }
+  export interface Schema$ShipmentTrackingInfo {
+    carrier?: string;
+    trackingNumber?: string;
   }
   /**
    * The merchant account&#39;s shipping settings.
@@ -5021,10 +5538,10 @@ export namespace content_v2 {
      */
     predefinedDeliveryAddress?: string;
     /**
-     * The details of the merchant provided promotions applied to the order.
-     * More details about the program are here.
+     * Deprecated. The details of the merchant provided promotions applied to
+     * the order. More details about the program are here.
      */
-    promotions?: Schema$OrderPromotion[];
+    promotions?: Schema$OrderLegacyPromotion[];
     /**
      * The total cost of shipping for all items.
      */
@@ -5040,7 +5557,7 @@ export namespace content_v2 {
   }
   export interface Schema$TestOrderCustomer {
     /**
-     * Email address of the customer.
+     * Deprecated.
      */
     email?: string;
     /**
@@ -5177,7 +5694,7 @@ export namespace content_v2 {
      */
     promotions?: Schema$Promotion[];
     /**
-     * Price of the unit, before applying taxes.
+     * [required] Price of the unit, before applying taxes.
      */
     unitPricePretax?: Schema$Price;
     /**
@@ -5187,7 +5704,7 @@ export namespace content_v2 {
   }
   export interface Schema$UnitInvoiceAdditionalCharge {
     /**
-     * Amount of the additional charge.
+     * [required] Amount of the additional charge.
      */
     additionalChargeAmount?: Schema$Amount;
     /**
@@ -5195,21 +5712,22 @@ export namespace content_v2 {
      */
     additionalChargePromotions?: Schema$Promotion[];
     /**
-     * Type of the additional charge.
+     * [required] Type of the additional charge.
      */
     type?: string;
   }
   export interface Schema$UnitInvoiceTaxLine {
     /**
-     * Tax amount for the tax type.
+     * [required] Tax amount for the tax type.
      */
     taxAmount?: Schema$Price;
     /**
-     * Optional name of the tax type.
+     * Optional name of the tax type. This should only be provided if taxType is
+     * otherFeeTax.
      */
     taxName?: string;
     /**
-     * Type of the tax.
+     * [required] Type of the tax.
      */
     taxType?: string;
   }
@@ -5257,15 +5775,7 @@ export namespace content_v2 {
 
 
   export class Resource$Accounts {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5326,7 +5836,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsAuthInfoResponse>(parameters, callback);
@@ -5403,7 +5913,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
@@ -5479,7 +5989,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsCustomBatchResponse>(
@@ -5546,7 +6056,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5608,7 +6118,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -5674,12 +6184,82 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Account>(parameters);
+      }
+    }
+
+
+    /**
+     * content.accounts.link
+     * @desc Performs an action on a link between a Merchant Center account and
+     * another account.
+     * @alias content.accounts.link
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account that should be linked.
+     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     * @param {().AccountsLinkRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    link(params?: Params$Resource$Accounts$Link, options?: MethodOptions):
+        AxiosPromise<Schema$AccountsLinkResponse>;
+    link(
+        params: Params$Resource$Accounts$Link,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$AccountsLinkResponse>,
+        callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+    link(
+        params: Params$Resource$Accounts$Link,
+        callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+    link(callback: BodyResponseCallback<Schema$AccountsLinkResponse>): void;
+    link(
+        paramsOrCallback?: Params$Resource$Accounts$Link|
+        BodyResponseCallback<Schema$AccountsLinkResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountsLinkResponse>,
+        callback?: BodyResponseCallback<Schema$AccountsLinkResponse>):
+        void|AxiosPromise<Schema$AccountsLinkResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Link;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Link;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/accounts/{accountId}/link')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountsLinkResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AccountsLinkResponse>(parameters);
       }
     }
 
@@ -5742,7 +6322,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(parameters, callback);
@@ -5810,7 +6390,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -5877,7 +6457,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -5887,13 +6467,15 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Accounts$Authinfo {
+  export interface Params$Resource$Accounts$Authinfo extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Accounts$Claimwebsite {
+  export interface Params$Resource$Accounts$Claimwebsite extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5916,7 +6498,8 @@ export namespace content_v2 {
      */
     overwrite?: boolean;
   }
-  export interface Params$Resource$Accounts$Custombatch {
+  export interface Params$Resource$Accounts$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5932,7 +6515,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccountsCustomBatchRequest;
   }
-  export interface Params$Resource$Accounts$Delete {
+  export interface Params$Resource$Accounts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5956,7 +6539,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accounts$Get {
+  export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5973,7 +6556,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accounts$Insert {
+  export interface Params$Resource$Accounts$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5993,7 +6576,29 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$List {
+  export interface Params$Resource$Accounts$Link extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that should be linked.
+     */
+    accountId?: string;
+    /**
+     * The ID of the managing account. If this parameter is not the same as
+     * accountId, then this account must be a multi-client account and accountId
+     * must be the ID of a sub-account of this account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountsLinkRequest;
+  }
+  export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6013,7 +6618,7 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounts$Patch {
+  export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6039,7 +6644,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Accounts$Update {
+  export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6068,15 +6673,7 @@ export namespace content_v2 {
 
 
   export class Resource$Accountstatuses {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6145,7 +6742,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
@@ -6214,7 +6811,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountStatus>(parameters, callback);
@@ -6289,7 +6886,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountstatusesListResponse>(
@@ -6300,7 +6897,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Accountstatuses$Custombatch {
+  export interface Params$Resource$Accountstatuses$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6312,7 +6910,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccountstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Accountstatuses$Get {
+  export interface Params$Resource$Accountstatuses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6326,7 +6925,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
@@ -6334,7 +6933,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accountstatuses$List {
+  export interface Params$Resource$Accountstatuses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6344,7 +6944,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * The maximum number of account statuses to return in the response, used
      * for paging.
@@ -6362,15 +6962,7 @@ export namespace content_v2 {
 
 
   export class Resource$Accounttax {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6438,7 +7030,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
@@ -6503,7 +7095,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -6572,7 +7164,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccounttaxListResponse>(parameters, callback);
@@ -6641,7 +7233,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -6710,7 +7302,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -6720,7 +7312,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Accounttax$Custombatch {
+  export interface Params$Resource$Accounttax$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6736,7 +7329,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccounttaxCustomBatchRequest;
   }
-  export interface Params$Resource$Accounttax$Get {
+  export interface Params$Resource$Accounttax$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6753,7 +7346,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Accounttax$List {
+  export interface Params$Resource$Accounttax$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6773,7 +7366,7 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accounttax$Patch {
+  export interface Params$Resource$Accounttax$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6799,7 +7392,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$AccountTax;
   }
-  export interface Params$Resource$Accounttax$Update {
+  export interface Params$Resource$Accounttax$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6828,15 +7422,7 @@ export namespace content_v2 {
 
 
   export class Resource$Datafeeds {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6902,7 +7488,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
@@ -6969,7 +7555,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7041,7 +7627,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsFetchNowResponse>(
@@ -7105,7 +7691,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -7172,7 +7758,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -7241,7 +7827,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsListResponse>(parameters, callback);
@@ -7309,7 +7895,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -7376,7 +7962,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -7386,7 +7972,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Datafeeds$Custombatch {
+  export interface Params$Resource$Datafeeds$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7402,7 +7989,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$DatafeedsCustomBatchRequest;
   }
-  export interface Params$Resource$Datafeeds$Delete {
+  export interface Params$Resource$Datafeeds$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7422,7 +8009,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Fetchnow {
+  export interface Params$Resource$Datafeeds$Fetchnow extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7442,7 +8030,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Get {
+  export interface Params$Resource$Datafeeds$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7458,7 +8046,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeeds$Insert {
+  export interface Params$Resource$Datafeeds$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7479,7 +8067,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Datafeed;
   }
-  export interface Params$Resource$Datafeeds$List {
+  export interface Params$Resource$Datafeeds$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7500,7 +8088,7 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Datafeeds$Patch {
+  export interface Params$Resource$Datafeeds$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7525,7 +8113,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Datafeed;
   }
-  export interface Params$Resource$Datafeeds$Update {
+  export interface Params$Resource$Datafeeds$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7553,15 +8141,7 @@ export namespace content_v2 {
 
 
   export class Resource$Datafeedstatuses {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7630,7 +8210,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
@@ -7700,7 +8280,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedStatus>(parameters, callback);
@@ -7775,7 +8355,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesListResponse>(
@@ -7787,7 +8367,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Datafeedstatuses$Custombatch {
+  export interface Params$Resource$Datafeedstatuses$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7799,7 +8380,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$DatafeedstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Datafeedstatuses$Get {
+  export interface Params$Resource$Datafeedstatuses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7829,7 +8411,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Datafeedstatuses$List {
+  export interface Params$Resource$Datafeedstatuses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7853,15 +8436,7 @@ export namespace content_v2 {
 
 
   export class Resource$Inventory {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7930,7 +8505,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InventoryCustomBatchResponse>(
@@ -8002,7 +8577,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'storeCode', 'productId'],
         pathParams: ['merchantId', 'productId', 'storeCode'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InventorySetResponse>(parameters, callback);
@@ -8012,7 +8587,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Inventory$Custombatch {
+  export interface Params$Resource$Inventory$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8028,7 +8604,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$InventoryCustomBatchRequest;
   }
-  export interface Params$Resource$Inventory$Set {
+  export interface Params$Resource$Inventory$Set extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8061,15 +8637,7 @@ export namespace content_v2 {
 
 
   export class Resource$Liasettings {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8137,7 +8705,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
@@ -8203,7 +8771,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -8281,7 +8849,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsGetAccessibleGmbAccountsResponse>(
@@ -8352,7 +8920,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsListResponse>(parameters, callback);
@@ -8425,7 +8993,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
@@ -8498,7 +9066,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -8516,7 +9084,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which GMB access is requested.
-     * @param {string=} params.gmbEmail The email of the Google My Business account.
+     * @param {string} params.gmbEmail The email of the Google My Business account.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8577,9 +9145,9 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: ['merchantId', 'accountId', 'gmbEmail'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
@@ -8661,7 +9229,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'country', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -8682,10 +9250,10 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.contactEmail The email of the inventory verification contact.
-     * @param {string=} params.contactName The name of the inventory verification contact.
-     * @param {string=} params.country The country for which inventory verification is requested.
-     * @param {string=} params.language The language for which inventory verification is requested.
+     * @param {string} params.contactEmail The email of the inventory verification contact.
+     * @param {string} params.contactName The name of the inventory verification contact.
+     * @param {string} params.country The country for which inventory verification is requested.
+     * @param {string} params.language The language for which inventory verification is requested.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8747,9 +9315,12 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: [
+          'merchantId', 'accountId', 'contactEmail', 'contactName', 'country',
+          'language'
+        ],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -8771,7 +9342,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to retrieve accessible Google My Business accounts.
-     * @param {string=} params.country The country for which the POS data provider is selected.
+     * @param {string} params.country The country for which the POS data provider is selected.
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {string=} params.posDataProviderId The ID of POS data provider.
      * @param {string=} params.posExternalAccountId The account ID by which this merchant is known to the POS data provider.
@@ -8834,9 +9405,9 @@ export namespace content_v2 {
             },
             options),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
@@ -8909,7 +9480,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -8919,7 +9490,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Liasettings$Custombatch {
+  export interface Params$Resource$Liasettings$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8935,7 +9507,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$LiasettingsCustomBatchRequest;
   }
-  export interface Params$Resource$Liasettings$Get {
+  export interface Params$Resource$Liasettings$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8952,7 +9524,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts {
+  export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8970,7 +9543,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$List {
+  export interface Params$Resource$Liasettings$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8990,13 +9563,15 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Liasettings$Listposdataproviders {
+  export interface Params$Resource$Liasettings$Listposdataproviders extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Liasettings$Patch {
+  export interface Params$Resource$Liasettings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9022,7 +9597,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$LiaSettings;
   }
-  export interface Params$Resource$Liasettings$Requestgmbaccess {
+  export interface Params$Resource$Liasettings$Requestgmbaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9043,7 +9619,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Requestinventoryverification {
+  export interface Params$Resource$Liasettings$Requestinventoryverification
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9065,7 +9642,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Setinventoryverificationcontact {
+  export interface Params$Resource$Liasettings$Setinventoryverificationcontact
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9099,7 +9677,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Liasettings$Setposdataprovider {
+  export interface Params$Resource$Liasettings$Setposdataprovider extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9129,7 +9708,8 @@ export namespace content_v2 {
      */
     posExternalAccountId?: string;
   }
-  export interface Params$Resource$Liasettings$Update {
+  export interface Params$Resource$Liasettings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9158,15 +9738,7 @@ export namespace content_v2 {
 
 
   export class Resource$Orderinvoices {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9237,7 +9809,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateChargeInvoiceResponse>(
@@ -9252,7 +9824,10 @@ export namespace content_v2 {
     /**
      * content.orderinvoices.createrefundinvoice
      * @desc Creates a refund invoice for one or more shipment groups, and
-     * triggers a refund for non-facilitated payment orders.
+     * triggers a refund for non-facilitated payment orders. This can only be
+     * used for line items that have previously been charged using
+     * createChargeInvoice. All amounts (except for the summary) are incremental
+     * with respect to the previous invoice.
      * @alias content.orderinvoices.createrefundinvoice
      * @memberOf! ()
      *
@@ -9317,7 +9892,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateRefundInvoiceResponse>(
@@ -9329,7 +9904,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orderinvoices$Createchargeinvoice {
+  export interface Params$Resource$Orderinvoices$Createchargeinvoice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9350,7 +9926,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderinvoicesCreateChargeInvoiceRequest;
   }
-  export interface Params$Resource$Orderinvoices$Createrefundinvoice {
+  export interface Params$Resource$Orderinvoices$Createrefundinvoice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9374,15 +9951,7 @@ export namespace content_v2 {
 
 
   export class Resource$Orderpayments {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9453,7 +10022,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyAuthApprovedResponse>(
@@ -9532,7 +10101,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyAuthDeclinedResponse>(
@@ -9615,7 +10184,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyChargeResponse>(
@@ -9698,7 +10267,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyRefundResponse>(
@@ -9710,7 +10279,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orderpayments$Notifyauthapproved {
+  export interface Params$Resource$Orderpayments$Notifyauthapproved extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9731,7 +10301,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderpaymentsNotifyAuthApprovedRequest;
   }
-  export interface Params$Resource$Orderpayments$Notifyauthdeclined {
+  export interface Params$Resource$Orderpayments$Notifyauthdeclined extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9752,7 +10323,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderpaymentsNotifyAuthDeclinedRequest;
   }
-  export interface Params$Resource$Orderpayments$Notifycharge {
+  export interface Params$Resource$Orderpayments$Notifycharge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9773,7 +10345,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrderpaymentsNotifyChargeRequest;
   }
-  export interface Params$Resource$Orderpayments$Notifyrefund {
+  export interface Params$Resource$Orderpayments$Notifyrefund extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9796,16 +10369,448 @@ export namespace content_v2 {
   }
 
 
-  export class Resource$Orders {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
+  export class Resource$Orderreports {
+    constructor() {}
+
+
+    /**
+     * content.orderreports.listdisbursements
+     * @desc Retrieves a report for disbursements from your Merchant Center
+     * account.
+     * @alias content.orderreports.listdisbursements
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.disbursementEndDate The last date which disbursements occurred. In ISO 8601 format. Default: current date.
+     * @param {string} params.disbursementStartDate The first date which disbursements occurred. In ISO 8601 format.
+     * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listdisbursements(
+        params?: Params$Resource$Orderreports$Listdisbursements,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrderreportsListDisbursementsResponse>;
+    listdisbursements(
+        params: Params$Resource$Orderreports$Listdisbursements,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        params: Params$Resource$Orderreports$Listdisbursements,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void;
+    listdisbursements(
+        paramsOrCallback?: Params$Resource$Orderreports$Listdisbursements|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
+        void|AxiosPromise<Schema$OrderreportsListDisbursementsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orderreports$Listdisbursements;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreports$Listdisbursements;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/orderreports/disbursements')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'disbursementStartDate'],
+        pathParams: ['merchantId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
+            parameters);
+      }
     }
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * content.orderreports.listtransactions
+     * @desc Retrieves a list of transactions for a disbursement from your
+     * Merchant Center account.
+     * @alias content.orderreports.listtransactions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disbursementId The Google-provided ID of the disbursement (found in Wallet).
+     * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {string=} params.transactionEndDate The last date in which transaction occurred. In ISO 8601 format. Default: current date.
+     * @param {string} params.transactionStartDate The first date in which transaction occurred. In ISO 8601 format.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listtransactions(
+        params?: Params$Resource$Orderreports$Listtransactions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrderreportsListTransactionsResponse>;
+    listtransactions(
+        params: Params$Resource$Orderreports$Listtransactions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        params: Params$Resource$Orderreports$Listtransactions,
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        callback:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void;
+    listtransactions(
+        paramsOrCallback?: Params$Resource$Orderreports$Listtransactions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
+        void|AxiosPromise<Schema$OrderreportsListTransactionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orderreports$Listtransactions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreports$Listtransactions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/orderreports/disbursements/{disbursementId}/transactions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams:
+            ['merchantId', 'disbursementId', 'transactionStartDate'],
+        pathParams: ['disbursementId', 'merchantId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
+            parameters);
+      }
     }
+  }
+
+  export interface Params$Resource$Orderreports$Listdisbursements extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The last date which disbursements occurred. In ISO 8601 format. Default:
+     * current date.
+     */
+    disbursementEndDate?: string;
+    /**
+     * The first date which disbursements occurred. In ISO 8601 format.
+     */
+    disbursementStartDate?: string;
+    /**
+     * The maximum number of disbursements to return in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Orderreports$Listtransactions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google-provided ID of the disbursement (found in Wallet).
+     */
+    disbursementId?: string;
+    /**
+     * The maximum number of disbursements to return in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+    /**
+     * The last date in which transaction occurred. In ISO 8601 format. Default:
+     * current date.
+     */
+    transactionEndDate?: string;
+    /**
+     * The first date in which transaction occurred. In ISO 8601 format.
+     */
+    transactionStartDate?: string;
+  }
+
+
+  export class Resource$Orderreturns {
+    constructor() {}
+
+
+    /**
+     * content.orderreturns.get
+     * @desc Retrieves an order return from your Merchant Center account.
+     * @alias content.orderreturns.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.returnId Merchant order return ID generated by Google.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Orderreturns$Get,
+        options?: MethodOptions): AxiosPromise<Schema$MerchantOrderReturn>;
+    get(params: Params$Resource$Orderreturns$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MerchantOrderReturn>,
+        callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
+    get(params: Params$Resource$Orderreturns$Get,
+        callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
+    get(callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
+    get(paramsOrCallback?: Params$Resource$Orderreturns$Get|
+        BodyResponseCallback<Schema$MerchantOrderReturn>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MerchantOrderReturn>,
+        callback?: BodyResponseCallback<Schema$MerchantOrderReturn>):
+        void|AxiosPromise<Schema$MerchantOrderReturn> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Orderreturns$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreturns$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/content/v2/{merchantId}/orderreturns/{returnId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'returnId'],
+        pathParams: ['merchantId', 'returnId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$MerchantOrderReturn>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MerchantOrderReturn>(parameters);
+      }
+    }
+
+
+    /**
+     * content.orderreturns.list
+     * @desc Lists order returns in your Merchant Center account.
+     * @alias content.orderreturns.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.createdEndDate Obtains order returns created before this date (inclusively), in ISO 8601 format.
+     * @param {string=} params.createdStartDate Obtains order returns created after this date (inclusively), in ISO 8601 format.
+     * @param {integer=} params.maxResults The maximum number of order returns to return in the response, used for paging. The default value is 25 returns per page, and the maximum allowed value is 250 returns per page.
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string=} params.orderBy Return the results in the specified order.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Orderreturns$List, options?: MethodOptions):
+        AxiosPromise<Schema$OrderreturnsListResponse>;
+    list(
+        params: Params$Resource$Orderreturns$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrderreturnsListResponse>,
+        callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+    list(
+        params: Params$Resource$Orderreturns$List,
+        callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$OrderreturnsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Orderreturns$List|
+        BodyResponseCallback<Schema$OrderreturnsListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrderreturnsListResponse>,
+        callback?: BodyResponseCallback<Schema$OrderreturnsListResponse>):
+        void|AxiosPromise<Schema$OrderreturnsListResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Orderreturns$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreturns$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2/{merchantId}/orderreturns')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrderreturnsListResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrderreturnsListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Orderreturns$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * Merchant order return ID generated by Google.
+     */
+    returnId?: string;
+  }
+  export interface Params$Resource$Orderreturns$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Obtains order returns created before this date (inclusively), in ISO 8601
+     * format.
+     */
+    createdEndDate?: string;
+    /**
+     * Obtains order returns created after this date (inclusively), in ISO 8601
+     * format.
+     */
+    createdStartDate?: string;
+    /**
+     * The maximum number of order returns to return in the response, used for
+     * paging. The default value is 25 returns per page, and the maximum allowed
+     * value is 250 returns per page.
+     */
+    maxResults?: number;
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * Return the results in the specified order.
+     */
+    orderBy?: string;
+    /**
+     * The token returned by the previous request.
+     */
+    pageToken?: string;
+  }
+
+
+  export class Resource$Orders {
+    constructor() {}
 
 
     /**
@@ -9870,7 +10875,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersAcknowledgeResponse>(
@@ -9947,7 +10952,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
@@ -10018,7 +11023,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelResponse>(parameters, callback);
@@ -10094,13 +11099,94 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelLineItemResponse>(
             parameters, callback);
       } else {
         return createAPIRequest<Schema$OrdersCancelLineItemResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * content.orders.canceltestorderbycustomer
+     * @desc Sandbox only. Cancels a test order for customer-initiated
+     * cancellation.
+     * @alias content.orders.canceltestorderbycustomer
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the test order to cancel.
+     * @param {().OrdersCancelTestOrderByCustomerRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    canceltestorderbycustomer(
+        params?: Params$Resource$Orders$Canceltestorderbycustomer,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(
+        params: Params$Resource$Orders$Canceltestorderbycustomer,
+        callback: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>): void;
+    canceltestorderbycustomer(callback: BodyResponseCallback<
+                              Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void;
+    canceltestorderbycustomer(
+        paramsOrCallback?: Params$Resource$Orders$Canceltestorderbycustomer|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
+        callback?: BodyResponseCallback<
+            Schema$OrdersCancelTestOrderByCustomerResponse>):
+        void|AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Orders$Canceltestorderbycustomer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Canceltestorderbycustomer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2/{merchantId}/testorders/{orderId}/cancelByCustomer')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
             parameters);
       }
     }
@@ -10170,13 +11256,91 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
             parameters, callback);
       } else {
         return createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * content.orders.createtestreturn
+     * @desc Sandbox only. Creates a test return.
+     * @alias content.orders.createtestreturn
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
+     * @param {string} params.orderId The ID of the order.
+     * @param {().OrdersCreateTestReturnRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    createtestreturn(
+        params?: Params$Resource$Orders$Createtestreturn,
+        options?: MethodOptions):
+        AxiosPromise<Schema$OrdersCreateTestReturnResponse>;
+    createtestreturn(
+        params: Params$Resource$Orders$Createtestreturn,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void;
+    createtestreturn(
+        params: Params$Resource$Orders$Createtestreturn,
+        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void;
+    createtestreturn(
+        callback: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void;
+    createtestreturn(
+        paramsOrCallback?: Params$Resource$Orders$Createtestreturn|
+        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
+        callback?: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
+        void|AxiosPromise<Schema$OrdersCreateTestReturnResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Orders$Createtestreturn;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Createtestreturn;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/content/v2/{merchantId}/orders/{orderId}/testreturn')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
             parameters);
       }
     }
@@ -10241,7 +11405,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCustomBatchResponse>(
@@ -10304,7 +11468,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Order>(parameters, callback);
@@ -10384,7 +11548,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'merchantOrderId'],
         pathParams: ['merchantId', 'merchantOrderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
@@ -10404,6 +11568,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.country The country of the template to retrieve. Defaults to US.
      * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
      * @param {string} params.templateName The name of the template to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10467,7 +11632,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'templateName'],
         pathParams: ['merchantId', 'templateName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
@@ -10481,7 +11646,9 @@ export namespace content_v2 {
 
     /**
      * content.orders.instorerefundlineitem
-     * @desc Notifies that item return and refund was handled directly in store.
+     * @desc Notifies that item return and refund was handled directly by
+     * merchant outside of Google payments processing (e.g. cash refund done in
+     * store).
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *
@@ -10550,7 +11717,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
@@ -10624,7 +11791,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(parameters, callback);
@@ -10636,7 +11803,7 @@ export namespace content_v2 {
 
     /**
      * content.orders.refund
-     * @desc Refund a portion of the order, up to the full amount paid.
+     * @desc Deprecated, please use returnRefundLineItem instead.
      * @alias content.orders.refund
      * @memberOf! ()
      *
@@ -10693,7 +11860,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersRefundResponse>(parameters, callback);
@@ -10774,7 +11941,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
@@ -10852,7 +12019,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersReturnLineItemResponse>(
@@ -10936,7 +12103,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
@@ -11019,7 +12186,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
@@ -11096,7 +12263,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersShipLineItemsResponse>(
@@ -11176,7 +12343,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
@@ -11259,7 +12426,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
@@ -11337,7 +12504,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
@@ -11349,7 +12516,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Orders$Acknowledge {
+  export interface Params$Resource$Orders$Acknowledge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11370,7 +12538,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersAcknowledgeRequest;
   }
-  export interface Params$Resource$Orders$Advancetestorder {
+  export interface Params$Resource$Orders$Advancetestorder extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11386,7 +12555,7 @@ export namespace content_v2 {
      */
     orderId?: string;
   }
-  export interface Params$Resource$Orders$Cancel {
+  export interface Params$Resource$Orders$Cancel extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11407,7 +12576,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCancelRequest;
   }
-  export interface Params$Resource$Orders$Cancellineitem {
+  export interface Params$Resource$Orders$Cancellineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11428,7 +12598,30 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCancelLineItemRequest;
   }
-  export interface Params$Resource$Orders$Createtestorder {
+  export interface Params$Resource$Orders$Canceltestorderbycustomer extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The ID of the test order to cancel.
+     */
+    orderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCancelTestOrderByCustomerRequest;
+  }
+  export interface Params$Resource$Orders$Createtestorder extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11445,7 +12638,30 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCreateTestOrderRequest;
   }
-  export interface Params$Resource$Orders$Custombatch {
+  export interface Params$Resource$Orders$Createtestreturn extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that manages the order. This cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The ID of the order.
+     */
+    orderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OrdersCreateTestReturnRequest;
+  }
+  export interface Params$Resource$Orders$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11457,7 +12673,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersCustomBatchRequest;
   }
-  export interface Params$Resource$Orders$Get {
+  export interface Params$Resource$Orders$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11473,7 +12689,8 @@ export namespace content_v2 {
      */
     orderId?: string;
   }
-  export interface Params$Resource$Orders$Getbymerchantorderid {
+  export interface Params$Resource$Orders$Getbymerchantorderid extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11489,12 +12706,17 @@ export namespace content_v2 {
      */
     merchantOrderId?: string;
   }
-  export interface Params$Resource$Orders$Gettestordertemplate {
+  export interface Params$Resource$Orders$Gettestordertemplate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The country of the template to retrieve. Defaults to US.
+     */
+    country?: string;
     /**
      * The ID of the account that should manage the order. This cannot be a
      * multi-client account.
@@ -11505,7 +12727,8 @@ export namespace content_v2 {
      */
     templateName?: string;
   }
-  export interface Params$Resource$Orders$Instorerefundlineitem {
+  export interface Params$Resource$Orders$Instorerefundlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11526,7 +12749,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersInStoreRefundLineItemRequest;
   }
-  export interface Params$Resource$Orders$List {
+  export interface Params$Resource$Orders$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11580,9 +12803,9 @@ export namespace content_v2 {
      * completed is a shortcut for shipped , partiallyDelivered, delivered,
      * partiallyReturned, returned, and canceled.
      */
-    statuses?: string;
+    statuses?: string[];
   }
-  export interface Params$Resource$Orders$Refund {
+  export interface Params$Resource$Orders$Refund extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11603,7 +12826,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersRefundRequest;
   }
-  export interface Params$Resource$Orders$Rejectreturnlineitem {
+  export interface Params$Resource$Orders$Rejectreturnlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11624,7 +12848,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersRejectReturnLineItemRequest;
   }
-  export interface Params$Resource$Orders$Returnlineitem {
+  export interface Params$Resource$Orders$Returnlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11645,7 +12870,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersReturnLineItemRequest;
   }
-  export interface Params$Resource$Orders$Returnrefundlineitem {
+  export interface Params$Resource$Orders$Returnrefundlineitem extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11666,7 +12892,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersReturnRefundLineItemRequest;
   }
-  export interface Params$Resource$Orders$Setlineitemmetadata {
+  export interface Params$Resource$Orders$Setlineitemmetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11687,7 +12914,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersSetLineItemMetadataRequest;
   }
-  export interface Params$Resource$Orders$Shiplineitems {
+  export interface Params$Resource$Orders$Shiplineitems extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11708,7 +12936,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersShipLineItemsRequest;
   }
-  export interface Params$Resource$Orders$Updatelineitemshippingdetails {
+  export interface Params$Resource$Orders$Updatelineitemshippingdetails extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11729,7 +12958,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersUpdateLineItemShippingDetailsRequest;
   }
-  export interface Params$Resource$Orders$Updatemerchantorderid {
+  export interface Params$Resource$Orders$Updatemerchantorderid extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11750,7 +12980,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$OrdersUpdateMerchantOrderIdRequest;
   }
-  export interface Params$Resource$Orders$Updateshipment {
+  export interface Params$Resource$Orders$Updateshipment extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11774,15 +13005,7 @@ export namespace content_v2 {
 
 
   export class Resource$Pos {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11844,7 +13067,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PosCustomBatchResponse>(parameters, callback);
@@ -11912,7 +13135,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11977,7 +13200,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PosStore>(parameters, callback);
@@ -12045,7 +13268,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PosStore>(parameters, callback);
@@ -12116,7 +13339,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PosInventoryResponse>(parameters, callback);
@@ -12183,7 +13406,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PosListResponse>(parameters, callback);
@@ -12252,7 +13475,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PosSaleResponse>(parameters, callback);
@@ -12262,7 +13485,7 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Pos$Custombatch {
+  export interface Params$Resource$Pos$Custombatch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12278,7 +13501,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$PosCustomBatchRequest;
   }
-  export interface Params$Resource$Pos$Delete {
+  export interface Params$Resource$Pos$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12301,7 +13524,7 @@ export namespace content_v2 {
      */
     targetMerchantId?: string;
   }
-  export interface Params$Resource$Pos$Get {
+  export interface Params$Resource$Pos$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12320,7 +13543,7 @@ export namespace content_v2 {
      */
     targetMerchantId?: string;
   }
-  export interface Params$Resource$Pos$Insert {
+  export interface Params$Resource$Pos$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12344,7 +13567,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$PosStore;
   }
-  export interface Params$Resource$Pos$Inventory {
+  export interface Params$Resource$Pos$Inventory extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12368,7 +13591,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$PosInventoryRequest;
   }
-  export interface Params$Resource$Pos$List {
+  export interface Params$Resource$Pos$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12383,7 +13606,7 @@ export namespace content_v2 {
      */
     targetMerchantId?: string;
   }
-  export interface Params$Resource$Pos$Sale {
+  export interface Params$Resource$Pos$Sale extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12410,15 +13633,7 @@ export namespace content_v2 {
 
 
   export class Resource$Products {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -12485,7 +13700,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsCustomBatchResponse>(
@@ -12551,7 +13766,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12613,7 +13828,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -12681,7 +13896,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -12750,7 +13965,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(parameters, callback);
@@ -12760,7 +13975,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Products$Custombatch {
+  export interface Params$Resource$Products$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12776,7 +13992,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ProductsCustomBatchRequest;
   }
-  export interface Params$Resource$Products$Delete {
+  export interface Params$Resource$Products$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12796,7 +14012,7 @@ export namespace content_v2 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Get {
+  export interface Params$Resource$Products$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12812,7 +14028,7 @@ export namespace content_v2 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Products$Insert {
+  export interface Params$Resource$Products$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12833,7 +14049,7 @@ export namespace content_v2 {
      */
     requestBody?: Schema$Product;
   }
-  export interface Params$Resource$Products$List {
+  export interface Params$Resource$Products$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12863,15 +14079,7 @@ export namespace content_v2 {
 
 
   export class Resource$Productstatuses {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -12942,7 +14150,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
@@ -13011,7 +14219,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductStatus>(parameters, callback);
@@ -13087,7 +14295,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProductstatusesListResponse>(
@@ -13098,7 +14306,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Productstatuses$Custombatch {
+  export interface Params$Resource$Productstatuses$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13115,7 +14324,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ProductstatusesCustomBatchRequest;
   }
-  export interface Params$Resource$Productstatuses$Get {
+  export interface Params$Resource$Productstatuses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13125,7 +14335,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * Flag to include full product data in the result of this get request. The
      * default value is false.
@@ -13141,7 +14351,8 @@ export namespace content_v2 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Productstatuses$List {
+  export interface Params$Resource$Productstatuses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13151,7 +14362,7 @@ export namespace content_v2 {
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
      */
-    destinations?: string;
+    destinations?: string[];
     /**
      * Flag to include full product data in the results of the list request. The
      * default value is false.
@@ -13181,15 +14392,7 @@ export namespace content_v2 {
 
 
   export class Resource$Shippingsettings {
-    root: Content;
-    constructor(root: Content) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -13261,7 +14464,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
@@ -13328,7 +14531,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);
@@ -13404,7 +14607,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedCarriersResponse>(
@@ -13482,7 +14685,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedHolidaysResponse>(
@@ -13559,7 +14762,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsListResponse>(
@@ -13633,7 +14836,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);
@@ -13704,7 +14907,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);
@@ -13714,7 +14917,8 @@ export namespace content_v2 {
     }
   }
 
-  export interface Params$Resource$Shippingsettings$Custombatch {
+  export interface Params$Resource$Shippingsettings$Custombatch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13730,7 +14934,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ShippingsettingsCustomBatchRequest;
   }
-  export interface Params$Resource$Shippingsettings$Get {
+  export interface Params$Resource$Shippingsettings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13747,7 +14952,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedcarriers {
+  export interface Params$Resource$Shippingsettings$Getsupportedcarriers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13758,7 +14964,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$Getsupportedholidays {
+  export interface Params$Resource$Shippingsettings$Getsupportedholidays extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13769,7 +14976,8 @@ export namespace content_v2 {
      */
     merchantId?: string;
   }
-  export interface Params$Resource$Shippingsettings$List {
+  export interface Params$Resource$Shippingsettings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13789,7 +14997,8 @@ export namespace content_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Shippingsettings$Patch {
+  export interface Params$Resource$Shippingsettings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13815,7 +15024,8 @@ export namespace content_v2 {
      */
     requestBody?: Schema$ShippingSettings;
   }
-  export interface Params$Resource$Shippingsettings$Update {
+  export interface Params$Resource$Shippingsettings$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

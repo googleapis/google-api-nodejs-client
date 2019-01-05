@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace compute_alpha {
   export interface Options extends GlobalOptions {
     version: 'alpha';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,12 +81,9 @@ export namespace compute_alpha {
    * @param {object=} options Options for Compute
    */
   export class Compute {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     acceleratorTypes: Resource$Acceleratortypes;
     addresses: Resource$Addresses;
+    allocations: Resource$Allocations;
     autoscalers: Resource$Autoscalers;
     backendBuckets: Resource$Backendbuckets;
     backendServices: Resource$Backendservices;
@@ -62,9 +94,8 @@ export namespace compute_alpha {
     globalAddresses: Resource$Globaladdresses;
     globalForwardingRules: Resource$Globalforwardingrules;
     globalOperations: Resource$Globaloperations;
+    globalOrganizationOperations: Resource$Globalorganizationoperations;
     healthChecks: Resource$Healthchecks;
-    hosts: Resource$Hosts;
-    hostTypes: Resource$Hosttypes;
     httpHealthChecks: Resource$Httphealthchecks;
     httpsHealthChecks: Resource$Httpshealthchecks;
     images: Resource$Images;
@@ -77,6 +108,7 @@ export namespace compute_alpha {
     interconnects: Resource$Interconnects;
     licenseCodes: Resource$Licensecodes;
     licenses: Resource$Licenses;
+    machineImages: Resource$Machineimages;
     machineTypes: Resource$Machinetypes;
     networkEndpointGroups: Resource$Networkendpointgroups;
     networks: Resource$Networks;
@@ -94,7 +126,9 @@ export namespace compute_alpha {
     regionInstanceGroups: Resource$Regioninstancegroups;
     regionOperations: Resource$Regionoperations;
     regions: Resource$Regions;
+    regionSslCertificates: Resource$Regionsslcertificates;
     regionTargetHttpProxies: Resource$Regiontargethttpproxies;
+    regionTargetHttpsProxies: Resource$Regiontargethttpsproxies;
     regionUrlMaps: Resource$Regionurlmaps;
     resourcePolicies: Resource$Resourcepolicies;
     routers: Resource$Routers;
@@ -118,81 +152,79 @@ export namespace compute_alpha {
     zones: Resource$Zones;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.acceleratorTypes = new Resource$Acceleratortypes(this);
-      this.addresses = new Resource$Addresses(this);
-      this.autoscalers = new Resource$Autoscalers(this);
-      this.backendBuckets = new Resource$Backendbuckets(this);
-      this.backendServices = new Resource$Backendservices(this);
-      this.disks = new Resource$Disks(this);
-      this.diskTypes = new Resource$Disktypes(this);
-      this.firewalls = new Resource$Firewalls(this);
-      this.forwardingRules = new Resource$Forwardingrules(this);
-      this.globalAddresses = new Resource$Globaladdresses(this);
-      this.globalForwardingRules = new Resource$Globalforwardingrules(this);
-      this.globalOperations = new Resource$Globaloperations(this);
-      this.healthChecks = new Resource$Healthchecks(this);
-      this.hosts = new Resource$Hosts(this);
-      this.hostTypes = new Resource$Hosttypes(this);
-      this.httpHealthChecks = new Resource$Httphealthchecks(this);
-      this.httpsHealthChecks = new Resource$Httpshealthchecks(this);
-      this.images = new Resource$Images(this);
-      this.instanceGroupManagers = new Resource$Instancegroupmanagers(this);
-      this.instanceGroups = new Resource$Instancegroups(this);
-      this.instances = new Resource$Instances(this);
-      this.instanceTemplates = new Resource$Instancetemplates(this);
-      this.interconnectAttachments = new Resource$Interconnectattachments(this);
-      this.interconnectLocations = new Resource$Interconnectlocations(this);
-      this.interconnects = new Resource$Interconnects(this);
-      this.licenseCodes = new Resource$Licensecodes(this);
-      this.licenses = new Resource$Licenses(this);
-      this.machineTypes = new Resource$Machinetypes(this);
-      this.networkEndpointGroups = new Resource$Networkendpointgroups(this);
-      this.networks = new Resource$Networks(this);
-      this.nodeGroups = new Resource$Nodegroups(this);
-      this.nodeTemplates = new Resource$Nodetemplates(this);
-      this.nodeTypes = new Resource$Nodetypes(this);
-      this.projects = new Resource$Projects(this);
-      this.regionAutoscalers = new Resource$Regionautoscalers(this);
-      this.regionBackendServices = new Resource$Regionbackendservices(this);
-      this.regionCommitments = new Resource$Regioncommitments(this);
-      this.regionDisks = new Resource$Regiondisks(this);
-      this.regionDiskTypes = new Resource$Regiondisktypes(this);
-      this.regionHealthChecks = new Resource$Regionhealthchecks(this);
+      this.acceleratorTypes = new Resource$Acceleratortypes();
+      this.addresses = new Resource$Addresses();
+      this.allocations = new Resource$Allocations();
+      this.autoscalers = new Resource$Autoscalers();
+      this.backendBuckets = new Resource$Backendbuckets();
+      this.backendServices = new Resource$Backendservices();
+      this.disks = new Resource$Disks();
+      this.diskTypes = new Resource$Disktypes();
+      this.firewalls = new Resource$Firewalls();
+      this.forwardingRules = new Resource$Forwardingrules();
+      this.globalAddresses = new Resource$Globaladdresses();
+      this.globalForwardingRules = new Resource$Globalforwardingrules();
+      this.globalOperations = new Resource$Globaloperations();
+      this.globalOrganizationOperations =
+          new Resource$Globalorganizationoperations();
+      this.healthChecks = new Resource$Healthchecks();
+      this.httpHealthChecks = new Resource$Httphealthchecks();
+      this.httpsHealthChecks = new Resource$Httpshealthchecks();
+      this.images = new Resource$Images();
+      this.instanceGroupManagers = new Resource$Instancegroupmanagers();
+      this.instanceGroups = new Resource$Instancegroups();
+      this.instances = new Resource$Instances();
+      this.instanceTemplates = new Resource$Instancetemplates();
+      this.interconnectAttachments = new Resource$Interconnectattachments();
+      this.interconnectLocations = new Resource$Interconnectlocations();
+      this.interconnects = new Resource$Interconnects();
+      this.licenseCodes = new Resource$Licensecodes();
+      this.licenses = new Resource$Licenses();
+      this.machineImages = new Resource$Machineimages();
+      this.machineTypes = new Resource$Machinetypes();
+      this.networkEndpointGroups = new Resource$Networkendpointgroups();
+      this.networks = new Resource$Networks();
+      this.nodeGroups = new Resource$Nodegroups();
+      this.nodeTemplates = new Resource$Nodetemplates();
+      this.nodeTypes = new Resource$Nodetypes();
+      this.projects = new Resource$Projects();
+      this.regionAutoscalers = new Resource$Regionautoscalers();
+      this.regionBackendServices = new Resource$Regionbackendservices();
+      this.regionCommitments = new Resource$Regioncommitments();
+      this.regionDisks = new Resource$Regiondisks();
+      this.regionDiskTypes = new Resource$Regiondisktypes();
+      this.regionHealthChecks = new Resource$Regionhealthchecks();
       this.regionInstanceGroupManagers =
-          new Resource$Regioninstancegroupmanagers(this);
-      this.regionInstanceGroups = new Resource$Regioninstancegroups(this);
-      this.regionOperations = new Resource$Regionoperations(this);
-      this.regions = new Resource$Regions(this);
-      this.regionTargetHttpProxies = new Resource$Regiontargethttpproxies(this);
-      this.regionUrlMaps = new Resource$Regionurlmaps(this);
-      this.resourcePolicies = new Resource$Resourcepolicies(this);
-      this.routers = new Resource$Routers(this);
-      this.routes = new Resource$Routes(this);
-      this.securityPolicies = new Resource$Securitypolicies(this);
-      this.snapshots = new Resource$Snapshots(this);
-      this.sslCertificates = new Resource$Sslcertificates(this);
-      this.sslPolicies = new Resource$Sslpolicies(this);
-      this.subnetworks = new Resource$Subnetworks(this);
-      this.targetHttpProxies = new Resource$Targethttpproxies(this);
-      this.targetHttpsProxies = new Resource$Targethttpsproxies(this);
-      this.targetInstances = new Resource$Targetinstances(this);
-      this.targetPools = new Resource$Targetpools(this);
-      this.targetSslProxies = new Resource$Targetsslproxies(this);
-      this.targetTcpProxies = new Resource$Targettcpproxies(this);
-      this.targetVpnGateways = new Resource$Targetvpngateways(this);
-      this.urlMaps = new Resource$Urlmaps(this);
-      this.vpnGateways = new Resource$Vpngateways(this);
-      this.vpnTunnels = new Resource$Vpntunnels(this);
-      this.zoneOperations = new Resource$Zoneoperations(this);
-      this.zones = new Resource$Zones(this);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Regioninstancegroupmanagers();
+      this.regionInstanceGroups = new Resource$Regioninstancegroups();
+      this.regionOperations = new Resource$Regionoperations();
+      this.regions = new Resource$Regions();
+      this.regionSslCertificates = new Resource$Regionsslcertificates();
+      this.regionTargetHttpProxies = new Resource$Regiontargethttpproxies();
+      this.regionTargetHttpsProxies = new Resource$Regiontargethttpsproxies();
+      this.regionUrlMaps = new Resource$Regionurlmaps();
+      this.resourcePolicies = new Resource$Resourcepolicies();
+      this.routers = new Resource$Routers();
+      this.routes = new Resource$Routes();
+      this.securityPolicies = new Resource$Securitypolicies();
+      this.snapshots = new Resource$Snapshots();
+      this.sslCertificates = new Resource$Sslcertificates();
+      this.sslPolicies = new Resource$Sslpolicies();
+      this.subnetworks = new Resource$Subnetworks();
+      this.targetHttpProxies = new Resource$Targethttpproxies();
+      this.targetHttpsProxies = new Resource$Targethttpsproxies();
+      this.targetInstances = new Resource$Targetinstances();
+      this.targetPools = new Resource$Targetpools();
+      this.targetSslProxies = new Resource$Targetsslproxies();
+      this.targetTcpProxies = new Resource$Targettcpproxies();
+      this.targetVpnGateways = new Resource$Targetvpngateways();
+      this.urlMaps = new Resource$Urlmaps();
+      this.vpnGateways = new Resource$Vpngateways();
+      this.vpnTunnels = new Resource$Vpntunnels();
+      this.zoneOperations = new Resource$Zoneoperations();
+      this.zones = new Resource$Zones();
     }
   }
 
@@ -267,7 +299,7 @@ export namespace compute_alpha {
     /**
      * A list of AcceleratorTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$AcceleratorTypesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#acceleratorTypeAggregatedList for aggregated lists of accelerator
@@ -289,7 +321,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of accelerator types.
@@ -323,7 +359,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AcceleratorTypesScopedList {
     /**
@@ -334,7 +374,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the accelerator
      * types list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An access configuration attached to an instance&#39;s network interface.
@@ -445,7 +489,7 @@ export namespace compute_alpha {
      * the setLabels method. Each label key/value must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -514,7 +558,7 @@ export namespace compute_alpha {
     /**
      * A list of AddressesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$AddressesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#addressAggregatedList for
      * aggregated lists of addresses.
@@ -535,7 +579,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AddressesScopedList {
     /**
@@ -546,7 +594,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of addresses
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of addresses.
@@ -580,7 +632,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An alias IP range attached to an instance&#39;s network interface.
@@ -600,6 +656,227 @@ export namespace compute_alpha {
      * unspecified, the primary range of the subnetwork will be used.
      */
     subnetworkRangeName?: string;
+  }
+  /**
+   * Allocation resource
+   */
+  export interface Schema$Allocation {
+    /**
+     * Full or partial url for commitment in which this allocation is to be
+     * created. This field is ignored when allocations are created during
+     * committment creation.
+     */
+    commitment?: string;
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of the resource. Always compute#allocations for
+     * allocations.
+     */
+    kind?: string;
+    /**
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * with RFC1035. Specifically, the name must be 1-63 characters long and
+     * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
+     * first character must be a lowercase letter, and all following characters
+     * must be a dash, lowercase letter, or digit, except the last character,
+     * which cannot be a dash.
+     */
+    name?: string;
+    /**
+     * [Output Only] Server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string;
+    specificAllocation?: Schema$AllocationSpecificSKUAllocation;
+    /**
+     * Indicates whether the allocation can be consumed by VMs with ?any
+     * allocation? defined. If the field is set, then only VMs that target the
+     * allocation by name using --allocation-affinity can consume this
+     * allocation.
+     */
+    specificAllocationRequired?: boolean;
+    zone?: string;
+  }
+  /**
+   * AllocationAffinity is the configuration of desired allocation which this
+   * instance could take capacity from.
+   */
+  export interface Schema$AllocationAffinity {
+    consumeAllocationType?: string;
+    /**
+     * Corresponds to the label key of allocation resource.
+     */
+    key?: string;
+    /**
+     * Corresponds to the label values of allocation resource.
+     */
+    values?: string[];
+  }
+  /**
+   * Contains a list of allocations.
+   */
+  export interface Schema$AllocationAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of Allocation resources.
+     */
+    items?: {[key: string]: Schema$AllocationsScopedList;};
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$AllocationList {
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] A list of Allocation resources.
+     */
+    items?: Schema$Allocation[];
+    /**
+     * [Output Only] Type of resource.Always compute#allocationsList for listsof
+     * allocations
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  /**
+   * This allocation type allows to pre allocate specific instance
+   * configuration.
+   */
+  export interface Schema$AllocationSpecificSKUAllocation {
+    /**
+     * Specifies number of resources that are allocated.
+     */
+    count?: string;
+    instanceProperties?:
+        Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties;
+    /**
+     * [OutputOnly] Indicates how many resource are in use.
+     */
+    inUseCount?: string;
+  }
+  /**
+   * Properties of the SKU instances being reserved.
+   */
+  export interface Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties {
+    /**
+     * Specifies accelerator type and count.
+     */
+    guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Specifies amount of local ssd to reserve with each instance. The type of
+     * disk is local-ssd.
+     */
+    localSsds?:
+        Schema$AllocationSpecificSKUAllocationAllocatedInstancePropertiesAllocatedDisk[];
+    /**
+     * Specifies type of machine (name only) which has fixed number of vCPUs and
+     * fixed amount of memory. This also includes specifying custom machine type
+     * following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     */
+    machineType?: string;
+    /**
+     * Minimum cpu platform the allocation.
+     */
+    minCpuPlatform?: string;
+  }
+  export interface Schema$AllocationSpecificSKUAllocationAllocatedInstancePropertiesAllocatedDisk {
+    /**
+     * Specifies the size of the disk in base-2 GB.
+     */
+    diskSizeGb?: string;
+    /**
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME. The default is SCSI. For performance characteristics
+     * of SCSI over NVMe, see Local SSD performance.
+     */
+    interface?: string;
+  }
+  export interface Schema$AllocationsScopedList {
+    /**
+     * A list of allocations contained in this scope.
+     */
+    allocations?: Schema$Allocation[];
+    /**
+     * Informational warning which replaces the list of allocations when the
+     * list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$AllocationsUpdateResourceShapeRequest {
+    /**
+     * Number of allocated resources which are to be updated with minimum = 1
+     * and maximum = 100.
+     */
+    count?: number;
+    /**
+     * The name of destination allocation where the modified machines are added.
+     * If existing, its machine spec must match the modified machine spec. If
+     * non existing, new allocation with this name and modified machine spec is
+     * created automatically.
+     */
+    destinationAllocation?: string;
+    updatedResourceProperties?:
+        Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties;
   }
   /**
    * An instance-attached disk resource.
@@ -722,18 +999,19 @@ export namespace compute_alpha {
    */
   export interface Schema$AttachedDiskInitializeParams {
     /**
+     * An optional description. Provide this property when creating the disk.
+     */
+    description?: string;
+    /**
      * Specifies the disk name. If not specified, the default is to use the name
-     * of the instance.
+     * of the instance. If the disk with the instance name exists already in the
+     * given zone/region, a new name will be automatically generated.
      */
     diskName?: string;
     /**
      * Specifies the size of the disk in base-2 GB.
      */
     diskSizeGb?: string;
-    /**
-     * [Deprecated] Storage type of the disk.
-     */
-    diskStorageType?: string;
     /**
      * Specifies the disk type to use to create the instance. If not specified,
      * the default is pd-standard, specified using the full URL. For example:
@@ -752,19 +1030,19 @@ export namespace compute_alpha {
      * disks.setLabels method. This field is only applicable for persistent
      * disks.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The source image to create this disk. When creating a new instance, one
      * of initializeParams.sourceImage or disks.source is required except for
      * local SSD.  To create a disk with one of the public operating system
      * images, specify the image by its family name. For example, specify
-     * family/debian-8 to use the latest Debian 8 image:
-     * projects/debian-cloud/global/images/family/debian-8   Alternatively, use
+     * family/debian-9 to use the latest Debian 9 image:
+     * projects/debian-cloud/global/images/family/debian-9   Alternatively, use
      * a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create
-     * a disk with a custom image that you created, specify the image name in
-     * the following format: global/images/my-custom-image   You can also
-     * specify a custom image by its image family, which returns the latest
+     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD   To
+     * create a disk with a custom image that you created, specify the image
+     * name in the following format: global/images/my-custom-image   You can
+     * also specify a custom image by its image family, which returns the latest
      * version of the image in that family. Replace the image name with
      * family/family-name: global/images/family/my-image-family   If the source
      * image is deleted later, this field will not be set.
@@ -787,6 +1065,10 @@ export namespace compute_alpha {
      * this field will not be set.
      */
     sourceSnapshot?: string;
+    /**
+     * The customer-supplied encryption key of the source snapshot.
+     */
+    sourceSnapshotEncryptionKey?: Schema$CustomerEncryptionKey;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -943,7 +1225,7 @@ export namespace compute_alpha {
     /**
      * A list of AutoscalersScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$AutoscalersScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#autoscalerAggregatedList
      * for aggregated lists of autoscalers.
@@ -964,7 +1246,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Autoscaler resources.
@@ -998,7 +1284,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AutoscalersScopedList {
     /**
@@ -1009,7 +1299,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of
      * autoscalers when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$AutoscalerStatusDetails {
     /**
@@ -1242,14 +1536,21 @@ export namespace compute_alpha {
      */
     failover?: boolean;
     /**
-     * The fully-qualified URL of a Instance Group resource. This instance group
-     * defines the list of instances that serve traffic. Member virtual machine
-     * instances from each instance group must live in the same zone as the
-     * instance group itself. No two backends in a backend service are allowed
-     * to use same Instance Group resource.  Note that you must specify an
-     * Instance Group resource using the fully-qualified URL, rather than a
+     * The fully-qualified URL of an Instance Group or Network Endpoint Group
+     * resource. In case of instance group this defines the list of instances
+     * that serve traffic. Member virtual machine instances from each instance
+     * group must live in the same zone as the instance group itself. No two
+     * backends in a backend service are allowed to use same Instance Group
+     * resource.  For Network Endpoint Groups this defines list of endpoints.
+     * All endpoints of Network Endpoint Group must be hosted on instances
+     * located in the same zone as the Network Endpoint Group.  Backend service
+     * can not contain mix of Instance Group and Network Endpoint Group
+     * backends.  Note that you must specify an Instance Group or Network
+     * Endpoint Group resource using the fully-qualified URL, rather than a
      * partial URL.  When the BackendService has load balancing scheme INTERNAL,
      * the instance group must be within the same region as the BackendService.
+     * Network Endpoint Groups are not supported for INTERNAL load balancing
+     * scheme.
      */
     group?: string;
     /**
@@ -1314,7 +1615,7 @@ export namespace compute_alpha {
      */
     bucketName?: string;
     /**
-     * Cloud CDN Coniguration for this BackendBucket.
+     * Cloud CDN configuration for this BackendBucket.
      */
     cdnPolicy?: Schema$BackendBucketCdnPolicy;
     /**
@@ -1358,18 +1659,17 @@ export namespace compute_alpha {
    */
   export interface Schema$BackendBucketCdnPolicy {
     /**
-     * Number of seconds up to which the response to a signed URL request will
-     * be cached in the CDN. After this time period, the Signed URL will be
-     * revalidated before being served. Defaults to 1hr (3600s). If this field
-     * is set, Cloud CDN will internally act as though all responses from this
-     * bucket had a ?Cache-Control: public, max-age=[TTL]? header, regardless of
-     * any existing Cache-Control header. The actual headers served in responses
-     * will not be altered.
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
-     * [Output Only] Names of the keys currently configured for Cloud CDN Signed
-     * URL on this backend bucket.
+     * [Output Only] Names of the keys for signing request URLs.
      */
     signedUrlKeyNames?: string[];
   }
@@ -1404,7 +1704,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A BackendService resource. This resource defines a group of backend virtual
@@ -1462,7 +1766,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a BackendService. An up-to-date fingerprint must
-     * be provided in order to update the BackendService.
+     * be provided in order to update the BackendService.  To see the latest
+     * fingerprint, make a get() request to retrieve a BackendService.
      */
     fingerprint?: string;
     /**
@@ -1563,7 +1868,7 @@ export namespace compute_alpha {
     /**
      * A list of BackendServicesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$BackendServicesScopedList;};
     /**
      * Type of resource.
      */
@@ -1583,7 +1888,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Configuration of a App Engine backend.
@@ -1613,18 +1922,17 @@ export namespace compute_alpha {
      */
     cacheKeyPolicy?: Schema$CacheKeyPolicy;
     /**
-     * Number of seconds up to which the response to a signed URL request will
-     * be cached in the CDN. After this time period, the Signed URL will be
-     * revalidated before being served. Defaults to 1hr (3600s). If this field
-     * is set, Cloud CDN will internally act as though all responses from this
-     * backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless
-     * of any existing Cache-Control header. The actual headers served in
-     * responses will not be altered.
+     * Maximum number of seconds the response to a signed URL request will be
+     * considered fresh. After this time period, the response will be
+     * revalidated before being served. Defaults to 1hr (3600s). When serving
+     * responses to signed URL requests, Cloud CDN will internally behave as
+     * though all responses from this backend had a ?Cache-Control: public,
+     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
+     * The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
-     * [Output Only] Names of the keys currently configured for Cloud CDN Signed
-     * URL on this backend service.
+     * [Output Only] Names of the keys for signing request URLs.
      */
     signedUrlKeyNames?: string[];
   }
@@ -1673,6 +1981,14 @@ export namespace compute_alpha {
     failoverRatio?: number;
   }
   export interface Schema$BackendServiceGroupHealth {
+    /**
+     * Metadata defined as annotations on the network endpoint group.
+     */
+    annotations?: {[key: string]: string;};
+    /**
+     * Health state of the backend instances or endpoints in requested instance
+     * or network endpoint group, determined based on configured health checks.
+     */
     healthStatus?: Schema$HealthStatus[];
     /**
      * [Output Only] Type of resource. Always compute#backendServiceGroupHealth
@@ -1744,7 +2060,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$BackendServiceReference {
     backendService?: string;
@@ -1758,17 +2078,21 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently. This
-     * field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
      */
     condition?: Schema$Expr;
     /**
@@ -1848,6 +2172,10 @@ export namespace compute_alpha {
    * resource_for beta.commitments ==) (== resource_for v1.commitments ==)
    */
   export interface Schema$Commitment {
+    /**
+     * List of allocations for this commitment.
+     */
+    allocations?: Schema$Allocation[];
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -1929,7 +2257,7 @@ export namespace compute_alpha {
     /**
      * A list of CommitmentsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$CommitmentsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#commitmentAggregatedList
      * for aggregated lists of commitments.
@@ -1950,7 +2278,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Commitment resources.
@@ -1984,7 +2316,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$CommitmentsScopedList {
     /**
@@ -1995,7 +2331,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of
      * commitments when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A condition to be met.
@@ -2171,7 +2511,7 @@ export namespace compute_alpha {
      * Labels to apply to this disk. These can be later modified by the
      * setLabels method.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output Only] Last attach timestamp in RFC3339 text format.
      */
@@ -2186,7 +2526,7 @@ export namespace compute_alpha {
      */
     licenseCodes?: string[];
     /**
-     * Any applicable publicly visible licenses.
+     * A list of publicly visible licenses. Reserved for Google&#39;s use.
      */
     licenses?: string[];
     /**
@@ -2243,13 +2583,13 @@ export namespace compute_alpha {
      * The source image used to create this disk. If the source image is
      * deleted, this field will not be set.  To create a disk with one of the
      * public operating system images, specify the image by its family name. For
-     * example, specify family/debian-8 to use the latest Debian 8 image:
-     * projects/debian-cloud/global/images/family/debian-8   Alternatively, use
+     * example, specify family/debian-9 to use the latest Debian 9 image:
+     * projects/debian-cloud/global/images/family/debian-9   Alternatively, use
      * a specific version of a public operating system image:
-     * projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD   To create
-     * a disk with a custom image that you created, specify the image name in
-     * the following format: global/images/my-custom-image   You can also
-     * specify a custom image by its image family, which returns the latest
+     * projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD   To
+     * create a disk with a custom image that you created, specify the image
+     * name in the following format: global/images/my-custom-image   You can
+     * also specify a custom image by its image family, which returns the latest
      * version of the image in that family. Replace the image name with
      * family/family-name: global/images/family/my-image-family
      */
@@ -2323,7 +2663,7 @@ export namespace compute_alpha {
     /**
      * A list of DisksScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$DisksScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#diskAggregatedList for
      * aggregated lists of persistent disks.
@@ -2344,7 +2684,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A specification of the desired way to instantiate a disk in the instance
@@ -2413,7 +2757,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$DiskMoveRequest {
     /**
@@ -2458,7 +2806,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of disks when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A DiskType resource. (== resource_for beta.diskTypes ==) (== resource_for
@@ -2525,7 +2877,7 @@ export namespace compute_alpha {
     /**
      * A list of DiskTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$DiskTypesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#diskTypeAggregatedList.
      */
@@ -2545,7 +2897,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of disk types.
@@ -2579,7 +2935,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$DiskTypesScopedList {
     /**
@@ -2590,18 +2950,82 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of disk types
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$DistributionPolicy {
+    /**
+     * Zones where the regional managed instance group will create and manage
+     * instances.
+     */
     zones?: Schema$DistributionPolicyZoneConfiguration[];
   }
   export interface Schema$DistributionPolicyZoneConfiguration {
     /**
-     * URL of the zone where managed instance group is spawning instances (for
-     * regional resources). Zone has to belong to the region where managed
+     * The URL of the zone. The zone must exist in the region where the managed
      * instance group is located.
      */
     zone?: string;
+  }
+  export interface Schema$ExchangedPeeringRoute {
+    /**
+     * The destination range of the route.
+     */
+    destRange?: string;
+    /**
+     * If the peering route is imported if there is no confliction.
+     */
+    imported?: boolean;
+    /**
+     * The region of peering route next hop, only applies to dynamic routes.
+     */
+    nextHopRegion?: string;
+    /**
+     * The priority of the peering route.
+     */
+    priority?: number;
+    /**
+     * The type of the peering route.
+     */
+    type?: string;
+  }
+  export interface Schema$ExchangedPeeringRoutesList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of ExchangedPeeringRoute resources.
+     */
+    items?: Schema$ExchangedPeeringRoute[];
+    /**
+     * [Output Only] Type of resource. Always compute#exchangedPeeringRoutesList
+     * for exchanged peering routes lists.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents an expression text. Example:  title: &quot;User account
@@ -2640,7 +3064,7 @@ export namespace compute_alpha {
      * The list of ALLOW rules specified by this firewall. Each rule specifies a
      * protocol and port-range tuple that describes a permitted connection.
      */
-    allowed?: any[];
+    allowed?: Array<{IPProtocol?: string; ports?: string[];}>;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -2649,7 +3073,7 @@ export namespace compute_alpha {
      * The list of DENY rules specified by this firewall. Each rule specifies a
      * protocol and port-range tuple that describes a denied connection.
      */
-    denied?: any[];
+    denied?: Array<{IPProtocol?: string; ports?: string[];}>;
     /**
      * An optional description of this resource. Provide this property when you
      * create the resource.
@@ -2813,7 +3237,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Encapsulates numeric value that can be either absolute or relative.
@@ -2852,6 +3280,14 @@ export namespace compute_alpha {
   export interface Schema$ForwardingRule {
     /**
      * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. If the
+     * field is set to TRUE, clients can access ILB from all regions. Otherwise
+     * only allows access from clients in the same region as the internal load
+     * balancer.
+     */
+    allowGlobalAccess?: boolean;
+    /**
+     * This field is used along with the backend_service field for internal load
      * balancing or with the target field for internal TargetInstance. This
      * field cannot be used with port or portRange fields.  When the load
      * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
@@ -2860,7 +3296,7 @@ export namespace compute_alpha {
      */
     allPorts?: boolean;
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
      */
@@ -2898,8 +3334,11 @@ export namespace compute_alpha {
      * field is empty, an ephemeral IPv4 address from the same scope (global or
      * regional) will be assigned. A regional forwarding rule supports IPv4
      * only. A global forwarding rule supports either IPv4 or IPv6.  When the
-     * load balancing scheme is INTERNAL, this can only be an RFC 1918 IP
-     * address belonging to the network/subnet configured for the forwarding
+     * load balancing scheme is INTERNAL_SELF_MANAGED, this must be a URL
+     * reference to an existing Address resource ( internal regional static IP
+     * address), with a purpose of GCE_END_POINT and address_type of INTERNAL.
+     * When the load balancing scheme is INTERNAL, this can only be an RFC 1918
+     * IP address belonging to the network/subnet configured for the forwarding
      * rule. By default, if this field is empty, an ephemeral internal IP
      * address will be automatically allocated from the IP range of the subnet
      * or network configured for this forwarding rule.  An address can be
@@ -2914,13 +3353,14 @@ export namespace compute_alpha {
     /**
      * The IP protocol to which this rule applies. Valid options are TCP, UDP,
      * ESP, AH, SCTP or ICMP.  When the load balancing scheme is INTERNAL, only
-     * TCP and UDP are valid.
+     * TCP and UDP are valid. When the load balancing scheme is
+     * INTERNAL_SELF_MANAGED, only TCPis valid.
      */
     IPProtocol?: string;
     /**
      * The IP Version that will be used by this forwarding rule. Valid options
-     * are IPV4 or IPV6. This can only be specified for a global forwarding
-     * rule.
+     * are IPV4 or IPV6. This can only be specified for an external global
+     * forwarding rule.
      */
     ipVersion?: string;
     /**
@@ -2943,13 +3383,15 @@ export namespace compute_alpha {
      * setLabels method. Each label key/value pair must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * This signifies what the ForwardingRule will be used for and can only take
-     * the following values: INTERNAL, EXTERNAL The value of INTERNAL means that
-     * this will be used for Internal Network Load Balancing (TCP, UDP). The
-     * value of EXTERNAL means that this will be used for External Load
-     * Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
+     * the following values: INTERNAL, INTERNAL_SELF_MANAGED, EXTERNAL. The
+     * value of INTERNAL means that this will be used for Internal Network Load
+     * Balancing (TCP, UDP). The value of INTERNAL_SELF_MANAGED means that this
+     * will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means
+     * that this will be used for External Load Balancing (HTTP(S) LB, External
+     * TCP/UDP LB, SSL Proxy)
      */
     loadBalancingScheme?: string;
     /**
@@ -2963,10 +3405,10 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
-     * balancing, this field identifies the network that the load balanced IP
-     * should belong to for this Forwarding Rule. If this field is not
-     * specified, the default network will be used.
+     * This field is not used for external load balancing.  For INTERNAL and
+     * INTERNAL_SELF_MANAGED load balancing, this field identifies the network
+     * that the load balanced IP should belong to for this Forwarding Rule. If
+     * this field is not specified, the default network will be used.
      */
     network?: string;
     /**
@@ -3028,7 +3470,7 @@ export namespace compute_alpha {
      */
     serviceName?: string;
     /**
-     * This field is not used for external load balancing.  For internal load
+     * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the subnetwork that the load balanced IP
      * should belong to for this Forwarding Rule.  If the network specified is
      * in auto subnet mode, this field is optional. However, if the network is
@@ -3040,7 +3482,8 @@ export namespace compute_alpha {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object.
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
   }
@@ -3052,7 +3495,7 @@ export namespace compute_alpha {
     /**
      * A list of ForwardingRulesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$ForwardingRulesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#forwardingRuleAggregatedList for lists of forwarding rules.
@@ -3073,7 +3516,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of ForwardingRule resources.
@@ -3106,7 +3553,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$ForwardingRuleReference {
     forwardingRule?: string;
@@ -3120,7 +3571,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of forwarding rules when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$GlobalSetLabelsRequest {
     /**
@@ -3142,7 +3597,7 @@ export namespace compute_alpha {
      * &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can
      * also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$GlobalSetPolicyRequest {
     /**
@@ -3173,6 +3628,15 @@ export namespace compute_alpha {
      */
     kind?: string;
     /**
+     * The path to be queried. This can be the default namespace (&#39;/&#39;)
+     * or a nested namespace (&#39;//&#39;) or a specified key (&#39;//&#39;)
+     */
+    queryPath?: string;
+    /**
+     * [Output Only] The value of the requested queried path.
+     */
+    queryValue?: Schema$GuestAttributesValue;
+    /**
      * [Output Only] Server-defined URL for this resource.
      */
     selfLink?: string;
@@ -3184,6 +3648,29 @@ export namespace compute_alpha {
      * [Output Only] The value found for the requested key.
      */
     variableValue?: string;
+  }
+  /**
+   * A guest attributes namespace/key/value entry.
+   */
+  export interface Schema$GuestAttributesEntry {
+    /**
+     * Key for the guest attribute entry.
+     */
+    key?: string;
+    /**
+     * Namespace for the guest attribute entry.
+     */
+    namespace?: string;
+    /**
+     * Value for the guest attribute entry.
+     */
+    value?: string;
+  }
+  /**
+   * Array of guest attribute namespace/key/value tuples.
+   */
+  export interface Schema$GuestAttributesValue {
+    items?: Schema$GuestAttributesEntry[];
   }
   /**
    * Guest OS features.
@@ -3303,7 +3790,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A full or valid partial URL to a health check. For example, the following
@@ -3323,7 +3814,7 @@ export namespace compute_alpha {
     /**
      * A list of HealthChecksScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$HealthChecksScopedList;};
     /**
      * Type of resource.
      */
@@ -3343,7 +3834,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$HealthChecksScopedList {
     /**
@@ -3354,9 +3849,17 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$HealthStatus {
+    /**
+     * Metadata defined as annotations for network endpoint.
+     */
+    annotations?: {[key: string]: string;};
     /**
      * Health state of the instance.
      */
@@ -3396,144 +3899,6 @@ export namespace compute_alpha {
      */
     healthState?: string;
   }
-  export interface Schema$Host {
-    /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
-     */
-    creationTimestamp?: string;
-    /**
-     * [Output Only] An optional textual description of the resource.
-     */
-    description?: string;
-    /**
-     * Full or partial URL of the host type resource to use for this host, in
-     * the format: zones/zone/hostTypes/host-type. This is provided by the
-     * client when the host is created. For example, the following is a valid
-     * partial url to a predefined host type:
-     * zones/us-central1-b/hostTypes/n1-host-64-416
-     */
-    hostType?: string;
-    /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
-     */
-    id?: string;
-    /**
-     * A list of resource URLs to the virtual machine instances in this host.
-     * They must live in zones contained in the same region as this host.
-     */
-    instances?: string[];
-    /**
-     * [Output Only] The type of the resource. Always compute#host for host.
-     */
-    kind?: string;
-    /**
-     * A fingerprint for this request, which is essentially a hash of the
-     * metadata&#39;s contents and used for optimistic locking. The fingerprint
-     * is initially generated by Compute Engine and changes after every request
-     * to modify or update metadata. You must always provide an up-to-date
-     * fingerprint hash in order to update or change metadata.  To see the
-     * latest fingerprint, make get() request to the host.
-     */
-    labelFingerprint?: string;
-    /**
-     * Labels to apply to this host.
-     */
-    labels?: any;
-    /**
-     * The name of the resource, provided by the client when initially creating
-     * the resource. The resource name must be 1-63 characters long, and comply
-     * with RFC1035. Specifically, the name must be 1-63 characters long and
-     * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
-     * first character must be a lowercase letter, and all following characters
-     * must be a dash, lowercase letter, or digit, except the last character,
-     * which cannot be a dash.
-     */
-    name?: string;
-    /**
-     * [Output Only] Server-defined URL for the resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] The status of the host. One of the following values:
-     * CREATING, READY, REPAIR, and DELETING.
-     */
-    status?: string;
-    /**
-     * [Output Only] An optional, human-readable explanation of the status.
-     */
-    statusMessage?: string;
-    /**
-     * [Output Only] The name of the zone where the host resides, such as
-     * us-central1-a.
-     */
-    zone?: string;
-  }
-  export interface Schema$HostAggregatedList {
-    /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
-     */
-    id?: string;
-    /**
-     * A list of HostsScopedList resources.
-     */
-    items?: any;
-    /**
-     * [Output Only] Type of resource. Always compute#hostAggregatedList for
-     * aggregated lists of hosts.
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: any;
-  }
-  /**
-   * Contains a list of hosts.
-   */
-  export interface Schema$HostList {
-    /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
-     */
-    id?: string;
-    /**
-     * A list of Host resources.
-     */
-    items?: Schema$Host[];
-    /**
-     * [Output Only] Type of resource. Always compute#hostList for lists of
-     * hosts.
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: any;
-  }
   /**
    * UrlMaps A host-matching rule for a URL. If matched, will use the named
    * PathMatcher to select the BackendService.
@@ -3555,151 +3920,6 @@ export namespace compute_alpha {
      * if the hostRule matches the URL&#39;s host portion.
      */
     pathMatcher?: string;
-  }
-  export interface Schema$HostsScopedList {
-    /**
-     * [Output Only] A list of hosts contained in this scope.
-     */
-    hosts?: Schema$Host[];
-    /**
-     * [Output Only] An informational warning that appears when the host list is
-     * empty.
-     */
-    warning?: any;
-  }
-  /**
-   * A Host Type resource.
-   */
-  export interface Schema$HostType {
-    /**
-     * [Output Only] The CPU platform used by this host type.
-     */
-    cpuPlatform?: string;
-    /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
-     */
-    creationTimestamp?: string;
-    /**
-     * [Output Only] The deprecation status associated with this host type.
-     */
-    deprecated?: Schema$DeprecationStatus;
-    /**
-     * [Output Only] An optional textual description of the resource.
-     */
-    description?: string;
-    /**
-     * [Output Only] The number of virtual CPUs that are available to the host
-     * type.
-     */
-    guestCpus?: number;
-    /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
-     */
-    id?: string;
-    /**
-     * [Output Only] The type of the resource. Always compute#hostType for host
-     * types.
-     */
-    kind?: string;
-    /**
-     * [Output Only] Local SSD available to the host type, defined in GB.
-     */
-    localSsdGb?: number;
-    /**
-     * [Output Only] The amount of physical memory available to the host type,
-     * defined in MB.
-     */
-    memoryMb?: number;
-    /**
-     * [Output Only] Name of the resource.
-     */
-    name?: string;
-    /**
-     * [Output Only] Server-defined URL for the resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] The name of the zone where the host type resides, such as
-     * us-central1-a.
-     */
-    zone?: string;
-  }
-  export interface Schema$HostTypeAggregatedList {
-    /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
-     */
-    id?: string;
-    /**
-     * A list of HostTypesScopedList resources.
-     */
-    items?: any;
-    /**
-     * [Output Only] Type of resource.Always compute#hostTypeAggregatedList for
-     * aggregated lists of host types.
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: any;
-  }
-  /**
-   * Contains a list of host types.
-   */
-  export interface Schema$HostTypeList {
-    /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
-     */
-    id?: string;
-    /**
-     * A list of HostType resources.
-     */
-    items?: Schema$HostType[];
-    /**
-     * [Output Only] Type of resource.Always compute#hostTypeList for lists of
-     * host types.
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: any;
-  }
-  export interface Schema$HostTypesScopedList {
-    /**
-     * [Output Only] A list of host types contained in this scope.
-     */
-    hostTypes?: Schema$HostType[];
-    /**
-     * [Output Only] An informational warning that appears when the host types
-     * list is empty.
-     */
-    warning?: any;
   }
   export interface Schema$HTTP2HealthCheck {
     /**
@@ -3898,7 +4118,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$HTTPSHealthCheck {
     /**
@@ -4051,7 +4275,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Image resource. (== resource_for beta.images ==) (== resource_for
@@ -4125,7 +4353,7 @@ export namespace compute_alpha {
      * Labels to apply to this image. These can be later modified by the
      * setLabels method.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Integer license codes indicating which licenses are attached to this
      * image.
@@ -4148,7 +4376,7 @@ export namespace compute_alpha {
     /**
      * The parameters of the raw disk image.
      */
-    rawDisk?: any;
+    rawDisk?: {containerType?: string; sha1Checksum?: string; source?: string;};
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -4168,9 +4396,9 @@ export namespace compute_alpha {
      */
     sourceDiskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
-     * The ID value of the disk used to create this image. This value may be
-     * used to determine whether the image was taken from the current or a
-     * previous instance of a given disk name.
+     * [Output Only] The ID value of the disk used to create this image. This
+     * value may be used to determine whether the image was taken from the
+     * current or a previous instance of a given disk name.
      */
     sourceDiskId?: string;
     /**
@@ -4253,13 +4481,22 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Instance resource. (== resource_for beta.instances ==) (== resource_for
    * v1.instances ==)
    */
   export interface Schema$Instance {
+    /**
+     * The configuration of desired allocations which this Instance could
+     * consume capacity from.
+     */
+    allocationAffinity?: Schema$AllocationAffinity;
     /**
      * Allows this instance to send and receive packets with non-matching
      * destination or source IPs. This is required if you plan to use this
@@ -4294,15 +4531,7 @@ export namespace compute_alpha {
      * instance.
      */
     guestAccelerators?: Schema$AcceleratorConfig[];
-    /**
-     * Full or partial URL of the host resource that the instance should be
-     * placed on, in the format: zones/zone/hosts/host.  Optional, sole-tenant
-     * Host (physical machine) that the instance will be placed on when it&#39;s
-     * created. The instance is guaranteed to be placed on the same machine as
-     * other instances with the same sole-tenant host.  The request will be
-     * rejected if the sole-tenant host has run out of resources.
-     */
-    host?: string;
+    hostname?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
@@ -4341,7 +4570,7 @@ export namespace compute_alpha {
      * Labels to apply to this instance. These can be later modified by the
      * setLabels method.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Full or partial URL of the machine type resource to use for this
      * instance, in the format: zones/zone/machineTypes/machine-type. This is
@@ -4433,10 +4662,11 @@ export namespace compute_alpha {
      */
     statusMessage?: string;
     /**
-     * A list of tags to apply to this instance. Tags are used to identify valid
-     * sources or targets for network firewalls and are specified by the client
-     * during instance creation. The tags can be later modified by the setTags
-     * method. Each tag within the list must comply with RFC1035.
+     * Tags to apply to this instance. Tags are used to identify valid sources
+     * or targets for network firewalls and are specified by the client during
+     * instance creation. The tags can be later modified by the setTags method.
+     * Each tag within the list must comply with RFC1035. Multiple tags can be
+     * specified via the &#39;tags.items&#39; field.
      */
     tags?: Schema$Tags;
     /**
@@ -4454,7 +4684,7 @@ export namespace compute_alpha {
     /**
      * A list of InstancesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InstancesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#instanceAggregatedList for
      * aggregated lists of Instance resources.
@@ -4475,7 +4705,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * InstanceGroups (== resource_for beta.instanceGroups ==) (== resource_for
@@ -4560,7 +4794,7 @@ export namespace compute_alpha {
     /**
      * A list of InstanceGroupsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InstanceGroupsScopedList;};
     /**
      * [Output Only] The resource type, which is always
      * compute#instanceGroupAggregatedList for aggregated lists of instance
@@ -4582,7 +4816,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A list of InstanceGroup resources.
@@ -4616,7 +4854,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Instance Group Manager resource. (== resource_for
@@ -4625,7 +4867,6 @@ export namespace compute_alpha {
    * v1.regionInstanceGroupManagers ==)
    */
   export interface Schema$InstanceGroupManager {
-    activities?: Schema$InstanceGroupManagerActivities;
     /**
      * The autohealing policy for this managed instance group. You can specify
      * only one value.
@@ -4654,7 +4895,8 @@ export namespace compute_alpha {
      */
     description?: string;
     /**
-     * Policy valid only for regional managed instance groups.
+     * Policy specifying intended distribution of instances in regional managed
+     * instance group.
      */
     distributionPolicy?: Schema$DistributionPolicy;
     /**
@@ -4666,7 +4908,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. This field may be used in optimistic
      * locking. It will be ignored when inserting an InstanceGroupManager. An
      * up-to-date fingerprint must be provided in order to update the
-     * InstanceGroupManager.
+     * InstanceGroupManager.  To see the latest fingerprint, make a get()
+     * request to retrieve an InstanceGroupManager.
      */
     fingerprint?: string;
     /**
@@ -4726,6 +4969,10 @@ export namespace compute_alpha {
      * Stateful configuration for this Instanced Group Manager
      */
     statefulPolicy?: Schema$StatefulPolicy;
+    /**
+     * [Output Only] The status of this managed instance group.
+     */
+    status?: Schema$InstanceGroupManagerStatus;
     /**
      * The URLs for all TargetPool resources to which instances in the
      * instanceGroup field are added. The target pools automatically apply to
@@ -4818,15 +5065,6 @@ export namespace compute_alpha {
      */
     verifying?: number;
   }
-  export interface Schema$InstanceGroupManagerActivities {
-    autohealing?: string;
-    autohealingHealthCheckBased?: string;
-    autoscalingDown?: string;
-    autoscalingUp?: string;
-    creatingInstances?: string;
-    deletingInstances?: string;
-    recreatingInstances?: string;
-  }
   export interface Schema$InstanceGroupManagerAggregatedList {
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
@@ -4835,7 +5073,7 @@ export namespace compute_alpha {
     /**
      * A list of InstanceGroupManagersScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InstanceGroupManagersScopedList;};
     /**
      * [Output Only] The resource type, which is always
      * compute#instanceGroupManagerAggregatedList for an aggregated list of
@@ -4857,7 +5095,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagerAutoHealingPolicy {
     /**
@@ -4881,10 +5123,6 @@ export namespace compute_alpha {
      * default, a percent value of 100% is used.
      */
     maxUnavailable?: Schema$FixedOrPercent;
-    /**
-     * Defines operating mode for this policy.
-     */
-    mode?: string;
   }
   /**
    * [Output Only] A list of managed instance groups.
@@ -4918,7 +5156,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagerPendingActionsSummary {
     /**
@@ -5017,7 +5259,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagersRecreateInstancesRequest {
     /**
@@ -5032,7 +5278,7 @@ export namespace compute_alpha {
      * instances initiated by this resize request only once. If there is an
      * error during creation, the managed instance group does not retry create
      * this instance, and we will decrease the targetSize of the request
-     * instead. If the flag is false, the group attemps to recreate each
+     * instead. If the flag is false, the group attempts to recreate each
      * instance continuously until it succeeds.  This flag matters only in the
      * first attempt of creation of an instance. After an instance is
      * successfully created while this flag is enabled, the instance behaves the
@@ -5063,7 +5309,11 @@ export namespace compute_alpha {
      * [Output Only] The warning that replaces the list of managed instance
      * groups when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupManagersSetAutoHealingRequest {
     autoHealingPolicies?: Schema$InstanceGroupManagerAutoHealingPolicy[];
@@ -5093,6 +5343,32 @@ export namespace compute_alpha {
      * in the group all receive these target pool settings.
      */
     targetPools?: string[];
+  }
+  export interface Schema$InstanceGroupManagerStatus {
+    /**
+     * [Output Only] A bit indicating whether the managed instance group is in a
+     * stable state. A stable state means that: none of the instances in the
+     * managed instance group is currently undergoing any type of change (for
+     * example, creation, restart, or deletion); no future changes are scheduled
+     * for instances in the managed instance group; and the managed instance
+     * group itself is not being modified.
+     */
+    isStable?: boolean;
+    /**
+     * [Output Only] A status of consistency of Instances&#39; versions with
+     * their target version specified by version field on Instance Group
+     * Manager.
+     */
+    versionTarget?: Schema$InstanceGroupManagerStatusVersionTarget;
+  }
+  export interface Schema$InstanceGroupManagerStatusVersionTarget {
+    /**
+     * [Output Only] A bit indicating whether version target has been reached in
+     * this managed instance group, i.e. all instances are in their target
+     * version. Instances&#39; target version are specified by version field on
+     * Instance Group Manager.
+     */
+    isReached?: boolean;
   }
   /**
    * InstanceGroupManagers.updatePerInstanceConfigs
@@ -5134,8 +5410,8 @@ export namespace compute_alpha {
     /**
      * Minimal action to be taken on an instance. You can specify either RESTART
      * to restart existing instances or REPLACE to delete and create new
-     * instances from the target template. If you specify a code&gt;RESTART, the
-     * Updater will attempt to perform that action only. However, if the Updater
+     * instances from the target template. If you specify a RESTART, the Updater
+     * will attempt to perform that action only. However, if the Updater
      * determines that the minimal action you specify is not enough to perform
      * the update, it might perform a more disruptive action.
      */
@@ -5209,7 +5485,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupsListInstancesRequest {
     /**
@@ -5235,7 +5515,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that replaces the list of instance
      * groups when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceGroupsSetNamedPortsRequest {
     /**
@@ -5284,7 +5568,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of instance referrers.
@@ -5318,7 +5606,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceMoveRequest {
     /**
@@ -5338,6 +5630,11 @@ export namespace compute_alpha {
     targetInstance?: string;
   }
   export interface Schema$InstanceProperties {
+    /**
+     * The configuration of desired allocations which this Instance could
+     * consume capacity from.
+     */
+    allocationAffinity?: Schema$AllocationAffinity;
     /**
      * Enables instances created based on this template to send packets with
      * source IP addresses other than their own and receive packets with
@@ -5365,7 +5662,7 @@ export namespace compute_alpha {
     /**
      * Labels to apply to instances that are created from this template.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The machine type to use for instances that are created from this
      * template.
@@ -5458,7 +5755,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of instances
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstancesSetLabelsRequest {
     /**
@@ -5467,7 +5768,7 @@ export namespace compute_alpha {
      * request to add or change labels.
      */
     labelFingerprint?: string;
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$InstancesSetMachineResourcesRequest {
     /**
@@ -5606,7 +5907,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$InstanceWithNamedPorts {
     /**
@@ -5703,7 +6008,7 @@ export namespace compute_alpha {
      * modified by the setLabels method. Each label key/value must comply with
      * RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Type of link requested. This field indicates speed of each of the links
      * in the bundle, not the entire bundle. Only 10G per link is allowed for a
@@ -5774,10 +6079,6 @@ export namespace compute_alpha {
      * PARTNER_PROVIDER.
      */
     adminEnabled?: boolean;
-    /**
-     * [Deprecated] Replaced by edge_availability_domain.
-     */
-    availabilityZone?: string;
     /**
      * Provisioned bandwidth capacity for the interconnectAttachment. Can be set
      * by the partner to update the customer&#39;s provisioned bandwidth. Output
@@ -5858,7 +6159,7 @@ export namespace compute_alpha {
      * later modified by the setLabels method. Each label key/value must comply
      * with RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -5937,7 +6238,7 @@ export namespace compute_alpha {
     /**
      * A list of InterconnectAttachmentsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$InterconnectAttachmentsScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#interconnectAttachmentAggregatedList for aggregated lists of
@@ -5959,7 +6260,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Response to the list request, and contains a list of interconnect
@@ -5994,7 +6299,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Informational metadata about Partner attachments from Partners to display
@@ -6040,7 +6349,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Describes a single physical circuit between the Customer and Google.
@@ -6061,6 +6374,77 @@ export namespace compute_alpha {
      * provided by Google to the customer in the LOA.
      */
     googleDemarcId?: string;
+  }
+  /**
+   * Diagnostics information about interconnect, contains detailed and current
+   * technical information about Google?s side of the connection.
+   */
+  export interface Schema$InterconnectDiagnostics {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing individual
+     * neighbors currently seen by the Google router in the ARP cache for the
+     * Interconnect. This will be empty when the Interconnect is not bundled.
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * A list of InterconnectDiagnostics.LinkStatus objects, describing the
+     * status for each link on the Interconnect.
+     */
+    links?: Schema$InterconnectDiagnosticsLinkStatus[];
+    /**
+     * The MAC address of the Interconnect&#39;s bundle interface.
+     */
+    macAddress?: string;
+  }
+  /**
+   * Describing the ARP neighbor entries seen on this link
+   */
+  export interface Schema$InterconnectDiagnosticsARPEntry {
+    /**
+     * The IP address of this ARP neighbor.
+     */
+    ipAddress?: string;
+    /**
+     * The MAC address of this ARP neighbor.
+     */
+    macAddress?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkLACPStatus {
+    /**
+     * System ID of the port on Google?s side of the LACP exchange.
+     */
+    googleSystemId?: string;
+    /**
+     * System ID of the port on the neighbor?s side of the LACP exchange.
+     */
+    neighborSystemId?: string;
+    state?: string;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    state?: string;
+    /**
+     * Value of the current optical power, read in dBm.
+     */
+    value?: number;
+  }
+  export interface Schema$InterconnectDiagnosticsLinkStatus {
+    /**
+     * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP
+     * neighbor entries seen on this link. This will be empty if the link is
+     * bundled
+     */
+    arpCaches?: Schema$InterconnectDiagnosticsARPEntry[];
+    /**
+     * The unique ID for this link assigned during turn up by Google.
+     */
+    circuitId?: string;
+    /**
+     * The Demarc address assigned by Google and provided in the LoA.
+     */
+    googleDemarc?: string;
+    lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
   }
   /**
    * Response to the list request, and contains a list of interconnects.
@@ -6094,7 +6478,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents an InterconnectLocations resource. The InterconnectLocations
@@ -6108,10 +6496,10 @@ export namespace compute_alpha {
      */
     address?: string;
     /**
-     * [Output Only] Availability zone for this location. Within a metropolitan
-     * area (metro), maintenance will not be simultaneously scheduled in more
-     * than one availability zone. Example: &quot;zone1&quot; or
-     * &quot;zone2&quot;.
+     * [Output Only] Availability zone for this InterconnectLocation. Within a
+     * metropolitan area (metro), maintenance will not be simultaneously
+     * scheduled in more than one availability zone. Example: &quot;zone1&quot;
+     * or &quot;zone2&quot;.
      */
     availabilityZone?: string;
     /**
@@ -6170,6 +6558,12 @@ export namespace compute_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The status of this InterconnectLocation. If the status is
+     * AVAILABLE, new Interconnects may be provisioned in this
+     * InterconnectLocation. Otherwise, no new Interconnects may be provisioned.
+     */
+    status?: string;
   }
   /**
    * Response to the list request, and contains a list of interconnect
@@ -6204,7 +6598,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Information about any potential InterconnectAttachments between an
@@ -6269,6 +6667,34 @@ export namespace compute_alpha {
      */
     state?: string;
   }
+  /**
+   * Response for the InterconnectsGetDiagnosticsRequest.
+   */
+  export interface Schema$InterconnectsGetDiagnosticsResponse {
+    result?: Schema$InterconnectDiagnostics;
+  }
+  export interface Schema$InternalIpAddress {
+    /**
+     * IP CIDR address or range.
+     */
+    cidr?: string;
+    /**
+     * The owner of the internal IP address.
+     */
+    owner?: string;
+    /**
+     * The purpose of the internal IP address if applicable.
+     */
+    purpose?: string;
+    /**
+     * The region of the internal IP address if applicable.
+     */
+    region?: string;
+    /**
+     * The type of the internal IP address.
+     */
+    type?: string;
+  }
   export interface Schema$InternalIpOwner {
     /**
      * IP CIDR range being owned.
@@ -6282,6 +6708,41 @@ export namespace compute_alpha {
      * Whether this IP CIDR range is reserved for system use.
      */
     systemOwned?: boolean;
+  }
+  export interface Schema$IpAddressesList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of InternalIpAddress resources.
+     */
+    items?: Schema$InternalIpAddress[];
+    /**
+     * [Output Only] Type of resource. Always compute#ipAddressesList for IP
+     * addresses lists.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of IP owners.
@@ -6315,7 +6776,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A license resource.
@@ -6350,8 +6815,8 @@ export namespace compute_alpha {
      */
     licenseCode?: string;
     /**
-     * [Output Only] Name of the resource. The name is 1-63 characters long and
-     * complies with RFC1035.
+     * Name of the resource. The name must be 1-63 characters long and comply
+     * with RFC1035.
      */
     name?: string;
     resourceRequirements?: Schema$LicenseResourceRequirements;
@@ -6454,7 +6919,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Specifies what kind of log the caller must write
@@ -6492,16 +6961,17 @@ export namespace compute_alpha {
    * and end in &quot;_count&quot;. Field names should not contain an initial
    * slash. The actual exported metric names will have &quot;/iam/policy&quot;
    * prepended.  Field names correspond to IAM request parameters and field
-   * values are their respective values.  At present the only supported field
-   * names are - &quot;iam_principal&quot;, corresponding to
-   * IAMContext.principal; - &quot;&quot; (empty string), resulting in one
-   * aggretated counter with no field.  Examples: counter { metric:
+   * values are their respective values.  Supported field names: -
+   * &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is
+   * present, otherwise the value of IAMContext.authority_selector if present,
+   * and otherwise a representation of IAMContext.principal; or -
+   * &quot;iam_principal&quot;, a representation of IAMContext.principal even if
+   * a token or authority selector is present; or - &quot;&quot; (empty string),
+   * resulting in a counter with no fields.  Examples: counter { metric:
    * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
    * increment counter /iam/policy/backend_debug_access_count
    * {iam_principal=[value of IAMContext.principal]}  At this time we do not
-   * support: * multiple field names (though this may be supported in the
-   * future) * decrementing the counter * incrementing it by anything other than
-   * 1
+   * support multiple field names (though this may be supported in the future).
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -6519,9 +6989,113 @@ export namespace compute_alpha {
   export interface Schema$LogConfigDataAccessOptions {
     /**
      * Whether Gin logging should happen in a fail-closed manner at the caller.
-     * This is relevant only in the LocalIAM implementation, for now.
+     * This is relevant only in the LocalIAM implementation, for now.  NOTE:
+     * Logging to Gin in a fail-closed manner is currently unsupported while
+     * work is being done to satisfy the requirements of go/345. Currently,
+     * setting LOG_FAIL_CLOSED mode will have no effect, but still exists
+     * because there is active work being done to support it (b/115874152).
      */
     logMode?: string;
+  }
+  /**
+   * Machine image resource.
+   */
+  export interface Schema$MachineImage {
+    /**
+     * [Output Only] The creation timestamp for this machine image in RFC3339
+     * text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] A unique identifier for this machine image. The server
+     * defines this identifier.
+     */
+    id?: string;
+    /**
+     * [Output Only] The resource type, which is always compute#machineImage for
+     * machine image.
+     */
+    kind?: string;
+    /**
+     * Name of the resource; provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character
+     * must be a lowercase letter, and all following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
+     */
+    name?: string;
+    /**
+     * [Output Only] The URL for this machine image. The server defines this
+     * URL.
+     */
+    selfLink?: string;
+    /**
+     * The source instance used to create the machine image. You can provide
+     * this as a partial or full URL to the resource. For example, the following
+     * are valid values:   -
+     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
+     * - projects/project/zones/zone/instances/instance
+     */
+    sourceInstance?: string;
+    /**
+     * [Output Only] properties of source instance. Currently, input for this
+     * field is not supported.
+     */
+    sourceInstanceProperties?: Schema$SourceInstanceProperties;
+    /**
+     * [Output Only] The status of disk creation.
+     */
+    status?: string;
+    /**
+     * GCS bucket storage location of the snapshot (regional or multi-regional).
+     */
+    storageLocations?: string[];
+  }
+  /**
+   * A list of machine images.
+   */
+  export interface Schema$MachineImageList {
+    etag?: string;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of MachineImage resources.
+     */
+    items?: Schema$MachineImage[];
+    /**
+     * [Output Only] The resource type, which is always
+     * compute#machineImagesListResponse for machine image lists.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A Machine Type resource. (== resource_for v1.machineTypes ==) (==
@@ -6595,7 +7169,7 @@ export namespace compute_alpha {
     /**
      * A list of MachineTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$MachineTypesScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#machineTypeAggregatedList
      * for aggregated lists of machine types.
@@ -6616,7 +7190,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of machine types.
@@ -6650,7 +7228,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$MachineTypesScopedList {
     /**
@@ -6661,7 +7243,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the machine
      * types list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A Managed Instance resource.
@@ -6701,6 +7287,10 @@ export namespace compute_alpha {
      */
     instance?: string;
     /**
+     * [Output Only] Health state of the instance per health-check.
+     */
+    instanceHealth?: Schema$ManagedInstanceInstanceHealth[];
+    /**
      * [Output Only] The status of the instance. This field is empty when the
      * instance does not exist.
      */
@@ -6728,12 +7318,25 @@ export namespace compute_alpha {
      */
     version?: Schema$ManagedInstanceVersion;
   }
+  export interface Schema$ManagedInstanceInstanceHealth {
+    /**
+     * [Output Only] The URL for the health check that verifies whether the
+     * instance is healthy.
+     */
+    healthCheck?: string;
+    /**
+     * [Output Only] The current instance health state.
+     */
+    healthState?: string;
+  }
   export interface Schema$ManagedInstanceLastAttempt {
     /**
      * [Output Only] Encountered errors during the last attempt to create or
      * delete the instance.
      */
-    errors?: any;
+    errors?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
   }
   /**
    * Overrides of stateful properties for a given instance
@@ -6750,7 +7353,7 @@ export namespace compute_alpha {
      * Metadata overrides defined for this instance. TODO(b/69785416) validate
      * the total length is &lt;9 KB
      */
-    metadata?: any[];
+    metadata?: Array<{key?: string; value?: string;}>;
     /**
      * [Output Only] Indicates where does the override come from.
      */
@@ -6791,14 +7394,16 @@ export namespace compute_alpha {
      * the metadata&#39;s contents and used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update metadata. You must always provide an
-     * up-to-date fingerprint hash in order to update or change metadata.
+     * up-to-date fingerprint hash in order to update or change metadata.  To
+     * see the latest fingerprint, make a get() request to retrieve the
+     * resource.
      */
     fingerprint?: string;
     /**
      * Array of key/value pairs. The total size of all keys and values must be
      * less than 512 KB.
      */
-    items?: any[];
+    items?: Array<{key?: string; value?: string;}>;
     /**
      * [Output Only] Type of the resource. Always compute#metadata for metadata.
      */
@@ -6819,17 +7424,17 @@ export namespace compute_alpha {
     port?: number;
   }
   /**
-   * Represents a Network resource. Read Networks and Firewalls for more
-   * information. (== resource_for v1.networks ==) (== resource_for
-   * beta.networks ==)
+   * Represents a Network resource. Read Virtual Private Cloud (VPC) Network
+   * Overview for more information. (== resource_for v1.networks ==) (==
+   * resource_for beta.networks ==)
    */
   export interface Schema$Network {
     /**
-     * When set to true, the network is created in &quot;auto subnet mode&quot;.
-     * When set to false, the network is in &quot;custom subnet mode&quot;.  In
-     * &quot;auto subnet mode&quot;, a newly created network is assigned the
-     * default CIDR of 10.128.0.0/9 and it automatically creates one subnetwork
-     * per region.
+     * When set to true, the VPC network is created in &quot;auto&quot; mode.
+     * When set to false, the VPC network is created in &quot;custom&quot; mode.
+     * An auto mode VPC network starts with one subnet per region. Each subnet
+     * has a predetermined range as described in Auto mode VPC network IP
+     * ranges.
      */
     autoCreateSubnetworks?: boolean;
     /**
@@ -6846,9 +7451,8 @@ export namespace compute_alpha {
      */
     description?: string;
     /**
-     * A gateway address for default routing to other networks. This value is
-     * read only and is selected by the Google Compute Engine, typically as the
-     * first usable address in the IPv4Range.
+     * [Output Only] The gateway address for default routing out of the network.
+     * This value is read only and is selected by GCP.
      */
     gatewayIPv4?: string;
     /**
@@ -6896,7 +7500,7 @@ export namespace compute_alpha {
     selfLink?: string;
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in
-     * this network.
+     * this VPC network.
      */
     subnetworks?: string[];
   }
@@ -6905,10 +7509,14 @@ export namespace compute_alpha {
    */
   export interface Schema$NetworkEndpoint {
     /**
+     * Metadata defined as annotations on the network endpoint.
+     */
+    annotations?: {[key: string]: string;};
+    /**
      * The name for a specific VM instance that the IP address belongs to. This
-     * is required for network endpoints of type GCE_VM_IP and GCE_VM_IP_PORT.
-     * The instance must be in the same zone of network endpoint group.  The
-     * name must be 1-63 characters long, and comply with RFC1035.
+     * is required for network endpoints of type GCE_VM_IP_PORT. The instance
+     * must be in the same zone of network endpoint group.  The name must be
+     * 1-63 characters long, and comply with RFC1035.
      */
     instance?: string;
     /**
@@ -6931,9 +7539,18 @@ export namespace compute_alpha {
    */
   export interface Schema$NetworkEndpointGroup {
     /**
+     * Metadata defined as annotations on the network endpoint group.
+     */
+    annotations?: {[key: string]: string;};
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
+    /**
+     * The default port used if the port number is not specified in the network
+     * endpoint.
+     */
+    defaultPort?: number;
     /**
      * An optional description of this resource. Provide this property when you
      * create the resource.
@@ -6950,8 +7567,8 @@ export namespace compute_alpha {
      */
     kind?: string;
     /**
-     * This field is only valid when the network endpoint group type is
-     * LOAD_BALANCING.
+     * This field is only valid when the network endpoint group is used for load
+     * balancing. [Deprecated] This field is deprecated.
      */
     loadBalancer?: Schema$NetworkEndpointGroupLbNetworkEndpointGroup;
     /**
@@ -6965,8 +7582,13 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
-     * Type of network endpoints in this network endpoint group. Only supported
-     * values for LOAD_BALANCING are GCE_VM_IP or GCE_VM_IP_PORT.
+     * The URL of the network to which all network endpoints in the NEG belong.
+     * Uses &quot;default&quot; project network if unspecified.
+     */
+    network?: string;
+    /**
+     * Type of network endpoints in this network endpoint group. Currently the
+     * only supported value is GCE_VM_IP_PORT.
      */
     networkEndpointType?: string;
     /**
@@ -6978,10 +7600,20 @@ export namespace compute_alpha {
      */
     size?: number;
     /**
+     * Optional URL of the subnetwork to which all network endpoints in the NEG
+     * belong.
+     */
+    subnetwork?: string;
+    /**
      * Specify the type of this network endpoint group. Only LOAD_BALANCING is
      * valid for now.
      */
     type?: string;
+    /**
+     * [Output Only] The URL of the zone where the network endpoint group is
+     * located.
+     */
+    zone?: string;
   }
   export interface Schema$NetworkEndpointGroupAggregatedList {
     /**
@@ -6991,7 +7623,7 @@ export namespace compute_alpha {
     /**
      * A list of NetworkEndpointGroupsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NetworkEndpointGroupsScopedList;};
     /**
      * [Output Only] The resource type, which is always
      * compute#networkEndpointGroupAggregatedList for aggregated lists of
@@ -7013,32 +7645,35 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
-   * Load balancing specific fields for network endpoint group of type
-   * LOAD_BALANCING.
+   * Load balancing specific fields for network endpoint group.
    */
   export interface Schema$NetworkEndpointGroupLbNetworkEndpointGroup {
     /**
      * The default port used if the port number is not specified in the network
-     * endpoint. If the network endpoint type is GCE_VM_IP, this field must not
-     * be specified.
+     * endpoint. [Deprecated] This field is deprecated.
      */
     defaultPort?: number;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses &quot;default&quot; project network if unspecified.
+     * Uses &quot;default&quot; project network if unspecified. [Deprecated]
+     * This field is deprecated.
      */
     network?: string;
     /**
      * Optional URL of the subnetwork to which all network endpoints in the NEG
-     * belong.
+     * belong. [Deprecated] This field is deprecated.
      */
     subnetwork?: string;
     /**
      * [Output Only] The URL of the zone where the network endpoint group is
-     * located.
+     * located. [Deprecated] This field is deprecated.
      */
     zone?: string;
   }
@@ -7071,7 +7706,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NetworkEndpointGroupsAttachEndpointsRequest {
     /**
@@ -7119,7 +7758,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NetworkEndpointGroupsScopedList {
     /**
@@ -7131,7 +7774,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that replaces the list of network
      * endpoint groups when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NetworkEndpointWithHealthStatus {
     /**
@@ -7238,7 +7885,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A network peering attached to a network resource. The message includes the
@@ -7254,6 +7905,14 @@ export namespace compute_alpha {
      * network.
      */
     autoCreateRoutes?: boolean;
+    /**
+     * Whether full mesh connectivity is created and managed automatically. When
+     * it is set to true, Google Compute Engine will automatically create and
+     * manage the routes between two networks when the peering state is ACTIVE.
+     * Otherwise, user needs to create routes manually to route packets to peer
+     * network.
+     */
+    exchangeSubnetRoutes?: boolean;
     /**
      * Whether to export the custom routes to peer network.
      */
@@ -7295,9 +7954,9 @@ export namespace compute_alpha {
   export interface Schema$NetworkRoutingConfig {
     /**
      * The network-wide routing mode to use. If set to REGIONAL, this
-     * network&#39;s cloud routers will only advertise routes with subnetworks
-     * of this network in the same region as the router. If set to GLOBAL, this
-     * network&#39;s cloud routers will advertise routes with all subnetworks of
+     * network&#39;s cloud routers will only advertise routes with subnets of
+     * this network in the same region as the router. If set to GLOBAL, this
+     * network&#39;s cloud routers will advertise routes with all subnets of
      * this network, across regions.
      */
     routingMode?: string;
@@ -7320,6 +7979,10 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
+     * Network peering parameters.
+     */
+    networkPeering?: Schema$NetworkPeering;
+    /**
      * URL of the peer network. It can be either full URL or partial URL. The
      * peer network may belong to a different project. If the partial URL does
      * not contain project, it is assumed that the peer network is in the same
@@ -7332,6 +7995,9 @@ export namespace compute_alpha {
      * Name of the peering, which should conform to RFC1035.
      */
     name?: string;
+  }
+  export interface Schema$NetworksUpdatePeeringRequest {
+    networkPeering?: Schema$NetworkPeering;
   }
   /**
    * A NodeGroup resource.
@@ -7367,10 +8033,6 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
-     * [Output Only] A list of nodes in this node group.
-     */
-    nodes?: Schema$NodeGroupNode[];
-    /**
      * The URL of the node template to which this node group belongs.
      */
     nodeTemplate?: string;
@@ -7378,6 +8040,10 @@ export namespace compute_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The total number of nodes in the node group.
+     */
+    size?: number;
     status?: string;
     /**
      * [Output Only] The name of the zone where the node group resides, such as
@@ -7393,7 +8059,7 @@ export namespace compute_alpha {
     /**
      * A list of NodeGroupsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NodeGroupsScopedList;};
     /**
      * [Output Only] Type of resource.Always compute#nodeGroupAggregatedList for
      * aggregated lists of node groups.
@@ -7414,7 +8080,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of nodeGroups.
@@ -7448,10 +8118,13 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeGroupNode {
-    index?: number;
     /**
      * Instances scheduled on this node.
      */
@@ -7464,6 +8137,11 @@ export namespace compute_alpha {
      * The type of this node.
      */
     nodeType?: string;
+    /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
+    status?: string;
   }
   export interface Schema$NodeGroupsAddNodesRequest {
     /**
@@ -7472,11 +8150,43 @@ export namespace compute_alpha {
     additionalNodeCount?: number;
   }
   export interface Schema$NodeGroupsDeleteNodesRequest {
-    /**
-     * Indexes of the nodes to be deleted from the node group.
-     */
-    nodeIndexes?: number[];
     nodes?: string[];
+  }
+  export interface Schema$NodeGroupsListNodes {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of Node resources.
+     */
+    items?: Schema$NodeGroupNode[];
+    /**
+     * [Output Only] The resource type, which is always
+     * compute.nodeGroupsListNodes for the list of nodes in the specified node
+     * group.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeGroupsScopedList {
     /**
@@ -7487,7 +8197,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the nodeGroup
      * list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeGroupsSetNodeTemplateRequest {
     /**
@@ -7525,7 +8239,7 @@ export namespace compute_alpha {
      * with RFC1035. Specifically, the name must be 1-63 characters long and
      * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
      * first character must be a lowercase letter, and all following characters
-     * must be a dash, lowercase letter, or digit, except the last charaicter,
+     * must be a dash, lowercase letter, or digit, except the last character,
      * which cannot be a dash.
      */
     name?: string;
@@ -7533,7 +8247,7 @@ export namespace compute_alpha {
      * Labels to use for node affinity, which will be used in instance
      * scheduling.
      */
-    nodeAffinityLabels?: any;
+    nodeAffinityLabels?: {[key: string]: string;};
     /**
      * The node type to use for nodes group that are created from this template.
      */
@@ -7555,6 +8269,10 @@ export namespace compute_alpha {
      */
     selfLink?: string;
     /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
+    /**
      * [Output Only] The status of the node template. One of the following
      * values: CREATING, READY, and DELETING.
      */
@@ -7572,7 +8290,7 @@ export namespace compute_alpha {
     /**
      * A list of NodeTemplatesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NodeTemplatesScopedList;};
     /**
      * [Output Only] Type of resource.Always compute#nodeTemplateAggregatedList
      * for aggregated lists of node templates.
@@ -7593,7 +8311,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of node templates.
@@ -7627,7 +8349,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeTemplateNodeTypeFlexibility {
     cpus?: string;
@@ -7643,7 +8369,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the node
      * templates list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A Node Type resource.
@@ -7711,7 +8441,7 @@ export namespace compute_alpha {
     /**
      * A list of NodeTypesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$NodeTypesScopedList;};
     /**
      * [Output Only] Type of resource.Always compute#nodeTypeAggregatedList for
      * aggregated lists of node types.
@@ -7732,7 +8462,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of node types.
@@ -7766,7 +8500,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$NodeTypesScopedList {
     /**
@@ -7777,7 +8515,11 @@ export namespace compute_alpha {
      * [Output Only] An informational warning that appears when the node types
      * list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * An Operation resource, used to manage asynchronous API requests. (==
@@ -7810,7 +8552,9 @@ export namespace compute_alpha {
      * [Output Only] If errors are generated during processing of the operation,
      * this field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as NOT FOUND.
@@ -7900,7 +8644,11 @@ export namespace compute_alpha {
      * [Output Only] If warning messages are generated during processing of the
      * operation, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
     /**
      * [Output Only] The URL of the zone where the operation resides. Only
      * available when performing per-zone operations. You must specify this
@@ -7918,7 +8666,7 @@ export namespace compute_alpha {
     /**
      * [Output Only] A map of scoped operation lists.
      */
-    items?: any;
+    items?: {[key: string]: Schema$OperationsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#operationAggregatedList
      * for aggregated lists of operations.
@@ -7939,7 +8687,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Operation resources.
@@ -7974,7 +8726,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$OperationsScopedList {
     /**
@@ -7985,7 +8741,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of operations
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A matcher for the path portion of the URL. The BackendService from the
@@ -7995,12 +8755,19 @@ export namespace compute_alpha {
   export interface Schema$PathMatcher {
     /**
      * The full or partial URL to the BackendService resource. This will be used
-     * if none of the pathRules defined by this PathMatcher is matched by the
-     * URL&#39;s path portion. For example, the following are all valid URLs to
-     * a BackendService resource:   -
+     * if none of the pathRules or routeRules defined by this PathMatcher are
+     * matched. For example, the following are all valid URLs to a
+     * BackendService resource:   -
      * https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService
      * - compute/v1/projects/project/global/backendServices/backendService  -
-     * global/backendServices/backendService
+     * global/backendServices/backendService   Use defaultService instead of
+     * defaultRouteAction when simple routing to a backend service is desired
+     * and other advanced capabilities like traffic splitting and URL rewrites
+     * are not required. Only one of defaultService, defaultRouteAction or
+     * defaultUrlRedirect must be set. Authorization requires one or more of the
+     * following Google IAM permissions on the specified resource
+     * default_service:   - compute.backendBuckets.use  -
+     * compute.backendServices.use
      */
     defaultService?: string;
     /**
@@ -8013,7 +8780,13 @@ export namespace compute_alpha {
      */
     name?: string;
     /**
-     * The list of path rules.
+     * The list of path rules. Use this list instead of routeRules when routing
+     * based on simple path matching is all that&#39;s required. The order by
+     * which path rules are specified does not matter. Matches are always done
+     * on the longest-path-first basis. For example: a pathRule with a path
+     * /a/b/c/* will match before /a/b/* irrespective of the order in which
+     * those paths appear in this list. Only one of pathRules or routeRules must
+     * be set.
      */
     pathRules?: Schema$PathRule[];
   }
@@ -8030,7 +8803,11 @@ export namespace compute_alpha {
      */
     paths?: string[];
     /**
-     * The URL of the BackendService resource if this rule is matched.
+     * The URL of the backend service resource if this rule is matched. Use
+     * service instead of routeAction when simple routing to a backend service
+     * is desired and other advanced capabilities like traffic splitting and
+     * rewrites are not required. Only one of service, routeAction or
+     * urlRedirect should must be set.
      */
     service?: string;
   }
@@ -8353,7 +9130,23 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$RegionDisksAddResourcePoliciesRequest {
+    /**
+     * Resource policies to be added to this disk.
+     */
+    resourcePolicies?: string[];
+  }
+  export interface Schema$RegionDisksRemoveResourcePoliciesRequest {
+    /**
+     * Resource policies to be removed from this disk.
+     */
+    resourcePolicies?: string[];
   }
   export interface Schema$RegionDisksResizeRequest {
     /**
@@ -8390,7 +9183,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of InstanceGroup resources.
@@ -8423,7 +9220,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * RegionInstanceGroupManagers.deletePerInstanceConfigs
@@ -8468,7 +9269,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionInstanceGroupManagersAbandonInstancesRequest {
     /**
@@ -8520,7 +9325,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionInstanceGroupManagersListInstancesResponse {
     /**
@@ -8605,7 +9414,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionInstanceGroupsListInstancesRequest {
     /**
@@ -8667,7 +9480,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RegionSetLabelsRequest {
     /**
@@ -8682,7 +9499,7 @@ export namespace compute_alpha {
     /**
      * The labels to set for this resource.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$RegionSetPolicyRequest {
     /**
@@ -8703,6 +9520,14 @@ export namespace compute_alpha {
      */
     policy?: Schema$Policy;
   }
+  export interface Schema$RegionTargetHttpsProxiesSetSslCertificatesRequest {
+    /**
+     * New set of SslCertificate resources to associate with this
+     * TargetHttpsProxy resource. Currently exactly one SslCertificate resource
+     * must be specified.
+     */
+    sslCertificates?: string[];
+  }
   export interface Schema$RegionUrlMapsValidateRequest {
     /**
      * Content of the UrlMap to be validated.
@@ -8714,6 +9539,11 @@ export namespace compute_alpha {
    * more of these).
    */
   export interface Schema$ResourceCommitment {
+    /**
+     * Name of the accelerator type resource. Applicable only when the type is
+     * ACCELERATOR.
+     */
+    acceleratorType?: string;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as
      * bytes). For vCPUs, this can just be an integer. For memory, this must be
@@ -8729,43 +9559,10 @@ export namespace compute_alpha {
   }
   export interface Schema$ResourceGroupReference {
     /**
-     * A URI referencing one of the instance groups listed in the backend
-     * service.
+     * A URI referencing one of the instance groups or network endpoint groups
+     * listed in the backend service.
      */
     group?: string;
-  }
-  export interface Schema$ResourcePoliciesList {
-    etag?: string;
-    /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
-     */
-    id?: string;
-    /**
-     * [Output Only] A list of ResourcePolicy resources.
-     */
-    items?: Schema$ResourcePolicy[];
-    /**
-     * [Output Only] Type of resource.Always compute#resourcePoliciesList for
-     * listsof resourcePolicies
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: any;
   }
   export interface Schema$ResourcePoliciesScopedList {
     /**
@@ -8776,7 +9573,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of resourcePolicies when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$ResourcePolicy {
     /**
@@ -8830,7 +9631,7 @@ export namespace compute_alpha {
     /**
      * A list of ResourcePolicy resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$ResourcePoliciesScopedList;};
     /**
      * Type of resource.
      */
@@ -8850,12 +9651,16 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A backup schedule policy specifies when and how frequently snapshots are to
    * be created for the target disk. Also specifies how many and how long these
-   * automatically created snapshot should be retained.
+   * scheduled snapshots should be retained.
    */
   export interface Schema$ResourcePolicyBackupSchedulePolicy {
     /**
@@ -8869,20 +9674,30 @@ export namespace compute_alpha {
      */
     schedule?: Schema$ResourcePolicyBackupSchedulePolicySchedule;
     /**
-     * Properties with which snapshots are created such as lables, encryption
+     * Properties with which snapshots are created such as labels, encryption
      * keys.
      */
     snapshotProperties?:
         Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties;
   }
   /**
-   * Policy for retention of automatically created snapshots.
+   * Policy for retention of scheduled snapshots.
    */
   export interface Schema$ResourcePolicyBackupSchedulePolicyRetentionPolicy {
     /**
      * Maximum age of the snapshot that is allowed to be kept.
      */
     maxRetentionDays?: number;
+    /**
+     * Specifies the behavior to apply to existing, scheduled snapshots
+     * snapshots if the policy is changed.
+     */
+    onPolicySwitch?: string;
+    /**
+     * Specifies the behavior to apply to scheduled snapshots when the source
+     * disk is deleted.
+     */
+    onSourceDiskDelete?: string;
   }
   /**
    * A schedule for disks where the schedueled operations are performed.
@@ -8893,7 +9708,7 @@ export namespace compute_alpha {
     weeklySchedule?: Schema$ResourcePolicyWeeklyCycle;
   }
   /**
-   * Specified snapshot properties for automatic snapshots created by this
+   * Specified snapshot properties for scheduled snapshots created by this
    * policy.
    */
   export interface Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties {
@@ -8902,10 +9717,15 @@ export namespace compute_alpha {
      */
     guestFlush?: boolean;
     /**
-     * Labels to apply to automatic snapshots. These can be later modified by
+     * Labels to apply to scheduled snapshots. These can be later modified by
      * the setLabels method. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
+    /**
+     * GCS bucket storage location of the auto snapshot (regional or
+     * multi-regional).
+     */
+    storageLocations?: string[];
   }
   /**
    * Time window specified for daily operations.
@@ -8922,7 +9742,7 @@ export namespace compute_alpha {
     duration?: string;
     /**
      * Time within the window to start the operations. It must be in format
-     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-00] GMT.
      */
     startTime?: string;
   }
@@ -8941,16 +9761,48 @@ export namespace compute_alpha {
     hoursInCycle?: number;
     /**
      * Time within the window to start the operations. It must be in format
-     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-00] GMT.
      */
     startTime?: string;
   }
-  export interface Schema$ResourcePolicyVmMaintenancePolicy {
+  export interface Schema$ResourcePolicyList {
+    etag?: string;
     /**
-     * A hint about the environment this VM belongs to (production vs
-     * develoment)
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      */
-    maintenanceEnvironment?: string;
+    id?: string;
+    /**
+     * [Output Only] A list of ResourcePolicy resources.
+     */
+    items?: Schema$ResourcePolicy[];
+    /**
+     * [Output Only] Type of resource.Always compute#resourcePoliciesList for
+     * listsof resourcePolicies
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$ResourcePolicyVmMaintenancePolicy {
     /**
      * Maintenance windows that are applied to VMs covered by this policy.
      */
@@ -8963,7 +9815,6 @@ export namespace compute_alpha {
    */
   export interface Schema$ResourcePolicyVmMaintenancePolicyMaintenanceWindow {
     dailyMaintenanceWindow?: Schema$ResourcePolicyDailyCycle;
-    weeklyMaintenanceWindow?: Schema$ResourcePolicyWeeklyCycle;
   }
   /**
    * Time window specified for weekly operations.
@@ -8986,7 +9837,7 @@ export namespace compute_alpha {
     duration?: string;
     /**
      * Time within the window to start the operations. It must be in format
-     * &quot;HH:MM?, where HH : [00-23] and MM : [00-59] GMT.
+     * &quot;HH:MM?, where HH : [00-23] and MM : [00-00] GMT.
      */
     startTime?: string;
   }
@@ -9106,7 +9957,11 @@ export namespace compute_alpha {
      * [Output Only] If potential misconfigurations are detected for this route,
      * this field will be populated with warning messages.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   /**
    * Contains a list of Route resources.
@@ -9139,7 +9994,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Router resource.
@@ -9232,7 +10091,7 @@ export namespace compute_alpha {
     /**
      * A list of Router resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$RoutersScopedList;};
     /**
      * Type of resource.
      */
@@ -9252,7 +10111,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RouterBgp {
     /**
@@ -9409,7 +10272,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents a Nat resource. It enables the VMs within the specified
@@ -9420,17 +10287,13 @@ export namespace compute_alpha {
    */
   export interface Schema$RouterNat {
     /**
-     * [Output Only] A list of IPs allocated automatically by GCP for this Nat
-     * service. They will be raw IP strings like &quot;179.12.26.133&quot;. They
-     * are ephemeral IPs allocated from the IP blocks managed by the NAT
-     * manager. This list can grow and shrink based on the number of VMs
-     * configured to use NAT.
-     */
-    autoAllocatedNatIps?: string[];
-    /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      */
     icmpIdleTimeoutSec?: number;
+    /**
+     * Configure logging on this NAT.
+     */
+    logConfig?: Schema$RouterNatLogConfig;
     /**
      * Minimum number of ports allocated to a VM from this NAT config. If not
      * set, a default number of ports is allocated to a VM. This gets rounded up
@@ -9483,6 +10346,20 @@ export namespace compute_alpha {
     udpIdleTimeoutSec?: number;
   }
   /**
+   * Configuration of logging on a NAT.
+   */
+  export interface Schema$RouterNatLogConfig {
+    /**
+     * Indicates whether or not to export logs. This is false by default.
+     */
+    enabled?: boolean;
+    /**
+     * Specifies the desired filtering of logs on this NAT. If unspecified, logs
+     * are exported for all connections handled by this NAT.
+     */
+    filter?: string;
+  }
+  /**
    * Defines the IP ranges that want to use NAT for a subnetwork.
    */
   export interface Schema$RouterNatSubnetworkToNat {
@@ -9503,7 +10380,7 @@ export namespace compute_alpha {
      * valid option with multiple values is: [&quot;PRIMARY_IP_RANGE&quot;,
      * &quot;LIST_OF_SECONDARY_IP_RANGES&quot;] Default: [ALL_IP_RANGES]
      */
-    sourceIpRangesToNats?: string[];
+    sourceIpRangesToNat?: string[];
   }
   export interface Schema$RoutersPreviewResponse {
     /**
@@ -9520,7 +10397,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of routers when the list is
      * empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$RouterStatus {
     /**
@@ -9663,6 +10544,129 @@ export namespace compute_alpha {
     permissions?: string[];
   }
   /**
+   * An instance-attached disk resource.
+   */
+  export interface Schema$SavedAttachedDisk {
+    /**
+     * Specifies whether the disk will be auto-deleted when the instance is
+     * deleted (but not when the disk is detached from the instance).
+     */
+    autoDelete?: boolean;
+    /**
+     * Indicates that this is a boot disk. The virtual machine will use the
+     * first partition of the disk for its root filesystem.
+     */
+    boot?: boolean;
+    /**
+     * Specifies a unique device name of your choice that is reflected into the
+     * /dev/disk/by-id/google-* tree of a Linux operating system running within
+     * the instance. This name can be used to reference the device for mounting,
+     * resizing, and so on, from within the instance.  If not specified, the
+     * server chooses a default device name to apply to this disk, in the form
+     * persistent-disks-x, where x is a number assigned by Google Compute
+     * Engine. This field is only applicable for persistent disks.
+     */
+    deviceName?: string;
+    /**
+     * Encrypts or decrypts a disk using a customer-supplied encryption key.  If
+     * you are creating a new disk, this field encrypts the new disk using an
+     * encryption key that you provide. If you are attaching an existing disk
+     * that is already encrypted, this field decrypts the disk using the
+     * customer-supplied encryption key.  If you encrypt a disk using a
+     * customer-supplied key, you must provide the same key again when you
+     * attempt to use this resource at a later time. For example, you must
+     * provide the key when you create a snapshot or an image from the disk or
+     * when you attach the disk to a virtual machine instance.  If you do not
+     * provide an encryption key, then the disk will be encrypted using an
+     * automatically generated key and you do not need to provide a key to use
+     * the disk later.  Machine Images do not store customer-supplied encryption
+     * keys, so you cannot use your own keys to encrypt disks in a managed
+     * instance group.
+     */
+    diskEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * The size of the disk in base-2 GB. This supersedes disk_size_gb in
+     * InitializeParams.
+     */
+    diskSizeGb?: string;
+    /**
+     * A list of features to enable on the guest operating system. Applicable
+     * only for bootable images. Read  Enabling guest operating system features
+     * to see a list of available options.
+     */
+    guestOsFeatures?: Schema$GuestOsFeature[];
+    /**
+     * [Output Only] A zero-based index to this disk, where 0 is reserved for
+     * the boot disk. If you have many disks attached to an instance, each disk
+     * would have a unique index number.
+     */
+    index?: number;
+    /**
+     * [Input Only] Specifies the parameters for a new disk that will be created
+     * alongside the new instance. Use initialization parameters to create boot
+     * disks or local SSDs attached to the new instance.  This property is
+     * mutually exclusive with the source property; you can only define one or
+     * the other, but not both.
+     */
+    initializeParams?: Schema$AttachedDiskInitializeParams;
+    /**
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME. The default is SCSI. Persistent disks must always
+     * use SCSI and the request will fail if you attempt to attach a persistent
+     * disk in any other format than SCSI. Local SSDs can use either NVME or
+     * SCSI. For performance characteristics of SCSI over NVMe, see Local SSD
+     * performance.
+     */
+    interface?: string;
+    /**
+     * [Output Only] Type of the resource. Always compute#attachedDisk for
+     * attached disks.
+     */
+    kind?: string;
+    /**
+     * [Output Only] Any valid publicly visible licenses.
+     */
+    licenses?: string[];
+    /**
+     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If
+     * not specified, the default is to attach the disk in READ_WRITE mode.
+     */
+    mode?: string;
+    /**
+     * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
+     * field is set to PRESERVED if the LocalSSD data has been saved to a
+     * persistent location by customer request. (see the discard_local_ssd
+     * option on Stop/Suspend). Read-only in the api.
+     */
+    savedState?: string;
+    /**
+     * Specifies a valid partial or full URL to an existing Persistent Disk
+     * resource. When creating a new instance, one of
+     * initializeParams.sourceImage or disks.source is required except for local
+     * SSD.  If desired, you can also attach existing non-root persistent disks
+     * using this property. This field is only applicable for persistent disks.
+     * Note that for sourceMachineImage, specify the disk name, not the URL for
+     * the disk.
+     */
+    source?: string;
+    /**
+     * [Output Only] A size of the storage used by the disk&#39;s snapshot.
+     */
+    storageBytes?: string;
+    /**
+     * [Output Only] An indicator whether storageBytes is in a stable state or
+     * it is being adjusted as a result of shared storage reallocation. This
+     * status can either be UPDATING, meaning the size of the snapshot is being
+     * updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+     */
+    storageBytesStatus?: string;
+    /**
+     * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not
+     * specified, the default is PERSISTENT.
+     */
+    type?: string;
+  }
+  /**
    * Sets the scheduling options for an Instance.
    */
   export interface Schema$Scheduling {
@@ -9675,6 +10679,11 @@ export namespace compute_alpha {
      * Compute Engine.
      */
     automaticRestart?: boolean;
+    /**
+     * The minimum number of virtual CPUs this instance will consume when
+     * running on a sole-tenant node.
+     */
+    minNodeCpus?: number;
     /**
      * A set of node affinity and anti-affinity.
      */
@@ -9719,9 +10728,14 @@ export namespace compute_alpha {
   }
   /**
    * A security policy is comprised of one or more rules. It can also be
-   * associated with one or more &#39;targets&#39;. Next available tag: 11
+   * associated with one or more &#39;targets&#39;. (== resource_for
+   * v1.securityPolicies ==) (== resource_for beta.securityPolicies ==)
    */
   export interface Schema$SecurityPolicy {
+    /**
+     * A list of assocations that belong to this policy.
+     */
+    associations?: Schema$SecurityPolicyAssociation[];
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -9764,7 +10778,7 @@ export namespace compute_alpha {
      * modified by the setLabels method. Each label key/value must comply with
      * RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -9786,6 +10800,22 @@ export namespace compute_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * The type indicates the intended use of the security policy. CLOUD_ARMOR
+     * policies apply to backend services. FIREWALL policies apply to
+     * organizations.
+     */
+    type?: string;
+  }
+  export interface Schema$SecurityPolicyAssociation {
+    /**
+     * The resource that the security policy is attached to.
+     */
+    attachmentId?: string;
+    /**
+     * The name for an association.
+     */
+    name?: string;
   }
   export interface Schema$SecurityPolicyList {
     /**
@@ -9812,7 +10842,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SecurityPolicyReference {
     securityPolicy?: string;
@@ -9834,6 +10868,19 @@ export namespace compute_alpha {
      */
     description?: string;
     /**
+     * The direction in which this rule applies. This field may only be
+     * specified when versioned_expr is set to FIREWALL.
+     */
+    direction?: string;
+    /**
+     * Denotes whether to enable logging for a particular rule. If logging is
+     * enabled, logs will be exported to the configured export destination in
+     * Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you
+     * cannot enable logging on &quot;goto_next&quot; rules.  This field may
+     * only be specified when the versioned_expr is set to FIREWALL.
+     */
+    enableLogging?: boolean;
+    /**
      * [Output only] Type of the resource. Always compute#securityPolicyRule for
      * security policy rules
      */
@@ -9853,6 +10900,13 @@ export namespace compute_alpha {
      * the increasing order of priority.
      */
     priority?: number;
+    /**
+     * A list of network resource URLs to which this rule applies. This field
+     * allows you to control which network?s VMs get this rule. If this field is
+     * left blank, all VMs within the organization will receive the rule.  This
+     * field may only be specified when versioned_expr is set to FIREWALL.
+     */
+    targetResources?: string[];
   }
   /**
    * Represents a match condition that incoming traffic is evaluated against.
@@ -9872,10 +10926,6 @@ export namespace compute_alpha {
      */
     expr?: Schema$Expr;
     /**
-     * CIDR IP address range.
-     */
-    srcIpRanges?: string[];
-    /**
      * Preconfigured versioned expression. If this field is specified, config
      * must also be specified. Available preconfigured expressions along with
      * their requirements are: SRC_IPS_V1 - must specify the corresponding
@@ -9885,9 +10935,37 @@ export namespace compute_alpha {
   }
   export interface Schema$SecurityPolicyRuleMatcherConfig {
     /**
+     * CIDR IP address range.  This field may only be specified when
+     * versioned_expr is set to FIREWALL.
+     */
+    destIpRanges?: string[];
+    /**
+     * Pairs of IP protocols and ports that the rule should match.  This field
+     * may only be specified when versioned_expr is set to FIREWALL.
+     */
+    destPorts?: Schema$SecurityPolicyRuleMatcherConfigDestinationPort[];
+    /**
      * CIDR IP address range.
      */
     srcIpRanges?: string[];
+  }
+  export interface Schema$SecurityPolicyRuleMatcherConfigDestinationPort {
+    /**
+     * The IP protocol to which this rule applies. The protocol type is required
+     * when creating a firewall rule. This value can either be one of the
+     * following well known protocol strings (tcp, udp, icmp, esp, ah, ipip,
+     * sctp), or the IP protocol number.
+     */
+    ipProtocol?: string;
+    /**
+     * An optional list of ports to which this rule applies. This field is only
+     * applicable for UDP or TCP protocol. Each entry must be either an integer
+     * or a range. If not specified, this rule applies to connections through
+     * any port.  Example inputs include: [&quot;22&quot;],
+     * [&quot;80&quot;,&quot;443&quot;], and [&quot;12345-12349&quot;].  This
+     * field may only be specified when versioned_expr is set to FIREWALL.
+     */
+    ports?: string[];
   }
   /**
    * An instance&#39;s serial console output.
@@ -9920,6 +10998,9 @@ export namespace compute_alpha {
      */
     start?: string;
   }
+  export interface Schema$ServerBinding {
+    type?: string;
+  }
   /**
    * A service account.
    */
@@ -9938,25 +11019,45 @@ export namespace compute_alpha {
    */
   export interface Schema$ShieldedVmConfig {
     /**
-     * Defines whether the instance should have integrity monitoring enabled.
+     * Defines whether the instance has integrity monitoring enabled.
      */
     enableIntegrityMonitoring?: boolean;
     /**
-     * Defines whether the instance should have secure boot enabled.
+     * Defines whether the instance has Secure Boot enabled.
      */
     enableSecureBoot?: boolean;
     /**
-     * Defines whether the instance should have the TPM enabled.
+     * Defines whether the instance has the vTPM enabled.
      */
     enableVtpm?: boolean;
   }
   /**
-   * The policy describes how boot integrity measurements are evaluated.
+   * A shielded VM identity entry.
+   */
+  export interface Schema$ShieldedVmIdentity {
+    encryptionKey?: Schema$ShieldedVmIdentityEntry;
+    /**
+     * [Output Only] Type of the resource. Always compute#shieldedVmIdentity for
+     * shielded VM identity entry.
+     */
+    kind?: string;
+    signingKey?: Schema$ShieldedVmIdentityEntry;
+  }
+  /**
+   * A Shielded VM Identity Entry.
+   */
+  export interface Schema$ShieldedVmIdentityEntry {
+    ekCert?: string;
+    ekPub?: string;
+  }
+  /**
+   * The policy describes the baseline against which VM instance boot integrity
+   * is measured.
    */
   export interface Schema$ShieldedVmIntegrityPolicy {
     /**
-     * Triggers an auto relearn event: the integrity monitoring module copies
-     * existing guest measurements to the baseline.
+     * Updates the integrity policy baseline using the measurements from the VM
+     * instance&#39;s most recent boot.
      */
     updateAutoLearnPolicy?: boolean;
   }
@@ -9985,7 +11086,7 @@ export namespace compute_alpha {
    */
   export interface Schema$Snapshot {
     /**
-     * [Output Only] Set to true if snapshots are autoamtically by applying
+     * [Output Only] Set to true if snapshots are automatically by applying
      * resource policy on the target disk.
      */
     autoCreated?: boolean;
@@ -10031,7 +11132,7 @@ export namespace compute_alpha {
      * Labels to apply to this snapshot. These can be later modified by the
      * setLabels method. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * [Output Only] Integer license codes indicating which licenses are
      * attached to this snapshot.
@@ -10138,7 +11239,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A specification of the parameters to use when creating the instance
@@ -10152,6 +11257,83 @@ export namespace compute_alpha {
      * Local SSD disks will be created as blank volumes.
      */
     diskConfigs?: Schema$DiskInstantiationConfig[];
+  }
+  export interface Schema$SourceInstanceProperties {
+    /**
+     * Enables instances created based on this machine image to send packets
+     * with source IP addresses other than their own and receive packets with
+     * destination IP addresses other than their own. If these instances will be
+     * used as an IP gateway or it will be set as the next-hop in a Route
+     * resource, specify true. If unsure, leave this set to false. See the
+     * Enable IP forwarding documentation for more information.
+     */
+    canIpForward?: boolean;
+    /**
+     * Whether the instance created from the machine image should be protected
+     * against deletion.
+     */
+    deletionProtection?: boolean;
+    /**
+     * An optional text description for the instances that are created from this
+     * machine image.
+     */
+    description?: string;
+    /**
+     * An array of disks that are associated with the instances that are created
+     * from this machine image.
+     */
+    disks?: Schema$SavedAttachedDisk[];
+    /**
+     * A list of guest accelerator cards&#39; type and count to use for
+     * instances created from the machine image.
+     */
+    guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Labels to apply to instances that are created from this machine image.
+     */
+    labels?: {[key: string]: string;};
+    /**
+     * The machine type to use for instances that are created from this machine
+     * image.
+     */
+    machineType?: string;
+    /**
+     * The metadata key/value pairs to assign to instances that are created from
+     * this machine image. These pairs can consist of custom metadata or
+     * predefined keys. See Project and instance metadata for more information.
+     */
+    metadata?: Schema$Metadata;
+    /**
+     * Minimum cpu/platform to be used by this instance. The instance may be
+     * scheduled on the specified or newer cpu/platform. Applicable values are
+     * the friendly names of CPU platforms, such as minCpuPlatform: &quot;Intel
+     * Haswell&quot; or minCpuPlatform: &quot;Intel Sandy Bridge&quot;. For more
+     * information, read Specifying a Minimum CPU Platform.
+     */
+    minCpuPlatform?: string;
+    /**
+     * An array of network access configurations for this interface.
+     */
+    networkInterfaces?: Schema$NetworkInterface[];
+    /**
+     * Specifies the scheduling options for the instances that are created from
+     * this machine image.
+     */
+    scheduling?: Schema$Scheduling;
+    /**
+     * A list of service accounts with specified scopes. Access tokens for these
+     * service accounts are available to the instances that are created from
+     * this machine image. Use metadata queries to obtain the access tokens for
+     * these instances.
+     */
+    serviceAccounts?: Schema$ServiceAccount[];
+    /**
+     * A list of tags to apply to the instances that are created from this
+     * machine image. The tags identify valid sources or targets for network
+     * firewalls. The setTags method can modify this list of tags. Each tag
+     * within the list must comply with RFC1035.
+     */
+    tags?: Schema$Tags;
   }
   /**
    * An SslCertificate resource. This resource provides a mechanism to upload an
@@ -10209,6 +11391,11 @@ export namespace compute_alpha {
      */
     privateKey?: string;
     /**
+     * [Output Only] URL of the region where the regional SSL Certificate
+     * resides. This field is not applicable to global SSL Certificate.
+     */
+    region?: string;
+    /**
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -10228,6 +11415,41 @@ export namespace compute_alpha {
      * are used.
      */
     type?: string;
+  }
+  export interface Schema$SslCertificateAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of SslCertificatesScopedList resources.
+     */
+    items?: {[key: string]: Schema$SslCertificatesScopedList;};
+    /**
+     * [Output Only] Type of resource. Always
+     * compute#sslCertificateAggregatedList for lists of SSL Certificates.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of SslCertificate resources.
@@ -10260,7 +11482,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Configuration and status of a managed SSL certificate.
@@ -10275,7 +11501,7 @@ export namespace compute_alpha {
      * [Output only] Detailed statuses of the domains specified for managed
      * certificate resource.
      */
-    domainStatus?: any;
+    domainStatus?: {[key: string]: string;};
     /**
      * [Output only] Status of the managed certificate resource.
      */
@@ -10296,6 +11522,21 @@ export namespace compute_alpha {
      * this field.
      */
     privateKey?: string;
+  }
+  export interface Schema$SslCertificatesScopedList {
+    /**
+     * List of SslCertificates contained in this scope.
+     */
+    sslCertificates?: Schema$SslCertificate[];
+    /**
+     * Informational warning which replaces the list of backend services when
+     * the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SSLHealthCheck {
     /**
@@ -10367,7 +11608,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SslPoliciesListAvailableFeaturesResponse {
     features?: string[];
@@ -10402,7 +11647,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a SslPolicy. An up-to-date fingerprint must be
-     * provided in order to update the SslPolicy.
+     * provided in order to update the SslPolicy.  To see the latest
+     * fingerprint, make a get() request to retrieve an SslPolicy.
      */
     fingerprint?: string;
     /**
@@ -10445,7 +11691,11 @@ export namespace compute_alpha {
      * [Output Only] If potential misconfigurations are detected for this SSL
      * policy, this field will be populated with warning messages.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   export interface Schema$SslPolicyReference {
     /**
@@ -10479,6 +11729,13 @@ export namespace compute_alpha {
    */
   export interface Schema$Subnetwork {
     /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * Toggles the aggregation interval for collecting flow logs. Increasing the
+     * interval time will reduce the amount of generated flow logs for long
+     * lasting connections. Default is an interval of 5 seconds per connection.
+     */
+    aggregationInterval?: string;
+    /**
      * Whether this subnetwork can conflict with static routes. Setting this to
      * true allows this subnetwork&#39;s primary and secondary ranges to
      * conflict with routes that have already been configured on the
@@ -10503,7 +11760,9 @@ export namespace compute_alpha {
      */
     description?: string;
     /**
-     * Whether to enable flow logging for this subnetwork.
+     * Whether to enable flow logging for this subnetwork. If this field is not
+     * explicitly set, it will not appear in get listings. If not set the
+     * default behavior is to disable flow logging.
      */
     enableFlowLogs?: boolean;
     /**
@@ -10516,9 +11775,18 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a Subnetwork. An up-to-date fingerprint must be
-     * provided in order to update the Subnetwork.
+     * provided in order to update the Subnetwork.  To see the latest
+     * fingerprint, make a get() request to retrieve a Subnetwork.
      */
     fingerprint?: string;
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * The value of the field must be in [0, 1]. Set the sampling rate of VPC
+     * flow logs within the subnetwork where 1.0 means all collected logs are
+     * reported and 0.0 means no logs are reported. Default is 0.5 which means
+     * half of all collected logs are reported.
+     */
+    flowSampling?: number;
     /**
      * [Output Only] The gateway address for default routes to reach destination
      * addresses outside this subnetwork.
@@ -10547,6 +11815,12 @@ export namespace compute_alpha {
      * Subnetwork resources.
      */
     kind?: string;
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * Configures whether metadata fields should be added to the reported VPC
+     * flow logs. Default is INCLUDE_ALL_METADATA.
+     */
+    metadata?: string;
     /**
      * The name of the resource, provided by the client when initially creating
      * the resource. The name must be 1-63 characters long, and comply with
@@ -10602,6 +11876,15 @@ export namespace compute_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The state of the subnetwork, which can be one of READY or
+     * DRAINING. A subnetwork that is READY is ready to be used. The state of
+     * DRAINING is only applicable to subnetworks that have the purpose set to
+     * INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load
+     * balancer are being drained. A subnetwork that is draining cannot be used
+     * or modified until it reaches a status of READY.
+     */
+    state?: string;
   }
   export interface Schema$SubnetworkAggregatedList {
     /**
@@ -10611,7 +11894,7 @@ export namespace compute_alpha {
     /**
      * A list of SubnetworksScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$SubnetworksScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#subnetworkAggregatedList
      * for aggregated lists of subnetworks.
@@ -10632,7 +11915,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of Subnetwork resources.
@@ -10666,7 +11953,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents a secondary IP range of a subnetwork.
@@ -10705,7 +11996,11 @@ export namespace compute_alpha {
      * An informational warning that appears when the list of addresses is
      * empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$SubnetworksSetPrivateIpGoogleAccessRequest {
     privateIpGoogleAccess?: boolean;
@@ -10738,7 +12033,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of backend services when
      * the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A TargetHttpProxy resource. This resource defines an HTTP proxy. (==
@@ -10798,7 +12097,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetHttpProxiesScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetHttpProxiesScopedList;};
     /**
      * [Output Only] Type of resource. Always
      * compute#targetHttpProxyAggregatedList for lists of Target HTTP Proxies.
@@ -10819,7 +12118,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A list of TargetHttpProxy resources.
@@ -10853,7 +12156,26 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$TargetHttpsProxiesScopedList {
+    /**
+     * A list of TargetHttpsProxies contained in this scope.
+     */
+    targetHttpsProxies?: Schema$TargetHttpsProxy[];
+    /**
+     * Informational warning which replaces the list of backend services when
+     * the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetHttpsProxiesSetQuicOverrideRequest {
     /**
@@ -10915,13 +12237,19 @@ export namespace compute_alpha {
      */
     quicOverride?: string;
     /**
+     * [Output Only] URL of the region where the regional TargetHttpsProxy
+     * resides. This field is not applicable to global TargetHttpsProxies.
+     */
+    region?: string;
+    /**
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
     /**
      * URLs to SslCertificate resources that are used to authenticate
-     * connections between users and the load balancer. Currently, exactly one
-     * SSL certificate must be specified.
+     * connections between users and the load balancer. At least one SSL
+     * certificate must be specified. Currently, you may specify up to 15 SSL
+     * certificates.
      */
     sslCertificates?: string[];
     /**
@@ -10938,6 +12266,41 @@ export namespace compute_alpha {
      * - projects/project/global/urlMaps/url-map  - global/urlMaps/url-map
      */
     urlMap?: string;
+  }
+  export interface Schema$TargetHttpsProxyAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of TargetHttpsProxiesScopedList resources.
+     */
+    items?: {[key: string]: Schema$TargetHttpsProxiesScopedList;};
+    /**
+     * [Output Only] Type of resource. Always
+     * compute#targetHttpsProxyAggregatedList for lists of Target HTTP Proxies.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of TargetHttpsProxy resources.
@@ -10971,7 +12334,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A TargetInstance resource. This resource defines an endpoint instance that
@@ -11042,7 +12409,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetInstance resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetInstancesScopedList;};
     /**
      * Type of resource.
      */
@@ -11062,7 +12429,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of TargetInstance resources.
@@ -11095,7 +12466,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetInstancesScopedList {
     /**
@@ -11106,7 +12481,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A TargetPool resource. This resource defines a pool of instances, an
@@ -11194,7 +12573,7 @@ export namespace compute_alpha {
      */
     selfLink?: string;
     /**
-     * Sesssion affinity option, must be one of the following values: NONE:
+     * Session affinity option, must be one of the following values: NONE:
      * Connections from the same client IP may go to any instance in the pool.
      * CLIENT_IP: Connections from the same client IP will go to the same
      * instance in the pool while that instance remains healthy.
@@ -11212,7 +12591,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetPool resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetPoolsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#targetPoolAggregatedList
      * for aggregated lists of target pools.
@@ -11233,7 +12612,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetPoolInstanceHealth {
     healthStatus?: Schema$HealthStatus[];
@@ -11275,7 +12658,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetPoolsAddHealthCheckRequest {
     /**
@@ -11318,7 +12705,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetReference {
     target?: string;
@@ -11393,8 +12784,8 @@ export namespace compute_alpha {
     service?: string;
     /**
      * URLs to SslCertificate resources that are used to authenticate
-     * connections to Backends. Currently exactly one SSL certificate must be
-     * specified.
+     * connections to Backends. At least one SSL certificate must be specified.
+     * Currently, you may specify up to 15 SSL certificates.
      */
     sslCertificates?: string[];
     /**
@@ -11435,7 +12826,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetTcpProxiesSetBackendServiceRequest {
     /**
@@ -11530,7 +12925,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Represents a Target VPN gateway resource. (== resource_for
@@ -11569,7 +12968,7 @@ export namespace compute_alpha {
      * changes after every request to modify or update labels. You must always
      * provide an up-to-date fingerprint hash in order to update or change
      * labels.  To see the latest fingerprint, make a get() request to retrieve
-     * an TargetVpnGateway.
+     * a TargetVpnGateway.
      */
     labelFingerprint?: string;
     /**
@@ -11577,7 +12976,7 @@ export namespace compute_alpha {
      * modified by the setLabels method. Each label key/value must comply with
      * RFC1035. Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -11622,7 +13021,7 @@ export namespace compute_alpha {
     /**
      * A list of TargetVpnGateway resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$TargetVpnGatewaysScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#targetVpnGateway for
      * target VPN gateways.
@@ -11643,7 +13042,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of TargetVpnGateway resources.
@@ -11677,7 +13080,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TargetVpnGatewaysScopedList {
     /**
@@ -11688,7 +13095,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of addresses
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$TCPHealthCheck {
     /**
@@ -11785,7 +13196,11 @@ export namespace compute_alpha {
      */
     creationTimestamp?: string;
     /**
-     * The URL of the BackendService resource if none of the hostRules match.
+     * The URL of the backendService resource if none of the hostRules match.
+     * Use defaultService instead of defaultRouteAction when simple routing to a
+     * backendService is desired and other advanced capabilities like traffic
+     * splitting and rewrites are not required. Only one of defaultService,
+     * defaultRouteAction or defaultUrlRedirect should must be set.
      */
     defaultService?: string;
     /**
@@ -11797,7 +13212,8 @@ export namespace compute_alpha {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a UrlMap. An up-to-date fingerprint must be
-     * provided in order to update the UrlMap.
+     * provided in order to update the UrlMap.  To see the latest fingerprint,
+     * make a get() request to retrieve a UrlMap.
      */
     fingerprint?: string;
     /**
@@ -11876,10 +13292,63 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$UrlMapReference {
     urlMap?: string;
+  }
+  export interface Schema$UrlMapsAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of UrlMapsScopedList resources.
+     */
+    items?: {[key: string]: Schema$UrlMapsScopedList;};
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$UrlMapsScopedList {
+    /**
+     * A list of UrlMaps contained in this scope.
+     */
+    urlMaps?: Schema$UrlMap[];
+    /**
+     * Informational warning which replaces the list of backend services when
+     * the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$UrlMapsValidateRequest {
     /**
@@ -11981,7 +13450,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Secondary IP range of a usable subnetwork.
@@ -12023,6 +13496,82 @@ export namespace compute_alpha {
     reportNamePrefix?: string;
   }
   /**
+   * Contain information of Nat mapping for a VM endpoint (i.e., NIC).
+   */
+  export interface Schema$VmEndpointNatMappings {
+    /**
+     * Name of the VM instance which the endpoint belongs to
+     */
+    instanceName?: string;
+    interfaceNatMappings?: Schema$VmEndpointNatMappingsInterfaceNatMappings[];
+  }
+  /**
+   * Contain information of Nat mapping for an interface of this endpoint.
+   */
+  export interface Schema$VmEndpointNatMappingsInterfaceNatMappings {
+    /**
+     * A list of all IP:port-range mappings assigned to this interface. These
+     * ranges are inclusive, that is, both the first and the last ports can be
+     * used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;,
+     * &quot;1.1.1.1:2234-2234&quot;].
+     */
+    natIpPortRanges?: string[];
+    /**
+     * Total number of ports across all NAT IPs allocated to this interface. It
+     * equals to the aggregated port number in the field nat_ip_port_ranges.
+     */
+    numTotalNatPorts?: number;
+    /**
+     * Alias IP range for this interface endpoint. It will be a private (RFC
+     * 1918) IP range. Examples: &quot;10.33.4.55/32&quot;, or
+     * &quot;192.168.5.0/24&quot;.
+     */
+    sourceAliasIpRange?: string;
+    /**
+     * Primary IP of the VM for this NIC.
+     */
+    sourceVirtualIp?: string;
+  }
+  /**
+   * Contains a list of VmEndpointNatMappings.
+   */
+  export interface Schema$VmEndpointNatMappingsList {
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of resource. Always compute#vmEndpointNatMappingsList
+     * for lists of Nat mappings of VM endpoints.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] A list of Nat mapping information of VM endpoints.
+     */
+    result?: Schema$VmEndpointNatMappings[];
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  /**
    * Represents a VPN gateway resource.
    */
   export interface Schema$VpnGateway {
@@ -12059,7 +13608,7 @@ export namespace compute_alpha {
      * by the setLabels method. Each label key/value must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -12096,7 +13645,7 @@ export namespace compute_alpha {
     /**
      * A list of VpnGateway resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$VpnGatewaysScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#vpnGateway for VPN
      * gateways.
@@ -12117,7 +13666,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of VpnGateway resources.
@@ -12151,7 +13704,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$VpnGatewaysScopedList {
     /**
@@ -12162,7 +13719,11 @@ export namespace compute_alpha {
      * [Output Only] Informational warning which replaces the list of addresses
      * when the list is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * A VPN gateway interface.
@@ -12223,7 +13784,7 @@ export namespace compute_alpha {
      * setLabels method. Each label key/value pair must comply with RFC1035.
      * Label values may be empty.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Local traffic selector to use when establishing the VPN tunnel with peer
      * VPN gateway. The value should be a CIDR formatted string, for example:
@@ -12304,7 +13865,7 @@ export namespace compute_alpha {
     /**
      * A list of VpnTunnelsScopedList resources.
      */
-    items?: any;
+    items?: {[key: string]: Schema$VpnTunnelsScopedList;};
     /**
      * [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
      */
@@ -12324,7 +13885,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Contains a list of VpnTunnel resources.
@@ -12357,7 +13922,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$VpnTunnelsScopedList {
     /**
@@ -12368,7 +13937,11 @@ export namespace compute_alpha {
      * Informational warning which replaces the list of addresses when the list
      * is empty.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$WafExpressionSet {
     /**
@@ -12427,7 +14000,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   /**
    * Service resource (a.k.a service project) ID.
@@ -12522,7 +14099,11 @@ export namespace compute_alpha {
     /**
      * [Output Only] Informational warning message.
      */
-    warning?: any;
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
   }
   export interface Schema$ZoneSetLabelsRequest {
     /**
@@ -12537,7 +14118,7 @@ export namespace compute_alpha {
     /**
      * The labels to set for this resource.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   export interface Schema$ZoneSetPolicyRequest {
     /**
@@ -12561,15 +14142,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Acceleratortypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -12641,7 +14214,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorTypeAggregatedList>(
@@ -12710,7 +14283,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'acceleratorType'],
         pathParams: ['acceleratorType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(parameters, callback);
@@ -12785,7 +14358,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorTypeList>(parameters, callback);
@@ -12795,7 +14368,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Acceleratortypes$Aggregatedlist {
+  export interface Params$Resource$Acceleratortypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12849,7 +14423,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Acceleratortypes$Get {
+  export interface Params$Resource$Acceleratortypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12868,7 +14443,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Acceleratortypes$List {
+  export interface Params$Resource$Acceleratortypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12929,15 +14505,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Addresses {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -13004,7 +14572,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AddressAggregatedList>(parameters, callback);
@@ -13074,7 +14642,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13139,7 +14707,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Address>(parameters, callback);
@@ -13210,7 +14778,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13283,7 +14851,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AddressList>(parameters, callback);
@@ -13357,7 +14925,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13376,7 +14944,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13431,7 +14999,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -13441,7 +15009,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Addresses$Aggregatedlist {
+  export interface Params$Resource$Addresses$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13495,7 +15064,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Addresses$Delete {
+  export interface Params$Resource$Addresses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13527,7 +15096,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Addresses$Get {
+  export interface Params$Resource$Addresses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13546,7 +15115,7 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Addresses$Insert {
+  export interface Params$Resource$Addresses$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13579,7 +15148,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Address;
   }
-  export interface Params$Resource$Addresses$List {
+  export interface Params$Resource$Addresses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13637,7 +15206,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Addresses$Setlabels {
+  export interface Params$Resource$Addresses$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13674,7 +15244,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Addresses$Testiampermissions {
+  export interface Params$Resource$Addresses$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13689,7 +15260,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -13700,16 +15271,968 @@ export namespace compute_alpha {
   }
 
 
-  export class Resource$Autoscalers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
+  export class Resource$Allocations {
+    constructor() {}
+
+
+    /**
+     * compute.allocations.aggregatedList
+     * @desc Retrieves an aggregated list of allocations.
+     * @alias compute.allocations.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Allocations$Aggregatedlist,
+        options?: MethodOptions): AxiosPromise<Schema$AllocationAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Allocations$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$AllocationAggregatedList>,
+        callback: BodyResponseCallback<Schema$AllocationAggregatedList>): void;
+    aggregatedList(
+        params: Params$Resource$Allocations$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$AllocationAggregatedList>): void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$AllocationAggregatedList>): void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Allocations$Aggregatedlist|
+        BodyResponseCallback<Schema$AllocationAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AllocationAggregatedList>,
+        callback?: BodyResponseCallback<Schema$AllocationAggregatedList>):
+        void|AxiosPromise<Schema$AllocationAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Allocations$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/alpha/projects/{project}/aggregated/allocations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$AllocationAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AllocationAggregatedList>(parameters);
+      }
     }
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * compute.allocations.delete
+     * @desc Deletes the specified allocation.
+     * @alias compute.allocations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.allocation Name of the allocation to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Allocations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Allocations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Allocations$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Allocations$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Allocations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{allocation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'allocation'],
+        pathParams: ['allocation', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
+
+
+    /**
+     * compute.allocations.get
+     * @desc Retrieves all information of the specified allocation.
+     * @alias compute.allocations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.allocation Name of the allocation to retrieve.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Allocations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Allocation>;
+    get(params: Params$Resource$Allocations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Allocation>,
+        callback: BodyResponseCallback<Schema$Allocation>): void;
+    get(params: Params$Resource$Allocations$Get,
+        callback: BodyResponseCallback<Schema$Allocation>): void;
+    get(callback: BodyResponseCallback<Schema$Allocation>): void;
+    get(paramsOrCallback?: Params$Resource$Allocations$Get|
+        BodyResponseCallback<Schema$Allocation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Allocation>,
+        callback?: BodyResponseCallback<Schema$Allocation>):
+        void|AxiosPromise<Schema$Allocation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Allocations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{allocation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'allocation'],
+        pathParams: ['allocation', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Allocation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Allocation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.allocations.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.allocations.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Allocations$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Allocations$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Allocations$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Allocations$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Allocations$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.allocations.insert
+     * @desc Creates a new allocation.
+     * @alias compute.allocations.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {().Allocation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Allocations$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Allocations$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Allocations$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Allocations$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Allocations$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.allocations.list
+     * @desc A list all the allocations that have been configured for the
+     * specified project in specified zone.
+     * @alias compute.allocations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Allocations$List, options?: MethodOptions):
+        AxiosPromise<Schema$AllocationList>;
+    list(
+        params: Params$Resource$Allocations$List,
+        options: MethodOptions|BodyResponseCallback<Schema$AllocationList>,
+        callback: BodyResponseCallback<Schema$AllocationList>): void;
+    list(
+        params: Params$Resource$Allocations$List,
+        callback: BodyResponseCallback<Schema$AllocationList>): void;
+    list(callback: BodyResponseCallback<Schema$AllocationList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Allocations$List|
+        BodyResponseCallback<Schema$AllocationList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AllocationList>,
+        callback?: BodyResponseCallback<Schema$AllocationList>):
+        void|AxiosPromise<Schema$AllocationList> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Allocations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$AllocationList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AllocationList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.allocations.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.allocations.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Allocations$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Allocations$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Allocations$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Allocations$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Allocations$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.allocations.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.allocations.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Allocations$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Allocations$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Allocations$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Allocations$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Allocations$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.allocations.updateResourceShape
+     * @desc Updates the shape of an allocation.
+     * @alias compute.allocations.updateResourceShape
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.allocation Name of the allocation to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {().AllocationsUpdateResourceShapeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateResourceShape(
+        params?: Params$Resource$Allocations$Updateresourceshape,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    updateResourceShape(
+        params: Params$Resource$Allocations$Updateresourceshape,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateResourceShape(
+        params: Params$Resource$Allocations$Updateresourceshape,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateResourceShape(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateResourceShape(
+        paramsOrCallback?: Params$Resource$Allocations$Updateresourceshape|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Allocations$Updateresourceshape;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Updateresourceshape;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{allocation}/updateResourceShape')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'allocation'],
+        pathParams: ['allocation', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Allocations$Aggregatedlist extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Allocations$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the allocation to delete.
+     */
+    allocation?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Allocations$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the allocation to retrieve.
+     */
+    allocation?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Allocations$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Allocations$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Allocation;
+  }
+  export interface Params$Resource$Allocations$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Allocations$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
+  }
+  export interface Params$Resource$Allocations$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+  export interface Params$Resource$Allocations$Updateresourceshape extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the allocation to update.
+     */
+    allocation?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AllocationsUpdateResourceShapeRequest;
+  }
+
+
+  export class Resource$Autoscalers {
+    constructor() {}
 
 
     /**
@@ -13776,7 +16299,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalerAggregatedList>(parameters, callback);
@@ -13848,7 +16371,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13915,7 +16438,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Autoscaler>(parameters, callback);
@@ -13988,7 +16511,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14061,7 +16584,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalerList>(parameters, callback);
@@ -14135,7 +16658,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14153,7 +16676,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14209,7 +16732,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -14283,7 +16806,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14293,7 +16816,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Autoscalers$Aggregatedlist {
+  export interface Params$Resource$Autoscalers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14347,7 +16871,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Autoscalers$Delete {
+  export interface Params$Resource$Autoscalers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14379,7 +16904,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Get {
+  export interface Params$Resource$Autoscalers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14398,7 +16923,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Insert {
+  export interface Params$Resource$Autoscalers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14431,7 +16957,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Autoscalers$List {
+  export interface Params$Resource$Autoscalers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14489,7 +17015,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Autoscalers$Patch {
+  export interface Params$Resource$Autoscalers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14526,7 +17053,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Autoscalers$Testiampermissions {
+  export interface Params$Resource$Autoscalers$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14537,7 +17065,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -14550,7 +17078,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Autoscalers$Update {
+  export interface Params$Resource$Autoscalers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -14590,20 +17119,13 @@ export namespace compute_alpha {
 
 
   export class Resource$Backendbuckets {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * compute.backendBuckets.addSignedUrlKey
-     * @desc Adds the given Signed URL Key to the backend bucket.
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend bucket.
      * @alias compute.backendBuckets.addSignedUrlKey
      * @memberOf! ()
      *
@@ -14663,7 +17185,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14734,7 +17256,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14746,7 +17268,8 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.deleteSignedUrlKey
-     * @desc Deletes the given Signed URL Key from the backend bucket.
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend bucket.
      * @alias compute.backendBuckets.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -14806,7 +17329,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendBucket', 'keyName'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14873,7 +17396,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendBucket>(parameters, callback);
@@ -14892,7 +17415,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14943,7 +17466,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -15014,7 +17537,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15086,7 +17609,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendBucketList>(parameters, callback);
@@ -15160,7 +17683,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15179,7 +17702,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15231,7 +17754,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -15249,7 +17772,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -15304,7 +17827,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -15377,7 +17900,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15387,7 +17910,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Backendbuckets$Addsignedurlkey {
+  export interface Params$Resource$Backendbuckets$Addsignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15421,7 +17945,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SignedUrlKey;
   }
-  export interface Params$Resource$Backendbuckets$Delete {
+  export interface Params$Resource$Backendbuckets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15449,7 +17974,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendbuckets$Deletesignedurlkey {
+  export interface Params$Resource$Backendbuckets$Deletesignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15482,7 +18008,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendbuckets$Get {
+  export interface Params$Resource$Backendbuckets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15497,7 +18024,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendbuckets$Getiampolicy {
+  export interface Params$Resource$Backendbuckets$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15508,11 +18036,12 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Backendbuckets$Insert {
+  export interface Params$Resource$Backendbuckets$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15541,7 +18070,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$BackendBucket;
   }
-  export interface Params$Resource$Backendbuckets$List {
+  export interface Params$Resource$Backendbuckets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15595,7 +18125,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendbuckets$Patch {
+  export interface Params$Resource$Backendbuckets$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15628,7 +18159,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$BackendBucket;
   }
-  export interface Params$Resource$Backendbuckets$Setiampolicy {
+  export interface Params$Resource$Backendbuckets$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15639,7 +18171,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -15648,7 +18180,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Backendbuckets$Testiampermissions {
+  export interface Params$Resource$Backendbuckets$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15659,7 +18192,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -15668,7 +18201,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Backendbuckets$Update {
+  export interface Params$Resource$Backendbuckets$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -15704,20 +18238,13 @@ export namespace compute_alpha {
 
 
   export class Resource$Backendservices {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * compute.backendServices.addSignedUrlKey
-     * @desc Adds the given Signed URL Key to the specified backend service.
+     * @desc Adds a key for validating requests with signed URLs for this
+     * backend service.
      * @alias compute.backendServices.addSignedUrlKey
      * @memberOf! ()
      *
@@ -15777,7 +18304,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15857,7 +18384,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceAggregatedList>(
@@ -15930,7 +18457,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15942,8 +18469,8 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.deleteSignedUrlKey
-     * @desc Deletes the given Signed URL Key from the specified backend
-     * service.
+     * @desc Deletes a key for validating requests with signed URLs for this
+     * backend service.
      * @alias compute.backendServices.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -16003,7 +18530,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService', 'keyName'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16070,7 +18597,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendService>(parameters, callback);
@@ -16144,7 +18671,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceGroupHealth>(
@@ -16218,7 +18745,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16291,7 +18818,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceList>(parameters, callback);
@@ -16367,7 +18894,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16439,7 +18966,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16457,7 +18984,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -16512,7 +19039,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -16587,7 +19114,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16597,7 +19124,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Backendservices$Addsignedurlkey {
+  export interface Params$Resource$Backendservices$Addsignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16631,7 +19159,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SignedUrlKey;
   }
-  export interface Params$Resource$Backendservices$Aggregatedlist {
+  export interface Params$Resource$Backendservices$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16685,7 +19214,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Delete {
+  export interface Params$Resource$Backendservices$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16713,7 +19243,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendservices$Deletesignedurlkey {
+  export interface Params$Resource$Backendservices$Deletesignedurlkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16746,7 +19277,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Backendservices$Get {
+  export interface Params$Resource$Backendservices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16761,7 +19293,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Gethealth {
+  export interface Params$Resource$Backendservices$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16782,7 +19315,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ResourceGroupReference;
   }
-  export interface Params$Resource$Backendservices$Insert {
+  export interface Params$Resource$Backendservices$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16811,7 +19345,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Backendservices$List {
+  export interface Params$Resource$Backendservices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16865,7 +19400,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Backendservices$Patch {
+  export interface Params$Resource$Backendservices$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16898,7 +19434,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Backendservices$Setsecuritypolicy {
+  export interface Params$Resource$Backendservices$Setsecuritypolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16932,7 +19469,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SecurityPolicyReference;
   }
-  export interface Params$Resource$Backendservices$Testiampermissions {
+  export interface Params$Resource$Backendservices$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16943,7 +19481,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -16952,7 +19490,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Backendservices$Update {
+  export interface Params$Resource$Backendservices$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -16988,15 +19527,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Disks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -17064,7 +19595,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17137,7 +19668,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskAggregatedList>(parameters, callback);
@@ -17211,7 +19742,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17284,7 +19815,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17350,7 +19881,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Disk>(parameters, callback);
@@ -17369,7 +19900,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17421,7 +19952,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -17495,7 +20026,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17566,7 +20097,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskList>(parameters, callback);
@@ -17640,7 +20171,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17712,7 +20243,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17731,7 +20262,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().ZoneSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17784,7 +20315,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -17857,7 +20388,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17875,7 +20406,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17931,7 +20462,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -17941,7 +20472,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Disks$Addresourcepolicies {
+  export interface Params$Resource$Disks$Addresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -17978,7 +20510,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$DisksAddResourcePoliciesRequest;
   }
-  export interface Params$Resource$Disks$Aggregatedlist {
+  export interface Params$Resource$Disks$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18032,7 +20565,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Disks$Createsnapshot {
+  export interface Params$Resource$Disks$Createsnapshot extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18073,7 +20607,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Snapshot;
   }
-  export interface Params$Resource$Disks$Delete {
+  export interface Params$Resource$Disks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18105,7 +20639,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Get {
+  export interface Params$Resource$Disks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18124,7 +20658,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Getiampolicy {
+  export interface Params$Resource$Disks$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18135,7 +20670,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -18143,7 +20678,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Insert {
+  export interface Params$Resource$Disks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18180,7 +20715,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Disk;
   }
-  export interface Params$Resource$Disks$List {
+  export interface Params$Resource$Disks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18238,7 +20773,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disks$Removeresourcepolicies {
+  export interface Params$Resource$Disks$Removeresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18275,7 +20811,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$DisksRemoveResourcePoliciesRequest;
   }
-  export interface Params$Resource$Disks$Resize {
+  export interface Params$Resource$Disks$Resize extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18312,7 +20848,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$DisksResizeRequest;
   }
-  export interface Params$Resource$Disks$Setiampolicy {
+  export interface Params$Resource$Disks$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18323,7 +20860,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -18336,7 +20873,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ZoneSetPolicyRequest;
   }
-  export interface Params$Resource$Disks$Setlabels {
+  export interface Params$Resource$Disks$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18373,7 +20910,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ZoneSetLabelsRequest;
   }
-  export interface Params$Resource$Disks$Testiampermissions {
+  export interface Params$Resource$Disks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18384,7 +20922,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -18400,15 +20938,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Disktypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -18475,7 +21005,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskTypeAggregatedList>(parameters, callback);
@@ -18541,7 +21071,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'diskType'],
         pathParams: ['diskType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskType>(parameters, callback);
@@ -18612,7 +21142,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskTypeList>(parameters, callback);
@@ -18622,7 +21152,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Disktypes$Aggregatedlist {
+  export interface Params$Resource$Disktypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18676,7 +21207,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Disktypes$Get {
+  export interface Params$Resource$Disktypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18695,7 +21226,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Disktypes$List {
+  export interface Params$Resource$Disktypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -18756,15 +21287,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Firewalls {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -18826,7 +21349,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18890,7 +21413,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Firewall>(parameters, callback);
@@ -18959,7 +21482,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19030,7 +21553,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FirewallList>(parameters, callback);
@@ -19102,7 +21625,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19120,7 +21643,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -19175,7 +21698,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -19247,7 +21770,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19257,7 +21780,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Firewalls$Delete {
+  export interface Params$Resource$Firewalls$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19285,7 +21808,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Firewalls$Get {
+  export interface Params$Resource$Firewalls$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19300,7 +21823,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Firewalls$Insert {
+  export interface Params$Resource$Firewalls$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19329,7 +21852,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Firewall;
   }
-  export interface Params$Resource$Firewalls$List {
+  export interface Params$Resource$Firewalls$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19383,7 +21906,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Firewalls$Patch {
+  export interface Params$Resource$Firewalls$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19416,7 +21939,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Firewall;
   }
-  export interface Params$Resource$Firewalls$Testiampermissions {
+  export interface Params$Resource$Firewalls$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19427,7 +21951,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -19436,7 +21960,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Firewalls$Update {
+  export interface Params$Resource$Firewalls$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -19472,15 +21996,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Forwardingrules {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -19552,7 +22068,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleAggregatedList>(
@@ -19626,7 +22142,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19693,7 +22209,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRule>(parameters, callback);
@@ -19766,7 +22282,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19841,7 +22357,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleList>(parameters, callback);
@@ -19917,7 +22433,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19991,7 +22507,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20065,7 +22581,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20084,7 +22600,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -20139,7 +22655,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -20149,7 +22665,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Forwardingrules$Aggregatedlist {
+  export interface Params$Resource$Forwardingrules$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20203,7 +22720,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Forwardingrules$Delete {
+  export interface Params$Resource$Forwardingrules$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20235,7 +22753,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Forwardingrules$Get {
+  export interface Params$Resource$Forwardingrules$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20254,7 +22773,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Forwardingrules$Insert {
+  export interface Params$Resource$Forwardingrules$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20287,7 +22807,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Forwardingrules$List {
+  export interface Params$Resource$Forwardingrules$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20345,7 +22866,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Forwardingrules$Patch {
+  export interface Params$Resource$Forwardingrules$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20382,7 +22904,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Forwardingrules$Setlabels {
+  export interface Params$Resource$Forwardingrules$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20419,7 +22942,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Forwardingrules$Settarget {
+  export interface Params$Resource$Forwardingrules$Settarget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20456,7 +22980,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetReference;
   }
-  export interface Params$Resource$Forwardingrules$Testiampermissions {
+  export interface Params$Resource$Forwardingrules$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20471,7 +22996,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -20483,15 +23008,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Globaladdresses {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -20555,7 +23072,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20621,7 +23138,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Address>(parameters, callback);
@@ -20692,7 +23209,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20764,7 +23281,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AddressList>(parameters, callback);
@@ -20836,7 +23353,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20854,7 +23371,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -20909,7 +23426,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -20919,7 +23436,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Globaladdresses$Delete {
+  export interface Params$Resource$Globaladdresses$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20947,7 +23465,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Globaladdresses$Get {
+  export interface Params$Resource$Globaladdresses$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20962,7 +23481,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaladdresses$Insert {
+  export interface Params$Resource$Globaladdresses$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -20991,7 +23511,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Address;
   }
-  export interface Params$Resource$Globaladdresses$List {
+  export interface Params$Resource$Globaladdresses$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21045,7 +23566,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaladdresses$Setlabels {
+  export interface Params$Resource$Globaladdresses$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21065,7 +23587,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Globaladdresses$Testiampermissions {
+  export interface Params$Resource$Globaladdresses$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21076,7 +23599,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -21088,15 +23611,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Globalforwardingrules {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -21160,7 +23675,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21227,7 +23742,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRule>(parameters, callback);
@@ -21298,7 +23813,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21371,7 +23886,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleList>(parameters, callback);
@@ -21446,7 +23961,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21518,7 +24033,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21591,7 +24106,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21609,7 +24124,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -21665,7 +24180,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -21675,7 +24190,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Globalforwardingrules$Delete {
+  export interface Params$Resource$Globalforwardingrules$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21703,7 +24219,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Get {
+  export interface Params$Resource$Globalforwardingrules$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21718,7 +24235,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Insert {
+  export interface Params$Resource$Globalforwardingrules$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21747,7 +24265,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Globalforwardingrules$List {
+  export interface Params$Resource$Globalforwardingrules$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21801,7 +24320,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globalforwardingrules$Patch {
+  export interface Params$Resource$Globalforwardingrules$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21834,7 +24354,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ForwardingRule;
   }
-  export interface Params$Resource$Globalforwardingrules$Setlabels {
+  export interface Params$Resource$Globalforwardingrules$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21854,7 +24375,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Globalforwardingrules$Settarget {
+  export interface Params$Resource$Globalforwardingrules$Settarget extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21887,7 +24409,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetReference;
   }
-  export interface Params$Resource$Globalforwardingrules$Testiampermissions {
+  export interface Params$Resource$Globalforwardingrules$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -21898,7 +24421,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -21910,15 +24433,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Globaloperations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -21985,7 +24500,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationAggregatedList>(parameters, callback);
@@ -22053,7 +24568,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -22120,7 +24635,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22193,7 +24708,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -22271,7 +24786,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22281,7 +24796,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Globaloperations$Aggregatedlist {
+  export interface Params$Resource$Globaloperations$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22335,7 +24851,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$Delete {
+  export interface Params$Resource$Globaloperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22350,7 +24867,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$Get {
+  export interface Params$Resource$Globaloperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22365,7 +24883,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$List {
+  export interface Params$Resource$Globaloperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22419,7 +24938,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Globaloperations$Wait {
+  export interface Params$Resource$Globaloperations$Wait extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -22436,16 +24956,403 @@ export namespace compute_alpha {
   }
 
 
-  export class Resource$Healthchecks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
+  export class Resource$Globalorganizationoperations {
+    constructor() {}
+
+
+    /**
+     * compute.globalOrganizationOperations.delete
+     * @desc Deletes the specified Operations resource.
+     * @alias compute.globalOrganizationOperations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to delete.
+     * @param {string=} params.parentId Parent ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Globalorganizationoperations$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
+    delete(
+        params: Params$Resource$Globalorganizationoperations$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Globalorganizationoperations$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Globalorganizationoperations$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalorganizationoperations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalorganizationoperations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/locations/global/operations/{operation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['operation'],
+        pathParams: ['operation'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
     }
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * compute.globalOrganizationOperations.get
+     * @desc Retrieves the specified Operations resource. Gets a list of
+     * operations by making a list() request.
+     * @alias compute.globalOrganizationOperations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to return.
+     * @param {string=} params.parentId Parent ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Globalorganizationoperations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Globalorganizationoperations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Globalorganizationoperations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Globalorganizationoperations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalorganizationoperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalorganizationoperations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/locations/global/operations/{operation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['operation'],
+        pathParams: ['operation'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
+
+
+    /**
+     * compute.globalOrganizationOperations.list
+     * @desc Retrieves a list of Operation resources contained within the
+     * specified organization.
+     * @alias compute.globalOrganizationOperations.list
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string=} params.parentId Parent ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Globalorganizationoperations$List,
+        options?: MethodOptions): AxiosPromise<Schema$OperationList>;
+    list(
+        params: Params$Resource$Globalorganizationoperations$List,
+        options: MethodOptions|BodyResponseCallback<Schema$OperationList>,
+        callback: BodyResponseCallback<Schema$OperationList>): void;
+    list(
+        params: Params$Resource$Globalorganizationoperations$List,
+        callback: BodyResponseCallback<Schema$OperationList>): void;
+    list(callback: BodyResponseCallback<Schema$OperationList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Globalorganizationoperations$List|
+        BodyResponseCallback<Schema$OperationList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OperationList>,
+        callback?: BodyResponseCallback<Schema$OperationList>):
+        void|AxiosPromise<Schema$OperationList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalorganizationoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalorganizationoperations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/alpha/projects/locations/global/operations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$OperationList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$OperationList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.globalOrganizationOperations.wait
+     * @desc Waits for the specified Operations resource until it is done or
+     * timeout, and retrieves the specified Operations resource. 1. Immediately
+     * returns when the operation is already done. 2. Waits for no more than the
+     * default deadline (2 minutes, subject to change) and then returns the
+     * current state of the operation, which may be DONE or still in
+     * progress. 3. Is best-effort: a. The server can wait less than the default
+     * deadline or zero seconds, in overload situations. b. There is no
+     * guarantee that the operation is actually done when returns. 4. User
+     * should be prepared to retry if the operation is not DONE.
+     * @alias compute.globalOrganizationOperations.wait
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.operation Name of the Operations resource to return.
+     * @param {string=} params.parentId Parent ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    wait(
+        params?: Params$Resource$Globalorganizationoperations$Wait,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    wait(
+        params: Params$Resource$Globalorganizationoperations$Wait,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    wait(
+        params: Params$Resource$Globalorganizationoperations$Wait,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    wait(callback: BodyResponseCallback<Schema$Operation>): void;
+    wait(
+        paramsOrCallback?: Params$Resource$Globalorganizationoperations$Wait|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalorganizationoperations$Wait;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalorganizationoperations$Wait;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/locations/global/operations/{operation}/wait')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['operation'],
+        pathParams: ['operation'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Globalorganizationoperations$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the Operations resource to delete.
+     */
+    operation?: string;
+    /**
+     * Parent ID for this request.
+     */
+    parentId?: string;
+  }
+  export interface Params$Resource$Globalorganizationoperations$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the Operations resource to return.
+     */
+    operation?: string;
+    /**
+     * Parent ID for this request.
+     */
+    parentId?: string;
+  }
+  export interface Params$Resource$Globalorganizationoperations$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Parent ID for this request.
+     */
+    parentId?: string;
+  }
+  export interface Params$Resource$Globalorganizationoperations$Wait extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the Operations resource to return.
+     */
+    operation?: string;
+    /**
+     * Parent ID for this request.
+     */
+    parentId?: string;
+  }
+
+
+  export class Resource$Healthchecks {
+    constructor() {}
 
 
     /**
@@ -22517,7 +25424,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HealthChecksAggregatedList>(
@@ -22589,7 +25496,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22655,7 +25562,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheck>(parameters, callback);
@@ -22726,7 +25633,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22798,7 +25705,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheckList>(parameters, callback);
@@ -22871,7 +25778,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22889,7 +25796,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -22944,7 +25851,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -23017,7 +25924,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23027,7 +25934,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Healthchecks$Aggregatedlist {
+  export interface Params$Resource$Healthchecks$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23081,7 +25989,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Healthchecks$Delete {
+  export interface Params$Resource$Healthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23109,7 +26018,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Healthchecks$Get {
+  export interface Params$Resource$Healthchecks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23124,7 +26033,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Healthchecks$Insert {
+  export interface Params$Resource$Healthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23153,7 +26063,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Healthchecks$List {
+  export interface Params$Resource$Healthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23207,7 +26118,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Healthchecks$Patch {
+  export interface Params$Resource$Healthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23240,7 +26152,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Healthchecks$Testiampermissions {
+  export interface Params$Resource$Healthchecks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23251,7 +26164,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -23260,7 +26173,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Healthchecks$Update {
+  export interface Params$Resource$Healthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -23295,1215 +26209,8 @@ export namespace compute_alpha {
   }
 
 
-  export class Resource$Hosts {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * compute.hosts.aggregatedList
-     * @desc Retrieves an aggregated list of hosts.
-     * @alias compute.hosts.aggregatedList
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    aggregatedList(
-        params?: Params$Resource$Hosts$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$HostAggregatedList>;
-    aggregatedList(
-        params: Params$Resource$Hosts$Aggregatedlist,
-        options: MethodOptions|BodyResponseCallback<Schema$HostAggregatedList>,
-        callback: BodyResponseCallback<Schema$HostAggregatedList>): void;
-    aggregatedList(
-        params: Params$Resource$Hosts$Aggregatedlist,
-        callback: BodyResponseCallback<Schema$HostAggregatedList>): void;
-    aggregatedList(callback: BodyResponseCallback<Schema$HostAggregatedList>):
-        void;
-    aggregatedList(
-        paramsOrCallback?: Params$Resource$Hosts$Aggregatedlist|
-        BodyResponseCallback<Schema$HostAggregatedList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$HostAggregatedList>,
-        callback?: BodyResponseCallback<Schema$HostAggregatedList>):
-        void|AxiosPromise<Schema$HostAggregatedList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Hosts$Aggregatedlist;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$Aggregatedlist;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/compute/alpha/projects/{project}/aggregated/hosts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$HostAggregatedList>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HostAggregatedList>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hosts.delete
-     * @desc Deletes the specified Host resource.
-     * @alias compute.hosts.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.host Name of the Host resource to delete.
-     * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(params?: Params$Resource$Hosts$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
-    delete(
-        params: Params$Resource$Hosts$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-        params: Params$Resource$Hosts$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Hosts$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Hosts$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/hosts/{host}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'host'],
-        pathParams: ['host', 'project', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hosts.get
-     * @desc Returns the specified host. Gets a list of available hosts by
-     * making a list() request.
-     * @alias compute.hosts.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.host Name of the host to return.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Hosts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Host>;
-    get(params: Params$Resource$Hosts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Host>,
-        callback: BodyResponseCallback<Schema$Host>): void;
-    get(params: Params$Resource$Hosts$Get,
-        callback: BodyResponseCallback<Schema$Host>): void;
-    get(callback: BodyResponseCallback<Schema$Host>): void;
-    get(paramsOrCallback?: Params$Resource$Hosts$Get|
-        BodyResponseCallback<Schema$Host>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Host>,
-        callback?: BodyResponseCallback<Schema$Host>):
-        void|AxiosPromise<Schema$Host> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Hosts$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/hosts/{host}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'host'],
-        pathParams: ['host', 'project', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Host>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Host>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hosts.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no
-     * such policy or resource exists.
-     * @alias compute.hosts.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-        params?: Params$Resource$Hosts$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
-    getIamPolicy(
-        params: Params$Resource$Hosts$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        params: Params$Resource$Hosts$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        paramsOrCallback?: Params$Resource$Hosts$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Hosts$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/getIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'resource'],
-        pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hosts.insert
-     * @desc Creates a host resource in the specified project using the data
-     * included in the request.
-     * @alias compute.hosts.insert
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {().Host} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert(params?: Params$Resource$Hosts$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
-    insert(
-        params: Params$Resource$Hosts$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    insert(
-        params: Params$Resource$Hosts$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    insert(callback: BodyResponseCallback<Schema$Operation>): void;
-    insert(
-        paramsOrCallback?: Params$Resource$Hosts$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Hosts$Insert;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$Insert;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/compute/alpha/projects/{project}/zones/{zone}/hosts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone'],
-        pathParams: ['project', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hosts.list
-     * @desc Retrieves a list of hosts available to the specified project.
-     * @alias compute.hosts.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(params?: Params$Resource$Hosts$List, options?: MethodOptions):
-        AxiosPromise<Schema$HostList>;
-    list(
-        params: Params$Resource$Hosts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$HostList>,
-        callback: BodyResponseCallback<Schema$HostList>): void;
-    list(
-        params: Params$Resource$Hosts$List,
-        callback: BodyResponseCallback<Schema$HostList>): void;
-    list(callback: BodyResponseCallback<Schema$HostList>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Hosts$List|
-        BodyResponseCallback<Schema$HostList>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HostList>,
-        callback?: BodyResponseCallback<Schema$HostList>):
-        void|AxiosPromise<Schema$HostList> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Hosts$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/compute/alpha/projects/{project}/zones/{zone}/hosts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone'],
-        pathParams: ['project', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$HostList>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HostList>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hosts.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
-     * @alias compute.hosts.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {().ZoneSetPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-        params?: Params$Resource$Hosts$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
-    setIamPolicy(
-        params: Params$Resource$Hosts$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        params: Params$Resource$Hosts$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        paramsOrCallback?: Params$Resource$Hosts$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Hosts$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/setIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'resource'],
-        pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hosts.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
-     * @alias compute.hosts.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-        params?: Params$Resource$Hosts$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
-    testIamPermissions(
-        params: Params$Resource$Hosts$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
-    testIamPermissions(
-        params: Params$Resource$Hosts$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
-    testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
-    testIamPermissions(
-        paramsOrCallback?: Params$Resource$Hosts$Testiampermissions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Hosts$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosts$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/testIamPermissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'resource'],
-        pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Hosts$Aggregatedlist {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
-     */
-    filter?: string;
-    /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
-     */
-    maxResults?: number;
-    /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
-     */
-    orderBy?: string;
-    /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
-     */
-    pageToken?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-  }
-  export interface Params$Resource$Hosts$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the Host resource to delete.
-     */
-    host?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed.  For example, consider a
-     * situation where you make an initial request and the request times out. If
-     * you make the request again with the same request ID, the server can check
-     * if original operation with the same request ID was received, and if so,
-     * will ignore the second request. This prevents clients from accidentally
-     * creating duplicate commitments.  The request ID must be a valid UUID with
-     * the exception that zero UUID is not supported
-     * (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Hosts$Get {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the host to return.
-     */
-    host?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Hosts$Getiampolicy {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name of the resource for this request.
-     */
-    resource?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Hosts$Insert {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed.  For example, consider a
-     * situation where you make an initial request and the request times out. If
-     * you make the request again with the same request ID, the server can check
-     * if original operation with the same request ID was received, and if so,
-     * will ignore the second request. This prevents clients from accidentally
-     * creating duplicate commitments.  The request ID must be a valid UUID with
-     * the exception that zero UUID is not supported
-     * (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Host;
-  }
-  export interface Params$Resource$Hosts$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
-     */
-    filter?: string;
-    /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
-     */
-    maxResults?: number;
-    /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
-     */
-    orderBy?: string;
-    /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
-     */
-    pageToken?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Hosts$Setiampolicy {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name of the resource for this request.
-     */
-    resource?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ZoneSetPolicyRequest;
-  }
-  export interface Params$Resource$Hosts$Testiampermissions {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name of the resource for this request.
-     */
-    resource?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestPermissionsRequest;
-  }
-
-
-  export class Resource$Hosttypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * compute.hostTypes.aggregatedList
-     * @desc Retrieves an aggregated list of host types.
-     * @alias compute.hostTypes.aggregatedList
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    aggregatedList(
-        params?: Params$Resource$Hosttypes$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$HostTypeAggregatedList>;
-    aggregatedList(
-        params: Params$Resource$Hosttypes$Aggregatedlist,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$HostTypeAggregatedList>,
-        callback: BodyResponseCallback<Schema$HostTypeAggregatedList>): void;
-    aggregatedList(
-        params: Params$Resource$Hosttypes$Aggregatedlist,
-        callback: BodyResponseCallback<Schema$HostTypeAggregatedList>): void;
-    aggregatedList(
-        callback: BodyResponseCallback<Schema$HostTypeAggregatedList>): void;
-    aggregatedList(
-        paramsOrCallback?: Params$Resource$Hosttypes$Aggregatedlist|
-        BodyResponseCallback<Schema$HostTypeAggregatedList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$HostTypeAggregatedList>,
-        callback?: BodyResponseCallback<Schema$HostTypeAggregatedList>):
-        void|AxiosPromise<Schema$HostTypeAggregatedList> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Hosttypes$Aggregatedlist;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosttypes$Aggregatedlist;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/compute/alpha/projects/{project}/aggregated/hostTypes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$HostTypeAggregatedList>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HostTypeAggregatedList>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hostTypes.get
-     * @desc Returns the specified host type. Gets a list of available host
-     * types by making a list() request.
-     * @alias compute.hostTypes.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.hostType Name of the host type to return.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Hosttypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$HostType>;
-    get(params: Params$Resource$Hosttypes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$HostType>,
-        callback: BodyResponseCallback<Schema$HostType>): void;
-    get(params: Params$Resource$Hosttypes$Get,
-        callback: BodyResponseCallback<Schema$HostType>): void;
-    get(callback: BodyResponseCallback<Schema$HostType>): void;
-    get(paramsOrCallback?: Params$Resource$Hosttypes$Get|
-        BodyResponseCallback<Schema$HostType>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HostType>,
-        callback?: BodyResponseCallback<Schema$HostType>):
-        void|AxiosPromise<Schema$HostType> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Hosttypes$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosttypes$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/hostTypes/{hostType}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'hostType'],
-        pathParams: ['hostType', 'project', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$HostType>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HostType>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.hostTypes.list
-     * @desc Retrieves a list of host types available to the specified project.
-     * @alias compute.hostTypes.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(params?: Params$Resource$Hosttypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$HostTypeList>;
-    list(
-        params: Params$Resource$Hosttypes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$HostTypeList>,
-        callback: BodyResponseCallback<Schema$HostTypeList>): void;
-    list(
-        params: Params$Resource$Hosttypes$List,
-        callback: BodyResponseCallback<Schema$HostTypeList>): void;
-    list(callback: BodyResponseCallback<Schema$HostTypeList>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Hosttypes$List|
-        BodyResponseCallback<Schema$HostTypeList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$HostTypeList>,
-        callback?: BodyResponseCallback<Schema$HostTypeList>):
-        void|AxiosPromise<Schema$HostTypeList> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Hosttypes$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Hosttypes$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/compute/alpha/projects/{project}/zones/{zone}/hostTypes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone'],
-        pathParams: ['project', 'zone'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$HostTypeList>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$HostTypeList>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Hosttypes$Aggregatedlist {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
-     */
-    filter?: string;
-    /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
-     */
-    maxResults?: number;
-    /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
-     */
-    orderBy?: string;
-    /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
-     */
-    pageToken?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-  }
-  export interface Params$Resource$Hosttypes$Get {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the host type to return.
-     */
-    hostType?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Hosttypes$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
-     */
-    filter?: string;
-    /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
-     */
-    maxResults?: number;
-    /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
-     */
-    orderBy?: string;
-    /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
-     */
-    pageToken?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-  }
-
-
   export class Resource$Httphealthchecks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -24567,7 +26274,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24634,7 +26341,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpHealthCheck>(parameters, callback);
@@ -24705,7 +26412,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24778,7 +26485,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpHealthCheckList>(parameters, callback);
@@ -24852,7 +26559,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24870,7 +26577,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24925,7 +26632,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -24998,7 +26705,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25008,7 +26715,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Httphealthchecks$Delete {
+  export interface Params$Resource$Httphealthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25036,7 +26744,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Get {
+  export interface Params$Resource$Httphealthchecks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25051,7 +26760,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Insert {
+  export interface Params$Resource$Httphealthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25080,7 +26790,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HttpHealthCheck;
   }
-  export interface Params$Resource$Httphealthchecks$List {
+  export interface Params$Resource$Httphealthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25134,7 +26845,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Httphealthchecks$Patch {
+  export interface Params$Resource$Httphealthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25167,7 +26879,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HttpHealthCheck;
   }
-  export interface Params$Resource$Httphealthchecks$Testiampermissions {
+  export interface Params$Resource$Httphealthchecks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25178,7 +26891,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -25187,7 +26900,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Httphealthchecks$Update {
+  export interface Params$Resource$Httphealthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25223,15 +26937,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Httpshealthchecks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -25295,7 +27001,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25362,7 +27068,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpsHealthCheck>(parameters, callback);
@@ -25434,7 +27140,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25509,7 +27215,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HttpsHealthCheckList>(parameters, callback);
@@ -25583,7 +27289,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25601,7 +27307,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -25656,7 +27362,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -25729,7 +27435,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25739,7 +27445,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Httpshealthchecks$Delete {
+  export interface Params$Resource$Httpshealthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25767,7 +27474,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Get {
+  export interface Params$Resource$Httpshealthchecks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25782,7 +27490,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Insert {
+  export interface Params$Resource$Httpshealthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25811,7 +27520,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HttpsHealthCheck;
   }
-  export interface Params$Resource$Httpshealthchecks$List {
+  export interface Params$Resource$Httpshealthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25865,7 +27575,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Httpshealthchecks$Patch {
+  export interface Params$Resource$Httpshealthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25898,7 +27609,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HttpsHealthCheck;
   }
-  export interface Params$Resource$Httpshealthchecks$Testiampermissions {
+  export interface Params$Resource$Httpshealthchecks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25909,7 +27621,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -25918,7 +27630,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Httpshealthchecks$Update {
+  export interface Params$Resource$Httpshealthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -25954,15 +27667,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Images {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -26023,7 +27728,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26095,7 +27800,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26159,7 +27864,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Image>(parameters, callback);
@@ -26229,7 +27934,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'family'],
         pathParams: ['family', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Image>(parameters, callback);
@@ -26248,7 +27953,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -26299,7 +28004,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -26368,7 +28073,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26442,7 +28147,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImageList>(parameters, callback);
@@ -26461,7 +28166,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -26513,7 +28218,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -26584,7 +28289,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26602,7 +28307,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -26657,7 +28362,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -26667,7 +28372,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Images$Delete {
+  export interface Params$Resource$Images$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26695,7 +28400,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Images$Deprecate {
+  export interface Params$Resource$Images$Deprecate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26728,7 +28433,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$DeprecationStatus;
   }
-  export interface Params$Resource$Images$Get {
+  export interface Params$Resource$Images$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26743,7 +28448,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Getfromfamily {
+  export interface Params$Resource$Images$Getfromfamily extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26758,7 +28464,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Getiampolicy {
+  export interface Params$Resource$Images$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26769,11 +28476,11 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Images$Insert {
+  export interface Params$Resource$Images$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26806,7 +28513,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Image;
   }
-  export interface Params$Resource$Images$List {
+  export interface Params$Resource$Images$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26860,7 +28567,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Images$Setiampolicy {
+  export interface Params$Resource$Images$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26871,7 +28579,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -26880,7 +28588,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Images$Setlabels {
+  export interface Params$Resource$Images$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26900,7 +28608,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Images$Testiampermissions {
+  export interface Params$Resource$Images$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -26911,7 +28620,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -26923,32 +28632,24 @@ export namespace compute_alpha {
 
 
   export class Resource$Instancegroupmanagers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * compute.instanceGroupManagers.abandonInstances
-     * @desc Schedules a group action to remove the specified instances from the
-     * managed instance group. Abandoning an instance does not delete the
-     * instance, but it does remove the instance from any target pools that are
-     * applied by the managed instance group. This method reduces the targetSize
-     * of the managed instance group by the number of instances that you
-     * abandon. This operation is marked as DONE when the action is scheduled
-     * even if the instances have not yet been removed from the group. You must
-     * separately verify the status of the abandoning action with the
-     * listmanagedinstances method.  If the group is part of a backend service
-     * that has enabled connection draining, it can take up to 60 seconds after
-     * the connection draining duration has elapsed before the VM instance is
-     * removed or deleted.  You can specify a maximum of 1000 instances with
-     * this method per request.
+     * @desc Flags the specified instances to be removed from the managed
+     * instance group. Abandoning an instance does not delete the instance, but
+     * it does remove the instance from any target pools that are applied by the
+     * managed instance group. This method reduces the targetSize of the managed
+     * instance group by the number of instances that you abandon. This
+     * operation is marked as DONE when the action is scheduled even if the
+     * instances have not yet been removed from the group. You must separately
+     * verify the status of the abandoning action with the listmanagedinstances
+     * method.  If the group is part of a backend service that has enabled
+     * connection draining, it can take up to 60 seconds after the connection
+     * draining duration has elapsed before the VM instance is removed or
+     * deleted.  You can specify a maximum of 1000 instances with this method
+     * per request.
      * @alias compute.instanceGroupManagers.abandonInstances
      * @memberOf! ()
      *
@@ -27010,7 +28711,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27094,7 +28795,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManagerAggregatedList>(
@@ -27172,7 +28873,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27246,7 +28947,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27258,11 +28959,11 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.deleteInstances
-     * @desc Schedules a group action to delete the specified instances in the
-     * managed instance group. The instances are also removed from any target
-     * pools of which they were a member. This method reduces the targetSize of
-     * the managed instance group by the number of instances that you delete.
-     * This operation is marked as DONE when the action is scheduled even if the
+     * @desc Flags the specified instances in the managed instance group for
+     * immediate deletion. The instances are also removed from any target pools
+     * of which they were a member. This method reduces the targetSize of the
+     * managed instance group by the number of instances that you delete. This
+     * operation is marked as DONE when the action is scheduled even if the
      * instances are still being deleted. You must separately verify the status
      * of the deleting action with the listmanagedinstances method.  If the
      * group is part of a backend service that has enabled connection draining,
@@ -27330,7 +29031,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27406,7 +29107,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27476,7 +29177,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManager>(parameters, callback);
@@ -27489,14 +29190,13 @@ export namespace compute_alpha {
     /**
      * compute.instanceGroupManagers.insert
      * @desc Creates a managed instance group using the information that you
-     * specify in the request. After the group is created, it schedules an
-     * action to create instances in the group using the specified instance
-     * template. This operation is marked as DONE when the group is created even
-     * if the instances in the group have not yet been created. You must
-     * separately verify the status of the individual instances with the
-     * listmanagedinstances method.  A managed instance group can have up to
-     * 1000 VM instances per group. Please contact Cloud Support if you need an
-     * increase in this limit.
+     * specify in the request. After the group is created, instances in the
+     * group are created using the specified instance template. This operation
+     * is marked as DONE when the group is created even if the instances in the
+     * group have not yet been created. You must separately verify the status of
+     * the individual instances with the listmanagedinstances method.  A managed
+     * instance group can have up to 1000 VM instances per group. Please contact
+     * Cloud Support if you need an increase in this limit.
      * @alias compute.instanceGroupManagers.insert
      * @memberOf! ()
      *
@@ -27556,7 +29256,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27632,7 +29332,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManagerList>(parameters, callback);
@@ -27654,11 +29354,11 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27722,7 +29422,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -27812,7 +29512,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -27894,7 +29594,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27906,16 +29606,16 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.recreateInstances
-     * @desc Schedules a group action to recreate the specified instances in the
-     * managed instance group. The instances are deleted and recreated using the
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately recreated. The instances are deleted and recreated using the
      * current instance template for the managed instance group. This operation
-     * is marked as DONE when the action is scheduled even if the instances have
-     * not yet been recreated. You must separately verify the status of the
-     * recreating action with the listmanagedinstances method.  If the group is
-     * part of a backend service that has enabled connection draining, it can
-     * take up to 60 seconds after the connection draining duration has elapsed
-     * before the VM instance is removed or deleted.  You can specify a maximum
-     * of 1000 instances with this method per request.
+     * is marked as DONE when the flag is set even if the instances have not yet
+     * been recreated. You must separately verify the status of the recreating
+     * action with the listmanagedinstances method.  If the group is part of a
+     * backend service that has enabled connection draining, it can take up to
+     * 60 seconds after the connection draining duration has elapsed before the
+     * VM instance is removed or deleted.  You can specify a maximum of 1000
+     * instances with this method per request.
      * @alias compute.instanceGroupManagers.recreateInstances
      * @memberOf! ()
      *
@@ -27977,7 +29677,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27995,10 +29695,15 @@ export namespace compute_alpha {
      * marked DONE when the resize actions are scheduled even if the group has
      * not yet added or deleted any instances. You must separately verify the
      * status of the creating or deleting actions with the listmanagedinstances
-     * method.  If the group is part of a backend service that has enabled
-     * connection draining, it can take up to 60 seconds after the connection
-     * draining duration has elapsed before the VM instance is removed or
-     * deleted.
+     * method.  When resizing down, the instance group arbitrarily chooses the
+     * order in which VMs are deleted. The group takes into account some VM
+     * attributes when making the selection including:  + The status of the VM
+     * instance. + The health of the VM instance. + The instance template
+     * version the VM is based on. + For regional managed instance groups, the
+     * location of the VM instance.  This list is subject to change.  If the
+     * group is part of a backend service that has enabled connection draining,
+     * it can take up to 60 seconds after the connection draining duration has
+     * elapsed before the VM instance is removed or deleted.
      * @alias compute.instanceGroupManagers.resize
      * @memberOf! ()
      *
@@ -28059,7 +29764,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28143,7 +29848,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28219,7 +29924,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28296,7 +30001,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28374,7 +30079,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28392,7 +30097,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28449,7 +30154,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -28526,7 +30231,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28604,7 +30309,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28614,7 +30319,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Instancegroupmanagers$Abandoninstances {
+  export interface Params$Resource$Instancegroupmanagers$Abandoninstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28651,7 +30357,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersAbandonInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Aggregatedlist {
+  export interface Params$Resource$Instancegroupmanagers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28705,7 +30412,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Applyupdatestoinstances {
+  export interface Params$Resource$Instancegroupmanagers$Applyupdatestoinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28730,7 +30438,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersApplyUpdatesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Delete {
+  export interface Params$Resource$Instancegroupmanagers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28762,7 +30471,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Deleteinstances {
+  export interface Params$Resource$Instancegroupmanagers$Deleteinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28799,7 +30509,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersDeleteInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Deleteperinstanceconfigs {
+  export interface Params$Resource$Instancegroupmanagers$Deleteperinstanceconfigs
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28824,7 +30535,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersDeletePerInstanceConfigsReq;
   }
-  export interface Params$Resource$Instancegroupmanagers$Get {
+  export interface Params$Resource$Instancegroupmanagers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28843,7 +30555,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Insert {
+  export interface Params$Resource$Instancegroupmanagers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28876,7 +30589,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Instancegroupmanagers$List {
+  export interface Params$Resource$Instancegroupmanagers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -28934,14 +30648,30 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Listmanagedinstances {
+  export interface Params$Resource$Instancegroupmanagers$Listmanagedinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -28949,15 +30679,27 @@ export namespace compute_alpha {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -28969,7 +30711,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Listperinstanceconfigs {
+  export interface Params$Resource$Instancegroupmanagers$Listperinstanceconfigs
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29032,7 +30775,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Patch {
+  export interface Params$Resource$Instancegroupmanagers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29069,7 +30813,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Instancegroupmanagers$Recreateinstances {
+  export interface Params$Resource$Instancegroupmanagers$Recreateinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29106,7 +30851,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersRecreateInstancesRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Resize {
+  export interface Params$Resource$Instancegroupmanagers$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29145,7 +30891,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroupmanagers$Resizeadvanced {
+  export interface Params$Resource$Instancegroupmanagers$Resizeadvanced extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29182,7 +30929,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersResizeAdvancedRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Setautohealingpolicies {
+  export interface Params$Resource$Instancegroupmanagers$Setautohealingpolicies
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29219,7 +30967,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersSetAutoHealingRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate {
+  export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29256,7 +31005,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersSetInstanceTemplateRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Settargetpools {
+  export interface Params$Resource$Instancegroupmanagers$Settargetpools extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29293,7 +31043,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManagersSetTargetPoolsRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Testiampermissions {
+  export interface Params$Resource$Instancegroupmanagers$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29304,7 +31055,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -29317,7 +31068,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Instancegroupmanagers$Update {
+  export interface Params$Resource$Instancegroupmanagers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29354,7 +31106,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Instancegroupmanagers$Updateperinstanceconfigs {
+  export interface Params$Resource$Instancegroupmanagers$Updateperinstanceconfigs
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -29395,15 +31148,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Instancegroups {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -29471,7 +31216,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29550,7 +31295,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupAggregatedList>(
@@ -29625,7 +31370,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29693,7 +31438,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroup>(parameters, callback);
@@ -29766,7 +31511,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29840,7 +31585,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupList>(parameters, callback);
@@ -29922,7 +31667,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupsListInstances>(
@@ -30000,7 +31745,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30073,7 +31818,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30091,7 +31836,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30147,7 +31892,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -30157,7 +31902,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Instancegroups$Addinstances {
+  export interface Params$Resource$Instancegroups$Addinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30194,7 +31940,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupsAddInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Aggregatedlist {
+  export interface Params$Resource$Instancegroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30248,7 +31995,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancegroups$Delete {
+  export interface Params$Resource$Instancegroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30280,7 +32028,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Get {
+  export interface Params$Resource$Instancegroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30299,7 +32048,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Insert {
+  export interface Params$Resource$Instancegroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30332,7 +32082,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroup;
   }
-  export interface Params$Resource$Instancegroups$List {
+  export interface Params$Resource$Instancegroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30390,7 +32141,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instancegroups$Listinstances {
+  export interface Params$Resource$Instancegroups$Listinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30458,7 +32210,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupsListInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Removeinstances {
+  export interface Params$Resource$Instancegroups$Removeinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30496,7 +32249,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupsRemoveInstancesRequest;
   }
-  export interface Params$Resource$Instancegroups$Setnamedports {
+  export interface Params$Resource$Instancegroups$Setnamedports extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30533,7 +32287,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupsSetNamedPortsRequest;
   }
-  export interface Params$Resource$Instancegroups$Testiampermissions {
+  export interface Params$Resource$Instancegroups$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -30544,7 +32299,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -30560,15 +32315,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Instances {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -30635,7 +32382,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30710,7 +32457,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30722,7 +32469,8 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.aggregatedList
-     * @desc Retrieves aggregated list of instances.
+     * @desc Retrieves aggregated list of all of the instances in your project
+     * across all regions and zones.
      * @alias compute.instances.aggregatedList
      * @memberOf! ()
      *
@@ -30784,7 +32532,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceAggregatedList>(parameters, callback);
@@ -30861,7 +32609,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30932,7 +32680,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31007,7 +32755,7 @@ export namespace compute_alpha {
         requiredParams:
             ['project', 'zone', 'instance', 'accessConfig', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31080,7 +32828,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31146,7 +32894,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -31165,6 +32913,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.queryPath Specifies the guest attributes path to be queried.
      * @param {string=} params.variableKey Specifies the key for the guest attributes entry.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31219,7 +32968,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuestAttributes>(parameters, callback);
@@ -31238,7 +32987,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -31290,7 +33039,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -31302,7 +33051,8 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.getSerialPortOutput
-     * @desc Returns the specified instance's serial port output.
+     * @desc Returns the last 1 MB of serial port output from the specified
+     * instance.
      * @alias compute.instances.getSerialPortOutput
      * @memberOf! ()
      *
@@ -31364,12 +33114,84 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SerialPortOutput>(parameters, callback);
       } else {
         return createAPIRequest<Schema$SerialPortOutput>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.getShieldedVmIdentity
+     * @desc Returns the Shielded VM Identity of an instance
+     * @alias compute.instances.getShieldedVmIdentity
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getShieldedVmIdentity(
+        params?: Params$Resource$Instances$Getshieldedvmidentity,
+        options?: MethodOptions): AxiosPromise<Schema$ShieldedVmIdentity>;
+    getShieldedVmIdentity(
+        params: Params$Resource$Instances$Getshieldedvmidentity,
+        options: MethodOptions|BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        params: Params$Resource$Instances$Getshieldedvmidentity,
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        callback: BodyResponseCallback<Schema$ShieldedVmIdentity>): void;
+    getShieldedVmIdentity(
+        paramsOrCallback?: Params$Resource$Instances$Getshieldedvmidentity|
+        BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedVmIdentity>,
+        callback?: BodyResponseCallback<Schema$ShieldedVmIdentity>):
+        void|AxiosPromise<Schema$ShieldedVmIdentity> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getshieldedvmidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getshieldedvmidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/getShieldedVmIdentity')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShieldedVmIdentity>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ShieldedVmIdentity>(parameters);
       }
     }
 
@@ -31384,7 +33206,8 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate  - projects/project/global/global/instanceTemplates/instanceTemplate  - global/instancesTemplates/instanceTemplate
+     * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate  - projects/project/global/instanceTemplates/instanceTemplate  - global/instanceTemplates/instanceTemplate
+     * @param {string=} params.sourceMachineImage Specifies instance machine to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/global/machineImages/machineImage  - projects/project/global/global/machineImages/machineImage  - global/machineImages/machineImage
      * @param {string} params.zone The name of the zone for this request.
      * @param {().Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31435,7 +33258,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31507,7 +33330,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceList>(parameters, callback);
@@ -31520,7 +33343,8 @@ export namespace compute_alpha {
     /**
      * compute.instances.listReferrers
      * @desc Retrieves the list of referrers to instances contained within the
-     * specified zone.
+     * specified zone. For more information, read Viewing Referrers to VM
+     * Instances.
      * @alias compute.instances.listReferrers
      * @memberOf! ()
      *
@@ -31585,7 +33409,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceListReferrers>(parameters, callback);
@@ -31659,7 +33483,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31730,7 +33554,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31802,7 +33626,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31876,7 +33700,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31951,7 +33775,7 @@ export namespace compute_alpha {
         requiredParams:
             ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31970,7 +33794,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().ZoneSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32023,7 +33847,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -32097,7 +33921,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32171,7 +33995,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32245,7 +34069,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32319,7 +34143,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32394,7 +34218,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32467,7 +34291,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32541,7 +34365,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32553,9 +34377,9 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setShieldedVmIntegrityPolicy
-     * @desc Sets the Shielded VM integrity policy for an instance. This method
-     * supports PATCH semantics and uses the JSON merge patch format and
-     * processing rules.
+     * @desc Sets the Shielded VM integrity policy for a VM instance. You can
+     * only use this method on a running VM instance. This method supports PATCH
+     * semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.setShieldedVmIntegrityPolicy
      * @memberOf! ()
      *
@@ -32618,7 +34442,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32630,8 +34454,8 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setTags
-     * @desc Sets tags for the specified instance to the data included in the
-     * request.
+     * @desc Sets network tags for the specified instance to the data included
+     * in the request.
      * @alias compute.instances.setTags
      * @memberOf! ()
      *
@@ -32692,7 +34516,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32764,7 +34588,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32835,7 +34659,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32910,7 +34734,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32986,7 +34810,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33064,7 +34888,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33082,7 +34906,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33138,7 +34962,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -33215,7 +35039,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33291,7 +35115,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33303,9 +35127,9 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.updateShieldedVmConfig
-     * @desc Updates the Shielded VM config for an instance. This method
-     * supports PATCH semantics and uses the JSON merge patch format and
-     * processing rules.
+     * @desc Updates the Shielded VM config for a VM instance. You can only use
+     * this method on a stopped VM instance. This method supports PATCH
+     * semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.updateShieldedVmConfig
      * @memberOf! ()
      *
@@ -33367,7 +35191,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33377,7 +35201,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Instances$Addaccessconfig {
+  export interface Params$Resource$Instances$Addaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33418,7 +35243,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$AccessConfig;
   }
-  export interface Params$Resource$Instances$Addresourcepolicies {
+  export interface Params$Resource$Instances$Addresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33455,7 +35281,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesAddResourcePoliciesRequest;
   }
-  export interface Params$Resource$Instances$Aggregatedlist {
+  export interface Params$Resource$Instances$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33509,7 +35336,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Instances$Attachdisk {
+  export interface Params$Resource$Instances$Attachdisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33551,7 +35379,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$AttachedDisk;
   }
-  export interface Params$Resource$Instances$Delete {
+  export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33583,7 +35411,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Deleteaccessconfig {
+  export interface Params$Resource$Instances$Deleteaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33623,7 +35452,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Detachdisk {
+  export interface Params$Resource$Instances$Detachdisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33659,7 +35489,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Get {
+  export interface Params$Resource$Instances$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33678,7 +35508,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getguestattributes {
+  export interface Params$Resource$Instances$Getguestattributes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33693,6 +35524,10 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
+     * Specifies the guest attributes path to be queried.
+     */
+    queryPath?: string;
+    /**
      * Specifies the key for the guest attributes entry.
      */
     variableKey?: string;
@@ -33701,7 +35536,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getiampolicy {
+  export interface Params$Resource$Instances$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33712,7 +35548,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -33720,7 +35556,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Getserialportoutput {
+  export interface Params$Resource$Instances$Getserialportoutput extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33751,7 +35588,27 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Insert {
+  export interface Params$Resource$Instances$Getshieldedvmidentity extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33778,11 +35635,20 @@ export namespace compute_alpha {
      * Specifies instance template to create the instance.  This field is
      * optional. It can be a full or partial URL. For example, the following are
      * all valid URLs to an instance template:   -
-     * https://www.googleapis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceTemplate
-     * - projects/project/global/global/instanceTemplates/instanceTemplate  -
-     * global/instancesTemplates/instanceTemplate
+     * https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate
+     * - projects/project/global/instanceTemplates/instanceTemplate  -
+     * global/instanceTemplates/instanceTemplate
      */
     sourceInstanceTemplate?: string;
+    /**
+     * Specifies instance machine to create the instance.  This field is
+     * optional. It can be a full or partial URL. For example, the following are
+     * all valid URLs to an instance template:   -
+     * https://www.googleapis.com/compute/v1/projects/project/global/global/machineImages/machineImage
+     * - projects/project/global/global/machineImages/machineImage  -
+     * global/machineImages/machineImage
+     */
+    sourceMachineImage?: string;
     /**
      * The name of the zone for this request.
      */
@@ -33793,7 +35659,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Instances$List {
+  export interface Params$Resource$Instances$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33851,7 +35717,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Listreferrers {
+  export interface Params$Resource$Instances$Listreferrers extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33914,7 +35781,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Removeresourcepolicies {
+  export interface Params$Resource$Instances$Removeresourcepolicies extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33951,7 +35819,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesRemoveResourcePoliciesRequest;
   }
-  export interface Params$Resource$Instances$Reset {
+  export interface Params$Resource$Instances$Reset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -33983,7 +35851,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Resume {
+  export interface Params$Resource$Instances$Resume extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34020,7 +35888,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesResumeRequest;
   }
-  export interface Params$Resource$Instances$Setdeletionprotection {
+  export interface Params$Resource$Instances$Setdeletionprotection extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34056,7 +35925,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setdiskautodelete {
+  export interface Params$Resource$Instances$Setdiskautodelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34096,7 +35966,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Setiampolicy {
+  export interface Params$Resource$Instances$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34107,7 +35978,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -34120,7 +35991,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ZoneSetPolicyRequest;
   }
-  export interface Params$Resource$Instances$Setlabels {
+  export interface Params$Resource$Instances$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34157,7 +36029,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesSetLabelsRequest;
   }
-  export interface Params$Resource$Instances$Setmachineresources {
+  export interface Params$Resource$Instances$Setmachineresources extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34194,7 +36067,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesSetMachineResourcesRequest;
   }
-  export interface Params$Resource$Instances$Setmachinetype {
+  export interface Params$Resource$Instances$Setmachinetype extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34231,7 +36105,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesSetMachineTypeRequest;
   }
-  export interface Params$Resource$Instances$Setmetadata {
+  export interface Params$Resource$Instances$Setmetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34268,7 +36143,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Metadata;
   }
-  export interface Params$Resource$Instances$Setmincpuplatform {
+  export interface Params$Resource$Instances$Setmincpuplatform extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34305,7 +36181,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesSetMinCpuPlatformRequest;
   }
-  export interface Params$Resource$Instances$Setscheduling {
+  export interface Params$Resource$Instances$Setscheduling extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34342,7 +36219,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Scheduling;
   }
-  export interface Params$Resource$Instances$Setserviceaccount {
+  export interface Params$Resource$Instances$Setserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34379,7 +36257,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
-  export interface Params$Resource$Instances$Setshieldedvmintegritypolicy {
+  export interface Params$Resource$Instances$Setshieldedvmintegritypolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34416,7 +36295,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ShieldedVmIntegrityPolicy;
   }
-  export interface Params$Resource$Instances$Settags {
+  export interface Params$Resource$Instances$Settags extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34453,7 +36333,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Tags;
   }
-  export interface Params$Resource$Instances$Simulatemaintenanceevent {
+  export interface Params$Resource$Instances$Simulatemaintenanceevent extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34472,7 +36353,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Start {
+  export interface Params$Resource$Instances$Start extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34504,7 +36385,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Startwithencryptionkey {
+  export interface Params$Resource$Instances$Startwithencryptionkey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34541,7 +36423,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstancesStartWithEncryptionKeyRequest;
   }
-  export interface Params$Resource$Instances$Stop {
+  export interface Params$Resource$Instances$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34578,7 +36460,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Suspend {
+  export interface Params$Resource$Instances$Suspend extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34615,7 +36498,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Instances$Testiampermissions {
+  export interface Params$Resource$Instances$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34626,7 +36510,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -34639,7 +36523,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Instances$Updateaccessconfig {
+  export interface Params$Resource$Instances$Updateaccessconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34680,7 +36565,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$AccessConfig;
   }
-  export interface Params$Resource$Instances$Updatenetworkinterface {
+  export interface Params$Resource$Instances$Updatenetworkinterface extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34721,7 +36607,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NetworkInterface;
   }
-  export interface Params$Resource$Instances$Updateshieldedvmconfig {
+  export interface Params$Resource$Instances$Updateshieldedvmconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -34761,15 +36648,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Instancetemplates {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -34835,7 +36714,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -34902,12 +36781,82 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceTemplate>(parameters, callback);
       } else {
         return createAPIRequest<Schema$InstanceTemplate>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instanceTemplates.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.instanceTemplates.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Instancetemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/instanceTemplates/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -34977,7 +36926,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35052,12 +37001,83 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceTemplateList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$InstanceTemplateList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instanceTemplates.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.instanceTemplates.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Instancetemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/instanceTemplates/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -35070,7 +37090,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -35125,7 +37145,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -35135,7 +37155,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Instancetemplates$Delete {
+  export interface Params$Resource$Instancetemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35163,7 +37184,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Instancetemplates$Get {
+  export interface Params$Resource$Instancetemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35178,7 +37200,24 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancetemplates$Insert {
+  export interface Params$Resource$Instancetemplates$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Instancetemplates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35207,7 +37246,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceTemplate;
   }
-  export interface Params$Resource$Instancetemplates$List {
+  export interface Params$Resource$Instancetemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35261,7 +37301,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Instancetemplates$Testiampermissions {
+  export interface Params$Resource$Instancetemplates$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -35272,7 +37313,28 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
+  }
+  export interface Params$Resource$Instancetemplates$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -35284,15 +37346,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Interconnectattachments {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -35369,7 +37423,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachmentAggregatedList>(
@@ -35443,7 +37497,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35511,7 +37565,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachment>(parameters, callback);
@@ -35531,7 +37585,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -35582,7 +37636,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -35655,7 +37709,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35735,7 +37789,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachmentList>(
@@ -35811,7 +37865,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35831,7 +37885,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().RegionSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -35883,7 +37937,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -35957,7 +38011,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35976,7 +38030,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -36033,7 +38087,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -36043,7 +38097,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Interconnectattachments$Aggregatedlist {
+  export interface Params$Resource$Interconnectattachments$Aggregatedlist
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36097,7 +38152,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Delete {
+  export interface Params$Resource$Interconnectattachments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36129,7 +38185,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Get {
+  export interface Params$Resource$Interconnectattachments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36148,7 +38205,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Getiampolicy {
+  export interface Params$Resource$Interconnectattachments$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36163,11 +38221,12 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Insert {
+  export interface Params$Resource$Interconnectattachments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36200,7 +38259,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InterconnectAttachment;
   }
-  export interface Params$Resource$Interconnectattachments$List {
+  export interface Params$Resource$Interconnectattachments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36258,7 +38318,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Interconnectattachments$Patch {
+  export interface Params$Resource$Interconnectattachments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36295,7 +38356,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InterconnectAttachment;
   }
-  export interface Params$Resource$Interconnectattachments$Setiampolicy {
+  export interface Params$Resource$Interconnectattachments$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36310,7 +38372,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -36319,7 +38381,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetPolicyRequest;
   }
-  export interface Params$Resource$Interconnectattachments$Setlabels {
+  export interface Params$Resource$Interconnectattachments$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36356,7 +38419,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Interconnectattachments$Testiampermissions {
+  export interface Params$Resource$Interconnectattachments$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36371,7 +38435,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -36383,15 +38447,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Interconnectlocations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -36452,7 +38508,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'interconnectLocation'],
         pathParams: ['interconnectLocation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectLocation>(parameters, callback);
@@ -36527,7 +38583,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectLocationList>(parameters, callback);
@@ -36545,7 +38601,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -36601,7 +38657,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -36611,7 +38667,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Interconnectlocations$Get {
+  export interface Params$Resource$Interconnectlocations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36626,7 +38683,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnectlocations$List {
+  export interface Params$Resource$Interconnectlocations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36680,7 +38738,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnectlocations$Testiampermissions {
+  export interface Params$Resource$Interconnectlocations$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -36691,7 +38750,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -36703,15 +38762,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Interconnects {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -36775,7 +38826,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -36842,12 +38893,94 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Interconnect>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Interconnect>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.interconnects.getDiagnostics
+     * @desc Returns the interconnectDiagnostics for the specified interconnect.
+     * @alias compute.interconnects.getDiagnostics
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect resource to query.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getDiagnostics(
+        params?: Params$Resource$Interconnects$Getdiagnostics,
+        options?: MethodOptions):
+        AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse>;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        params: Params$Resource$Interconnects$Getdiagnostics,
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        callback:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void;
+    getDiagnostics(
+        paramsOrCallback?: Params$Resource$Interconnects$Getdiagnostics|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
+        void|AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Interconnects$Getdiagnostics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Interconnects$Getdiagnostics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/interconnects/{interconnect}/getDiagnostics')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
+            parameters);
       }
     }
 
@@ -36861,7 +38994,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -36912,7 +39045,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -36983,7 +39116,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37055,7 +39188,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectList>(parameters, callback);
@@ -37129,7 +39262,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37148,7 +39281,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -37200,7 +39333,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -37272,7 +39405,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37290,7 +39423,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -37345,7 +39478,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -37355,7 +39488,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Interconnects$Delete {
+  export interface Params$Resource$Interconnects$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37383,7 +39517,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Interconnects$Get {
+  export interface Params$Resource$Interconnects$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37398,7 +39533,24 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnects$Getiampolicy {
+  export interface Params$Resource$Interconnects$Getdiagnostics extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the interconnect resource to query.
+     */
+    interconnect?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Interconnects$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37409,11 +39561,12 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Interconnects$Insert {
+  export interface Params$Resource$Interconnects$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37442,7 +39595,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Interconnect;
   }
-  export interface Params$Resource$Interconnects$List {
+  export interface Params$Resource$Interconnects$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37496,7 +39650,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Interconnects$Patch {
+  export interface Params$Resource$Interconnects$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37529,7 +39684,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Interconnect;
   }
-  export interface Params$Resource$Interconnects$Setiampolicy {
+  export interface Params$Resource$Interconnects$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37540,7 +39696,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -37549,7 +39705,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Interconnects$Setlabels {
+  export interface Params$Resource$Interconnects$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37569,7 +39726,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Interconnects$Testiampermissions {
+  export interface Params$Resource$Interconnects$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37580,7 +39738,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -37592,15 +39750,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Licensecodes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -37659,7 +39809,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'licenseCode'],
         pathParams: ['licenseCode', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseCode>(parameters, callback);
@@ -37678,7 +39828,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -37729,7 +39879,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -37748,7 +39898,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -37800,7 +39950,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -37818,7 +39968,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -37873,7 +40023,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -37883,7 +40033,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Licensecodes$Get {
+  export interface Params$Resource$Licensecodes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37898,7 +40048,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Licensecodes$Getiampolicy {
+  export interface Params$Resource$Licensecodes$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37909,11 +40060,12 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Licensecodes$Setiampolicy {
+  export interface Params$Resource$Licensecodes$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37924,7 +40076,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -37933,7 +40085,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Licensecodes$Testiampermissions {
+  export interface Params$Resource$Licensecodes$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -37944,7 +40097,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -37956,15 +40109,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Licenses {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -38026,7 +40171,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -38090,7 +40235,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$License>(parameters, callback);
@@ -38109,7 +40254,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38160,7 +40305,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -38228,7 +40373,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -38304,7 +40449,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LicensesListResponse>(parameters, callback);
@@ -38323,7 +40468,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -38375,7 +40520,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -38393,7 +40538,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -38448,7 +40593,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -38458,7 +40603,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Licenses$Delete {
+  export interface Params$Resource$Licenses$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38486,7 +40631,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Licenses$Get {
+  export interface Params$Resource$Licenses$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38501,7 +40646,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Licenses$Getiampolicy {
+  export interface Params$Resource$Licenses$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38512,11 +40658,11 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Licenses$Insert {
+  export interface Params$Resource$Licenses$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38545,7 +40691,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$License;
   }
-  export interface Params$Resource$Licenses$List {
+  export interface Params$Resource$Licenses$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38599,7 +40745,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Licenses$Setiampolicy {
+  export interface Params$Resource$Licenses$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38610,7 +40757,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -38619,7 +40766,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Licenses$Testiampermissions {
+  export interface Params$Resource$Licenses$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38630,7 +40778,705 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
+  export class Resource$Machineimages {
+    constructor() {}
+
+
+    /**
+     * compute.machineImages.delete
+     * @desc Deletes the specified machine image. Deleting a machine image is
+     * permanent and cannot be undone.
+     * @alias compute.machineImages.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.machineImage The name of the machine image to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Machineimages$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Machineimages$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Machineimages$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Machineimages$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Machineimages$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Machineimages$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/machineImages/{machineImage}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'machineImage'],
+        pathParams: ['machineImage', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.machineImages.get
+     * @desc Returns the specified machine image. Gets a list of available
+     * machine images by making a list() request.
+     * @alias compute.machineImages.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.machineImage The name of the machine image.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Machineimages$Get,
+        options?: MethodOptions): AxiosPromise<Schema$MachineImage>;
+    get(params: Params$Resource$Machineimages$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MachineImage>,
+        callback: BodyResponseCallback<Schema$MachineImage>): void;
+    get(params: Params$Resource$Machineimages$Get,
+        callback: BodyResponseCallback<Schema$MachineImage>): void;
+    get(callback: BodyResponseCallback<Schema$MachineImage>): void;
+    get(paramsOrCallback?: Params$Resource$Machineimages$Get|
+        BodyResponseCallback<Schema$MachineImage>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MachineImage>,
+        callback?: BodyResponseCallback<Schema$MachineImage>):
+        void|AxiosPromise<Schema$MachineImage> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Machineimages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Machineimages$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/machineImages/{machineImage}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'machineImage'],
+        pathParams: ['machineImage', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$MachineImage>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MachineImage>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.machineImages.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.machineImages.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Machineimages$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Machineimages$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Machineimages$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Machineimages$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Machineimages$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Machineimages$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/machineImages/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.machineImages.insert
+     * @desc Creates a machine image in the specified project using the data
+     * that is included in the request. If you are creating a new machine image
+     * to update an existing instance, your new machine image should use the
+     * same network or, if applicable, the same subnetwork as the original
+     * instance.
+     * @alias compute.machineImages.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string=} params.sourceInstance Required. Source instance that is used to create the machine image from.
+     * @param {().MachineImage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Machineimages$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Machineimages$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Machineimages$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Machineimages$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Machineimages$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Machineimages$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/alpha/projects/{project}/global/machineImages')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.machineImages.list
+     * @desc Retrieves a list of machine images that are contained within the
+     * specified project.
+     * @alias compute.machineImages.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Machineimages$List, options?: MethodOptions):
+        AxiosPromise<Schema$MachineImageList>;
+    list(
+        params: Params$Resource$Machineimages$List,
+        options: MethodOptions|BodyResponseCallback<Schema$MachineImageList>,
+        callback: BodyResponseCallback<Schema$MachineImageList>): void;
+    list(
+        params: Params$Resource$Machineimages$List,
+        callback: BodyResponseCallback<Schema$MachineImageList>): void;
+    list(callback: BodyResponseCallback<Schema$MachineImageList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Machineimages$List|
+        BodyResponseCallback<Schema$MachineImageList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MachineImageList>,
+        callback?: BodyResponseCallback<Schema$MachineImageList>):
+        void|AxiosPromise<Schema$MachineImageList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Machineimages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Machineimages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/alpha/projects/{project}/global/machineImages')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$MachineImageList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$MachineImageList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.machineImages.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.machineImages.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Machineimages$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Machineimages$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Machineimages$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Machineimages$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Machineimages$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Machineimages$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/machineImages/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.machineImages.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.machineImages.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Machineimages$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Machineimages$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Machineimages$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Machineimages$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Machineimages$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Machineimages$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/machineImages/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Machineimages$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the machine image to delete.
+     */
+    machineImage?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Machineimages$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the machine image.
+     */
+    machineImage?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Machineimages$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Machineimages$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Source instance that is used to create the machine image from.
+     */
+    sourceInstance?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MachineImage;
+  }
+  export interface Params$Resource$Machineimages$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Machineimages$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
+  }
+  export interface Params$Resource$Machineimages$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -38642,15 +41488,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Machinetypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -38718,7 +41556,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MachineTypeAggregatedList>(
@@ -38786,7 +41624,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'machineType'],
         pathParams: ['machineType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MachineType>(parameters, callback);
@@ -38860,7 +41698,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MachineTypeList>(parameters, callback);
@@ -38870,7 +41708,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Machinetypes$Aggregatedlist {
+  export interface Params$Resource$Machinetypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38924,7 +41763,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Machinetypes$Get {
+  export interface Params$Resource$Machinetypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -38943,7 +41782,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Machinetypes$List {
+  export interface Params$Resource$Machinetypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39004,15 +41844,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Networkendpointgroups {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -39089,7 +41921,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroupAggregatedList>(
@@ -39168,7 +42000,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39243,7 +42075,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39320,7 +42152,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39389,7 +42221,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroup>(parameters, callback);
@@ -39462,7 +42294,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39538,7 +42370,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroupList>(parameters, callback);
@@ -39624,7 +42456,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroupsListNetworkEndpoints>(
@@ -39644,7 +42476,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39701,7 +42533,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -39711,7 +42543,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Networkendpointgroups$Aggregatedlist {
+  export interface Params$Resource$Networkendpointgroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39765,7 +42598,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Attachnetworkendpoints {
+  export interface Params$Resource$Networkendpointgroups$Attachnetworkendpoints
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39804,7 +42638,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NetworkEndpointGroupsAttachEndpointsRequest;
   }
-  export interface Params$Resource$Networkendpointgroups$Delete {
+  export interface Params$Resource$Networkendpointgroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39838,7 +42673,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Detachnetworkendpoints {
+  export interface Params$Resource$Networkendpointgroups$Detachnetworkendpoints
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39877,7 +42713,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NetworkEndpointGroupsDetachEndpointsRequest;
   }
-  export interface Params$Resource$Networkendpointgroups$Get {
+  export interface Params$Resource$Networkendpointgroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39897,7 +42734,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Insert {
+  export interface Params$Resource$Networkendpointgroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39931,7 +42769,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NetworkEndpointGroup;
   }
-  export interface Params$Resource$Networkendpointgroups$List {
+  export interface Params$Resource$Networkendpointgroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -39990,7 +42829,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Networkendpointgroups$Listnetworkendpoints {
+  export interface Params$Resource$Networkendpointgroups$Listnetworkendpoints
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40059,7 +42899,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NetworkEndpointGroupsListEndpointsRequest;
   }
-  export interface Params$Resource$Networkendpointgroups$Testiampermissions {
+  export interface Params$Resource$Networkendpointgroups$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40070,7 +42911,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -40086,15 +42927,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Networks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -40159,7 +42992,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40228,7 +43061,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40293,7 +43126,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Network>(parameters, callback);
@@ -40362,7 +43195,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40432,12 +43265,88 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$NetworkList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networks.listIpAddresses
+     * @desc Lists the internal IP addresses in the specified network.
+     * @alias compute.networks.listIpAddresses
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.network Name of the network for this request.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.types (Optional) types filter separate by comma, valid values are: SUBNETWORK, RESERVED, PEER_USED, PEER_RESERVED, REMOTE_USED, REMOTE_RESERVED.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listIpAddresses(
+        params?: Params$Resource$Networks$Listipaddresses,
+        options?: MethodOptions): AxiosPromise<Schema$IpAddressesList>;
+    listIpAddresses(
+        params: Params$Resource$Networks$Listipaddresses,
+        options: MethodOptions|BodyResponseCallback<Schema$IpAddressesList>,
+        callback: BodyResponseCallback<Schema$IpAddressesList>): void;
+    listIpAddresses(
+        params: Params$Resource$Networks$Listipaddresses,
+        callback: BodyResponseCallback<Schema$IpAddressesList>): void;
+    listIpAddresses(callback: BodyResponseCallback<Schema$IpAddressesList>):
+        void;
+    listIpAddresses(
+        paramsOrCallback?: Params$Resource$Networks$Listipaddresses|
+        BodyResponseCallback<Schema$IpAddressesList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$IpAddressesList>,
+        callback?: BodyResponseCallback<Schema$IpAddressesList>):
+        void|AxiosPromise<Schema$IpAddressesList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Networks$Listipaddresses;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networks$Listipaddresses;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networks/{network}/listIpAddresses')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$IpAddressesList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$IpAddressesList>(parameters);
       }
     }
 
@@ -40511,12 +43420,96 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$IpOwnerList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$IpOwnerList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.networks.listPeeringRoutes
+     * @desc Lists the peering routes exchanged over peering connection.
+     * @alias compute.networks.listPeeringRoutes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.direction The direction of the exchanged routes.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.network Name of the network for this request.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string=} params.peeringName The response will show routes exchanged over the given peering connection.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.region The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listPeeringRoutes(
+        params?: Params$Resource$Networks$Listpeeringroutes,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ExchangedPeeringRoutesList>;
+    listPeeringRoutes(
+        params: Params$Resource$Networks$Listpeeringroutes,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ExchangedPeeringRoutesList>,
+        callback: BodyResponseCallback<Schema$ExchangedPeeringRoutesList>):
+        void;
+    listPeeringRoutes(
+        params: Params$Resource$Networks$Listpeeringroutes,
+        callback: BodyResponseCallback<Schema$ExchangedPeeringRoutesList>):
+        void;
+    listPeeringRoutes(
+        callback: BodyResponseCallback<Schema$ExchangedPeeringRoutesList>):
+        void;
+    listPeeringRoutes(
+        paramsOrCallback?: Params$Resource$Networks$Listpeeringroutes|
+        BodyResponseCallback<Schema$ExchangedPeeringRoutesList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ExchangedPeeringRoutesList>,
+        callback?: BodyResponseCallback<Schema$ExchangedPeeringRoutesList>):
+        void|AxiosPromise<Schema$ExchangedPeeringRoutesList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networks$Listpeeringroutes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networks$Listpeeringroutes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networks/{network}/listPeeringRoutes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExchangedPeeringRoutesList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ExchangedPeeringRoutesList>(parameters);
       }
     }
 
@@ -40583,7 +43576,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40655,7 +43648,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40727,7 +43720,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40745,7 +43738,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -40800,7 +43793,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -40808,9 +43801,85 @@ export namespace compute_alpha {
         return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
+
+
+    /**
+     * compute.networks.updatePeering
+     * @desc Updates the specified network peering with the data included in the
+     * request Only the following fields can be modified:
+     * NetworkPeering.export_custom_routes, and
+     * NetworkPeering.import_custom_routes
+     * @alias compute.networks.updatePeering
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network resource which the updated peering is belonging to.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().NetworksUpdatePeeringRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updatePeering(
+        params?: Params$Resource$Networks$Updatepeering,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    updatePeering(
+        params: Params$Resource$Networks$Updatepeering,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updatePeering(
+        params: Params$Resource$Networks$Updatepeering,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updatePeering(callback: BodyResponseCallback<Schema$Operation>): void;
+    updatePeering(
+        paramsOrCallback?: Params$Resource$Networks$Updatepeering|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Networks$Updatepeering;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networks$Updatepeering;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networks/{network}/updatePeering')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
-  export interface Params$Resource$Networks$Addpeering {
+  export interface Params$Resource$Networks$Addpeering extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40843,7 +43912,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NetworksAddPeeringRequest;
   }
-  export interface Params$Resource$Networks$Delete {
+  export interface Params$Resource$Networks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40871,7 +43940,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Networks$Get {
+  export interface Params$Resource$Networks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40886,7 +43955,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Networks$Insert {
+  export interface Params$Resource$Networks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40915,7 +43984,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Network;
   }
-  export interface Params$Resource$Networks$List {
+  export interface Params$Resource$Networks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -40969,7 +44038,72 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Networks$Listipowners {
+  export interface Params$Resource$Networks$Listipaddresses extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Name of the network for this request.
+     */
+    network?: string;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * (Optional) types filter separate by comma, valid values are: SUBNETWORK,
+     * RESERVED, PEER_USED, PEER_RESERVED, REMOTE_USED, REMOTE_RESERVED.
+     */
+    types?: string;
+  }
+  export interface Params$Resource$Networks$Listipowners extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41047,7 +44181,80 @@ export namespace compute_alpha {
      */
     subnetRegion?: string;
   }
-  export interface Params$Resource$Networks$Patch {
+  export interface Params$Resource$Networks$Listpeeringroutes extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The direction of the exchanged routes.
+     */
+    direction?: string;
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Name of the network for this request.
+     */
+    network?: string;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The response will show routes exchanged over the given peering
+     * connection.
+     */
+    peeringName?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The region of the request. The response will include all subnet routes,
+     * static routes and dynamic routes in the region.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Networks$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41080,7 +44287,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Network;
   }
-  export interface Params$Resource$Networks$Removepeering {
+  export interface Params$Resource$Networks$Removepeering extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41113,7 +44321,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NetworksRemovePeeringRequest;
   }
-  export interface Params$Resource$Networks$Switchtocustommode {
+  export interface Params$Resource$Networks$Switchtocustommode extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41141,7 +44350,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Networks$Testiampermissions {
+  export interface Params$Resource$Networks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -41152,7 +44362,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -41161,18 +44371,44 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
+  export interface Params$Resource$Networks$Updatepeering extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the network resource which the updated peering is belonging to.
+     */
+    network?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworksUpdatePeeringRequest;
+  }
 
 
   export class Resource$Nodegroups {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -41238,7 +44474,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41250,7 +44486,8 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.aggregatedList
-     * @desc Retrieves an aggregated list of node groups.
+     * @desc Retrieves an aggregated list of node groups. Note: use
+     * nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.aggregatedList
      * @memberOf! ()
      *
@@ -41312,7 +44549,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupAggregatedList>(parameters, callback);
@@ -41383,7 +44620,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41456,7 +44693,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41469,7 +44706,8 @@ export namespace compute_alpha {
     /**
      * compute.nodeGroups.get
      * @desc Returns the specified NodeGroup. Get a list of available NodeGroups
-     * by making a list() request.
+     * by making a list() request. Note: the "nodes" field should not be used.
+     * Use nodeGroups.listNodes instead.
      * @alias compute.nodeGroups.get
      * @memberOf! ()
      *
@@ -41523,7 +44761,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroup>(parameters, callback);
@@ -41542,7 +44780,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -41594,7 +44832,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -41666,7 +44904,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'initialNodeCount'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41679,6 +44917,7 @@ export namespace compute_alpha {
     /**
      * compute.nodeGroups.list
      * @desc Retrieves a list of node groups available to the specified project.
+     * Note: use nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.list
      * @memberOf! ()
      *
@@ -41737,12 +44976,87 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$NodeGroupList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeGroups.listNodes
+     * @desc Lists nodes in the node group.
+     * @alias compute.nodeGroups.listNodes
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.nodeGroup Name of the NodeGroup resource whose nodes you want to list.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listNodes(
+        params?: Params$Resource$Nodegroups$Listnodes,
+        options?: MethodOptions): AxiosPromise<Schema$NodeGroupsListNodes>;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        options: MethodOptions|BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        params: Params$Resource$Nodegroups$Listnodes,
+        callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(callback: BodyResponseCallback<Schema$NodeGroupsListNodes>): void;
+    listNodes(
+        paramsOrCallback?: Params$Resource$Nodegroups$Listnodes|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NodeGroupsListNodes>,
+        callback?: BodyResponseCallback<Schema$NodeGroupsListNodes>):
+        void|AxiosPromise<Schema$NodeGroupsListNodes> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Listnodes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Listnodes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/listNodes')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroupsListNodes>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NodeGroupsListNodes>(parameters);
       }
     }
 
@@ -41756,7 +45070,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().ZoneSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41809,7 +45123,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -41882,7 +45196,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41900,7 +45214,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41956,7 +45270,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -41966,7 +45280,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Nodegroups$Addnodes {
+  export interface Params$Resource$Nodegroups$Addnodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42003,7 +45318,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NodeGroupsAddNodesRequest;
   }
-  export interface Params$Resource$Nodegroups$Aggregatedlist {
+  export interface Params$Resource$Nodegroups$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42057,7 +45373,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodegroups$Delete {
+  export interface Params$Resource$Nodegroups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42089,7 +45406,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Deletenodes {
+  export interface Params$Resource$Nodegroups$Deletenodes extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42126,7 +45444,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NodeGroupsDeleteNodesRequest;
   }
-  export interface Params$Resource$Nodegroups$Get {
+  export interface Params$Resource$Nodegroups$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42145,7 +45463,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Getiampolicy {
+  export interface Params$Resource$Nodegroups$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42156,7 +45475,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -42164,7 +45483,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Insert {
+  export interface Params$Resource$Nodegroups$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42201,7 +45521,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NodeGroup;
   }
-  export interface Params$Resource$Nodegroups$List {
+  export interface Params$Resource$Nodegroups$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42259,7 +45579,71 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodegroups$Setiampolicy {
+  export interface Params$Resource$Nodegroups$Listnodes extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Name of the NodeGroup resource whose nodes you want to list.
+     */
+    nodeGroup?: string;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Nodegroups$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42270,7 +45654,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -42283,7 +45667,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ZoneSetPolicyRequest;
   }
-  export interface Params$Resource$Nodegroups$Setnodetemplate {
+  export interface Params$Resource$Nodegroups$Setnodetemplate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42320,7 +45705,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NodeGroupsSetNodeTemplateRequest;
   }
-  export interface Params$Resource$Nodegroups$Testiampermissions {
+  export interface Params$Resource$Nodegroups$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42331,7 +45717,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -42347,15 +45733,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Nodetemplates {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -42427,7 +45805,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplateAggregatedList>(
@@ -42500,7 +45878,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'nodeTemplate'],
         pathParams: ['nodeTemplate', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -42568,7 +45946,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'nodeTemplate'],
         pathParams: ['nodeTemplate', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplate>(parameters, callback);
@@ -42588,7 +45966,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -42639,7 +46017,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -42712,7 +46090,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -42786,7 +46164,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplateList>(parameters, callback);
@@ -42806,7 +46184,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().RegionSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -42858,7 +46236,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -42877,7 +46255,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -42932,7 +46310,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -42942,7 +46320,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Nodetemplates$Aggregatedlist {
+  export interface Params$Resource$Nodetemplates$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -42996,7 +46375,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodetemplates$Delete {
+  export interface Params$Resource$Nodetemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43028,7 +46408,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Nodetemplates$Get {
+  export interface Params$Resource$Nodetemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43047,7 +46428,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Nodetemplates$Getiampolicy {
+  export interface Params$Resource$Nodetemplates$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43062,11 +46444,12 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Nodetemplates$Insert {
+  export interface Params$Resource$Nodetemplates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43099,7 +46482,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$NodeTemplate;
   }
-  export interface Params$Resource$Nodetemplates$List {
+  export interface Params$Resource$Nodetemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43157,7 +46541,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Nodetemplates$Setiampolicy {
+  export interface Params$Resource$Nodetemplates$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43172,7 +46557,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -43181,7 +46566,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetPolicyRequest;
   }
-  export interface Params$Resource$Nodetemplates$Testiampermissions {
+  export interface Params$Resource$Nodetemplates$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43196,7 +46582,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -43208,15 +46594,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Nodetypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -43283,7 +46661,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTypeAggregatedList>(parameters, callback);
@@ -43349,7 +46727,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'nodeType'],
         pathParams: ['nodeType', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeType>(parameters, callback);
@@ -43420,7 +46798,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTypeList>(parameters, callback);
@@ -43430,7 +46808,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Nodetypes$Aggregatedlist {
+  export interface Params$Resource$Nodetypes$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43484,7 +46863,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Nodetypes$Get {
+  export interface Params$Resource$Nodetypes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43503,7 +46882,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Nodetypes$List {
+  export interface Params$Resource$Nodetypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -43564,15 +46943,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Projects {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -43634,7 +47005,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43705,7 +47076,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43773,7 +47144,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43845,7 +47216,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43906,7 +47277,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -43973,7 +47344,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -43991,10 +47362,10 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -44048,7 +47419,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectsGetXpnResources>(parameters, callback);
@@ -44066,10 +47437,10 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {().ProjectsListXpnHostsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44121,7 +47492,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$XpnHostList>(parameters, callback);
@@ -44190,7 +47561,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44260,7 +47631,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44333,7 +47704,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44406,7 +47777,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44480,7 +47851,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44553,7 +47924,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44563,7 +47934,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Disablexpnhost {
+  export interface Params$Resource$Projects$Disablexpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44587,7 +47959,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Disablexpnresource {
+  export interface Params$Resource$Projects$Disablexpnresource extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44616,7 +47989,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ProjectsDisableXpnResourceRequest;
   }
-  export interface Params$Resource$Projects$Enablexpnhost {
+  export interface Params$Resource$Projects$Enablexpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44640,7 +48014,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Enablexpnresource {
+  export interface Params$Resource$Projects$Enablexpnresource extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44669,7 +48044,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ProjectsEnableXpnResourceRequest;
   }
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44680,7 +48055,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Getxpnhost {
+  export interface Params$Resource$Projects$Getxpnhost extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44691,26 +48067,54 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Getxpnresources {
+  export interface Params$Resource$Projects$Getxpnresources extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -44718,26 +48122,54 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Projects$Listxpnhosts {
+  export interface Params$Resource$Projects$Listxpnhosts extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -44750,7 +48182,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ProjectsListXpnHostsRequest;
   }
-  export interface Params$Resource$Projects$Movedisk {
+  export interface Params$Resource$Projects$Movedisk extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44779,7 +48212,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$DiskMoveRequest;
   }
-  export interface Params$Resource$Projects$Moveinstance {
+  export interface Params$Resource$Projects$Moveinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44808,7 +48242,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceMoveRequest;
   }
-  export interface Params$Resource$Projects$Setcommoninstancemetadata {
+  export interface Params$Resource$Projects$Setcommoninstancemetadata extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44837,7 +48272,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Metadata;
   }
-  export interface Params$Resource$Projects$Setdefaultnetworktier {
+  export interface Params$Resource$Projects$Setdefaultnetworktier extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44866,7 +48302,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ProjectsSetDefaultNetworkTierRequest;
   }
-  export interface Params$Resource$Projects$Setdefaultserviceaccount {
+  export interface Params$Resource$Projects$Setdefaultserviceaccount extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44895,7 +48332,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ProjectsSetDefaultServiceAccountRequest;
   }
-  export interface Params$Resource$Projects$Setusageexportbucket {
+  export interface Params$Resource$Projects$Setusageexportbucket extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -44927,15 +48365,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regionautoscalers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -45000,7 +48430,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45067,7 +48497,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Autoscaler>(parameters, callback);
@@ -45140,7 +48570,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45216,7 +48646,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionAutoscalerList>(parameters, callback);
@@ -45291,7 +48721,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45310,7 +48740,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -45365,7 +48795,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -45439,7 +48869,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45449,7 +48879,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regionautoscalers$Delete {
+  export interface Params$Resource$Regionautoscalers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45481,7 +48912,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Get {
+  export interface Params$Resource$Regionautoscalers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45500,7 +48932,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Insert {
+  export interface Params$Resource$Regionautoscalers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45533,7 +48966,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Regionautoscalers$List {
+  export interface Params$Resource$Regionautoscalers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45591,7 +49025,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionautoscalers$Patch {
+  export interface Params$Resource$Regionautoscalers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45628,7 +49063,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Autoscaler;
   }
-  export interface Params$Resource$Regionautoscalers$Testiampermissions {
+  export interface Params$Resource$Regionautoscalers$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45643,7 +49079,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -45652,7 +49088,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regionautoscalers$Update {
+  export interface Params$Resource$Regionautoscalers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -45692,15 +49129,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regionbackendservices {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -45765,7 +49194,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45832,7 +49261,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendService>(parameters, callback);
@@ -45908,7 +49337,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceGroupHealth>(
@@ -45984,7 +49413,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46059,7 +49488,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceList>(parameters, callback);
@@ -46137,7 +49566,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46156,7 +49585,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -46212,7 +49641,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -46288,7 +49717,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46298,7 +49727,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regionbackendservices$Delete {
+  export interface Params$Resource$Regionbackendservices$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46330,7 +49760,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Get {
+  export interface Params$Resource$Regionbackendservices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46349,7 +49780,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Gethealth {
+  export interface Params$Resource$Regionbackendservices$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46373,7 +49805,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ResourceGroupReference;
   }
-  export interface Params$Resource$Regionbackendservices$Insert {
+  export interface Params$Resource$Regionbackendservices$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46406,7 +49839,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Regionbackendservices$List {
+  export interface Params$Resource$Regionbackendservices$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46464,7 +49898,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionbackendservices$Patch {
+  export interface Params$Resource$Regionbackendservices$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46501,7 +49936,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$BackendService;
   }
-  export interface Params$Resource$Regionbackendservices$Testiampermissions {
+  export interface Params$Resource$Regionbackendservices$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46516,7 +49952,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -46525,7 +49961,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regionbackendservices$Update {
+  export interface Params$Resource$Regionbackendservices$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46565,15 +50002,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regioncommitments {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -46640,7 +50069,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitmentAggregatedList>(parameters, callback);
@@ -46708,7 +50137,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'commitment'],
         pathParams: ['commitment', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Commitment>(parameters, callback);
@@ -46781,7 +50210,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46856,7 +50285,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitmentList>(parameters, callback);
@@ -46875,7 +50304,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -46930,7 +50359,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -46940,7 +50369,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regioncommitments$Aggregatedlist {
+  export interface Params$Resource$Regioncommitments$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -46994,7 +50424,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Regioncommitments$Get {
+  export interface Params$Resource$Regioncommitments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47013,7 +50444,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioncommitments$Insert {
+  export interface Params$Resource$Regioncommitments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47046,7 +50478,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Commitment;
   }
-  export interface Params$Resource$Regioncommitments$List {
+  export interface Params$Resource$Regioncommitments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47104,7 +50537,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioncommitments$Testiampermissions {
+  export interface Params$Resource$Regioncommitments$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47119,7 +50553,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -47131,14 +50565,81 @@ export namespace compute_alpha {
 
 
   export class Resource$Regiondisks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
+    constructor() {}
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * compute.regionDisks.addResourcePolicies
+     * @desc Adds existing resource policies to a regional disk. You can only
+     * add one policy which will be applied to this disk for scheduling snapshot
+     * creation.
+     * @alias compute.regionDisks.addResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionDisksAddResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addResourcePolicies(
+        params?: Params$Resource$Regiondisks$Addresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    addResourcePolicies(
+        params: Params$Resource$Regiondisks$Addresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        params: Params$Resource$Regiondisks$Addresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(callback: BodyResponseCallback<Schema$Operation>): void;
+    addResourcePolicies(
+        paramsOrCallback?: Params$Resource$Regiondisks$Addresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiondisks$Addresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Addresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/addResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'disk'],
+        pathParams: ['disk', 'project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
 
@@ -47206,7 +50707,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47281,7 +50782,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47346,7 +50847,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Disk>(parameters, callback);
@@ -47419,7 +50920,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47490,12 +50991,86 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$DiskList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionDisks.removeResourcePolicies
+     * @desc Removes resource policies from a regional disk.
+     * @alias compute.regionDisks.removeResourcePolicies
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.disk The disk name for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionDisksRemoveResourcePoliciesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removeResourcePolicies(
+        params?: Params$Resource$Regiondisks$Removeresourcepolicies,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    removeResourcePolicies(
+        params: Params$Resource$Regiondisks$Removeresourcepolicies,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(
+        params: Params$Resource$Regiondisks$Removeresourcepolicies,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    removeResourcePolicies(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    removeResourcePolicies(
+        paramsOrCallback?: Params$Resource$Regiondisks$Removeresourcepolicies|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiondisks$Removeresourcepolicies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Removeresourcepolicies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/removeResourcePolicies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'disk'],
+        pathParams: ['disk', 'project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -47563,7 +51138,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47636,7 +51211,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47655,7 +51230,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -47710,7 +51285,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -47720,7 +51295,46 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regiondisks$Createsnapshot {
+  export interface Params$Resource$Regiondisks$Addresourcepolicies extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionDisksAddResourcePoliciesRequest;
+  }
+  export interface Params$Resource$Regiondisks$Createsnapshot extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47761,7 +51375,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Snapshot;
   }
-  export interface Params$Resource$Regiondisks$Delete {
+  export interface Params$Resource$Regiondisks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47793,7 +51408,7 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regiondisks$Get {
+  export interface Params$Resource$Regiondisks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47812,7 +51427,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisks$Insert {
+  export interface Params$Resource$Regiondisks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47849,7 +51465,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Disk;
   }
-  export interface Params$Resource$Regiondisks$List {
+  export interface Params$Resource$Regiondisks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47907,7 +51523,46 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisks$Resize {
+  export interface Params$Resource$Regiondisks$Removeresourcepolicies extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The disk name for this request.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionDisksRemoveResourcePoliciesRequest;
+  }
+  export interface Params$Resource$Regiondisks$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47944,7 +51599,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionDisksResizeRequest;
   }
-  export interface Params$Resource$Regiondisks$Setlabels {
+  export interface Params$Resource$Regiondisks$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47981,7 +51637,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Regiondisks$Testiampermissions {
+  export interface Params$Resource$Regiondisks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -47996,7 +51653,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -48008,15 +51665,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regiondisktypes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -48076,7 +51725,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'diskType'],
         pathParams: ['diskType', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DiskType>(parameters, callback);
@@ -48151,7 +51800,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionDiskTypeList>(parameters, callback);
@@ -48161,7 +51810,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regiondisktypes$Get {
+  export interface Params$Resource$Regiondisktypes$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48180,7 +51830,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiondisktypes$List {
+  export interface Params$Resource$Regiondisktypes$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48241,15 +51892,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regionhealthchecks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -48314,7 +51957,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'healthCheck'],
         pathParams: ['healthCheck', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48382,7 +52025,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'healthCheck'],
         pathParams: ['healthCheck', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheck>(parameters, callback);
@@ -48455,7 +52098,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48530,7 +52173,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheckList>(parameters, callback);
@@ -48605,7 +52248,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'healthCheck'],
         pathParams: ['healthCheck', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48624,7 +52267,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -48680,7 +52323,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -48754,7 +52397,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'healthCheck'],
         pathParams: ['healthCheck', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48764,7 +52407,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regionhealthchecks$Delete {
+  export interface Params$Resource$Regionhealthchecks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48796,7 +52440,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regionhealthchecks$Get {
+  export interface Params$Resource$Regionhealthchecks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48815,7 +52460,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionhealthchecks$Insert {
+  export interface Params$Resource$Regionhealthchecks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48848,7 +52494,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Regionhealthchecks$List {
+  export interface Params$Resource$Regionhealthchecks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48906,7 +52553,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionhealthchecks$Patch {
+  export interface Params$Resource$Regionhealthchecks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48943,7 +52591,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$HealthCheck;
   }
-  export interface Params$Resource$Regionhealthchecks$Testiampermissions {
+  export interface Params$Resource$Regionhealthchecks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -48958,7 +52607,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -48967,7 +52616,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regionhealthchecks$Update {
+  export interface Params$Resource$Regionhealthchecks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -49007,20 +52657,12 @@ export namespace compute_alpha {
 
 
   export class Resource$Regioninstancegroupmanagers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * compute.regionInstanceGroupManagers.abandonInstances
-     * @desc Schedules a group action to remove the specified instances from the
+     * @desc Flags the specified instances to be immediately removed from the
      * managed instance group. Abandoning an instance does not delete the
      * instance, but it does remove the instance from any target pools that are
      * applied by the managed instance group. This method reduces the targetSize
@@ -49095,7 +52737,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49173,7 +52815,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49246,7 +52888,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49258,17 +52900,18 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.deleteInstances
-     * @desc Schedules a group action to delete the specified instances in the
-     * managed instance group. The instances are also removed from any target
-     * pools of which they were a member. This method reduces the targetSize of
-     * the managed instance group by the number of instances that you delete.
-     * This operation is marked as DONE when the action is scheduled even if the
-     * instances are still being deleted. You must separately verify the status
-     * of the deleting action with the listmanagedinstances method.  If the
-     * group is part of a backend service that has enabled connection draining,
-     * it can take up to 60 seconds after the connection draining duration has
-     * elapsed before the VM instance is removed or deleted.  You can specify a
-     * maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately deleted. The instances are also removed from any target pools
+     * of which they were a member. This method reduces the targetSize of the
+     * managed instance group by the number of instances that you delete. The
+     * deleteInstances operation is marked DONE if the deleteInstances request
+     * is successful. The underlying actions take additional time. You must
+     * separately verify the status of the deleting action with the
+     * listmanagedinstances method.  If the group is part of a backend service
+     * that has enabled connection draining, it can take up to 60 seconds after
+     * the connection draining duration has elapsed before the VM instance is
+     * removed or deleted.  You can specify a maximum of 1000 instances with
+     * this method per request.
      * @alias compute.regionInstanceGroupManagers.deleteInstances
      * @memberOf! ()
      *
@@ -49331,7 +52974,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49410,7 +53053,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49479,7 +53122,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManager>(parameters, callback);
@@ -49492,13 +53135,12 @@ export namespace compute_alpha {
     /**
      * compute.regionInstanceGroupManagers.insert
      * @desc Creates a managed instance group using the information that you
-     * specify in the request. After the group is created, it schedules an
-     * action to create instances in the group using the specified instance
-     * template. This operation is marked as DONE when the group is created even
-     * if the instances in the group have not yet been created. You must
-     * separately verify the status of the individual instances with the
-     * listmanagedinstances method.  A regional managed instance group can
-     * contain up to 2000 instances.
+     * specify in the request. After the group is created, instances in the
+     * group are created using the specified instance template. This operation
+     * is marked as DONE when the group is created even if the instances in the
+     * group have not yet been created. You must separately verify the status of
+     * the individual instances with the listmanagedinstances method.  A
+     * regional managed instance group can contain up to 2000 instances.
      * @alias compute.regionInstanceGroupManagers.insert
      * @memberOf! ()
      *
@@ -49558,7 +53200,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49638,7 +53280,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupManagerList>(
@@ -49659,11 +53301,11 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults
-     * @param {string=} params.order_by
-     * @param {string=} params.pageToken
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -49730,7 +53372,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -49824,7 +53466,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -49907,7 +53549,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49919,16 +53561,16 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.recreateInstances
-     * @desc Schedules a group action to recreate the specified instances in the
-     * managed instance group. The instances are deleted and recreated using the
+     * @desc Flags the specified instances in the managed instance group to be
+     * immediately recreated. The instances are deleted and recreated using the
      * current instance template for the managed instance group. This operation
-     * is marked as DONE when the action is scheduled even if the instances have
-     * not yet been recreated. You must separately verify the status of the
-     * recreating action with the listmanagedinstances method.  If the group is
-     * part of a backend service that has enabled connection draining, it can
-     * take up to 60 seconds after the connection draining duration has elapsed
-     * before the VM instance is removed or deleted.  You can specify a maximum
-     * of 1000 instances with this method per request.
+     * is marked as DONE when the flag is set even if the instances have not yet
+     * been recreated. You must separately verify the status of the recreating
+     * action with the listmanagedinstances method.  If the group is part of a
+     * backend service that has enabled connection draining, it can take up to
+     * 60 seconds after the connection draining duration has elapsed before the
+     * VM instance is removed or deleted.  You can specify a maximum of 1000
+     * instances with this method per request.
      * @alias compute.regionInstanceGroupManagers.recreateInstances
      * @memberOf! ()
      *
@@ -49991,7 +53633,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50003,17 +53645,16 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.resize
-     * @desc Changes the intended size for the managed instance group. If you
-     * increase the size, the group schedules actions to create new instances
-     * using the current instance template. If you decrease the size, the group
-     * schedules delete actions on one or more instances. The resize operation
-     * is marked DONE when the resize actions are scheduled even if the group
-     * has not yet added or deleted any instances. You must separately verify
-     * the status of the creating or deleting actions with the
-     * listmanagedinstances method.  If the group is part of a backend service
-     * that has enabled connection draining, it can take up to 60 seconds after
-     * the connection draining duration has elapsed before the VM instance is
-     * removed or deleted.
+     * @desc Changes the intended size of the managed instance group. If you
+     * increase the size, the group creates new instances using the current
+     * instance template. If you decrease the size, the group deletes one or
+     * more instances.  The resize operation is marked DONE if the resize
+     * request is successful. The underlying actions take additional time. You
+     * must separately verify the status of the creating or deleting actions
+     * with the listmanagedinstances method.  If the group is part of a backend
+     * service that has enabled connection draining, it can take up to 60
+     * seconds after the connection draining duration has elapsed before the VM
+     * instance is removed or deleted.
      * @alias compute.regionInstanceGroupManagers.resize
      * @memberOf! ()
      *
@@ -50074,7 +53715,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50154,7 +53795,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50231,7 +53872,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50307,7 +53948,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50326,7 +53967,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -50383,7 +54024,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -50460,7 +54101,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50482,6 +54123,7 @@ export namespace compute_alpha {
      * @param {string} params.instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request, should conform to RFC1035.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {().RegionInstanceGroupManagerUpdateInstanceConfigReq} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -50540,7 +54182,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50550,7 +54192,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regioninstancegroupmanagers$Abandoninstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Abandoninstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50587,7 +54230,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagersAbandonInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50611,7 +54255,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagersApplyUpdatesRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Delete {
+  export interface Params$Resource$Regioninstancegroupmanagers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50643,7 +54288,8 @@ export namespace compute_alpha {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Deleteinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Deleteinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50680,7 +54326,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagersDeleteInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Deleteperinstanceconfigs {
+  export interface Params$Resource$Regioninstancegroupmanagers$Deleteperinstanceconfigs
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50704,7 +54351,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagerDeleteInstanceConfigReq;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Get {
+  export interface Params$Resource$Regioninstancegroupmanagers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50723,7 +54371,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Insert {
+  export interface Params$Resource$Regioninstancegroupmanagers$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50756,7 +54405,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$List {
+  export interface Params$Resource$Regioninstancegroupmanagers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50814,14 +54464,30 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     *
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
     /**
@@ -50829,15 +54495,27 @@ export namespace compute_alpha {
      */
     instanceGroupManager?: string;
     /**
-     *
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
      */
     maxResults?: number;
     /**
-     *
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
      */
     order_by?: string;
     /**
-     *
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
      */
     pageToken?: string;
     /**
@@ -50849,7 +54527,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Listperinstanceconfigs {
+  export interface Params$Resource$Regioninstancegroupmanagers$Listperinstanceconfigs
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50911,7 +54590,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Patch {
+  export interface Params$Resource$Regioninstancegroupmanagers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50948,7 +54628,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances {
+  export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -50985,7 +54666,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagersRecreateRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Resize {
+  export interface Params$Resource$Regioninstancegroupmanagers$Resize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51021,7 +54703,8 @@ export namespace compute_alpha {
      */
     size?: number;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies {
+  export interface Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51058,7 +54741,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagersSetAutoHealingRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate {
+  export interface Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51095,7 +54779,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagersSetTemplateRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Settargetpools {
+  export interface Params$Resource$Regioninstancegroupmanagers$Settargetpools
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51132,7 +54817,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupManagersSetTargetPoolsRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Testiampermissions {
+  export interface Params$Resource$Regioninstancegroupmanagers$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51147,7 +54833,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -51156,7 +54842,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Update {
+  export interface Params$Resource$Regioninstancegroupmanagers$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51193,7 +54880,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceGroupManager;
   }
-  export interface Params$Resource$Regioninstancegroupmanagers$Updateperinstanceconfigs {
+  export interface Params$Resource$Regioninstancegroupmanagers$Updateperinstanceconfigs
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51211,6 +54899,19 @@ export namespace compute_alpha {
      * Name of the region scoping this request, should conform to RFC1035.
      */
     region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -51220,15 +54921,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regioninstancegroups {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -51288,7 +54981,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroup>(parameters, callback);
@@ -51364,7 +55057,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupList>(parameters, callback);
@@ -51453,7 +55146,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupsListInstances>(
@@ -51528,7 +55221,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51547,7 +55240,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -51603,7 +55296,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -51613,7 +55306,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regioninstancegroups$Get {
+  export interface Params$Resource$Regioninstancegroups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51632,7 +55326,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroups$List {
+  export interface Params$Resource$Regioninstancegroups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51690,7 +55385,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regioninstancegroups$Listinstances {
+  export interface Params$Resource$Regioninstancegroups$Listinstances extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51758,7 +55454,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupsListInstancesRequest;
   }
-  export interface Params$Resource$Regioninstancegroups$Setnamedports {
+  export interface Params$Resource$Regioninstancegroups$Setnamedports extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51796,7 +55493,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionInstanceGroupsSetNamedPortsRequest;
   }
-  export interface Params$Resource$Regioninstancegroups$Testiampermissions {
+  export interface Params$Resource$Regioninstancegroups$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -51811,7 +55509,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -51823,15 +55521,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regionoperations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -51893,7 +55583,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -51960,7 +55650,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52035,7 +55725,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -52115,7 +55805,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52125,7 +55815,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regionoperations$Delete {
+  export interface Params$Resource$Regionoperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52144,7 +55835,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionoperations$Get {
+  export interface Params$Resource$Regionoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52163,7 +55855,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionoperations$List {
+  export interface Params$Resource$Regionoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52221,7 +55914,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionoperations$Wait {
+  export interface Params$Resource$Regionoperations$Wait extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52243,15 +55937,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regions {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -52308,7 +55994,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Region>(parameters, callback);
@@ -52378,7 +56064,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RegionList>(parameters, callback);
@@ -52388,7 +56074,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regions$Get {
+  export interface Params$Resource$Regions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52403,7 +56089,7 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regions$List {
+  export interface Params$Resource$Regions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52459,16 +56145,550 @@ export namespace compute_alpha {
   }
 
 
-  export class Resource$Regiontargethttpproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
+  export class Resource$Regionsslcertificates {
+    constructor() {}
+
+
+    /**
+     * compute.regionSslCertificates.delete
+     * @desc Deletes the specified SslCertificate resource in the region.
+     * @alias compute.regionSslCertificates.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Regionsslcertificates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Regionsslcertificates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Regionsslcertificates$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Regionsslcertificates$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'sslCertificate'],
+        pathParams: ['project', 'region', 'sslCertificate'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * compute.regionSslCertificates.get
+     * @desc Returns the specified SslCertificate resource in the specified
+     * region. Get a list of available SSL certificates by making a list()
+     * request.
+     * @alias compute.regionSslCertificates.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.sslCertificate Name of the SslCertificate resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Regionsslcertificates$Get,
+        options?: MethodOptions): AxiosPromise<Schema$SslCertificate>;
+    get(params: Params$Resource$Regionsslcertificates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$SslCertificate>,
+        callback: BodyResponseCallback<Schema$SslCertificate>): void;
+    get(params: Params$Resource$Regionsslcertificates$Get,
+        callback: BodyResponseCallback<Schema$SslCertificate>): void;
+    get(callback: BodyResponseCallback<Schema$SslCertificate>): void;
+    get(paramsOrCallback?: Params$Resource$Regionsslcertificates$Get|
+        BodyResponseCallback<Schema$SslCertificate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificate>,
+        callback?: BodyResponseCallback<Schema$SslCertificate>):
+        void|AxiosPromise<Schema$SslCertificate> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regionsslcertificates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates/{sslCertificate}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'sslCertificate'],
+        pathParams: ['project', 'region', 'sslCertificate'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificate>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificate>(parameters);
+      }
     }
+
+
+    /**
+     * compute.regionSslCertificates.insert
+     * @desc Creates a SslCertificate resource in the specified project and
+     * region using the data included in the request
+     * @alias compute.regionSslCertificates.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().SslCertificate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Regionsslcertificates$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Regionsslcertificates$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Regionsslcertificates$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Regionsslcertificates$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionSslCertificates.list
+     * @desc Retrieves the list of SslCertificate resources available to the
+     * specified project in the specified region.
+     * @alias compute.regionSslCertificates.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Regionsslcertificates$List,
+        options?: MethodOptions): AxiosPromise<Schema$SslCertificateList>;
+    list(
+        params: Params$Resource$Regionsslcertificates$List,
+        options: MethodOptions|BodyResponseCallback<Schema$SslCertificateList>,
+        callback: BodyResponseCallback<Schema$SslCertificateList>): void;
+    list(
+        params: Params$Resource$Regionsslcertificates$List,
+        callback: BodyResponseCallback<Schema$SslCertificateList>): void;
+    list(callback: BodyResponseCallback<Schema$SslCertificateList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Regionsslcertificates$List|
+        BodyResponseCallback<Schema$SslCertificateList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificateList>,
+        callback?: BodyResponseCallback<Schema$SslCertificateList>):
+        void|AxiosPromise<Schema$SslCertificateList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificateList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificateList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionSslCertificates.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource and
+     * region.
+     * @alias compute.regionSslCertificates.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Regionsslcertificates$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Regionsslcertificates$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Regionsslcertificates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Regionsslcertificates$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionsslcertificates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionsslcertificates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/sslCertificates/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionsslcertificates$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the SslCertificate resource to delete.
+     */
+    sslCertificate?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the SslCertificate resource to return.
+     */
+    sslCertificate?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SslCertificate;
+  }
+  export interface Params$Resource$Regionsslcertificates$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionsslcertificates$Testiampermissions
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
+  export class Resource$Regiontargethttpproxies {
+    constructor() {}
 
 
     /**
@@ -52533,7 +56753,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetHttpProxy'],
         pathParams: ['project', 'region', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52602,7 +56822,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetHttpProxy'],
         pathParams: ['project', 'region', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxy>(parameters, callback);
@@ -52675,7 +56895,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52750,7 +56970,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxyList>(parameters, callback);
@@ -52823,7 +57043,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetHttpProxy'],
         pathParams: ['project', 'region', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52842,7 +57062,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -52899,7 +57119,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -52909,7 +57129,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regiontargethttpproxies$Delete {
+  export interface Params$Resource$Regiontargethttpproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52941,7 +57162,8 @@ export namespace compute_alpha {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Regiontargethttpproxies$Get {
+  export interface Params$Resource$Regiontargethttpproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52960,7 +57182,8 @@ export namespace compute_alpha {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Regiontargethttpproxies$Insert {
+  export interface Params$Resource$Regiontargethttpproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -52993,7 +57216,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetHttpProxy;
   }
-  export interface Params$Resource$Regiontargethttpproxies$List {
+  export interface Params$Resource$Regiontargethttpproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53051,7 +57275,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regiontargethttpproxies$Seturlmap {
+  export interface Params$Resource$Regiontargethttpproxies$Seturlmap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53088,7 +57313,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMapReference;
   }
-  export interface Params$Resource$Regiontargethttpproxies$Testiampermissions {
+  export interface Params$Resource$Regiontargethttpproxies$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53103,7 +57329,775 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
+  export class Resource$Regiontargethttpsproxies {
+    constructor() {}
+
+
+    /**
+     * compute.regionTargetHttpsProxies.delete
+     * @desc Deletes the specified TargetHttpsProxy resource.
+     * @alias compute.regionTargetHttpsProxies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Regiontargethttpsproxies$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Regiontargethttpsproxies$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Regiontargethttpsproxies$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.get
+     * @desc Returns the specified TargetHttpsProxy resource in the specified
+     * region. Gets a list of available target HTTP proxies by making a list()
+     * request.
+     * @alias compute.regionTargetHttpsProxies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Regiontargethttpsproxies$Get,
+        options?: MethodOptions): AxiosPromise<Schema$TargetHttpsProxy>;
+    get(params: Params$Resource$Regiontargethttpsproxies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TargetHttpsProxy>,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
+    get(params: Params$Resource$Regiontargethttpsproxies$Get,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
+    get(callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
+    get(paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Get|
+        BodyResponseCallback<Schema$TargetHttpsProxy>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxy>,
+        callback?: BodyResponseCallback<Schema$TargetHttpsProxy>):
+        void|AxiosPromise<Schema$TargetHttpsProxy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.insert
+     * @desc Creates a TargetHttpsProxy resource in the specified project and
+     * region using the data included in the request.
+     * @alias compute.regionTargetHttpsProxies.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().TargetHttpsProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Regiontargethttpsproxies$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Regiontargethttpsproxies$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Regiontargethttpsproxies$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.list
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the
+     * specified project in the specified region.
+     * @alias compute.regionTargetHttpsProxies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Regiontargethttpsproxies$List,
+        options?: MethodOptions): AxiosPromise<Schema$TargetHttpsProxyList>;
+    list(
+        params: Params$Resource$Regiontargethttpsproxies$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyList>): void;
+    list(
+        params: Params$Resource$Regiontargethttpsproxies$List,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyList>): void;
+    list(callback: BodyResponseCallback<Schema$TargetHttpsProxyList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$List|
+        BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyList>,
+        callback?: BodyResponseCallback<Schema$TargetHttpsProxyList>):
+        void|AxiosPromise<Schema$TargetHttpsProxyList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxyList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxyList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.setSslCertificates
+     * @desc Replaces SslCertificates for TargetHttpsProxy.
+     * @alias compute.regionTargetHttpsProxies.setSslCertificates
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * @param {().RegionTargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslCertificates(
+        params?: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setSslCertificates(
+        params: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setSslCertificates(
+        params: Params$Resource$Regiontargethttpsproxies$Setsslcertificates,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setSslCertificates(callback: BodyResponseCallback<Schema$Operation>): void;
+    setSslCertificates(
+        paramsOrCallback?:
+            Params$Resource$Regiontargethttpsproxies$Setsslcertificates|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Setsslcertificates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Regiontargethttpsproxies$Setsslcertificates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.setUrlMap
+     * @desc Changes the URL map for TargetHttpsProxy.
+     * @alias compute.regionTargetHttpsProxies.setUrlMap
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy to set a URL map for.
+     * @param {().UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setUrlMap(
+        params?: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    setUrlMap(
+        params: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(
+        params: Params$Resource$Regiontargethttpsproxies$Seturlmap,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(callback: BodyResponseCallback<Schema$Operation>): void;
+    setUrlMap(
+        paramsOrCallback?: Params$Resource$Regiontargethttpsproxies$Seturlmap|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Seturlmap;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiontargethttpsproxies$Seturlmap;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'targetHttpsProxy'],
+        pathParams: ['project', 'region', 'targetHttpsProxy'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionTargetHttpsProxies.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.regionTargetHttpsProxies.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Regiontargethttpsproxies$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Regiontargethttpsproxies$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Regiontargethttpsproxies$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Regiontargethttpsproxies$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regiontargethttpsproxies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Regiontargethttpsproxies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/targetHttpsProxies/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regiontargethttpsproxies$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to delete.
+     */
+    targetHttpsProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to return.
+     */
+    targetHttpsProxy?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TargetHttpsProxy;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Setsslcertificates
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy resource to set an SslCertificates resource
+     * for.
+     */
+    targetHttpsProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionTargetHttpsProxiesSetSslCertificatesRequest;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Seturlmap extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the TargetHttpsProxy to set a URL map for.
+     */
+    targetHttpsProxy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UrlMapReference;
+  }
+  export interface Params$Resource$Regiontargethttpsproxies$Testiampermissions
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -53115,15 +58109,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Regionurlmaps {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -53188,7 +58174,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'urlMap'],
         pathParams: ['project', 'region', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -53255,7 +58241,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'urlMap'],
         pathParams: ['project', 'region', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMap>(parameters, callback);
@@ -53328,7 +58314,81 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionUrlMaps.invalidateCache
+     * @desc Initiates a cache invalidation operation, invalidating the
+     * specified path, scoped to the specified UrlMap.
+     * @alias compute.regionUrlMaps.invalidateCache
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.urlMap Name of the UrlMap scoping this request.
+     * @param {().CacheInvalidationRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    invalidateCache(
+        params?: Params$Resource$Regionurlmaps$Invalidatecache,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    invalidateCache(
+        params: Params$Resource$Regionurlmaps$Invalidatecache,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    invalidateCache(
+        params: Params$Resource$Regionurlmaps$Invalidatecache,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    invalidateCache(callback: BodyResponseCallback<Schema$Operation>): void;
+    invalidateCache(
+        paramsOrCallback?: Params$Resource$Regionurlmaps$Invalidatecache|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionurlmaps$Invalidatecache;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionurlmaps$Invalidatecache;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/urlMaps/{urlMap}/invalidateCache')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'urlMap'],
+        pathParams: ['project', 'region', 'urlMap'],
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -53402,7 +58462,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapList>(parameters, callback);
@@ -53477,7 +58537,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'urlMap'],
         pathParams: ['project', 'region', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -53496,7 +58556,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -53551,7 +58611,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -53625,7 +58685,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'urlMap'],
         pathParams: ['project', 'region', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -53701,7 +58761,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'urlMap'],
         pathParams: ['project', 'region', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapsValidateResponse>(parameters, callback);
@@ -53711,7 +58771,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Regionurlmaps$Delete {
+  export interface Params$Resource$Regionurlmaps$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53735,7 +58796,8 @@ export namespace compute_alpha {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Regionurlmaps$Get {
+  export interface Params$Resource$Regionurlmaps$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53754,7 +58816,8 @@ export namespace compute_alpha {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Regionurlmaps$Insert {
+  export interface Params$Resource$Regionurlmaps$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53779,7 +58842,38 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Regionurlmaps$List {
+  export interface Params$Resource$Regionurlmaps$Invalidatecache extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder Request ID to support
+     * idempotency.
+     */
+    requestId?: string;
+    /**
+     * Name of the UrlMap scoping this request.
+     */
+    urlMap?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CacheInvalidationRule;
+  }
+  export interface Params$Resource$Regionurlmaps$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53837,7 +58931,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Regionurlmaps$Patch {
+  export interface Params$Resource$Regionurlmaps$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53866,7 +58961,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Regionurlmaps$Testiampermissions {
+  export interface Params$Resource$Regionurlmaps$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53881,7 +58977,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -53890,7 +58986,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regionurlmaps$Update {
+  export interface Params$Resource$Regionurlmaps$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53919,7 +59016,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Regionurlmaps$Validate {
+  export interface Params$Resource$Regionurlmaps$Validate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -53946,15 +59044,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Resourcepolicies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -54026,7 +59116,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcePolicyAggregatedList>(
@@ -54100,7 +59190,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resourcePolicy'],
         pathParams: ['project', 'region', 'resourcePolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54167,7 +59257,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resourcePolicy'],
         pathParams: ['project', 'region', 'resourcePolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcePolicy>(parameters, callback);
@@ -54187,7 +59277,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -54238,7 +59328,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -54310,7 +59400,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54340,23 +59430,22 @@ export namespace compute_alpha {
      */
     list(
         params?: Params$Resource$Resourcepolicies$List,
-        options?: MethodOptions): AxiosPromise<Schema$ResourcePoliciesList>;
+        options?: MethodOptions): AxiosPromise<Schema$ResourcePolicyList>;
     list(
         params: Params$Resource$Resourcepolicies$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ResourcePoliciesList>,
-        callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
+        options: MethodOptions|BodyResponseCallback<Schema$ResourcePolicyList>,
+        callback: BodyResponseCallback<Schema$ResourcePolicyList>): void;
     list(
         params: Params$Resource$Resourcepolicies$List,
-        callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
-    list(callback: BodyResponseCallback<Schema$ResourcePoliciesList>): void;
+        callback: BodyResponseCallback<Schema$ResourcePolicyList>): void;
+    list(callback: BodyResponseCallback<Schema$ResourcePolicyList>): void;
     list(
         paramsOrCallback?: Params$Resource$Resourcepolicies$List|
-        BodyResponseCallback<Schema$ResourcePoliciesList>,
+        BodyResponseCallback<Schema$ResourcePolicyList>,
         optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResourcePoliciesList>,
-        callback?: BodyResponseCallback<Schema$ResourcePoliciesList>):
-        void|AxiosPromise<Schema$ResourcePoliciesList> {
+        BodyResponseCallback<Schema$ResourcePolicyList>,
+        callback?: BodyResponseCallback<Schema$ResourcePolicyList>):
+        void|AxiosPromise<Schema$ResourcePolicyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54386,12 +59475,12 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
-        createAPIRequest<Schema$ResourcePoliciesList>(parameters, callback);
+        createAPIRequest<Schema$ResourcePolicyList>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$ResourcePoliciesList>(parameters);
+        return createAPIRequest<Schema$ResourcePolicyList>(parameters);
       }
     }
 
@@ -54406,7 +59495,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().RegionSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -54458,7 +59547,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -54477,7 +59566,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -54532,7 +59621,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -54542,7 +59631,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Resourcepolicies$Aggregatedlist {
+  export interface Params$Resource$Resourcepolicies$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54596,7 +59686,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Delete {
+  export interface Params$Resource$Resourcepolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54628,7 +59719,8 @@ export namespace compute_alpha {
      */
     resourcePolicy?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Get {
+  export interface Params$Resource$Resourcepolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54647,7 +59739,8 @@ export namespace compute_alpha {
      */
     resourcePolicy?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Getiampolicy {
+  export interface Params$Resource$Resourcepolicies$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54662,11 +59755,12 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Insert {
+  export interface Params$Resource$Resourcepolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54699,7 +59793,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$ResourcePolicy;
   }
-  export interface Params$Resource$Resourcepolicies$List {
+  export interface Params$Resource$Resourcepolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54757,7 +59852,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Resourcepolicies$Setiampolicy {
+  export interface Params$Resource$Resourcepolicies$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54772,7 +59868,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -54781,7 +59877,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetPolicyRequest;
   }
-  export interface Params$Resource$Resourcepolicies$Testiampermissions {
+  export interface Params$Resource$Resourcepolicies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -54796,7 +59893,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -54808,15 +59905,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Routers {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -54883,7 +59972,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouterAggregatedList>(parameters, callback);
@@ -54953,7 +60042,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55019,12 +60108,91 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Router>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Router>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.routers.getNatMappingInfo
+     * @desc Retrieves runtime Nat mapping information of VM endpoints.
+     * @alias compute.routers.getNatMappingInfo
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.router Name of the Router resource to query for Nat Mapping information of VM endpoints.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getNatMappingInfo(
+        params?: Params$Resource$Routers$Getnatmappinginfo,
+        options?: MethodOptions):
+        AxiosPromise<Schema$VmEndpointNatMappingsList>;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        params: Params$Resource$Routers$Getnatmappinginfo,
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        callback: BodyResponseCallback<Schema$VmEndpointNatMappingsList>): void;
+    getNatMappingInfo(
+        paramsOrCallback?: Params$Resource$Routers$Getnatmappinginfo|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
+        callback?: BodyResponseCallback<Schema$VmEndpointNatMappingsList>):
+        void|AxiosPromise<Schema$VmEndpointNatMappingsList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Routers$Getnatmappinginfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Getnatmappinginfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$VmEndpointNatMappingsList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VmEndpointNatMappingsList>(parameters);
       }
     }
 
@@ -55092,7 +60260,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouterStatusResponse>(parameters, callback);
@@ -55163,7 +60331,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55236,7 +60404,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouterList>(parameters, callback);
@@ -55309,7 +60477,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55382,7 +60550,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RoutersPreviewResponse>(parameters, callback);
@@ -55401,7 +60569,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -55456,7 +60624,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -55528,7 +60696,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55538,7 +60706,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Routers$Aggregatedlist {
+  export interface Params$Resource$Routers$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55592,7 +60761,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Routers$Delete {
+  export interface Params$Resource$Routers$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55624,7 +60793,7 @@ export namespace compute_alpha {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Get {
+  export interface Params$Resource$Routers$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55643,7 +60812,72 @@ export namespace compute_alpha {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Getrouterstatus {
+  export interface Params$Resource$Routers$Getnatmappinginfo extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the Router resource to query for Nat Mapping information of VM
+     * endpoints.
+     */
+    router?: string;
+  }
+  export interface Params$Resource$Routers$Getrouterstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55662,7 +60896,7 @@ export namespace compute_alpha {
      */
     router?: string;
   }
-  export interface Params$Resource$Routers$Insert {
+  export interface Params$Resource$Routers$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55695,7 +60929,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$List {
+  export interface Params$Resource$Routers$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55753,7 +60987,7 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Routers$Patch {
+  export interface Params$Resource$Routers$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55790,7 +61024,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$Preview {
+  export interface Params$Resource$Routers$Preview extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55814,7 +61048,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Router;
   }
-  export interface Params$Resource$Routers$Testiampermissions {
+  export interface Params$Resource$Routers$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55829,7 +61064,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -55838,7 +61073,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Routers$Update {
+  export interface Params$Resource$Routers$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -55878,15 +61113,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Routes {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -55947,7 +61174,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56011,7 +61238,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Route>(parameters, callback);
@@ -56079,7 +61306,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56149,7 +61376,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RouteList>(parameters, callback);
@@ -56167,7 +61394,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -56222,7 +61449,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -56232,7 +61459,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Routes$Delete {
+  export interface Params$Resource$Routes$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56260,7 +61487,7 @@ export namespace compute_alpha {
      */
     route?: string;
   }
-  export interface Params$Resource$Routes$Get {
+  export interface Params$Resource$Routes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56275,7 +61502,7 @@ export namespace compute_alpha {
      */
     route?: string;
   }
-  export interface Params$Resource$Routes$Insert {
+  export interface Params$Resource$Routes$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56304,7 +61531,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Route;
   }
-  export interface Params$Resource$Routes$List {
+  export interface Params$Resource$Routes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56358,7 +61585,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Routes$Testiampermissions {
+  export interface Params$Resource$Routes$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -56369,7 +61597,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -56381,15 +61609,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Securitypolicies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -56454,7 +61674,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56525,7 +61745,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56591,7 +61811,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicy>(parameters, callback);
@@ -56662,7 +61882,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicyRule>(parameters, callback);
@@ -56734,7 +61954,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56807,7 +62027,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicyList>(parameters, callback);
@@ -56899,7 +62119,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -56975,7 +62195,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57048,7 +62268,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57119,7 +62339,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57191,7 +62411,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57209,7 +62429,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -57264,7 +62484,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -57274,7 +62494,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Securitypolicies$Addrule {
+  export interface Params$Resource$Securitypolicies$Addrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57298,7 +62519,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SecurityPolicyRule;
   }
-  export interface Params$Resource$Securitypolicies$Delete {
+  export interface Params$Resource$Securitypolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57326,7 +62548,8 @@ export namespace compute_alpha {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Get {
+  export interface Params$Resource$Securitypolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57341,7 +62564,8 @@ export namespace compute_alpha {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Getrule {
+  export interface Params$Resource$Securitypolicies$Getrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57360,7 +62584,8 @@ export namespace compute_alpha {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Insert {
+  export interface Params$Resource$Securitypolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57393,7 +62618,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SecurityPolicy;
   }
-  export interface Params$Resource$Securitypolicies$List {
+  export interface Params$Resource$Securitypolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57447,7 +62673,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets {
+  export interface Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57501,7 +62728,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Securitypolicies$Patch {
+  export interface Params$Resource$Securitypolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57534,7 +62762,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SecurityPolicy;
   }
-  export interface Params$Resource$Securitypolicies$Patchrule {
+  export interface Params$Resource$Securitypolicies$Patchrule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57562,7 +62791,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SecurityPolicyRule;
   }
-  export interface Params$Resource$Securitypolicies$Removerule {
+  export interface Params$Resource$Securitypolicies$Removerule extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57581,7 +62811,8 @@ export namespace compute_alpha {
      */
     securityPolicy?: string;
   }
-  export interface Params$Resource$Securitypolicies$Setlabels {
+  export interface Params$Resource$Securitypolicies$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57601,7 +62832,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Securitypolicies$Testiampermissions {
+  export interface Params$Resource$Securitypolicies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -57612,7 +62844,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -57624,15 +62856,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Snapshots {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -57698,7 +62922,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57763,7 +62987,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -57782,7 +63006,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -57833,7 +63057,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -57904,7 +63128,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SnapshotList>(parameters, callback);
@@ -57923,7 +63147,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -57975,7 +63199,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -58047,7 +63271,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58065,7 +63289,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -58120,7 +63344,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -58130,7 +63354,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Snapshots$Delete {
+  export interface Params$Resource$Snapshots$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58158,7 +63382,7 @@ export namespace compute_alpha {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Snapshots$Get {
+  export interface Params$Resource$Snapshots$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58173,7 +63397,8 @@ export namespace compute_alpha {
      */
     snapshot?: string;
   }
-  export interface Params$Resource$Snapshots$Getiampolicy {
+  export interface Params$Resource$Snapshots$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58184,11 +63409,11 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Snapshots$List {
+  export interface Params$Resource$Snapshots$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58242,7 +63467,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Snapshots$Setiampolicy {
+  export interface Params$Resource$Snapshots$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58253,7 +63479,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -58262,7 +63488,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Snapshots$Setlabels {
+  export interface Params$Resource$Snapshots$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58282,7 +63509,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
   }
-  export interface Params$Resource$Snapshots$Testiampermissions {
+  export interface Params$Resource$Snapshots$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58293,7 +63521,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -58305,14 +63533,88 @@ export namespace compute_alpha {
 
 
   export class Resource$Sslcertificates {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
+    constructor() {}
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * compute.sslCertificates.aggregatedList
+     * @desc Retrieves the list of all SslCertificate resources, regional and
+     * global, available to the specified project.
+     * @alias compute.sslCertificates.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Sslcertificates$Aggregatedlist,
+        options?: MethodOptions):
+        AxiosPromise<Schema$SslCertificateAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Sslcertificates$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+        callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void;
+    aggregatedList(
+        params: Params$Resource$Sslcertificates$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Sslcertificates$Aggregatedlist|
+        BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SslCertificateAggregatedList>,
+        callback?: BodyResponseCallback<Schema$SslCertificateAggregatedList>):
+        void|AxiosPromise<Schema$SslCertificateAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Sslcertificates$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sslcertificates$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/aggregated/sslCertificates')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$SslCertificateAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SslCertificateAggregatedList>(
+            parameters);
+      }
     }
 
 
@@ -58377,7 +63679,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58444,7 +63746,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertificate>(parameters, callback);
@@ -58515,7 +63817,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58588,7 +63890,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertificateList>(parameters, callback);
@@ -58606,7 +63908,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -58661,7 +63963,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -58671,7 +63973,63 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Sslcertificates$Delete {
+  export interface Params$Resource$Sslcertificates$Aggregatedlist extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Sslcertificates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58699,7 +64057,8 @@ export namespace compute_alpha {
      */
     sslCertificate?: string;
   }
-  export interface Params$Resource$Sslcertificates$Get {
+  export interface Params$Resource$Sslcertificates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58714,7 +64073,8 @@ export namespace compute_alpha {
      */
     sslCertificate?: string;
   }
-  export interface Params$Resource$Sslcertificates$Insert {
+  export interface Params$Resource$Sslcertificates$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58743,7 +64103,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SslCertificate;
   }
-  export interface Params$Resource$Sslcertificates$List {
+  export interface Params$Resource$Sslcertificates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58797,7 +64158,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslcertificates$Testiampermissions {
+  export interface Params$Resource$Sslcertificates$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -58808,7 +64170,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -58820,15 +64182,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Sslpolicies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -58894,7 +64248,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58960,7 +64314,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslPolicy>(parameters, callback);
@@ -59031,7 +64385,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59102,7 +64456,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslPoliciesList>(parameters, callback);
@@ -59183,7 +64537,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SslPoliciesListAvailableFeaturesResponse>(
@@ -59257,7 +64611,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59275,7 +64629,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -59330,7 +64684,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -59340,7 +64694,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Sslpolicies$Delete {
+  export interface Params$Resource$Sslpolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59369,7 +64724,7 @@ export namespace compute_alpha {
      */
     sslPolicy?: string;
   }
-  export interface Params$Resource$Sslpolicies$Get {
+  export interface Params$Resource$Sslpolicies$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59385,7 +64740,8 @@ export namespace compute_alpha {
      */
     sslPolicy?: string;
   }
-  export interface Params$Resource$Sslpolicies$Insert {
+  export interface Params$Resource$Sslpolicies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59414,7 +64770,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SslPolicy;
   }
-  export interface Params$Resource$Sslpolicies$List {
+  export interface Params$Resource$Sslpolicies$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59468,7 +64824,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslpolicies$Listavailablefeatures {
+  export interface Params$Resource$Sslpolicies$Listavailablefeatures extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59522,7 +64879,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Sslpolicies$Patch {
+  export interface Params$Resource$Sslpolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59556,7 +64914,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SslPolicy;
   }
-  export interface Params$Resource$Sslpolicies$Testiampermissions {
+  export interface Params$Resource$Sslpolicies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -59567,7 +64926,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -59579,15 +64938,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Subnetworks {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -59654,7 +65005,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubnetworkAggregatedList>(parameters, callback);
@@ -59726,7 +65077,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59799,7 +65150,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59866,7 +65217,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subnetwork>(parameters, callback);
@@ -59886,7 +65237,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -59937,7 +65288,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -60010,7 +65361,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60082,7 +65433,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubnetworkList>(parameters, callback);
@@ -60162,7 +65513,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsableSubnetworksAggregatedList>(
@@ -60185,6 +65536,7 @@ export namespace compute_alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.drainTimeoutSeconds The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -60240,7 +65592,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60260,7 +65612,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().RegionSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -60312,7 +65664,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -60387,7 +65739,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60406,7 +65758,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -60461,7 +65813,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -60471,7 +65823,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Subnetworks$Aggregatedlist {
+  export interface Params$Resource$Subnetworks$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60525,7 +65878,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Subnetworks$Delete {
+  export interface Params$Resource$Subnetworks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60557,7 +65911,8 @@ export namespace compute_alpha {
      */
     subnetwork?: string;
   }
-  export interface Params$Resource$Subnetworks$Expandipcidrrange {
+  export interface Params$Resource$Subnetworks$Expandipcidrrange extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60594,7 +65949,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SubnetworksExpandIpCidrRangeRequest;
   }
-  export interface Params$Resource$Subnetworks$Get {
+  export interface Params$Resource$Subnetworks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60613,7 +65968,8 @@ export namespace compute_alpha {
      */
     subnetwork?: string;
   }
-  export interface Params$Resource$Subnetworks$Getiampolicy {
+  export interface Params$Resource$Subnetworks$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60628,11 +65984,12 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
-  export interface Params$Resource$Subnetworks$Insert {
+  export interface Params$Resource$Subnetworks$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60665,7 +66022,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Subnetwork;
   }
-  export interface Params$Resource$Subnetworks$List {
+  export interface Params$Resource$Subnetworks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60723,7 +66080,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Subnetworks$Listusable {
+  export interface Params$Resource$Subnetworks$Listusable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60777,12 +66135,24 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Subnetworks$Patch {
+  export interface Params$Resource$Subnetworks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The drain timeout specifies the upper bound in seconds on the amount of
+     * time allowed to drain connections from the current ACTIVE subnetwork to
+     * the current BACKUP subnetwork. The drain timeout is only applicable when
+     * the following conditions are true: - the subnetwork being patched has
+     * purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has
+     * role = BACKUP - the patch request is setting the role to ACTIVE. Note
+     * that after this patch operation the roles of the ACTIVE and BACKUP
+     * subnetworks will be swapped.
+     */
+    drainTimeoutSeconds?: number;
     /**
      * Project ID for this request.
      */
@@ -60814,7 +66184,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$Subnetwork;
   }
-  export interface Params$Resource$Subnetworks$Setiampolicy {
+  export interface Params$Resource$Subnetworks$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60829,7 +66200,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -60838,7 +66209,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetPolicyRequest;
   }
-  export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess {
+  export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60875,7 +66247,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SubnetworksSetPrivateIpGoogleAccessRequest;
   }
-  export interface Params$Resource$Subnetworks$Testiampermissions {
+  export interface Params$Resource$Subnetworks$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -60890,7 +66263,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -60902,15 +66275,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Targethttpproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -60983,7 +66348,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxyAggregatedList>(
@@ -61056,7 +66421,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61123,7 +66488,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxy>(parameters, callback);
@@ -61195,7 +66560,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61269,7 +66634,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxyList>(parameters, callback);
@@ -61341,7 +66706,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61359,7 +66724,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -61414,7 +66779,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -61424,7 +66789,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Targethttpproxies$Aggregatedlist {
+  export interface Params$Resource$Targethttpproxies$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61478,7 +66844,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Delete {
+  export interface Params$Resource$Targethttpproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61506,7 +66873,8 @@ export namespace compute_alpha {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Get {
+  export interface Params$Resource$Targethttpproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61521,7 +66889,8 @@ export namespace compute_alpha {
      */
     targetHttpProxy?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Insert {
+  export interface Params$Resource$Targethttpproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61550,7 +66919,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetHttpProxy;
   }
-  export interface Params$Resource$Targethttpproxies$List {
+  export interface Params$Resource$Targethttpproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61604,7 +66974,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targethttpproxies$Seturlmap {
+  export interface Params$Resource$Targethttpproxies$Seturlmap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61637,7 +67008,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMapReference;
   }
-  export interface Params$Resource$Targethttpproxies$Testiampermissions {
+  export interface Params$Resource$Targethttpproxies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -61648,7 +67020,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -61660,14 +67032,88 @@ export namespace compute_alpha {
 
 
   export class Resource$Targethttpsproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
+    constructor() {}
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * compute.targetHttpsProxies.aggregatedList
+     * @desc Retrieves the list of all TargetHttpsProxy resources, regional and
+     * global, available to the specified project.
+     * @alias compute.targetHttpsProxies.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Targethttpsproxies$Aggregatedlist,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TargetHttpsProxyAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Targethttpsproxies$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void;
+    aggregatedList(
+        params: Params$Resource$Targethttpsproxies$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Targethttpsproxies$Aggregatedlist|
+        BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>,
+        callback?: BodyResponseCallback<Schema$TargetHttpsProxyAggregatedList>):
+        void|AxiosPromise<Schema$TargetHttpsProxyAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Targethttpsproxies$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targethttpsproxies$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/aggregated/targetHttpsProxies')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TargetHttpsProxyAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TargetHttpsProxyAggregatedList>(
+            parameters);
+      }
     }
 
 
@@ -61732,7 +67178,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61799,7 +67245,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpsProxy>(parameters, callback);
@@ -61871,7 +67317,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61946,7 +67392,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpsProxyList>(parameters, callback);
@@ -62018,7 +67464,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62091,7 +67537,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62166,7 +67612,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62238,7 +67684,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62256,7 +67702,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -62312,7 +67758,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -62322,7 +67768,63 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Targethttpsproxies$Delete {
+  export interface Params$Resource$Targethttpsproxies$Aggregatedlist extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Targethttpsproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62350,7 +67852,8 @@ export namespace compute_alpha {
      */
     targetHttpsProxy?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Get {
+  export interface Params$Resource$Targethttpsproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62365,7 +67868,8 @@ export namespace compute_alpha {
      */
     targetHttpsProxy?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Insert {
+  export interface Params$Resource$Targethttpsproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62394,7 +67898,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetHttpsProxy;
   }
-  export interface Params$Resource$Targethttpsproxies$List {
+  export interface Params$Resource$Targethttpsproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62448,7 +67953,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targethttpsproxies$Setquicoverride {
+  export interface Params$Resource$Targethttpsproxies$Setquicoverride extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62482,7 +67988,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetHttpsProxiesSetQuicOverrideRequest;
   }
-  export interface Params$Resource$Targethttpsproxies$Setsslcertificates {
+  export interface Params$Resource$Targethttpsproxies$Setsslcertificates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62516,7 +68023,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetHttpsProxiesSetSslCertificatesRequest;
   }
-  export interface Params$Resource$Targethttpsproxies$Setsslpolicy {
+  export interface Params$Resource$Targethttpsproxies$Setsslpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62550,7 +68058,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SslPolicyReference;
   }
-  export interface Params$Resource$Targethttpsproxies$Seturlmap {
+  export interface Params$Resource$Targethttpsproxies$Seturlmap extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62583,7 +68092,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMapReference;
   }
-  export interface Params$Resource$Targethttpsproxies$Testiampermissions {
+  export interface Params$Resource$Targethttpsproxies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -62594,7 +68104,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -62606,15 +68116,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Targetinstances {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -62686,7 +68188,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstanceAggregatedList>(
@@ -62760,7 +68262,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62828,7 +68330,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstance>(parameters, callback);
@@ -62901,7 +68403,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62976,7 +68478,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstanceList>(parameters, callback);
@@ -62994,7 +68496,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -63050,7 +68552,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -63060,7 +68562,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Targetinstances$Aggregatedlist {
+  export interface Params$Resource$Targetinstances$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63114,7 +68617,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetinstances$Delete {
+  export interface Params$Resource$Targetinstances$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63146,7 +68650,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Get {
+  export interface Params$Resource$Targetinstances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63165,7 +68670,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Insert {
+  export interface Params$Resource$Targetinstances$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63198,7 +68704,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetInstance;
   }
-  export interface Params$Resource$Targetinstances$List {
+  export interface Params$Resource$Targetinstances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63256,7 +68763,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Targetinstances$Testiampermissions {
+  export interface Params$Resource$Targetinstances$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -63267,7 +68775,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -63283,15 +68791,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Targetpools {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -63357,7 +68857,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63430,7 +68930,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63504,7 +69004,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolAggregatedList>(parameters, callback);
@@ -63576,7 +69076,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63643,7 +69143,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPool>(parameters, callback);
@@ -63718,7 +69218,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolInstanceHealth>(parameters, callback);
@@ -63791,7 +69291,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63864,7 +69364,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolList>(parameters, callback);
@@ -63937,7 +69437,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64010,7 +69510,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64084,7 +69584,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64103,7 +69603,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -64158,7 +69658,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -64168,7 +69668,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Targetpools$Addhealthcheck {
+  export interface Params$Resource$Targetpools$Addhealthcheck extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64205,7 +69706,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetPoolsAddHealthCheckRequest;
   }
-  export interface Params$Resource$Targetpools$Addinstance {
+  export interface Params$Resource$Targetpools$Addinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64242,7 +69744,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetPoolsAddInstanceRequest;
   }
-  export interface Params$Resource$Targetpools$Aggregatedlist {
+  export interface Params$Resource$Targetpools$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64296,7 +69799,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetpools$Delete {
+  export interface Params$Resource$Targetpools$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64328,7 +69832,7 @@ export namespace compute_alpha {
      */
     targetPool?: string;
   }
-  export interface Params$Resource$Targetpools$Get {
+  export interface Params$Resource$Targetpools$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64347,7 +69851,8 @@ export namespace compute_alpha {
      */
     targetPool?: string;
   }
-  export interface Params$Resource$Targetpools$Gethealth {
+  export interface Params$Resource$Targetpools$Gethealth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64371,7 +69876,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$InstanceReference;
   }
-  export interface Params$Resource$Targetpools$Insert {
+  export interface Params$Resource$Targetpools$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64404,7 +69910,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetPool;
   }
-  export interface Params$Resource$Targetpools$List {
+  export interface Params$Resource$Targetpools$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64462,7 +69968,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Targetpools$Removehealthcheck {
+  export interface Params$Resource$Targetpools$Removehealthcheck extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64499,7 +70006,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetPoolsRemoveHealthCheckRequest;
   }
-  export interface Params$Resource$Targetpools$Removeinstance {
+  export interface Params$Resource$Targetpools$Removeinstance extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64536,7 +70044,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetPoolsRemoveInstanceRequest;
   }
-  export interface Params$Resource$Targetpools$Setbackup {
+  export interface Params$Resource$Targetpools$Setbackup extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64577,7 +70086,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetReference;
   }
-  export interface Params$Resource$Targetpools$Testiampermissions {
+  export interface Params$Resource$Targetpools$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -64592,7 +70102,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -64604,15 +70114,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Targetsslproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -64676,7 +70178,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64743,7 +70245,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetSslProxy>(parameters, callback);
@@ -64814,7 +70316,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64887,7 +70389,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetSslProxyList>(parameters, callback);
@@ -64959,7 +70461,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65031,7 +70533,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65103,7 +70605,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65178,7 +70680,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65196,7 +70698,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -65251,7 +70753,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -65261,7 +70763,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Targetsslproxies$Delete {
+  export interface Params$Resource$Targetsslproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65289,7 +70792,8 @@ export namespace compute_alpha {
      */
     targetSslProxy?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Get {
+  export interface Params$Resource$Targetsslproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65304,7 +70808,8 @@ export namespace compute_alpha {
      */
     targetSslProxy?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Insert {
+  export interface Params$Resource$Targetsslproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65333,7 +70838,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetSslProxy;
   }
-  export interface Params$Resource$Targetsslproxies$List {
+  export interface Params$Resource$Targetsslproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65387,7 +70893,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetsslproxies$Setbackendservice {
+  export interface Params$Resource$Targetsslproxies$Setbackendservice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65421,7 +70928,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetSslProxiesSetBackendServiceRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setproxyheader {
+  export interface Params$Resource$Targetsslproxies$Setproxyheader extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65454,7 +70962,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetSslProxiesSetProxyHeaderRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setsslcertificates {
+  export interface Params$Resource$Targetsslproxies$Setsslcertificates extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65488,7 +70997,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetSslProxiesSetSslCertificatesRequest;
   }
-  export interface Params$Resource$Targetsslproxies$Setsslpolicy {
+  export interface Params$Resource$Targetsslproxies$Setsslpolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65522,7 +71032,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$SslPolicyReference;
   }
-  export interface Params$Resource$Targetsslproxies$Testiampermissions {
+  export interface Params$Resource$Targetsslproxies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -65533,7 +71044,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -65545,15 +71056,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Targettcpproxies {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -65617,7 +71120,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65684,7 +71187,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetTcpProxy>(parameters, callback);
@@ -65755,7 +71258,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65828,7 +71331,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetTcpProxyList>(parameters, callback);
@@ -65900,7 +71403,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65972,7 +71475,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65990,7 +71493,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -66045,7 +71548,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -66055,7 +71558,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Targettcpproxies$Delete {
+  export interface Params$Resource$Targettcpproxies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66083,7 +71587,8 @@ export namespace compute_alpha {
      */
     targetTcpProxy?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Get {
+  export interface Params$Resource$Targettcpproxies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66098,7 +71603,8 @@ export namespace compute_alpha {
      */
     targetTcpProxy?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Insert {
+  export interface Params$Resource$Targettcpproxies$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66127,7 +71633,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetTcpProxy;
   }
-  export interface Params$Resource$Targettcpproxies$List {
+  export interface Params$Resource$Targettcpproxies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66181,7 +71688,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targettcpproxies$Setbackendservice {
+  export interface Params$Resource$Targettcpproxies$Setbackendservice extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66215,7 +71723,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetTcpProxiesSetBackendServiceRequest;
   }
-  export interface Params$Resource$Targettcpproxies$Setproxyheader {
+  export interface Params$Resource$Targettcpproxies$Setproxyheader extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66248,7 +71757,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetTcpProxiesSetProxyHeaderRequest;
   }
-  export interface Params$Resource$Targettcpproxies$Testiampermissions {
+  export interface Params$Resource$Targettcpproxies$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66259,7 +71769,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -66271,15 +71781,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Targetvpngateways {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -66351,7 +71853,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGatewayAggregatedList>(
@@ -66425,7 +71927,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -66493,7 +71995,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGateway>(parameters, callback);
@@ -66566,7 +72068,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -66642,7 +72144,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGatewayList>(parameters, callback);
@@ -66716,7 +72218,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -66735,7 +72237,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -66790,7 +72292,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -66800,7 +72302,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Targetvpngateways$Aggregatedlist {
+  export interface Params$Resource$Targetvpngateways$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66854,7 +72357,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Delete {
+  export interface Params$Resource$Targetvpngateways$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66886,7 +72390,8 @@ export namespace compute_alpha {
      */
     targetVpnGateway?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Get {
+  export interface Params$Resource$Targetvpngateways$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66905,7 +72410,8 @@ export namespace compute_alpha {
      */
     targetVpnGateway?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Insert {
+  export interface Params$Resource$Targetvpngateways$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66938,7 +72444,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TargetVpnGateway;
   }
-  export interface Params$Resource$Targetvpngateways$List {
+  export interface Params$Resource$Targetvpngateways$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -66996,7 +72503,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Targetvpngateways$Setlabels {
+  export interface Params$Resource$Targetvpngateways$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67033,7 +72541,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Targetvpngateways$Testiampermissions {
+  export interface Params$Resource$Targetvpngateways$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67048,7 +72557,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -67060,14 +72569,81 @@ export namespace compute_alpha {
 
 
   export class Resource$Urlmaps {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
+    constructor() {}
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * compute.urlMaps.aggregatedList
+     * @desc Retrieves the list of all UrlMap resources, regional and global,
+     * available to the specified project.
+     * @alias compute.urlMaps.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Urlmaps$Aggregatedlist,
+        options?: MethodOptions): AxiosPromise<Schema$UrlMapsAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Urlmaps$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+        callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>): void;
+    aggregatedList(
+        params: Params$Resource$Urlmaps$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>): void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$UrlMapsAggregatedList>): void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Urlmaps$Aggregatedlist|
+        BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UrlMapsAggregatedList>,
+        callback?: BodyResponseCallback<Schema$UrlMapsAggregatedList>):
+        void|AxiosPromise<Schema$UrlMapsAggregatedList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Urlmaps$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlmaps$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/alpha/projects/{project}/aggregated/urlMaps')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlMapsAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UrlMapsAggregatedList>(parameters);
+      }
     }
 
 
@@ -67129,7 +72705,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67193,7 +72769,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMap>(parameters, callback);
@@ -67262,7 +72838,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67335,7 +72911,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67406,7 +72982,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapList>(parameters, callback);
@@ -67477,7 +73053,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67495,7 +73071,7 @@ export namespace compute_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -67550,7 +73126,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -67620,7 +73196,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67694,7 +73270,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapsValidateResponse>(parameters, callback);
@@ -67704,7 +73280,62 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Urlmaps$Delete {
+  export interface Params$Resource$Urlmaps$Aggregatedlist extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Urlmaps$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67732,7 +73363,7 @@ export namespace compute_alpha {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Urlmaps$Get {
+  export interface Params$Resource$Urlmaps$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67747,7 +73378,7 @@ export namespace compute_alpha {
      */
     urlMap?: string;
   }
-  export interface Params$Resource$Urlmaps$Insert {
+  export interface Params$Resource$Urlmaps$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67776,7 +73407,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Invalidatecache {
+  export interface Params$Resource$Urlmaps$Invalidatecache extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67809,7 +73441,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$CacheInvalidationRule;
   }
-  export interface Params$Resource$Urlmaps$List {
+  export interface Params$Resource$Urlmaps$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67863,7 +73495,7 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Urlmaps$Patch {
+  export interface Params$Resource$Urlmaps$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67896,7 +73528,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Testiampermissions {
+  export interface Params$Resource$Urlmaps$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67907,7 +73540,7 @@ export namespace compute_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -67916,7 +73549,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Urlmaps$Update {
+  export interface Params$Resource$Urlmaps$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67949,7 +73582,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$UrlMap;
   }
-  export interface Params$Resource$Urlmaps$Validate {
+  export interface Params$Resource$Urlmaps$Validate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -67972,15 +73605,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Vpngateways {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -68047,7 +73672,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnGatewayAggregatedList>(parameters, callback);
@@ -68119,7 +73744,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'vpnGateway'],
         pathParams: ['project', 'region', 'vpnGateway'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68186,7 +73811,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'vpnGateway'],
         pathParams: ['project', 'region', 'vpnGateway'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnGateway>(parameters, callback);
@@ -68259,7 +73884,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68332,7 +73957,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnGatewayList>(parameters, callback);
@@ -68406,7 +74031,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68425,7 +74050,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -68480,7 +74105,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -68490,7 +74115,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Vpngateways$Aggregatedlist {
+  export interface Params$Resource$Vpngateways$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68544,7 +74170,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Vpngateways$Delete {
+  export interface Params$Resource$Vpngateways$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68576,7 +74203,7 @@ export namespace compute_alpha {
      */
     vpnGateway?: string;
   }
-  export interface Params$Resource$Vpngateways$Get {
+  export interface Params$Resource$Vpngateways$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68595,7 +74222,8 @@ export namespace compute_alpha {
      */
     vpnGateway?: string;
   }
-  export interface Params$Resource$Vpngateways$Insert {
+  export interface Params$Resource$Vpngateways$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68628,7 +74256,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$VpnGateway;
   }
-  export interface Params$Resource$Vpngateways$List {
+  export interface Params$Resource$Vpngateways$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68686,7 +74314,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Vpngateways$Setlabels {
+  export interface Params$Resource$Vpngateways$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68723,7 +74352,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Vpngateways$Testiampermissions {
+  export interface Params$Resource$Vpngateways$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -68738,7 +74368,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -68750,15 +74380,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Vpntunnels {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -68825,7 +74447,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnelAggregatedList>(parameters, callback);
@@ -68896,7 +74518,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68963,7 +74585,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnel>(parameters, callback);
@@ -69035,7 +74657,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69108,7 +74730,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnelList>(parameters, callback);
@@ -69182,7 +74804,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69201,7 +74823,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -69256,7 +74878,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -69266,7 +74888,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Vpntunnels$Aggregatedlist {
+  export interface Params$Resource$Vpntunnels$Aggregatedlist extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69320,7 +74943,8 @@ export namespace compute_alpha {
      */
     project?: string;
   }
-  export interface Params$Resource$Vpntunnels$Delete {
+  export interface Params$Resource$Vpntunnels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69352,7 +74976,7 @@ export namespace compute_alpha {
      */
     vpnTunnel?: string;
   }
-  export interface Params$Resource$Vpntunnels$Get {
+  export interface Params$Resource$Vpntunnels$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69371,7 +74995,8 @@ export namespace compute_alpha {
      */
     vpnTunnel?: string;
   }
-  export interface Params$Resource$Vpntunnels$Insert {
+  export interface Params$Resource$Vpntunnels$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69404,7 +75029,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$VpnTunnel;
   }
-  export interface Params$Resource$Vpntunnels$List {
+  export interface Params$Resource$Vpntunnels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69462,7 +75087,8 @@ export namespace compute_alpha {
      */
     region?: string;
   }
-  export interface Params$Resource$Vpntunnels$Setlabels {
+  export interface Params$Resource$Vpntunnels$Setlabels extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69499,7 +75125,8 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$RegionSetLabelsRequest;
   }
-  export interface Params$Resource$Vpntunnels$Testiampermissions {
+  export interface Params$Resource$Vpntunnels$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69514,7 +75141,7 @@ export namespace compute_alpha {
      */
     region?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -69526,15 +75153,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Zoneoperations {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -69596,7 +75215,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -69663,7 +75282,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69736,7 +75355,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -69814,7 +75433,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69824,7 +75443,8 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Zoneoperations$Delete {
+  export interface Params$Resource$Zoneoperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69843,7 +75463,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$Get {
+  export interface Params$Resource$Zoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69862,7 +75483,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$List {
+  export interface Params$Resource$Zoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69920,7 +75542,8 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zoneoperations$Wait {
+  export interface Params$Resource$Zoneoperations$Wait extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -69942,15 +75565,7 @@ export namespace compute_alpha {
 
 
   export class Resource$Zones {
-    root: Compute;
-    constructor(root: Compute) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -70006,7 +75621,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -70075,7 +75690,7 @@ export namespace compute_alpha {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ZoneList>(parameters, callback);
@@ -70085,7 +75700,7 @@ export namespace compute_alpha {
     }
   }
 
-  export interface Params$Resource$Zones$Get {
+  export interface Params$Resource$Zones$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -70100,7 +75715,7 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
-  export interface Params$Resource$Zones$List {
+  export interface Params$Resource$Zones$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

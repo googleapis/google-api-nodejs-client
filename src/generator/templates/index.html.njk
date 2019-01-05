@@ -1,0 +1,41 @@
+<html>
+<head>
+<style type="text/css">
+  html, body {
+    font-family: roboto, sans-serif;
+    margin: 0px;
+  }
+  header {
+    background-color: #EEE;
+    padding: 10px;
+    font-size: 20px;
+    color: #666;
+  }
+  header img {
+    width: 50px;
+    vertical-align: middle;
+    padding-right: 10px;
+  }
+  ul {
+    list-style-type: none;
+    column-count: 3;
+  }
+  a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+
+</style>
+</head>
+<body>
+<header>
+  <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96">
+  <span>Google API Node.js Client</span>
+</header>
+<ul>
+{% for api in apis %}
+  <li><a href='{{api}}/index.html'>{{api}}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>

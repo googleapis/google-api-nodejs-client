@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace tasks_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,24 +81,14 @@ export namespace tasks_v1 {
    * @param {object=} options Options for Tasks
    */
   export class Tasks {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     tasklists: Resource$Tasklists;
     tasks: Resource$Tasks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.tasklists = new Resource$Tasklists(this);
-      this.tasks = new Resource$Tasks(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.tasklists = new Resource$Tasklists();
+      this.tasks = new Resource$Tasks();
     }
   }
 
@@ -102,7 +127,7 @@ export namespace tasks_v1 {
     /**
      * Collection of links. This collection is read-only.
      */
-    links?: any[];
+    links?: Array<{description?: string; link?: string; type?: string;}>;
     /**
      * Notes describing the task. Optional.
      */
@@ -207,15 +232,7 @@ export namespace tasks_v1 {
 
 
   export class Resource$Tasklists {
-    root: Tasks;
-    constructor(root: Tasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -271,7 +288,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -332,7 +349,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -397,7 +414,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -463,7 +480,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TaskLists>(parameters, callback);
@@ -529,7 +546,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -594,7 +611,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -604,7 +621,7 @@ export namespace tasks_v1 {
     }
   }
 
-  export interface Params$Resource$Tasklists$Delete {
+  export interface Params$Resource$Tasklists$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -615,7 +632,7 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
   }
-  export interface Params$Resource$Tasklists$Get {
+  export interface Params$Resource$Tasklists$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -626,7 +643,7 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
   }
-  export interface Params$Resource$Tasklists$Insert {
+  export interface Params$Resource$Tasklists$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -638,7 +655,7 @@ export namespace tasks_v1 {
      */
     requestBody?: Schema$TaskList;
   }
-  export interface Params$Resource$Tasklists$List {
+  export interface Params$Resource$Tasklists$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -654,7 +671,7 @@ export namespace tasks_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Tasklists$Patch {
+  export interface Params$Resource$Tasklists$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -670,7 +687,7 @@ export namespace tasks_v1 {
      */
     requestBody?: Schema$TaskList;
   }
-  export interface Params$Resource$Tasklists$Update {
+  export interface Params$Resource$Tasklists$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -689,15 +706,7 @@ export namespace tasks_v1 {
 
 
   export class Resource$Tasks {
-    root: Tasks;
-    constructor(root: Tasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -755,7 +764,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -819,7 +828,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -881,7 +890,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -948,7 +957,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1022,7 +1031,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tasks>(parameters, callback);
@@ -1091,7 +1100,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1157,7 +1166,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1223,7 +1232,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1233,7 +1242,7 @@ export namespace tasks_v1 {
     }
   }
 
-  export interface Params$Resource$Tasks$Clear {
+  export interface Params$Resource$Tasks$Clear extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1244,22 +1253,7 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
   }
-  export interface Params$Resource$Tasks$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Task identifier.
-     */
-    task?: string;
-    /**
-     * Task list identifier.
-     */
-    tasklist?: string;
-  }
-  export interface Params$Resource$Tasks$Get {
+  export interface Params$Resource$Tasks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1274,7 +1268,22 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
   }
-  export interface Params$Resource$Tasks$Insert {
+  export interface Params$Resource$Tasks$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task identifier.
+     */
+    task?: string;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+  }
+  export interface Params$Resource$Tasks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1300,7 +1309,7 @@ export namespace tasks_v1 {
      */
     requestBody?: Schema$Task;
   }
-  export interface Params$Resource$Tasks$List {
+  export interface Params$Resource$Tasks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1361,7 +1370,7 @@ export namespace tasks_v1 {
      */
     updatedMin?: string;
   }
-  export interface Params$Resource$Tasks$Move {
+  export interface Params$Resource$Tasks$Move extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1386,7 +1395,7 @@ export namespace tasks_v1 {
      */
     tasklist?: string;
   }
-  export interface Params$Resource$Tasks$Patch {
+  export interface Params$Resource$Tasks$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1406,7 +1415,7 @@ export namespace tasks_v1 {
      */
     requestBody?: Schema$Task;
   }
-  export interface Params$Resource$Tasks$Update {
+  export interface Params$Resource$Tasks$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

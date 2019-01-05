@@ -12,10 +12,9 @@
 // limitations under the License.
 
 import {Compute, GoogleAuth, JWT, OAuth2Client} from 'google-auth-library';
+import {APIEndpoint, Discovery, Endpoint, GlobalOptions} from 'googleapis-common';
+
 import * as apis from './apis';
-import {APIEndpoint, GlobalOptions} from './shared/src/api';
-import {Discovery} from './shared/src/discovery';
-import {Endpoint} from './shared/src/endpoint';
 
 export class AuthPlus extends GoogleAuth {
   // tslint:disable-next-line: variable-name

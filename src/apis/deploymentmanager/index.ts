@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {deploymentmanager_alpha} from './alpha';
 import {deploymentmanager_v2} from './v2';
 import {deploymentmanager_v2beta} from './v2beta';

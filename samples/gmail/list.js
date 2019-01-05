@@ -18,23 +18,24 @@ const sampleClient = require('../sampleclient');
 
 const gmail = google.gmail({
   version: 'v1',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample (callback) {
-  const res = await gmail.users.messages.list({ userId: 'me' });
+async function runSample() {
+  const res = await gmail.users.messages.list({userId: 'me'});
   console.log(res.data);
   return res.data;
 }
 
 if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/gmail.readonly'];
-  sampleClient.authenticate(scopes)
-    .then(c => runSample())
+  sampleClient
+    .authenticate(scopes)
+    .then(runSample)
     .catch(console.error);
 }
 
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

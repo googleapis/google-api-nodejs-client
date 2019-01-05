@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace oslogin_v1beta {
   export interface Options extends GlobalOptions {
     version: 'v1beta';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +98,12 @@ export namespace oslogin_v1beta {
    * @param {object=} options Options for Oslogin
    */
   export class Oslogin {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.users = new Resource$Users();
     }
   }
 
@@ -98,7 +140,7 @@ export namespace oslogin_v1beta {
     /**
      * A map from SSH public key fingerprint to the associated key object.
      */
-    sshPublicKeys?: any;
+    sshPublicKeys?: {[key: string]: Schema$SshPublicKey;};
   }
   /**
    * The POSIX account information associated with a Google account.
@@ -168,18 +210,11 @@ export namespace oslogin_v1beta {
 
 
   export class Resource$Users {
-    root: Oslogin;
     projects: Resource$Users$Projects;
     sshPublicKeys: Resource$Users$Sshpublickeys;
-    constructor(root: Oslogin) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.projects = new Resource$Users$Projects(root);
-      this.sshPublicKeys = new Resource$Users$Sshpublickeys(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.projects = new Resource$Users$Projects();
+      this.sshPublicKeys = new Resource$Users$Sshpublickeys();
     }
 
 
@@ -192,6 +227,8 @@ export namespace oslogin_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The unique ID for the user in format `users/{user}`.
+     * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
+     * @param {string=} params.systemId A system ID for filtering the results of the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -241,7 +278,7 @@ export namespace oslogin_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LoginProfile>(parameters, callback);
@@ -318,7 +355,7 @@ export namespace oslogin_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ImportSshPublicKeyResponse>(
@@ -329,7 +366,8 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Getloginprofile {
+  export interface Params$Resource$Users$Getloginprofile extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -339,8 +377,17 @@ export namespace oslogin_v1beta {
      * The unique ID for the user in format `users/{user}`.
      */
     name?: string;
+    /**
+     * The project ID of the Google Cloud Platform project.
+     */
+    projectId?: string;
+    /**
+     * A system ID for filtering the results of the request.
+     */
+    systemId?: string;
   }
-  export interface Params$Resource$Users$Importsshpublickey {
+  export interface Params$Resource$Users$Importsshpublickey extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -362,15 +409,7 @@ export namespace oslogin_v1beta {
   }
 
   export class Resource$Users$Projects {
-    root: Oslogin;
-    constructor(root: Oslogin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -428,7 +467,7 @@ export namespace oslogin_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -438,7 +477,8 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Projects$Delete {
+  export interface Params$Resource$Users$Projects$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -454,15 +494,7 @@ export namespace oslogin_v1beta {
 
 
   export class Resource$Users$Sshpublickeys {
-    root: Oslogin;
-    constructor(root: Oslogin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -520,7 +552,7 @@ export namespace oslogin_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -582,7 +614,7 @@ export namespace oslogin_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SshPublicKey>(parameters, callback);
@@ -651,7 +683,7 @@ export namespace oslogin_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SshPublicKey>(parameters, callback);
@@ -661,7 +693,8 @@ export namespace oslogin_v1beta {
     }
   }
 
-  export interface Params$Resource$Users$Sshpublickeys$Delete {
+  export interface Params$Resource$Users$Sshpublickeys$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -674,7 +707,8 @@ export namespace oslogin_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Get {
+  export interface Params$Resource$Users$Sshpublickeys$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -687,7 +721,8 @@ export namespace oslogin_v1beta {
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Patch {
+  export interface Params$Resource$Users$Sshpublickeys$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

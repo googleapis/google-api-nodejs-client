@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudtasks_v2beta2 {
   export interface Options extends GlobalOptions {
     version: 'v2beta2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +98,12 @@ export namespace cloudtasks_v2beta2 {
    * @param {object=} options Options for Cloudtasks
    */
   export class Cloudtasks {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -81,25 +123,36 @@ export namespace cloudtasks_v2beta2 {
    * to an App Engine app when the task is dispatched.  This proto can only be
    * used for tasks in a queue which has app_engine_http_target set.  Using
    * AppEngineHttpRequest requires
-   * [`appengine.applications.get`](/appengine/docs/admin-api/access-control)
+   * [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control)
    * Google IAM permission for the project and the following scope:
    * `https://www.googleapis.com/auth/cloud-platform`  The task will be
    * delivered to the App Engine app which belongs to the same project as the
    * queue. For more information, see [How Requests are
-   * Routed](/appengine/docs/standard/python/how-requests-are-routed) and how
-   * routing is affected by [dispatch
-   * files](/appengine/docs/python/config/dispatchref).  The AppEngineRouting
-   * used to construct the URL that the task is delivered to can be set at the
-   * queue-level or task-level:  * If set,    app_engine_routing_override    is
-   * used for all tasks in the queue, no matter what the setting    is for the
-   * task-level app_engine_routing.   The `url` that the task will be sent to
-   * is:  * `url =` host `+`   relative_url  The task attempt has succeeded if
-   * the app&#39;s request handler returns an HTTP response code in the range
-   * [`200` - `299`]. `503` is considered an App Engine system error instead of
-   * an application error. Requests returning error `503` will be retried
-   * regardless of retry configuration and not counted against retry counts. Any
-   * other response code or a failure to receive a response before the deadline
-   * is a failed attempt.
+   * Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed)
+   * and how routing is affected by [dispatch
+   * files](https://cloud.google.com/appengine/docs/python/config/dispatchref).
+   * Traffic is encrypted during transport and never leaves Google datacenters.
+   * Because this traffic is carried over a communication mechanism internal to
+   * Google, you cannot explicitly set the protocol (for example, HTTP or
+   * HTTPS). The request to the handler, however, will appear to have used the
+   * HTTP protocol.  The AppEngineRouting used to construct the URL that the
+   * task is delivered to can be set at the queue-level or task-level:  * If
+   * set,    app_engine_routing_override    is used for all tasks in the queue,
+   * no matter what the setting    is for the    task-level app_engine_routing.
+   * The `url` that the task will be sent to is:  * `url =` host `+`
+   * relative_url  Tasks can be dispatched to secure app handlers, unsecure app
+   * handlers, and URIs restricted with [`login:
+   * admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref).
+   * Because tasks are not run as any user, they cannot be dispatched to URIs
+   * restricted with [`login:
+   * required`](https://cloud.google.com/appengine/docs/standard/python/config/appref)
+   * Task dispatches also do not follow redirects.  The task attempt has
+   * succeeded if the app&#39;s request handler returns an HTTP response code in
+   * the range [`200` - `299`]. `503` is considered an App Engine system error
+   * instead of an application error. Requests returning error `503` will be
+   * retried regardless of retry configuration and not counted against retry
+   * counts. Any other response code or a failure to receive a response before
+   * the deadline is a failed attempt.
    */
   export interface Schema$AppEngineHttpRequest {
     /**
@@ -110,44 +163,41 @@ export namespace cloudtasks_v2beta2 {
     appEngineRouting?: Schema$AppEngineRouting;
     /**
      * HTTP request headers.  This map contains the header field names and
-     * values. Headers can be set when the [task is
-     * created](google.cloud.tasks.v2beta2.CloudTasks.CreateTask). Repeated
-     * headers are not supported but a header value can contain commas.  Cloud
-     * Tasks sets some headers to default values:  * `User-Agent`: By default,
-     * this header is   `&quot;AppEngine-Google;
-     * (+http://code.google.com/appengine)&quot;`.   This header can be
-     * modified, but Cloud Tasks will append   `&quot;AppEngine-Google;
-     * (+http://code.google.com/appengine)&quot;` to the   modified
-     * `User-Agent`.  If the task has a payload, Cloud Tasks sets the following
-     * headers:  * `Content-Type`: By default, the `Content-Type` header is set
-     * to   `&quot;application/octet-stream&quot;`. The default can be
-     * overridden by explicitly   setting `Content-Type` to a particular media
-     * type when the   [task is
-     * created](google.cloud.tasks.v2beta2.CloudTasks.CreateTask).   For
-     * example, `Content-Type` can be set to `&quot;application/json&quot;`. *
-     * `Content-Length`: This is computed by Cloud Tasks. This value is   output
-     * only.   It cannot be changed.  The headers below cannot be set or
-     * overridden:  * `Host` * `X-Google-*` * `X-AppEngine-*`  In addition,
-     * Cloud Tasks sets some headers when the task is dispatched, such as
-     * headers containing information about the task; see [request
-     * headers](/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
+     * values. Headers can be set when the task is created. Repeated headers are
+     * not supported but a header value can contain commas.  Cloud Tasks sets
+     * some headers to default values:  * `User-Agent`: By default, this header
+     * is   `&quot;AppEngine-Google; (+http://code.google.com/appengine)&quot;`.
+     * This header can be modified, but Cloud Tasks will append
+     * `&quot;AppEngine-Google; (+http://code.google.com/appengine)&quot;` to
+     * the   modified `User-Agent`.  If the task has a payload, Cloud Tasks sets
+     * the following headers:  * `Content-Type`: By default, the `Content-Type`
+     * header is set to   `&quot;application/octet-stream&quot;`. The default
+     * can be overridden by explicitly   setting `Content-Type` to a particular
+     * media type when the   task is created.   For example, `Content-Type` can
+     * be set to `&quot;application/json&quot;`. * `Content-Length`: This is
+     * computed by Cloud Tasks. This value is   output only.   It cannot be
+     * changed.  The headers below cannot be set or overridden:  * `Host` *
+     * `X-Google-*` * `X-AppEngine-*`  In addition, Cloud Tasks sets some
+     * headers when the task is dispatched, such as headers containing
+     * information about the task; see [request
+     * headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
      * These headers are set only when the task is dispatched, so they are not
      * visible when the task is returned in a Cloud Tasks response.  Although
      * there is no specific limit for the maximum number of headers or the size,
      * there is a limit on the maximum size of the Task. For more information,
      * see the CreateTask documentation.
      */
-    headers?: any;
+    headers?: {[key: string]: string;};
     /**
      * The HTTP method to use for the request. The default is POST.  The
      * app&#39;s request handler for the task&#39;s target URL must be able to
      * handle HTTP requests with this http_method, otherwise the task attempt
      * will fail with error code 405 (Method Not Allowed). See [Writing a push
      * task request
-     * handler](/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
+     * handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
      * and the documentation for the request handlers in the language your app
      * is written in e.g. [Python Request
-     * Handler](/appengine/docs/python/tools/webapp/requesthandlerclass).
+     * Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
      */
     httpMethod?: string;
     /**
@@ -172,7 +222,7 @@ export namespace cloudtasks_v2beta2 {
    * AppEngineHttpRequest. The documentation for AppEngineHttpRequest explains
    * how the task&#39;s host URL is constructed.  Using AppEngineHttpTarget
    * requires
-   * [`appengine.applications.get`](/appengine/docs/admin-api/access-control)
+   * [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control)
    * Google IAM permission for the project and the following scope:
    * `https://www.googleapis.com/auth/cloud-platform`
    */
@@ -185,30 +235,31 @@ export namespace cloudtasks_v2beta2 {
     appEngineRoutingOverride?: Schema$AppEngineRouting;
   }
   /**
-   * App Engine Routing.  For more information about services, versions, and
-   * instances see [An Overview of App
-   * Engine](/appengine/docs/python/an-overview-of-app-engine), [Microservices
-   * Architecture on Google App
-   * Engine](/appengine/docs/python/microservices-on-app-engine), [App Engine
-   * Standard request
-   * routing](/appengine/docs/standard/python/how-requests-are-routed), and [App
-   * Engine Flex request
-   * routing](/appengine/docs/flexible/python/how-requests-are-routed).
+   * App Engine Routing.  Defines routing characteristics specific to App Engine
+   * - service, version, and instance.  For more information about services,
+   * versions, and instances see [An Overview of App
+   * Engine](https://cloud.google.com/appengine/docs/python/an-overview-of-app-engine),
+   * [Microservices Architecture on Google App
+   * Engine](https://cloud.google.com/appengine/docs/python/microservices-on-app-engine),
+   * [App Engine Standard request
+   * routing](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed),
+   * and [App Engine Flex request
+   * routing](https://cloud.google.com/appengine/docs/flexible/python/how-requests-are-routed).
    */
   export interface Schema$AppEngineRouting {
     /**
      * Output only. The host that the task is sent to.  For more information,
      * see [How Requests are
-     * Routed](/appengine/docs/standard/python/how-requests-are-routed).  The
-     * host is constructed as:   * `host = [application_domain_name]`&lt;/br&gt;
-     * `| [service] + &#39;.&#39; + [application_domain_name]`&lt;/br&gt;   `|
-     * [version] + &#39;.&#39; + [application_domain_name]`&lt;/br&gt;   `|
-     * [version_dot_service]+ &#39;.&#39; +
-     * [application_domain_name]`&lt;/br&gt;   `| [instance] + &#39;.&#39; +
-     * [application_domain_name]`&lt;/br&gt;   `| [instance_dot_service] +
+     * Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed).
+     * The host is constructed as:   * `host =
+     * [application_domain_name]`&lt;/br&gt;   `| [service] + &#39;.&#39; +
+     * [application_domain_name]`&lt;/br&gt;   `| [version] + &#39;.&#39; +
+     * [application_domain_name]`&lt;/br&gt;   `| [version_dot_service]+
+     * &#39;.&#39; + [application_domain_name]`&lt;/br&gt;   `| [instance] +
      * &#39;.&#39; + [application_domain_name]`&lt;/br&gt;   `|
-     * [instance_dot_version] + &#39;.&#39; +
-     * [application_domain_name]`&lt;/br&gt;   `|
+     * [instance_dot_service] + &#39;.&#39; +
+     * [application_domain_name]`&lt;/br&gt;   `| [instance_dot_version] +
+     * &#39;.&#39; + [application_domain_name]`&lt;/br&gt;   `|
      * [instance_dot_version_dot_service] + &#39;.&#39; +
      * [application_domain_name]`  * `application_domain_name` = The domain name
      * of the app, for   example &lt;app-id&gt;.appspot.com, which is associated
@@ -223,46 +274,41 @@ export namespace cloudtasks_v2beta2 {
      * default service when the task is attempted.  If version is empty, then
      * the task will be sent to the version which is the default version when
      * the task is attempted.  If instance is empty, then the task will be sent
-     * to an instance which is available when the task is attempted.  When
-     * service is &quot;default&quot;, version is &quot;default&quot;, and
-     * instance is empty, host is shortened to just the
-     * `application_domain_name`.  If service, version, or instance is invalid,
-     * then the task will be sent to the default version of the default service
-     * when the task is attempted.
+     * to an instance which is available when the task is attempted.  If
+     * service, version, or instance is invalid, then the task will be sent to
+     * the default version of the default service when the task is attempted.
      */
     host?: string;
     /**
      * App instance.  By default, the task is sent to an instance which is
      * available when the task is attempted.  Requests can only be sent to a
      * specific instance if [manual scaling is used in App Engine
-     * Standard](/appengine/docs/python/an-overview-of-app-engine?hl=en_US#scaling_types_and_instance_classes).
+     * Standard](https://cloud.google.com/appengine/docs/python/an-overview-of-app-engine?hl=en_US#scaling_types_and_instance_classes).
      * App Engine Flex does not support instances. For more information, see
      * [App Engine Standard request
-     * routing](/appengine/docs/standard/python/how-requests-are-routed) and
-     * [App Engine Flex request
-     * routing](/appengine/docs/flexible/python/how-requests-are-routed).
+     * routing](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed)
+     * and [App Engine Flex request
+     * routing](https://cloud.google.com/appengine/docs/flexible/python/how-requests-are-routed).
      */
     instance?: string;
     /**
      * App service.  By default, the task is sent to the service which is the
-     * default service when the task is attempted (&quot;default&quot;).  For
-     * some queues or tasks which were created using the App Engine Task Queue
-     * API, host is not parsable into service, version, and instance. For
-     * example, some tasks which were created using the App Engine SDK use a
-     * custom domain name; custom domains are not parsed by Cloud Tasks. If host
-     * is not parsable, then service, version, and instance are the empty
-     * string.
+     * default service when the task is attempted.  For some queues or tasks
+     * which were created using the App Engine Task Queue API, host is not
+     * parsable into service, version, and instance. For example, some tasks
+     * which were created using the App Engine SDK use a custom domain name;
+     * custom domains are not parsed by Cloud Tasks. If host is not parsable,
+     * then service, version, and instance are the empty string.
      */
     service?: string;
     /**
      * App version.  By default, the task is sent to the version which is the
-     * default version when the task is attempted (&quot;default&quot;).  For
-     * some queues or tasks which were created using the App Engine Task Queue
-     * API, host is not parsable into service, version, and instance. For
-     * example, some tasks which were created using the App Engine SDK use a
-     * custom domain name; custom domains are not parsed by Cloud Tasks. If host
-     * is not parsable, then service, version, and instance are the empty
-     * string.
+     * default version when the task is attempted.  For some queues or tasks
+     * which were created using the App Engine Task Queue API, host is not
+     * parsable into service, version, and instance. For example, some tasks
+     * which were created using the App Engine SDK use a custom domain name;
+     * custom domains are not parsed by Cloud Tasks. If host is not parsable,
+     * then service, version, and instance are the empty string.
      */
     version?: string;
   }
@@ -297,6 +343,13 @@ export namespace cloudtasks_v2beta2 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -314,7 +367,7 @@ export namespace cloudtasks_v2beta2 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -328,8 +381,8 @@ export namespace cloudtasks_v2beta2 {
      * default because some data, such as payloads, might be desirable to return
      * only when needed because of its large size or because of the sensitivity
      * of data that it contains.  Authorization for FULL requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
-     * resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the Task resource.
      */
     responseView?: string;
     /**
@@ -349,8 +402,8 @@ export namespace cloudtasks_v2beta2 {
      * default because some data, such as payloads, might be desirable to return
      * only when needed because of its large size or because of the sensitivity
      * of data that it contains.  Authorization for FULL requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
-     * resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the Task resource.
      */
     responseView?: string;
     /**
@@ -388,6 +441,35 @@ export namespace cloudtasks_v2beta2 {
    */
   export interface Schema$Empty {}
   /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * Request message for `GetIamPolicy` method.
    */
   export interface Schema$GetIamPolicyRequest {}
@@ -407,7 +489,7 @@ export namespace cloudtasks_v2beta2 {
      * `oldest_tag()` function returns tasks which have the same tag as the
      * oldest task (ordered by schedule time).  SDK compatibility: Although the
      * SDK allows tags to be either string or
-     * [bytes](/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
+     * [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
      * only UTF-8 encoded tags can be used in Cloud Tasks. Tag which aren&#39;t
      * UTF-8 encoded can&#39;t be used in the filter and the task&#39;s tag will
      * be displayed as empty in Cloud Tasks.
@@ -424,7 +506,9 @@ export namespace cloudtasks_v2beta2 {
     /**
      * The maximum number of tasks to lease.  The system will make a best effort
      * to return as close to as `max_tasks` as possible.  The largest that
-     * `max_tasks` can be is 1000.
+     * `max_tasks` can be is 1000.  The maximum total size of a lease tasks
+     * response is 32 MB. If the sum of all task sizes requested reaches this
+     * limit, fewer tasks than requested are returned.
      */
     maxTasks?: number;
     /**
@@ -433,8 +517,8 @@ export namespace cloudtasks_v2beta2 {
      * default because some data, such as payloads, might be desirable to return
      * only when needed because of its large size or because of the sensitivity
      * of data that it contains.  Authorization for FULL requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
-     * resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the Task resource.
      */
     responseView?: string;
   }
@@ -504,7 +588,7 @@ export namespace cloudtasks_v2beta2 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -513,7 +597,7 @@ export namespace cloudtasks_v2beta2 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -585,7 +669,7 @@ export namespace cloudtasks_v2beta2 {
      * user ID.  The task&#39;s tag can only be set when the task is created.
      * The tag must be less than 500 characters.  SDK compatibility: Although
      * the SDK allows tags to be either string or
-     * [bytes](/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
+     * [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-),
      * only UTF-8 encoded tags can be used in Cloud Tasks. If a tag isn&#39;t
      * UTF-8 encoded, the tag will be empty when the task is returned by Cloud
      * Tasks.
@@ -612,18 +696,18 @@ export namespace cloudtasks_v2beta2 {
      */
     appEngineHttpTarget?: Schema$AppEngineHttpTarget;
     /**
-     * The queue name.  The queue name must have the following format:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
+     * Caller-specified and required in CreateQueue, after which it becomes
+     * output only.  The queue name.  The queue name must have the following
+     * format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
      * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens
      * (-), colons (:), or periods (.).    For more information, see
      * [Identifying
-     * projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
+     * projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
      * * `LOCATION_ID` is the canonical ID for the queue&#39;s location.    The
      * list of available locations can be obtained by calling    ListLocations.
      * For more information, see https://cloud.google.com/about/locations/. *
      * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens
-     * (-). The maximum length is 100 characters.  Caller-specified and required
-     * in CreateQueue, after which it becomes output only.
+     * (-). The maximum length is 100 characters.
      */
     name?: string;
     /**
@@ -634,7 +718,7 @@ export namespace cloudtasks_v2beta2 {
      * Output only. The last time this queue was purged.  All tasks that were
      * created before this time were purged.  A queue can be purged using
      * PurgeQueue, the [App Engine Task Queue SDK, or the Cloud
-     * Console](/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
+     * Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      * Purge time will be truncated to the nearest microsecond. Purge time will
      * be unset if the queue has never been purged.
      */
@@ -658,14 +742,14 @@ export namespace cloudtasks_v2beta2 {
      * queue-level retry   settings apply to all tasks in the queue which do not
      * have retry settings   explicitly set on the task and were created by the
      * App Engine SDK. See   [App Engine
-     * documentation](/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
+     * documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      */
     retryConfig?: Schema$RetryConfig;
     /**
      * Output only. The state of the queue.  `state` can only be changed by
      * called PauseQueue, ResumeQueue, or uploading
-     * [queue.yaml/xml](/appengine/docs/python/config/queueref). UpdateQueue
-     * cannot be used to change `state`.
+     * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
+     * UpdateQueue cannot be used to change `state`.
      */
     state?: string;
   }
@@ -692,7 +776,7 @@ export namespace cloudtasks_v2beta2 {
      * `max_burst_size` based on the value of max_tasks_dispatched_per_second.
      * For App Engine queues that were created or updated using
      * `queue.yaml/xml`, `max_burst_size` is equal to
-     * [bucket_size](/appengine/docs/standard/python/config/queueref#bucket_size).
+     * [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      * Since `max_burst_size` is output only, if UpdateQueue is called on a
      * queue created by `queue.yaml/xml`, `max_burst_size` will be reset based
      * on the value of max_tasks_dispatched_per_second, regardless of whether
@@ -705,23 +789,21 @@ export namespace cloudtasks_v2beta2 {
      * Tasks stops dispatching tasks until the number of concurrent requests
      * decreases.  If unspecified when the queue is created, Cloud Tasks will
      * pick the default.   The maximum allowed value is 5,000.  This field is
-     * output only for [pull queues](google.cloud.tasks.v2beta2.PullTarget) and
-     * always -1, which indicates no limit. No other queue types can have
-     * `max_concurrent_tasks` set to -1.   This field has the same meaning as
-     * [max_concurrent_requests in
-     * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#max_concurrent_requests).
+     * output only for pull queues and always -1, which indicates no limit. No
+     * other queue types can have `max_concurrent_tasks` set to -1.   This field
+     * has the same meaning as [max_concurrent_requests in
+     * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#max_concurrent_requests).
      */
     maxConcurrentTasks?: number;
     /**
      * The maximum rate at which tasks are dispatched from this queue.  If
      * unspecified when the queue is created, Cloud Tasks will pick the default.
-     * * For App Engine queues, the maximum allowed value is 500. * This field
-     * is output only   for [pull
-     * queues](google.cloud.tasks.v2beta2.PullTarget). In   addition to the
-     * `max_tasks_dispatched_per_second` limit, a   maximum of 10 QPS of
-     * LeaseTasks   requests are allowed per pull queue.   This field has the
-     * same meaning as [rate in
-     * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#rate).
+     * * For App Engine queues, the maximum allowed value   is 500. * This field
+     * is output only   for pull queues. In addition to the
+     * `max_tasks_dispatched_per_second` limit, a maximum of 10 QPS of
+     * LeaseTasks requests are allowed per pull queue.   This field has the same
+     * meaning as [rate in
+     * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#rate).
      */
     maxTasksDispatchedPerSecond?: number;
   }
@@ -741,8 +823,8 @@ export namespace cloudtasks_v2beta2 {
      * default because some data, such as payloads, might be desirable to return
      * only when needed because of its large size or because of the sensitivity
      * of data that it contains.  Authorization for FULL requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
-     * resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the Task resource.
      */
     responseView?: string;
     /**
@@ -768,14 +850,13 @@ export namespace cloudtasks_v2beta2 {
      */
     maxAttempts?: number;
     /**
-     * A task will be [scheduled](Task.schedule_time) for retry between
-     * min_backoff and max_backoff duration after it fails, if the queue&#39;s
-     * RetryConfig specifies that the task should be retried.  If unspecified
-     * when the queue is created, Cloud Tasks will pick the default.  This field
-     * is output only for [pull queues](google.cloud.tasks.v2beta2.PullTarget).
-     * `max_backoff` will be truncated to the nearest second.  This field has
-     * the same meaning as [max_backoff_seconds in
-     * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
+     * A task will be scheduled for retry between min_backoff and max_backoff
+     * duration after it fails, if the queue&#39;s RetryConfig specifies that
+     * the task should be retried.  If unspecified when the queue is created,
+     * Cloud Tasks will pick the default.  This field is output only for pull
+     * queues.   `max_backoff` will be truncated to the nearest second.  This
+     * field has the same meaning as [max_backoff_seconds in
+     * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
     maxBackoff?: string;
     /**
@@ -789,10 +870,9 @@ export namespace cloudtasks_v2beta2 {
      * intervals of max_backoff until the task has been attempted max_attempts
      * times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s,
      * 300s, 300s, ....  If unspecified when the queue is created, Cloud Tasks
-     * will pick the default.  This field is output only for [pull
-     * queues](google.cloud.tasks.v2beta2.PullTarget).   This field has the same
-     * meaning as [max_doublings in
-     * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
+     * will pick the default.  This field is output only for pull queues.   This
+     * field has the same meaning as [max_doublings in
+     * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
     maxDoublings?: number;
     /**
@@ -802,21 +882,20 @@ export namespace cloudtasks_v2beta2 {
      * max_attempts times, no further attempts will be made and the task will be
      * deleted.  If zero, then the task age is unlimited.  If unspecified when
      * the queue is created, Cloud Tasks will pick the default.  This field is
-     * output only for [pull queues](google.cloud.tasks.v2beta2.PullTarget).
-     * `max_retry_duration` will be truncated to the nearest second.  This field
-     * has the same meaning as [task_age_limit in
-     * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
+     * output only for pull queues.   `max_retry_duration` will be truncated to
+     * the nearest second.  This field has the same meaning as [task_age_limit
+     * in
+     * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
     maxRetryDuration?: string;
     /**
-     * A task will be [scheduled](Task.schedule_time) for retry between
-     * min_backoff and max_backoff duration after it fails, if the queue&#39;s
-     * RetryConfig specifies that the task should be retried.  If unspecified
-     * when the queue is created, Cloud Tasks will pick the default.  This field
-     * is output only for [pull queues](google.cloud.tasks.v2beta2.PullTarget).
-     * `min_backoff` will be truncated to the nearest second.  This field has
-     * the same meaning as [min_backoff_seconds in
-     * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
+     * A task will be scheduled for retry between min_backoff and max_backoff
+     * duration after it fails, if the queue&#39;s RetryConfig specifies that
+     * the task should be retried.  If unspecified when the queue is created,
+     * Cloud Tasks will pick the default.  This field is output only for pull
+     * queues.   `min_backoff` will be truncated to the nearest second.  This
+     * field has the same meaning as [min_backoff_seconds in
+     * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
     minBackoff?: string;
     /**
@@ -834,8 +913,8 @@ export namespace cloudtasks_v2beta2 {
      * default because some data, such as payloads, might be desirable to return
      * only when needed because of its large size or because of the sensitivity
      * of data that it contains.  Authorization for FULL requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
-     * resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the Task resource.
      */
     responseView?: string;
   }
@@ -896,7 +975,7 @@ export namespace cloudtasks_v2beta2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -920,20 +999,20 @@ export namespace cloudtasks_v2beta2 {
      */
     createTime?: string;
     /**
-     * The task name.  The task name must have the following format:
+     * Optionally caller-specified in CreateTask.  The task name.  The task name
+     * must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens
      * (-), colons (:), or periods (.).    For more information, see
      * [Identifying
-     * projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
+     * projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
      * * `LOCATION_ID` is the canonical ID for the task&#39;s location.    The
      * list of available locations can be obtained by calling    ListLocations.
      * For more information, see https://cloud.google.com/about/locations/. *
      * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens
      * (-). The maximum length is 100 characters. * `TASK_ID` can contain only
      * letters ([A-Za-z]), numbers ([0-9]),   hyphens (-), or underscores (_).
-     * The maximum length is 500 characters.  Optionally caller-specified in
-     * CreateTask.
+     * The maximum length is 500 characters.
      */
     name?: string;
     /**
@@ -972,21 +1051,18 @@ export namespace cloudtasks_v2beta2 {
     attemptDispatchCount?: number;
     /**
      * Output only. The number of attempts which have received a response.  This
-     * field is not calculated for [pull
-     * tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
+     * field is not calculated for pull tasks.
      */
     attemptResponseCount?: number;
     /**
      * Output only. The status of the task&#39;s first attempt.  Only
      * dispatch_time will be set. The other AttemptStatus information is not
-     * retained by Cloud Tasks.  This field is not calculated for [pull
-     * tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
+     * retained by Cloud Tasks.  This field is not calculated for pull tasks.
      */
     firstAttemptStatus?: Schema$AttemptStatus;
     /**
      * Output only. The status of the task&#39;s last attempt.  This field is
-     * not calculated for [pull
-     * tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
+     * not calculated for pull tasks.
      */
     lastAttemptStatus?: Schema$AttemptStatus;
   }
@@ -1015,31 +1091,17 @@ export namespace cloudtasks_v2beta2 {
 
 
   export class Resource$Projects {
-    root: Cloudtasks;
     locations: Resource$Projects$Locations;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Cloudtasks;
     queues: Resource$Projects$Locations$Queues;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.queues = new Resource$Projects$Locations$Queues(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.queues = new Resource$Projects$Locations$Queues();
     }
 
 
@@ -1148,7 +1210,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1285,7 +1347,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1295,7 +1357,8 @@ export namespace cloudtasks_v2beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get {
+  export interface Params$Resource$Projects$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1306,7 +1369,8 @@ export namespace cloudtasks_v2beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1331,16 +1395,9 @@ export namespace cloudtasks_v2beta2 {
   }
 
   export class Resource$Projects$Locations$Queues {
-    root: Cloudtasks;
     tasks: Resource$Projects$Locations$Queues$Tasks;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.tasks = new Resource$Projects$Locations$Queues$Tasks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.tasks = new Resource$Projects$Locations$Queues$Tasks();
     }
 
 
@@ -1352,7 +1409,8 @@ export namespace cloudtasks_v2beta2 {
      * Using this method may have unintended side effects if you are using an
      * App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read
      * [Overview of Queue Management and
-     * queue.yaml](/cloud-tasks/docs/queue-yaml) before using this method.
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1468,7 +1526,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1485,7 +1543,8 @@ export namespace cloudtasks_v2beta2 {
      * can't be created for 7 days.  WARNING: Using this method may have
      * unintended side effects if you are using an App Engine `queue.yaml` or
      * `queue.xml` file to manage your queues. Read [Overview of Queue
-     * Management and queue.yaml](/cloud-tasks/docs/queue-yaml) before using
+     * Management and
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
      * this method.
      * @example
      * * // BEFORE RUNNING:
@@ -1592,7 +1651,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1707,7 +1766,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -1721,8 +1780,9 @@ export namespace cloudtasks_v2beta2 {
      * cloudtasks.projects.locations.queues.getIamPolicy
      * @desc Gets the access control policy for a Queue. Returns an empty policy
      * if the resource exists and does not have a policy set.  Authorization
-     * requires the following [Google IAM](/iam) permission on the specified
-     * resource parent:  * `cloudtasks.queues.getIamPolicy`
+     * requires the following [Google IAM](https://cloud.google.com/iam)
+     * permission on the specified resource parent:  *
+     * `cloudtasks.queues.getIamPolicy`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1836,7 +1896,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1922,7 +1982,7 @@ export namespace cloudtasks_v2beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter `filter` can be used to specify a subset of queues. Any Queue field can be used as a filter and several operators as supported. For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as described in [Stackdriver's Advanced Logs Filters](/logging/docs/view/advanced_filters).  Sample filter "app_engine_http_target: *".  Note that using filters might cause fewer queues than the requested_page size to be returned.
+     * @param {string=} params.filter `filter` can be used to specify a subset of queues. Any Queue field can be used as a filter and several operators as supported. For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as described in [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).  Sample filter "app_engine_http_target: *".  Note that using filters might cause fewer queues than the requested_page size to be returned.
      * @param {integer=} params.pageSize Requested page size.  The maximum page size is 9800. If unspecified, the page size will be the maximum. Fewer queues than requested might be returned, even if more queues exist; use the next_page_token in the response to determine if more queues exist.
      * @param {string=} params.pageToken A token identifying the page of results to return.  To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of next_page_token returned from the previous call to ListQueues method. It is an error to switch the value of the filter while iterating through pages.
      * @param {string} params.parent Required.  The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`
@@ -1975,7 +2035,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListQueuesResponse>(parameters, callback);
@@ -1994,7 +2054,8 @@ export namespace cloudtasks_v2beta2 {
      * dispatched or not.  WARNING: Using this method may have unintended side
      * effects if you are using an App Engine `queue.yaml` or `queue.xml` file
      * to manage your queues. Read [Overview of Queue Management and
-     * queue.yaml](/cloud-tasks/docs/queue-yaml) before using this method.
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2068,7 +2129,7 @@ export namespace cloudtasks_v2beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.).    For more information, see    [Identifying projects](/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location.    The list of available locations can be obtained by calling    ListLocations.    For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100 characters.  Caller-specified and required in CreateQueue, after which it becomes output only.
+     * @param {string} params.name Caller-specified and required in CreateQueue, after which it becomes output only.  The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.).    For more information, see    [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location.    The list of available locations can be obtained by calling    ListLocations.    For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100 characters.
      * @param {string=} params.updateMask A mask used to specify which fields of the queue are being updated.  If empty, then all fields will be updated.
      * @param {().Queue} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2118,7 +2179,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2246,7 +2307,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2374,7 +2435,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2392,7 +2453,7 @@ export namespace cloudtasks_v2beta2 {
      * many high-QPS queues at the same time can lead to target overloading. If
      * you are resuming high-QPS queues, follow the 500/50/5 pattern described
      * in [Managing Cloud Tasks Scaling
-     * Risks](/cloud-tasks/pdfs/managing-cloud-tasks-scaling-risks-2017-06-05.pdf).
+     * Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2505,7 +2566,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Queue>(parameters, callback);
@@ -2520,9 +2581,9 @@ export namespace cloudtasks_v2beta2 {
      * @desc Sets the access control policy for a Queue. Replaces any existing
      * policy.  Note: The Cloud Console does not check queue-level IAM
      * permissions yet. Project-level permissions are required to use the Cloud
-     * Console.  Authorization requires the following [Google IAM](/iam)
-     * permission on the specified resource parent:  *
-     * `cloudtasks.queues.setIamPolicy`
+     * Console.  Authorization requires the following [Google
+     * IAM](https://cloud.google.com/iam) permission on the specified resource
+     * parent:  * `cloudtasks.queues.setIamPolicy`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2636,7 +2697,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2775,7 +2836,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2786,7 +2847,8 @@ export namespace cloudtasks_v2beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Create {
+  export interface Params$Resource$Projects$Locations$Queues$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2805,7 +2867,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Delete {
+  export interface Params$Resource$Projects$Locations$Queues$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2817,7 +2880,8 @@ export namespace cloudtasks_v2beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Get {
+  export interface Params$Resource$Projects$Locations$Queues$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2829,7 +2893,8 @@ export namespace cloudtasks_v2beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Queues$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2846,7 +2911,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$List {
+  export interface Params$Resource$Projects$Locations$Queues$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2857,9 +2923,9 @@ export namespace cloudtasks_v2beta2 {
      * be used as a filter and several operators as supported. For example: `<=,
      * <, >=, >, !=, =, :`. The filter syntax is the same as described in
      * [Stackdriver's Advanced Logs
-     * Filters](/logging/docs/view/advanced_filters).  Sample filter
-     * "app_engine_http_target: *".  Note that using filters might cause fewer
-     * queues than the requested_page size to be returned.
+     * Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     * Sample filter "app_engine_http_target: *".  Note that using filters might
+     * cause fewer queues than the requested_page size to be returned.
      */
     filter?: string;
     /**
@@ -2883,25 +2949,26 @@ export namespace cloudtasks_v2beta2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Patch {
+  export interface Params$Resource$Projects$Locations$Queues$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The queue name.  The queue name must have the following format:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
+     * Caller-specified and required in CreateQueue, after which it becomes
+     * output only.  The queue name.  The queue name must have the following
+     * format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
      * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens
      * (-), colons (:), or periods (.).    For more information, see
      * [Identifying
-     * projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
+     * projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
      * * `LOCATION_ID` is the canonical ID for the queue's location.    The list
      * of available locations can be obtained by calling    ListLocations. For
      * more information, see https://cloud.google.com/about/locations/. *
      * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens
-     * (-). The maximum length is 100 characters.  Caller-specified and required
-     * in CreateQueue, after which it becomes output only.
+     * (-). The maximum length is 100 characters.
      */
     name?: string;
     /**
@@ -2915,7 +2982,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Pause {
+  export interface Params$Resource$Projects$Locations$Queues$Pause extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2932,7 +3000,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$PauseQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Purge {
+  export interface Params$Resource$Projects$Locations$Queues$Purge extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2949,7 +3018,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$PurgeQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Resume {
+  export interface Params$Resource$Projects$Locations$Queues$Resume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2966,7 +3036,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$ResumeQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Queues$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2983,7 +3054,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Queues$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3002,15 +3074,7 @@ export namespace cloudtasks_v2beta2 {
   }
 
   export class Resource$Projects$Locations$Queues$Tasks {
-    root: Cloudtasks;
-    constructor(root: Cloudtasks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3134,7 +3198,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3265,7 +3329,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3278,10 +3342,8 @@ export namespace cloudtasks_v2beta2 {
     /**
      * cloudtasks.projects.locations.queues.tasks.create
      * @desc Creates a task and adds it to a queue.  Tasks cannot be updated
-     * after creation; there is no UpdateTask command.  * For [App Engine
-     * queues](google.cloud.tasks.v2beta2.AppEngineHttpTarget),   the maximum
-     * task size is 100KB. * For [pull
-     * queues](google.cloud.tasks.v2beta2.PullTarget), this   the maximum task
+     * after creation; there is no UpdateTask command.  * For App Engine queues,
+     * the maximum task size is   100KB. * For pull queues, the maximum task
      * size is 1MB.
      * @example
      * * // BEFORE RUNNING:
@@ -3397,7 +3459,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3518,7 +3580,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3592,7 +3654,7 @@ export namespace cloudtasks_v2beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required.  The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param {string=} params.responseView The response_view specifies which subset of the Task will be returned.  By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains.  Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task resource.
+     * @param {string=} params.responseView The response_view specifies which subset of the Task will be returned.  By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains.  Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3636,7 +3698,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -3713,7 +3775,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LeaseTasksResponse>(parameters, callback);
@@ -3727,7 +3789,8 @@ export namespace cloudtasks_v2beta2 {
      * cloudtasks.projects.locations.queues.tasks.list
      * @desc Lists the tasks in a queue.  By default, only the BASIC view is
      * retrieved due to performance considerations; response_view controls the
-     * subset of information which is returned.
+     * subset of information which is returned.  The tasks may be returned in
+     * any order. The ordering may change at any time.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3802,11 +3865,10 @@ export namespace cloudtasks_v2beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.orderBy Sort order used for the query. The only fields supported for sorting are `schedule_time` and `pull_message.tag`. All results will be returned in approximately ascending order. The default ordering is by `schedule_time`.
      * @param {integer=} params.pageSize Requested page size. Fewer tasks than requested might be returned.  The maximum page size is 1000. If unspecified, the page size will be the maximum. Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist.
      * @param {string=} params.pageToken A token identifying the page of results to return.  To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of next_page_token returned from the previous call to ListTasks method.  The page token is valid for only 2 hours.
      * @param {string} params.parent Required.  The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param {string=} params.responseView The response_view specifies which subset of the Task will be returned.  By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains.  Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task resource.
+     * @param {string=} params.responseView The response_view specifies which subset of the Task will be returned.  By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains.  Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3856,7 +3918,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTasksResponse>(parameters, callback);
@@ -3987,7 +4049,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -4122,7 +4184,7 @@ export namespace cloudtasks_v2beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -4132,7 +4194,8 @@ export namespace cloudtasks_v2beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4149,7 +4212,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$AcknowledgeTaskRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Cancellease {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Cancellease
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4166,7 +4230,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$CancelLeaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Create {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4184,7 +4249,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$CreateTaskRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4196,7 +4262,8 @@ export namespace cloudtasks_v2beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4213,12 +4280,13 @@ export namespace cloudtasks_v2beta2 {
      * default because some data, such as payloads, might be desirable to return
      * only when needed because of its large size or because of the sensitivity
      * of data that it contains.  Authorization for FULL requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
-     * resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the Task resource.
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Lease {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Lease extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4235,19 +4303,13 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$LeaseTasksRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$List {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
-    /**
-     * Sort order used for the query. The only fields supported for sorting are
-     * `schedule_time` and `pull_message.tag`. All results will be returned in
-     * approximately ascending order. The default ordering is by
-     * `schedule_time`.
-     */
-    orderBy?: string;
     /**
      * Requested page size. Fewer tasks than requested might be returned.  The
      * maximum page size is 1000. If unspecified, the page size will be the
@@ -4275,12 +4337,13 @@ export namespace cloudtasks_v2beta2 {
      * default because some data, such as payloads, might be desirable to return
      * only when needed because of its large size or because of the sensitivity
      * of data that it contains.  Authorization for FULL requires
-     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
-     * resource.
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the Task resource.
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Renewlease {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Renewlease
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4297,7 +4360,8 @@ export namespace cloudtasks_v2beta2 {
      */
     requestBody?: Schema$RenewLeaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

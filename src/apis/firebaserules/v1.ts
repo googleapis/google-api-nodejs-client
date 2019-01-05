@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace firebaserules_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,22 +99,12 @@ export namespace firebaserules_v1 {
    * @param {object=} options Options for Firebaserules
    */
   export class Firebaserules {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -164,6 +206,12 @@ export namespace firebaserules_v1 {
      * `Ruleset` name associated with the `Release` executable.
      */
     rulesetName?: string;
+    /**
+     * Optional, indicates the freshness of the result. The response is
+     * guaranteed to be the latest within an interval up to the sync_time
+     * (inclusive).
+     */
+    syncTime?: string;
     /**
      * Timestamp for the most recent `Release.update_time`.
      */
@@ -461,18 +509,11 @@ export namespace firebaserules_v1 {
 
 
   export class Resource$Projects {
-    root: Firebaserules;
     releases: Resource$Projects$Releases;
     rulesets: Resource$Projects$Rulesets;
-    constructor(root: Firebaserules) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.releases = new Resource$Projects$Releases(root);
-      this.rulesets = new Resource$Projects$Rulesets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.releases = new Resource$Projects$Releases();
+      this.rulesets = new Resource$Projects$Rulesets();
     }
 
 
@@ -544,7 +585,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestRulesetResponse>(parameters, callback);
@@ -554,7 +595,7 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Test {
+  export interface Params$Resource$Projects$Test extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -576,15 +617,7 @@ export namespace firebaserules_v1 {
   }
 
   export class Resource$Projects$Releases {
-    root: Firebaserules;
-    constructor(root: Firebaserules) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -659,7 +692,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -725,7 +758,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -787,7 +820,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -804,7 +837,7 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.executableVersion The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1
+     * @param {string=} params.executableVersion The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
      * @param {string} params.name Resource name of the `Release`.  Format: `projects/{project_id}/releases/{release_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -862,7 +895,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetReleaseExecutableResponse>(
@@ -938,7 +971,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
@@ -1007,7 +1040,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -1017,7 +1050,8 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Releases$Create {
+  export interface Params$Resource$Projects$Releases$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1034,7 +1068,8 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Release;
   }
-  export interface Params$Resource$Projects$Releases$Delete {
+  export interface Params$Resource$Projects$Releases$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1046,7 +1081,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Get {
+  export interface Params$Resource$Projects$Releases$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1058,7 +1094,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$Getexecutable {
+  export interface Params$Resource$Projects$Releases$Getexecutable extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1066,7 +1103,7 @@ export namespace firebaserules_v1 {
 
     /**
      * The requested runtime executable version. Defaults to
-     * FIREBASE_RULES_EXECUTABLE_V1
+     * FIREBASE_RULES_EXECUTABLE_V1.
      */
     executableVersion?: string;
     /**
@@ -1075,7 +1112,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Releases$List {
+  export interface Params$Resource$Projects$Releases$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1119,7 +1157,8 @@ export namespace firebaserules_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Releases$Patch {
+  export interface Params$Resource$Projects$Releases$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1139,15 +1178,7 @@ export namespace firebaserules_v1 {
 
 
   export class Resource$Projects$Rulesets {
-    root: Firebaserules;
-    constructor(root: Firebaserules) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1212,7 +1243,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1279,7 +1310,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1341,7 +1372,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1415,7 +1446,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListRulesetsResponse>(parameters, callback);
@@ -1425,7 +1456,8 @@ export namespace firebaserules_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Rulesets$Create {
+  export interface Params$Resource$Projects$Rulesets$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1442,7 +1474,8 @@ export namespace firebaserules_v1 {
      */
     requestBody?: Schema$Ruleset;
   }
-  export interface Params$Resource$Projects$Rulesets$Delete {
+  export interface Params$Resource$Projects$Rulesets$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1454,7 +1487,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$Get {
+  export interface Params$Resource$Projects$Rulesets$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1466,7 +1500,8 @@ export namespace firebaserules_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Rulesets$List {
+  export interface Params$Resource$Projects$Rulesets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

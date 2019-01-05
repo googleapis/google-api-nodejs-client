@@ -13,11 +13,9 @@
 
 'use strict';
 
-const request = require('request');
+const axios = require('axios');
 const {google} = require('googleapis');
 const compute = google.compute('v1');
-const uri = 'http://metadata/computeMetadata/v1/project/project-id';
-const headers = { 'Metadata-Flavor': 'Google' };
 
 // This example can be run from a GCE VM in your project.  The example fetches
 // your project ID from the VM's metadata server, and then uses the Compute API
@@ -25,15 +23,16 @@ const headers = { 'Metadata-Flavor': 'Google' };
 //
 // See the defaultauth.js sample for an alternate way of fetching compute credentials.
 //
-google.options({ auth: new google.auth.Compute() });
-request.get({ uri, headers }, (err, res, project) => {
-  if (err) {
-    throw err;
-  }
-  if (res.statusCode !== 200) {
-    throw new Error(`Response failed with status ${res.statusCode}`);
-  }
-  compute.zones.list({ project }, (err, res) => {
-    console.log(err, res.data);
-  });
-});
+google.options({auth: new google.auth.Compute()});
+async function getZones() {
+  // Get the projectId from the GCE metadata server
+  const url = 'http://metadata/computeMetadata/v1/project/project-id';
+  const headers = {'Metadata-Flavor': 'Google'};
+  const res = await axios.get({url, headers});
+  const project = res.data;
+
+  const zonesResponse = await compute.zones.list({project});
+  console.log(zonesResponse.data);
+}
+
+getZones().catch(console.error);

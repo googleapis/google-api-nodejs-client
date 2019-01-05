@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,11 +29,67 @@ export namespace poly_v1 {
     version: 'v1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Poly API
    *
-   * The Poly API provides read-only access to assets hosted on &lt;a
-   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt;.
+   * The Poly API provides read access to assets hosted on &lt;a
+   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; to
+   * all, and upload access to &lt;a
+   * href=&quot;https://poly.google.com&quot;&gt;poly.google.com&lt;/a&gt; for
+   * whitelisted accounts.
    *
    * @example
    * const {google} = require('googleapis');
@@ -47,24 +102,14 @@ export namespace poly_v1 {
    * @param {object=} options Options for Poly
    */
   export class Poly {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     assets: Resource$Assets;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.assets = new Resource$Assets(this);
-      this.users = new Resource$Users(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.assets = new Resource$Assets();
+      this.users = new Resource$Users();
     }
   }
 
@@ -125,6 +170,10 @@ export namespace poly_v1 {
      * immutable; the author of an asset may change them post-publication.
      */
     presentationParams?: Schema$PresentationParams;
+    /**
+     * The remix info for the asset.
+     */
+    remixInfo?: Schema$RemixInfo;
     /**
      * The thumbnail image for the asset.
      */
@@ -390,14 +439,25 @@ export namespace poly_v1 {
     z?: number;
   }
   /**
-   * A response message from a request to list. This is returned in the response
-   * field of the Operation.
+   * Info about the sources of this asset (i.e. assets that were remixed to
+   * create this asset).
+   */
+  export interface Schema$RemixInfo {
+    /**
+     * Resource ids for the sources of this remix, of the form:
+     * `assets/{ASSET_ID}`
+     */
+    sourceAsset?: string[];
+  }
+  /**
+   * A response message from a request to startImport. This is returned in the
+   * response field of the Operation.
    */
   export interface Schema$StartAssetImportResponse {
     /**
      * The id of newly created asset. If this is empty when the operation is
      * complete it means the import failed. Please refer to the
-     * asset_import_message field to understand what went wrong.
+     * assetImportMessages field to understand what went wrong.
      */
     assetId?: string;
     /**
@@ -426,15 +486,7 @@ export namespace poly_v1 {
 
 
   export class Resource$Assets {
-    root: Poly;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -489,7 +541,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Asset>(parameters, callback);
@@ -561,7 +613,7 @@ export namespace poly_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
@@ -571,7 +623,7 @@ export namespace poly_v1 {
     }
   }
 
-  export interface Params$Resource$Assets$Get {
+  export interface Params$Resource$Assets$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -582,7 +634,7 @@ export namespace poly_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Assets$List {
+  export interface Params$Resource$Assets$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -636,32 +688,17 @@ export namespace poly_v1 {
 
 
   export class Resource$Users {
-    root: Poly;
     assets: Resource$Users$Assets;
     likedassets: Resource$Users$Likedassets;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.assets = new Resource$Users$Assets(root);
-      this.likedassets = new Resource$Users$Likedassets(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.assets = new Resource$Users$Assets();
+      this.likedassets = new Resource$Users$Likedassets();
     }
   }
 
 
   export class Resource$Users$Assets {
-    root: Poly;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -729,7 +766,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback);
@@ -739,7 +776,8 @@ export namespace poly_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Assets$List {
+  export interface Params$Resource$Users$Assets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -782,15 +820,7 @@ export namespace poly_v1 {
 
 
   export class Resource$Users$Likedassets {
-    root: Poly;
-    constructor(root: Poly) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -857,7 +887,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback);
@@ -867,7 +897,8 @@ export namespace poly_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Likedassets$List {
+  export interface Params$Resource$Users$Likedassets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

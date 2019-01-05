@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace dns_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace dns_v1 {
    * @param {object=} options Options for Dns
    */
   export class Dns {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     changes: Resource$Changes;
     dnsKeys: Resource$Dnskeys;
     managedZoneOperations: Resource$Managedzoneoperations;
@@ -58,20 +89,14 @@ export namespace dns_v1 {
     resourceRecordSets: Resource$Resourcerecordsets;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.changes = new Resource$Changes(this);
-      this.dnsKeys = new Resource$Dnskeys(this);
-      this.managedZoneOperations = new Resource$Managedzoneoperations(this);
-      this.managedZones = new Resource$Managedzones(this);
-      this.projects = new Resource$Projects(this);
-      this.resourceRecordSets = new Resource$Resourcerecordsets(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.changes = new Resource$Changes();
+      this.dnsKeys = new Resource$Dnskeys();
+      this.managedZoneOperations = new Resource$Managedzoneoperations();
+      this.managedZones = new Resource$Managedzones();
+      this.projects = new Resource$Projects();
+      this.resourceRecordSets = new Resource$Resourcerecordsets();
     }
   }
 
@@ -306,7 +331,7 @@ export namespace dns_v1 {
     /**
      * User labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * User assigned name for this resource. Must be unique within the project.
      * The name must be 1-63 characters long, must begin with a letter, end with
@@ -491,10 +516,6 @@ export namespace dns_v1 {
    */
   export interface Schema$Quota {
     /**
-     * Whether a black hole zone should suppress system zones for this project.
-     */
-    blackHoleHidesSystemZones?: boolean;
-    /**
      * Maximum allowed number of DnsKeys per ManagedZone.
      */
     dnsKeysPerManagedZone?: number;
@@ -603,15 +624,7 @@ export namespace dns_v1 {
 
 
   export class Resource$Changes {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -734,7 +747,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -861,7 +874,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone', 'changeId'],
         pathParams: ['changeId', 'managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -1003,7 +1016,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChangesListResponse>(parameters, callback);
@@ -1013,7 +1026,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Changes$Create {
+  export interface Params$Resource$Changes$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1040,7 +1053,7 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$Change;
   }
-  export interface Params$Resource$Changes$Get {
+  export interface Params$Resource$Changes$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1067,7 +1080,7 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Changes$List {
+  export interface Params$Resource$Changes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1104,15 +1117,7 @@ export namespace dns_v1 {
 
 
   export class Resource$Dnskeys {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1172,7 +1177,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone', 'dnsKeyId'],
         pathParams: ['dnsKeyId', 'managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DnsKey>(parameters, callback);
@@ -1243,7 +1248,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DnsKeysListResponse>(parameters, callback);
@@ -1253,7 +1258,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Dnskeys$Get {
+  export interface Params$Resource$Dnskeys$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1285,7 +1290,7 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Dnskeys$List {
+  export interface Params$Resource$Dnskeys$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1320,15 +1325,7 @@ export namespace dns_v1 {
 
 
   export class Resource$Managedzoneoperations {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1389,7 +1386,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone', 'operation'],
         pathParams: ['managedZone', 'operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1471,7 +1468,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
@@ -1483,7 +1480,8 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Managedzoneoperations$Get {
+  export interface Params$Resource$Managedzoneoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1508,7 +1506,8 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzoneoperations$List {
+  export interface Params$Resource$Managedzoneoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1540,15 +1539,7 @@ export namespace dns_v1 {
 
 
   export class Resource$Managedzones {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1667,7 +1658,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(parameters, callback);
@@ -1789,7 +1780,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1911,7 +1902,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(parameters, callback);
@@ -2048,7 +2039,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedZonesListResponse>(parameters, callback);
@@ -2118,7 +2109,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2189,7 +2180,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2199,7 +2190,8 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Managedzones$Create {
+  export interface Params$Resource$Managedzones$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2221,7 +2213,8 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Delete {
+  export interface Params$Resource$Managedzones$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2243,7 +2236,7 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Get {
+  export interface Params$Resource$Managedzones$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2265,7 +2258,8 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$List {
+  export interface Params$Resource$Managedzones$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2290,7 +2284,8 @@ export namespace dns_v1 {
      */
     project?: string;
   }
-  export interface Params$Resource$Managedzones$Patch {
+  export interface Params$Resource$Managedzones$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2317,7 +2312,8 @@ export namespace dns_v1 {
      */
     requestBody?: Schema$ManagedZone;
   }
-  export interface Params$Resource$Managedzones$Update {
+  export interface Params$Resource$Managedzones$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2347,15 +2343,7 @@ export namespace dns_v1 {
 
 
   export class Resource$Projects {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2463,7 +2451,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -2473,7 +2461,7 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2493,15 +2481,7 @@ export namespace dns_v1 {
 
 
   export class Resource$Resourcerecordsets {
-    root: Dns;
-    constructor(root: Dns) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2644,7 +2624,7 @@ export namespace dns_v1 {
         params,
         requiredParams: ['project', 'managedZone'],
         pathParams: ['managedZone', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResourceRecordSetsListResponse>(
@@ -2656,7 +2636,8 @@ export namespace dns_v1 {
     }
   }
 
-  export interface Params$Resource$Resourcerecordsets$List {
+  export interface Params$Resource$Resourcerecordsets$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

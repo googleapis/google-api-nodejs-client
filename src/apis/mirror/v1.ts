@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace mirror_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace mirror_v1 {
    * @param {object=} options Options for Mirror
    */
   export class Mirror {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
     contacts: Resource$Contacts;
     locations: Resource$Locations;
@@ -58,20 +89,14 @@ export namespace mirror_v1 {
     timeline: Resource$Timeline;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-      this.contacts = new Resource$Contacts(this);
-      this.locations = new Resource$Locations(this);
-      this.settings = new Resource$Settings(this);
-      this.subscriptions = new Resource$Subscriptions(this);
-      this.timeline = new Resource$Timeline(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
+      this.contacts = new Resource$Contacts();
+      this.locations = new Resource$Locations();
+      this.settings = new Resource$Settings();
+      this.subscriptions = new Resource$Subscriptions();
+      this.timeline = new Resource$Timeline();
     }
   }
 
@@ -719,15 +744,7 @@ export namespace mirror_v1 {
 
 
   export class Resource$Accounts {
-    root: Mirror;
-    constructor(root: Mirror) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -789,7 +806,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['userToken', 'accountType', 'accountName'],
         pathParams: ['accountName', 'accountType', 'userToken'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -799,7 +816,7 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Insert {
+  export interface Params$Resource$Accounts$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -826,15 +843,7 @@ export namespace mirror_v1 {
 
 
   export class Resource$Contacts {
-    root: Mirror;
-    constructor(root: Mirror) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -890,7 +899,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -951,7 +960,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1015,7 +1024,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1080,7 +1089,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ContactsListResponse>(parameters, callback);
@@ -1145,7 +1154,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1210,7 +1219,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1220,7 +1229,7 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Contacts$Delete {
+  export interface Params$Resource$Contacts$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1231,7 +1240,7 @@ export namespace mirror_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Contacts$Get {
+  export interface Params$Resource$Contacts$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1242,7 +1251,7 @@ export namespace mirror_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Contacts$Insert {
+  export interface Params$Resource$Contacts$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1254,13 +1263,13 @@ export namespace mirror_v1 {
      */
     requestBody?: Schema$Contact;
   }
-  export interface Params$Resource$Contacts$List {
+  export interface Params$Resource$Contacts$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Contacts$Patch {
+  export interface Params$Resource$Contacts$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1276,7 +1285,7 @@ export namespace mirror_v1 {
      */
     requestBody?: Schema$Contact;
   }
-  export interface Params$Resource$Contacts$Update {
+  export interface Params$Resource$Contacts$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1295,15 +1304,7 @@ export namespace mirror_v1 {
 
 
   export class Resource$Locations {
-    root: Mirror;
-    constructor(root: Mirror) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1357,7 +1358,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1422,7 +1423,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LocationsListResponse>(parameters, callback);
@@ -1432,7 +1433,7 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Get {
+  export interface Params$Resource$Locations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1443,7 +1444,7 @@ export namespace mirror_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Locations$List {
+  export interface Params$Resource$Locations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1452,15 +1453,7 @@ export namespace mirror_v1 {
 
 
   export class Resource$Settings {
-    root: Mirror;
-    constructor(root: Mirror) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1514,7 +1507,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Setting>(parameters, callback);
@@ -1524,7 +1517,7 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Settings$Get {
+  export interface Params$Resource$Settings$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1542,15 +1535,7 @@ export namespace mirror_v1 {
 
 
   export class Resource$Subscriptions {
-    root: Mirror;
-    constructor(root: Mirror) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1608,7 +1593,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1675,7 +1660,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1743,7 +1728,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionsListResponse>(
@@ -1812,7 +1797,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1822,7 +1807,8 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Delete {
+  export interface Params$Resource$Subscriptions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1833,7 +1819,8 @@ export namespace mirror_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert {
+  export interface Params$Resource$Subscriptions$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1845,13 +1832,15 @@ export namespace mirror_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List {
+  export interface Params$Resource$Subscriptions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$Resource$Subscriptions$Update {
+  export interface Params$Resource$Subscriptions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1870,16 +1859,9 @@ export namespace mirror_v1 {
 
 
   export class Resource$Timeline {
-    root: Mirror;
     attachments: Resource$Timeline$Attachments;
-    constructor(root: Mirror) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.attachments = new Resource$Timeline$Attachments(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.attachments = new Resource$Timeline$Attachments();
     }
 
 
@@ -1936,7 +1918,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1998,7 +1980,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2068,7 +2050,7 @@ export namespace mirror_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2140,7 +2122,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineListResponse>(parameters, callback);
@@ -2207,7 +2189,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2278,7 +2260,7 @@ export namespace mirror_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2288,7 +2270,7 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Timeline$Delete {
+  export interface Params$Resource$Timeline$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2299,7 +2281,7 @@ export namespace mirror_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Timeline$Get {
+  export interface Params$Resource$Timeline$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2310,7 +2292,7 @@ export namespace mirror_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Timeline$Insert {
+  export interface Params$Resource$Timeline$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2337,7 +2319,7 @@ export namespace mirror_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Timeline$List {
+  export interface Params$Resource$Timeline$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2372,7 +2354,7 @@ export namespace mirror_v1 {
      */
     sourceItemId?: string;
   }
-  export interface Params$Resource$Timeline$Patch {
+  export interface Params$Resource$Timeline$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2388,7 +2370,7 @@ export namespace mirror_v1 {
      */
     requestBody?: Schema$TimelineItem;
   }
-  export interface Params$Resource$Timeline$Update {
+  export interface Params$Resource$Timeline$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2421,15 +2403,7 @@ export namespace mirror_v1 {
   }
 
   export class Resource$Timeline$Attachments {
-    root: Mirror;
-    constructor(root: Mirror) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2489,7 +2463,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['itemId', 'attachmentId'],
         pathParams: ['attachmentId', 'itemId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2555,7 +2529,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['itemId', 'attachmentId'],
         pathParams: ['attachmentId', 'itemId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attachment>(parameters, callback);
@@ -2627,7 +2601,7 @@ export namespace mirror_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['itemId'],
         pathParams: ['itemId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Attachment>(parameters, callback);
@@ -2695,7 +2669,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['itemId'],
         pathParams: ['itemId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AttachmentsListResponse>(parameters, callback);
@@ -2705,7 +2679,8 @@ export namespace mirror_v1 {
     }
   }
 
-  export interface Params$Resource$Timeline$Attachments$Delete {
+  export interface Params$Resource$Timeline$Attachments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2720,7 +2695,8 @@ export namespace mirror_v1 {
      */
     itemId?: string;
   }
-  export interface Params$Resource$Timeline$Attachments$Get {
+  export interface Params$Resource$Timeline$Attachments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2735,7 +2711,8 @@ export namespace mirror_v1 {
      */
     itemId?: string;
   }
-  export interface Params$Resource$Timeline$Attachments$Insert {
+  export interface Params$Resource$Timeline$Attachments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2762,7 +2739,8 @@ export namespace mirror_v1 {
       body?: any;
     };
   }
-  export interface Params$Resource$Timeline$Attachments$List {
+  export interface Params$Resource$Timeline$Attachments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace datastore_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,22 +99,12 @@ export namespace datastore_v1 {
    * @param {object=} options Options for Datastore
    */
   export class Datastore {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -91,8 +133,8 @@ export namespace datastore_v1 {
    */
   export interface Schema$ArrayValue {
     /**
-     * Values in the array. The order of this array may not be preserved if it
-     * contains a mix of indexed and unindexed values.
+     * Values in the array. The order of values in an array is preserved as long
+     * as all values have identical settings for &#39;exclude_from_indexes&#39;.
      */
     values?: Schema$Value[];
   }
@@ -194,7 +236,7 @@ export namespace datastore_v1 {
      * name is forbidden in certain documented contexts. The name must not
      * contain more than 500 characters. The name cannot be `&quot;&quot;`.
      */
-    properties?: any;
+    properties?: {[key: string]: Schema$Value;};
   }
   /**
    * The result of fetching an entity from Datastore.
@@ -243,7 +285,7 @@ export namespace datastore_v1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -380,7 +422,7 @@ export namespace datastore_v1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -461,7 +503,7 @@ export namespace datastore_v1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Location for the export metadata and data files.  The full resource URL
      * of the external storage location. Currently, only Google Cloud Storage is
@@ -546,7 +588,82 @@ export namespace datastore_v1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
+  }
+  /**
+   * A minimal index definition. Next tag: 8
+   */
+  export interface Schema$GoogleDatastoreAdminV1Index {
+    /**
+     * The index&#39;s ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
+     * Required.
+     */
+    ancestor?: string;
+    /**
+     * The resource ID of the index. Output only.
+     */
+    indexId?: string;
+    /**
+     * The entity kind to which this index applies. Required.
+     */
+    kind?: string;
+    /**
+     * Project ID. Output only.
+     */
+    projectId?: string;
+    /**
+     * An ordered sequence of property names and their index attributes.
+     * Required.
+     */
+    properties?: Schema$GoogleDatastoreAdminV1IndexedProperty[];
+    /**
+     * The state of the index. Output only.
+     */
+    state?: string;
+  }
+  /**
+   * Next tag: 3
+   */
+  export interface Schema$GoogleDatastoreAdminV1IndexedProperty {
+    /**
+     * The indexed property&#39;s direction.  Must not be DIRECTION_UNSPECIFIED.
+     * Required.
+     */
+    direction?: string;
+    /**
+     * The property name to index. Required.
+     */
+    name?: string;
+  }
+  /**
+   * Metadata for Index operations.
+   */
+  export interface Schema$GoogleDatastoreAdminV1IndexOperationMetadata {
+    /**
+     * Metadata common to all Datastore Admin operations.
+     */
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    /**
+     * The index resource ID that this operation is acting on.
+     */
+    indexId?: string;
+    /**
+     * An estimate of the number of entities processed.
+     */
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
+  }
+  /**
+   * The response for google.datastore.admin.v1.DatastoreAdmin.ListIndexes.
+   */
+  export interface Schema$GoogleDatastoreAdminV1ListIndexesResponse {
+    /**
+     * The indexes.
+     */
+    indexes?: Schema$GoogleDatastoreAdminV1Index[];
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string;
   }
   /**
    * Measures the progress of a particular metric.
@@ -597,7 +714,7 @@ export namespace datastore_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -613,7 +730,7 @@ export namespace datastore_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A [GQL
@@ -633,7 +750,7 @@ export namespace datastore_v1 {
      * must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not
      * be `&quot;&quot;`.
      */
-    namedBindings?: any;
+    namedBindings?: {[key: string]: Schema$GqlQueryParameter;};
     /**
      * Numbered binding site @1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.  For each
@@ -1132,7 +1249,7 @@ export namespace datastore_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1225,16 +1342,11 @@ export namespace datastore_v1 {
 
 
   export class Resource$Projects {
-    root: Datastore;
+    indexes: Resource$Projects$Indexes;
     operations: Resource$Projects$Operations;
-    constructor(root: Datastore) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.operations = new Resource$Projects$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.indexes = new Resource$Projects$Indexes();
+      this.operations = new Resource$Projects$Operations();
     }
 
 
@@ -1298,7 +1410,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AllocateIdsResponse>(parameters, callback);
@@ -1368,7 +1480,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
@@ -1435,7 +1547,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -1512,7 +1624,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1557,7 +1669,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     options = {};
                                                                                                                                                                                                                                                                                                                                              }
 
-                                                                                                                                                                                                                                                                                                                                             const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                                                                                             const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context}; if(callback) {
     createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
                                                                                                                                                                                                                                                                                                                                              } else {
     return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1619,7 +1731,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LookupResponse>(parameters, callback);
@@ -1688,7 +1800,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReserveIdsResponse>(parameters, callback);
@@ -1756,7 +1868,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RollbackResponse>(parameters, callback);
@@ -1824,7 +1936,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
@@ -1834,7 +1946,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     }
   }
 
-  export interface Params$Resource$Projects$Allocateids {
+  export interface Params$Resource$Projects$Allocateids extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1850,7 +1963,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$AllocateIdsRequest;
   }
-  export interface Params$Resource$Projects$Begintransaction {
+  export interface Params$Resource$Projects$Begintransaction extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1866,7 +1980,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Commit {
+  export interface Params$Resource$Projects$Commit extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1882,7 +1996,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Export {
+  export interface Params$Resource$Projects$Export extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1898,7 +2012,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$GoogleDatastoreAdminV1ExportEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Import {
+  export interface Params$Resource$Projects$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1914,7 +2028,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$GoogleDatastoreAdminV1ImportEntitiesRequest;
   }
-  export interface Params$Resource$Projects$Lookup {
+  export interface Params$Resource$Projects$Lookup extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1930,7 +2044,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$LookupRequest;
   }
-  export interface Params$Resource$Projects$Reserveids {
+  export interface Params$Resource$Projects$Reserveids extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1946,7 +2061,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$ReserveIdsRequest;
   }
-  export interface Params$Resource$Projects$Rollback {
+  export interface Params$Resource$Projects$Rollback extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1962,7 +2078,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Runquery {
+  export interface Params$Resource$Projects$Runquery extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1979,16 +2096,204 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     requestBody?: Schema$RunQueryRequest;
   }
 
-  export class Resource$Projects$Operations {
-    root: Datastore;
-    constructor(root: Datastore) {
-      this.root = root;
-      this.getRoot.bind(this);
+  export class Resource$Projects$Indexes {
+    constructor() {}
+
+
+    /**
+     * datastore.projects.indexes.get
+     * @desc Gets an index.
+     * @alias datastore.projects.indexes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.indexId The resource ID of the index to get.
+     * @param {string} params.projectId Project ID against which to make the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Indexes$Get, options?: MethodOptions):
+        AxiosPromise<Schema$GoogleDatastoreAdminV1Index>;
+    get(params: Params$Resource$Projects$Indexes$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
+        callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void;
+    get(params: Params$Resource$Projects$Indexes$Get,
+        callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void;
+    get(callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Projects$Indexes$Get|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
+        callback?: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
+        void|AxiosPromise<Schema$GoogleDatastoreAdminV1Index> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Indexes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Indexes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/projects/{projectId}/indexes/{indexId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'indexId'],
+        pathParams: ['indexId', 'projectId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(parameters);
+      }
     }
 
-    getRoot() {
-      return this.root;
+
+    /**
+     * datastore.projects.indexes.list
+     * @desc Lists the indexes that match the specified filters.  Datastore uses
+     * an eventually consistent query to fetch the list of indexes and may
+     * occasionally return stale results.
+     * @alias datastore.projects.indexes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter
+     * @param {integer=} params.pageSize The maximum number of items to return.  If zero, then all results will be returned.
+     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string} params.projectId Project ID against which to make the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Indexes$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse>;
+    list(
+        params: Params$Resource$Projects$Indexes$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
+        callback: BodyResponseCallback<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Indexes$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleDatastoreAdminV1ListIndexesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Indexes$List|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>):
+        void|AxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Indexes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Indexes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/projects/{projectId}/indexes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDatastoreAdminV1ListIndexesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GoogleDatastoreAdminV1ListIndexesResponse>(parameters);
+      }
     }
+  }
+
+  export interface Params$Resource$Projects$Indexes$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource ID of the index to get.
+     */
+    indexId?: string;
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Indexes$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     *
+     */
+    filter?: string;
+    /**
+     * The maximum number of items to return.  If zero, then all results will be
+     * returned.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
+  }
+
+
+  export class Resource$Projects$Operations {
+    constructor() {}
 
 
     /**
@@ -2055,7 +2360,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2123,7 +2428,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2192,7 +2497,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2277,7 +2582,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -2289,7 +2594,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Cancel {
+  export interface Params$Resource$Projects$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2300,7 +2606,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Delete {
+  export interface Params$Resource$Projects$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2311,7 +2618,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$Get {
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2322,7 +2630,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List {
+  export interface Params$Resource$Projects$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

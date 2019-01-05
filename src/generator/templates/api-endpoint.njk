@@ -19,7 +19,7 @@
  */
 
 import { OAuth2Client, JWT, Compute, UserRefreshClient } from 'google-auth-library';
-import { GoogleConfigurable, createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback } from '../../shared/src';
+import { GoogleConfigurable, createAPIRequest, MethodOptions, GlobalOptions, BodyResponseCallback, APIRequestContext } from 'googleapis-common';
 import { AxiosPromise } from 'axios';
 
 // tslint:disable: no-any
@@ -40,6 +40,17 @@ export interface Options extends GlobalOptions {
   version: '{{api.version|replace('\.', '_')}}';
 }
 
+let context: APIRequestContext;
+
+interface StandardParameters {
+  {% for pname, p in api.parameters|dictsort %}
+  /**
+    * {{ p.description|oneLine|cleanComments|safe }}
+    */
+  {{ pname|cleanPropertyName|safe }}?: {{ p.type }}{% if p.repeated %}[]{% endif %};
+  {% endfor %}
+}
+
 /**
  * {{ api.title }}
  *
@@ -57,10 +68,6 @@ export interface Options extends GlobalOptions {
  */
 export class {{ Name }} {
 
-  _options: GlobalOptions;
-  google?: GoogleConfigurable;
-  root = this;
-
   {% if api.resources %}
     {% for rname, r in api.resources|dictsort %}
       {{ rname }}: Resource${{ rname|capitalize }};
@@ -68,19 +75,16 @@ export class {{ Name }} {
   {% endif %}
 
   constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-    this._options = options || {};
-    this.google = google;
-    this.getRoot.bind(this);
+    context = {
+      _options: options || {},
+      google
+    };
 
     {% if api.resources %}
       {% for rname, r in api.resources|dictsort %}
-        this.{{ rname }} = new Resource${{ rname|capitalize }}(this);
+        this.{{ rname }} = new Resource${{ rname|capitalize }}();
       {% endfor %}
     {% endif %}
-  }
-
-  getRoot() {
-    return this.root;
   }
 
 {% if api.methods %}
@@ -121,7 +125,7 @@ export interface Schema${{ schema.id }} {
 
 {% if api.methods %}
   {% for mname, m in api.methods|dictsort %}
-    export interface Params$${{ mname|capitalize }} {
+    export interface Params$${{ mname|capitalize }} extends StandardParameters {
 
       /**
        * Auth client or API Key for the request
@@ -133,7 +137,7 @@ export interface Schema${{ schema.id }} {
         /**
          * {{ p.description|oneLine|cleanComments|safe }}
          */
-        {{ pname|getSafeParamName }}?: {{ p.type }};
+        {{ pname|getSafeParamName }}?: {{ p.type }}{% if p.repeated %}[]{% endif %};
         {% endfor %}
       {% endif %}
 

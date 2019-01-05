@@ -11,11 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
+import * as assert from 'assert';
 import * as fs from 'fs';
-import nock from 'nock';
+import * as nock from 'nock';
 import * as path from 'path';
-import pify from 'pify';
+import * as pify from 'pify';
 
 import {Utils} from './../utils';
 const fsp = pify(fs);

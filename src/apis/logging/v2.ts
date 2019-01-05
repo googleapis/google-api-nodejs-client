@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,10 +29,63 @@ export namespace logging_v2 {
     version: 'v2';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Stackdriver Logging API
    *
-   * Writes log entries and manages your Stackdriver Logging configuration.
+   * Writes log entries and manages your Logging configuration.
    *
    * @example
    * const {google} = require('googleapis');
@@ -46,10 +98,6 @@ export namespace logging_v2 {
    * @param {object=} options Options for Logging
    */
   export class Logging {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     billingAccounts: Resource$Billingaccounts;
     entries: Resource$Entries;
     exclusions: Resource$Exclusions;
@@ -61,24 +109,18 @@ export namespace logging_v2 {
     sinks: Resource$Sinks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.billingAccounts = new Resource$Billingaccounts(this);
-      this.entries = new Resource$Entries(this);
-      this.exclusions = new Resource$Exclusions(this);
-      this.folders = new Resource$Folders(this);
-      this.logs = new Resource$Logs(this);
+      this.billingAccounts = new Resource$Billingaccounts();
+      this.entries = new Resource$Entries();
+      this.exclusions = new Resource$Exclusions();
+      this.folders = new Resource$Folders();
+      this.logs = new Resource$Logs();
       this.monitoredResourceDescriptors =
-          new Resource$Monitoredresourcedescriptors(this);
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-      this.sinks = new Resource$Sinks(this);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Monitoredresourcedescriptors();
+      this.organizations = new Resource$Organizations();
+      this.projects = new Resource$Projects();
+      this.sinks = new Resource$Sinks();
     }
   }
 
@@ -441,23 +483,23 @@ export namespace logging_v2 {
     httpRequest?: Schema$HttpRequest;
     /**
      * Optional. A unique identifier for the log entry. If you provide a value,
-     * then Stackdriver Logging considers other log entries in the same project,
-     * with the same timestamp, and with the same insert_id to be duplicates
-     * which can be removed. If omitted in new log entries, then Stackdriver
-     * Logging assigns its own unique identifier. The insert_id is also used to
-     * order log entries that have the same timestamp value.
+     * then Logging considers other log entries in the same project, with the
+     * same timestamp, and with the same insert_id to be duplicates which can be
+     * removed. If omitted in new log entries, then Logging assigns its own
+     * unique identifier. The insert_id is also used to order log entries that
+     * have the same timestamp value.
      */
     insertId?: string;
     /**
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    jsonPayload?: any;
+    jsonPayload?: {[key: string]: any;};
     /**
      * Optional. A set of user-defined (key, value) data that provides
      * additional information about the log entry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The resource name of the log to which this log entry belongs:
      * &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
@@ -493,9 +535,9 @@ export namespace logging_v2 {
      * The log entry payload, represented as a protocol buffer. Some Google
      * Cloud Platform services use this field for their log entry payloads.
      */
-    protoPayload?: any;
+    protoPayload?: {[key: string]: any;};
     /**
-     * Output only. The time the log entry was received by Stackdriver Logging.
+     * Output only. The time the log entry was received by Logging.
      */
     receiveTimestamp?: string;
     /**
@@ -517,9 +559,9 @@ export namespace logging_v2 {
     sourceLocation?: Schema$LogEntrySourceLocation;
     /**
      * Optional. The span ID within the trace associated with the log entry. For
-     * Stackdriver Trace spans, this is the same format that the Stackdriver
-     * Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte
-     * array, such as &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
+     * Trace spans, this is the same format that the Trace API v2 uses: a
+     * 16-character hexadecimal encoding of an 8-byte array, such as
+     * &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
      */
     spanId?: string;
     /**
@@ -530,13 +572,13 @@ export namespace logging_v2 {
      * Optional. The time the event described by the log entry occurred. This
      * time is used to compute the log entry&#39;s age and to enforce the logs
      * retention period. If this field is omitted in a new log entry, then
-     * Stackdriver Logging assigns it the current time. Timestamps have
-     * nanosecond accuracy, but trailing zeros in the fractional seconds might
-     * be omitted when the timestamp is displayed.Incoming log entries should
-     * have timestamps that are no more than the logs retention period in the
-     * past, and no more than 24 hours in the future. Log entries outside those
-     * time boundaries will not be available when calling entries.list, but
-     * those log entries can still be exported with LogSinks.
+     * Logging assigns it the current time. Timestamps have nanosecond accuracy,
+     * but trailing zeros in the fractional seconds might be omitted when the
+     * timestamp is displayed.Incoming log entries should have timestamps that
+     * are no more than the logs retention period in the past, and no more than
+     * 24 hours in the future. Log entries outside those time boundaries will
+     * not be available when calling entries.list, but those log entries can
+     * still be exported with LogSinks.
      */
     timestamp?: string;
     /**
@@ -546,6 +588,15 @@ export namespace logging_v2 {
      * projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824
      */
     trace?: string;
+    /**
+     * Optional. The sampling decision of the trace associated with the log
+     * entry. True means that the trace resource name in the trace field was
+     * sampled for storage in a trace backend. False means that the trace was
+     * not sampled for storage when this log entry was written, or the sampling
+     * decision was unknown at the time. A non-sampled trace value is still
+     * useful as a request correlation identifier. The default is False.
+     */
+    traceSampled?: boolean;
   }
   /**
    * Additional information about a potentially long-running operation with
@@ -601,12 +652,11 @@ export namespace logging_v2 {
     line?: string;
   }
   /**
-   * Specifies a set of log entries that are not to be stored in Stackdriver
-   * Logging. If your project receives a large volume of logs, you might be able
-   * to use exclusions to reduce your chargeable logs. Exclusions are processed
-   * after log sinks, so you can export log entries before they are excluded.
-   * Audit log entries and log entries from Amazon Web Services are never
-   * excluded.
+   * Specifies a set of log entries that are not to be stored in Logging. If
+   * your project receives a large volume of logs, you might be able to use
+   * exclusions to reduce your chargeable logs. Exclusions are processed after
+   * log sinks, so you can export log entries before they are excluded. Audit
+   * log entries and log entries from Amazon Web Services are never excluded.
    */
   export interface Schema$LogExclusion {
     /**
@@ -674,6 +724,7 @@ export namespace logging_v2 {
     bucketOptions?: Schema$BucketOptions;
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      */
     description?: string;
     /**
@@ -695,7 +746,7 @@ export namespace logging_v2 {
      * there are upper bounds on the maximum number of labels and the number of
      * active time series that are allowed in a project.
      */
-    labelExtractors?: any;
+    labelExtractors?: {[key: string]: string;};
     /**
      * Optional. The metric descriptor associated with the logs-based metric. If
      * unspecified, it uses a default metric descriptor with a DELTA metric
@@ -771,10 +822,6 @@ export namespace logging_v2 {
      */
     destination?: string;
     /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    endTime?: string;
-    /**
      * Optional. An advanced logs filter. The only exported log entries are
      * those that are in the resource owning the sink and that match the filter.
      * For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND
@@ -811,14 +858,10 @@ export namespace logging_v2 {
      */
     outputVersionFormat?: string;
     /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    startTime?: string;
-    /**
      * Output only. An IAM identity&amp;mdash;a service account or
-     * group&amp;mdash;under which Stackdriver Logging writes the exported log
-     * entries to the sink&#39;s destination. This field is set by sinks.create
-     * and sinks.update, based on the setting of unique_writer_identity in those
+     * group&amp;mdash;under which Logging writes the exported log entries to
+     * the sink&#39;s destination. This field is set by sinks.create and
+     * sinks.update, based on the setting of unique_writer_identity in those
      * methods.Until you grant this identity write-access to the destination,
      * log entry exports from this sink will fail. For more information, see
      * Granting access for a resource. Consult the destination service&#39;s
@@ -853,6 +896,10 @@ export namespace logging_v2 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of metric_kind and value_type might not be supported.
      */
@@ -863,10 +910,11 @@ export namespace logging_v2 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded. All user-defined custom metric types have the DNS name
-     * custom.googleapis.com. Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded. All user-defined metric types have the DNS name
+     * custom.googleapis.com or external.googleapis.com. Metric types should use
+     * a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -902,6 +950,28 @@ export namespace logging_v2 {
     valueType?: string;
   }
   /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
+  }
+  /**
    * An object representing a resource that can be used for monitoring, logging,
    * billing, or other purposes. Examples include virtual machine instances,
    * databases, and storage devices such as disks. The type field identifies a
@@ -922,7 +992,7 @@ export namespace logging_v2 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
@@ -980,27 +1050,25 @@ export namespace logging_v2 {
    * Auxiliary metadata for a MonitoredResource object. MonitoredResource
    * objects contain the minimum set of information to uniquely identify a
    * monitored resource instance. There is some other useful auxiliary metadata.
-   * Google Stackdriver Monitoring &amp; Logging uses an ingestion pipeline to
-   * extract metadata for cloud resources of all types , and stores the metadata
-   * in this message.
+   * Monitoring and Logging use an ingestion pipeline to extract metadata for
+   * cloud resources of all types, and store the metadata in this message.
    */
   export interface Schema$MonitoredResourceMetadata {
     /**
      * Output only. Values for predefined system metadata labels. System labels
-     * are a kind of metadata extracted by Google Stackdriver. Stackdriver
-     * determines what system labels are useful and how to obtain their values.
-     * Some examples: &quot;machine_image&quot;, &quot;vpc&quot;,
-     * &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc.
-     * System label values can be only strings, Boolean values, or a list of
-     * strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,
+     * are a kind of metadata extracted by Google, including
+     * &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;,
+     * &quot;security_group&quot;, &quot;name&quot;, etc. System label values
+     * can be only strings, Boolean values, or a list of strings. For example: {
+     * &quot;name&quot;: &quot;my-test-instance&quot;,
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: any;
+    systemLabels?: {[key: string]: any;};
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * Complete log information about a single HTTP request to an App Engine
@@ -1138,6 +1206,11 @@ export namespace logging_v2 {
      */
     traceId?: string;
     /**
+     * If true, the value in the &#39;trace_id&#39; field was sampled for
+     * storage in a trace backend.
+     */
+    traceSampled?: boolean;
+    /**
      * File or class that handled the request.
      */
     urlMapEntry?: string;
@@ -1205,23 +1278,22 @@ export namespace logging_v2 {
      */
     dryRun?: boolean;
     /**
-     * Required. The log entries to send to Stackdriver Logging. The order of
-     * log entries in this list does not matter. Values supplied in this
-     * method&#39;s log_name, resource, and labels fields are copied into those
-     * log entries in this list that do not include values for their
-     * corresponding fields. For more information, see the LogEntry type.If the
-     * timestamp or insert_id fields are missing in log entries, then this
-     * method supplies the current time or a unique identifier, respectively.
-     * The supplied values are chosen so that, among the log entries that did
-     * not supply their own values, the entries earlier in the list will sort
-     * before the entries later in the list. See the entries.list method.Log
-     * entries with timestamps that are more than the logs retention period in
-     * the past or more than 24 hours in the future will not be available when
-     * calling entries.list. However, those log entries can still be exported
-     * with LogSinks.To improve throughput and to avoid exceeding the quota
-     * limit for calls to entries.write, you should try to include several log
-     * entries in this list, rather than calling this method for each individual
-     * log entry.
+     * Required. The log entries to send to Logging. The order of log entries in
+     * this list does not matter. Values supplied in this method&#39;s log_name,
+     * resource, and labels fields are copied into those log entries in this
+     * list that do not include values for their corresponding fields. For more
+     * information, see the LogEntry type.If the timestamp or insert_id fields
+     * are missing in log entries, then this method supplies the current time or
+     * a unique identifier, respectively. The supplied values are chosen so
+     * that, among the log entries that did not supply their own values, the
+     * entries earlier in the list will sort before the entries later in the
+     * list. See the entries.list method.Log entries with timestamps that are
+     * more than the logs retention period in the past or more than 24 hours in
+     * the future will not be available when calling entries.list. However,
+     * those log entries can still be exported with LogSinks.To improve
+     * throughput and to avoid exceeding the quota limit for calls to
+     * entries.write, you should try to include several log entries in this
+     * list, rather than calling this method for each individual log entry.
      */
     entries?: Schema$LogEntry[];
     /**
@@ -1230,7 +1302,7 @@ export namespace logging_v2 {
      * as a label in this parameter, then the log entry&#39;s label is not
      * changed. See LogEntry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Optional. A default log resource name that is assigned to all log entries
      * in entries that do not specify a value for log_name:
@@ -1238,10 +1310,12 @@ export namespace logging_v2 {
      * &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
      * &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
      * &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; [LOG_ID] must be
-     * URL-encoded. For example, &quot;projects/my-project-id/logs/syslog&quot;
-     * or
-     * &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;.
-     * For more information about log names, see LogEntry.
+     * URL-encoded. For example: &quot;projects/my-project-id/logs/syslog&quot;
+     * &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;
+     * The permission &lt;code&gt;logging.logEntries.create&lt;/code&gt; is
+     * needed on each project, organization, billing account, or folder that is
+     * receiving new log entries, whether the resource is specified in
+     * &lt;code&gt;logName&lt;/code&gt; or in an individual log entry.
      */
     logName?: string;
     /**
@@ -1268,34 +1342,19 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts {
-    root: Logging;
     exclusions: Resource$Billingaccounts$Exclusions;
     logs: Resource$Billingaccounts$Logs;
     sinks: Resource$Billingaccounts$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Billingaccounts$Exclusions(root);
-      this.logs = new Resource$Billingaccounts$Logs(root);
-      this.sinks = new Resource$Billingaccounts$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Billingaccounts$Exclusions();
+      this.logs = new Resource$Billingaccounts$Logs();
+      this.sinks = new Resource$Billingaccounts$Sinks();
     }
   }
 
 
   export class Resource$Billingaccounts$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1358,7 +1417,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1423,7 +1482,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1485,7 +1544,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1555,7 +1614,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -1623,7 +1682,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1633,7 +1692,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Exclusions$Create {
+  export interface Params$Resource$Billingaccounts$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1652,7 +1712,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Delete {
+  export interface Params$Resource$Billingaccounts$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1668,7 +1729,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Get {
+  export interface Params$Resource$Billingaccounts$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1684,7 +1746,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$List {
+  export interface Params$Resource$Billingaccounts$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1710,7 +1773,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Patch {
+  export interface Params$Resource$Billingaccounts$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1743,15 +1807,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1811,7 +1867,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1881,7 +1937,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -1891,7 +1947,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Logs$Delete {
+  export interface Params$Resource$Billingaccounts$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1909,7 +1966,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Logs$List {
+  export interface Params$Resource$Billingaccounts$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1938,15 +1996,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1960,7 +2010,7 @@ export namespace logging_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2010,7 +2060,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2076,7 +2126,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2137,7 +2187,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2206,7 +2256,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -2228,7 +2278,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2277,7 +2327,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2299,7 +2349,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2348,7 +2398,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2358,7 +2408,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Sinks$Create {
+  export interface Params$Resource$Billingaccounts$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2375,13 +2426,13 @@ export namespace logging_v2 {
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as writer_identity is
-     * the same group or service account used by Stackdriver Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.If this field is set to true, or
-     * if the sink is owned by a non-project resource such as an organization,
-     * then the value of writer_identity will be a unique service account used
-     * only for exports from the new sink. For more information, see
-     * writer_identity in LogSink.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.If this field is set to true, or if the sink
+     * is owned by a non-project resource such as an organization, then the
+     * value of writer_identity will be a unique service account used only for
+     * exports from the new sink. For more information, see writer_identity in
+     * LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -2390,7 +2441,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Delete {
+  export interface Params$Resource$Billingaccounts$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2407,7 +2459,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Get {
+  export interface Params$Resource$Billingaccounts$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2423,7 +2476,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$List {
+  export interface Params$Resource$Billingaccounts$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2449,7 +2503,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Patch {
+  export interface Params$Resource$Billingaccounts$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2485,7 +2540,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -2495,7 +2550,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Update {
+  export interface Params$Resource$Billingaccounts$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2531,7 +2587,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -2545,21 +2601,13 @@ export namespace logging_v2 {
 
 
   export class Resource$Entries {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * logging.entries.list
      * @desc Lists log entries. Use this method to retrieve log entries from
-     * Stackdriver Logging. For ways to export log entries, see Exporting Logs.
+     * Logging. For ways to export log entries, see Exporting Logs.
      * @alias logging.entries.list
      * @memberOf! ()
      *
@@ -2612,7 +2660,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
@@ -2624,12 +2672,12 @@ export namespace logging_v2 {
 
     /**
      * logging.entries.write
-     * @desc Writes log entries to Stackdriver Logging. This API method is the
-     * only way to send log entries to Stackdriver Logging. This method is used,
-     * directly or indirectly, by the Stackdriver Logging agent (fluentd) and
-     * all logging libraries configured to use Stackdriver Logging. A single
-     * request may contain log entries for a maximum of 1000 different resources
-     * (projects, organizations, billing accounts or folders)
+     * @desc Writes log entries to Logging. This API method is the only way to
+     * send log entries to Logging. This method is used, directly or indirectly,
+     * by the Logging agent (fluentd) and all logging libraries configured to
+     * use Logging. A single request may contain log entries for a maximum of
+     * 1000 different resources (projects, organizations, billing accounts or
+     * folders)
      * @alias logging.entries.write
      * @memberOf! ()
      *
@@ -2683,7 +2731,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
@@ -2693,7 +2741,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Entries$List {
+  export interface Params$Resource$Entries$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2705,7 +2753,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$ListLogEntriesRequest;
   }
-  export interface Params$Resource$Entries$Write {
+  export interface Params$Resource$Entries$Write extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2720,15 +2768,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2790,7 +2830,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -2854,7 +2894,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2915,7 +2955,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -2983,7 +3023,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3049,7 +3089,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3059,7 +3099,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Exclusions$Create {
+  export interface Params$Resource$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3078,7 +3119,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Exclusions$Delete {
+  export interface Params$Resource$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3094,7 +3136,7 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Exclusions$Get {
+  export interface Params$Resource$Exclusions$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3110,7 +3152,7 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Exclusions$List {
+  export interface Params$Resource$Exclusions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3136,7 +3178,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Exclusions$Patch {
+  export interface Params$Resource$Exclusions$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3169,34 +3211,19 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders {
-    root: Logging;
     exclusions: Resource$Folders$Exclusions;
     logs: Resource$Folders$Logs;
     sinks: Resource$Folders$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Folders$Exclusions(root);
-      this.logs = new Resource$Folders$Logs(root);
-      this.sinks = new Resource$Folders$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Folders$Exclusions();
+      this.logs = new Resource$Folders$Logs();
+      this.sinks = new Resource$Folders$Sinks();
     }
   }
 
 
   export class Resource$Folders$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3259,7 +3286,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3324,7 +3351,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3386,7 +3413,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3456,7 +3483,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3524,7 +3551,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3534,7 +3561,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Exclusions$Create {
+  export interface Params$Resource$Folders$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3553,7 +3581,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Folders$Exclusions$Delete {
+  export interface Params$Resource$Folders$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3569,7 +3598,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Get {
+  export interface Params$Resource$Folders$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3585,7 +3615,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$List {
+  export interface Params$Resource$Folders$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3611,7 +3642,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Patch {
+  export interface Params$Resource$Folders$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3644,15 +3676,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3712,7 +3736,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3781,7 +3805,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -3791,7 +3815,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Logs$Delete {
+  export interface Params$Resource$Folders$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3809,7 +3834,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Folders$Logs$List {
+  export interface Params$Resource$Folders$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3838,15 +3864,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3860,7 +3878,7 @@ export namespace logging_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3910,7 +3928,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -3976,7 +3994,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4037,7 +4055,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4105,7 +4123,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -4127,7 +4145,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4176,7 +4194,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4198,7 +4216,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4247,7 +4265,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4257,7 +4275,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Sinks$Create {
+  export interface Params$Resource$Folders$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4274,13 +4293,13 @@ export namespace logging_v2 {
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as writer_identity is
-     * the same group or service account used by Stackdriver Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.If this field is set to true, or
-     * if the sink is owned by a non-project resource such as an organization,
-     * then the value of writer_identity will be a unique service account used
-     * only for exports from the new sink. For more information, see
-     * writer_identity in LogSink.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.If this field is set to true, or if the sink
+     * is owned by a non-project resource such as an organization, then the
+     * value of writer_identity will be a unique service account used only for
+     * exports from the new sink. For more information, see writer_identity in
+     * LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -4289,7 +4308,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Delete {
+  export interface Params$Resource$Folders$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4306,7 +4326,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Get {
+  export interface Params$Resource$Folders$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4322,7 +4343,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$List {
+  export interface Params$Resource$Folders$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4348,7 +4370,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Patch {
+  export interface Params$Resource$Folders$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4384,7 +4407,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -4394,7 +4417,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Update {
+  export interface Params$Resource$Folders$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4430,7 +4454,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -4444,15 +4468,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4510,7 +4526,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4578,7 +4594,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -4588,7 +4604,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Logs$Delete {
+  export interface Params$Resource$Logs$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4606,7 +4622,7 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Logs$List {
+  export interface Params$Resource$Logs$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4635,21 +4651,12 @@ export namespace logging_v2 {
 
 
   export class Resource$Monitoredresourcedescriptors {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * logging.monitoredResourceDescriptors.list
-     * @desc Lists the descriptors for monitored resource types used by
-     * Stackdriver Logging.
+     * @desc Lists the descriptors for monitored resource types used by Logging.
      * @alias logging.monitoredResourceDescriptors.list
      * @memberOf! ()
      *
@@ -4711,7 +4718,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -4723,7 +4730,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Monitoredresourcedescriptors$List {
+  export interface Params$Resource$Monitoredresourcedescriptors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4746,34 +4754,19 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations {
-    root: Logging;
     exclusions: Resource$Organizations$Exclusions;
     logs: Resource$Organizations$Logs;
     sinks: Resource$Organizations$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Organizations$Exclusions(root);
-      this.logs = new Resource$Organizations$Logs(root);
-      this.sinks = new Resource$Organizations$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Organizations$Exclusions();
+      this.logs = new Resource$Organizations$Logs();
+      this.sinks = new Resource$Organizations$Sinks();
     }
   }
 
 
   export class Resource$Organizations$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4836,7 +4829,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -4901,7 +4894,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4963,7 +4956,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5033,7 +5026,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -5101,7 +5094,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5111,7 +5104,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Exclusions$Create {
+  export interface Params$Resource$Organizations$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5130,7 +5124,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Organizations$Exclusions$Delete {
+  export interface Params$Resource$Organizations$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5146,7 +5141,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Get {
+  export interface Params$Resource$Organizations$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5162,7 +5158,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$List {
+  export interface Params$Resource$Organizations$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5188,7 +5185,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Patch {
+  export interface Params$Resource$Organizations$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5221,15 +5219,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5289,7 +5279,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5359,7 +5349,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -5369,7 +5359,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Logs$Delete {
+  export interface Params$Resource$Organizations$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5387,7 +5378,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Organizations$Logs$List {
+  export interface Params$Resource$Organizations$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5416,15 +5408,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5438,7 +5422,7 @@ export namespace logging_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5488,7 +5472,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5554,7 +5538,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5615,7 +5599,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5684,7 +5668,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -5706,7 +5690,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5755,7 +5739,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5777,7 +5761,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5826,7 +5810,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5836,7 +5820,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sinks$Create {
+  export interface Params$Resource$Organizations$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5853,13 +5838,13 @@ export namespace logging_v2 {
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as writer_identity is
-     * the same group or service account used by Stackdriver Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.If this field is set to true, or
-     * if the sink is owned by a non-project resource such as an organization,
-     * then the value of writer_identity will be a unique service account used
-     * only for exports from the new sink. For more information, see
-     * writer_identity in LogSink.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.If this field is set to true, or if the sink
+     * is owned by a non-project resource such as an organization, then the
+     * value of writer_identity will be a unique service account used only for
+     * exports from the new sink. For more information, see writer_identity in
+     * LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -5868,7 +5853,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Delete {
+  export interface Params$Resource$Organizations$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5885,7 +5871,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Get {
+  export interface Params$Resource$Organizations$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5901,7 +5888,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$List {
+  export interface Params$Resource$Organizations$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5927,7 +5915,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Patch {
+  export interface Params$Resource$Organizations$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5963,7 +5952,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -5973,7 +5962,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Update {
+  export interface Params$Resource$Organizations$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6009,7 +5999,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -6023,36 +6013,21 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects {
-    root: Logging;
     exclusions: Resource$Projects$Exclusions;
     logs: Resource$Projects$Logs;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.exclusions = new Resource$Projects$Exclusions(root);
-      this.logs = new Resource$Projects$Logs(root);
-      this.metrics = new Resource$Projects$Metrics(root);
-      this.sinks = new Resource$Projects$Sinks(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.exclusions = new Resource$Projects$Exclusions();
+      this.logs = new Resource$Projects$Logs();
+      this.metrics = new Resource$Projects$Metrics();
+      this.sinks = new Resource$Projects$Sinks();
     }
   }
 
 
   export class Resource$Projects$Exclusions {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6115,7 +6090,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6180,7 +6155,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6242,7 +6217,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6312,7 +6287,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -6380,7 +6355,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6390,7 +6365,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Exclusions$Create {
+  export interface Params$Resource$Projects$Exclusions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6409,7 +6385,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Projects$Exclusions$Delete {
+  export interface Params$Resource$Projects$Exclusions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6425,7 +6402,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Get {
+  export interface Params$Resource$Projects$Exclusions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6441,7 +6419,8 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$List {
+  export interface Params$Resource$Projects$Exclusions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6467,7 +6446,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Patch {
+  export interface Params$Resource$Projects$Exclusions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6500,15 +6480,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6568,7 +6540,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6637,7 +6609,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -6647,7 +6619,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Logs$Delete {
+  export interface Params$Resource$Projects$Logs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6665,7 +6638,8 @@ export namespace logging_v2 {
      */
     logName?: string;
   }
-  export interface Params$Resource$Projects$Logs$List {
+  export interface Params$Resource$Projects$Logs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6694,15 +6668,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Metrics {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6763,7 +6729,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6829,7 +6795,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6892,7 +6858,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6962,7 +6928,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
@@ -7030,7 +6996,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -7040,7 +7006,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Metrics$Create {
+  export interface Params$Resource$Projects$Metrics$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7057,7 +7024,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogMetric;
   }
-  export interface Params$Resource$Projects$Metrics$Delete {
+  export interface Params$Resource$Projects$Metrics$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7069,7 +7037,8 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Get {
+  export interface Params$Resource$Projects$Metrics$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7081,7 +7050,8 @@ export namespace logging_v2 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$List {
+  export interface Params$Resource$Projects$Metrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7106,7 +7076,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Update {
+  export interface Params$Resource$Projects$Metrics$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7129,15 +7100,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7151,7 +7114,7 @@ export namespace logging_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7201,7 +7164,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7267,7 +7230,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7328,7 +7291,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7396,7 +7359,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -7418,7 +7381,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7467,7 +7430,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7489,7 +7452,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7538,7 +7501,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7548,7 +7511,8 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Sinks$Create {
+  export interface Params$Resource$Projects$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7565,13 +7529,13 @@ export namespace logging_v2 {
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as writer_identity is
-     * the same group or service account used by Stackdriver Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.If this field is set to true, or
-     * if the sink is owned by a non-project resource such as an organization,
-     * then the value of writer_identity will be a unique service account used
-     * only for exports from the new sink. For more information, see
-     * writer_identity in LogSink.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.If this field is set to true, or if the sink
+     * is owned by a non-project resource such as an organization, then the
+     * value of writer_identity will be a unique service account used only for
+     * exports from the new sink. For more information, see writer_identity in
+     * LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -7580,7 +7544,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Delete {
+  export interface Params$Resource$Projects$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7597,7 +7562,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Get {
+  export interface Params$Resource$Projects$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7613,7 +7579,8 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$List {
+  export interface Params$Resource$Projects$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7639,7 +7606,8 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Patch {
+  export interface Params$Resource$Projects$Sinks$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7675,7 +7643,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -7685,7 +7653,8 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Update {
+  export interface Params$Resource$Projects$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7721,7 +7690,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;
@@ -7735,15 +7704,7 @@ export namespace logging_v2 {
 
 
   export class Resource$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7757,7 +7718,7 @@ export namespace logging_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7805,7 +7766,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7869,7 +7830,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7929,7 +7890,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7996,7 +7957,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -8018,7 +7979,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8065,7 +8026,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -8075,7 +8036,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Sinks$Create {
+  export interface Params$Resource$Sinks$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8092,13 +8053,13 @@ export namespace logging_v2 {
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as writer_identity is
-     * the same group or service account used by Stackdriver Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.If this field is set to true, or
-     * if the sink is owned by a non-project resource such as an organization,
-     * then the value of writer_identity will be a unique service account used
-     * only for exports from the new sink. For more information, see
-     * writer_identity in LogSink.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.If this field is set to true, or if the sink
+     * is owned by a non-project resource such as an organization, then the
+     * value of writer_identity will be a unique service account used only for
+     * exports from the new sink. For more information, see writer_identity in
+     * LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -8107,7 +8068,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Sinks$Delete {
+  export interface Params$Resource$Sinks$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8124,7 +8085,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Sinks$Get {
+  export interface Params$Resource$Sinks$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8140,7 +8101,7 @@ export namespace logging_v2 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Sinks$List {
+  export interface Params$Resource$Sinks$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8166,7 +8127,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Sinks$Update {
+  export interface Params$Resource$Sinks$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8202,7 +8163,7 @@ export namespace logging_v2 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;

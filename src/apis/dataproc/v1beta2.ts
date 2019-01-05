@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace dataproc_v1beta2 {
   export interface Options extends GlobalOptions {
     version: 'v1beta2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +98,12 @@ export namespace dataproc_v1beta2 {
    * @param {object=} options Options for Dataproc
    */
   export class Dataproc {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -89,9 +131,30 @@ export namespace dataproc_v1beta2 {
     acceleratorTypeUri?: string;
   }
   /**
+   * Allocation Affinity for consuming Zonal allocation.
+   */
+  export interface Schema$AllocationAffinity {
+    consumeAllocationType?: string;
+    /**
+     * Corresponds to the label key of Allocation resource.
+     */
+    key?: string;
+    /**
+     * Corresponds to the label values of allocation resource.
+     */
+    values?: string[];
+  }
+  /**
    * Associates members with a role.
    */
   export interface Schema$Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
     /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * members can have the following values: allUsers: A special identifier
@@ -109,7 +172,7 @@ export namespace dataproc_v1beta2 {
     members?: string[];
     /**
      * Role that is assigned to members. For example, roles/viewer,
-     * roles/editor, or roles/owner. Required
+     * roles/editor, or roles/owner.
      */
     role?: string;
   }
@@ -145,11 +208,11 @@ export namespace dataproc_v1beta2 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
-     * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature:
-     * This report is available for testing purposes only. It may be changed
-     * before final release.
+     * Output only. Contains cluster daemon metrics such as HDFS and YARN
+     * stats.Beta Feature: This report is available for testing purposes only.
+     * It may be changed before final release.
      */
     metrics?: Schema$ClusterMetrics;
     /**
@@ -232,11 +295,11 @@ export namespace dataproc_v1beta2 {
     /**
      * The HDFS metrics.
      */
-    hdfsMetrics?: any;
+    hdfsMetrics?: {[key: string]: string;};
     /**
      * The YARN metrics.
      */
-    yarnMetrics?: any;
+    yarnMetrics?: {[key: string]: string;};
   }
   /**
    * The cluster operation triggered by a workflow.
@@ -274,7 +337,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. Labels associated with the operation
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The operation type.
      */
@@ -320,7 +383,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The cluster labels. Cluster must have all labels to match.
      */
-    clusterLabels?: any;
+    clusterLabels?: {[key: string]: string;};
     /**
      * Optional. The zone where workflow process executes. This parameter does
      * not affect the selection of the cluster.If unspecified, the zone of the
@@ -406,10 +469,43 @@ export namespace dataproc_v1beta2 {
     gcePdKmsKeyName?: string;
   }
   /**
+   * Represents an expression text. Example: title: &quot;User account
+   * presence&quot; description: &quot;Determines whether the request has a user
+   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.The application context of the containing message determines which
+     * well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * Common config settings for resources of Compute Engine cluster instances,
    * applicable to all instances in the cluster.
    */
   export interface Schema$GceClusterConfig {
+    /**
+     * Allocation Affinity for consuming Zonal allocation.
+     */
+    allocationAffinity?: Schema$AllocationAffinity;
     /**
      * Optional. If true, all instances in the cluster will only have internal
      * IP addresses. By default, clusters are not restricted to internal IP
@@ -424,7 +520,7 @@ export namespace dataproc_v1beta2 {
      * and instance metadata
      * (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
@@ -539,7 +635,7 @@ export namespace dataproc_v1beta2 {
      * API may be overwritten. Can include properties set in
      * /etc/hadoop/conf/*-site and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
   }
   /**
    * A Cloud Dataproc job for running Apache Hive (https://hive.apache.org/)
@@ -563,7 +659,7 @@ export namespace dataproc_v1beta2 {
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The HCFS URI of the script that contains Hive queries.
      */
@@ -576,7 +672,7 @@ export namespace dataproc_v1beta2 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: any;
+    scriptVariables?: {[key: string]: string;};
   }
   /**
    * Optional. The config settings for Compute Engine resources in an instance
@@ -594,8 +690,8 @@ export namespace dataproc_v1beta2 {
      */
     diskConfig?: Schema$DiskConfig;
     /**
-     * Output only. The Compute Engine image resource used for cluster
-     * instances. Inferred from SoftwareConfig.image_version.
+     * Optional. The Compute Engine image resource used for cluster instances.
+     * It can be specified or may be inferred from SoftwareConfig.image_version.
      */
     imageUri?: string;
     /**
@@ -639,6 +735,15 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$InstantiateWorkflowTemplateRequest {
     /**
+     * Deprecated. Please use request_id field instead.
+     */
+    instanceId?: string;
+    /**
+     * Optional. Map from parameter names to values that should be used for
+     * those parameters. Values may not exceed 100 characters.
+     */
+    parameters?: {[key: string]: string;};
+    /**
      * Optional. A tag that prevents multiple concurrent workflow instances with
      * the same tag from running. This mitigates risk of concurrent instances
      * started due to retries.It is recommended to always set this value to a
@@ -646,12 +751,7 @@ export namespace dataproc_v1beta2 {
      * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
      * and hyphens (-). The maximum length is 40 characters.
      */
-    instanceId?: string;
-    /**
-     * Optional. Map from parameter names to values that should be used for
-     * those parameters.
-     */
-    parameters?: any;
+    requestId?: string;
     /**
      * Optional. The version of workflow template to instantiate. If specified,
      * the workflow will be instantiated only if the current version of the
@@ -684,6 +784,12 @@ export namespace dataproc_v1beta2 {
      */
     hiveJob?: Schema$HiveJob;
     /**
+     * Output only. A UUID that uniquely identifies a job within the project
+     * over time. This is in contrast to a user-settable reference.job_id that
+     * may be reused over time.
+     */
+    jobUuid?: string;
+    /**
      * Optional. The labels to associate with this job. Label keys must contain
      * 1 to 63 characters, and must conform to RFC 1035
      * (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but,
@@ -691,7 +797,7 @@ export namespace dataproc_v1beta2 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Job is a Pig job.
      */
@@ -720,6 +826,10 @@ export namespace dataproc_v1beta2 {
      */
     sparkJob?: Schema$SparkJob;
     /**
+     * Job is a SparkR job.
+     */
+    sparkRJob?: Schema$SparkRJob;
+    /**
      * Job is a SparkSql job.
      */
     sparkSqlJob?: Schema$SparkSqlJob;
@@ -733,6 +843,12 @@ export namespace dataproc_v1beta2 {
      * Output only. The previous job status.
      */
     statusHistory?: Schema$JobStatus[];
+    /**
+     * Output only. The email address of the user submitting the job. For jobs
+     * submitted on the cluster, the address is
+     * &lt;code&gt;username@hostname&lt;/code&gt;.
+     */
+    submittedBy?: string;
     /**
      * Output only. The collection of YARN applications spun up by this job.Beta
      * Feature: This report is available for testing purposes only. It may be
@@ -808,7 +924,7 @@ export namespace dataproc_v1beta2 {
     substate?: string;
   }
   /**
-   * Specifies the cluster auto delete related schedule configuration.
+   * Specifies the cluster auto-delete schedule configuration.
    */
   export interface Schema$LifecycleConfig {
     /**
@@ -816,14 +932,16 @@ export namespace dataproc_v1beta2 {
      */
     autoDeleteTime?: string;
     /**
-     * Optional. The life duration of cluster, the cluster will be auto-deleted
-     * at the end of this duration.
+     * Optional. The lifetime duration of cluster. The cluster will be
+     * auto-deleted at the end of this period. Valid range: 10m, 14d.Example:
+     * &quot;1d&quot;, to delete the cluster 1 day after its creation..
      */
     autoDeleteTtl?: string;
     /**
-     * Optional. The longest duration that cluster would keep alive while
-     * staying  idle; passing this threshold will cause cluster to be
-     * auto-deleted.
+     * Optional. The duration to keep the cluster alive while idling. Passing
+     * this threshold will cause the cluster to be deleted. Valid range: 10m,
+     * 14d.Example: &quot;10m&quot;, the minimum value, to delete the cluster
+     * when it has had no jobs running for 10 minutes.
      */
     idleDeleteTtl?: string;
   }
@@ -896,7 +1014,7 @@ export namespace dataproc_v1beta2 {
      * &#39;com.google = FATAL&#39;, &#39;root = INFO&#39;, &#39;org.apache =
      * DEBUG&#39;
      */
-    driverLogLevels?: any;
+    driverLogLevels?: {[key: string]: string;};
   }
   /**
    * Cluster that is managed by the workflow.
@@ -922,7 +1040,7 @@ export namespace dataproc_v1beta2 {
      * expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be
      * associated with a given cluster.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   /**
    * Specifies the resources used to actively manage an instance group.
@@ -976,7 +1094,7 @@ export namespace dataproc_v1beta2 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -992,7 +1110,7 @@ export namespace dataproc_v1beta2 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * A job executed by the workflow.
@@ -1014,7 +1132,7 @@ export namespace dataproc_v1beta2 {
      * \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a
      * given job.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Job is a Pig job.
      */
@@ -1089,7 +1207,7 @@ export namespace dataproc_v1beta2 {
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The HCFS URI of the script that contains the Pig queries.
      */
@@ -1102,7 +1220,7 @@ export namespace dataproc_v1beta2 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Pig command: name=[value]).
      */
-    scriptVariables?: any;
+    scriptVariables?: {[key: string]: string;};
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -1189,7 +1307,7 @@ export namespace dataproc_v1beta2 {
      * API may be overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
@@ -1217,8 +1335,8 @@ export namespace dataproc_v1beta2 {
   export interface Schema$RegexValidation {
     /**
      * Required. RE2 regular expressions used to validate the parameter&#39;s
-     * value. The provided value must match the regexes in its entirety, e.g.
-     * substring matches are not enough.
+     * value. The value must match the regex in its entirety (substring matches
+     * are not sufficient).
      */
     regexes?: string[];
   }
@@ -1247,6 +1365,10 @@ export namespace dataproc_v1beta2 {
      */
     imageVersion?: string;
     /**
+     * The set of optional components to activate on the cluster.
+     */
+    optionalComponents?: string[];
+    /**
      * Optional. The properties to set on daemon config files.Property keys are
      * specified in prefix:property format, such as core:fs.defaultFS. The
      * following are supported prefixes and their mappings: capacity-scheduler:
@@ -1255,7 +1377,7 @@ export namespace dataproc_v1beta2 {
      * pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more
      * information, see Cluster properties.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
   }
   /**
    * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/)
@@ -1303,7 +1425,46 @@ export namespace dataproc_v1beta2 {
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
+  }
+  /**
+   * A Cloud Dataproc job for running Apache SparkR
+   * (https://spark.apache.org/docs/latest/sparkr.html) applications on YARN.
+   */
+  export interface Schema$SparkRJob {
+    /**
+     * Optional. HCFS URIs of archives to be extracted in the working directory
+     * of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz,
+     * .tgz, and .zip.
+     */
+    archiveUris?: string[];
+    /**
+     * Optional. The arguments to pass to the driver. Do not include arguments,
+     * such as --conf, that can be set as job properties, since a collision may
+     * occur that causes an incorrect job submission.
+     */
+    args?: string[];
+    /**
+     * Optional. HCFS URIs of files to be copied to the working directory of R
+     * drivers and distributed tasks. Useful for naively parallel tasks.
+     */
+    fileUris?: string[];
+    /**
+     * Optional. The runtime log config for job execution.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
+     * Required. The HCFS URI of the main R file to use as the driver. Must be a
+     * .R file.
+     */
+    mainRFileUri?: string;
+    /**
+     * Optional. A mapping of property names to values, used to configure
+     * SparkR. Properties that conflict with values set by the Cloud Dataproc
+     * API may be overwritten. Can include properties set in
+     * /etc/spark/conf/spark-defaults.conf and classes in user code.
+     */
+    properties?: {[key: string]: string;};
   }
   /**
    * A Cloud Dataproc job for running Apache Spark SQL
@@ -1323,7 +1484,7 @@ export namespace dataproc_v1beta2 {
      * SQL&#39;s SparkConf. Properties that conflict with values set by the
      * Cloud Dataproc API may be overwritten.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * The HCFS URI of the script that contains SQL queries.
      */
@@ -1336,7 +1497,7 @@ export namespace dataproc_v1beta2 {
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: any;
+    scriptVariables?: {[key: string]: string;};
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -1382,7 +1543,7 @@ export namespace dataproc_v1beta2 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1411,56 +1572,55 @@ export namespace dataproc_v1beta2 {
   }
   /**
    * A configurable parameter that replaces one or more fields in the template.
+   * Parameterizable fields: - Labels - File uris - Job properties - Job
+   * arguments - Script variables - Main class (in HadoopJob and SparkJob) -
+   * Zone (in ClusterSelector)
    */
   export interface Schema$TemplateParameter {
     /**
-     * Optional. User-friendly description of the parameter. Must not exceed
-     * 1024 characters.
+     * Optional. Brief description of the parameter. Must not exceed 1024
+     * characters.
      */
     description?: string;
     /**
-     * Required. Paths to all fields that this parameter replaces. Each field
-     * may appear in at most one Parameter&#39;s fields list.Field path syntax:A
-     * field path is similar to a FieldMask. For example, a field path that
-     * references the zone field of the template&#39;s cluster selector would
-     * look like:placement.clusterSelector.zoneThe only differences between
-     * field paths and standard field masks are that: Values in maps can be
-     * referenced by key.Example:
-     * placement.clusterSelector.clusterLabels&#39;key&#39; Jobs in the jobs
-     * list can be referenced by step id.Example:
-     * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri Items in repeated fields
-     * can be referenced by zero-based index.Example:
-     * jobs&#39;step-id&#39;.sparkJob.args0NOTE: Maps and repeated fields may
-     * not be parameterized in their entirety. Only individual map values and
-     * items in repeated fields may be referenced. For example, the following
-     * field paths are invalid: - placement.clusterSelector.clusterLabels -
-     * jobs&#39;step-id&#39;.sparkJob.argsParameterizable fields:Only certain
-     * types of fields may be parameterized, specifically: - Labels - File uris
-     * - Job properties - Job arguments - Script variables - Main class (in
-     * HadoopJob and SparkJob) - Zone (in ClusterSelector)Examples of
-     * parameterizable fields:Labels:labels&#39;key&#39;
+     * Required. Paths to all fields that the parameter replaces. A field is
+     * allowed to appear in at most one parameter&#39;s list of field paths.A
+     * field path is similar in syntax to a google.protobuf.FieldMask. For
+     * example, a field path that references the zone field of a workflow
+     * template&#39;s cluster selector would be specified as
+     * placement.clusterSelector.zone.Also, field paths can reference fields
+     * using the following syntax: Values in maps can be referenced by key:
+     * labels&#39;key&#39; placement.clusterSelector.clusterLabels&#39;key&#39;
      * placement.managedCluster.labels&#39;key&#39;
      * placement.clusterSelector.clusterLabels&#39;key&#39;
-     * jobs&#39;step-id&#39;.labels&#39;key&#39;File
-     * uris:jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
+     * jobs&#39;step-id&#39;.labels&#39;key&#39; Jobs in the jobs list can be
+     * referenced by step-id: jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
      * jobs&#39;step-id&#39;.hiveJob.queryFileUri
      * jobs&#39;step-id&#39;.pySparkJob.mainPythonFileUri
      * jobs&#39;step-id&#39;.hadoopJob.jarFileUris0
      * jobs&#39;step-id&#39;.hadoopJob.archiveUris0
      * jobs&#39;step-id&#39;.hadoopJob.fileUris0
-     * jobs&#39;step-id&#39;.pySparkJob.pythonFileUris0Other:jobs&#39;step-id&#39;.hadoopJob.properties&#39;key&#39;
+     * jobs&#39;step-id&#39;.pySparkJob.pythonFileUris0 Items in repeated fields
+     * can be referenced by a zero-based index:
+     * jobs&#39;step-id&#39;.sparkJob.args0 Other examples:
+     * jobs&#39;step-id&#39;.hadoopJob.properties&#39;key&#39;
      * jobs&#39;step-id&#39;.hadoopJob.args0
      * jobs&#39;step-id&#39;.hiveJob.scriptVariables&#39;key&#39;
      * jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri
-     * placement.clusterSelector.zone
+     * placement.clusterSelector.zoneIt may not be possible to parameterize maps
+     * and repeated fields in their entirety since only individual map values
+     * and individual items in repeated fields can be referenced. For example,
+     * the following field paths are invalid:
+     * placement.clusterSelector.clusterLabels
+     * jobs&#39;step-id&#39;.sparkJob.args
      */
     fields?: string[];
     /**
-     * Required. User-friendly parameter name. This name is used as a key when
-     * providing a value for this parameter when the template is instantiated.
-     * Must contain only capital letters (A-Z), numbers (0-9), and underscores
-     * (_), and must not start with a number. The maximum length is 40
-     * characters.
+     * Required. Parameter name. The parameter name is used as the key, and
+     * paired with the parameter value, which are passed to the template when
+     * the template is instantiated. The name must contain only capital letters
+     * (A-Z), numbers (0-9), and underscores (_), and must not start with a
+     * number. The maximum length is 40 characters.
      */
     name?: string;
     /**
@@ -1495,7 +1655,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$ValueValidation {
     /**
-     * Required. List of allowed values for this parameter.
+     * Required. List of allowed values for the parameter.
      */
     values?: string[];
   }
@@ -1525,13 +1685,21 @@ export namespace dataproc_v1beta2 {
      */
     deleteCluster?: Schema$ClusterOperation;
     /**
+     * Output only. Workflow end time.
+     */
+    endTime?: string;
+    /**
      * Output only. The workflow graph.
      */
     graph?: Schema$WorkflowGraph;
     /**
      * Map from parameter names to values that were used for those parameters.
      */
-    parameters?: any;
+    parameters?: {[key: string]: string;};
+    /**
+     * Output only. Workflow start time.
+     */
+    startTime?: string;
     /**
      * Output only. The workflow state.
      */
@@ -1598,7 +1766,7 @@ export namespace dataproc_v1beta2 {
      * to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels
      * can be associated with a template.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. The &quot;resource name&quot; of the template, as described
      * in https://cloud.google.com/apis/design/resource_names of the form
@@ -1607,8 +1775,8 @@ export namespace dataproc_v1beta2 {
     name?: string;
     /**
      * Optional. Template parameters whose values are substituted into the
-     * template. Values for these parameters must be provided when the template
-     * is instantiated.
+     * template. Values for parameters must be provided when the template is
+     * instantiated.
      */
     parameters?: Schema$TemplateParameter[];
     /**
@@ -1676,48 +1844,26 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects {
-    root: Dataproc;
     locations: Resource$Projects$Locations;
     regions: Resource$Projects$Regions;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-      this.regions = new Resource$Projects$Regions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
+      this.regions = new Resource$Projects$Regions();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Dataproc;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.workflowTemplates =
-          new Resource$Projects$Locations$Workflowtemplates(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Locations$Workflowtemplates();
     }
   }
 
 
   export class Resource$Projects$Locations$Workflowtemplates {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1780,7 +1926,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -1849,7 +1995,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1914,7 +2060,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -1986,7 +2132,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2065,7 +2211,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2090,8 +2236,9 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.instanceId Deprecated. Please use request_id field instead.
      * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2148,7 +2295,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2224,7 +2371,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -2299,7 +2446,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2382,7 +2529,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2453,7 +2600,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -2463,7 +2610,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2481,7 +2629,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2500,7 +2649,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2519,7 +2669,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2531,7 +2682,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2549,19 +2701,15 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Optional. A tag that prevents multiple concurrent workflow instances with
-     * the same tag from running. This mitigates risk of concurrent instances
-     * started due to retries.It is recommended to always set this value to a
-     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
-     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     * and hyphens (-). The maximum length is 40 characters.
+     * Deprecated. Please use request_id field instead.
      */
     instanceId?: string;
     /**
@@ -2570,13 +2718,23 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$List {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2598,7 +2756,8 @@ export namespace dataproc_v1beta2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2615,7 +2774,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2632,7 +2792,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update {
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2654,37 +2815,22 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions {
-    root: Dataproc;
     clusters: Resource$Projects$Regions$Clusters;
     jobs: Resource$Projects$Regions$Jobs;
     operations: Resource$Projects$Regions$Operations;
     workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.clusters = new Resource$Projects$Regions$Clusters(root);
-      this.jobs = new Resource$Projects$Regions$Jobs(root);
-      this.operations = new Resource$Projects$Regions$Operations(root);
+    constructor() {
+      this.clusters = new Resource$Projects$Regions$Clusters();
+      this.jobs = new Resource$Projects$Regions$Jobs();
+      this.operations = new Resource$Projects$Regions$Operations();
       this.workflowTemplates =
-          new Resource$Projects$Regions$Workflowtemplates(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Regions$Workflowtemplates();
     }
   }
 
 
   export class Resource$Projects$Regions$Clusters {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2748,7 +2894,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2821,7 +2967,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2894,7 +3040,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2960,7 +3106,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -3028,7 +3174,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3101,7 +3247,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -3176,7 +3322,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3245,7 +3391,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3325,7 +3471,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3336,7 +3482,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Clusters$Create {
+  export interface Params$Resource$Projects$Regions$Clusters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3368,7 +3515,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Delete {
+  export interface Params$Resource$Projects$Regions$Clusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3404,7 +3552,8 @@ export namespace dataproc_v1beta2 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Diagnose {
+  export interface Params$Resource$Projects$Regions$Clusters$Diagnose extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3429,7 +3578,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$DiagnoseClusterRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Get {
+  export interface Params$Resource$Projects$Regions$Clusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3449,7 +3599,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3461,7 +3612,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$List {
+  export interface Params$Resource$Projects$Regions$Clusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3500,7 +3652,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Patch {
+  export interface Params$Resource$Projects$Regions$Clusters$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3572,7 +3725,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Cluster;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3589,7 +3743,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3609,15 +3764,7 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Jobs {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3683,7 +3830,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3754,7 +3901,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3820,7 +3967,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3887,7 +4034,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3961,7 +4108,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -4033,7 +4180,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4101,7 +4248,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4171,7 +4318,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4250,7 +4397,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4261,7 +4408,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Jobs$Cancel {
+  export interface Params$Resource$Projects$Regions$Jobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4286,7 +4434,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$CancelJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Delete {
+  export interface Params$Resource$Projects$Regions$Jobs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4306,7 +4455,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Get {
+  export interface Params$Resource$Projects$Regions$Jobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4326,7 +4476,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4338,7 +4489,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$List {
+  export interface Params$Resource$Projects$Regions$Jobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4384,7 +4536,8 @@ export namespace dataproc_v1beta2 {
      */
     region?: string;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Patch {
+  export interface Params$Resource$Projects$Regions$Jobs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4418,7 +4571,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4435,7 +4589,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Submit {
+  export interface Params$Resource$Projects$Regions$Jobs$Submit extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4456,7 +4611,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SubmitJobRequest;
   }
-  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4476,15 +4632,7 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Operations {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4551,7 +4699,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4619,7 +4767,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4683,7 +4831,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4751,7 +4899,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4829,7 +4977,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -4898,7 +5046,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4978,7 +5126,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4989,7 +5137,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Operations$Cancel {
+  export interface Params$Resource$Projects$Regions$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5000,7 +5149,8 @@ export namespace dataproc_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Delete {
+  export interface Params$Resource$Projects$Regions$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5011,7 +5161,8 @@ export namespace dataproc_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Get {
+  export interface Params$Resource$Projects$Regions$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5022,7 +5173,8 @@ export namespace dataproc_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5034,7 +5186,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$List {
+  export interface Params$Resource$Projects$Regions$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5057,7 +5210,8 @@ export namespace dataproc_v1beta2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5074,7 +5228,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5094,15 +5249,7 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Workflowtemplates {
-    root: Dataproc;
-    constructor(root: Dataproc) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5165,7 +5312,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -5234,7 +5381,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5299,7 +5446,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -5369,7 +5516,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5445,7 +5592,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5470,8 +5617,9 @@ export namespace dataproc_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * @param {string=} params.instanceId Deprecated. Please use request_id field instead.
      * @param {string} params.parent Required. The "resource name" of the workflow template region, as described in https://cloud.google.com/apis/design/resource_names of the form projects/{project_id}/regions/{region}
+     * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().WorkflowTemplate} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5528,7 +5676,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5603,7 +5751,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -5676,7 +5824,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5759,7 +5907,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -5830,7 +5978,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -5840,7 +5988,8 @@ export namespace dataproc_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5858,7 +6007,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5877,7 +6027,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5896,7 +6047,8 @@ export namespace dataproc_v1beta2 {
      */
     version?: number;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5908,7 +6060,8 @@ export namespace dataproc_v1beta2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5926,19 +6079,15 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$InstantiateWorkflowTemplateRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Optional. A tag that prevents multiple concurrent workflow instances with
-     * the same tag from running. This mitigates risk of concurrent instances
-     * started due to retries.It is recommended to always set this value to a
-     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
-     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
-     * and hyphens (-). The maximum length is 40 characters.
+     * Deprecated. Please use request_id field instead.
      */
     instanceId?: string;
     /**
@@ -5947,13 +6096,23 @@ export namespace dataproc_v1beta2 {
      * form projects/{project_id}/regions/{region}
      */
     parent?: string;
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$WorkflowTemplate;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$List {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5975,7 +6134,8 @@ export namespace dataproc_v1beta2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5992,7 +6152,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6009,7 +6170,8 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update {
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

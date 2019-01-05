@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace storagetransfer_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,26 +99,16 @@ export namespace storagetransfer_v1 {
    * @param {object=} options Options for Storagetransfer
    */
   export class Storagetransfer {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     googleServiceAccounts: Resource$Googleserviceaccounts;
     transferJobs: Resource$Transferjobs;
     transferOperations: Resource$Transferoperations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.googleServiceAccounts = new Resource$Googleserviceaccounts(this);
-      this.transferJobs = new Resource$Transferjobs(this);
-      this.transferOperations = new Resource$Transferoperations(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.googleServiceAccounts = new Resource$Googleserviceaccounts();
+      this.transferJobs = new Resource$Transferjobs();
+      this.transferOperations = new Resource$Transferoperations();
     }
   }
 
@@ -104,23 +146,25 @@ export namespace storagetransfer_v1 {
     bucketName?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -323,7 +367,7 @@ export namespace storagetransfer_v1 {
     /**
      * Represents the transfer operation object.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -339,7 +383,7 @@ export namespace storagetransfer_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Request passed to PauseTransferOperation.
@@ -420,7 +464,7 @@ export namespace storagetransfer_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -709,15 +753,7 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Googleserviceaccounts {
-    root: Storagetransfer;
-    constructor(root: Storagetransfer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -835,7 +871,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleServiceAccount>(parameters, callback);
@@ -845,7 +881,8 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Googleserviceaccounts$Get {
+  export interface Params$Resource$Googleserviceaccounts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -860,15 +897,7 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Transferjobs {
-    root: Storagetransfer;
-    constructor(root: Storagetransfer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -982,7 +1011,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1100,7 +1129,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1233,7 +1262,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferJobsResponse>(parameters, callback);
@@ -1363,7 +1392,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1373,7 +1402,8 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transferjobs$Create {
+  export interface Params$Resource$Transferjobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1385,7 +1415,7 @@ export namespace storagetransfer_v1 {
      */
     requestBody?: Schema$TransferJob;
   }
-  export interface Params$Resource$Transferjobs$Get {
+  export interface Params$Resource$Transferjobs$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1401,7 +1431,8 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Transferjobs$List {
+  export interface Params$Resource$Transferjobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1426,7 +1457,8 @@ export namespace storagetransfer_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Transferjobs$Patch {
+  export interface Params$Resource$Transferjobs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1445,15 +1477,7 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Transferoperations {
-    root: Storagetransfer;
-    constructor(root: Storagetransfer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1566,7 +1590,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1684,7 +1708,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1801,7 +1825,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1947,7 +1971,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2071,7 +2095,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2195,7 +2219,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2205,7 +2229,8 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transferoperations$Cancel {
+  export interface Params$Resource$Transferoperations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2216,7 +2241,8 @@ export namespace storagetransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$Delete {
+  export interface Params$Resource$Transferoperations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2227,7 +2253,8 @@ export namespace storagetransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$Get {
+  export interface Params$Resource$Transferoperations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2238,7 +2265,8 @@ export namespace storagetransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$List {
+  export interface Params$Resource$Transferoperations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2267,7 +2295,8 @@ export namespace storagetransfer_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Transferoperations$Pause {
+  export interface Params$Resource$Transferoperations$Pause extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2283,7 +2312,8 @@ export namespace storagetransfer_v1 {
      */
     requestBody?: Schema$PauseTransferOperationRequest;
   }
-  export interface Params$Resource$Transferoperations$Resume {
+  export interface Params$Resource$Transferoperations$Resume extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

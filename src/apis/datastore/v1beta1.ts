@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace datastore_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,22 +99,12 @@ export namespace datastore_v1beta1 {
    * @param {object=} options Options for Datastore
    */
   export class Datastore {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -78,7 +120,7 @@ export namespace datastore_v1beta1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -160,7 +202,7 @@ export namespace datastore_v1beta1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Location for the export metadata and data files.  The full resource URL
      * of the external storage location. Currently, only Google Cloud Storage is
@@ -248,7 +290,7 @@ export namespace datastore_v1beta1 {
     /**
      * Client-assigned labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
   }
   /**
    * Measures the progress of a particular metric.
@@ -277,7 +319,7 @@ export namespace datastore_v1beta1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -386,6 +428,23 @@ export namespace datastore_v1beta1 {
     progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
   }
   /**
+   * Metadata for Index operations.
+   */
+  export interface Schema$GoogleDatastoreAdminV1IndexOperationMetadata {
+    /**
+     * Metadata common to all Datastore Admin operations.
+     */
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    /**
+     * The index resource ID that this operation is acting on.
+     */
+    indexId?: string;
+    /**
+     * An estimate of the number of entities processed.
+     */
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
+  }
+  /**
    * Measures the progress of a particular metric.
    */
   export interface Schema$GoogleDatastoreAdminV1Progress {
@@ -421,7 +480,7 @@ export namespace datastore_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -437,7 +496,7 @@ export namespace datastore_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -484,7 +543,7 @@ export namespace datastore_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -495,15 +554,7 @@ export namespace datastore_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Datastore;
-    constructor(root: Datastore) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -573,7 +624,7 @@ export namespace datastore_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -629,7 +680,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     params,
         requiredParams: ['projectId'],
     pathParams: ['projectId'],
-    context: this.getRoot()
+    context
   };
     if (callback) {
       createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
@@ -640,7 +691,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
 
                   }
 
-                  export interface Params$Resource$Projects$Export {
+                  export interface Params$Resource$Projects$Export extends StandardParameters {
           /**
            * Auth client or API Key for the request
            */
@@ -657,7 +708,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
             requestBody?: Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest;
           
                   }
-              export interface Params$Resource$Projects$Import {
+              export interface Params$Resource$Projects$Import extends StandardParameters {
           /**
            * Auth client or API Key for the request
            */

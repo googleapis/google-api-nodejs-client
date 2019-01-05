@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace calendar_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace calendar_v3 {
    * @param {object=} options Options for Calendar
    */
   export class Calendar {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     acl: Resource$Acl;
     calendarList: Resource$Calendarlist;
     calendars: Resource$Calendars;
@@ -60,22 +91,16 @@ export namespace calendar_v3 {
     settings: Resource$Settings;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.acl = new Resource$Acl(this);
-      this.calendarList = new Resource$Calendarlist(this);
-      this.calendars = new Resource$Calendars(this);
-      this.channels = new Resource$Channels(this);
-      this.colors = new Resource$Colors(this);
-      this.events = new Resource$Events(this);
-      this.freebusy = new Resource$Freebusy(this);
-      this.settings = new Resource$Settings(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.acl = new Resource$Acl();
+      this.calendarList = new Resource$Calendarlist();
+      this.calendars = new Resource$Calendars();
+      this.channels = new Resource$Channels();
+      this.colors = new Resource$Colors();
+      this.events = new Resource$Events();
+      this.freebusy = new Resource$Freebusy();
+      this.settings = new Resource$Settings();
     }
   }
 
@@ -133,7 +158,7 @@ export namespace calendar_v3 {
     /**
      * The scope of the rule.
      */
-    scope?: any;
+    scope?: {type?: string; value?: string;};
   }
   export interface Schema$Calendar {
     /**
@@ -278,7 +303,7 @@ export namespace calendar_v3 {
      * The notifications that the authenticated user is receiving for this
      * calendar.
      */
-    notificationSettings?: any;
+    notificationSettings?: {notifications?: Schema$CalendarNotification[];};
     /**
      * Whether the calendar is the primary calendar of the authenticated user.
      * Read-only. Optional. The default is False.
@@ -306,10 +331,13 @@ export namespace calendar_v3 {
   export interface Schema$CalendarNotification {
     /**
      * The method used to deliver the notification. Possible values are:   -
-     * &quot;email&quot; - Reminders are sent via email.  - &quot;sms&quot; -
-     * Reminders are sent via SMS. This value is read-only and is ignored on
-     * inserts and updates. SMS reminders are only available for G Suite
-     * customers.
+     * &quot;email&quot; - Notifications are sent via email.  - &quot;sms&quot;
+     * - Deprecated. Once this feature is shutdown, the API will no longer
+     * return notifications using this method. Any newly added SMS notifications
+     * will be ignored. See  Google Calendar SMS notifications to be removed for
+     * more information. Notifications are sent via SMS. This value is read-only
+     * and is ignored on inserts and updates. SMS notifications are only
+     * available for G Suite customers.   Required when adding a notification.
      */
     method?: string;
     /**
@@ -318,8 +346,9 @@ export namespace calendar_v3 {
      * the calendar.  - &quot;eventChange&quot; - Notification sent when an
      * event is changed.  - &quot;eventCancellation&quot; - Notification sent
      * when an event is cancelled.  - &quot;eventResponse&quot; - Notification
-     * sent when an event is changed.  - &quot;agenda&quot; - An agenda with the
-     * events of the day (sent out in the morning).
+     * sent when an attendee responds to the event invitation.  -
+     * &quot;agenda&quot; - An agenda with the events of the day (sent out in
+     * the morning).   Required when adding a notification.
      */
     type?: string;
   }
@@ -345,7 +374,7 @@ export namespace calendar_v3 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -386,13 +415,13 @@ export namespace calendar_v3 {
      * definition. A calendarListEntry resource refers to one of these color IDs
      * in its color field. Read-only.
      */
-    calendar?: any;
+    calendar?: {[key: string]: Schema$ColorDefinition;};
     /**
      * A global palette of event colors, mapping from the color ID to its
      * definition. An event resource may refer to one of these color IDs in its
      * color field. Read-only.
      */
-    event?: any;
+    event?: {[key: string]: Schema$ColorDefinition;};
     /**
      * Type of the resource (&quot;calendar#colors&quot;).
      */
@@ -458,7 +487,7 @@ export namespace calendar_v3 {
     addOnParameters?: Schema$ConferenceParametersAddOnParameters;
   }
   export interface Schema$ConferenceParametersAddOnParameters {
-    parameters?: any;
+    parameters?: {[key: string]: string;};
   }
   export interface Schema$ConferenceProperties {
     /**
@@ -532,6 +561,12 @@ export namespace calendar_v3 {
      */
     accessCode?: string;
     /**
+     * Features of the entry point, such as being toll or toll-free. One entry
+     * point can have multiple features. However, toll and toll-free cannot be
+     * both set on the same entry point.
+     */
+    entryPointFeatures?: string[];
+    /**
      * The type of the conference entry point. Possible values are:   -
      * &quot;video&quot; - joining a conference over HTTP. A conference can have
      * zero or one video entry point. - &quot;phone&quot; - joining a conference
@@ -582,6 +617,12 @@ export namespace calendar_v3 {
      * should be displayed. Optional.
      */
     pin?: string;
+    /**
+     * The CLDR/ISO 3166 region code for the country associated with this phone
+     * access. Example: &quot;SE&quot; for Sweden. Calendar backend will
+     * populate this field only for EntryPointType.PHONE.
+     */
+    regionCode?: string;
     /**
      * The URI of the entry point. The maximum length is 1300 characters.
      * Format:   - for video, http: or https: schema is required. - for phone,
@@ -655,7 +696,8 @@ export namespace calendar_v3 {
     /**
      * The creator of the event. Read-only.
      */
-    creator?: any;
+    creator?:
+        {displayName?: string; email?: string; id?: string; self?: boolean;};
     /**
      * Description of the event. Optional.
      */
@@ -678,11 +720,23 @@ export namespace calendar_v3 {
     /**
      * Extended properties of the event.
      */
-    extendedProperties?: any;
+    extendedProperties?: {
+      private?: {[key: string]: string;};
+      shared?: {[key: string]: string;};
+    };
     /**
      * A gadget that extends this event.
      */
-    gadget?: any;
+    gadget?: {
+      display?: string;
+      height?: number;
+      iconLink?: string;
+      link?: string;
+      preferences?: {[key: string]: string;};
+      title?: string;
+      type?: string;
+      width?: number;
+    };
     /**
      * Whether attendees other than the organizer can invite others to the
      * event. Optional. The default is True.
@@ -755,11 +809,14 @@ export namespace calendar_v3 {
      * to True. To change the organizer, use the move operation. Read-only,
      * except when importing an event.
      */
-    organizer?: any;
+    organizer?:
+        {displayName?: string; email?: string; id?: string; self?: boolean;};
     /**
      * For an instance of a recurring event, this is the time at which this
      * event would start according to the recurrence data in the recurring event
-     * identified by recurringEventId. Immutable.
+     * identified by recurringEventId. It uniquely identifies the instance
+     * within the recurring event series even if the instance was moved to a
+     * different time. Immutable.
      */
     originalStartTime?: Schema$EventDateTime;
     /**
@@ -784,7 +841,7 @@ export namespace calendar_v3 {
     /**
      * Information about the event&#39;s reminders for the authenticated user.
      */
-    reminders?: any;
+    reminders?: {overrides?: Schema$EventReminder[]; useDefault?: boolean;};
     /**
      * Sequence number as per iCalendar.
      */
@@ -794,7 +851,7 @@ export namespace calendar_v3 {
      * email message or any document identifiable by an URL with HTTP or HTTPS
      * scheme. Can only be seen or modified by the creator of the event.
      */
-    source?: any;
+    source?: {title?: string; url?: string;};
     /**
      * The (inclusive) start time of the event. For a recurring event, this is
      * the start time of the first instance.
@@ -804,7 +861,29 @@ export namespace calendar_v3 {
      * Status of the event. Optional. Possible values are:   -
      * &quot;confirmed&quot; - The event is confirmed. This is the default
      * status.  - &quot;tentative&quot; - The event is tentatively confirmed.  -
-     * &quot;cancelled&quot; - The event is cancelled.
+     * &quot;cancelled&quot; - The event is cancelled (deleted). The list method
+     * returns cancelled events only on incremental sync (when syncToken or
+     * updatedMin are specified) or if the showDeleted flag is set to true. The
+     * get method always returns them. A cancelled status represents two
+     * different states depending on the event type:   - Cancelled exceptions of
+     * an uncancelled recurring event indicate that this instance should no
+     * longer be presented to the user. Clients should store these events for
+     * the lifetime of the parent recurring event. Cancelled exceptions are only
+     * guaranteed to have values for the id, recurringEventId and
+     * originalStartTime fields populated. The other fields might be empty.   -
+     * All other cancelled events represent deleted events. Clients should
+     * remove their locally synced copies. Such cancelled events will eventually
+     * disappear, so do not rely on them being available indefinitely. Deleted
+     * events are only guaranteed to have the id field populated.   On the
+     * organizer&#39;s calendar, cancelled events continue to expose event
+     * details (summary, location, etc.) so that they can be restored
+     * (undeleted). Similarly, the events to which the user was invited and that
+     * they manually removed continue to provide details. However, incremental
+     * sync requests with showDeleted set to false will not return these
+     * details. If an event changes its organizer (for example via the move
+     * operation) and the original organizer is not on the attendee list, it
+     * will leave behind a cancelled event where only the id field is guaranteed
+     * to be populated.
      */
     status?: string;
     /**
@@ -844,7 +923,7 @@ export namespace calendar_v3 {
     /**
      * URL link to the attachment. For adding Google Drive file attachments use
      * the same format as in alternateLink property of the Files resource in the
-     * Drive API.
+     * Drive API. Required when adding an attachment.
      */
     fileUrl?: string;
     /**
@@ -876,11 +955,11 @@ export namespace calendar_v3 {
     /**
      * The attendee&#39;s email address, if available. This field must be
      * present when adding an attendee. It must be a valid email address as per
-     * RFC5322.
+     * RFC5322. Required when adding an attendee.
      */
     email?: string;
     /**
-     * The attendee&#39;s Profile ID, if available. It corresponds to theid
+     * The attendee&#39;s Profile ID, if available. It corresponds to the id
      * field in the People collection of the Google+ API
      */
     id?: string;
@@ -939,14 +1018,19 @@ export namespace calendar_v3 {
     /**
      * The method used by this reminder. Possible values are:   -
      * &quot;email&quot; - Reminders are sent via email.  - &quot;sms&quot; -
-     * Reminders are sent via SMS. These are only available for G Suite
-     * customers. Requests to set SMS reminders for other account types are
-     * ignored.  - &quot;popup&quot; - Reminders are sent via a UI popup.
+     * Deprecated. Once this feature is shutdown, the API will no longer return
+     * reminders using this method. Any newly added SMS reminders will be
+     * ignored. See  Google Calendar SMS notifications to be removed for more
+     * information. Reminders are sent via SMS. These are only available for G
+     * Suite customers. Requests to set SMS reminders for other account types
+     * are ignored.  - &quot;popup&quot; - Reminders are sent via a UI popup.
+     * Required when adding a reminder.
      */
     method?: string;
     /**
      * Number of minutes before the start of the event when the reminder should
      * trigger. Valid values are between 0 and 40320 (4 weeks in minutes).
+     * Required when adding a reminder.
      */
     minutes?: number;
   }
@@ -1036,13 +1120,13 @@ export namespace calendar_v3 {
   export interface Schema$FreeBusyRequest {
     /**
      * Maximal number of calendars for which FreeBusy information is to be
-     * provided. Optional.
+     * provided. Optional. Maximum value is 50.
      */
     calendarExpansionMax?: number;
     /**
      * Maximal number of calendar identifiers to be provided for a single group.
-     * Optional. An error will be returned for a group with more members than
-     * this value.
+     * Optional. An error is returned for a group with more members than this
+     * value. Maximum value is 100.
      */
     groupExpansionMax?: number;
     /**
@@ -1050,11 +1134,11 @@ export namespace calendar_v3 {
      */
     items?: Schema$FreeBusyRequestItem[];
     /**
-     * The end of the interval for the query.
+     * The end of the interval for the query formatted as per RFC3339.
      */
     timeMax?: string;
     /**
-     * The start of the interval for the query.
+     * The start of the interval for the query formatted as per RFC3339.
      */
     timeMin?: string;
     /**
@@ -1072,11 +1156,11 @@ export namespace calendar_v3 {
     /**
      * List of free/busy information for calendars.
      */
-    calendars?: any;
+    calendars?: {[key: string]: Schema$FreeBusyCalendar;};
     /**
      * Expansion of groups.
      */
-    groups?: any;
+    groups?: {[key: string]: Schema$FreeBusyGroup;};
     /**
      * Type of the resource (&quot;calendar#freeBusy&quot;).
      */
@@ -1148,15 +1232,7 @@ export namespace calendar_v3 {
 
 
   export class Resource$Acl {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1214,7 +1290,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1277,7 +1353,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1343,7 +1419,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1411,7 +1487,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Acl>(parameters, callback);
@@ -1480,7 +1556,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1548,7 +1624,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1617,7 +1693,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -1627,7 +1703,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Acl$Delete {
+  export interface Params$Resource$Acl$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1644,7 +1720,7 @@ export namespace calendar_v3 {
      */
     ruleId?: string;
   }
-  export interface Params$Resource$Acl$Get {
+  export interface Params$Resource$Acl$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1661,7 +1737,7 @@ export namespace calendar_v3 {
      */
     ruleId?: string;
   }
-  export interface Params$Resource$Acl$Insert {
+  export interface Params$Resource$Acl$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1684,7 +1760,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$AclRule;
   }
-  export interface Params$Resource$Acl$List {
+  export interface Params$Resource$Acl$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1725,7 +1801,7 @@ export namespace calendar_v3 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Acl$Patch {
+  export interface Params$Resource$Acl$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1753,7 +1829,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$AclRule;
   }
-  export interface Params$Resource$Acl$Update {
+  export interface Params$Resource$Acl$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1781,7 +1857,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$AclRule;
   }
-  export interface Params$Resource$Acl$Watch {
+  export interface Params$Resource$Acl$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1830,20 +1906,12 @@ export namespace calendar_v3 {
 
 
   export class Resource$Calendarlist {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * calendar.calendarList.delete
-     * @desc Deletes an entry on the user's calendar list.
+     * @desc Removes a calendar from the user's calendar list.
      * @alias calendar.calendarList.delete
      * @memberOf! ()
      *
@@ -1896,7 +1964,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1908,7 +1976,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.get
-     * @desc Returns an entry on the user's calendar list.
+     * @desc Returns a calendar from the user's calendar list.
      * @alias calendar.calendarList.get
      * @memberOf! ()
      *
@@ -1958,7 +2026,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -1970,7 +2038,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.insert
-     * @desc Adds an entry to the user's calendar list.
+     * @desc Inserts an existing calendar into the user's calendar list.
      * @alias calendar.calendarList.insert
      * @memberOf! ()
      *
@@ -2026,7 +2094,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2038,7 +2106,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.list
-     * @desc Returns entries on the user's calendar list.
+     * @desc Returns the calendars on the user's calendar list.
      * @alias calendar.calendarList.list
      * @memberOf! ()
      *
@@ -2097,7 +2165,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarList>(parameters, callback);
@@ -2109,8 +2177,8 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.patch
-     * @desc Updates an entry on the user's calendar list. This method supports
-     * patch semantics.
+     * @desc Updates an existing calendar on the user's calendar list. This
+     * method supports patch semantics.
      * @alias calendar.calendarList.patch
      * @memberOf! ()
      *
@@ -2166,7 +2234,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2178,7 +2246,7 @@ export namespace calendar_v3 {
 
     /**
      * calendar.calendarList.update
-     * @desc Updates an entry on the user's calendar list.
+     * @desc Updates an existing calendar on the user's calendar list.
      * @alias calendar.calendarList.update
      * @memberOf! ()
      *
@@ -2235,7 +2303,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2306,7 +2374,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -2316,7 +2384,8 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Calendarlist$Delete {
+  export interface Params$Resource$Calendarlist$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2329,7 +2398,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendarlist$Get {
+  export interface Params$Resource$Calendarlist$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2342,7 +2411,8 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendarlist$Insert {
+  export interface Params$Resource$Calendarlist$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2361,7 +2431,8 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$List {
+  export interface Params$Resource$Calendarlist$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2408,7 +2479,8 @@ export namespace calendar_v3 {
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Calendarlist$Patch {
+  export interface Params$Resource$Calendarlist$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2433,7 +2505,8 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Update {
+  export interface Params$Resource$Calendarlist$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2458,7 +2531,8 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$CalendarListEntry;
   }
-  export interface Params$Resource$Calendarlist$Watch {
+  export interface Params$Resource$Calendarlist$Watch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2513,15 +2587,7 @@ export namespace calendar_v3 {
 
 
   export class Resource$Calendars {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2578,7 +2644,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2642,7 +2708,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2703,7 +2769,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2767,7 +2833,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2833,7 +2899,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2898,7 +2964,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2908,7 +2974,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Calendars$Clear {
+  export interface Params$Resource$Calendars$Clear extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2921,7 +2987,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendars$Delete {
+  export interface Params$Resource$Calendars$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2934,7 +3000,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendars$Get {
+  export interface Params$Resource$Calendars$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2947,7 +3013,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
   }
-  export interface Params$Resource$Calendars$Insert {
+  export interface Params$Resource$Calendars$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2959,7 +3025,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$Calendar;
   }
-  export interface Params$Resource$Calendars$Patch {
+  export interface Params$Resource$Calendars$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2977,7 +3043,7 @@ export namespace calendar_v3 {
      */
     requestBody?: Schema$Calendar;
   }
-  export interface Params$Resource$Calendars$Update {
+  export interface Params$Resource$Calendars$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2998,15 +3064,7 @@ export namespace calendar_v3 {
 
 
   export class Resource$Channels {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3062,7 +3120,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3072,7 +3130,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Channels$Stop {
+  export interface Params$Resource$Channels$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3087,15 +3145,7 @@ export namespace calendar_v3 {
 
 
   export class Resource$Colors {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3148,7 +3198,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Colors>(parameters, callback);
@@ -3158,7 +3208,7 @@ export namespace calendar_v3 {
     }
   }
 
-  export interface Params$Resource$Colors$Get {
+  export interface Params$Resource$Colors$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3167,15 +3217,7 @@ export namespace calendar_v3 {
 
 
   export class Resource$Events {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3187,7 +3229,8 @@ export namespace calendar_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the deletion of the event.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3234,7 +3277,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3300,7 +3343,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3343,7 +3386,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     options = {};
                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                       const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                       const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context}; if(callback) {
     createAPIRequest<Schema$Event>(parameters, callback);
                                                                                                                                                                                                                                                        } else {
     return createAPIRequest<Schema$Event>(parameters);
@@ -3360,7 +3403,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
  * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
  * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
  * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
- * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
+ * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
+ * @param {string=} params.sendUpdates Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.
  * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
       * @param {().Event} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3408,7 +3452,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3485,7 +3529,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Events>(parameters, callback);
@@ -3566,7 +3610,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Events>(parameters, callback);
@@ -3587,7 +3631,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {string} params.calendarId Calendar identifier of the source calendar where the event currently is on.
      * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
      * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the change of the event's organizer.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3635,7 +3680,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId', 'destination'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3657,7 +3702,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      * @param {string} params.eventId Event identifier.
      * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the event update (for example, title changes, etc.).
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {().Event} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3707,7 +3753,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3725,7 +3771,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      *
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the creation of the new event.
      * @param {string} params.text The text describing the event to be created.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3774,7 +3821,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'text'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3796,7 +3843,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      * @param {string} params.eventId Event identifier.
      * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
+     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     * @param {string=} params.sendUpdates Guests who should receive notifications about the event update (for example, title changes, etc.).
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {().Event} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3846,7 +3894,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3929,7 +3977,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -3939,7 +3987,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     }
   }
 
-  export interface Params$Resource$Events$Delete {
+  export interface Params$Resource$Events$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3956,12 +4004,18 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     eventId?: string;
     /**
-     * Whether to send notifications about the deletion of the event. Optional.
-     * The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the deletion of the event. Note that some emails
+     * might still be sent even if you set the value to false. The default is
+     * false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the deletion of the event.
+     */
+    sendUpdates?: string;
   }
-  export interface Params$Resource$Events$Get {
+  export interface Params$Resource$Events$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3998,7 +4052,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     timeZone?: string;
   }
-  export interface Params$Resource$Events$Import {
+  export interface Params$Resource$Events$Import extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4029,7 +4083,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Insert {
+  export interface Params$Resource$Events$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4056,10 +4110,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     maxAttendees?: number;
     /**
-     * Whether to send notifications about the creation of the new event.
-     * Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the creation of the new event. Note that some emails
+     * might still be sent even if you set the value to false. The default is
+     * false.
      */
     sendNotifications?: boolean;
+    /**
+     * Whether to send notifications about the creation of the new event. Note
+     * that some emails might still be sent. The default is false.
+     */
+    sendUpdates?: string;
     /**
      * Whether API client performing operation supports event attachments.
      * Optional. The default is False.
@@ -4071,7 +4132,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Instances {
+  export interface Params$Resource$Events$Instances extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4140,7 +4201,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     timeZone?: string;
   }
-  export interface Params$Resource$Events$List {
+  export interface Params$Resource$Events$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4195,7 +4256,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * only private properties. This parameter might be repeated multiple times
      * to return events that match all given constraints.
      */
-    privateExtendedProperty?: string;
+    privateExtendedProperty?: string[];
     /**
      * Free text search terms to find events that match these terms in any
      * field, except for extended properties. Optional.
@@ -4206,7 +4267,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * only shared properties. This parameter might be repeated multiple times
      * to return events that match all given constraints.
      */
-    sharedExtendedProperty?: string;
+    sharedExtendedProperty?: string[];
     /**
      * Whether to include deleted events (with status equals "cancelled") in the
      * result. Cancelled instances of recurring events (but not the underlying
@@ -4272,7 +4333,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     updatedMin?: string;
   }
-  export interface Params$Resource$Events$Move {
+  export interface Params$Resource$Events$Move extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4293,12 +4354,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     eventId?: string;
     /**
-     * Whether to send notifications about the change of the event's organizer.
-     * Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the change of the event's organizer. Note that some
+     * emails might still be sent even if you set the value to false. The
+     * default is false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the change of the event's
+     * organizer.
+     */
+    sendUpdates?: string;
   }
-  export interface Params$Resource$Events$Patch {
+  export interface Params$Resource$Events$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4338,10 +4406,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     maxAttendees?: number;
     /**
-     * Whether to send notifications about the event update (e.g. attendee's
-     * responses, title changes, etc.). Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the event update (for example, description changes,
+     * etc.). Note that some emails might still be sent even if you set the
+     * value to false. The default is false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the event update (for
+     * example, title changes, etc.).
+     */
+    sendUpdates?: string;
     /**
      * Whether API client performing operation supports event attachments.
      * Optional. The default is False.
@@ -4353,7 +4428,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Quickadd {
+  export interface Params$Resource$Events$Quickadd extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4366,16 +4441,23 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     calendarId?: string;
     /**
-     * Whether to send notifications about the creation of the event. Optional.
-     * The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the creation of the event. Note that some emails
+     * might still be sent even if you set the value to false. The default is
+     * false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the creation of the new
+     * event.
+     */
+    sendUpdates?: string;
     /**
      * The text describing the event to be created.
      */
     text?: string;
   }
-  export interface Params$Resource$Events$Update {
+  export interface Params$Resource$Events$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4415,10 +4497,17 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     maxAttendees?: number;
     /**
-     * Whether to send notifications about the event update (e.g. attendee's
-     * responses, title changes, etc.). Optional. The default is False.
+     * Deprecated. Please use sendUpdates instead.  Whether to send
+     * notifications about the event update (for example, description changes,
+     * etc.). Note that some emails might still be sent even if you set the
+     * value to false. The default is false.
      */
     sendNotifications?: boolean;
+    /**
+     * Guests who should receive notifications about the event update (for
+     * example, title changes, etc.).
+     */
+    sendUpdates?: string;
     /**
      * Whether API client performing operation supports event attachments.
      * Optional. The default is False.
@@ -4430,7 +4519,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     requestBody?: Schema$Event;
   }
-  export interface Params$Resource$Events$Watch {
+  export interface Params$Resource$Events$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4485,7 +4574,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * only private properties. This parameter might be repeated multiple times
      * to return events that match all given constraints.
      */
-    privateExtendedProperty?: string;
+    privateExtendedProperty?: string[];
     /**
      * Free text search terms to find events that match these terms in any
      * field, except for extended properties. Optional.
@@ -4496,7 +4585,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * only shared properties. This parameter might be repeated multiple times
      * to return events that match all given constraints.
      */
-    sharedExtendedProperty?: string;
+    sharedExtendedProperty?: string[];
     /**
      * Whether to include deleted events (with status equals "cancelled") in the
      * result. Cancelled instances of recurring events (but not the underlying
@@ -4570,15 +4659,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
 
 
   export class Resource$Freebusy {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4636,7 +4717,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$FreeBusyResponse>(parameters, callback);
@@ -4646,7 +4727,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     }
   }
 
-  export interface Params$Resource$Freebusy$Query {
+  export interface Params$Resource$Freebusy$Query extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4661,15 +4742,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
 
 
   export class Resource$Settings {
-    root: Calendar;
-    constructor(root: Calendar) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4723,7 +4796,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['setting'],
         pathParams: ['setting'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Setting>(parameters, callback);
@@ -4789,7 +4862,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -4856,7 +4929,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -4866,7 +4939,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     }
   }
 
-  export interface Params$Resource$Settings$Get {
+  export interface Params$Resource$Settings$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4877,7 +4950,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     setting?: string;
   }
-  export interface Params$Resource$Settings$List {
+  export interface Params$Resource$Settings$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4904,7 +4977,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     syncToken?: string;
   }
-  export interface Params$Resource$Settings$Watch {
+  export interface Params$Resource$Settings$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

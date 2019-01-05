@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace speech_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,27 +98,30 @@ export namespace speech_v1 {
    * @param {object=} options Options for Speech
    */
   export class Speech {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     speech: Resource$Speech;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.speech = new Resource$Speech(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.speech = new Resource$Speech();
     }
   }
 
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$ListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$Operation[];
+  }
   /**
    * The top-level message sent by the client for the `LongRunningRecognize`
    * method.
@@ -103,7 +158,7 @@ export namespace speech_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -119,13 +174,13 @@ export namespace speech_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Contains audio data in the encoding specified in the `RecognitionConfig`.
    * Either `content` or `uri` must be supplied. Supplying both or neither
-   * returns google.rpc.Code.INVALID_ARGUMENT. See [audio
-   * limits](https://cloud.google.com/speech/limits#content).
+   * returns google.rpc.Code.INVALID_ARGUMENT. See [content
+   * limits](/speech-to-text/quotas#content).
    */
   export interface Schema$RecognitionAudio {
     /**
@@ -136,10 +191,11 @@ export namespace speech_v1 {
     content?: string;
     /**
      * URI that points to a file that contains audio data bytes as specified in
-     * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
-     * supported, which must be specified in the following format:
-     * `gs://bucket_name/object_name` (other URI formats return
-     * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
+     * `RecognitionConfig`. The file must not be compressed (for example, gzip).
+     * Currently, only Google Cloud Storage URIs are supported, which must be
+     * specified in the following format: `gs://bucket_name/object_name` (other
+     * URI formats return google.rpc.Code.INVALID_ARGUMENT). For more
+     * information, see [Request
      * URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string;
@@ -149,6 +205,16 @@ export namespace speech_v1 {
    * request.
    */
   export interface Schema$RecognitionConfig {
+    /**
+     * *Optional* If &#39;true&#39;, adds punctuation to recognition result
+     * hypotheses. This feature is only available in select languages. Setting
+     * this for requests in other languages has no effect at all. The default
+     * &#39;false&#39; value does not add punctuation to result hypotheses.
+     * Note: This is currently offered as an experimental service, complimentary
+     * to all users. In the future this may be exclusively available as a
+     * premium feature.
+     */
+    enableAutomaticPunctuation?: boolean;
     /**
      * *Optional* If `true`, the top result includes a list of words and the
      * start and end time offsets (timestamps) for those words. If `false`, no
@@ -165,8 +231,8 @@ export namespace speech_v1 {
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: &quot;en-US&quot;. See [Language
-     * Support](https://cloud.google.com/speech/docs/languages) for a list of
-     * the currently supported language codes.
+     * Support](/speech-to-text/docs/languages) for a list of the currently
+     * supported language codes.
      */
     languageCode?: string;
     /**
@@ -178,6 +244,31 @@ export namespace speech_v1 {
      * one.
      */
     maxAlternatives?: number;
+    /**
+     * *Optional* Which model to select for the given request. Select the model
+     * best suited to your domain to get best results. If a model is not
+     * explicitly specified, then we auto-select a model based on the parameters
+     * in the RecognitionConfig. &lt;table&gt;   &lt;tr&gt;
+     * &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;
+     * &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;   &lt;/tr&gt;
+     * &lt;tr&gt;
+     * &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;
+     * &lt;td&gt;Best for short queries such as voice commands or voice
+     * search.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;
+     * &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt; &lt;td&gt;Best
+     * for audio that originated from a phone call (typically     recorded at an
+     * 8khz sampling rate).&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;
+     * &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best
+     * for audio that originated from from video or includes multiple speakers.
+     * Ideally the audio is recorded at a 16khz or greater         sampling
+     * rate. This is a premium model that costs more than the         standard
+     * rate.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;
+     * &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best
+     * for audio that is not one of the specific audio models.         For
+     * example, long-form audio. Ideally the audio is high-fidelity, recorded at
+     * a 16khz or greater sampling rate.&lt;/td&gt;   &lt;/tr&gt; &lt;/table&gt;
+     */
+    model?: string;
     /**
      * *Optional* If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered
@@ -196,9 +287,25 @@ export namespace speech_v1 {
      */
     sampleRateHertz?: number;
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * *Optional* array of SpeechContext. A means to provide context to assist
+     * the speech recognition. For more information, see [Phrase
+     * Hints](/speech-to-text/docs/basics#phrase-hints).
      */
     speechContexts?: Schema$SpeechContext[];
+    /**
+     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * If `use_enhanced` is set to true and the `model` field is not set, then
+     * an appropriate enhanced model is chosen if: 1. project is eligible for
+     * requesting enhanced models 2. an enhanced model exists for the audio  If
+     * `use_enhanced` is true and an enhanced version of the specified model
+     * does not exist, then the speech is recognized using the standard version
+     * of the specified model.  Enhanced speech models require that you opt-in
+     * to data logging using instructions in the
+     * [documentation](/speech-to-text/docs/enable-data-logging). If you set
+     * `use_enhanced` to true and you have not enabled audio logging, then you
+     * will receive an error.
+     */
+    useEnhanced?: boolean;
   }
   /**
    * The top-level message sent by the client for the `Recognize` method.
@@ -232,20 +339,13 @@ export namespace speech_v1 {
    */
   export interface Schema$SpeechContext {
     /**
-     * Strength of biasing to use (strong, medium or weak). If you use strong
-     * biasing option then more likely to see those phrases in the results. If
-     * biasing streangth is not specified then by default medium biasing would
-     * be used.
-     */
-    biasingStrength?: string;
-    /**
      * *Optional* A list of strings containing words and phrases
      * &quot;hints&quot; so that the speech recognition is more likely to
      * recognize them. This can be used to improve the accuracy for specific
      * words and phrases, for example, if specific commands are typically spoken
      * by the user. This can also be used to add additional words to the
      * vocabulary of the recognizer. See [usage
-     * limits](https://cloud.google.com/speech/limits#content).
+     * limits](/speech-to-text/quotas#content).
      */
     phrases?: string[];
   }
@@ -269,8 +369,8 @@ export namespace speech_v1 {
     transcript?: string;
     /**
      * Output only. A list of word-specific information for each recognized
-     * word. Note: When enable_speaker_diarization is true, you will see all the
-     * words from the beginning of the audio.
+     * word. Note: When `enable_speaker_diarization` is true, you will see all
+     * the words from the beginning of the audio.
      */
     words?: Schema$WordInfo[];
   }
@@ -331,7 +431,7 @@ export namespace speech_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -374,15 +474,7 @@ export namespace speech_v1 {
 
 
   export class Resource$Operations {
-    root: Speech;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -439,7 +531,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -447,9 +539,85 @@ export namespace speech_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * speech.operations.list
+     * @desc Lists operations that match the specified filter in the request. If
+     * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
+     * the `name` binding allows API services to override the binding to use
+     * different resource name schemes, such as `users/x/operations`. To
+     * override the binding, API services can add a binding such as
+     * `"/v1/{name=users/x}/operations"` to their service configuration. For
+     * backwards compatibility, the default name includes the operations
+     * collection id, however overriding users must ensure the name binding is
+     * the parent resource, without the operations collection id.
+     * @alias speech.operations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string=} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
+        AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+        void|AxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -460,18 +628,33 @@ export namespace speech_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Operations$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
 
 
   export class Resource$Speech {
-    root: Speech;
-    constructor(root: Speech) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -535,7 +718,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -602,7 +785,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$RecognizeResponse>(parameters, callback);
@@ -612,7 +795,8 @@ export namespace speech_v1 {
     }
   }
 
-  export interface Params$Resource$Speech$Longrunningrecognize {
+  export interface Params$Resource$Speech$Longrunningrecognize extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -624,7 +808,7 @@ export namespace speech_v1 {
      */
     requestBody?: Schema$LongRunningRecognizeRequest;
   }
-  export interface Params$Resource$Speech$Recognize {
+  export interface Params$Resource$Speech$Recognize extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

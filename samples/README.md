@@ -1,5 +1,7 @@
 # Samples by API
-The following samples show basic usage of various APIs. Throughout these samples, you will find code that relies on various authentication methods.
+The following samples show basic usage of various APIs.  **All samples require Node.js 8.x or greater**.  
+
+Throughout these samples, you will find code that relies on various authentication methods.
 - **OAuth2** - To use the OAuth2 samples, create a credential in the cloud developer console, and save the file as `oauth2.keys.json` in the samples directory.
 - **Service account** - To use the service account based samples, create a new service account in the cloud developer console, and save the file as `jwt.keys.json` in the samples directory.
 - **API Key** - To use simple API keys, create a new API Key in the cloud developer console, then store the key in the `api_key` field of `config.json`.
@@ -9,8 +11,9 @@ The following samples show basic usage of various APIs. Throughout these samples
 
 View and manage your Google Analytics data.
 
-Documentation for the Google Analytics API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_analytics_v3_.analytics.html).
+<!--Documentation for the Google Analytics API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_analytics_v3_.analytics.html).-->
+
 
 <table>
   <tr>
@@ -23,8 +26,8 @@ Documentation for the Google Analytics API in
 
 View and manage Blogger data.
 
-Documentation for the Blogger API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_blogger_v3_.blogger.html).
+<!--Documentation for the Blogger API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_blogger_v3_.blogger.html).-->
 
 <table>
   <tr>
@@ -37,12 +40,12 @@ Documentation for the Blogger API in
 
 Lets you set key/value pairs using the GCE metadata service.
 
-Documentation for the Google Compute Engine Metadata API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_compute_v1_.compute.html).
+<!--Documentation for the Google Compute Engine Metadata API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_compute_v1_.compute.html).-->
 
 <table>
   <tr>
-    <td><a href="coordinate">samples/compute</a></td>
+    <td><a href="compute">samples/compute</a></td>
     <td>Demonstrates how to use the Google Compute Engine Metadata API</td>
   </tr>
 </table>
@@ -51,8 +54,8 @@ Documentation for the Google Compute Engine Metadata API in
 
 Lets you search over a website or collection of websites.
 
-Documentation for the CustomSearch API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_customsearch_v1_.customsearch.html).
+<!--Documentation for the CustomSearch API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_customsearch_v1_.customsearch.html).-->
 
 <table>
   <tr>
@@ -66,8 +69,8 @@ Documentation for the CustomSearch API in
 
 The Google Mirror API allows you to build web-based services that interact with Google Glass. It provides this functionality over a cloud-based API and does not require running code on Glass.
 
-Documentation for the Glass Mirror API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_mirror_v1_.mirror.html).
+<!--Documentation for the Glass Mirror API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_mirror_v1_.mirror.html).-->
 
 <table>
   <tr>
@@ -76,27 +79,12 @@ Documentation for the Glass Mirror API in
   </tr>
 </table>
 
-## ![](http://www.google.com/images/icons/product/shortlinks-32.png) URL Shortener API
-
-Lets you create, inspect, and manage `goo.gl` short URLs.
-
-Documentation for the URL Shortener API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_urlshortener_v1_.urlshortener.html).
-
-<table>
-  <tr>
-    <td><a href="urlshortener">samples/urlshortener</a></td>
-    <td>Shortens a URL with the URL Shortener API</td>
-  </tr>
-</table>
-
-
 ## ![](http://www.google.com/images/icons/product/youtube-32.png) YouTube API
 
 With the YouTube Data API, you can add a variety of YouTube features to your application. Use the API to upload videos, manage playlists and subscriptions, update channel settings, and more.
 
-Documentation for the YouTube Data API in
-[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_youtube_v3_.youtube.html).
+<!--Documentation for the YouTube Data API in
+[JSDoc](http://google.github.io/google-api-nodejs-client/classes/_apis_youtube_v3_.youtube.html).-->
 
 <table>
   <tr>

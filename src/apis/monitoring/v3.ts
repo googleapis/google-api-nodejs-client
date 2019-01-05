@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace monitoring_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -48,24 +100,14 @@ export namespace monitoring_v3 {
    * @param {object=} options Options for Monitoring
    */
   export class Monitoring {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
     uptimeCheckIps: Resource$Uptimecheckips;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-      this.uptimeCheckIps = new Resource$Uptimecheckips(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
+      this.uptimeCheckIps = new Resource$Uptimecheckips();
     }
   }
 
@@ -204,7 +246,7 @@ export namespace monitoring_v3 {
      * smaller. Labels and values can contain only lowercase letters, numerals,
      * underscores, and dashes. Keys must begin with a letter.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * A type of authentication to perform against the specified resource or URL
@@ -263,7 +305,7 @@ export namespace monitoring_v3 {
     /**
      * The measurement metadata. Example: &quot;process_id&quot; -&gt; 12345
      */
-    metadata?: any;
+    metadata?: {[key: string]: Schema$TypedValue;};
     /**
      * The name of the plugin. Example: &quot;disk&quot;.
      */
@@ -384,13 +426,12 @@ export namespace monitoring_v3 {
     name?: string;
   }
   /**
-   * Used to perform string matching. Currently, this matches on the exact
-   * content. In the future, it can be expanded to allow for regular expressions
-   * and more complex matching.
+   * Used to perform string matching. It allows substring and regular
+   * expressions, together with their negations.
    */
   export interface Schema$ContentMatcher {
     /**
-     * String content to match (max 1024 bytes)
+     * String or regex content to match (max 1024 bytes)
      */
     content?: string;
   }
@@ -435,7 +476,8 @@ export namespace monitoring_v3 {
      * point to each of several time series. The new data point must be more
      * recent than any other point in its time series. Each TimeSeries value
      * must fully specify a unique time series by supplying all label values for
-     * the metric and the monitored resource.
+     * the metric and the monitored resource.The maximum number of TimeSeries
+     * objects per Create request is 200.
      */
     timeSeries?: Schema$TimeSeries[];
   }
@@ -519,6 +561,26 @@ export namespace monitoring_v3 {
     mimeType?: string;
   }
   /**
+   * A set of (label, value) pairs which were dropped during aggregation,
+   * attached to google.api.Distribution.Exemplars in google.api.Distribution
+   * values during aggregation.These values are used in combination with the
+   * label values that remain on the aggregated Distribution timeseries to
+   * construct the full label set for the exemplar values. The resulting full
+   * label set may be used to identify the specific task/job/instance (for
+   * example) which may be contributing to a long-tail, while allowing the
+   * storage savings of only storing aggregated distribution values for a large
+   * group.Note that there are no guarantees on ordering of the labels from
+   * exemplar-to-exemplar and from distribution-to-distribution in the same
+   * stream, and there may be duplicates. It is up to clients to resolve any
+   * ambiguities.
+   */
+  export interface Schema$DroppedLabels {
+    /**
+     * Map from label to its value, for all labels dropped in any aggregation.
+     */
+    label?: {[key: string]: string;};
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated
    * empty messages in your APIs. A typical example is to use it as the request
    * or the response type of an API method. For instance: service Foo {   rpc
@@ -542,7 +604,7 @@ export namespace monitoring_v3 {
      * may be only a single attachment of any given message type in a single
      * exemplar, and this is enforced by the system.
      */
-    attachments?: any[];
+    attachments?: Array<{[key: string]: any;}>;
     /**
      * The observation (sampling) time of the above value.
      */
@@ -744,7 +806,7 @@ export namespace monitoring_v3 {
      * to be overwritten by the second. The maximum number of headers allowed is
      * 100.
      */
-    headers?: any;
+    headers?: {[key: string]: string;};
     /**
      * Boolean specifiying whether to encrypt the header information. Encryption
      * should be specified for any headers related to authentication that you do
@@ -772,15 +834,14 @@ export namespace monitoring_v3 {
     useSsl?: boolean;
   }
   /**
-   * Nimbus InternalCheckers.
+   * An internal checker allows uptime checks to run on private/internal GCP
+   * resources.
    */
   export interface Schema$InternalChecker {
     /**
-     * The checker ID.
-     */
-    checkerId?: string;
-    /**
-     * The checker&#39;s human-readable name.
+     * The checker&#39;s human-readable name. The display name should be unique
+     * within a Stackdriver Workspace in order to make it easier to identify;
+     * however, uniqueness is not enforced.
      */
     displayName?: string;
     /**
@@ -789,14 +850,22 @@ export namespace monitoring_v3 {
      */
     gcpZone?: string;
     /**
-     * The internal network to perform this uptime check on.
+     * A unique resource name for this InternalChecker. The format
+     * is:projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID].PROJECT_ID
+     * is the stackdriver workspace project for the uptime check config
+     * associated with the internal checker.
+     */
+    name?: string;
+    /**
+     * The GCP VPC network (https://cloud.google.com/vpc/docs/vpc) where the
+     * internal resource lives (ex: &quot;default&quot;).
      */
     network?: string;
     /**
-     * The GCP project ID. Not necessarily the same as the project_id for the
-     * config.
+     * The GCP project_id where the internal checker lives. Not necessary the
+     * same as the workspace project.
      */
-    projectId?: string;
+    peerProjectId?: string;
   }
   /**
    * A description of a label.
@@ -1019,7 +1088,7 @@ export namespace monitoring_v3 {
      * The set of label values that uniquely identify this metric. All labels
      * listed in the MetricDescriptor must be assigned values.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * An existing metric type, see google.api.MetricDescriptor. For example,
      * custom.googleapis.com/invoice/paid/amount.
@@ -1096,6 +1165,10 @@ export namespace monitoring_v3 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of metric_kind and value_type might not be supported.
      */
@@ -1106,19 +1179,37 @@ export namespace monitoring_v3 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded. All user-defined custom metric types have the DNS name
-     * custom.googleapis.com. Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded. All user-defined metric types have the DNS name
+     * custom.googleapis.com or external.googleapis.com. Metric types should use
+     * a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
     /**
-     * Optional. The unit in which the metric value is reported. For example,
-     * kBy/s means kilobytes/sec, and 1 is the dimensionless unit. The supported
-     * units are a subset of The Unified Code for Units of Measure standard
-     * (http://unitsofmeasure.org/ucum.html).&lt;br&gt;&lt;br&gt; This field is
-     * part of the metric&#39;s documentation, but it is ignored by Stackdriver.
+     * The unit in which the metric value is reported. It is only applicable if
+     * the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are
+     * a subset of The Unified Code for Units of Measure
+     * (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit
+     * By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10**3)
+     * M mega (10**6) G giga (10**9) T tera (10**12) P peta (10**15) E exa
+     * (10**18) Z zetta (10**21) Y yotta (10**24) m milli (10**-3) u micro
+     * (10**-6) n nano (10**-9) p pico (10**-12) f femto (10**-15) a atto
+     * (10**-18) z zepto (10**-21) y yocto (10**-24) Ki kibi (2**10) Mi mebi
+     * (2**20) Gi gibi (2**30) Ti tebi (2**40)GrammarThe grammar also includes
+     * these connectors: / division (as an infix operator, e.g. 1/s). .
+     * multiplication (as an infix operator, e.g. GBy.d)The grammar for a unit
+     * is as follows: Expression = Component { &quot;.&quot; Component } {
+     * &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT |
+     * &quot;%&quot; ) [ Annotation ]           | Annotation           |
+     * &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot;
+     * ; Notes: Annotation is just a comment if it follows a UNIT and is
+     * equivalent to 1 if it is used alone. For examples,  {requests}/s == 1/s,
+     * By{transmitted}/s == By/s. NAME is a sequence of non-blank printable
+     * ASCII characters not  containing &#39;{&#39; or &#39;}&#39;. 1 represents
+     * dimensionless value 1, such as in 1/s. % represents dimensionless value
+     * 1/100, and annotates values giving  a percentage.
      */
     unit?: string;
     /**
@@ -1126,6 +1217,28 @@ export namespace monitoring_v3 {
      * combinations of metric_kind and value_type might not be supported.
      */
     valueType?: string;
+  }
+  /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
   }
   /**
    * A condition type that compares a collection of time series against a
@@ -1232,11 +1345,12 @@ export namespace monitoring_v3 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
-     * Compute Engine VM instance is gce_instance.
+     * Compute Engine VM instance is gce_instance. For a list of types, see
+     * Monitoring resource types and Logging resource types.
      */
     type?: string;
   }
@@ -1290,27 +1404,25 @@ export namespace monitoring_v3 {
    * Auxiliary metadata for a MonitoredResource object. MonitoredResource
    * objects contain the minimum set of information to uniquely identify a
    * monitored resource instance. There is some other useful auxiliary metadata.
-   * Google Stackdriver Monitoring &amp; Logging uses an ingestion pipeline to
-   * extract metadata for cloud resources of all types , and stores the metadata
-   * in this message.
+   * Monitoring and Logging use an ingestion pipeline to extract metadata for
+   * cloud resources of all types, and store the metadata in this message.
    */
   export interface Schema$MonitoredResourceMetadata {
     /**
      * Output only. Values for predefined system metadata labels. System labels
-     * are a kind of metadata extracted by Google Stackdriver. Stackdriver
-     * determines what system labels are useful and how to obtain their values.
-     * Some examples: &quot;machine_image&quot;, &quot;vpc&quot;,
-     * &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc.
-     * System label values can be only strings, Boolean values, or a list of
-     * strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,
+     * are a kind of metadata extracted by Google, including
+     * &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;,
+     * &quot;security_group&quot;, &quot;name&quot;, etc. System label values
+     * can be only strings, Boolean values, or a list of strings. For example: {
+     * &quot;name&quot;: &quot;my-test-instance&quot;,
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: any;
+    systemLabels?: {[key: string]: any;};
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * Describes a change made to a configuration.
@@ -1361,7 +1473,7 @@ export namespace monitoring_v3 {
      * NotificationChannelDescriptor.labels of the NotificationChannelDescriptor
      * corresponding to the type field.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The full REST resource name for this channel. The syntax is:
      * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID]
@@ -1383,7 +1495,7 @@ export namespace monitoring_v3 {
      * letters, numerals, underscores, and dashes. Keys must begin with a
      * letter.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
     /**
      * Indicates whether this channel has been verified or not. On a
      * ListNotificationChannels or GetNotificationChannel operation, this field
@@ -1459,7 +1571,7 @@ export namespace monitoring_v3 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: any;
+    value?: {[key: string]: any;};
   }
   /**
    * A single data point in a time series.
@@ -1526,6 +1638,22 @@ export namespace monitoring_v3 {
     fileName?: string;
   }
   /**
+   * The context of a span, attached to google.api.Distribution.Exemplars in
+   * google.api.Distribution values during aggregation.It contains the name of a
+   * span with format:  projects/PROJECT_ID/traces/TRACE_ID/spans/SPAN_ID
+   */
+  export interface Schema$SpanContext {
+    /**
+     * The resource name of the span in the following format:
+     * projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID] TRACE_ID is a
+     * unique identifier for a trace within a project; it is a 32-character
+     * hexadecimal encoding of a 16-byte array.SPAN_ID is a unique identifier
+     * for a span within a trace; it is a 16-character hexadecimal encoding of
+     * an 8-byte array.
+     */
+    spanName?: string;
+  }
+  /**
    * The Status type defines a logical error model that is suitable for
    * different programming environments, including REST APIs and RPC APIs. It is
    * used by gRPC (https://github.com/grpc). The error model is designed to be:
@@ -1569,7 +1697,7 @@ export namespace monitoring_v3 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1589,9 +1717,13 @@ export namespace monitoring_v3 {
     port?: number;
   }
   /**
-   * A time interval extending just after a start time through an end time. If
-   * the start time is the same as the end time, then the interval represents a
-   * single point in time.
+   * A time interval extending just after a start time through an end time. The
+   * start time must not be later than the end time. The default start time is
+   * the end time, making the startTime value technically optional. Whether this
+   * is useful depends on the MetricKind. If the start and end times are the
+   * same, the interval represents a point in time. This is appropriate for
+   * GAUGE metrics, but not for DELTA and CUMULATIVE metrics, which cover a span
+   * of time.
    */
   export interface Schema$TimeInterval {
     /**
@@ -1747,7 +1879,7 @@ export namespace monitoring_v3 {
     contentMatchers?: Schema$ContentMatcher[];
     /**
      * A human-friendly name for the uptime check configuration. The display
-     * name should be unique within a Stackdriver Account in order to make it
+     * name should be unique within a Stackdriver Workspace in order to make it
      * easier to identify; however, uniqueness is not enforced. Required.
      */
     displayName?: string;
@@ -1757,12 +1889,16 @@ export namespace monitoring_v3 {
     httpCheck?: Schema$HttpCheck;
     /**
      * The internal checkers that this check will egress from. If is_internal is
-     * true and this list is empty, the check will egress from all
+     * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      */
     internalCheckers?: Schema$InternalChecker[];
     /**
-     * Denotes whether this is a check that egresses from InternalCheckers.
+     * If this is true, then checks are made only from the
+     * &#39;internal_checkers&#39;. If it is false, then checks are made only
+     * from the &#39;selected_regions&#39;. It is an error to provide
+     * &#39;selected_regions&#39; when is_internal is true, or to provide
+     * &#39;internal_checkers&#39; when is_internal is false.
      */
     isInternal?: boolean;
     /**
@@ -1792,7 +1928,8 @@ export namespace monitoring_v3 {
      */
     resourceGroup?: Schema$ResourceGroup;
     /**
-     * The list of regions from which the check will be run. If this field is
+     * The list of regions from which the check will be run. Some regions
+     * contain one location, and others contain more than one. If this field is
      * specified, enough regions to include a minimum of 3 locations must be
      * provided, or an error message is returned. Not specifying this field will
      * result in uptime checks running from all regions.
@@ -1850,7 +1987,6 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects {
-    root: Monitoring;
     alertPolicies: Resource$Projects$Alertpolicies;
     collectdTimeSeries: Resource$Projects$Collectdtimeseries;
     groups: Resource$Projects$Groups;
@@ -1862,39 +1998,24 @@ export namespace monitoring_v3 {
     notificationChannels: Resource$Projects$Notificationchannels;
     timeSeries: Resource$Projects$Timeseries;
     uptimeCheckConfigs: Resource$Projects$Uptimecheckconfigs;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.alertPolicies = new Resource$Projects$Alertpolicies(root);
-      this.collectdTimeSeries = new Resource$Projects$Collectdtimeseries(root);
-      this.groups = new Resource$Projects$Groups(root);
-      this.metricDescriptors = new Resource$Projects$Metricdescriptors(root);
+    constructor() {
+      this.alertPolicies = new Resource$Projects$Alertpolicies();
+      this.collectdTimeSeries = new Resource$Projects$Collectdtimeseries();
+      this.groups = new Resource$Projects$Groups();
+      this.metricDescriptors = new Resource$Projects$Metricdescriptors();
       this.monitoredResourceDescriptors =
-          new Resource$Projects$Monitoredresourcedescriptors(root);
+          new Resource$Projects$Monitoredresourcedescriptors();
       this.notificationChannelDescriptors =
-          new Resource$Projects$Notificationchanneldescriptors(root);
-      this.notificationChannels =
-          new Resource$Projects$Notificationchannels(root);
-      this.timeSeries = new Resource$Projects$Timeseries(root);
-      this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Notificationchanneldescriptors();
+      this.notificationChannels = new Resource$Projects$Notificationchannels();
+      this.timeSeries = new Resource$Projects$Timeseries();
+      this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs();
     }
   }
 
 
   export class Resource$Projects$Alertpolicies {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1955,7 +2076,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2020,7 +2141,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2082,7 +2203,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2156,7 +2277,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertPoliciesResponse>(
@@ -2228,7 +2349,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2238,7 +2359,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Alertpolicies$Create {
+  export interface Params$Resource$Projects$Alertpolicies$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2260,7 +2382,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$AlertPolicy;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Delete {
+  export interface Params$Resource$Projects$Alertpolicies$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2273,7 +2396,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Get {
+  export interface Params$Resource$Projects$Alertpolicies$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2285,7 +2409,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$List {
+  export interface Params$Resource$Projects$Alertpolicies$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2322,7 +2447,8 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Alertpolicies$Patch {
+  export interface Params$Resource$Projects$Alertpolicies$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2365,15 +2491,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Collectdtimeseries {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2489,7 +2607,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
@@ -2501,7 +2619,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Collectdtimeseries$Create {
+  export interface Params$Resource$Projects$Collectdtimeseries$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2521,16 +2640,9 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Groups {
-    root: Monitoring;
     members: Resource$Projects$Groups$Members;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.members = new Resource$Projects$Groups$Members(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.members = new Resource$Projects$Groups$Members();
     }
 
 
@@ -2639,7 +2751,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -2751,7 +2863,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2859,7 +2971,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -2984,7 +3096,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -3105,7 +3217,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -3115,7 +3227,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Create {
+  export interface Params$Resource$Projects$Groups$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3136,7 +3249,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Groups$Delete {
+  export interface Params$Resource$Projects$Groups$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3148,7 +3262,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$Get {
+  export interface Params$Resource$Projects$Groups$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3160,7 +3275,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Groups$List {
+  export interface Params$Resource$Projects$Groups$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3203,7 +3319,8 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Groups$Update {
+  export interface Params$Resource$Projects$Groups$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3229,15 +3346,7 @@ export namespace monitoring_v3 {
   }
 
   export class Resource$Projects$Groups$Members {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3357,7 +3466,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupMembersResponse>(parameters, callback);
@@ -3367,7 +3476,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Groups$Members$List {
+  export interface Params$Resource$Projects$Groups$Members$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3411,15 +3521,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Metricdescriptors {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3525,7 +3627,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -3638,7 +3740,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3748,7 +3850,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -3877,7 +3979,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMetricDescriptorsResponse>(
@@ -3889,7 +3991,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Metricdescriptors$Create {
+  export interface Params$Resource$Projects$Metricdescriptors$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3906,7 +4009,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$MetricDescriptor;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Delete {
+  export interface Params$Resource$Projects$Metricdescriptors$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3919,7 +4023,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$Get {
+  export interface Params$Resource$Projects$Metricdescriptors$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3933,7 +4038,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Metricdescriptors$List {
+  export interface Params$Resource$Projects$Metricdescriptors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3965,15 +4071,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Monitoredresourcedescriptors {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4085,7 +4183,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$MonitoredResourceDescriptor>(
@@ -4219,7 +4317,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -4231,7 +4329,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get {
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4244,7 +4343,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Monitoredresourcedescriptors$List {
+  export interface Params$Resource$Projects$Monitoredresourcedescriptors$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4276,15 +4376,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Notificationchanneldescriptors {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4348,7 +4440,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannelDescriptor>(
@@ -4429,7 +4521,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
@@ -4441,7 +4533,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationchanneldescriptors$Get {
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4453,7 +4546,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchanneldescriptors$List {
+  export interface Params$Resource$Projects$Notificationchanneldescriptors$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4482,21 +4576,13 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Notificationchannels {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * monitoring.projects.notificationChannels.create
      * @desc Creates a new notification channel, representing a single
-     * notification endpoint such as an email address, SMS number, or pagerduty
+     * notification endpoint such as an email address, SMS number, or PagerDuty
      * service.
      * @alias monitoring.projects.notificationChannels.create
      * @memberOf! ()
@@ -4553,7 +4639,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4619,7 +4705,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4685,7 +4771,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4785,7 +4871,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
@@ -4868,7 +4954,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelsResponse>(
@@ -4939,7 +5025,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5012,7 +5098,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5082,7 +5168,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5092,7 +5178,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Notificationchannels$Create {
+  export interface Params$Resource$Projects$Notificationchannels$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5113,7 +5200,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$NotificationChannel;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Delete {
+  export interface Params$Resource$Projects$Notificationchannels$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5132,7 +5220,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Get {
+  export interface Params$Resource$Projects$Notificationchannels$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5144,7 +5233,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Getverificationcode {
+  export interface Params$Resource$Projects$Notificationchannels$Getverificationcode
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5162,7 +5252,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$GetNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$List {
+  export interface Params$Resource$Projects$Notificationchannels$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5201,7 +5292,8 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Patch {
+  export interface Params$Resource$Projects$Notificationchannels$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5223,7 +5315,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$NotificationChannel;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode {
+  export interface Params$Resource$Projects$Notificationchannels$Sendverificationcode
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5239,7 +5332,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$SendNotificationChannelVerificationCodeRequest;
   }
-  export interface Params$Resource$Projects$Notificationchannels$Verify {
+  export interface Params$Resource$Projects$Notificationchannels$Verify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5258,15 +5352,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Timeseries {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5376,7 +5462,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5509,7 +5595,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListTimeSeriesResponse>(parameters, callback);
@@ -5519,7 +5605,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Timeseries$Create {
+  export interface Params$Resource$Projects$Timeseries$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5536,7 +5623,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$CreateTimeSeriesRequest;
   }
-  export interface Params$Resource$Projects$Timeseries$List {
+  export interface Params$Resource$Projects$Timeseries$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5577,7 +5665,7 @@ export namespace monitoring_v3 {
      * into a single output time series. If crossSeriesReducer is not defined,
      * this field is ignored.
      */
-    'aggregation.groupByFields'?: string;
+    'aggregation.groupByFields'?: string[];
     /**
      * The approach to be used to align individual time series. Not all
      * alignment functions may be applied to all time series, depending on the
@@ -5639,15 +5727,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Uptimecheckconfigs {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5708,7 +5788,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -5776,7 +5856,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5838,7 +5918,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -5913,7 +5993,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
@@ -5986,7 +6066,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -5996,7 +6076,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Create {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6013,7 +6094,8 @@ export namespace monitoring_v3 {
      */
     requestBody?: Schema$UptimeCheckConfig;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6025,7 +6107,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Get {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6037,7 +6120,8 @@ export namespace monitoring_v3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$List {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6062,7 +6146,8 @@ export namespace monitoring_v3 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch {
+  export interface Params$Resource$Projects$Uptimecheckconfigs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6093,15 +6178,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Uptimecheckips {
-    root: Monitoring;
-    constructor(root: Monitoring) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6165,7 +6242,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckIpsResponse>(
@@ -6176,7 +6253,8 @@ export namespace monitoring_v3 {
     }
   }
 
-  export interface Params$Resource$Uptimecheckips$List {
+  export interface Params$Resource$Uptimecheckips$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

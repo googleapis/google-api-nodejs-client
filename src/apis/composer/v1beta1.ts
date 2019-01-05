@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace composer_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,22 +98,12 @@ export namespace composer_v1beta1 {
    * @param {object=} options Options for Composer
    */
   export class Composer {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -93,7 +135,7 @@ export namespace composer_v1beta1 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
      * constrained to be &lt;= 128 bytes in size.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The resource name of the environment, in the form:
      * &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
@@ -119,8 +161,8 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$EnvironmentConfig {
     /**
-     * The URI of the Apache Airflow Web UI hosted within this environment (see
-     * [Airflow web
+     * Output only. The URI of the Apache Airflow Web UI hosted within this
+     * environment (see [Airflow web
      * interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      */
     airflowUri?: string;
@@ -159,7 +201,7 @@ export namespace composer_v1beta1 {
      */
     environments?: Schema$Environment[];
     /**
-     * The page token used to query for the next page if one exists
+     * The page token used to query for the next page if one exists.
      */
     nextPageToken?: string;
   }
@@ -182,7 +224,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$NodeConfig {
     /**
-     * Optional. The disk size in GB used for node VMs. Minimum size is 10GB. If
+     * Optional. The disk size in GB used for node VMs. Minimum size is 20GB. If
      * unspecified, defaults to 100GB. Cannot be updated.
      */
     diskSizeGb?: number;
@@ -222,19 +264,20 @@ export namespace composer_v1beta1 {
      * Optional. The Compute Engine network to be used for machine
      * communications, specified as a [relative resource
      * name](/apis/design/resource_names#relative_resource_name). For example:
-     * &quot;projects/{projectId}/global/networks/{networkId}&quot;.  [Shared
-     * VPC](/vpc/docs/shared-vpc) is not currently supported. The network must
-     * belong to the environment&#39;s project. If unspecified, the
-     * &quot;default&quot; network ID in the environment&#39;s project is used.
-     * If a [Custom Subnet Network]((/vpc/docs/vpc#vpc_networks_and_subnets) is
-     * provided, `nodeConfig.subnetwork` must also be provided.
+     * &quot;projects/{projectId}/global/networks/{networkId}&quot;.  If
+     * unspecified, the default network in the environment&#39;s project is
+     * used. If a [Custom Subnet
+     * Network](/vpc/docs/vpc#vpc_networks_and_subnets) is provided,
+     * `nodeConfig.subnetwork` must also be provided. For [Shared
+     * VPC](/vpc/docs/shared-vpc) subnetwork requirements, see
+     * `nodeConfig.subnetwork`.
      */
     network?: string;
     /**
      * Optional. The set of Google API scopes to be made available on all node
-     * VMs. If `oauth_scopes` is empty, defaults to
-     * [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. Cannot be
-     * updated.
+     * VMs. Defaults to
+     * [&quot;https://www.googleapis.com/auth/cloud-platform&quot;] and must be
+     * included in the list of specified scopes. Cannot be updated.
      */
     oauthScopes?: string[];
     /**
@@ -249,8 +292,10 @@ export namespace composer_v1beta1 {
      * name](/apis/design/resource_names#relative_resource_name). For example:
      * &quot;projects/{projectId}/regions/{regionId}/subnetworks/{subnetworkId}&quot;
      * If a subnetwork is provided, `nodeConfig.network` must also be provided,
-     * and the subnetwork must belong to the enclosing environment&#39;s project
-     * and location.
+     * and the subnetwork must belong to the same project as the network.  For
+     * Shared VPC, you must configure the subnetwork with secondary ranges named
+     * &lt;strong&gt;composer-pods&lt;/strong&gt; and
+     * &lt;strong&gt;composer-services&lt;/strong&gt; to support Alias IPs.
      */
     subnetwork?: string;
     /**
@@ -282,7 +327,7 @@ export namespace composer_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -298,7 +343,7 @@ export namespace composer_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata describing an operation.
@@ -352,7 +397,7 @@ export namespace composer_v1beta1 {
      * [blacklisted](/composer/docs/how-to/managing/setting-airflow-configurations#airflow_configuration_blacklists),
      * and cannot be overridden.
      */
-    airflowConfigOverrides?: any;
+    airflowConfigOverrides?: {[key: string]: string;};
     /**
      * Optional. Additional environment variables to provide to the Apache
      * Airflow scheduler, worker, and webserver processes.  Environment variable
@@ -364,17 +409,29 @@ export namespace composer_v1beta1 {
      * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` *
      * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
      */
-    envVariables?: any;
+    envVariables?: {[key: string]: string;};
     /**
-     * Output only. The version of the software running in the environment. This
+     * Immutable. The version of the software running in the environment. This
      * encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
-     * `composer-[0-9]+\.[0-9]+(\.[0-9]+)?-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
-     * The Cloud Composer portion of the version is a [semantic
-     * version](https://semver.org). The portion of the image version following
-     * &lt;em&gt;airflow-&lt;/em&gt; is an official Apache Airflow repository
-     * [release name](https://github.com/apache/incubator-airflow/releases). See
-     * also [Release Notes](/composer/docs/release-notes).
+     * `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
+     * When used as input, the server will also check if the provided version is
+     * supported and deny the creation request for an unsupported version.  The
+     * Cloud Composer portion of the version is a [semantic
+     * version](https://semver.org) or `latest`. The patch version can be
+     * omitted and the current Cloud Composer patch version will be selected.
+     * When `latest` is provided instead of an explicit version number, the
+     * server will replace `latest` with the current Cloud Composer version and
+     * store that version number in the same field.  The portion of the image
+     * version that follows &lt;em&gt;airflow-&lt;/em&gt; is an official Apache
+     * Airflow repository [release
+     * name](https://github.com/apache/incubator-airflow/releases).  Supported
+     * values for input are: * `composer-latest-airflow-1.10.0` *
+     * `composer-latest-airflow-1.9.0` * `composer-latest-airflow-1.10` *
+     * `composer-latest-airflow-1.9` * `composer-1.3.0-airflow-1.10.0` *
+     * `composer-1.3.0-airflow-1.9.0` * `composer-1.3.0-airflow-1.10` *
+     * `composer-1.3.0-airflow-1.9`  See also [Release
+     * Notes](/composer/docs/release-notes).
      */
     imageVersion?: string;
     /**
@@ -385,7 +442,14 @@ export namespace composer_v1beta1 {
      * &quot;[devel]&gt;=1.8.2, &lt;1.9.2&quot;. To specify a package without
      * pinning it to a version specifier, use the empty string as the value.
      */
-    pypiPackages?: any;
+    pypiPackages?: {[key: string]: string;};
+    /**
+     * Optional. The major version of Python used to run the Apache Airflow
+     * scheduler, worker, and webserver processes.  Can be set to &#39;2&#39; or
+     * &#39;3&#39;. If not specified, the default is &#39;2&#39;. Cannot be
+     * updated.
+     */
+    pythonVersion?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -432,7 +496,7 @@ export namespace composer_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -443,47 +507,25 @@ export namespace composer_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Composer;
     locations: Resource$Projects$Locations;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Composer;
     environments: Resource$Projects$Locations$Environments;
     operations: Resource$Projects$Locations$Operations;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.environments = new Resource$Projects$Locations$Environments(root);
-      this.operations = new Resource$Projects$Locations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.environments = new Resource$Projects$Locations$Environments();
+      this.operations = new Resource$Projects$Locations$Operations();
     }
   }
 
 
   export class Resource$Projects$Locations$Environments {
-    root: Composer;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -545,7 +587,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -612,7 +654,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -674,7 +716,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -744,7 +786,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
@@ -762,7 +804,7 @@ export namespace composer_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The relative resource name of the environment to update, in the form: "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
-     * @param {string=} params.updateMask Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.argparse". The included patch environment would specify the scikit-learn version as follows:      {       "config":{         "softwareConfig":{           "pypiPackages":{             "scikit-learn":"==0.19.0"           }         }       }     }  Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected.  Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows:      {       "labels":{         "label1":"new-label1-value"         "label2":"new-label2-value"       }     }  Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected.  It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following:      {       "config":{         "softwareConfig":{           "pypiPackages":{             "botocore":"==1.7.14"           }         }       }     }  <strong>Note:</strong> Only the following fields can be updated:   <table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td>config.softwareConfig.pypiPackages  </td>  <td>Replace all custom custom PyPI packages. If a replacement  package map is not included in `environment`, all custom  PyPI packages are cleared. It is an error to provide both this mask and a  mask specifying an individual package.</td>  </tr>  <tr>  <td>config.softwareConfig.pypiPackages.<var>packagename</var></td>  <td>Update the custom PyPI package <var>packagename</var>,  preserving other packages. To delete the package, include it in  `updateMask`, and omit the mapping for it in  `environment.config.softwareConfig.pypiPackages`. It is an error  to provide both a mask of this form and the  "config.softwareConfig.pypiPackages" mask.</td>  </tr>  <tr>  <td>labels</td>  <td>Replace all environment labels. If a replacement labels map is not  included in `environment`, all labels are cleared. It is an error to  provide both this mask and a mask specifying one or more individual  labels.</td>  </tr>  <tr>  <td>labels.<var>labelName</var></td>  <td>Set the label named <var>labelName</var>, while preserving other  labels. To delete the label, include it in `updateMask` and omit its  mapping in `environment.labels`. It is an error to provide both a  mask of this form and the "labels" mask.</td>  </tr>  <tr>  <td>config.nodeCount</td>  <td>Horizontally scale the number of nodes in the environment. An integer  greater than or equal to 3 must be provided in the `config.nodeCount` field.  </td>  </tr>  <tr>  <td>config.softwareConfig.airflowConfigOverrides</td>  <td>Replace all Apache Airflow config overrides. If a replacement config  overrides map is not included in `environment`, all config overrides  are cleared.  It is an error to provide both this mask and a mask specifying one or  more individual config overrides.</td>  </tr>  <tr>  <td>config.softwareConfig.properties.<var>section</var>-<var>name  </var></td>  <td>Override the Apache Airflow property <var>name</var> in the section  named <var>section</var>, preserving other properties. To delete the  property override, include it in `updateMask` and omit its mapping  in `environment.config.softwareConfig.properties`.  It is an error to provide both a mask of this form and the  "config.softwareConfig.properties" mask.</td>  </tr>  <tr>  <td>config.softwareConfig.envVariables</td>  <td>Replace all environment variables. If a replacement environment  variable map is not included in `environment`, all custom environment  variables  are cleared.  It is an error to provide both this mask and a mask specifying one or  more individual environment variables.</td>  </tr>  </tbody>  </table>
+     * @param {string=} params.updateMask Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.argparse". The included patch environment would specify the scikit-learn version as follows:      {       "config":{         "softwareConfig":{           "pypiPackages":{             "scikit-learn":"==0.19.0"           }         }       }     }  Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected.  Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows:      {       "labels":{         "label1":"new-label1-value"         "label2":"new-label2-value"       }     }  Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected.  It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following:      {       "config":{         "softwareConfig":{           "pypiPackages":{             "botocore":"==1.7.14"           }         }       }     }  <strong>Note:</strong> Only the following fields can be updated:   <table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td>config.softwareConfig.pypiPackages  </td>  <td>Replace all custom custom PyPI packages. If a replacement  package map is not included in `environment`, all custom  PyPI packages are cleared. It is an error to provide both this mask and a  mask specifying an individual package.</td>  </tr>  <tr>  <td>config.softwareConfig.pypiPackages.<var>packagename</var></td>  <td>Update the custom PyPI package <var>packagename</var>,  preserving other packages. To delete the package, include it in  `updateMask`, and omit the mapping for it in  `environment.config.softwareConfig.pypiPackages`. It is an error  to provide both a mask of this form and the  "config.softwareConfig.pypiPackages" mask.</td>  </tr>  <tr>  <td>labels</td>  <td>Replace all environment labels. If a replacement labels map is not  included in `environment`, all labels are cleared. It is an error to  provide both this mask and a mask specifying one or more individual  labels.</td>  </tr>  <tr>  <td>labels.<var>labelName</var></td>  <td>Set the label named <var>labelName</var>, while preserving other  labels. To delete the label, include it in `updateMask` and omit its  mapping in `environment.labels`. It is an error to provide both a  mask of this form and the "labels" mask.</td>  </tr>  <tr>  <td>config.nodeCount</td>  <td>Horizontally scale the number of nodes in the environment. An integer  greater than or equal to 3 must be provided in the `config.nodeCount` field.  </td>  </tr>  <tr>  <td>config.softwareConfig.airflowConfigOverrides</td>  <td>Replace all Apache Airflow config overrides. If a replacement config  overrides map is not included in `environment`, all config overrides  are cleared.  It is an error to provide both this mask and a mask specifying one or  more individual config overrides.</td>  </tr>  <tr>  <td>config.softwareConfig.airflowConfigOverrides.<var>section</var>-<var>name  </var></td>  <td>Override the Apache Airflow config property <var>name</var> in the  section named <var>section</var>, preserving other properties. To delete  the property override, include it in `updateMask` and omit its mapping  in `environment.config.softwareConfig.airflowConfigOverrides`.  It is an error to provide both a mask of this form and the  "config.softwareConfig.airflowConfigOverrides" mask.</td>  </tr>  <tr>  <td>config.softwareConfig.envVariables</td>  <td>Replace all environment variables. If a replacement environment  variable map is not included in `environment`, all custom environment  variables  are cleared.  It is an error to provide both this mask and a mask specifying one or  more individual environment variables.</td>  </tr>  </tbody>  </table>
      * @param {().Environment} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -813,7 +855,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -823,7 +865,8 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Environments$Create {
+  export interface Params$Resource$Projects$Locations$Environments$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -840,7 +883,8 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Delete {
+  export interface Params$Resource$Projects$Locations$Environments$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -852,7 +896,8 @@ export namespace composer_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Get {
+  export interface Params$Resource$Projects$Locations$Environments$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -864,7 +909,8 @@ export namespace composer_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$List {
+  export interface Params$Resource$Projects$Locations$Environments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -884,7 +930,8 @@ export namespace composer_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Patch {
+  export interface Params$Resource$Projects$Locations$Environments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -957,13 +1004,14 @@ export namespace composer_v1beta1 {
      * is not included in `environment`, all config overrides  are cleared.  It
      * is an error to provide both this mask and a mask specifying one or  more
      * individual config overrides.</td>  </tr>  <tr>
-     * <td>config.softwareConfig.properties.<var>section</var>-<var>name
-     * </var></td>  <td>Override the Apache Airflow property <var>name</var> in
-     * the section  named <var>section</var>, preserving other properties. To
-     * delete the  property override, include it in `updateMask` and omit its
-     * mapping  in `environment.config.softwareConfig.properties`.  It is an
+     * <td>config.softwareConfig.airflowConfigOverrides.<var>section</var>-<var>name
+     * </var></td>  <td>Override the Apache Airflow config property
+     * <var>name</var> in the  section named <var>section</var>, preserving
+     * other properties. To delete  the property override, include it in
+     * `updateMask` and omit its mapping  in
+     * `environment.config.softwareConfig.airflowConfigOverrides`.  It is an
      * error to provide both a mask of this form and the
-     * "config.softwareConfig.properties" mask.</td>  </tr>  <tr>
+     * "config.softwareConfig.airflowConfigOverrides" mask.</td>  </tr>  <tr>
      * <td>config.softwareConfig.envVariables</td>  <td>Replace all environment
      * variables. If a replacement environment  variable map is not included in
      * `environment`, all custom environment  variables  are cleared.  It is an
@@ -980,15 +1028,7 @@ export namespace composer_v1beta1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    root: Composer;
-    constructor(root: Composer) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1049,7 +1089,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1113,7 +1153,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1192,7 +1232,7 @@ export namespace composer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1202,7 +1242,8 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1213,7 +1254,8 @@ export namespace composer_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1224,7 +1266,8 @@ export namespace composer_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List {
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

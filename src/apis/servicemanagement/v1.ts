@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace servicemanagement_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -48,24 +100,14 @@ export namespace servicemanagement_v1 {
    * @param {object=} options Options for Servicemanagement
    */
   export class Servicemanagement {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.services = new Resource$Services();
     }
   }
 
@@ -357,6 +399,11 @@ export namespace servicemanagement_v1 {
      */
     minDeadline?: number;
     /**
+     * The number of seconds to wait for the completion of a long running
+     * operation. The default is no deadline.
+     */
+    operationDeadline?: number;
+    /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
      */
@@ -404,6 +451,13 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -421,7 +475,7 @@ export namespace servicemanagement_v1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -874,6 +928,35 @@ export namespace servicemanagement_v1 {
     authorization?: Schema$AuthorizationConfig;
   }
   /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * A single field of a message type.
    */
   export interface Schema$Field {
@@ -931,14 +1014,14 @@ export namespace servicemanagement_v1 {
      * google.api.servicemanagement.v1.ConfigRef,
      * google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
-    newConfig?: any;
+    newConfig?: {[key: string]: any;};
     /**
      * Service configuration against which the comparison will be done. For this
      * version of API, the supported types are
      * google.api.servicemanagement.v1.ConfigRef,
      * google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
-    oldConfig?: any;
+    oldConfig?: {[key: string]: any;};
   }
   /**
    * Response message for GenerateConfigReport method.
@@ -988,123 +1071,157 @@ export namespace servicemanagement_v1 {
     rules?: Schema$HttpRule[];
   }
   /**
-   * `HttpRule` defines the mapping of an RPC method to one or more HTTP REST
-   * API methods. The mapping specifies how different portions of the RPC
-   * request message are mapped to URL path, URL query parameters, and HTTP
-   * request body. The mapping is typically specified as an `google.api.http`
-   * annotation on the RPC method, see &quot;google/api/annotations.proto&quot;
-   * for details.  The mapping consists of a field specifying the path template
-   * and method kind.  The path template can refer to fields in the request
-   * message, as in the example below which describes a REST GET operation on a
-   * resource collection of messages:       service Messaging {       rpc
+   * # gRPC Transcoding  gRPC Transcoding is a feature for mapping between a
+   * gRPC method and one or more HTTP REST endpoints. It allows developers to
+   * build a single API service that supports both gRPC APIs and REST APIs. Many
+   * systems, including [Google APIs](https://github.com/googleapis/googleapis),
+   * [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC
+   * Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and
+   * [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and
+   * use it for large scale production services.  `HttpRule` defines the schema
+   * of the gRPC/REST mapping. The mapping specifies how different portions of
+   * the gRPC request message are mapped to the URL path, URL query parameters,
+   * and HTTP request body. It also controls how the gRPC response message is
+   * mapped to the HTTP response body. `HttpRule` is typically specified as an
+   * `google.api.http` annotation on the gRPC method.  Each mapping specifies a
+   * URL path template and an HTTP method. The path template may refer to one or
+   * more fields in the gRPC request message, as long as each field is a
+   * non-repeated field with a primitive (non-message) type. The path template
+   * controls how fields of the request message are mapped to the URL path.
+   * Example:      service Messaging {       rpc GetMessage(GetMessageRequest)
+   * returns (Message) {         option (google.api.http) = {             get:
+   * &quot;/v1/{name=messages/*}&quot;         };       }     }     message
+   * GetMessageRequest {       string name = 1; // Mapped to URL path.     }
+   * message Message {       string text = 1; // The resource content.     }
+   * This enables an HTTP REST to gRPC mapping as below:  HTTP | gRPC
+   * -----|----- `GET /v1/messages/123456`  | `GetMessage(name:
+   * &quot;messages/123456&quot;)`  Any fields in the request message which are
+   * not bound by the path template automatically become HTTP query parameters
+   * if there is no HTTP request body. For example:      service Messaging { rpc
    * GetMessage(GetMessageRequest) returns (Message) {         option
-   * (google.api.http).get =
-   * &quot;/v1/messages/{message_id}/{sub.subfield}&quot;;       }     } message
-   * GetMessageRequest {       message SubMessage {         string subfield = 1;
-   * }       string message_id = 1; // mapped to the URL       SubMessage sub =
-   * 2;    // `sub.subfield` is url-mapped     }     message Message { string
-   * text = 1; // content of the resource     }  The same http annotation can
-   * alternatively be expressed inside the `GRPC API Configuration` YAML file.
-   * http:       rules:         - selector:
-   * &lt;proto_package_name&gt;.Messaging.GetMessage           get:
-   * /v1/messages/{message_id}/{sub.subfield}  This definition enables an
-   * automatic, bidrectional mapping of HTTP JSON to RPC. Example:  HTTP | RPC
-   * -----|----- `GET /v1/messages/123456/foo`  | `GetMessage(message_id:
-   * &quot;123456&quot; sub: SubMessage(subfield: &quot;foo&quot;))`  In
-   * general, not only fields but also field paths can be referenced from a path
-   * pattern. Fields mapped to the path pattern cannot be repeated and must have
-   * a primitive (non-message) type.  Any fields in the request message which
-   * are not bound by the path pattern automatically become (optional) HTTP
-   * query parameters. Assume the following definition of the request message:
-   * service Messaging {       rpc GetMessage(GetMessageRequest) returns
-   * (Message) {         option (google.api.http).get =
-   * &quot;/v1/messages/{message_id}&quot;;       }     }     message
-   * GetMessageRequest {       message SubMessage {         string subfield = 1;
-   * }       string message_id = 1; // mapped to the URL       int64 revision =
-   * 2;    // becomes a parameter       SubMessage sub = 3;    // `sub.subfield`
-   * becomes a parameter     }   This enables a HTTP JSON to RPC mapping as
-   * below:  HTTP | RPC -----|----- `GET
+   * (google.api.http) = {             get:&quot;/v1/messages/{message_id}&quot;
+   * };       }     }     message GetMessageRequest {       message SubMessage {
+   * string subfield = 1;       }       string message_id = 1; // Mapped to URL
+   * path.       int64 revision = 2;    // Mapped to URL query parameter
+   * `revision`.       SubMessage sub = 3;    // Mapped to URL query parameter
+   * `sub.subfield`.     }  This enables a HTTP JSON to RPC mapping as below:
+   * HTTP | gRPC -----|----- `GET
    * /v1/messages/123456?revision=2&amp;sub.subfield=foo` |
    * `GetMessage(message_id: &quot;123456&quot; revision: 2 sub:
    * SubMessage(subfield: &quot;foo&quot;))`  Note that fields which are mapped
-   * to HTTP parameters must have a primitive type or a repeated primitive type.
-   * Message types are not allowed. In the case of a repeated type, the
-   * parameter can be repeated in the URL, as in `...?param=A&amp;param=B`.  For
-   * HTTP method kinds which allow a request body, the `body` field specifies
-   * the mapping. Consider a REST update method on the message resource
-   * collection:       service Messaging {       rpc
-   * UpdateMessage(UpdateMessageRequest) returns (Message) {         option
-   * (google.api.http) = {           put: &quot;/v1/messages/{message_id}&quot;
-   * body: &quot;message&quot;         };       }     }     message
-   * UpdateMessageRequest {       string message_id = 1; // mapped to the URL
-   * Message message = 2;   // mapped to the body     }   The following HTTP
-   * JSON to RPC mapping is enabled, where the representation of the JSON in the
-   * request body is determined by protos JSON encoding:  HTTP | RPC -----|-----
-   * `PUT /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` |
-   * `UpdateMessage(message_id: &quot;123456&quot; message { text:
-   * &quot;Hi!&quot; })`  The special name `*` can be used in the body mapping
-   * to define that every field not bound by the path template should be mapped
-   * to the request body.  This enables the following alternative definition of
-   * the update method:      service Messaging {       rpc
-   * UpdateMessage(Message) returns (Message) {         option (google.api.http)
-   * = {           put: &quot;/v1/messages/{message_id}&quot;           body:
-   * &quot;*&quot;         };       }     }     message Message {       string
-   * message_id = 1;       string text = 2;     }   The following HTTP JSON to
-   * RPC mapping is enabled:  HTTP | RPC -----|----- `PUT /v1/messages/123456 {
+   * to URL query parameters must have a primitive type or a repeated primitive
+   * type or a non-repeated message type. In the case of a repeated type, the
+   * parameter can be repeated in the URL as `...?param=A&amp;param=B`. In the
+   * case of a message type, each field of the message is mapped to a separate
+   * parameter, such as `...?foo.a=A&amp;foo.b=B&amp;foo.c=C`.  For HTTP methods
+   * that allow a request body, the `body` field specifies the mapping. Consider
+   * a REST update method on the message resource collection:      service
+   * Messaging {       rpc UpdateMessage(UpdateMessageRequest) returns (Message)
+   * {         option (google.api.http) = {           patch:
+   * &quot;/v1/messages/{message_id}&quot;           body: &quot;message&quot;
+   * };       }     }     message UpdateMessageRequest {       string message_id
+   * = 1; // mapped to the URL       Message message = 2;   // mapped to the
+   * body     }  The following HTTP JSON to RPC mapping is enabled, where the
+   * representation of the JSON in the request body is determined by protos JSON
+   * encoding:  HTTP | gRPC -----|----- `PATCH /v1/messages/123456 {
    * &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id:
-   * &quot;123456&quot; text: &quot;Hi!&quot;)`  Note that when using `*` in the
-   * body mapping, it is not possible to have HTTP parameters, as all fields not
-   * bound by the path end in the body. This makes this option more rarely used
-   * in practice of defining REST APIs. The common usage of `*` is in custom
-   * methods which don&#39;t use the URL at all for transferring data.  It is
-   * possible to define multiple HTTP methods for one RPC by using the
-   * `additional_bindings` option. Example:      service Messaging {       rpc
-   * GetMessage(GetMessageRequest) returns (Message) {         option
-   * (google.api.http) = {           get: &quot;/v1/messages/{message_id}&quot;
-   * additional_bindings {             get:
+   * &quot;123456&quot; message { text: &quot;Hi!&quot; })`  The special name
+   * `*` can be used in the body mapping to define that every field not bound by
+   * the path template should be mapped to the request body.  This enables the
+   * following alternative definition of the update method:      service
+   * Messaging {       rpc UpdateMessage(Message) returns (Message) { option
+   * (google.api.http) = {           patch:
+   * &quot;/v1/messages/{message_id}&quot;           body: &quot;*&quot; }; } }
+   * message Message {       string message_id = 1;       string text = 2;     }
+   * The following HTTP JSON to RPC mapping is enabled:  HTTP | gRPC -----|-----
+   * `PATCH /v1/messages/123456 { &quot;text&quot;: &quot;Hi!&quot; }` |
+   * `UpdateMessage(message_id: &quot;123456&quot; text: &quot;Hi!&quot;)`  Note
+   * that when using `*` in the body mapping, it is not possible to have HTTP
+   * parameters, as all fields not bound by the path end in the body. This makes
+   * this option more rarely used in practice when defining REST APIs. The
+   * common usage of `*` is in custom methods which don&#39;t use the URL at all
+   * for transferring data.  It is possible to define multiple HTTP methods for
+   * one RPC by using the `additional_bindings` option. Example:      service
+   * Messaging {       rpc GetMessage(GetMessageRequest) returns (Message) {
+   * option (google.api.http) = {           get:
+   * &quot;/v1/messages/{message_id}&quot;           additional_bindings { get:
    * &quot;/v1/users/{user_id}/messages/{message_id}&quot;           } }; } }
    * message GetMessageRequest {       string message_id = 1;       string
-   * user_id = 2;     }   This enables the following two alternative HTTP JSON
-   * to RPC mappings:  HTTP | RPC -----|----- `GET /v1/messages/123456` |
+   * user_id = 2;     }  This enables the following two alternative HTTP JSON to
+   * RPC mappings:  HTTP | gRPC -----|----- `GET /v1/messages/123456` |
    * `GetMessage(message_id: &quot;123456&quot;)` `GET
    * /v1/users/me/messages/123456` | `GetMessage(user_id: &quot;me&quot;
-   * message_id: &quot;123456&quot;)`  # Rules for HTTP mapping  The rules for
-   * mapping HTTP path, query parameters, and body fields to the request message
-   * are as follows:  1. The `body` field specifies either `*` or a field path,
-   * or is    omitted. If omitted, it indicates there is no HTTP request
-   * body. 2. Leaf fields (recursive expansion of nested messages in the
-   * request) can be classified into three types:     (a) Matched in the URL
-   * template.     (b) Covered by body (if body is `*`, everything except (a)
-   * fields;         else everything under the body field)     (c) All other
-   * fields. 3. URL query parameters found in the HTTP request are mapped to (c)
-   * fields. 4. Any body sent with an HTTP request can contain only (b) fields.
-   * The syntax of the path template is as follows:      Template =
+   * message_id: &quot;123456&quot;)`  ## Rules for HTTP mapping  1. Leaf
+   * request fields (recursive expansion nested messages in the request message)
+   * are classified into three categories:    - Fields referred by the path
+   * template. They are passed via the URL path.    - Fields referred by the
+   * HttpRule.body. They are passed via the HTTP      request body.    - All
+   * other fields are passed via the URL query parameters, and the parameter
+   * name is the field path in the request message. A repeated      field can be
+   * represented as multiple query parameters under the same      name.  2. If
+   * HttpRule.body is &quot;*&quot;, there is no URL query parameter, all fields
+   * are passed via URL path and HTTP request body.  3. If HttpRule.body is
+   * omitted, there is no HTTP request body, all     fields are passed via URL
+   * path and URL query parameters.  ### Path template syntax      Template =
    * &quot;/&quot; Segments [ Verb ] ;     Segments = Segment { &quot;/&quot;
    * Segment } ;     Segment  = &quot;*&quot; | &quot;**&quot; | LITERAL |
    * Variable ;     Variable = &quot;{&quot; FieldPath [ &quot;=&quot; Segments
    * ] &quot;}&quot; ;     FieldPath = IDENT { &quot;.&quot; IDENT } ;     Verb
-   * = &quot;:&quot; LITERAL ;  The syntax `*` matches a single path segment.
-   * The syntax `**` matches zero or more path segments, which must be the last
-   * part of the path except the `Verb`. The syntax `LITERAL` matches literal
-   * text in the path.  The syntax `Variable` matches part of the URL path as
-   * specified by its template. A variable template must not contain other
-   * variables. If a variable matches a single path segment, its template may be
-   * omitted, e.g. `{var}` is equivalent to `{var=*}`.  If a variable contains
-   * exactly one path segment, such as `&quot;{var}&quot;` or
-   * `&quot;{var=*}&quot;`, when such a variable is expanded into a URL path,
-   * all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. Such variables
-   * show up in the Discovery Document as `{var}`.  If a variable contains one
-   * or more path segments, such as `&quot;{var=foo/*}&quot;` or
-   * `&quot;{var=**}&quot;`, when such a variable is expanded into a URL path,
-   * all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. Such
-   * variables show up in the Discovery Document as `{+var}`.  NOTE: While the
-   * single segment variable matches the semantics of [RFC
+   * = &quot;:&quot; LITERAL ;  The syntax `*` matches a single URL path
+   * segment. The syntax `**` matches zero or more URL path segments, which must
+   * be the last part of the URL path except the `Verb`.  The syntax `Variable`
+   * matches part of the URL path as specified by its template. A variable
+   * template must not contain other variables. If a variable matches a single
+   * path segment, its template may be omitted, e.g. `{var}` is equivalent to
+   * `{var=*}`.  The syntax `LITERAL` matches literal text in the URL path. If
+   * the `LITERAL` contains any reserved character, such characters should be
+   * percent-encoded before the matching.  If a variable contains exactly one
+   * path segment, such as `&quot;{var}&quot;` or `&quot;{var=*}&quot;`, when
+   * such a variable is expanded into a URL path on the client side, all
+   * characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side
+   * does the reverse decoding. Such variables show up in the [Discovery
+   * Document](https://developers.google.com/discovery/v1/reference/apis) as
+   * `{var}`.  If a variable contains multiple path segments, such as
+   * `&quot;{var=foo/*}&quot;` or `&quot;{var=**}&quot;`, when such a variable
+   * is expanded into a URL path on the client side, all characters except
+   * `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse
+   * decoding, except &quot;%2F&quot; and &quot;%2f&quot; are left unchanged.
+   * Such variables show up in the [Discovery
+   * Document](https://developers.google.com/discovery/v1/reference/apis) as
+   * `{+var}`.  ## Using gRPC API Service Configuration  gRPC API Service
+   * Configuration (service config) is a configuration language for configuring
+   * a gRPC service to become a user-facing product. The service config is
+   * simply the YAML representation of the `google.api.Service` proto message.
+   * As an alternative to annotating your proto file, you can configure gRPC
+   * transcoding in your service config YAML files. You do this by specifying a
+   * `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same
+   * effect as the proto annotation. This can be particularly useful if you have
+   * a proto that is reused in multiple services. Note that any transcoding
+   * specified in the service config will override any matching transcoding
+   * configuration in the proto.  Example:      http:       rules:         #
+   * Selects a gRPC method and applies HttpRule to it.         - selector:
+   * example.v1.Messaging.GetMessage           get:
+   * /v1/messages/{message_id}/{sub.subfield}  ## Special notes  When gRPC
+   * Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON
+   * conversion must follow the [proto3
+   * specification](https://developers.google.com/protocol-buffers/docs/proto3#json).
+   * While the single segment variable follows the semantics of [RFC
    * 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String
-   * Expansion, the multi segment variable **does not** match RFC 6570 Reserved
-   * Expansion. The reason is that the Reserved Expansion does not expand
-   * special characters like `?` and `#`, which would lead to invalid URLs.
-   * NOTE: the field paths in variables and in the `body` must not refer to
-   * repeated fields or map fields.
+   * Expansion, the multi segment variable **does not** follow RFC 6570
+   * Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion
+   * does not expand special characters like `?` and `#`, which would lead to
+   * invalid URLs. As the result, gRPC Transcoding uses a custom encoding for
+   * multi segment variables.  The path variables **must not** refer to any
+   * repeated or mapped field, because client libraries are not capable of
+   * handling such variable expansion.  The path variables **must not** capture
+   * the leading &quot;/&quot; character. The reason is that the most common use
+   * case &quot;{var}&quot; does not capture the leading &quot;/&quot;
+   * character. For consistency, all path variables must share the same
+   * behavior.  Repeated message fields must not be mapped to URL query
+   * parameters, because no client library can support such complicated mapping.
+   * If an API needs to use a JSON array for request or response body, it can
+   * map the request or response body to a repeated field. However, some gRPC
+   * Transcoding implementations may not support this feature.
    */
   export interface Schema$HttpRule {
     /**
@@ -1114,10 +1231,11 @@ export namespace servicemanagement_v1 {
      */
     additionalBindings?: Schema$HttpRule[];
     /**
-     * The name of the request field whose value is mapped to the HTTP body, or
-     * `*` for mapping all fields not captured by the path pattern to the HTTP
-     * body. NOTE: the referred field must not be a repeated field and must be
-     * present at the top-level of request message type.
+     * The name of the request field whose value is mapped to the HTTP request
+     * body, or `*` for mapping all request fields not captured by the path
+     * pattern to the HTTP body, or omitted for not having any HTTP request
+     * body.  NOTE: the referred field must be present at the top-level of the
+     * request message type.
      */
     body?: string;
     /**
@@ -1128,40 +1246,36 @@ export namespace servicemanagement_v1 {
      */
     custom?: Schema$CustomHttpPattern;
     /**
-     * Used for deleting a resource.
+     * Maps to HTTP DELETE. Used for deleting a resource.
      */
     delete?: string;
     /**
-     * Used for listing and getting information about resources.
+     * Maps to HTTP GET. Used for listing and getting information about
+     * resources.
      */
     get?: string;
     /**
-     * Use this only for Scotty Requests. Do not use this for bytestream
-     * methods. For media support, add instead
-     * [][google.bytestream.RestByteStream] as an API to your configuration.
-     */
-    mediaDownload?: Schema$MediaDownload;
-    /**
-     * Use this only for Scotty Requests. Do not use this for media support
-     * using Bytestream, add instead [][google.bytestream.RestByteStream] as an
-     * API to your configuration for Bytestream methods.
-     */
-    mediaUpload?: Schema$MediaUpload;
-    /**
-     * Used for updating a resource.
+     * Maps to HTTP PATCH. Used for updating a resource.
      */
     patch?: string;
     /**
-     * Used for creating a resource.
+     * Maps to HTTP POST. Used for creating a resource or performing an action.
      */
     post?: string;
     /**
-     * Used for updating a resource.
+     * Maps to HTTP PUT. Used for replacing a resource.
      */
     put?: string;
     /**
-     * Selects methods to which this rule applies.  Refer to selector for syntax
-     * details.
+     * Optional. The name of the response field whose value is mapped to the
+     * HTTP response body. When omitted, the entire response message will be
+     * used as the HTTP response body.  NOTE: The referred field must be present
+     * at the top-level of the response message type.
+     */
+    responseBody?: string;
+    /**
+     * Selects a method to which this rule applies.  Refer to selector for
+     * syntax details.
      */
     selector?: string;
   }
@@ -1330,87 +1444,6 @@ export namespace servicemanagement_v1 {
     serviceName?: string;
   }
   /**
-   * Defines the Media configuration for a service in case of a download. Use
-   * this only for Scotty Requests. Do not use this for media support using
-   * Bytestream, add instead [][google.bytestream.RestByteStream] as an API to
-   * your configuration for Bytestream methods.
-   */
-  export interface Schema$MediaDownload {
-    /**
-     * A boolean that determines whether a notification for the completion of a
-     * download should be sent to the backend.
-     */
-    completeNotification?: boolean;
-    /**
-     * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
-     * name of the download service if one is used for download.
-     */
-    downloadService?: string;
-    /**
-     * Name of the Scotty dropzone to use for the current API.
-     */
-    dropzone?: string;
-    /**
-     * Whether download is enabled.
-     */
-    enabled?: boolean;
-    /**
-     * Optional maximum acceptable size for direct download. The size is
-     * specified in bytes.
-     */
-    maxDirectDownloadSize?: string;
-    /**
-     * A boolean that determines if direct download from ESF should be used for
-     * download of this media.
-     */
-    useDirectDownload?: boolean;
-  }
-  /**
-   * Defines the Media configuration for a service in case of an upload. Use
-   * this only for Scotty Requests. Do not use this for media support using
-   * Bytestream, add instead [][google.bytestream.RestByteStream] as an API to
-   * your configuration for Bytestream methods.
-   */
-  export interface Schema$MediaUpload {
-    /**
-     * A boolean that determines whether a notification for the completion of an
-     * upload should be sent to the backend. These notifications will not be
-     * seen by the client and will not consume quota.
-     */
-    completeNotification?: boolean;
-    /**
-     * Name of the Scotty dropzone to use for the current API.
-     */
-    dropzone?: string;
-    /**
-     * Whether upload is enabled.
-     */
-    enabled?: boolean;
-    /**
-     * Optional maximum acceptable size for an upload. The size is specified in
-     * bytes.
-     */
-    maxSize?: string;
-    /**
-     * An array of mimetype patterns. Esf will only accept uploads that match
-     * one of the given patterns.
-     */
-    mimeTypes?: string[];
-    /**
-     * Whether to receive a notification for progress changes of media upload.
-     */
-    progressNotification?: boolean;
-    /**
-     * Whether to receive a notification on the start of media upload.
-     */
-    startNotification?: boolean;
-    /**
-     * DO NOT USE FIELDS BELOW THIS LINE UNTIL THIS WARNING IS REMOVED.  Specify
-     * name of the upload service if one is used for upload.
-     */
-    uploadService?: string;
-  }
-  /**
    * Method represents a method of an API interface.
    */
   export interface Schema$Method {
@@ -1469,6 +1502,10 @@ export namespace servicemanagement_v1 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of `metric_kind` and `value_type` might not be
      * supported.
@@ -1480,10 +1517,11 @@ export namespace servicemanagement_v1 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded.  All user-defined custom metric types have the DNS name
-     * `custom.googleapis.com`.  Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded.  All user-defined metric types have the DNS name
+     * `custom.googleapis.com` or `external.googleapis.com`.  Metric types
+     * should use a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -1523,6 +1561,28 @@ export namespace servicemanagement_v1 {
     valueType?: string;
   }
   /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
+  }
+  /**
    * Bind API methods to metrics. Binding a method to a metric causes that
    * metric&#39;s configured quota behaviors to apply to the method call.
    */
@@ -1533,7 +1593,7 @@ export namespace servicemanagement_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: any;
+    metricCosts?: {[key: string]: string;};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1734,7 +1794,7 @@ export namespace servicemanagement_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1750,7 +1810,7 @@ export namespace servicemanagement_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * The metadata associated with a long running operation resource.
@@ -1793,7 +1853,7 @@ export namespace servicemanagement_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: any;
+    value?: {[key: string]: any;};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1877,14 +1937,15 @@ export namespace servicemanagement_v1 {
    * defines a set of metrics. - For API calls, the quota.metric_rules maps
    * methods to metrics with   corresponding costs. - The quota.limits defines
    * limits on the metrics, which will be used for   quota checks at runtime. An
-   * example quota configuration in yaml format:     quota:       - name:
-   * apiWriteQpsPerProject        metric: library.googleapis.com/write_calls
-   * unit: &quot;1/min/{project}&quot;  # rate limit for consumer projects
-   * values:          STANDARD: 10000        # The metric rules bind all methods
-   * to the read_calls metric,      # except for the UpdateBook and DeleteBook
-   * methods. These two methods      # are mapped to the write_calls metric,
-   * with the UpdateBook method      # consuming at twice rate as the DeleteBook
-   * method.      metric_rules:      - selector: &quot;*&quot; metric_costs:
+   * example quota configuration in yaml format:     quota:      limits:       -
+   * name: apiWriteQpsPerProject        metric:
+   * library.googleapis.com/write_calls        unit: &quot;1/min/{project}&quot;
+   * # rate limit for consumer projects        values:          STANDARD: 10000
+   * # The metric rules bind all methods to the read_calls metric,      # except
+   * for the UpdateBook and DeleteBook methods. These two methods      # are
+   * mapped to the write_calls metric, with the UpdateBook method      #
+   * consuming at twice rate as the DeleteBook method.      metric_rules:      -
+   * selector: &quot;*&quot;        metric_costs:
    * library.googleapis.com/read_calls: 1      - selector:
    * google.example.library.v1.LibraryService.UpdateBook        metric_costs:
    * library.googleapis.com/write_calls: 2      - selector:
@@ -1989,7 +2050,7 @@ export namespace servicemanagement_v1 {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: any;
+    values?: {[key: string]: string;};
   }
   /**
    * A rollout resource that defines how service configuration versions are
@@ -2118,7 +2179,7 @@ export namespace servicemanagement_v1 {
     /**
      * A unique ID for a specific instance of this message, typically assigned
      * by the client for tracking purpose. If empty, the server may choose to
-     * generate one instead.
+     * generate one instead. Must be no longer than 60 characters.
      */
     id?: string;
     /**
@@ -2226,7 +2287,7 @@ export namespace servicemanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: any[];
+    sourceFiles?: Array<{[key: string]: any;}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2273,7 +2334,7 @@ export namespace servicemanagement_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2425,7 +2486,7 @@ export namespace servicemanagement_v1 {
      * Key is the service configuration ID, Value is the traffic percentage
      * which must be greater than 0.0 and the sum must equal to 100.0.
      */
-    percentages?: any;
+    percentages?: {[key: string]: number;};
   }
   /**
    * A protocol buffer message type.
@@ -2527,15 +2588,7 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Operations {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2592,7 +2645,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2662,7 +2715,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2672,7 +2725,7 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2683,7 +2736,7 @@ export namespace servicemanagement_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2723,20 +2776,13 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services {
-    root: Servicemanagement;
     configs: Resource$Services$Configs;
     consumers: Resource$Services$Consumers;
     rollouts: Resource$Services$Rollouts;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.configs = new Resource$Services$Configs(root);
-      this.consumers = new Resource$Services$Consumers(root);
-      this.rollouts = new Resource$Services$Rollouts(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.configs = new Resource$Services$Configs();
+      this.consumers = new Resource$Services$Consumers();
+      this.rollouts = new Resource$Services$Rollouts();
     }
 
 
@@ -2796,7 +2842,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2866,7 +2912,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2936,7 +2982,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3005,7 +3051,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3088,7 +3134,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateConfigReportResponse>(
@@ -3154,7 +3200,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedService>(parameters, callback);
@@ -3171,7 +3217,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.configId The id of the service configuration resource.
+     * @param {string=} params.configId The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3223,7 +3269,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3292,7 +3338,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3366,7 +3412,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -3435,7 +3481,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3514,7 +3560,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3586,7 +3632,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3596,7 +3642,7 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Create {
+  export interface Params$Resource$Services$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3608,7 +3654,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$ManagedService;
   }
-  export interface Params$Resource$Services$Delete {
+  export interface Params$Resource$Services$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3621,7 +3667,7 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Disable {
+  export interface Params$Resource$Services$Disable extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3638,7 +3684,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$DisableServiceRequest;
   }
-  export interface Params$Resource$Services$Enable {
+  export interface Params$Resource$Services$Enable extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3655,7 +3701,8 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$EnableServiceRequest;
   }
-  export interface Params$Resource$Services$Generateconfigreport {
+  export interface Params$Resource$Services$Generateconfigreport extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3667,7 +3714,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$GenerateConfigReportRequest;
   }
-  export interface Params$Resource$Services$Get {
+  export interface Params$Resource$Services$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3679,14 +3726,16 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Getconfig {
+  export interface Params$Resource$Services$Getconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The id of the service configuration resource.
+     * The id of the service configuration resource.  This field must be
+     * specified for the server to return all fields, including `SourceInfo`.
      */
     configId?: string;
     /**
@@ -3701,7 +3750,8 @@ export namespace servicemanagement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Getiampolicy {
+  export interface Params$Resource$Services$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3718,7 +3768,7 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$List {
+  export interface Params$Resource$Services$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3744,7 +3794,8 @@ export namespace servicemanagement_v1 {
      */
     producerProjectId?: string;
   }
-  export interface Params$Resource$Services$Setiampolicy {
+  export interface Params$Resource$Services$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3761,7 +3812,8 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Testiampermissions {
+  export interface Params$Resource$Services$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3778,7 +3830,8 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Services$Undelete {
+  export interface Params$Resource$Services$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3792,15 +3845,7 @@ export namespace servicemanagement_v1 {
   }
 
   export class Resource$Services$Configs {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3866,7 +3911,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3883,7 +3928,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.configId The id of the service configuration resource.
+     * @param {string} params.configId The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3931,7 +3976,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'configId'],
         pathParams: ['configId', 'serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -4007,7 +4052,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceConfigsResponse>(
@@ -4084,7 +4129,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4094,7 +4139,8 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Configs$Create {
+  export interface Params$Resource$Services$Configs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4112,14 +4158,16 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Services$Configs$Get {
+  export interface Params$Resource$Services$Configs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The id of the service configuration resource.
+     * The id of the service configuration resource.  This field must be
+     * specified for the server to return all fields, including `SourceInfo`.
      */
     configId?: string;
     /**
@@ -4134,7 +4182,8 @@ export namespace servicemanagement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Configs$List {
+  export interface Params$Resource$Services$Configs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4155,7 +4204,8 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Configs$Submit {
+  export interface Params$Resource$Services$Configs$Submit extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4176,15 +4226,7 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Consumers {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4246,7 +4288,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4315,7 +4357,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4395,7 +4437,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4406,7 +4448,8 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Consumers$Getiampolicy {
+  export interface Params$Resource$Services$Consumers$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4423,7 +4466,8 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Consumers$Setiampolicy {
+  export interface Params$Resource$Services$Consumers$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4440,7 +4484,8 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Consumers$Testiampermissions {
+  export interface Params$Resource$Services$Consumers$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4460,15 +4505,7 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Rollouts {
-    root: Servicemanagement;
-    constructor(root: Servicemanagement) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4539,7 +4576,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4603,7 +4640,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'rolloutId'],
         pathParams: ['rolloutId', 'serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Rollout>(parameters, callback);
@@ -4680,7 +4717,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceRolloutsResponse>(
@@ -4691,7 +4728,8 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Rollouts$Create {
+  export interface Params$Resource$Services$Rollouts$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4709,7 +4747,8 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$Rollout;
   }
-  export interface Params$Resource$Services$Rollouts$Get {
+  export interface Params$Resource$Services$Rollouts$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4726,7 +4765,8 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Rollouts$List {
+  export interface Params$Resource$Services$Rollouts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

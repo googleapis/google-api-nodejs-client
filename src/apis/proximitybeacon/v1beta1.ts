@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace proximitybeacon_v1beta1 {
   export interface Options extends GlobalOptions {
     version: 'v1beta1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,28 +98,18 @@ export namespace proximitybeacon_v1beta1 {
    * @param {object=} options Options for Proximitybeacon
    */
   export class Proximitybeacon {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     beaconinfo: Resource$Beaconinfo;
     beacons: Resource$Beacons;
     namespaces: Resource$Namespaces;
     v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.beaconinfo = new Resource$Beaconinfo(this);
-      this.beacons = new Resource$Beacons(this);
-      this.namespaces = new Resource$Namespaces(this);
-      this.v1beta1 = new Resource$V1beta1(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.beaconinfo = new Resource$Beaconinfo();
+      this.beacons = new Resource$Beacons();
+      this.namespaces = new Resource$Namespaces();
+      this.v1beta1 = new Resource$V1beta1();
     }
   }
 
@@ -181,7 +223,7 @@ export namespace proximitybeacon_v1beta1 {
      * Properties of the beacon device, for example battery type or firmware
      * version. Optional.
      */
-    properties?: any;
+    properties?: {[key: string]: string;};
     /**
      * Some beacons may require a user to provide an authorization key before
      * changing any of its configuration (e.g. broadcast frames, transmit
@@ -263,23 +305,25 @@ export namespace proximitybeacon_v1beta1 {
     beaconName?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -569,15 +613,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beaconinfo {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -652,7 +688,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
@@ -664,7 +700,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beaconinfo$Getforobserved {
+  export interface Params$Resource$Beaconinfo$Getforobserved extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -679,18 +716,11 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beacons {
-    root: Proximitybeacon;
     attachments: Resource$Beacons$Attachments;
     diagnostics: Resource$Beacons$Diagnostics;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.attachments = new Resource$Beacons$Attachments(root);
-      this.diagnostics = new Resource$Beacons$Diagnostics(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.attachments = new Resource$Beacons$Attachments();
+      this.diagnostics = new Resource$Beacons$Diagnostics();
     }
 
 
@@ -757,7 +787,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -832,7 +862,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -906,7 +936,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -978,7 +1008,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1050,7 +1080,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1123,7 +1153,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconsResponse>(parameters, callback);
@@ -1195,7 +1225,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1271,7 +1301,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1281,7 +1311,7 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beacons$Activate {
+  export interface Params$Resource$Beacons$Activate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1303,7 +1333,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Deactivate {
+  export interface Params$Resource$Beacons$Deactivate extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1325,7 +1356,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Decommission {
+  export interface Params$Resource$Beacons$Decommission extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1347,7 +1379,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Delete {
+  export interface Params$Resource$Beacons$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1368,7 +1400,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Get {
+  export interface Params$Resource$Beacons$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1390,7 +1422,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$List {
+  export interface Params$Resource$Beacons$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1464,7 +1496,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     q?: string;
   }
-  export interface Params$Resource$Beacons$Register {
+  export interface Params$Resource$Beacons$Register extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1482,7 +1514,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     requestBody?: Schema$Beacon;
   }
-  export interface Params$Resource$Beacons$Update {
+  export interface Params$Resource$Beacons$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1511,15 +1543,7 @@ export namespace proximitybeacon_v1beta1 {
   }
 
   export class Resource$Beacons$Attachments {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1593,7 +1617,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteAttachmentsResponse>(
@@ -1674,7 +1698,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BeaconAttachment>(parameters, callback);
@@ -1749,7 +1773,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['attachmentName'],
         pathParams: ['attachmentName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1832,7 +1856,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconAttachmentsResponse>(
@@ -1844,7 +1868,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beacons$Attachments$Batchdelete {
+  export interface Params$Resource$Beacons$Attachments$Batchdelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1874,7 +1899,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Attachments$Create {
+  export interface Params$Resource$Beacons$Attachments$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1901,7 +1927,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     requestBody?: Schema$BeaconAttachment;
   }
-  export interface Params$Resource$Beacons$Attachments$Delete {
+  export interface Params$Resource$Beacons$Attachments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1921,7 +1948,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Beacons$Attachments$List {
+  export interface Params$Resource$Beacons$Attachments$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1954,15 +1982,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beacons$Diagnostics {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2034,7 +2054,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDiagnosticsResponse>(parameters, callback);
@@ -2044,7 +2064,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Beacons$Diagnostics$List {
+  export interface Params$Resource$Beacons$Diagnostics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2080,15 +2101,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Namespaces {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2154,7 +2167,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNamespacesResponse>(parameters, callback);
@@ -2224,7 +2237,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['namespaceName'],
         pathParams: ['namespaceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Namespace>(parameters, callback);
@@ -2234,7 +2247,7 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Namespaces$List {
+  export interface Params$Resource$Namespaces$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2245,7 +2258,8 @@ export namespace proximitybeacon_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Namespaces$Update {
+  export interface Params$Resource$Namespaces$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2271,15 +2285,7 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$V1beta1 {
-    root: Proximitybeacon;
-    constructor(root: Proximitybeacon) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2350,7 +2356,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$EphemeralIdRegistrationParams>(
@@ -2362,7 +2368,8 @@ export namespace proximitybeacon_v1beta1 {
     }
   }
 
-  export interface Params$Resource$V1beta1$Geteidparams {
+  export interface Params$Resource$V1beta1$Geteidparams extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

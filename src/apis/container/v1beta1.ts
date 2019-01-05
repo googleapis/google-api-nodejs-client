@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,12 +29,64 @@ export namespace container_v1beta1 {
     version: 'v1beta1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Kubernetes Engine API
    *
-   * The Google Kubernetes Engine API is used for building and managing
-   * container based applications, powered by the open source Kubernetes
-   * technology.
+   * Builds and manages container-based applications, powered by the open source
+   * Kubernetes technology.
    *
    * @example
    * const {google} = require('googleapis');
@@ -48,22 +99,12 @@ export namespace container_v1beta1 {
    * @param {object=} options Options for Container
    */
   export class Container {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -193,6 +234,10 @@ export namespace container_v1beta1 {
      */
     addonsConfig?: Schema$AddonsConfig;
     /**
+     * Cluster-level autoscaling configuration.
+     */
+    autoscaling?: Schema$ClusterAutoscaling;
+    /**
      * Configuration for Binary Authorization.
      */
     binaryAuthorization?: Schema$BinaryAuthorization;
@@ -204,6 +249,10 @@ export namespace container_v1beta1 {
      */
     clusterIpv4Cidr?: string;
     /**
+     * Which conditions caused the current cluster state.
+     */
+    conditions?: Schema$StatusCondition[];
+    /**
      * [Output only] The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
@@ -213,16 +262,24 @@ export namespace container_v1beta1 {
      */
     currentMasterVersion?: string;
     /**
-     * [Output only] The number of nodes currently in the cluster.
+     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Call Kubernetes API directly to retrieve node information.
      */
     currentNodeCount?: number;
     /**
-     * [Output only] The current version of the node software components. If
-     * they are currently at multiple versions because they&#39;re in the
-     * process of being upgraded, this reflects the minimum version of all
-     * nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1beta1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they&#39;re in the process of
+     * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
+    /**
+     * The default constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool of this cluster. Only honored
+     * if cluster created with IP Alias support.
+     */
+    defaultMaxPodsConstraint?: Schema$MaxPodsConstraint;
     /**
      * An optional description of this cluster.
      */
@@ -235,6 +292,10 @@ export namespace container_v1beta1 {
      * clusters are automatically deleted thirty days after creation.
      */
     enableKubernetesAlpha?: boolean;
+    /**
+     * Enable the ability to use Cloud TPUs in this cluster.
+     */
+    enableTpu?: boolean;
     /**
      * [Output only] The IP address of this cluster&#39;s master endpoint. The
      * endpoint can be accessed from the internet at
@@ -297,9 +358,8 @@ export namespace container_v1beta1 {
      */
     location?: string;
     /**
-     * The list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster&#39;s
-     * nodes should be located.
+     * The list of Google Compute Engine [zones](/compute/docs/zones#available)
+     * in which the cluster&#39;s nodes should be located.
      */
     locations?: string[];
     /**
@@ -314,7 +374,11 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
-     * The authentication information for accessing the master endpoint.
+     * The authentication information for accessing the master endpoint. If
+     * unspecified, the defaults are used: For clusters before v1.12, if
+     * master_auth is unspecified, `username` will be set to &quot;admin&quot;,
+     * a random password will be generated, and a client certificate will be
+     * issued.
      */
     masterAuth?: Schema$MasterAuth;
     /**
@@ -324,7 +388,8 @@ export namespace container_v1beta1 {
     /**
      * The IP prefix in CIDR notation to use for the hosted master network. This
      * prefix will be used for assigning private IP addresses to the master or
-     * set of masters, as well as the ILB VIP.
+     * set of masters, as well as the ILB VIP. This field is deprecated, use
+     * private_cluster_config.master_ipv4_cidr_block instead.
      */
     masterIpv4CidrBlock?: string;
     /**
@@ -387,14 +452,19 @@ export namespace container_v1beta1 {
     /**
      * If this is a private cluster setup. Private clusters are clusters that,
      * by default have no external IP addresses on the nodes and where nodes and
-     * the master communicate over private IP addresses.
+     * the master communicate over private IP addresses. This field is
+     * deprecated, use private_cluster_config.enable_private_nodes instead.
      */
     privateCluster?: boolean;
+    /**
+     * Configuration for private cluster.
+     */
+    privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
      * The resource labels for the cluster to use to annotate any related Google
      * Compute Engine resources.
      */
-    resourceLabels?: any;
+    resourceLabels?: {[key: string]: string;};
     /**
      * [Output only] Server-defined URL for the resource.
      */
@@ -423,11 +493,37 @@ export namespace container_v1beta1 {
      */
     subnetwork?: string;
     /**
+     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * notation (e.g. `1.2.3.4/29`).
+     */
+    tpuIpv4CidrBlock?: string;
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     */
+    verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
      * [Output only] The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster resides. This
      * field is deprecated, use location instead.
      */
     zone?: string;
+  }
+  /**
+   * ClusterAutoscaling contains global, per-cluster information required by
+   * Cluster Autoscaler to automatically adjust the size of the cluster and
+   * create/delete node pools based on the current needs.
+   */
+  export interface Schema$ClusterAutoscaling {
+    /**
+     * Enables automatic node pool creation and deletion.
+     */
+    enableNodeAutoprovisioning?: boolean;
+    /**
+     * Contains global constraints regarding minimum and maximum amount of
+     * resources in the cluster.
+     */
+    resourceLimits?: Schema$ResourceLimit[];
   }
   /**
    * ClusterUpdate describes an update to the cluster. Exactly one update can be
@@ -444,19 +540,32 @@ export namespace container_v1beta1 {
      */
     desiredBinaryAuthorization?: Schema$BinaryAuthorization;
     /**
+     * Cluster-level autoscaling configuration.
+     */
+    desiredClusterAutoscaling?: Schema$ClusterAutoscaling;
+    /**
      * The desired image type for the node pool. NOTE: Set the
      * &quot;desired_node_pool&quot; field as well.
      */
     desiredImageType?: string;
     /**
      * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster&#39;s
-     * nodes should be located. Changing the locations a cluster is in will
-     * result in nodes being either created or removed from the cluster,
-     * depending on whether locations are being added or removed.  This list
-     * must always include the cluster&#39;s primary zone.
+     * [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes
+     * should be located. Changing the locations a cluster is in will result in
+     * nodes being either created or removed from the cluster, depending on
+     * whether locations are being added or removed.  This list must always
+     * include the cluster&#39;s primary zone.
      */
     desiredLocations?: string[];
+    /**
+     * The logging service the cluster should use to write metrics. Currently
+     * available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the
+     * Google Cloud Logging service with Kubernetes-native resource model in
+     * Stackdriver * &quot;logging.googleapis.com&quot; - the Google Cloud
+     * Logging service * &quot;none&quot; - no logs will be exported from the
+     * cluster
+     */
+    desiredLoggingService?: string;
     /**
      * The desired configuration options for master authorized networks feature.
      */
@@ -475,9 +584,11 @@ export namespace container_v1beta1 {
     desiredMasterVersion?: string;
     /**
      * The monitoring service the cluster should use to write metrics. Currently
-     * available options:  * &quot;monitoring.googleapis.com&quot; - the Google
-     * Cloud Monitoring service * &quot;none&quot; - no metrics will be exported
-     * from the cluster
+     * available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; -
+     * the Google Cloud Monitoring service with Kubernetes-native resource model
+     * in Stackdriver * &quot;monitoring.googleapis.com&quot; - the Google Cloud
+     * Monitoring service * &quot;none&quot; - no metrics will be exported from
+     * the cluster
      */
     desiredMonitoringService?: string;
     /**
@@ -509,6 +620,10 @@ export namespace container_v1beta1 {
      * The desired configuration options for the PodSecurityPolicy feature.
      */
     desiredPodSecurityPolicyConfig?: Schema$PodSecurityPolicyConfig;
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     */
+    desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP
@@ -582,7 +697,7 @@ export namespace container_v1beta1 {
     /**
      * The parent (project, location, cluster id) where the node pool will be
      * created. Specified in the format
-     * &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
+     * &#39;projects/x/locations/x/clusters/*&#39;.
      */
     parent?: string;
     /**
@@ -740,6 +855,18 @@ export namespace container_v1beta1 {
      */
     subnetworkName?: string;
     /**
+     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a
+     * range will be automatically chosen with the default size.  This field is
+     * only applicable when `use_ip_aliases` is true.  If unspecified, the range
+     * will use the default size.  Set to /netmask (e.g. `/14`) to have a range
+     * chosen with a specific netmask.  Set to a
+     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
+     * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
+     * to use.
+     */
+    tpuIpv4CidrBlock?: string;
+    /**
      * Whether alias IPs will be used for pod IPs in the cluster.
      */
     useIpAliases?: boolean;
@@ -844,7 +971,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * Contains the name of the resource requested. Specific in the format
+     * Contains the name of the resource requested. Specified in the format
      * &#39;projects/x/locations/*&#39;.
      */
     name?: string;
@@ -892,8 +1019,9 @@ export namespace container_v1beta1 {
      */
     clientCertificate?: string;
     /**
-     * Configuration for client certificate authentication on the cluster.  If
-     * no configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      */
     clientCertificateConfig?: Schema$ClientCertificateConfig;
     /**
@@ -915,8 +1043,8 @@ export namespace container_v1beta1 {
     password?: string;
     /**
      * The username to use for HTTP basic authentication to the master endpoint.
-     * For clusters v1.6.0 and later, you can disable basic authentication by
-     * providing an empty username.
+     * For clusters v1.6.0 and later, basic authentication can be disabled by
+     * leaving username unspecified (or setting it to the empty string).
      */
     username?: string;
   }
@@ -936,6 +1064,15 @@ export namespace container_v1beta1 {
      * Whether or not master authorized networks is enabled.
      */
     enabled?: boolean;
+  }
+  /**
+   * Constraints applied to pods.
+   */
+  export interface Schema$MaxPodsConstraint {
+    /**
+     * Constraint enforced on the max num of pods per node.
+     */
+    maxPodsPerNode?: string;
   }
   /**
    * Progress metric is (string, int|float|string) pair.
@@ -964,15 +1101,16 @@ export namespace container_v1beta1 {
    */
   export interface Schema$NetworkConfig {
     /**
-     * Output only. The name of the Google Compute Engine
-     * network(/compute/docs/networks-and-firewalls#networks). Example:
+     * Output only. The relative name of the Google Compute Engine
+     * network(/compute/docs/networks-and-firewalls#networks) to which the
+     * cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      */
     network?: string;
     /**
-     * Output only. The name of the Google Compute Engine
-     * [subnetwork](/compute/docs/vpc). Example:
-     * projects/my-project/regions/us-central1/subnetworks/my-subnet
+     * Output only. The relative name of the Google Compute Engine
+     * [subnetwork](/compute/docs/vpc) to which the cluster is connected.
+     * Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string;
   }
@@ -1037,7 +1175,7 @@ export namespace container_v1beta1 {
      * For more information, including usage and the valid values, see:
      * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The number of local SSD disks to be attached to the node.  The limit for
      * this value is dependant upon the maximum number of disks available on a
@@ -1060,15 +1198,15 @@ export namespace container_v1beta1 {
      * metadata keys for the project or be one of the reserved keys:
      * &quot;cluster-location&quot;  &quot;cluster-name&quot;
      * &quot;cluster-uid&quot;  &quot;configure-sh&quot;
-     * &quot;gci-update-strategy&quot;  &quot;gci-ensure-gke-docker&quot;
-     * &quot;instance-template&quot;  &quot;kube-env&quot;
-     * &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form
-     * strings, and only have meaning as interpreted by the image running in the
-     * instance. The only restriction placed on them is that each value&#39;s
-     * size must be less than or equal to 32 KB.  The total size of all keys and
-     * values must be less than 512 KB.
+     * &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;
+     * &quot;gci-update-strategy&quot;  &quot;instance-template&quot;
+     * &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;
+     * Values are free-form strings, and only have meaning as interpreted by the
+     * image running in the instance. The only restriction placed on them is
+     * that each value&#39;s size must be less than or equal to 32 KB.  The
+     * total size of all keys and values must be less than 512 KB.
      */
-    metadata?: any;
+    metadata?: {[key: string]: string;};
     /**
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are
@@ -1156,6 +1294,10 @@ export namespace container_v1beta1 {
      */
     autoscaling?: Schema$NodePoolAutoscaling;
     /**
+     * Which conditions caused the current node pool state.
+     */
+    conditions?: Schema$StatusCondition[];
+    /**
      * The node configuration of the pool.
      */
     config?: Schema$NodeConfig;
@@ -1176,6 +1318,11 @@ export namespace container_v1beta1 {
      * NodeManagement configuration for this NodePool.
      */
     management?: Schema$NodeManagement;
+    /**
+     * The constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool.
+     */
+    maxPodsConstraint?: Schema$MaxPodsConstraint;
     /**
      * The name of the node pool.
      */
@@ -1203,6 +1350,10 @@ export namespace container_v1beta1 {
    * adjust the size of the node pool to the current cluster usage.
    */
   export interface Schema$NodePoolAutoscaling {
+    /**
+     * Can this node pool be deleted automatically.
+     */
+    autoprovisioned?: boolean;
     /**
      * Is autoscaling enabled for this node pool.
      */
@@ -1245,6 +1396,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Operation {
     /**
+     * Which conditions caused the current cluster state.
+     */
+    clusterConditions?: Schema$StatusCondition[];
+    /**
      * Detailed operation progress, if available.
      */
     detail?: string;
@@ -1264,6 +1419,10 @@ export namespace container_v1beta1 {
      * The server-assigned ID for the operation.
      */
     name?: string;
+    /**
+     * Which conditions caused the current node pool state.
+     */
+    nodepoolConditions?: Schema$StatusCondition[];
     /**
      * The operation type.
      */
@@ -1335,6 +1494,57 @@ export namespace container_v1beta1 {
      * pods must be valid under a PodSecurityPolicy to be created.
      */
     enabled?: boolean;
+  }
+  /**
+   * Configuration options for private clusters.
+   */
+  export interface Schema$PrivateClusterConfig {
+    /**
+     * Whether the master&#39;s internal IP address is used as the cluster
+     * endpoint.
+     */
+    enablePrivateEndpoint?: boolean;
+    /**
+     * Whether nodes have internal IP addresses only. If enabled, all nodes are
+     * given only RFC 1918 private addresses and communicate with the master via
+     * private networking.
+     */
+    enablePrivateNodes?: boolean;
+    /**
+     * The IP range in CIDR notation to use for the hosted master network. This
+     * range will be used for assigning internal IP addresses to the master or
+     * set of masters, as well as the ILB VIP. This range must not overlap with
+     * any other ranges in use within the cluster&#39;s network.
+     */
+    masterIpv4CidrBlock?: string;
+    /**
+     * Output only. The internal IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    privateEndpoint?: string;
+    /**
+     * Output only. The external IP address of this cluster&#39;s master
+     * endpoint.
+     */
+    publicEndpoint?: string;
+  }
+  /**
+   * Contains information about amount of some resource in the cluster. For
+   * memory, value should be in GB.
+   */
+  export interface Schema$ResourceLimit {
+    /**
+     * Maximum amount of the resource in the cluster.
+     */
+    maximum?: string;
+    /**
+     * Minimum amount of the resource in the cluster.
+     */
+    minimum?: string;
+    /**
+     * Resource name &quot;cpu&quot;, &quot;memory&quot; or gpu-specific string.
+     */
+    resourceType?: string;
   }
   /**
    * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
@@ -1462,7 +1672,7 @@ export namespace container_v1beta1 {
     /**
      * The labels to set for that cluster.
      */
-    resourceLabels?: any;
+    resourceLabels?: {[key: string]: string;};
     /**
      * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster resides. This
@@ -1514,11 +1724,11 @@ export namespace container_v1beta1 {
     clusterId?: string;
     /**
      * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster&#39;s
-     * nodes should be located. Changing the locations a cluster is in will
-     * result in nodes being either created or removed from the cluster,
-     * depending on whether locations are being added or removed.  This list
-     * must always include the cluster&#39;s primary zone.
+     * [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes
+     * should be located. Changing the locations a cluster is in will result in
+     * nodes being either created or removed from the cluster, depending on
+     * whether locations are being added or removed.  This list must always
+     * include the cluster&#39;s primary zone.
      */
     locations?: string[];
     /**
@@ -1850,6 +2060,20 @@ export namespace container_v1beta1 {
     zone?: string;
   }
   /**
+   * StatusCondition describes why a cluster or a node pool has a certain status
+   * (e.g., ERROR or DEGRADED).
+   */
+  export interface Schema$StatusCondition {
+    /**
+     * Machine-friendly representation of the condition
+     */
+    code?: string;
+    /**
+     * Human-friendly representation of the condition
+     */
+    message?: string;
+  }
+  /**
    * UpdateClusterRequest updates the settings of a cluster.
    */
   export interface Schema$UpdateClusterRequest {
@@ -1980,10 +2204,51 @@ export namespace container_v1beta1 {
      */
     network?: string;
     /**
+     * Secondary IP ranges.
+     */
+    secondaryIpRanges?: Schema$UsableSubnetworkSecondaryRange[];
+    /**
+     * A human readable status message representing the reasons for cases where
+     * the caller cannot use the secondary ranges under the subnet. For example
+     * if the secondary_ip_ranges is empty due to a permission issue, an
+     * insufficient permission message will be given by status_message.
+     */
+    statusMessage?: string;
+    /**
      * Subnetwork Name. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string;
+  }
+  /**
+   * Secondary IP range of a usable subnetwork.
+   */
+  export interface Schema$UsableSubnetworkSecondaryRange {
+    /**
+     * The range of IP addresses belonging to this subnetwork secondary range.
+     */
+    ipCidrRange?: string;
+    /**
+     * The name associated with this subnetwork secondary range, used when
+     * adding an alias IP range to a VM instance.
+     */
+    rangeName?: string;
+    /**
+     * This field is to determine the status of the secondary range
+     * programmably.
+     */
+    status?: string;
+  }
+  /**
+   * VerticalPodAutoscaling contains global, per-cluster information required by
+   * Vertical Pod Autoscaler to automatically adjust the resources of pods
+   * controlled by it.
+   */
+  export interface Schema$VerticalPodAutoscaling {
+    /**
+     * Enables vertical pod autoscaling.
+     */
+    enabled?: boolean;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to
@@ -1999,50 +2264,28 @@ export namespace container_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Container;
     aggregated: Resource$Projects$Aggregated;
     locations: Resource$Projects$Locations;
     zones: Resource$Projects$Zones;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.aggregated = new Resource$Projects$Aggregated(root);
-      this.locations = new Resource$Projects$Locations(root);
-      this.zones = new Resource$Projects$Zones(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.aggregated = new Resource$Projects$Aggregated();
+      this.locations = new Resource$Projects$Locations();
+      this.zones = new Resource$Projects$Zones();
     }
   }
 
 
   export class Resource$Projects$Aggregated {
-    root: Container;
     usableSubnetworks: Resource$Projects$Aggregated$Usablesubnetworks;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.usableSubnetworks =
-          new Resource$Projects$Aggregated$Usablesubnetworks(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Aggregated$Usablesubnetworks();
     }
   }
 
 
   export class Resource$Projects$Aggregated$Usablesubnetworks {
-    root: Container;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2113,7 +2356,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListUsableSubnetworksResponse>(
@@ -2125,7 +2368,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List {
+  export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2160,18 +2404,11 @@ export namespace container_v1beta1 {
 
 
   export class Resource$Projects$Locations {
-    root: Container;
     clusters: Resource$Projects$Locations$Clusters;
     operations: Resource$Projects$Locations$Operations;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.clusters = new Resource$Projects$Locations$Clusters(root);
-      this.operations = new Resource$Projects$Locations$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.clusters = new Resource$Projects$Locations$Clusters();
+      this.operations = new Resource$Projects$Locations$Operations();
     }
 
 
@@ -2234,7 +2471,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServerConfig>(parameters, callback);
@@ -2250,7 +2487,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Contains the name of the resource requested. Specific in the format 'projects/x/locations'.
+     * @param {string} params.parent Contains the name of the resource requested. Specified in the format 'projects/x'.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2301,7 +2538,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -2311,7 +2548,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getserverconfig {
+  export interface Params$Resource$Projects$Locations$Getserverconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2335,30 +2573,24 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Contains the name of the resource requested. Specific in the format
-     * 'projects/x/locations'.
+     * Contains the name of the resource requested. Specified in the format
+     * 'projects/x'.
      */
     parent?: string;
   }
 
   export class Resource$Projects$Locations$Clusters {
-    root: Container;
     nodePools: Resource$Projects$Locations$Clusters$Nodepools;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.nodePools = new Resource$Projects$Locations$Clusters$Nodepools(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.nodePools = new Resource$Projects$Locations$Clusters$Nodepools();
     }
 
 
@@ -2422,7 +2654,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2498,7 +2730,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2571,7 +2803,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2635,7 +2867,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -2706,7 +2938,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -2775,7 +3007,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2845,7 +3077,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2914,7 +3146,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2983,7 +3215,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3057,7 +3289,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3130,7 +3362,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3200,7 +3432,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3270,7 +3502,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3340,7 +3572,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3410,7 +3642,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3477,7 +3709,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3546,7 +3778,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3556,7 +3788,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation {
+  export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3573,7 +3806,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Create {
+  export interface Params$Resource$Projects$Locations$Clusters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3590,7 +3824,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Delete {
+  export interface Params$Resource$Projects$Locations$Clusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3619,7 +3854,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Get {
+  export interface Params$Resource$Projects$Locations$Clusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3648,7 +3884,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$List {
+  export interface Params$Resource$Projects$Locations$Clusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3674,7 +3911,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setaddons {
+  export interface Params$Resource$Projects$Locations$Clusters$Setaddons extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3691,7 +3929,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetAddonsConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3708,7 +3947,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLegacyAbacRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlocations {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlocations
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3725,7 +3965,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLocationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlogging {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlogging
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3742,7 +3983,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLoggingServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3760,7 +4002,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMaintenancePolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3777,7 +4020,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMasterAuthRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3794,7 +4038,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMonitoringServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy {
+  export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3811,7 +4056,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNetworkPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels {
+  export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3828,7 +4074,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Startiprotation {
+  export interface Params$Resource$Projects$Locations$Clusters$Startiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3845,7 +4092,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$StartIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Update {
+  export interface Params$Resource$Projects$Locations$Clusters$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3862,7 +4110,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$UpdateClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Updatemaster {
+  export interface Params$Resource$Projects$Locations$Clusters$Updatemaster
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3881,15 +4130,7 @@ export namespace container_v1beta1 {
   }
 
   export class Resource$Projects$Locations$Clusters$Nodepools {
-    root: Container;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3899,7 +4140,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format 'projects/x/locations/x/clusters/x'.
      * @param {().CreateNodePoolRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3952,7 +4193,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4024,7 +4265,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4091,7 +4332,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodePool>(parameters, callback);
@@ -4164,7 +4405,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNodePoolsResponse>(parameters, callback);
@@ -4235,7 +4476,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4308,7 +4549,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4381,7 +4622,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4451,7 +4692,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4520,7 +4761,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4530,7 +4771,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4538,8 +4780,7 @@ export namespace container_v1beta1 {
 
     /**
      * The parent (project, location, cluster id) where the node pool will be
-     * created. Specified in the format
-     * 'projects/x/locations/x/clusters/x/nodePools/x'.
+     * created. Specified in the format 'projects/x/locations/x/clusters/x'.
      */
     parent?: string;
 
@@ -4548,7 +4789,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4583,7 +4825,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4618,7 +4861,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$List {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4647,7 +4891,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4665,7 +4910,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4683,7 +4929,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4701,7 +4948,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolManagementRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4719,7 +4967,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolSizeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4741,15 +4990,7 @@ export namespace container_v1beta1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    root: Container;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4809,7 +5050,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4874,7 +5115,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4944,7 +5185,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -4954,7 +5195,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4971,7 +5213,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5000,7 +5243,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List {
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5030,18 +5274,11 @@ export namespace container_v1beta1 {
 
 
   export class Resource$Projects$Zones {
-    root: Container;
     clusters: Resource$Projects$Zones$Clusters;
     operations: Resource$Projects$Zones$Operations;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.clusters = new Resource$Projects$Zones$Clusters(root);
-      this.operations = new Resource$Projects$Zones$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.clusters = new Resource$Projects$Zones$Clusters();
+      this.operations = new Resource$Projects$Zones$Operations();
     }
 
 
@@ -5105,7 +5342,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ServerConfig>(parameters, callback);
@@ -5115,7 +5352,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Getserverconfig {
+  export interface Params$Resource$Projects$Zones$Getserverconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5141,16 +5379,9 @@ export namespace container_v1beta1 {
   }
 
   export class Resource$Projects$Zones$Clusters {
-    root: Container;
     nodePools: Resource$Projects$Zones$Clusters$Nodepools;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.nodePools = new Resource$Projects$Zones$Clusters$Nodepools(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.nodePools = new Resource$Projects$Zones$Clusters$Nodepools();
     }
 
 
@@ -5216,7 +5447,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5290,7 +5521,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5368,7 +5599,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5444,7 +5675,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5511,7 +5742,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -5583,7 +5814,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5655,7 +5886,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -5727,7 +5958,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5799,7 +6030,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5871,7 +6102,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5943,7 +6174,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6016,7 +6247,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6091,7 +6322,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6167,7 +6398,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6240,7 +6471,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6313,7 +6544,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6385,7 +6616,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6395,7 +6626,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Clusters$Addons {
+  export interface Params$Resource$Projects$Zones$Clusters$Addons extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6424,7 +6656,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetAddonsConfigRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation {
+  export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6453,7 +6686,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Create {
+  export interface Params$Resource$Projects$Zones$Clusters$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6477,7 +6711,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateClusterRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Delete {
+  export interface Params$Resource$Projects$Zones$Clusters$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6506,7 +6741,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Get {
+  export interface Params$Resource$Projects$Zones$Clusters$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6535,7 +6771,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Legacyabac {
+  export interface Params$Resource$Projects$Zones$Clusters$Legacyabac extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6564,7 +6801,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLegacyAbacRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$List {
+  export interface Params$Resource$Projects$Zones$Clusters$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6590,7 +6828,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Locations {
+  export interface Params$Resource$Projects$Zones$Clusters$Locations extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6619,7 +6858,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLocationsRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Logging {
+  export interface Params$Resource$Projects$Zones$Clusters$Logging extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6648,7 +6888,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLoggingServiceRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Master {
+  export interface Params$Resource$Projects$Zones$Clusters$Master extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6677,7 +6918,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$UpdateMasterRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Monitoring {
+  export interface Params$Resource$Projects$Zones$Clusters$Monitoring extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6706,7 +6948,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMonitoringServiceRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels {
+  export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6735,7 +6978,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLabelsRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy {
+  export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6761,7 +7005,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMaintenancePolicyRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth {
+  export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6790,7 +7035,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMasterAuthRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy {
+  export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6819,7 +7065,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNetworkPolicyRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Startiprotation {
+  export interface Params$Resource$Projects$Zones$Clusters$Startiprotation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6848,7 +7095,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$StartIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Update {
+  export interface Params$Resource$Projects$Zones$Clusters$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6879,15 +7127,7 @@ export namespace container_v1beta1 {
   }
 
   export class Resource$Projects$Zones$Clusters$Nodepools {
-    root: Container;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6955,7 +7195,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7028,7 +7268,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7102,7 +7342,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7171,7 +7411,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$NodePool>(parameters, callback);
@@ -7245,7 +7485,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListNodePoolsResponse>(parameters, callback);
@@ -7321,7 +7561,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7397,7 +7637,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7472,7 +7712,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7546,7 +7786,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7556,7 +7796,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7590,7 +7831,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7619,7 +7861,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7654,7 +7897,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7689,7 +7933,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$List {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7718,7 +7963,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7752,7 +7998,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7786,7 +8033,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolManagementRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7820,7 +8068,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolSizeRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7858,15 +8107,7 @@ export namespace container_v1beta1 {
 
 
   export class Resource$Projects$Zones$Operations {
-    root: Container;
-    constructor(root: Container) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7930,7 +8171,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'operationId'],
         pathParams: ['operationId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7998,7 +8239,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone', 'operationId'],
         pathParams: ['operationId', 'projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -8069,7 +8310,7 @@ export namespace container_v1beta1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -8079,7 +8320,8 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Operations$Cancel {
+  export interface Params$Resource$Projects$Zones$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8108,7 +8350,8 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Operations$Get {
+  export interface Params$Resource$Projects$Zones$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8137,7 +8380,8 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Operations$List {
+  export interface Params$Resource$Projects$Zones$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

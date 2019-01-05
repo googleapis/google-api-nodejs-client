@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,10 +29,63 @@ export namespace genomics_v1alpha2 {
     version: 'v1alpha2';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Genomics API
    *
-   * Upload, process, query, and search Genomics data in the cloud.
+   * Uploads, processes, queries, and searches Genomics data in the cloud.
    *
    * @example
    * const {google} = require('googleapis');
@@ -46,24 +98,14 @@ export namespace genomics_v1alpha2 {
    * @param {object=} options Options for Genomics
    */
   export class Genomics {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     pipelines: Resource$Pipelines;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.pipelines = new Resource$Pipelines(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.pipelines = new Resource$Pipelines();
     }
   }
 
@@ -94,7 +136,18 @@ export namespace genomics_v1alpha2 {
     zone?: string;
   }
   /**
-   * This event is generated when a container starts.
+   * An event generated when a container is forcibly terminated by the worker.
+   * Currently, this only occurs when the container outlives the timeout
+   * specified by the user.
+   */
+  export interface Schema$ContainerKilledEvent {
+    /**
+     * The numeric ID of the action that started the container.
+     */
+    actionId?: number;
+  }
+  /**
+   * An event generated when a container starts.
    */
   export interface Schema$ContainerStartedEvent {
     /**
@@ -102,21 +155,21 @@ export namespace genomics_v1alpha2 {
      */
     actionId?: number;
     /**
-     * The public IP address that can be used to connect to the container.  This
-     * field is only populated when at least one port mapping is present.  If
-     * the instance was created with a private address this field will be empty
+     * The public IP address that can be used to connect to the container. This
+     * field is only populated when at least one port mapping is present. If the
+     * instance was created with a private address, this field will be empty
      * even if port mappings exist.
      */
     ipAddress?: string;
     /**
-     * The container to host port mappings installed for this container.  This
-     * set will contain any ports exposed using the PUBLISH_EXPOSED_PORTS flag
-     * as well as any specified in the Action definition.
+     * The container-to-host port mappings installed for this container. This
+     * set will contain any ports exposed using the `PUBLISH_EXPOSED_PORTS` flag
+     * as well as any specified in the `Action` definition.
      */
-    portMappings?: any;
+    portMappings?: {[key: string]: number;};
   }
   /**
-   * This event is generated when a container exits.
+   * An event generated when a container exits.
    */
   export interface Schema$ContainerStoppedEvent {
     /**
@@ -129,12 +182,12 @@ export namespace genomics_v1alpha2 {
     exitStatus?: number;
     /**
      * The tail end of any content written to standard error by the container.
-     * To prevent this from being recorded if the action is known to emit large
-     * amounts of debugging noise or sensitive information, set the
-     * DISABLE_STANDARD_ERROR_CAPTURE flag.  Note that only a small amount of
-     * the end of the stream is captured here. The entire stream is stored in
-     * the /google/logs directory mounted into each action, and may be copied
-     * off the machine as described elsewhere.
+     * If the content emits large amounts of debugging noise or contains
+     * sensitive information, you can prevent the content from being printed by
+     * setting the `DISABLE_STANDARD_ERROR_CAPTURE` flag.  Note that only a
+     * small amount of the end of the stream is captured here. The entire stream
+     * is stored in the `/google/logs` directory mounted into each action, and
+     * can be copied off the machine as described elsewhere.
      */
     stderr?: string;
   }
@@ -145,30 +198,30 @@ export namespace genomics_v1alpha2 {
    */
   export interface Schema$ControllerConfig {
     cmd?: string;
-    disks?: any;
+    disks?: {[key: string]: string;};
     gcsLogPath?: string;
-    gcsSinks?: any;
-    gcsSources?: any;
+    gcsSinks?: {[key: string]: Schema$RepeatedString;};
+    gcsSources?: {[key: string]: Schema$RepeatedString;};
     image?: string;
     machineType?: string;
-    vars?: any;
+    vars?: {[key: string]: string;};
   }
   /**
-   * This event is generated whenever a resource limitation or transient error
-   * delays execution of a pipeline that was otherwise ready to run.
+   * An event generated whenever a resource limitation or transient error delays
+   * execution of a pipeline that was otherwise ready to run.
    */
   export interface Schema$DelayedEvent {
     /**
-     * A textual description of the cause of the delay.  The string may change
-     * without notice since it is often generated by another service (such as
+     * A textual description of the cause of the delay. The string can change
+     * without notice because it is often generated by another service (such as
      * Compute Engine).
      */
     cause?: string;
     /**
      * If the delay was caused by a resource shortage, this field lists the
      * Compute Engine metrics that are preventing this operation from running
-     * (for example, CPUS or INSTANCES).  If the particular metric is not known,
-     * a single UNKNOWN metric will be present.
+     * (for example, `CPUS` or `INSTANCES`). If the particular metric is not
+     * known, a single `UNKNOWN` metric will be present.
      */
     metrics?: string[];
   }
@@ -246,32 +299,31 @@ export namespace genomics_v1alpha2 {
    */
   export interface Schema$Empty {}
   /**
-   * Event carries information about events that occur during pipeline
-   * execution.
+   * Carries information about events that occur during pipeline execution.
    */
   export interface Schema$Event {
     /**
-     * A human readable description of the event.  Note that these strings may
-     * change at any time without notice.  Any application logic must use the
-     * information in the details field.
+     * A human-readable description of the event. Note that these strings can
+     * change at any time without notice. Any application logic must use the
+     * information in the `details` field.
      */
     description?: string;
     /**
-     * Machine readable details about the event.
+     * Machine-readable details about the event.
      */
-    details?: any;
+    details?: {[key: string]: any;};
     /**
-     * The time that the event occurred.
+     * The time at which the event occurred.
      */
     timestamp?: string;
   }
   /**
-   * This event is generated when the execution of a pipeline has failed.  Note
-   * that other events may continue to occur after this event.
+   * An event generated when the execution of a pipeline has failed. Note that
+   * other events can continue to occur after this event.
    */
   export interface Schema$FailedEvent {
     /**
-     * The human readable description of the cause of the failure.
+     * The human-readable description of the cause of the failure.
      */
     cause?: string;
     /**
@@ -378,7 +430,7 @@ export namespace genomics_v1alpha2 {
      * An OperationMetadata or Metadata object. This will always be returned
      * with the Operation.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. For example&amp;#58;
@@ -390,7 +442,7 @@ export namespace genomics_v1alpha2 {
      * If importing Variants, an ImportVariantsResponse is returned. For
      * pipelines and exports, an Empty response is returned.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * An event that occurred during an Operation.
@@ -438,7 +490,7 @@ export namespace genomics_v1alpha2 {
      * Optionally provided by the caller when submitting the request that
      * creates the operation.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The Google Cloud Project in which the job is scoped.
      */
@@ -449,11 +501,11 @@ export namespace genomics_v1alpha2 {
      * API and a GetOperation is performed on v1 API, a v1 request will be
      * returned.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Runtime metadata on this Operation.
      */
-    runtimeMetadata?: any;
+    runtimeMetadata?: {[key: string]: any;};
     /**
      * The time at which the job began to run.
      */
@@ -644,7 +696,7 @@ export namespace genomics_v1alpha2 {
     zones?: string[];
   }
   /**
-   * This event is generated when the worker starts pulling an image.
+   * An event generated when the worker starts pulling an image.
    */
   export interface Schema$PullStartedEvent {
     /**
@@ -653,7 +705,7 @@ export namespace genomics_v1alpha2 {
     imageUri?: string;
   }
   /**
-   * This event is generated when the worker stops pulling an image.
+   * An event generated when the worker stops pulling an image.
    */
   export interface Schema$PullStoppedEvent {
     /**
@@ -679,7 +731,7 @@ export namespace genomics_v1alpha2 {
      * If parameters with defaults are specified here, the defaults will be
      * overridden.
      */
-    inputs?: any;
+    inputs?: {[key: string]: string;};
     /**
      * How long to keep the VM up after a failure (for example docker command
      * failed, copying input or output files failed, etc). While the VM is up,
@@ -699,7 +751,7 @@ export namespace genomics_v1alpha2 {
      * lowercase letter, and all following characters must be a dash, lowercase
      * letter, or digit, except the last character, which cannot be a dash.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. Logging options. Used by the service to communicate results to
      * the user.
@@ -711,7 +763,7 @@ export namespace genomics_v1alpha2 {
      * specified.  If parameters with defaults are specified here, the defaults
      * will be overridden.
      */
-    outputs?: any;
+    outputs?: {[key: string]: string;};
     /**
      * Required. The project in which to run the pipeline. The caller must have
      * WRITER access to all Google Cloud services and resources (e.g. Google
@@ -751,6 +803,11 @@ export namespace genomics_v1alpha2 {
      */
     pipelineId?: string;
   }
+  /**
+   * The response to the RunPipeline method, returned in the operation&#39;s
+   * result field on success.
+   */
+  export interface Schema$RunPipelineResponse {}
   /**
    * Runtime metadata that will be populated in the runtimeMetadata field of the
    * Operation associated with a RunPipeline execution.
@@ -837,7 +894,7 @@ export namespace genomics_v1alpha2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -860,10 +917,10 @@ export namespace genomics_v1alpha2 {
     timestamp?: string;
   }
   /**
-   * This event is generated when the execution of a container results in a
-   * non-zero exit status that was not otherwise ignored.  Execution will
-   * continue, but only actions that are flagged as ALWAYS_RUN will be executed:
-   * other actions will be skipped.
+   * An event generated when the execution of a container results in a non-zero
+   * exit status that was not otherwise ignored. Execution will continue, but
+   * only actions that are flagged as `ALWAYS_RUN` will be executed. Other
+   * actions will be skipped.
    */
   export interface Schema$UnexpectedExitStatusEvent {
     /**
@@ -876,8 +933,7 @@ export namespace genomics_v1alpha2 {
     exitStatus?: number;
   }
   /**
-   * This event is generated once a worker VM has been assigned to run the
-   * pipeline.
+   * An event generated after a worker VM has been assigned to run the pipeline.
    */
   export interface Schema$WorkerAssignedEvent {
     /**
@@ -890,8 +946,8 @@ export namespace genomics_v1alpha2 {
     zone?: string;
   }
   /**
-   * This event is generated when the worker VM that was assigned to the
-   * pipeline has been released (i.e., deleted).
+   * An event generated when the worker VM that was assigned to the pipeline has
+   * been released (deleted).
    */
   export interface Schema$WorkerReleasedEvent {
     /**
@@ -906,15 +962,7 @@ export namespace genomics_v1alpha2 {
 
 
   export class Resource$Operations {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -923,7 +971,9 @@ export namespace genomics_v1alpha2 {
      * server makes a best effort to cancel the operation, but success is not
      * guaranteed. Clients may use Operations.GetOperation or
      * Operations.ListOperations to check whether the cancellation succeeded or
-     * the operation completed despite cancellation.
+     * the operation completed despite cancellation. Authorization requires the
+     * following [Google IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.cancel`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1031,7 +1081,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1043,9 +1093,11 @@ export namespace genomics_v1alpha2 {
 
     /**
      * genomics.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * @desc Gets the latest state of a long-running operation. Clients can use
      * this method to poll the operation result at intervals as recommended by
-     * the API service.
+     * the API service. Authorization requires the following [Google
+     * IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.get`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1148,7 +1200,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1161,6 +1213,9 @@ export namespace genomics_v1alpha2 {
     /**
      * genomics.operations.list
      * @desc Lists operations that match the specified filter in the request.
+     * Authorization requires the following [Google
+     * IAM](https://cloud.google.com/iam) permission&#58;  *
+     * `genomics.operations.list`
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1232,7 +1287,7 @@ export namespace genomics_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      * @param {string} params.name The name of the operation's parent resource.
      * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
      * @param {string=} params.pageToken The standard list page token.
@@ -1284,7 +1339,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1294,7 +1349,8 @@ export namespace genomics_v1alpha2 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1310,7 +1366,7 @@ export namespace genomics_v1alpha2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1321,7 +1377,7 @@ export namespace genomics_v1alpha2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1335,10 +1391,11 @@ export namespace genomics_v1alpha2 {
      * particular event has occurred. * error&#58; If the pipeline is running,
      * this value is NULL.  Once the   pipeline finishes, the value is the
      * standard Google error code. * labels.key or labels."key with space" where
-     * key is a label key.  In v1 and v1alpha2, the following filter fields are
-     * supported&#58;  * projectId&#58; Required. Corresponds to
-     * OperationMetadata.projectId. * createTime&#58; The time this job was
-     * created, in seconds from the
+     * key is a label key. * done&#58; If the pipeline is running, this value is
+     * false. Once the   pipeline finishes, the value is true.  In v1 and
+     * v1alpha2, the following filter fields are supported&#58;  *
+     * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. *
+     * createTime&#58; The time this job was created, in seconds from the
      * [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`
      * operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or
      * `CANCELED`. Only   one status may be specified. * labels.key where key is
@@ -1365,15 +1422,7 @@ export namespace genomics_v1alpha2 {
 
 
   export class Resource$Pipelines {
-    root: Genomics;
-    constructor(root: Genomics) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1487,7 +1536,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1604,7 +1653,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1720,7 +1769,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1838,7 +1887,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ControllerConfig>(parameters, callback);
@@ -1970,7 +2019,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPipelinesResponse>(parameters, callback);
@@ -2092,7 +2141,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2213,7 +2262,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2223,7 +2272,7 @@ export namespace genomics_v1alpha2 {
     }
   }
 
-  export interface Params$Resource$Pipelines$Create {
+  export interface Params$Resource$Pipelines$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2235,7 +2284,7 @@ export namespace genomics_v1alpha2 {
      */
     requestBody?: Schema$Pipeline;
   }
-  export interface Params$Resource$Pipelines$Delete {
+  export interface Params$Resource$Pipelines$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2247,7 +2296,7 @@ export namespace genomics_v1alpha2 {
      */
     pipelineId?: string;
   }
-  export interface Params$Resource$Pipelines$Get {
+  export interface Params$Resource$Pipelines$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2259,7 +2308,8 @@ export namespace genomics_v1alpha2 {
      */
     pipelineId?: string;
   }
-  export interface Params$Resource$Pipelines$Getcontrollerconfig {
+  export interface Params$Resource$Pipelines$Getcontrollerconfig extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2274,7 +2324,7 @@ export namespace genomics_v1alpha2 {
      */
     validationToken?: string;
   }
-  export interface Params$Resource$Pipelines$List {
+  export interface Params$Resource$Pipelines$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2301,7 +2351,7 @@ export namespace genomics_v1alpha2 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Pipelines$Run {
+  export interface Params$Resource$Pipelines$Run extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2313,7 +2363,8 @@ export namespace genomics_v1alpha2 {
      */
     requestBody?: Schema$RunPipelineRequest;
   }
-  export interface Params$Resource$Pipelines$Setoperationstatus {
+  export interface Params$Resource$Pipelines$Setoperationstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

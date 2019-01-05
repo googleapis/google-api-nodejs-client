@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,10 +29,63 @@ export namespace websecurityscanner_v1alpha {
     version: 'v1alpha';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Web Security Scanner API
    *
-   * Web Security Scanner API (under development).
+   * Scans your Compute and App Engine apps for common web vulnerabilities.
    *
    * @example
    * const {google} = require('googleapis');
@@ -46,22 +98,12 @@ export namespace websecurityscanner_v1alpha {
    * @param {object=} options Options for Websecurityscanner
    */
   export class Websecurityscanner {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -108,7 +150,8 @@ export namespace websecurityscanner_v1alpha {
     loginUrl?: string;
     /**
      * Input only. Required. The password of the custom account. The credential
-     * is stored encrypted and not returned in any response.
+     * is stored encrypted and not returned in any response nor included in
+     * audit logs.
      */
     password?: string;
     /**
@@ -189,6 +232,11 @@ export namespace websecurityscanner_v1alpha {
      */
     violatingResource?: Schema$ViolatingResource;
     /**
+     * Output only. An addon containing information about vulnerable or missing
+     * HTTP headers.
+     */
+    vulnerableHeaders?: Schema$VulnerableHeaders;
+    /**
      * Output only. An addon containing information about request parameters
      * which were found to be vulnerable.
      */
@@ -218,13 +266,27 @@ export namespace websecurityscanner_v1alpha {
   export interface Schema$GoogleAccount {
     /**
      * Input only. Required. The password of the Google account. The credential
-     * is stored encrypted and not returned in any response.
+     * is stored encrypted and not returned in any response nor included in
+     * audit logs.
      */
     password?: string;
     /**
      * Required. The user name of the Google account.
      */
     username?: string;
+  }
+  /**
+   * Describes a HTTP Header.
+   */
+  export interface Schema$Header {
+    /**
+     * Header name.
+     */
+    name?: string;
+    /**
+     * Header value.
+     */
+    value?: string;
   }
   /**
    * Response for the `ListCrawledUrls` method.
@@ -449,6 +511,19 @@ export namespace websecurityscanner_v1alpha {
     resourceUrl?: string;
   }
   /**
+   * Information about vulnerable or missing HTTP Headers.
+   */
+  export interface Schema$VulnerableHeaders {
+    /**
+     * List of vulnerable headers.
+     */
+    headers?: Schema$Header[];
+    /**
+     * List of missing headers.
+     */
+    missingHeaders?: Schema$Header[];
+  }
+  /**
    * Information about vulnerable request parameters.
    */
   export interface Schema$VulnerableParameters {
@@ -473,31 +548,17 @@ export namespace websecurityscanner_v1alpha {
 
 
   export class Resource$Projects {
-    root: Websecurityscanner;
     scanConfigs: Resource$Projects$Scanconfigs;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.scanConfigs = new Resource$Projects$Scanconfigs(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.scanConfigs = new Resource$Projects$Scanconfigs();
     }
   }
 
 
   export class Resource$Projects$Scanconfigs {
-    root: Websecurityscanner;
     scanRuns: Resource$Projects$Scanconfigs$Scanruns;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.scanRuns = new Resource$Projects$Scanconfigs$Scanruns(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.scanRuns = new Resource$Projects$Scanconfigs$Scanruns();
     }
 
 
@@ -560,7 +621,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -626,7 +687,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -689,7 +750,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -760,7 +821,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(parameters, callback);
@@ -830,7 +891,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -898,7 +959,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -908,7 +969,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Create {
+  export interface Params$Resource$Projects$Scanconfigs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -925,7 +987,8 @@ export namespace websecurityscanner_v1alpha {
      */
     requestBody?: Schema$ScanConfig;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Delete {
+  export interface Params$Resource$Projects$Scanconfigs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -937,7 +1000,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Get {
+  export interface Params$Resource$Projects$Scanconfigs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -949,7 +1013,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$List {
+  export interface Params$Resource$Projects$Scanconfigs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -973,7 +1038,8 @@ export namespace websecurityscanner_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Patch {
+  export interface Params$Resource$Projects$Scanconfigs$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -997,7 +1063,8 @@ export namespace websecurityscanner_v1alpha {
      */
     requestBody?: Schema$ScanConfig;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Start {
+  export interface Params$Resource$Projects$Scanconfigs$Start extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1016,22 +1083,15 @@ export namespace websecurityscanner_v1alpha {
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns {
-    root: Websecurityscanner;
     crawledUrls: Resource$Projects$Scanconfigs$Scanruns$Crawledurls;
     findings: Resource$Projects$Scanconfigs$Scanruns$Findings;
     findingTypeStats: Resource$Projects$Scanconfigs$Scanruns$Findingtypestats;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.crawledUrls =
-          new Resource$Projects$Scanconfigs$Scanruns$Crawledurls(root);
-      this.findings = new Resource$Projects$Scanconfigs$Scanruns$Findings(root);
+          new Resource$Projects$Scanconfigs$Scanruns$Crawledurls();
+      this.findings = new Resource$Projects$Scanconfigs$Scanruns$Findings();
       this.findingTypeStats =
-          new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats();
     }
 
 
@@ -1087,7 +1147,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1159,7 +1219,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListScanRunsResponse>(parameters, callback);
@@ -1227,7 +1287,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1237,7 +1297,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Get {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1250,7 +1311,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1274,7 +1336,8 @@ export namespace websecurityscanner_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Stop {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Stop extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1294,15 +1357,7 @@ export namespace websecurityscanner_v1alpha {
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns$Crawledurls {
-    root: Websecurityscanner;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1368,7 +1423,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListCrawledUrlsResponse>(parameters, callback);
@@ -1378,7 +1433,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1406,15 +1462,7 @@ export namespace websecurityscanner_v1alpha {
 
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findings {
-    root: Websecurityscanner;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1471,7 +1519,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Finding>(parameters, callback);
@@ -1545,7 +1593,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingsResponse>(parameters, callback);
@@ -1555,7 +1603,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1568,7 +1617,8 @@ export namespace websecurityscanner_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1602,15 +1652,7 @@ export namespace websecurityscanner_v1alpha {
 
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findingtypestats {
-    root: Websecurityscanner;
-    constructor(root: Websecurityscanner) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1682,7 +1724,7 @@ export namespace websecurityscanner_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingTypeStatsResponse>(
@@ -1694,7 +1736,8 @@ export namespace websecurityscanner_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List {
+  export interface Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace webmasters_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,10 +81,6 @@ export namespace webmasters_v3 {
    * @param {object=} options Options for Webmasters
    */
   export class Webmasters {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     searchanalytics: Resource$Searchanalytics;
     sitemaps: Resource$Sitemaps;
     sites: Resource$Sites;
@@ -57,19 +88,13 @@ export namespace webmasters_v3 {
     urlcrawlerrorssamples: Resource$Urlcrawlerrorssamples;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.searchanalytics = new Resource$Searchanalytics(this);
-      this.sitemaps = new Resource$Sitemaps(this);
-      this.sites = new Resource$Sites(this);
-      this.urlcrawlerrorscounts = new Resource$Urlcrawlerrorscounts(this);
-      this.urlcrawlerrorssamples = new Resource$Urlcrawlerrorssamples(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.searchanalytics = new Resource$Searchanalytics();
+      this.sitemaps = new Resource$Sitemaps();
+      this.sites = new Resource$Sites();
+      this.urlcrawlerrorscounts = new Resource$Urlcrawlerrorscounts();
+      this.urlcrawlerrorssamples = new Resource$Urlcrawlerrorssamples();
     }
   }
 
@@ -350,15 +375,7 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Searchanalytics {
-    root: Webmasters;
-    constructor(root: Webmasters) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -430,7 +447,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
@@ -442,7 +459,8 @@ export namespace webmasters_v3 {
     }
   }
 
-  export interface Params$Resource$Searchanalytics$Query {
+  export interface Params$Resource$Searchanalytics$Query extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -461,15 +479,7 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Sitemaps {
-    root: Webmasters;
-    constructor(root: Webmasters) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -527,7 +537,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -591,7 +601,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WmxSitemap>(parameters, callback);
@@ -659,7 +669,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SitemapsListResponse>(parameters, callback);
@@ -724,7 +734,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -734,7 +744,7 @@ export namespace webmasters_v3 {
     }
   }
 
-  export interface Params$Resource$Sitemaps$Delete {
+  export interface Params$Resource$Sitemaps$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -750,7 +760,7 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sitemaps$Get {
+  export interface Params$Resource$Sitemaps$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -766,7 +776,7 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sitemaps$List {
+  export interface Params$Resource$Sitemaps$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -782,7 +792,7 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sitemaps$Submit {
+  export interface Params$Resource$Sitemaps$Submit extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -801,15 +811,7 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Sites {
-    root: Webmasters;
-    constructor(root: Webmasters) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -861,7 +863,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -924,7 +926,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -985,7 +987,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WmxSite>(parameters, callback);
@@ -1049,7 +1051,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(parameters, callback);
@@ -1059,7 +1061,7 @@ export namespace webmasters_v3 {
     }
   }
 
-  export interface Params$Resource$Sites$Add {
+  export interface Params$Resource$Sites$Add extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1070,7 +1072,7 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sites$Delete {
+  export interface Params$Resource$Sites$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1084,7 +1086,7 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sites$Get {
+  export interface Params$Resource$Sites$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1098,7 +1100,7 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Sites$List {
+  export interface Params$Resource$Sites$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1107,15 +1109,7 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Urlcrawlerrorscounts {
-    root: Webmasters;
-    constructor(root: Webmasters) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1189,7 +1183,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
@@ -1201,7 +1195,8 @@ export namespace webmasters_v3 {
     }
   }
 
-  export interface Params$Resource$Urlcrawlerrorscounts$Query {
+  export interface Params$Resource$Urlcrawlerrorscounts$Query extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1229,15 +1224,7 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Urlcrawlerrorssamples {
-    root: Webmasters;
-    constructor(root: Webmasters) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1299,7 +1286,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters, callback);
@@ -1379,7 +1366,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'category', 'platform'],
         pathParams: ['siteUrl'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
@@ -1452,7 +1439,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1462,7 +1449,8 @@ export namespace webmasters_v3 {
     }
   }
 
-  export interface Params$Resource$Urlcrawlerrorssamples$Get {
+  export interface Params$Resource$Urlcrawlerrorssamples$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1488,7 +1476,8 @@ export namespace webmasters_v3 {
      */
     url?: string;
   }
-  export interface Params$Resource$Urlcrawlerrorssamples$List {
+  export interface Params$Resource$Urlcrawlerrorssamples$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1507,7 +1496,8 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Urlcrawlerrorssamples$Markasfixed {
+  export interface Params$Resource$Urlcrawlerrorssamples$Markasfixed extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

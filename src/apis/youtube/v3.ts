@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace youtube_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,10 +82,6 @@ export namespace youtube_v3 {
    * @param {object=} options Options for Youtube
    */
   export class Youtube {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     activities: Resource$Activities;
     captions: Resource$Captions;
     channelBanners: Resource$Channelbanners;
@@ -79,40 +110,34 @@ export namespace youtube_v3 {
     watermarks: Resource$Watermarks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities(this);
-      this.captions = new Resource$Captions(this);
-      this.channelBanners = new Resource$Channelbanners(this);
-      this.channels = new Resource$Channels(this);
-      this.channelSections = new Resource$Channelsections(this);
-      this.comments = new Resource$Comments(this);
-      this.commentThreads = new Resource$Commentthreads(this);
-      this.guideCategories = new Resource$Guidecategories(this);
-      this.i18nLanguages = new Resource$I18nlanguages(this);
-      this.i18nRegions = new Resource$I18nregions(this);
-      this.liveBroadcasts = new Resource$Livebroadcasts(this);
-      this.liveChatBans = new Resource$Livechatbans(this);
-      this.liveChatMessages = new Resource$Livechatmessages(this);
-      this.liveChatModerators = new Resource$Livechatmoderators(this);
-      this.liveStreams = new Resource$Livestreams(this);
-      this.playlistItems = new Resource$Playlistitems(this);
-      this.playlists = new Resource$Playlists(this);
-      this.search = new Resource$Search(this);
-      this.sponsors = new Resource$Sponsors(this);
-      this.subscriptions = new Resource$Subscriptions(this);
-      this.superChatEvents = new Resource$Superchatevents(this);
-      this.thumbnails = new Resource$Thumbnails(this);
-      this.videoAbuseReportReasons = new Resource$Videoabusereportreasons(this);
-      this.videoCategories = new Resource$Videocategories(this);
-      this.videos = new Resource$Videos(this);
-      this.watermarks = new Resource$Watermarks(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.activities = new Resource$Activities();
+      this.captions = new Resource$Captions();
+      this.channelBanners = new Resource$Channelbanners();
+      this.channels = new Resource$Channels();
+      this.channelSections = new Resource$Channelsections();
+      this.comments = new Resource$Comments();
+      this.commentThreads = new Resource$Commentthreads();
+      this.guideCategories = new Resource$Guidecategories();
+      this.i18nLanguages = new Resource$I18nlanguages();
+      this.i18nRegions = new Resource$I18nregions();
+      this.liveBroadcasts = new Resource$Livebroadcasts();
+      this.liveChatBans = new Resource$Livechatbans();
+      this.liveChatMessages = new Resource$Livechatmessages();
+      this.liveChatModerators = new Resource$Livechatmoderators();
+      this.liveStreams = new Resource$Livestreams();
+      this.playlistItems = new Resource$Playlistitems();
+      this.playlists = new Resource$Playlists();
+      this.search = new Resource$Search();
+      this.sponsors = new Resource$Sponsors();
+      this.subscriptions = new Resource$Subscriptions();
+      this.superChatEvents = new Resource$Superchatevents();
+      this.thumbnails = new Resource$Thumbnails();
+      this.videoAbuseReportReasons = new Resource$Videoabusereportreasons();
+      this.videoCategories = new Resource$Videocategories();
+      this.videos = new Resource$Videos();
+      this.watermarks = new Resource$Watermarks();
     }
   }
 
@@ -697,7 +722,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$ChannelLocalization;};
     /**
      * The snippet object contains basic details about the channel, such as its
      * title, description, and thumbnail images.
@@ -787,7 +812,13 @@ export namespace youtube_v3 {
    * Details about the content of a channel.
    */
   export interface Schema$ChannelContentDetails {
-    relatedPlaylists?: any;
+    relatedPlaylists?: {
+      favorites?: string;
+      likes?: string;
+      uploads?: string;
+      watchHistory?: string;
+      watchLater?: string;
+    };
   }
   /**
    * The contentOwnerDetails object encapsulates channel data that is relevant
@@ -926,7 +957,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$ChannelSectionLocalization;};
     /**
      * The snippet object contains basic details about the channel section, such
      * as its type, style and title.
@@ -3080,7 +3111,7 @@ export namespace youtube_v3 {
     /**
      * Localizations for different languages
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$PlaylistLocalization;};
     /**
      * The player object contains information that you would use to play the
      * playlist in an embedded player.
@@ -4013,7 +4044,7 @@ export namespace youtube_v3 {
     /**
      * List with all localizations.
      */
-    localizations?: any;
+    localizations?: {[key: string]: Schema$VideoLocalization;};
     /**
      * The monetizationDetails object encapsulates information about the
      * monetization status of the video.
@@ -4948,15 +4979,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Activities {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5021,7 +5044,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -5099,7 +5122,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ActivityListResponse>(parameters, callback);
@@ -5109,7 +5132,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Activities$Insert {
+  export interface Params$Resource$Activities$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5127,7 +5151,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Activity;
   }
-  export interface Params$Resource$Activities$List {
+  export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5198,15 +5222,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Captions {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5264,7 +5280,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5336,7 +5352,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5409,7 +5425,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5481,7 +5497,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part', 'videoId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CaptionListResponse>(parameters, callback);
@@ -5556,7 +5572,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5566,7 +5582,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Captions$Delete {
+  export interface Params$Resource$Captions$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5597,7 +5613,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Captions$Download {
+  export interface Params$Resource$Captions$Download extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5642,7 +5659,7 @@ export namespace youtube_v3 {
      */
     tlang?: string;
   }
-  export interface Params$Resource$Captions$Insert {
+  export interface Params$Resource$Captions$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5702,7 +5719,7 @@ export namespace youtube_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Captions$List {
+  export interface Params$Resource$Captions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5743,7 +5760,7 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Captions$Update {
+  export interface Params$Resource$Captions$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5807,15 +5824,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Channelbanners {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5891,7 +5900,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelBannerResource>(parameters, callback);
@@ -5901,7 +5910,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelbanners$Insert {
+  export interface Params$Resource$Channelbanners$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5955,15 +5965,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Channels {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6032,7 +6034,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelListResponse>(parameters, callback);
@@ -6100,7 +6102,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -6110,7 +6112,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channels$List {
+  export interface Params$Resource$Channels$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6191,7 +6193,7 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Channels$Update {
+  export interface Params$Resource$Channels$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6228,15 +6230,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Channelsections {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6295,7 +6289,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6365,7 +6359,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6442,7 +6436,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSectionListResponse>(
@@ -6512,7 +6506,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6522,7 +6516,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Channelsections$Delete {
+  export interface Params$Resource$Channelsections$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6548,7 +6543,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Channelsections$Insert {
+  export interface Params$Resource$Channelsections$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6599,7 +6595,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$ChannelSection;
   }
-  export interface Params$Resource$Channelsections$List {
+  export interface Params$Resource$Channelsections$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6658,7 +6655,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Channelsections$Update {
+  export interface Params$Resource$Channelsections$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6693,15 +6691,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Comments {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -6757,7 +6747,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6823,7 +6813,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -6893,7 +6883,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentListResponse>(parameters, callback);
@@ -6959,7 +6949,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7028,7 +7018,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'moderationStatus'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7093,7 +7083,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -7103,7 +7093,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Comments$Delete {
+  export interface Params$Resource$Comments$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7115,7 +7105,7 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Comments$Insert {
+  export interface Params$Resource$Comments$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7133,7 +7123,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Comment;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7176,7 +7166,8 @@ export namespace youtube_v3 {
      */
     textFormat?: string;
   }
-  export interface Params$Resource$Comments$Markasspam {
+  export interface Params$Resource$Comments$Markasspam extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7188,7 +7179,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Comments$Setmoderationstatus {
+  export interface Params$Resource$Comments$Setmoderationstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7211,7 +7203,7 @@ export namespace youtube_v3 {
      */
     moderationStatus?: string;
   }
-  export interface Params$Resource$Comments$Update {
+  export interface Params$Resource$Comments$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7233,15 +7225,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Commentthreads {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7303,7 +7287,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7382,7 +7366,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentThreadListResponse>(
@@ -7451,7 +7435,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7461,7 +7445,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Commentthreads$Insert {
+  export interface Params$Resource$Commentthreads$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7479,7 +7464,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$CommentThread;
   }
-  export interface Params$Resource$Commentthreads$List {
+  export interface Params$Resource$Commentthreads$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7552,7 +7538,8 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Commentthreads$Update {
+  export interface Params$Resource$Commentthreads$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7574,15 +7561,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Guidecategories {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7648,7 +7627,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GuideCategoryListResponse>(
@@ -7659,7 +7638,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Guidecategories$List {
+  export interface Params$Resource$Guidecategories$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7692,15 +7672,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$I18nlanguages {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7762,7 +7734,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$I18nLanguageListResponse>(parameters, callback);
@@ -7772,7 +7744,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$I18nlanguages$List {
+  export interface Params$Resource$I18nlanguages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7792,15 +7765,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$I18nregions {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7861,7 +7826,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$I18nRegionListResponse>(parameters, callback);
@@ -7871,7 +7836,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$I18nregions$List {
+  export interface Params$Resource$I18nregions$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -7891,15 +7856,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livebroadcasts {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -7965,7 +7922,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8039,7 +7996,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8106,7 +8063,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8176,7 +8133,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8253,7 +8210,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcastListResponse>(
@@ -8330,7 +8287,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['broadcastStatus', 'id', 'part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8401,7 +8358,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8411,7 +8368,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livebroadcasts$Bind {
+  export interface Params$Resource$Livebroadcasts$Bind extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8468,7 +8426,8 @@ export namespace youtube_v3 {
      */
     streamId?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Control {
+  export interface Params$Resource$Livebroadcasts$Control extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8543,7 +8502,8 @@ export namespace youtube_v3 {
      */
     walltime?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Delete {
+  export interface Params$Resource$Livebroadcasts$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8587,7 +8547,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Insert {
+  export interface Params$Resource$Livebroadcasts$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8639,7 +8600,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveBroadcast;
   }
-  export interface Params$Resource$Livebroadcasts$List {
+  export interface Params$Resource$Livebroadcasts$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8719,7 +8681,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Transition {
+  export interface Params$Resource$Livebroadcasts$Transition extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8777,7 +8740,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livebroadcasts$Update {
+  export interface Params$Resource$Livebroadcasts$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8840,15 +8804,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livechatbans {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -8906,7 +8862,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8974,7 +8930,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatBan>(parameters, callback);
@@ -8984,7 +8940,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatbans$Delete {
+  export interface Params$Resource$Livechatbans$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -8996,7 +8953,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatbans$Insert {
+  export interface Params$Resource$Livechatbans$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9018,15 +8976,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livechatmessages {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9084,7 +9034,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9152,7 +9102,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessage>(parameters, callback);
@@ -9229,7 +9179,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessageListResponse>(
@@ -9240,7 +9190,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatmessages$Delete {
+  export interface Params$Resource$Livechatmessages$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9252,7 +9203,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmessages$Insert {
+  export interface Params$Resource$Livechatmessages$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9270,7 +9222,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatMessage;
   }
-  export interface Params$Resource$Livechatmessages$List {
+  export interface Params$Resource$Livechatmessages$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9317,15 +9270,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livechatmoderators {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9383,7 +9328,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9451,7 +9396,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModerator>(parameters, callback);
@@ -9526,7 +9471,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModeratorListResponse>(
@@ -9538,7 +9483,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livechatmoderators$Delete {
+  export interface Params$Resource$Livechatmoderators$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9550,7 +9496,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Livechatmoderators$Insert {
+  export interface Params$Resource$Livechatmoderators$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9569,7 +9516,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveChatModerator;
   }
-  export interface Params$Resource$Livechatmoderators$List {
+  export interface Params$Resource$Livechatmoderators$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9600,15 +9548,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livestreams {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -9668,7 +9608,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9739,7 +9679,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -9812,7 +9752,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveStreamListResponse>(parameters, callback);
@@ -9884,7 +9824,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -9894,7 +9834,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Livestreams$Delete {
+  export interface Params$Resource$Livestreams$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9938,7 +9879,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwnerChannel?: string;
   }
-  export interface Params$Resource$Livestreams$Insert {
+  export interface Params$Resource$Livestreams$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -9989,7 +9931,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$LiveStream;
   }
-  export interface Params$Resource$Livestreams$List {
+  export interface Params$Resource$Livestreams$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10058,7 +10000,8 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Livestreams$Update {
+  export interface Params$Resource$Livestreams$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10116,15 +10059,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Playlistitems {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -10183,7 +10118,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10252,7 +10187,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10327,7 +10262,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItemListResponse>(parameters, callback);
@@ -10397,7 +10332,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10407,7 +10342,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlistitems$Delete {
+  export interface Params$Resource$Playlistitems$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10433,7 +10369,8 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlistitems$Insert {
+  export interface Params$Resource$Playlistitems$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10464,7 +10401,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$PlaylistItem;
   }
-  export interface Params$Resource$Playlistitems$List {
+  export interface Params$Resource$Playlistitems$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10523,7 +10461,8 @@ export namespace youtube_v3 {
      */
     videoId?: string;
   }
-  export interface Params$Resource$Playlistitems$Update {
+  export interface Params$Resource$Playlistitems$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10567,15 +10506,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Playlists {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -10632,7 +10563,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10699,7 +10630,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -10776,7 +10707,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistListResponse>(parameters, callback);
@@ -10843,7 +10774,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -10853,7 +10784,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Playlists$Delete {
+  export interface Params$Resource$Playlists$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10879,7 +10810,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Playlists$Insert {
+  export interface Params$Resource$Playlists$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -10929,7 +10860,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Playlist;
   }
-  export interface Params$Resource$Playlists$List {
+  export interface Params$Resource$Playlists$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11010,7 +10941,7 @@ export namespace youtube_v3 {
      */
     part?: string;
   }
-  export interface Params$Resource$Playlists$Update {
+  export interface Params$Resource$Playlists$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11050,15 +10981,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Search {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11149,7 +11072,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SearchListResponse>(parameters, callback);
@@ -11159,7 +11082,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Search$List {
+  export interface Params$Resource$Search$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11389,15 +11312,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Sponsors {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11458,7 +11373,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SponsorListResponse>(parameters, callback);
@@ -11468,7 +11383,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Sponsors$List {
+  export interface Params$Resource$Sponsors$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11498,15 +11413,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Subscriptions {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11564,7 +11471,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11632,7 +11539,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -11710,7 +11617,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionListResponse>(parameters, callback);
@@ -11720,7 +11627,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Delete {
+  export interface Params$Resource$Subscriptions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11733,7 +11641,8 @@ export namespace youtube_v3 {
      */
     id?: string;
   }
-  export interface Params$Resource$Subscriptions$Insert {
+  export interface Params$Resource$Subscriptions$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11751,7 +11660,8 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$List {
+  export interface Params$Resource$Subscriptions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11852,15 +11762,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Superchatevents {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -11927,7 +11829,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$SuperChatEventListResponse>(
@@ -11938,7 +11840,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Superchatevents$List {
+  export interface Params$Resource$Superchatevents$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -11975,15 +11878,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Thumbnails {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -12046,7 +11941,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['videoId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ThumbnailSetResponse>(parameters, callback);
@@ -12056,7 +11951,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Thumbnails$Set {
+  export interface Params$Resource$Thumbnails$Set extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12100,15 +11995,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Videoabusereportreasons {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -12179,7 +12066,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
@@ -12191,7 +12078,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videoabusereportreasons$List {
+  export interface Params$Resource$Videoabusereportreasons$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12211,15 +12099,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Videocategories {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -12285,7 +12165,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VideoCategoryListResponse>(
@@ -12296,7 +12176,8 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videocategories$List {
+  export interface Params$Resource$Videocategories$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12327,15 +12208,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Videos {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -12392,7 +12265,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12462,7 +12335,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VideoGetRatingResponse>(parameters, callback);
@@ -12538,7 +12411,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -12615,7 +12488,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$VideoListResponse>(parameters, callback);
@@ -12680,7 +12553,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'rating'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12746,7 +12619,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12812,7 +12685,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -12822,7 +12695,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Videos$Delete {
+  export interface Params$Resource$Videos$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12848,7 +12721,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Videos$Getrating {
+  export interface Params$Resource$Videos$Getrating extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12874,7 +12747,7 @@ export namespace youtube_v3 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Videos$Insert {
+  export interface Params$Resource$Videos$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -12963,7 +12836,7 @@ export namespace youtube_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Videos$List {
+  export interface Params$Resource$Videos$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13065,7 +12938,7 @@ export namespace youtube_v3 {
      */
     videoCategoryId?: string;
   }
-  export interface Params$Resource$Videos$Rate {
+  export interface Params$Resource$Videos$Rate extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13081,7 +12954,8 @@ export namespace youtube_v3 {
      */
     rating?: string;
   }
-  export interface Params$Resource$Videos$Reportabuse {
+  export interface Params$Resource$Videos$Reportabuse extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13106,7 +12980,7 @@ export namespace youtube_v3 {
      */
     requestBody?: Schema$VideoAbuseReport;
   }
-  export interface Params$Resource$Videos$Update {
+  export interface Params$Resource$Videos$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13154,15 +13028,7 @@ export namespace youtube_v3 {
 
 
   export class Resource$Watermarks {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -13222,7 +13088,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['channelId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13286,7 +13152,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['channelId'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13296,7 +13162,7 @@ export namespace youtube_v3 {
     }
   }
 
-  export interface Params$Resource$Watermarks$Set {
+  export interface Params$Resource$Watermarks$Set extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -13341,7 +13207,7 @@ export namespace youtube_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Watermarks$Unset {
+  export interface Params$Resource$Watermarks$Unset extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

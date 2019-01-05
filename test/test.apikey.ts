@@ -11,32 +11,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import assert from 'assert';
+import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
-import nock from 'nock';
+import {APIEndpoint} from 'googleapis-common';
+import * as nock from 'nock';
 
 import {drive_v2, GoogleApis, urlshortener_v1} from '../src';
-import {APIEndpoint} from '../src/shared/src/api';
 
 import {Utils} from './utils';
 
 async function testGet(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files/123?key=APIKEY').reply(200);
   const res = await drive.files.get({fileId: '123', auth: 'APIKEY'});
-  assert.equal(Utils.getQs(res), 'key=APIKEY');
+  assert.strictEqual(Utils.getQs(res), 'key=APIKEY');
 }
 
 async function testParams2(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files/123?key=API%20KEY').reply(200);
   const res = await drive.files.get({fileId: '123', auth: 'API KEY'});
-  assert.equal(Utils.getQs(res), 'key=API%20KEY');
+  assert.strictEqual(Utils.getQs(res), 'key=API%20KEY');
 }
 
 async function testKeyParam(drive: APIEndpoint) {
   nock(Utils.baseUrl).get('/drive/v2/files/123?key=abc123').reply(200);
   const res =
       await drive.files.get({fileId: '123', auth: 'API KEY', key: 'abc123'});
-  assert.equal(Utils.getQs(res), 'key=abc123');
+  assert.strictEqual(Utils.getQs(res), 'key=abc123');
 }
 
 async function testAuthKey(urlshortener: APIEndpoint) {
@@ -44,7 +44,8 @@ async function testAuthKey(urlshortener: APIEndpoint) {
       .get('/urlshortener/v1/url/history?key=YOUR%20API%20KEY')
       .reply(200);
   const res = await urlshortener.url.list({auth: 'YOUR API KEY'});
-  assert.equal(Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1, true);
+  assert.strictEqual(
+      Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1, true);
 }
 
 describe('API key', () => {

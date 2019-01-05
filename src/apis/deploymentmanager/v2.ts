@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace deploymentmanager_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,10 +82,6 @@ export namespace deploymentmanager_v2 {
    * @param {object=} options Options for Deploymentmanager
    */
   export class Deploymentmanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     deployments: Resource$Deployments;
     manifests: Resource$Manifests;
     operations: Resource$Operations;
@@ -58,19 +89,13 @@ export namespace deploymentmanager_v2 {
     types: Resource$Types;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.deployments = new Resource$Deployments(this);
-      this.manifests = new Resource$Manifests(this);
-      this.operations = new Resource$Operations(this);
-      this.resources = new Resource$Resources(this);
-      this.types = new Resource$Types(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.deployments = new Resource$Deployments();
+      this.manifests = new Resource$Manifests();
+      this.operations = new Resource$Operations();
+      this.resources = new Resource$Resources();
+      this.types = new Resource$Types();
     }
   }
 
@@ -554,7 +579,9 @@ export namespace deploymentmanager_v2 {
      * [Output Only] If errors are generated during processing of the operation,
      * this field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as NOT FOUND.
@@ -644,7 +671,11 @@ export namespace deploymentmanager_v2 {
      * [Output Only] If warning messages are generated during processing of the
      * operation, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
     /**
      * [Output Only] The URL of the zone where the operation resides. Only
      * available when performing per-zone operations. You must specify this
@@ -780,7 +811,11 @@ export namespace deploymentmanager_v2 {
      * Output only. If warning messages are generated during processing of this
      * resource, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   /**
    * The access controls set on the resource.
@@ -815,7 +850,9 @@ export namespace deploymentmanager_v2 {
      * Output only. If errors are generated during update of the resource, this
      * field will be populated.
      */
-    error?: any;
+    error?: {
+      errors?: Array<{code?: string; location?: string; message?: string;}>;
+    };
     /**
      * Output only. The expanded properties of the resource with reference
      * values expanded. Returned as serialized YAML.
@@ -843,7 +880,11 @@ export namespace deploymentmanager_v2 {
      * Output only. If warning messages are generated during processing of this
      * resource, this field will be populated.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
   /**
    * A rule to be applied in a Policy.
@@ -954,15 +995,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Deployments {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1085,7 +1118,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1212,7 +1245,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1333,7 +1366,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1457,7 +1490,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1587,7 +1620,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1726,7 +1759,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DeploymentsListResponse>(parameters, callback);
@@ -1862,7 +1895,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1991,7 +2024,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2121,7 +2154,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2252,7 +2285,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -2389,7 +2422,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2399,7 +2432,8 @@ export namespace deploymentmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Deployments$Cancelpreview {
+  export interface Params$Resource$Deployments$Cancelpreview extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2419,7 +2453,8 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$DeploymentsCancelPreviewRequest;
   }
-  export interface Params$Resource$Deployments$Delete {
+  export interface Params$Resource$Deployments$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2438,7 +2473,7 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Get {
+  export interface Params$Resource$Deployments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2453,7 +2488,8 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Getiampolicy {
+  export interface Params$Resource$Deployments$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2468,7 +2504,8 @@ export namespace deploymentmanager_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Deployments$Insert {
+  export interface Params$Resource$Deployments$Insert extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2498,7 +2535,7 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$List {
+  export interface Params$Resource$Deployments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2552,7 +2589,8 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Deployments$Patch {
+  export interface Params$Resource$Deployments$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2593,7 +2631,8 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Deployments$Setiampolicy {
+  export interface Params$Resource$Deployments$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2613,7 +2652,7 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$GlobalSetPolicyRequest;
   }
-  export interface Params$Resource$Deployments$Stop {
+  export interface Params$Resource$Deployments$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2633,7 +2672,8 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$DeploymentsStopRequest;
   }
-  export interface Params$Resource$Deployments$Testiampermissions {
+  export interface Params$Resource$Deployments$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2653,7 +2693,8 @@ export namespace deploymentmanager_v2 {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Deployments$Update {
+  export interface Params$Resource$Deployments$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2697,15 +2738,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Manifests {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2822,7 +2855,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Manifest>(parameters, callback);
@@ -2964,7 +2997,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ManifestsListResponse>(parameters, callback);
@@ -2974,7 +3007,7 @@ export namespace deploymentmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Manifests$Get {
+  export interface Params$Resource$Manifests$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2993,7 +3026,7 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Manifests$List {
+  export interface Params$Resource$Manifests$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3054,15 +3087,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Operations {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3176,7 +3201,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3315,7 +3340,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -3325,7 +3350,7 @@ export namespace deploymentmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3340,7 +3365,7 @@ export namespace deploymentmanager_v2 {
      */
     project?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3397,15 +3422,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Resources {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3522,7 +3539,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Resource>(parameters, callback);
@@ -3664,7 +3681,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcesListResponse>(parameters, callback);
@@ -3674,7 +3691,7 @@ export namespace deploymentmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Resources$Get {
+  export interface Params$Resource$Resources$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3693,7 +3710,7 @@ export namespace deploymentmanager_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Resources$List {
+  export interface Params$Resource$Resources$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3754,15 +3771,7 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Types {
-    root: Deploymentmanager;
-    constructor(root: Deploymentmanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3891,7 +3900,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TypesListResponse>(parameters, callback);
@@ -3901,7 +3910,7 @@ export namespace deploymentmanager_v2 {
     }
   }
 
-  export interface Params$Resource$Types$List {
+  export interface Params$Resource$Types$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

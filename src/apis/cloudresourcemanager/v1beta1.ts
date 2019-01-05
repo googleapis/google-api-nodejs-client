@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,11 +29,64 @@ export namespace cloudresourcemanager_v1beta1 {
     version: 'v1beta1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Cloud Resource Manager API
    *
-   * The Google Cloud Resource Manager API provides methods for creating,
-   * reading, and updating project metadata.
+   * Creates, reads, and updates metadata for Google Cloud Platform resource
+   * containers.
    *
    * @example
    * const {google} = require('googleapis');
@@ -47,24 +99,14 @@ export namespace cloudresourcemanager_v1beta1 {
    * @param {object=} options Options for Cloudresourcemanager
    */
   export class Cloudresourcemanager {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.organizations = new Resource$Organizations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -137,6 +179,13 @@ export namespace cloudresourcemanager_v1beta1 {
    */
   export interface Schema$Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -154,7 +203,7 @@ export namespace cloudresourcemanager_v1beta1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -166,6 +215,35 @@ export namespace cloudresourcemanager_v1beta1 {
    * representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
   /**
    * Metadata describing a long running folder operation
    */
@@ -374,13 +452,14 @@ export namespace cloudresourcemanager_v1beta1 {
      * and 63 characters long and must conform to the following regular
      * expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be
      * between 0 and 63 characters long and must conform to the regular
-     * expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 256 labels
-     * can be associated with a given resource.  Clients should store labels in
-     * a representation such as JSON that does not depend on specific characters
-     * being disallowed.  Example: &lt;code&gt;&quot;environment&quot; :
-     * &quot;dev&quot;&lt;/code&gt; Read-write.
+     * expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. A label value can be
+     * empty.  No more than 256 labels can be associated with a given resource.
+     * Clients should store labels in a representation such as JSON that does
+     * not depend on specific characters being disallowed.  Example:
+     * &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt;
+     * Read-write.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The Project lifecycle state.  Read-only.
      */
@@ -501,15 +580,7 @@ export namespace cloudresourcemanager_v1beta1 {
 
 
   export class Resource$Organizations {
-    root: Cloudresourcemanager;
-    constructor(root: Cloudresourcemanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -619,7 +690,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Organization>(parameters, callback);
@@ -746,7 +817,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -884,7 +955,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOrganizationsResponse>(
@@ -1012,7 +1083,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1147,7 +1218,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1277,7 +1348,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Organization>(parameters, callback);
@@ -1287,7 +1358,8 @@ export namespace cloudresourcemanager_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Get {
+  export interface Params$Resource$Organizations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1304,7 +1376,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     organizationId?: string;
   }
-  export interface Params$Resource$Organizations$Getiampolicy {
+  export interface Params$Resource$Organizations$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1321,7 +1394,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$List {
+  export interface Params$Resource$Organizations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1350,7 +1424,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Organizations$Setiampolicy {
+  export interface Params$Resource$Organizations$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1367,7 +1442,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Testiampermissions {
+  export interface Params$Resource$Organizations$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1384,7 +1460,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Organizations$Update {
+  export interface Params$Resource$Organizations$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1405,15 +1482,7 @@ export namespace cloudresourcemanager_v1beta1 {
 
 
   export class Resource$Projects {
-    root: Cloudresourcemanager;
-    constructor(root: Cloudresourcemanager) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1535,7 +1604,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1661,7 +1730,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1779,7 +1848,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1907,7 +1976,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetAncestryResponse>(parameters, callback);
@@ -2034,7 +2103,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2171,7 +2240,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectsResponse>(parameters, callback);
@@ -2319,7 +2388,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2451,7 +2520,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2579,7 +2648,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2707,7 +2776,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -2717,7 +2786,7 @@ export namespace cloudresourcemanager_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Create {
+  export interface Params$Resource$Projects$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2733,7 +2802,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$Project;
   }
-  export interface Params$Resource$Projects$Delete {
+  export interface Params$Resource$Projects$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2744,7 +2813,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Get {
+  export interface Params$Resource$Projects$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2755,7 +2824,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Getancestry {
+  export interface Params$Resource$Projects$Getancestry extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2771,7 +2841,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$GetAncestryRequest;
   }
-  export interface Params$Resource$Projects$Getiampolicy {
+  export interface Params$Resource$Projects$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2788,7 +2859,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$List {
+  export interface Params$Resource$Projects$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2828,7 +2899,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Setiampolicy {
+  export interface Params$Resource$Projects$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2845,7 +2917,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Testiampermissions {
+  export interface Params$Resource$Projects$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2862,7 +2935,8 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Undelete {
+  export interface Params$Resource$Projects$Undelete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2878,7 +2952,7 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     requestBody?: Schema$UndeleteProjectRequest;
   }
-  export interface Params$Resource$Projects$Update {
+  export interface Params$Resource$Projects$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

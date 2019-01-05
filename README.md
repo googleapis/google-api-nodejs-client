@@ -4,7 +4,6 @@
 
 [![Release Level][releaselevelimg]][releaselevel]
 [![CircleCI][circleimg]][circle]
-[![Greenkeeper][greenkeeperimg]][greenkeeper]
 [![npm version][npmimg]][npm]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
@@ -18,7 +17,7 @@
   * [Installation](#installation)
   * [First example](#first-example)
   * [Samples](#samples)
-  * [Reference API](#reference-api)
+  * [API Reference](#api-reference)
 * [Authentication and authorization](#authentication-and-authorization)
   * [OAuth2 client](#oauth2-client)
   * [Using API keys](#using-api-keys)
@@ -43,6 +42,11 @@ Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 ### Working with Google Cloud Platform APIs?
 If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datastore, Cloud Storage or Pub/Sub, consider using the [`@google-cloud`][googlecloud] client libraries: single purpose idiomatic Node.js clients for Google Cloud Platform services.
 
+### Support and maintenance
+These client libraries are official supported by Google. However, these libraries are considered complete and are in maintenance mode. This means that we will address critical bugs and security issues but will not add any new features. For Google Cloud Platform APIs, we recommend using [google-cloud-node](https://github.com/GoogleCloudPlatform/google-cloud-node) which is under active development.
+
+This library supports the maintenance LTS, active LTS, and current release of node.js.  See the [node.js release schedule](https://github.com/nodejs/Release) for more information.
+
 ## Getting started
 
 ### Installation
@@ -53,38 +57,38 @@ $ npm install googleapis
 ```
 
 ### First example
-This is a very simple example. This creates a URL Shortener client and retrieves the long url of the given short url:
+This is a very simple example. This creates a Blogger client and retrieves the details of a blog given the blog Id:
 
 ``` js
 const {google} = require('googleapis');
 
 // Each API may support multiple version. With this sample, we're getting
-// v1 of the urlshortener API, and using an API key to authenticate.
-const urlshortener = google.urlshortener({
-  version: 'v1',
+// v3 of the blogger API, and using an API key to authenticate.
+const blogger = google.blogger({
+  version: 'v3',
   auth: 'YOUR API KEY'
 });
 
 const params = {
-  shortUrl: 'http://goo.gl/xKbRu3'
+  blogId: 3213900
 };
 
-// get the long url of a shortened url
-urlshortener.url.get(params, (err, res) => {
+// get the blog details
+blogger.blogs.get(params, (err, res) => {
   if (err) {
     console.error(err);
     throw err;
   }
-  console.log(`Long url is ${res.data.longUrl}`);
+  console.log(`The blog url is ${res.data.url}`);
 });
 ```
 
 Instead of using callbacks you can also use promises!
 
 ``` js
-urlshortener.url.get(params)
+blogger.blogs.get(params)
   .then(res => {
-    console.log(`Long url is ${res.data.longUrl}`);
+    console.log(`The blog url is ${res.data.url}`);
   })
   .catch(error => {
     console.error(error);
@@ -95,17 +99,17 @@ Or async/await:
 
 ``` js
 async function runSample() {
-  const res = await urlshortener.url.get(params);
-  console.log(`Long url is ${res.data.longUrl}`);
+  const res = await blogger.blogs.get(params);
+  console.log(`The blog url is ${res.data.url}`);
 }
 runSample().catch(console.error);
 ```
 
 ### Samples
-There are a lot of [samples](https://github.com/google/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
+There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
 
-### Reference API
-This library provides generated [Reference API documentation](http://google.github.io/google-api-nodejs-client/).
+### API Reference
+This library has a full set of [API Reference Documenation](https://apis-nodejs.firebaseapp.com/). This documentation is auto-generated, and the location may change.
 
 ## Authentication and authorization
 The are three primary ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
@@ -116,7 +120,7 @@ The are three primary ways to authenticate to Google APIs. Some service support 
 
 - **API Key** - With an API key, you can access your service from a client or the server.  Typically less secure, this is only available on a small subset of services with limited scopes.  [Learn more](#using-api-keys).
 
-To learn more about the authentication client, see the [Google Auth Library](https://github.com/google/google-auth-library-nodejs).
+To learn more about the authentication client, see the [Google Auth Library](https://github.com/googleapis/google-auth-library-nodejs).
 
 ### OAuth2 client
 This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token and refreshes the token and retry the request seamlessly The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
@@ -140,9 +144,9 @@ const oauth2Client = new google.auth.OAuth2(
   YOUR_REDIRECT_URL
 );
 
-// generate a url that asks permissions for Google+ and Google Calendar scopes
+// generate a url that asks permissions for Blogger and Google Calendar scopes
 const scopes = [
-  'https://www.googleapis.com/auth/plus.me',
+  'https://www.googleapis.com/auth/blogger',
   'https://www.googleapis.com/auth/calendar'
 ];
 
@@ -155,7 +159,7 @@ const url = oauth2Client.generateAuthUrl({
 });
 ```
 
-**IMPORTANT NOTE** - The `refresh_token` is only returned on the first authorization. More details [here](https://github.com/google/google-api-nodejs-client/issues/750#issuecomment-304521450).
+**IMPORTANT NOTE** - The `refresh_token` is only returned on the first authorization. More details [here](https://github.com/googleapis/google-api-nodejs-client/issues/750#issuecomment-304521450).
 
 #### Retrieve authorization code
 
@@ -197,21 +201,25 @@ oauth2client.setCredentials({
 });
 ```
 
-Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API. You can use the `oauth2Client.refreshAccessToken()` method for this purpose, returning the tokens in the response.
+Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API.
 
 ### Using API keys
-You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
+You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Blogger API service to retrieve a blog's name, url, and its total amount of posts:
 
 ``` js
 const {google} = require('googleapis');
-const plus = google.plus({
-  version: 'v1',
+const blogger = google.blogger_v3({
+  version: 'v3',
   auth: 'YOUR_API_KEY' // specify your API key here
 });
 
-async function main() {
-  const res = await plus.people.get({ userId: 'me' });
-  console.log(`Hello ${res.data.displayName}!`);
+const params = {
+  blogId: 3213900
+};
+
+async function main(params) {
+  const res = await blogger.blogs.get({blogId: params.blogId});
+  console.log(`${res.data.name} has ${res.data.posts.totalItems} posts! The blog url is ${res.data.url}`)
 };
 
 main().catch(console.error);
@@ -238,7 +246,7 @@ async function main () {
   });
 
   // obtain the current project Id
-  const project = await google.auth.getDefaultProjectId();
+  const project = await google.auth.getProjectId();
 
   // Fetch the list of GCE zones within a project.
   const res = await compute.zones.list({ project, auth });
@@ -391,8 +399,8 @@ google.options({
 You can also specify options when creating a service client.
 
 ```js
-const urlshortener = google.urlshortener({
-  version: 'v1',
+const blogger = google.blogger({
+  version: 'v3',
   // All requests made with this object will use the specified auth.
   auth: 'API KEY';
 });
@@ -405,16 +413,16 @@ By doing this, every API call made with this service client will use `'API KEY'`
 Similar to the examples above, you can also modify the parameters used for every call of a given service:
 
 ```js
-const urlshortener = google.urlshortener({
-  version: 'v1',
+const blogger = google.blogger({
+  version: 'v3',
   // All requests made with this service client will contain the
-  // quotaUser query parameter unless overridden in individual API calls.
+  // blogId query parameter unless overridden in individual API calls.
   params: {
-    quotaUser: 'user123@example.com'
+    blogId: 3213900
   }
 });
 
-// Calls with this drive client will NOT contain the quotaUser query parameter.
+// Calls with this drive client will NOT contain the blogId query parameter.
 const drive = google.drive('v3');
 ...
 
@@ -437,7 +445,7 @@ async function main() {
     scopes: ['https://www.googleapis.com/auth/cloud-platform']
   });
 
-  const projectId = await google.auth.getDefaultProjectId();
+  const projectId = await google.auth.getProjectId();
 
   const request = {
     projectId,
@@ -488,7 +496,7 @@ const apis = google.getSupportedAPIs();
 This will return an object with the API name as object property names, and an array of version strings as the object values;
 
 ### TypeScript
-This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace.  For example, the Drive v3 API types are are all available from the `drive_v3` namespace:
+This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace.  For example, the Drive v3 API types are all available from the `drive_v3` namespace:
 
 ```ts
 import { drive_v3 } from 'googleapis';
@@ -498,7 +506,7 @@ import { drive_v3 } from 'googleapis';
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [COPYING][copying].
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE][license].
 
 ## Contributing
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING][contributing].
@@ -508,40 +516,37 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
 
-[snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
-[snyk-url]: https://snyk.io/test/github/google/google-api-nodejs-client
-[david-image]: https://david-dm.org/google/google-api-nodejs-client.svg
-[david-url]: https://david-dm.org/google/google-api-nodejs-client
+[snyk-image]: https://snyk.io/test/github/googleapis/google-api-nodejs-client/badge.svg
+[snyk-url]: https://snyk.io/test/github/googleapis/google-api-nodejs-client
+[david-image]: https://david-dm.org/googleapis/google-api-nodejs-client.svg
+[david-url]: https://david-dm.org/googleapis/google-api-nodejs-client
 [npmimg]: https://img.shields.io/npm/v/googleapis.svg
 [npm]: https://www.npmjs.org/package/googleapis
-[circle]: https://circleci.com/gh/google/google-api-nodejs-client
-[circleimg]: https://circleci.com/gh/google/google-api-nodejs-client.svg?style=shield
+[circle]: https://circleci.com/gh/googleapis/google-api-nodejs-client
+[circleimg]: https://circleci.com/gh/googleapis/google-api-nodejs-client.svg?style=shield
 [releaselevel]: https://cloud.google.com/terms/launch-stages
 [releaselevelimg]: https://img.shields.io/badge/Release%20Level-Alpha-ff69b4.svg
 [supported-list]: https://developers.google.com/apis-explorer/
-[bugs]: https://github.com/google/google-api-nodejs-client/issues
+[bugs]: https://github.com/googleapis/google-api-nodejs-client/issues
 [node]: http://nodejs.org/
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
-[urlshort]: https://developers.google.com/url-shortener/
 [usingkeys]: https://support.google.com/cloud/answer/6158862?hl=en
-[contributing]: https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
-[copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
+[contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
+[license]: https://github.com/googleapis/google-api-nodejs-client/tree/master/LICENSE
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
 [axios]: https://github.com/axios/axios
 [requestopts]: https://github.com/axios/axios#request-config
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
-[releasenotes]: https://github.com/google/google-api-nodejs-client/releases
+[releasenotes]: https://github.com/googleapis/google-api-nodejs-client/releases
 [devconsole]: https://console.developer.google.com
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
-[oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/samples/oauth2.js
-[options]: https://github.com/google/google-api-nodejs-client/tree/master#options
+[oauthexample]: https://github.com/googleapis/google-api-nodejs-client/tree/master/samples/oauth2.js
+[options]: https://github.com/googleapis/google-api-nodejs-client/tree/master#options
 [googlecloud]: https://cloud.google.com/nodejs/docs/reference/libraries
 [googlecloudapis]: https://cloud.google.com/nodejs/docs/reference/apis
 [cloudplatform]: https://cloud.google.com/docs/
-[codecovimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
-[codecov]: https://codecov.io/github/google/google-api-nodejs-client?branch=master
+[codecovimg]: https://codecov.io/github/googleapis/google-api-nodejs-client/coverage.svg?branch=master
+[codecov]: https://codecov.io/github/googleapis/google-api-nodejs-client?branch=master
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
 [downloads]: https://nodei.co/npm/googleapis/
-[greenkeeperimg]: https://badges.greenkeeper.io/google/google-api-nodejs-client.svg
-[greenkeeper]: https://greenkeeper.io/

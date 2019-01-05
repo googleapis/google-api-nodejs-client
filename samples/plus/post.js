@@ -18,23 +18,25 @@ const sampleClient = require('../sampleclient');
 
 const plus = google.plusDomains({
   version: 'v1',
-  auth: sampleClient.oAuth2Client
+  auth: sampleClient.oAuth2Client,
 });
 
-async function runSample () {
+async function runSample() {
   const res = await plus.activities.insert({
     userId: 'me',
     requestBody: {
       object: {
-        originalContent: 'Hello from the Node.js Google API Client!'
+        originalContent: 'Hello from the Node.js Google API Client!',
       },
       access: {
-        items: [{
-          type: 'domain'
-        }],
-        domainRestricted: true
-      }
-    }
+        items: [
+          {
+            type: 'domain',
+          },
+        ],
+        domainRestricted: true,
+      },
+    },
   });
   console.log(res.data);
   return res.data;
@@ -42,16 +44,17 @@ async function runSample () {
 
 const scopes = [
   'https://www.googleapis.com/auth/plus.me',
-  'https://www.googleapis.com/auth/plus.stream.write'
+  'https://www.googleapis.com/auth/plus.stream.write',
 ];
 
 if (module === require.main) {
-  sampleClient.authenticate(scopes)
-    .then(c => runSample())
+  sampleClient
+    .authenticate(scopes)
+    .then(runSample)
     .catch(console.error);
 }
 
 module.exports = {
   runSample,
-  client: sampleClient.oAuth2Client
+  client: sampleClient.oAuth2Client,
 };

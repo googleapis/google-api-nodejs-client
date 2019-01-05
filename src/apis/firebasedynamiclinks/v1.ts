@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace firebasedynamiclinks_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,26 +98,16 @@ export namespace firebasedynamiclinks_v1 {
    * @param {object=} options Options for Firebasedynamiclinks
    */
   export class Firebasedynamiclinks {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     managedShortLinks: Resource$Managedshortlinks;
     shortLinks: Resource$Shortlinks;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.managedShortLinks = new Resource$Managedshortlinks(this);
-      this.shortLinks = new Resource$Shortlinks(this);
-      this.v1 = new Resource$V1(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.managedShortLinks = new Resource$Managedshortlinks();
+      this.shortLinks = new Resource$Shortlinks();
+      this.v1 = new Resource$V1();
     }
   }
 
@@ -129,6 +171,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     name?: string;
     /**
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
+     */
+    sdkVersion?: string;
+    /**
      * Short Dynamic Link suffix. Optional.
      */
     suffix?: Schema$Suffix;
@@ -167,6 +214,11 @@ export namespace firebasedynamiclinks_v1 {
      * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
     longDynamicLink?: string;
+    /**
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
+     */
+    sdkVersion?: string;
     /**
      * Short Dynamic Link suffix. Optional.
      */
@@ -273,14 +325,15 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * E.g. https://maps.app.goo.gl, https://maps.page.link, https://g.co/maps
      * More examples can be found in description of getNormalizedUriPrefix in
-     * j/c/g/firebase/dynamiclinks/uri/DdlDomain.java
+     * j/c/g/firebase/dynamiclinks/uri/DdlDomain.java  Will fallback to
+     * dynamic_link_domain is this field is missing
      */
     domainUriPrefix?: string;
     /**
      * Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl [Learn
      * more](https://firebase.google.com/docs/dynamic-links/android/receive) on
      * how to set up Dynamic Link domain associated with your Firebase project.
-     * Required.
+     * Required if missing domain_uri_prefix.
      */
     dynamicLinkDomain?: string;
     /**
@@ -362,7 +415,8 @@ export namespace firebasedynamiclinks_v1 {
      */
     retrievalMethod?: string;
     /**
-     * Google SDK version.
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
      */
     sdkVersion?: string;
     /**
@@ -459,6 +513,60 @@ export namespace firebasedynamiclinks_v1 {
     utmSource?: string;
   }
   /**
+   * Request for iSDK to get reopen attribution for app universal link open
+   * deeplinking. This endpoint is meant for only iOS requests.
+   */
+  export interface Schema$GetIosReopenAttributionRequest {
+    /**
+     * APP bundle ID.
+     */
+    bundleId?: string;
+    /**
+     * FDL link to be verified from an app universal link open. The FDL link can
+     * be one of: 1) short FDL. e.g. &lt;app_code&gt;.page.link/&lt;ddl_id&gt;,
+     * or 2) long FDL. e.g. &lt;app_code&gt;.page.link/?{query params}, or 3)
+     * Invite FDL. e.g. &lt;app_code&gt;.page.link/i/&lt;invite_id_or_alias&gt;
+     */
+    requestedLink?: string;
+    /**
+     * Google SDK version. Version takes the form
+     * &quot;$major.$minor.$patch&quot;
+     */
+    sdkVersion?: string;
+  }
+  /**
+   * Response for iSDK to get reopen attribution for app universal link open
+   * deeplinking. This endpoint is meant for only iOS requests.
+   */
+  export interface Schema$GetIosReopenAttributionResponse {
+    /**
+     * The deep-link attributed the app universal link open. For both regular
+     * FDL links and invite FDL links.
+     */
+    deepLink?: string;
+    /**
+     * Optional invitation ID, for only invite typed requested FDL links.
+     */
+    invitationId?: string;
+    /**
+     * The entire FDL, expanded from a short link. It is the same as the
+     * requested_link, if it is long.
+     */
+    resolvedLink?: string;
+    /**
+     * Scion campaign value to be propagated by iSDK to Scion at app-reopen.
+     */
+    utmCampaign?: string;
+    /**
+     * Scion medium value to be propagated by iSDK to Scion at app-reopen.
+     */
+    utmMedium?: string;
+    /**
+     * Scion source value to be propagated by iSDK to Scion at app-reopen.
+     */
+    utmSource?: string;
+  }
+  /**
    * Parameters for Google Play Campaign Measurements. [Learn
    * more](https://developers.google.com/analytics/devguides/collection/android/v4/campaigns#campaign-params)
    */
@@ -525,6 +633,10 @@ export namespace firebasedynamiclinks_v1 {
      * If specified, this overrides the ios_fallback_link value on iPads.
      */
     iosIpadFallbackLink?: string;
+    /**
+     * iOS minimum version.
+     */
+    iosMinimumVersion?: string;
   }
   /**
    * Parameters for iTunes Connect App Analytics.
@@ -623,15 +735,7 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$Managedshortlinks {
-    root: Firebasedynamiclinks;
-    constructor(root: Firebasedynamiclinks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -706,7 +810,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateManagedShortLinkResponse>(
@@ -718,7 +822,8 @@ export namespace firebasedynamiclinks_v1 {
     }
   }
 
-  export interface Params$Resource$Managedshortlinks$Create {
+  export interface Params$Resource$Managedshortlinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -733,15 +838,7 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$Shortlinks {
-    root: Firebasedynamiclinks;
-    constructor(root: Firebasedynamiclinks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -810,7 +907,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
@@ -822,7 +919,8 @@ export namespace firebasedynamiclinks_v1 {
     }
   }
 
-  export interface Params$Resource$Shortlinks$Create {
+  export interface Params$Resource$Shortlinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -837,15 +935,7 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$V1 {
-    root: Firebasedynamiclinks;
-    constructor(root: Firebasedynamiclinks) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -859,6 +949,7 @@ export namespace firebasedynamiclinks_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.durationDays The span of time requested in days.
      * @param {string} params.dynamicLink Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
+     * @param {string=} params.sdkVersion Google SDK version. Version takes the form "$major.$minor.$patch"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -908,7 +999,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: ['dynamicLink'],
         pathParams: ['dynamicLink'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DynamicLinkStats>(parameters, callback);
@@ -986,7 +1077,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
@@ -996,9 +1087,85 @@ export namespace firebasedynamiclinks_v1 {
             parameters);
       }
     }
+
+
+    /**
+     * firebasedynamiclinks.reopenAttribution
+     * @desc Get iOS reopen attribution for app universal link open deeplinking.
+     * @alias firebasedynamiclinks.reopenAttribution
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().GetIosReopenAttributionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    reopenAttribution(
+        params?: Params$Resource$V1$Reopenattribution, options?: MethodOptions):
+        AxiosPromise<Schema$GetIosReopenAttributionResponse>;
+    reopenAttribution(
+        params: Params$Resource$V1$Reopenattribution,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void;
+    reopenAttribution(
+        params: Params$Resource$V1$Reopenattribution,
+        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void;
+    reopenAttribution(
+        callback: BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void;
+    reopenAttribution(
+        paramsOrCallback?: Params$Resource$V1$Reopenattribution|
+        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
+        callback?:
+            BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
+        void|AxiosPromise<Schema$GetIosReopenAttributionResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1$Reopenattribution;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Reopenattribution;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/reopenAttribution')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetIosReopenAttributionResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GetIosReopenAttributionResponse>(
+            parameters);
+      }
+    }
   }
 
-  export interface Params$Resource$V1$Getlinkstats {
+  export interface Params$Resource$V1$Getlinkstats extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1012,8 +1179,13 @@ export namespace firebasedynamiclinks_v1 {
      * Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
      */
     dynamicLink?: string;
+    /**
+     * Google SDK version. Version takes the form "$major.$minor.$patch"
+     */
+    sdkVersion?: string;
   }
-  export interface Params$Resource$V1$Installattribution {
+  export interface Params$Resource$V1$Installattribution extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1024,5 +1196,18 @@ export namespace firebasedynamiclinks_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIosPostInstallAttributionRequest;
+  }
+  export interface Params$Resource$V1$Reopenattribution extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIosReopenAttributionRequest;
   }
 }

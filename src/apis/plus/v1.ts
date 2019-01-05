@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace plus_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,26 +81,16 @@ export namespace plus_v1 {
    * @param {object=} options Options for Plus
    */
   export class Plus {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     activities: Resource$Activities;
     comments: Resource$Comments;
     people: Resource$People;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities(this);
-      this.comments = new Resource$Comments(this);
-      this.people = new Resource$People(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.activities = new Resource$Activities();
+      this.comments = new Resource$Comments();
+      this.people = new Resource$People();
     }
   }
 
@@ -92,7 +117,15 @@ export namespace plus_v1 {
     /**
      * The person who performed this activity.
      */
-    actor?: any;
+    actor?: {
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      name?: {familyName?: string; givenName?: string;};
+      url?: string;
+      verification?: {adHocVerified?: string;};
+    };
     /**
      * Street address where this activity occurred.
      */
@@ -132,7 +165,41 @@ export namespace plus_v1 {
     /**
      * The object of this activity.
      */
-    object?: any;
+    object?: {
+      actor?: {
+        clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+        displayName?: string;
+        id?: string;
+        image?: {url?: string;};
+        url?: string;
+        verification?: {adHocVerified?: string;};
+      };
+      attachments?: Array<{
+        content?: string;
+        displayName?: string;
+        embed?: {type?: string; url?: string;};
+        fullImage?:
+            {height?: number; type?: string; url?: string; width?: number;};
+        id?: string;
+        image?: {height?: number; type?: string; url?: string; width?: number;};
+        objectType?: string;
+        thumbnails?: Array<{
+          description?: string;
+          image?:
+              {height?: number; type?: string; url?: string; width?: number;};
+          url?: string;
+        }>;
+        url?: string;
+      }>;
+      content?: string;
+      id?: string;
+      objectType?: string;
+      originalContent?: string;
+      plusoners?: {selfLink?: string; totalItems?: number;};
+      replies?: {selfLink?: string; totalItems?: number;};
+      resharers?: {selfLink?: string; totalItems?: number;};
+      url?: string;
+    };
     /**
      * ID of the place where this activity occurred.
      */
@@ -144,7 +211,7 @@ export namespace plus_v1 {
     /**
      * The service provider that initially published this activity.
      */
-    provider?: any;
+    provider?: {title?: string;};
     /**
      * The time at which this activity was initially published. Formatted as an
      * RFC 3339 timestamp.
@@ -223,7 +290,14 @@ export namespace plus_v1 {
     /**
      * The person who posted this comment.
      */
-    actor?: any;
+    actor?: {
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      displayName?: string;
+      id?: string;
+      image?: {url?: string;};
+      url?: string;
+      verification?: {adHocVerified?: string;};
+    };
     /**
      * ETag of this response for caching purposes.
      */
@@ -235,7 +309,7 @@ export namespace plus_v1 {
     /**
      * The activity this comment replied to.
      */
-    inReplyTo?: any[];
+    inReplyTo?: Array<{id?: string; url?: string;}>;
     /**
      * Identifies this resource as a comment. Value: &quot;plus#comment&quot;.
      */
@@ -243,11 +317,11 @@ export namespace plus_v1 {
     /**
      * The object of this comment.
      */
-    object?: any;
+    object?: {content?: string; objectType?: string; originalContent?: string;};
     /**
      * People who +1&#39;d this comment.
      */
-    plusoners?: any;
+    plusoners?: {totalItems?: number;};
     /**
      * The time at which this comment was initially published. Formatted as an
      * RFC 3339 timestamp.
@@ -353,7 +427,7 @@ export namespace plus_v1 {
      * and 21 or older. Age is determined from the user&#39;s birthday using
      * Western age reckoning.
      */
-    ageRange?: any;
+    ageRange?: {max?: number; min?: number;};
     /**
      * The person&#39;s date of birth, represented as YYYY-MM-DD.
      */
@@ -370,7 +444,11 @@ export namespace plus_v1 {
     /**
      * The cover photo content.
      */
-    cover?: any;
+    cover?: {
+      coverInfo?: {leftImageOffset?: number; topImageOffset?: number;};
+      coverPhoto?: {height?: number; url?: string; width?: number;};
+      layout?: string;
+    };
     /**
      * (this field is not currently used)
      */
@@ -392,7 +470,7 @@ export namespace plus_v1 {
      * these email addresses, or the email scope can be used to retrieve just
      * the Google account email address.
      */
-    emails?: any[];
+    emails?: Array<{type?: string; value?: string;}>;
     /**
      * ETag of this response for caching purposes.
      */
@@ -410,7 +488,7 @@ export namespace plus_v1 {
     /**
      * The representation of the person&#39;s profile photo.
      */
-    image?: any;
+    image?: {isDefault?: boolean; url?: string;};
     /**
      * Whether this user has signed up for Google+.
      */
@@ -427,7 +505,14 @@ export namespace plus_v1 {
      * An object representation of the individual components of a person&#39;s
      * name.
      */
-    name?: any;
+    name?: {
+      familyName?: string;
+      formatted?: string;
+      givenName?: string;
+      honorificPrefix?: string;
+      honorificSuffix?: string;
+      middleName?: string;
+    };
     /**
      * The nickname of this person.
      */
@@ -446,11 +531,21 @@ export namespace plus_v1 {
      * A list of current or past organizations with which this person is
      * associated.
      */
-    organizations?: any[];
+    organizations?: Array<{
+      department?: string;
+      description?: string;
+      endDate?: string;
+      location?: string;
+      name?: string;
+      primary?: boolean;
+      startDate?: string;
+      title?: string;
+      type?: string;
+    }>;
     /**
      * A list of places where this person has lived.
      */
-    placesLived?: any[];
+    placesLived?: Array<{primary?: boolean; value?: string;}>;
     /**
      * If a Google+ Page, the number of people who have +1&#39;d this page.
      */
@@ -482,7 +577,7 @@ export namespace plus_v1 {
     /**
      * A list of URLs for this person.
      */
-    urls?: any[];
+    urls?: Array<{label?: string; type?: string; value?: string;}>;
     /**
      * Whether the person or Google+ Page has been verified.
      */
@@ -492,7 +587,7 @@ export namespace plus_v1 {
     /**
      * The physical address of the place.
      */
-    address?: any;
+    address?: {formatted?: string;};
     /**
      * The display name of the place.
      */
@@ -508,7 +603,7 @@ export namespace plus_v1 {
     /**
      * The position of the place.
      */
-    position?: any;
+    position?: {latitude?: number; longitude?: number;};
   }
   export interface Schema$PlusAclentryResource {
     /**
@@ -536,15 +631,7 @@ export namespace plus_v1 {
 
 
   export class Resource$Activities {
-    root: Plus;
-    constructor(root: Plus) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -598,7 +685,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -668,7 +755,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ActivityFeed>(parameters, callback);
@@ -738,7 +825,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['query'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ActivityFeed>(parameters, callback);
@@ -748,7 +835,7 @@ export namespace plus_v1 {
     }
   }
 
-  export interface Params$Resource$Activities$Get {
+  export interface Params$Resource$Activities$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -759,7 +846,7 @@ export namespace plus_v1 {
      */
     activityId?: string;
   }
-  export interface Params$Resource$Activities$List {
+  export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -787,7 +874,8 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Activities$Search {
+  export interface Params$Resource$Activities$Search extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -823,15 +911,7 @@ export namespace plus_v1 {
 
 
   export class Resource$Comments {
-    root: Plus;
-    constructor(root: Plus) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -885,7 +965,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['commentId'],
         pathParams: ['commentId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -953,7 +1033,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CommentFeed>(parameters, callback);
@@ -963,7 +1043,7 @@ export namespace plus_v1 {
     }
   }
 
-  export interface Params$Resource$Comments$Get {
+  export interface Params$Resource$Comments$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -974,7 +1054,7 @@ export namespace plus_v1 {
      */
     commentId?: string;
   }
-  export interface Params$Resource$Comments$List {
+  export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1004,15 +1084,7 @@ export namespace plus_v1 {
 
 
   export class Resource$People {
-    root: Plus;
-    constructor(root: Plus) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1068,7 +1140,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -1137,7 +1209,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1209,7 +1281,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['activityId', 'collection'],
         pathParams: ['activityId', 'collection'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1276,7 +1348,7 @@ export namespace plus_v1 {
         params,
         requiredParams: ['query'],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1286,7 +1358,7 @@ export namespace plus_v1 {
     }
   }
 
-  export interface Params$Resource$People$Get {
+  export interface Params$Resource$People$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1298,7 +1370,7 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$People$List {
+  export interface Params$Resource$People$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1330,7 +1402,8 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$People$Listbyactivity {
+  export interface Params$Resource$People$Listbyactivity extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1357,7 +1430,7 @@ export namespace plus_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$People$Search {
+  export interface Params$Resource$People$Search extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

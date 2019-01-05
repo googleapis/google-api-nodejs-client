@@ -2,7 +2,7 @@
 
 # @google/cloudtrace
 
-> Sends application trace data to Stackdriver Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API.
+> Sends application trace data to Stackdriver Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Trace API directly. If you are looking to instrument your application for Stackdriver Trace, we recommend using OpenCensus.
 
 ## Installation
 
@@ -14,7 +14,7 @@ $ npm install @google/cloudtrace
 All documentation and usage information can be found on [GitHub](https://github.com/google/google-api-nodejs-client).
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [COPYING](https://github.com/google/google-api-nodejs-client/blob/master/COPYING).
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/google/google-api-nodejs-client/blob/master/LICENSE).
 
 ## Contributing
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING](https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md).

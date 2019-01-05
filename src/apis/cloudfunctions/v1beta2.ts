@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace cloudfunctions_v1beta2 {
   export interface Options extends GlobalOptions {
     version: 'v1beta2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -46,24 +98,14 @@ export namespace cloudfunctions_v1beta2 {
    * @param {object=} options Options for Cloudfunctions
    */
   export class Cloudfunctions {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -114,6 +156,10 @@ export namespace cloudfunctions_v1beta2 {
      */
     entryPoint?: string;
     /**
+     * Environment variables that shall be available during function execution.
+     */
+    environmentVariables?: {[key: string]: string;};
+    /**
      * A source that fires events in response to a condition in another service.
      */
     eventTrigger?: Schema$EventTrigger;
@@ -124,7 +170,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * Labels associated with this Cloud Function.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Output only. Name of the most recent operation modifying the function. If
      * the function status is `DEPLOYING` or `DELETING`, then it points to the
@@ -132,10 +178,31 @@ export namespace cloudfunctions_v1beta2 {
      */
     latestOperation?: string;
     /**
+     * The limit on the maximum number of function instances that may coexist at
+     * a given time. This feature is currently in alpha, available only for
+     * whitelisted users.
+     */
+    maxInstances?: number;
+    /**
      * A user-defined name of the function. Function names must be unique
      * globally and match pattern `projects/x/locations/x/functions/x
      */
     name?: string;
+    /**
+     * The VPC Network that this cloud function can connect to. It can be either
+     * the fully-qualified URI, or the short name of the network resource. If
+     * the short network name is used, the network must belong to the same
+     * project. Otherwise, it must belong to a project within the same
+     * organization. The format of this field is either
+     * `projects/{project}/global/networks/{network}` or `{network}`, where
+     * {project} is a project id where the network is defined, and {network} is
+     * the short name of the network.  This field is mutually exclusive with
+     * `vpc_connector` and will be replaced by it.  See [the VPC
+     * documentation](https://cloud.google.com/compute/docs/vpc) for more
+     * information on connecting Cloud projects.  This feature is currently in
+     * alpha, available only for whitelisted users.
+     */
+    network?: string;
     /**
      * The runtime in which the function is going to run. If empty, defaults to
      * Node.js 6.
@@ -191,6 +258,17 @@ export namespace cloudfunctions_v1beta2 {
      * deployment attempt results in a new version of a function being created.
      */
     versionId?: string;
+    /**
+     * The VPC Network Connector that this cloud function can connect to. It can
+     * be either the fully-qualified URI, or the short name of the network
+     * connector resource. The format of this field is
+     * `projects/x/locations/x/connectors/x  This field is mutually exclusive
+     * with `network` field and will eventually replace it.  See [the VPC
+     * documentation](https://cloud.google.com/compute/docs/vpc) for more
+     * information on connecting Cloud projects.  This feature is currently in
+     * alpha, available only for whitelisted users.
+     */
+    vpcConnector?: string;
   }
   /**
    * Describes EventTrigger, used to request events be sent from another
@@ -336,7 +414,7 @@ export namespace cloudfunctions_v1beta2 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -345,7 +423,7 @@ export namespace cloudfunctions_v1beta2 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -373,7 +451,7 @@ export namespace cloudfunctions_v1beta2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -389,7 +467,7 @@ export namespace cloudfunctions_v1beta2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata describing an Operation
@@ -398,7 +476,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * The original request that started the operation.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Target of the operation - for example
      * projects/project-1/locations/region-1/functions/function-1
@@ -414,7 +492,7 @@ export namespace cloudfunctions_v1beta2 {
     updateTime?: string;
     /**
      * Version id of the function created or updated by an API call. This field
-     * is only pupulated for Create and Update operations.
+     * is only populated for Create and Update operations.
      */
     versionId?: string;
   }
@@ -425,7 +503,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * The original request that started the operation.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Target of the operation - for example
      * projects/project-1/locations/region-1/functions/function-1
@@ -441,7 +519,7 @@ export namespace cloudfunctions_v1beta2 {
     updateTime?: string;
     /**
      * Version id of the function created or updated by an API call. This field
-     * is only pupulated for Create and Update operations.
+     * is only populated for Create and Update operations.
      */
     versionId?: string;
   }
@@ -537,7 +615,7 @@ export namespace cloudfunctions_v1beta2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -548,15 +626,7 @@ export namespace cloudfunctions_v1beta2 {
 
 
   export class Resource$Operations {
-    root: Cloudfunctions;
-    constructor(root: Cloudfunctions) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -613,7 +683,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -691,7 +761,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -701,7 +771,7 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -712,7 +782,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -738,31 +808,17 @@ export namespace cloudfunctions_v1beta2 {
 
 
   export class Resource$Projects {
-    root: Cloudfunctions;
     locations: Resource$Projects$Locations;
-    constructor(root: Cloudfunctions) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Projects$Locations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
     }
   }
 
 
   export class Resource$Projects$Locations {
-    root: Cloudfunctions;
     functions: Resource$Projects$Locations$Functions;
-    constructor(root: Cloudfunctions) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.functions = new Resource$Projects$Locations$Functions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.functions = new Resource$Projects$Locations$Functions();
     }
 
 
@@ -828,7 +884,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -838,7 +894,8 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$List {
+  export interface Params$Resource$Projects$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -863,15 +920,7 @@ export namespace cloudfunctions_v1beta2 {
   }
 
   export class Resource$Projects$Locations$Functions {
-    root: Cloudfunctions;
-    constructor(root: Cloudfunctions) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -935,7 +984,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CallFunctionResponse>(parameters, callback);
@@ -1006,7 +1055,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['location'],
         pathParams: ['location'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1075,7 +1124,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1158,7 +1207,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateDownloadUrlResponse>(
@@ -1243,7 +1292,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateUploadUrlResponse>(
@@ -1307,7 +1356,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CloudFunction>(parameters, callback);
@@ -1378,7 +1427,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['location'],
         pathParams: ['location'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListFunctionsResponse>(parameters, callback);
@@ -1446,7 +1495,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1456,7 +1505,8 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Functions$Call {
+  export interface Params$Resource$Projects$Locations$Functions$Call extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1472,7 +1522,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$CallFunctionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Create {
+  export interface Params$Resource$Projects$Locations$Functions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1489,7 +1540,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$CloudFunction;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Delete {
+  export interface Params$Resource$Projects$Locations$Functions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1500,7 +1552,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl {
+  export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1517,7 +1570,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$GenerateDownloadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl {
+  export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1534,7 +1588,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$GenerateUploadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Get {
+  export interface Params$Resource$Projects$Locations$Functions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1545,7 +1600,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$List {
+  export interface Params$Resource$Projects$Locations$Functions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1568,7 +1624,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Update {
+  export interface Params$Resource$Projects$Locations$Functions$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

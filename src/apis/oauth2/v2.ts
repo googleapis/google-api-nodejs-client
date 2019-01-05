@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace oauth2_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,22 +81,12 @@ export namespace oauth2_v2 {
    * @param {object=} options Options for Oauth2
    */
   export class Oauth2 {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     userinfo: Resource$Userinfo;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.userinfo = new Resource$Userinfo(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.userinfo = new Resource$Userinfo();
     }
 
 
@@ -117,7 +142,7 @@ export namespace oauth2_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Jwk>(parameters, callback);
@@ -183,7 +208,7 @@ export namespace oauth2_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Tokeninfo>(parameters, callback);
@@ -194,7 +219,14 @@ export namespace oauth2_v2 {
   }
 
   export interface Schema$Jwk {
-    keys?: any[];
+    keys?: Array<{
+      alg?: string;
+      e?: string;
+      kid?: string;
+      kty?: string;
+      n?: string;
+      use?: string;
+    }>;
   }
   export interface Schema$Tokeninfo {
     /**
@@ -285,13 +317,13 @@ export namespace oauth2_v2 {
     verified_email?: boolean;
   }
 
-  export interface Params$$Getcertforopenidconnect {
+  export interface Params$$Getcertforopenidconnect extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
-  export interface Params$$Tokeninfo {
+  export interface Params$$Tokeninfo extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -312,16 +344,9 @@ export namespace oauth2_v2 {
   }
 
   export class Resource$Userinfo {
-    root: Oauth2;
     v2: Resource$Userinfo$V2;
-    constructor(root: Oauth2) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.v2 = new Resource$Userinfo$V2(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.v2 = new Resource$Userinfo$V2();
     }
 
 
@@ -375,7 +400,7 @@ export namespace oauth2_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);
@@ -385,7 +410,7 @@ export namespace oauth2_v2 {
     }
   }
 
-  export interface Params$Resource$Userinfo$Get {
+  export interface Params$Resource$Userinfo$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -393,30 +418,15 @@ export namespace oauth2_v2 {
   }
 
   export class Resource$Userinfo$V2 {
-    root: Oauth2;
     me: Resource$Userinfo$V2$Me;
-    constructor(root: Oauth2) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.me = new Resource$Userinfo$V2$Me(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.me = new Resource$Userinfo$V2$Me();
     }
   }
 
 
   export class Resource$Userinfo$V2$Me {
-    root: Oauth2;
-    constructor(root: Oauth2) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -469,7 +479,7 @@ export namespace oauth2_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);
@@ -479,7 +489,8 @@ export namespace oauth2_v2 {
     }
   }
 
-  export interface Params$Resource$Userinfo$V2$Me$Get {
+  export interface Params$Resource$Userinfo$V2$Me$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

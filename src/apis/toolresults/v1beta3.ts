@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace toolresults_v1beta3 {
   export interface Options extends GlobalOptions {
     version: 'v1beta3';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,22 +81,12 @@ export namespace toolresults_v1beta3 {
    * @param {object=} options Options for Toolresults
    */
   export class Toolresults {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -196,7 +221,8 @@ export namespace toolresults_v1beta3 {
   export interface Schema$Any {
     /**
      * A URL/resource name that uniquely identifies the type of the serialized
-     * protocol buffer message. The last segment of the URL&#39;s path must
+     * protocol buffer message. This string must contain at least one
+     * &quot;/&quot; character. The last segment of the URL&#39;s path must
      * represent the fully qualified name of the type (as in
      * `path/google.protobuf.Duration`). The name should be in a canonical form
      * (e.g., leading &quot;.&quot; is not accepted).  In practice, teams
@@ -853,17 +879,9 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$StackTrace {
     /**
-     * Exception cluster ID
-     */
-    clusterId?: string;
-    /**
      * The stack trace message.  Required
      */
     exception?: string;
-    /**
-     * Exception report ID
-     */
-    reportId?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1131,6 +1149,10 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$TestIssue {
     /**
+     * Category of issue. Required.
+     */
+    category?: string;
+    /**
      * A brief human-readable message describing the issue. Required.
      */
     errorMessage?: string;
@@ -1230,19 +1252,20 @@ export namespace toolresults_v1beta3 {
   }
   /**
    * A Timestamp represents a point in time independent of any time zone or
-   * calendar, represented as seconds and fractions of seconds at nanosecond
-   * resolution in UTC Epoch time. It is encoded using the Proleptic Gregorian
-   * Calendar which extends the Gregorian calendar backwards to year one. It is
-   * encoded assuming all minutes are 60 seconds long, i.e. leap seconds are
-   * &quot;smeared&quot; so that no leap second table is needed for
-   * interpretation. Range is from 0001-01-01T00:00:00Z to
-   * 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure
-   * that we can convert to and from RFC 3339 date strings. See
-   * [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
-   * # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp
-   * timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);
-   * Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval
-   * tv; gettimeofday(&amp;tv, NULL);  Timestamp timestamp;
+   * local calendar, encoded as a count of seconds and fractions of seconds at
+   * nanosecond resolution. The count is relative to an epoch at UTC midnight on
+   * January 1, 1970, in the proleptic Gregorian calendar which extends the
+   * Gregorian calendar backwards to year one.  All minutes are 60 seconds long.
+   * Leap seconds are &quot;smeared&quot; so that no leap second table is needed
+   * for interpretation, using a [24-hour linear
+   * smear](https://developers.google.com/time/smear).  The range is from
+   * 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to
+   * that range, we ensure that we can convert to and from [RFC
+   * 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.  # Examples
+   * Example 1: Compute Timestamp from POSIX `time()`.  Timestamp timestamp;
+   * timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);  Example 2:
+   * Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv;
+   * gettimeofday(&amp;tv, NULL);  Timestamp timestamp;
    * timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);
    * Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
    * FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks =
@@ -1270,13 +1293,13 @@ export namespace toolresults_v1beta3 {
    * &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on
    * January 15, 2017.  In JavaScript, one can convert a Date object to this
    * format using the standard
-   * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString]
+   * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
    * method. In Python, a standard `datetime.datetime` object can be converted
    * to this format using
    * [`strftime`](https://docs.python.org/2/library/time.html#time.strftime)
    * with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in
    * Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`](
-   * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime--
+   * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
    * ) to obtain a formatter capable of generating timestamps in this format.
    */
   export interface Schema$Timestamp {
@@ -1375,16 +1398,9 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects {
-    root: Toolresults;
     histories: Resource$Projects$Histories;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.histories = new Resource$Projects$Histories(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.histories = new Resource$Projects$Histories();
     }
 
 
@@ -1448,7 +1464,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(parameters, callback);
@@ -1537,7 +1553,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(parameters, callback);
@@ -1547,7 +1563,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Getsettings {
+  export interface Params$Resource$Projects$Getsettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1558,7 +1575,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Initializesettings {
+  export interface Params$Resource$Projects$Initializesettings extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1571,16 +1589,9 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories {
-    root: Toolresults;
     executions: Resource$Projects$Histories$Executions;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.executions = new Resource$Projects$Histories$Executions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.executions = new Resource$Projects$Histories$Executions();
     }
 
 
@@ -1647,7 +1658,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$History>(parameters, callback);
@@ -1715,7 +1726,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$History>(parameters, callback);
@@ -1792,7 +1803,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListHistoriesResponse>(parameters, callback);
@@ -1802,7 +1813,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Create {
+  export interface Params$Resource$Projects$Histories$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1823,7 +1835,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$History;
   }
-  export interface Params$Resource$Projects$Histories$Get {
+  export interface Params$Resource$Projects$Histories$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1838,7 +1851,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$List {
+  export interface Params$Resource$Projects$Histories$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1865,18 +1879,11 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories$Executions {
-    root: Toolresults;
     clusters: Resource$Projects$Histories$Executions$Clusters;
     steps: Resource$Projects$Histories$Executions$Steps;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.clusters = new Resource$Projects$Histories$Executions$Clusters(root);
-      this.steps = new Resource$Projects$Histories$Executions$Steps(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.clusters = new Resource$Projects$Histories$Executions$Clusters();
+      this.steps = new Resource$Projects$Histories$Executions$Steps();
     }
 
 
@@ -1946,7 +1953,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2016,7 +2023,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2028,7 +2035,7 @@ export namespace toolresults_v1beta3 {
 
     /**
      * toolresults.projects.histories.executions.list
-     * @desc Lists Histories for a given Project.  The executions are sorted by
+     * @desc Lists Executions for a given History.  The executions are sorted by
      * creation_time in descending order. The execution_id key will be used to
      * order the executions with the same creation_time.  May return any of the
      * following canonical error codes:  - PERMISSION_DENIED - if the user is
@@ -2094,7 +2101,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListExecutionsResponse>(parameters, callback);
@@ -2172,7 +2179,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2182,7 +2189,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2207,7 +2215,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Execution;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2226,7 +2235,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$List {
+  export interface Params$Resource$Projects$Histories$Executions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2251,7 +2261,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Patch {
+  export interface Params$Resource$Projects$Histories$Executions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2282,15 +2293,7 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories$Executions$Clusters {
-    root: Toolresults;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2353,7 +2356,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'clusterId'],
         pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ScreenshotCluster>(parameters, callback);
@@ -2437,7 +2440,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListScreenshotClustersResponse>(
@@ -2449,7 +2452,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2472,7 +2476,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Clusters$List {
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2494,27 +2499,18 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects$Histories$Executions$Steps {
-    root: Toolresults;
     perfMetricsSummary:
         Resource$Projects$Histories$Executions$Steps$Perfmetricssummary;
     perfSampleSeries:
         Resource$Projects$Histories$Executions$Steps$Perfsampleseries;
     thumbnails: Resource$Projects$Histories$Executions$Steps$Thumbnails;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.perfMetricsSummary =
-          new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
-              root);
+          new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary();
       this.perfSampleSeries =
-          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
-              root);
+          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries();
       this.thumbnails =
-          new Resource$Projects$Histories$Executions$Steps$Thumbnails(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Histories$Executions$Steps$Thumbnails();
     }
 
 
@@ -2587,7 +2583,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2658,7 +2654,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2739,7 +2735,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
@@ -2820,7 +2816,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListStepsResponse>(parameters, callback);
@@ -2901,7 +2897,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2984,7 +2980,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2994,7 +2990,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3023,7 +3020,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3046,7 +3044,8 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3069,7 +3068,8 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3097,7 +3097,8 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3130,7 +3131,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3160,15 +3162,7 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories$Executions$Steps$Perfmetricssummary {
-    root: Toolresults;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3242,7 +3236,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
@@ -3252,7 +3246,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3283,19 +3278,11 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
-    root: Toolresults;
     samples:
         Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.samples =
-          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
-              root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples();
     }
 
 
@@ -3370,7 +3357,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
@@ -3450,7 +3437,7 @@ export namespace toolresults_v1beta3 {
         pathParams: [
           'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
@@ -3538,7 +3525,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
@@ -3550,7 +3537,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3578,7 +3566,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$PerfSampleSeries;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3605,7 +3594,8 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3619,7 +3609,7 @@ export namespace toolresults_v1beta3 {
      * Specify one or more PerfMetricType values such as CPU to filter the
      * result
      */
-    filter?: string;
+    filter?: string[];
     /**
      * A tool results history ID.
      */
@@ -3636,15 +3626,7 @@ export namespace toolresults_v1beta3 {
 
   export class
       Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples {
-    root: Toolresults;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3734,7 +3716,7 @@ export namespace toolresults_v1beta3 {
         pathParams: [
           'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
@@ -3830,7 +3812,7 @@ export namespace toolresults_v1beta3 {
         pathParams: [
           'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
         ],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListPerfSamplesResponse>(parameters, callback);
@@ -3840,7 +3822,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3872,7 +3855,8 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$BatchCreatePerfSamplesRequest;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3912,15 +3896,7 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects$Histories$Executions$Steps$Thumbnails {
-    root: Toolresults;
-    constructor(root: Toolresults) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4001,7 +3977,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListStepThumbnailsResponse>(
@@ -4012,7 +3988,8 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

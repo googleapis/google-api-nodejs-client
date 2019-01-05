@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace groupssettings_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,22 +81,12 @@ export namespace groupssettings_v1 {
    * @param {object=} options Options for Groupssettings
    */
   export class Groupssettings {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     groups: Resource$Groups;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.groups = new Resource$Groups(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.groups = new Resource$Groups();
     }
   }
 
@@ -105,6 +130,10 @@ export namespace groupssettings_v1 {
      * Email id of the group
      */
     email?: string;
+    /**
+     * If favorite replies should be displayed above other replies.
+     */
+    favoriteRepliesOnTop?: string;
     /**
      * Whether to include custom footer.
      */
@@ -172,11 +201,26 @@ export namespace groupssettings_v1 {
      */
     whoCanAdd?: string;
     /**
+     * Permission to add references to a topic. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanAddReferences?: string;
+    /**
+     * Permission to assign topics in a forum to another user. Possible values
+     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanAssignTopics?: string;
+    /**
      * Permission to contact owner of the group via web UI. Possible values are:
      * ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT
      * ALL_MANAGERS_CAN_CONTACT
      */
     whoCanContactOwner?: string;
+    /**
+     * Permission to enter free form tags for topics in a forum. Possible values
+     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanEnterFreeFormTags?: string;
     /**
      * Permissions to invite members. Possible values are:
      * ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE ALL_OWNERS_CAN_INVITE
@@ -195,11 +239,54 @@ export namespace groupssettings_v1 {
      */
     whoCanLeaveGroup?: string;
     /**
+     * Permission to mark a topic as a duplicate of another topic. Possible
+     * values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
+     * ALL_MEMBERS
+     */
+    whoCanMarkDuplicate?: string;
+    /**
+     * Permission to mark any other user&#39;s post as a favorite reply.
+     * Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
+     * ALL_MEMBERS
+     */
+    whoCanMarkFavoriteReplyOnAnyTopic?: string;
+    /**
+     * Permission to mark a post for a topic they started as a favorite reply.
+     * Possible values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
+     * ALL_MEMBERS
+     */
+    whoCanMarkFavoriteReplyOnOwnTopic?: string;
+    /**
+     * Permission to mark a topic as not needing a response. Possible values
+     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanMarkNoResponseNeeded?: string;
+    /**
+     * Permission to change tags and categories. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanModifyTagsAndCategories?: string;
+    /**
      * Permissions to post messages to the group. Possible values are:
      * NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST
      * ALL_OWNERS_CAN_POST ALL_IN_DOMAIN_CAN_POST ANYONE_CAN_POST
      */
     whoCanPostMessage?: string;
+    /**
+     * Permission to take topics in a forum. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanTakeTopics?: string;
+    /**
+     * Permission to unassign any topic in a forum. Possible values are: NONE
+     * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanUnassignTopic?: string;
+    /**
+     * Permission to unmark any post from a favorite reply. Possible values are:
+     * NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanUnmarkFavoriteReplyOnAnyTopic?: string;
     /**
      * Permissions to view group. Possible values are: ANYONE_CAN_VIEW
      * ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
@@ -215,15 +302,7 @@ export namespace groupssettings_v1 {
 
 
   export class Resource$Groups {
-    root: Groupssettings;
-    constructor(root: Groupssettings) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -277,7 +356,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -342,7 +421,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -407,7 +486,7 @@ export namespace groupssettings_v1 {
         params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -417,7 +496,7 @@ export namespace groupssettings_v1 {
     }
   }
 
-  export interface Params$Resource$Groups$Get {
+  export interface Params$Resource$Groups$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -428,7 +507,7 @@ export namespace groupssettings_v1 {
      */
     groupUniqueId?: string;
   }
-  export interface Params$Resource$Groups$Patch {
+  export interface Params$Resource$Groups$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -444,7 +523,7 @@ export namespace groupssettings_v1 {
      */
     requestBody?: Schema$Groups;
   }
-  export interface Params$Resource$Groups$Update {
+  export interface Params$Resource$Groups$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

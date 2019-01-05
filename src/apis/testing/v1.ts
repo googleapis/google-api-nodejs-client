@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace testing_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -47,27 +99,16 @@ export namespace testing_v1 {
    * @param {object=} options Options for Testing
    */
   export class Testing {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     applicationDetailService: Resource$Applicationdetailservice;
     projects: Resource$Projects;
     testEnvironmentCatalog: Resource$Testenvironmentcatalog;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.applicationDetailService =
-          new Resource$Applicationdetailservice(this);
-      this.projects = new Resource$Projects(this);
-      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.applicationDetailService = new Resource$Applicationdetailservice();
+      this.projects = new Resource$Projects();
+      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog();
     }
   }
 
@@ -144,9 +185,13 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidInstrumentationTest {
     /**
-     * The APK for the application under test. Required
+     * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
+    /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
@@ -234,10 +279,20 @@ export namespace testing_v1 {
      */
     form?: string;
     /**
+     * Whether this device is a phone, tablet, wearable, etc. @OutputOnly
+     */
+    formFactor?: string;
+    /**
      * The unique opaque id for this model. Use this for invoking the
      * TestExecutionService. @OutputOnly
      */
     id?: string;
+    /**
+     * True if and only if tests with this model are recorded by stitching
+     * together screenshots. See use_low_spec_video_recording in device config.
+     * @OutputOnly
+     */
+    lowFpsVideoRecording?: boolean;
     /**
      * The manufacturer of this device. @OutputOnly
      */
@@ -279,11 +334,6 @@ export namespace testing_v1 {
      * &quot;preview&quot;, &quot;deprecated&quot;
      */
     tags?: string[];
-    /**
-     * True if and only if tests with this model DO NOT have video output. See
-     * also TestSpecification.disable_video_recording @OutputOnly
-     */
-    videoRecordingNotSupported?: boolean;
   }
   /**
    * A test of an android application that explores the application on a virtual
@@ -291,9 +341,13 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidRoboTest {
     /**
-     * The APK for the application under test. Required
+     * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
+    /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
     /**
      * The initial activity that should be used to start the app. Optional
      */
@@ -333,7 +387,7 @@ export namespace testing_v1 {
     startingIntents?: Schema$RoboStartingIntent[];
   }
   /**
-   * Configuration that can be selected at the time a test is run.
+   * Android configuration that can be selected at the time a test is run.
    */
   export interface Schema$AndroidRuntimeConfiguration {
     /**
@@ -352,9 +406,13 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidTestLoop {
     /**
-     * The APK for the application under test. Required
+     * The APK for the application under test.
      */
     appApk?: Schema$FileReference;
+    /**
+     * A multi-apk app bundle for the application under test.
+     */
+    appBundle?: Schema$AppBundle;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
@@ -460,6 +518,18 @@ export namespace testing_v1 {
     packageName?: string;
   }
   /**
+   * An Android App Bundle file format, containing a BundleConfig.pb file, a
+   * base module directory, zero or more dynamic feature module directories.
+   * &lt;p&gt;See https://developer.android.com/guide/app-bundle/build for
+   * guidance on building App Bundles.
+   */
+  export interface Schema$AppBundle {
+    /**
+     * .aab file representing the app bundle under test.
+     */
+    bundleLocation?: Schema$FileReference;
+  }
+  /**
    * Response containing the current state of the specified test matrix.
    */
   export interface Schema$CancelTestMatrixResponse {
@@ -498,23 +568,25 @@ export namespace testing_v1 {
     value?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -559,6 +631,10 @@ export namespace testing_v1 {
      * An Android device which must be used with an Android test.
      */
     androidDevice?: Schema$AndroidDevice;
+    /**
+     * An iOS device which must be used with an iOS test.
+     */
+    iosDevice?: Schema$IosDevice;
   }
   /**
    * The matrix of environments in which the test is to be executed.
@@ -573,6 +649,10 @@ export namespace testing_v1 {
      * A matrix of Android devices.
      */
     androidMatrix?: Schema$AndroidMatrix;
+    /**
+     * A list of iOS devices.
+     */
+    iosDeviceList?: Schema$IosDeviceList;
   }
   /**
    * A key-value pair passed as an environment variable to the test
@@ -643,6 +723,177 @@ export namespace testing_v1 {
      * The android:mimeType value of the &lt;data&gt; tag
      */
     mimeType?: string;
+  }
+  /**
+   * A single iOS device.
+   */
+  export interface Schema$IosDevice {
+    /**
+     * Required. The id of the iOS device to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    iosModelId?: string;
+    /**
+     * Required. The id of the iOS major software version to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    iosVersionId?: string;
+    /**
+     * Required. The locale the test device used for testing. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    locale?: string;
+    /**
+     * Required. How the device is oriented during the test. Use the
+     * EnvironmentDiscoveryService to get supported options.
+     */
+    orientation?: string;
+  }
+  /**
+   * The currently supported iOS devices.
+   */
+  export interface Schema$IosDeviceCatalog {
+    /**
+     * Output only. The set of supported iOS device models.
+     */
+    models?: Schema$IosModel[];
+    /**
+     * Output only. The set of supported runtime configurations.
+     */
+    runtimeConfiguration?: Schema$IosRuntimeConfiguration;
+    /**
+     * Output only. The set of supported iOS software versions.
+     */
+    versions?: Schema$IosVersion[];
+    /**
+     * Output only. The set of supported Xcode versions.
+     */
+    xcodeVersions?: Schema$XcodeVersion[];
+  }
+  /**
+   * A list of iOS device configurations in which the test is to be executed.
+   */
+  export interface Schema$IosDeviceList {
+    /**
+     * Required. A list of iOS devices
+     */
+    iosDevices?: Schema$IosDevice[];
+  }
+  /**
+   * A description of an iOS device tests may be run on.
+   */
+  export interface Schema$IosModel {
+    /**
+     * Output only. Device capabilities. Copied from
+     * https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/DeviceCompatibilityMatrix/DeviceCompatibilityMatrix.html
+     */
+    deviceCapabilities?: string[];
+    /**
+     * Whether this device is a phone, tablet, wearable, etc. @OutputOnly
+     */
+    formFactor?: string;
+    /**
+     * Output only. The unique opaque id for this model. Use this for invoking
+     * the TestExecutionService.
+     */
+    id?: string;
+    /**
+     * Output only. The human-readable name for this device model. Examples:
+     * &quot;iPhone 4s&quot;, &quot;iPad Mini 2&quot;
+     */
+    name?: string;
+    /**
+     * Output only. The set of iOS major software versions this device supports.
+     */
+    supportedVersionIds?: string[];
+    /**
+     * Output only. Tags for this dimension. Examples: &quot;default&quot;,
+     * &quot;preview&quot;, &quot;deprecated&quot;
+     */
+    tags?: string[];
+  }
+  /**
+   * iOS configuration that can be selected at the time a test is run.
+   */
+  export interface Schema$IosRuntimeConfiguration {
+    /**
+     * Output only. The set of available locales.
+     */
+    locales?: Schema$Locale[];
+    /**
+     * Output only. The set of available orientations.
+     */
+    orientations?: Schema$Orientation[];
+  }
+  /**
+   * A description of how to set up an iOS device prior to a test.
+   */
+  export interface Schema$IosTestSetup {
+    /**
+     * Optional. The network traffic profile used for running the test.
+     * Available network profiles can be queried by using the
+     * NETWORK_CONFIGURATION environment type when calling
+     * TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
+     */
+    networkProfile?: string;
+  }
+  /**
+   * An iOS version
+   */
+  export interface Schema$IosVersion {
+    /**
+     * Output only. An opaque id for this iOS version. Use this id to invoke the
+     * TestExecutionService.
+     */
+    id?: string;
+    /**
+     * Output only. An integer representing the major iOS version. Examples:
+     * &quot;8&quot;, &quot;9&quot;
+     */
+    majorVersion?: number;
+    /**
+     * Output only. An integer representing the minor iOS version. Examples:
+     * &quot;1&quot;, &quot;2&quot;
+     */
+    minorVersion?: number;
+    /**
+     * Output only. The available Xcode versions for this version.
+     */
+    supportedXcodeVersionIds?: string[];
+    /**
+     * Output only. Tags for this dimension. Examples: &quot;default&quot;,
+     * &quot;preview&quot;, &quot;deprecated&quot;
+     */
+    tags?: string[];
+  }
+  /**
+   * A test of an iOS application that uses the XCTest framework. Xcode supports
+   * the option to &quot;build for testing&quot;, which generates an .xctestrun
+   * file that contains a test specification (arguments, test methods, etc).
+   * This test type accepts a zip file containing the .xctestrun file and the
+   * corresponding contents of the Build/Products directory that contains all
+   * the binaries needed to run the tests.
+   */
+  export interface Schema$IosXcTest {
+    /**
+     * Required. The .zip containing the .xctestrun file and the contents of the
+     * DerivedData/Build/Products directory. The .xctestrun file in this zip is
+     * ignored if the xctestrun field is specified.
+     */
+    testsZip?: Schema$FileReference;
+    /**
+     * Optional. The Xcode version that should be used for the test. Use the
+     * EnvironmentDiscoveryService to get supported options. Defaults to the
+     * latest Xcode version Firebase Test Lab supports.
+     */
+    xcodeVersion?: string;
+    /**
+     * Optional. An .xctestrun file that will override the .xctestrun file in
+     * the tests zip. Because the .xctestrun file contains environment variables
+     * along with test methods to run and/or ignore, this can be useful for
+     * sharding tests. Default is taken from the tests zip.
+     */
+    xctestrun?: Schema$FileReference;
   }
   /**
    * Specifies an intent that starts the main launcher activity.
@@ -841,12 +1092,6 @@ export namespace testing_v1 {
      * progress_messages. @OutputOnly
      */
     progressMessages?: string[];
-    /**
-     * Indicates that video will not be recorded for this execution either
-     * because the user chose to disable it or the device does not support it.
-     * See AndroidModel.video_recording_not_supported @OutputOnly
-     */
-    videoRecordingDisabled?: boolean;
   }
   /**
    * A description of a test environment.
@@ -856,6 +1101,10 @@ export namespace testing_v1 {
      * Android devices suitable for running Android Instrumentation Tests.
      */
     androidDeviceCatalog?: Schema$AndroidDeviceCatalog;
+    /**
+     * Supported iOS devices
+     */
+    iosDeviceCatalog?: Schema$IosDeviceCatalog;
     /**
      * Supported network configurations
      */
@@ -991,7 +1240,10 @@ export namespace testing_v1 {
      */
     filesToPush?: Schema$DeviceFile[];
     /**
-     * The network traffic profile used for running the test. Optional
+     * Optional. The network traffic profile used for running the test.
+     * Available network profiles can be queried by using the
+     * NETWORK_CONFIGURATION environment type when calling
+     * TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string;
   }
@@ -1028,6 +1280,14 @@ export namespace testing_v1 {
      * Disables video recording; may reduce test latency.
      */
     disableVideoRecording?: boolean;
+    /**
+     * Optional. Test setup requirements for iOS.
+     */
+    iosTestSetup?: Schema$IosTestSetup;
+    /**
+     * An iOS XCTest, via an .xctestrun file
+     */
+    iosXcTest?: Schema$IosXcTest;
     /**
      * Test setup requirements for Android e.g. files to install, bootstrap
      * scripts. Optional
@@ -1117,18 +1377,23 @@ export namespace testing_v1 {
      */
     packetLossRatio?: number;
   }
+  /**
+   * An Xcode version that an iOS version is compatible with.
+   */
+  export interface Schema$XcodeVersion {
+    /**
+     * Output only. Tags for this Xcode version. Examples: &quot;default&quot;
+     */
+    tags?: string[];
+    /**
+     * Output only. The id for this version. Example: &quot;9.2&quot;
+     */
+    version?: string;
+  }
 
 
   export class Resource$Applicationdetailservice {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1191,7 +1456,7 @@ export namespace testing_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
@@ -1201,7 +1466,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Applicationdetailservice$Getapkdetails {
+  export interface Params$Resource$Applicationdetailservice$Getapkdetails
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1216,30 +1482,15 @@ export namespace testing_v1 {
 
 
   export class Resource$Projects {
-    root: Testing;
     testMatrices: Resource$Projects$Testmatrices;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.testMatrices = new Resource$Projects$Testmatrices(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.testMatrices = new Resource$Projects$Testmatrices();
     }
   }
 
 
   export class Resource$Projects$Testmatrices {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1309,7 +1560,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
@@ -1384,7 +1635,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1452,7 +1703,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1462,7 +1713,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Testmatrices$Cancel {
+  export interface Params$Resource$Projects$Testmatrices$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1477,7 +1729,8 @@ export namespace testing_v1 {
      */
     testMatrixId?: string;
   }
-  export interface Params$Resource$Projects$Testmatrices$Create {
+  export interface Params$Resource$Projects$Testmatrices$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1499,7 +1752,8 @@ export namespace testing_v1 {
      */
     requestBody?: Schema$TestMatrix;
   }
-  export interface Params$Resource$Projects$Testmatrices$Get {
+  export interface Params$Resource$Projects$Testmatrices$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1518,15 +1772,7 @@ export namespace testing_v1 {
 
 
   export class Resource$Testenvironmentcatalog {
-    root: Testing;
-    constructor(root: Testing) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1587,7 +1833,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['environmentType'],
         pathParams: ['environmentType'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);
@@ -1597,7 +1843,8 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Testenvironmentcatalog$Get {
+  export interface Params$Resource$Testenvironmentcatalog$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

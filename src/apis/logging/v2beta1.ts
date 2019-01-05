@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,10 +29,63 @@ export namespace logging_v2beta1 {
     version: 'v2beta1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Stackdriver Logging API
    *
-   * Writes log entries and manages your Stackdriver Logging configuration.
+   * Writes log entries and manages your Logging configuration.
    *
    * @example
    * const {google} = require('googleapis');
@@ -46,31 +98,17 @@ export namespace logging_v2beta1 {
    * @param {object=} options Options for Logging
    */
   export class Logging {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
-    billingAccounts: Resource$Billingaccounts;
     entries: Resource$Entries;
     monitoredResourceDescriptors: Resource$Monitoredresourcedescriptors;
-    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.billingAccounts = new Resource$Billingaccounts(this);
-      this.entries = new Resource$Entries(this);
+      this.entries = new Resource$Entries();
       this.monitoredResourceDescriptors =
-          new Resource$Monitoredresourcedescriptors(this);
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Monitoredresourcedescriptors();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -361,23 +399,6 @@ export namespace logging_v2beta1 {
     nextPageToken?: string;
   }
   /**
-   * Result returned from ListLogs.
-   */
-  export interface Schema$ListLogsResponse {
-    /**
-     * A list of log names. For example, &quot;projects/my-project/syslog&quot;
-     * or
-     * &quot;organizations/123/cloudresourcemanager.googleapis.com%2Factivity&quot;.
-     */
-    logNames?: string[];
-    /**
-     * If there might be more results than those appearing in this response,
-     * then nextPageToken is included. To get the next set of results, call this
-     * method again using the value of nextPageToken as pageToken.
-     */
-    nextPageToken?: string;
-  }
-  /**
    * Result returned from ListMonitoredResourceDescriptors.
    */
   export interface Schema$ListMonitoredResourceDescriptorsResponse {
@@ -418,23 +439,23 @@ export namespace logging_v2beta1 {
     httpRequest?: Schema$HttpRequest;
     /**
      * Optional. A unique identifier for the log entry. If you provide a value,
-     * then Stackdriver Logging considers other log entries in the same project,
-     * with the same timestamp, and with the same insert_id to be duplicates
-     * which can be removed. If omitted in new log entries, then Stackdriver
-     * Logging assigns its own unique identifier. The insert_id is also used to
-     * order log entries that have the same timestamp value.
+     * then Logging considers other log entries in the same project, with the
+     * same timestamp, and with the same insert_id to be duplicates which can be
+     * removed. If omitted in new log entries, then Logging assigns its own
+     * unique identifier. The insert_id is also used to order log entries that
+     * have the same timestamp value.
      */
     insertId?: string;
     /**
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    jsonPayload?: any;
+    jsonPayload?: {[key: string]: any;};
     /**
      * Optional. A set of user-defined (key, value) data that provides
      * additional information about the log entry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The resource name of the log to which this log entry belongs:
      * &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
@@ -470,9 +491,9 @@ export namespace logging_v2beta1 {
      * The log entry payload, represented as a protocol buffer. Some Google
      * Cloud Platform services use this field for their log entry payloads.
      */
-    protoPayload?: any;
+    protoPayload?: {[key: string]: any;};
     /**
-     * Output only. The time the log entry was received by Stackdriver Logging.
+     * Output only. The time the log entry was received by Logging.
      */
     receiveTimestamp?: string;
     /**
@@ -494,9 +515,9 @@ export namespace logging_v2beta1 {
     sourceLocation?: Schema$LogEntrySourceLocation;
     /**
      * Optional. The span ID within the trace associated with the log entry. For
-     * Stackdriver Trace spans, this is the same format that the Stackdriver
-     * Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte
-     * array, such as &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
+     * Trace spans, this is the same format that the Trace API v2 uses: a
+     * 16-character hexadecimal encoding of an 8-byte array, such as
+     * &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
      */
     spanId?: string;
     /**
@@ -507,13 +528,13 @@ export namespace logging_v2beta1 {
      * Optional. The time the event described by the log entry occurred. This
      * time is used to compute the log entry&#39;s age and to enforce the logs
      * retention period. If this field is omitted in a new log entry, then
-     * Stackdriver Logging assigns it the current time. Timestamps have
-     * nanosecond accuracy, but trailing zeros in the fractional seconds might
-     * be omitted when the timestamp is displayed.Incoming log entries should
-     * have timestamps that are no more than the logs retention period in the
-     * past, and no more than 24 hours in the future. Log entries outside those
-     * time boundaries will not be available when calling entries.list, but
-     * those log entries can still be exported with LogSinks.
+     * Logging assigns it the current time. Timestamps have nanosecond accuracy,
+     * but trailing zeros in the fractional seconds might be omitted when the
+     * timestamp is displayed.Incoming log entries should have timestamps that
+     * are no more than the logs retention period in the past, and no more than
+     * 24 hours in the future. Log entries outside those time boundaries will
+     * not be available when calling entries.list, but those log entries can
+     * still be exported with LogSinks.
      */
     timestamp?: string;
     /**
@@ -523,6 +544,15 @@ export namespace logging_v2beta1 {
      * projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824
      */
     trace?: string;
+    /**
+     * Optional. The sampling decision of the trace associated with the log
+     * entry. True means that the trace resource name in the trace field was
+     * sampled for storage in a trace backend. False means that the trace was
+     * not sampled for storage when this log entry was written, or the sampling
+     * decision was unknown at the time. A non-sampled trace value is still
+     * useful as a request correlation identifier. The default is False.
+     */
+    traceSampled?: boolean;
   }
   /**
    * Additional information about a potentially long-running operation with
@@ -615,6 +645,7 @@ export namespace logging_v2beta1 {
     bucketOptions?: Schema$BucketOptions;
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      */
     description?: string;
     /**
@@ -636,7 +667,7 @@ export namespace logging_v2beta1 {
      * there are upper bounds on the maximum number of labels and the number of
      * active time series that are allowed in a project.
      */
-    labelExtractors?: any;
+    labelExtractors?: {[key: string]: string;};
     /**
      * Optional. The metric descriptor associated with the logs-based metric. If
      * unspecified, it uses a default metric descriptor with a DELTA metric
@@ -712,10 +743,6 @@ export namespace logging_v2beta1 {
      */
     destination?: string;
     /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    endTime?: string;
-    /**
      * Optional. An advanced logs filter. The only exported log entries are
      * those that are in the resource owning the sink and that match the filter.
      * For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND
@@ -752,14 +779,10 @@ export namespace logging_v2beta1 {
      */
     outputVersionFormat?: string;
     /**
-     * Deprecated. This field is ignored when creating or updating sinks.
-     */
-    startTime?: string;
-    /**
      * Output only. An IAM identity&amp;mdash;a service account or
-     * group&amp;mdash;under which Stackdriver Logging writes the exported log
-     * entries to the sink&#39;s destination. This field is set by sinks.create
-     * and sinks.update, based on the setting of unique_writer_identity in those
+     * group&amp;mdash;under which Logging writes the exported log entries to
+     * the sink&#39;s destination. This field is set by sinks.create and
+     * sinks.update, based on the setting of unique_writer_identity in those
      * methods.Until you grant this identity write-access to the destination,
      * log entry exports from this sink will fail. For more information, see
      * Granting access for a resource. Consult the destination service&#39;s
@@ -794,6 +817,10 @@ export namespace logging_v2beta1 {
      */
     labels?: Schema$LabelDescriptor[];
     /**
+     * Optional. Metadata which can be used to guide usage of the metric.
+     */
+    metadata?: Schema$MetricDescriptorMetadata;
+    /**
      * Whether the metric records instantaneous values, changes to a value, etc.
      * Some combinations of metric_kind and value_type might not be supported.
      */
@@ -804,10 +831,11 @@ export namespace logging_v2beta1 {
     name?: string;
     /**
      * The metric type, including its DNS name prefix. The type is not
-     * URL-encoded. All user-defined custom metric types have the DNS name
-     * custom.googleapis.com. Metric types should use a natural hierarchical
-     * grouping. For example:
+     * URL-encoded. All user-defined metric types have the DNS name
+     * custom.googleapis.com or external.googleapis.com. Metric types should use
+     * a natural hierarchical grouping. For example:
      * &quot;custom.googleapis.com/invoice/paid/amount&quot;
+     * &quot;external.googleapis.com/prometheus/up&quot;
      * &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
     type?: string;
@@ -843,6 +871,28 @@ export namespace logging_v2beta1 {
     valueType?: string;
   }
   /**
+   * Additional annotations that can be used to guide the usage of a metric.
+   */
+  export interface Schema$MetricDescriptorMetadata {
+    /**
+     * The delay of data points caused by ingestion. Data points older than this
+     * age are guaranteed to be ingested and available to be read, excluding
+     * data loss due to errors.
+     */
+    ingestDelay?: string;
+    /**
+     * The launch stage of the metric definition.
+     */
+    launchStage?: string;
+    /**
+     * The sampling period of metric data points. For metrics which are written
+     * periodically, consecutive data points are stored at this time interval,
+     * excluding data loss due to errors. Metrics with a higher granularity have
+     * a smaller sampling period.
+     */
+    samplePeriod?: string;
+  }
+  /**
    * An object representing a resource that can be used for monitoring, logging,
    * billing, or other purposes. Examples include virtual machine instances,
    * databases, and storage devices such as disks. The type field identifies a
@@ -863,7 +913,7 @@ export namespace logging_v2beta1 {
      * labels &quot;project_id&quot;, &quot;instance_id&quot;, and
      * &quot;zone&quot;.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The monitored resource type. This field must match the type
      * field of a MonitoredResourceDescriptor object. For example, the type of a
@@ -921,27 +971,25 @@ export namespace logging_v2beta1 {
    * Auxiliary metadata for a MonitoredResource object. MonitoredResource
    * objects contain the minimum set of information to uniquely identify a
    * monitored resource instance. There is some other useful auxiliary metadata.
-   * Google Stackdriver Monitoring &amp; Logging uses an ingestion pipeline to
-   * extract metadata for cloud resources of all types , and stores the metadata
-   * in this message.
+   * Monitoring and Logging use an ingestion pipeline to extract metadata for
+   * cloud resources of all types, and store the metadata in this message.
    */
   export interface Schema$MonitoredResourceMetadata {
     /**
      * Output only. Values for predefined system metadata labels. System labels
-     * are a kind of metadata extracted by Google Stackdriver. Stackdriver
-     * determines what system labels are useful and how to obtain their values.
-     * Some examples: &quot;machine_image&quot;, &quot;vpc&quot;,
-     * &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc.
-     * System label values can be only strings, Boolean values, or a list of
-     * strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,
+     * are a kind of metadata extracted by Google, including
+     * &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;,
+     * &quot;security_group&quot;, &quot;name&quot;, etc. System label values
+     * can be only strings, Boolean values, or a list of strings. For example: {
+     * &quot;name&quot;: &quot;my-test-instance&quot;,
      * &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;,
      * &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: any;
+    systemLabels?: {[key: string]: any;};
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
   }
   /**
    * Complete log information about a single HTTP request to an App Engine
@@ -1079,6 +1127,11 @@ export namespace logging_v2beta1 {
      */
     traceId?: string;
     /**
+     * If true, the value in the &#39;trace_id&#39; field was sampled for
+     * storage in a trace backend.
+     */
+    traceSampled?: boolean;
+    /**
      * File or class that handled the request.
      */
     urlMapEntry?: string;
@@ -1146,23 +1199,22 @@ export namespace logging_v2beta1 {
      */
     dryRun?: boolean;
     /**
-     * Required. The log entries to send to Stackdriver Logging. The order of
-     * log entries in this list does not matter. Values supplied in this
-     * method&#39;s log_name, resource, and labels fields are copied into those
-     * log entries in this list that do not include values for their
-     * corresponding fields. For more information, see the LogEntry type.If the
-     * timestamp or insert_id fields are missing in log entries, then this
-     * method supplies the current time or a unique identifier, respectively.
-     * The supplied values are chosen so that, among the log entries that did
-     * not supply their own values, the entries earlier in the list will sort
-     * before the entries later in the list. See the entries.list method.Log
-     * entries with timestamps that are more than the logs retention period in
-     * the past or more than 24 hours in the future will not be available when
-     * calling entries.list. However, those log entries can still be exported
-     * with LogSinks.To improve throughput and to avoid exceeding the quota
-     * limit for calls to entries.write, you should try to include several log
-     * entries in this list, rather than calling this method for each individual
-     * log entry.
+     * Required. The log entries to send to Logging. The order of log entries in
+     * this list does not matter. Values supplied in this method&#39;s log_name,
+     * resource, and labels fields are copied into those log entries in this
+     * list that do not include values for their corresponding fields. For more
+     * information, see the LogEntry type.If the timestamp or insert_id fields
+     * are missing in log entries, then this method supplies the current time or
+     * a unique identifier, respectively. The supplied values are chosen so
+     * that, among the log entries that did not supply their own values, the
+     * entries earlier in the list will sort before the entries later in the
+     * list. See the entries.list method.Log entries with timestamps that are
+     * more than the logs retention period in the past or more than 24 hours in
+     * the future will not be available when calling entries.list. However,
+     * those log entries can still be exported with LogSinks.To improve
+     * throughput and to avoid exceeding the quota limit for calls to
+     * entries.write, you should try to include several log entries in this
+     * list, rather than calling this method for each individual log entry.
      */
     entries?: Schema$LogEntry[];
     /**
@@ -1171,7 +1223,7 @@ export namespace logging_v2beta1 {
      * as a label in this parameter, then the log entry&#39;s label is not
      * changed. See LogEntry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Optional. A default log resource name that is assigned to all log entries
      * in entries that do not specify a value for log_name:
@@ -1179,10 +1231,12 @@ export namespace logging_v2beta1 {
      * &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
      * &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
      * &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; [LOG_ID] must be
-     * URL-encoded. For example, &quot;projects/my-project-id/logs/syslog&quot;
-     * or
-     * &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;.
-     * For more information about log names, see LogEntry.
+     * URL-encoded. For example: &quot;projects/my-project-id/logs/syslog&quot;
+     * &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;
+     * The permission &lt;code&gt;logging.logEntries.create&lt;/code&gt; is
+     * needed on each project, organization, billing account, or folder that is
+     * receiving new log entries, whether the resource is specified in
+     * &lt;code&gt;logName&lt;/code&gt; or in an individual log entry.
      */
     logName?: string;
     /**
@@ -1208,366 +1262,14 @@ export namespace logging_v2beta1 {
   export interface Schema$WriteLogEntriesResponse {}
 
 
-  export class Resource$Billingaccounts {
-    root: Logging;
-    logs: Resource$Billingaccounts$Logs;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.logs = new Resource$Billingaccounts$Logs(root);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-  }
-
-
-  export class Resource$Billingaccounts$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * logging.billingAccounts.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it
-     * receives new entries. Log entries written shortly before the delete
-     * operation might not be deleted.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example,
-     * "projects/my-project-id/logs/syslog",
-     *     //
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more
-     *     // information about log names, see LogEntry.
-     *     logName: 'billingAccounts/my-billing-account/logs/my-log',  // TODO:
-     * Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   logging.billingAccounts.logs.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.billingAccounts.logs.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Billingaccounts$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    delete(
-        params: Params$Resource$Billingaccounts$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        params: Params$Resource$Billingaccounts$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Logs$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Logs$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+logName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['logName'],
-        pathParams: ['logName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-
-    /**
-     * logging.billingAccounts.logs.list
-     * @desc Lists the logs in projects, organizations, folders, or billing
-     * accounts. Only logs that have entries are listed.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     parent: 'billingAccounts/my-billing-account',  // TODO: Update
-     * placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var logNamesPage = response['logNames'];
-     *     if (!logNamesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < logNamesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       logging.billingAccounts.logs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   logging.billingAccounts.logs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.billingAccounts.logs.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Billingaccounts$Logs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
-    list(
-        params: Params$Resource$Billingaccounts$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        params: Params$Resource$Billingaccounts$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Logs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Logs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLogsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Billingaccounts$Logs$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The resource name of the log to delete:
-     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
-     * example, "projects/my-project-id/logs/syslog",
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more information about log names, see LogEntry.
-     */
-    logName?: string;
-  }
-  export interface Params$Resource$Billingaccounts$Logs$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of nextPageToken in the
-     * response indicates that more results might be available.
-     */
-    pageSize?: number;
-    /**
-     * Optional. If present, then retrieve the next batch of results from the
-     * preceding call to this method. pageToken must be the value of
-     * nextPageToken from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
-     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
-     * "folders/[FOLDER_ID]"
-     */
-    parent?: string;
-  }
-
-
-
   export class Resource$Entries {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * logging.entries.list
      * @desc Lists log entries. Use this method to retrieve log entries from
-     * Stackdriver Logging. For ways to export log entries, see Exporting Logs.
+     * Logging. For ways to export log entries, see Exporting Logs.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1688,7 +1390,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
@@ -1700,12 +1402,12 @@ export namespace logging_v2beta1 {
 
     /**
      * logging.entries.write
-     * @desc Writes log entries to Stackdriver Logging. This API method is the
-     * only way to send log entries to Stackdriver Logging. This method is used,
-     * directly or indirectly, by the Stackdriver Logging agent (fluentd) and
-     * all logging libraries configured to use Stackdriver Logging. A single
-     * request may contain log entries for a maximum of 1000 different resources
-     * (projects, organizations, billing accounts or folders)
+     * @desc Writes log entries to Logging. This API method is the only way to
+     * send log entries to Logging. This method is used, directly or indirectly,
+     * by the Logging agent (fluentd) and all logging libraries configured to
+     * use Logging. A single request may contain log entries for a maximum of
+     * 1000 different resources (projects, organizations, billing accounts or
+     * folders)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1813,7 +1515,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
@@ -1823,7 +1525,7 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Entries$List {
+  export interface Params$Resource$Entries$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1835,7 +1537,7 @@ export namespace logging_v2beta1 {
      */
     requestBody?: Schema$ListLogEntriesRequest;
   }
-  export interface Params$Resource$Entries$Write {
+  export interface Params$Resource$Entries$Write extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1850,21 +1552,12 @@ export namespace logging_v2beta1 {
 
 
   export class Resource$Monitoredresourcedescriptors {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
      * logging.monitoredResourceDescriptors.list
-     * @desc Lists the descriptors for monitored resource types used by
-     * Stackdriver Logging.
+     * @desc Lists the descriptors for monitored resource types used by Logging.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1990,7 +1683,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -2002,7 +1695,8 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Monitoredresourcedescriptors$List {
+  export interface Params$Resource$Monitoredresourcedescriptors$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2022,707 +1716,20 @@ export namespace logging_v2beta1 {
      */
     pageToken?: string;
   }
-
-
-  export class Resource$Organizations {
-    root: Logging;
-    logs: Resource$Organizations$Logs;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.logs = new Resource$Organizations$Logs(root);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-  }
-
-
-  export class Resource$Organizations$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * logging.organizations.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it
-     * receives new entries. Log entries written shortly before the delete
-     * operation might not be deleted.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example,
-     * "projects/my-project-id/logs/syslog",
-     *     //
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more
-     *     // information about log names, see LogEntry.
-     *     logName: 'organizations/my-organization/logs/my-log',  // TODO:
-     * Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   logging.organizations.logs.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.organizations.logs.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Organizations$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    delete(
-        params: Params$Resource$Organizations$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        params: Params$Resource$Organizations$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Organizations$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Logs$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+logName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['logName'],
-        pathParams: ['logName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-
-    /**
-     * logging.organizations.logs.list
-     * @desc Lists the logs in projects, organizations, folders, or billing
-     * accounts. Only logs that have entries are listed.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     parent: 'organizations/my-organization',  // TODO: Update placeholder
-     * value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var logNamesPage = response['logNames'];
-     *     if (!logNamesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < logNamesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       logging.organizations.logs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   logging.organizations.logs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.organizations.logs.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Organizations$Logs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
-    list(
-        params: Params$Resource$Organizations$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        params: Params$Resource$Organizations$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Organizations$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Logs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLogsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Logs$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The resource name of the log to delete:
-     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
-     * example, "projects/my-project-id/logs/syslog",
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more information about log names, see LogEntry.
-     */
-    logName?: string;
-  }
-  export interface Params$Resource$Organizations$Logs$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of nextPageToken in the
-     * response indicates that more results might be available.
-     */
-    pageSize?: number;
-    /**
-     * Optional. If present, then retrieve the next batch of results from the
-     * preceding call to this method. pageToken must be the value of
-     * nextPageToken from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
-     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
-     * "folders/[FOLDER_ID]"
-     */
-    parent?: string;
-  }
-
 
 
   export class Resource$Projects {
-    root: Logging;
-    logs: Resource$Projects$Logs;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.logs = new Resource$Projects$Logs(root);
-      this.metrics = new Resource$Projects$Metrics(root);
-      this.sinks = new Resource$Projects$Sinks(root);
+    constructor() {
+      this.metrics = new Resource$Projects$Metrics();
+      this.sinks = new Resource$Projects$Sinks();
     }
-
-    getRoot() {
-      return this.root;
-    }
-  }
-
-
-  export class Resource$Projects$Logs {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * logging.projects.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it
-     * receives new entries. Log entries written shortly before the delete
-     * operation might not be deleted.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name of the log to delete:
-     *     // "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     *     // "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     *     // "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *     // [LOG_ID] must be URL-encoded. For example,
-     * "projects/my-project-id/logs/syslog",
-     *     //
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more
-     *     // information about log names, see LogEntry.
-     *     logName: 'projects/my-project/logs/my-log',  // TODO: Update
-     * placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   logging.projects.logs.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.projects.logs.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Projects$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    delete(
-        params: Params$Resource$Projects$Logs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        params: Params$Resource$Projects$Logs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Projects$Logs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Logs$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+logName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['logName'],
-        pathParams: ['logName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-
-    /**
-     * logging.projects.logs.list
-     * @desc Lists the logs in projects, organizations, folders, or billing
-     * accounts. Only logs that have entries are listed.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Stackdriver Logging API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/logging
-     * // 2. This sample uses Application Default Credentials for
-     * authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //
-     * https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var logging = google.logging('v2beta1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // Required. The resource name that owns the logs:
-     *     // "projects/[PROJECT_ID]"
-     *     // "organizations/[ORGANIZATION_ID]"
-     *     // "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     // "folders/[FOLDER_ID]"
-     *     parent: 'projects/my-project',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *
-     *     var logNamesPage = response['logNames'];
-     *     if (!logNamesPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < logNamesPage.length; i++) {
-     *       // TODO: Change code below to process each resource in
-     * `logNamesPage`: console.log(JSON.stringify(logNamesPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       logging.projects.logs.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   logging.projects.logs.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient) {
-     *     if (err) {
-     *       console.error('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired &&
-     * authClient.createScopedRequired()) { var scopes =
-     * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-     * authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     * @alias logging.projects.logs.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(params?: Params$Resource$Projects$Logs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogsResponse>;
-    list(
-        params: Params$Resource$Projects$Logs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        params: Params$Resource$Projects$Logs$List,
-        callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListLogsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Projects$Logs$List|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Logs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Logs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v2beta1/{+parent}/logs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLogsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Logs$Delete {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The resource name of the log to delete:
-     * "projects/[PROJECT_ID]/logs/[LOG_ID]"
-     * "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
-     * "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
-     * "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For
-     * example, "projects/my-project-id/logs/syslog",
-     * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
-     * For more information about log names, see LogEntry.
-     */
-    logName?: string;
-  }
-  export interface Params$Resource$Projects$Logs$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Optional. The maximum number of results to return from this request.
-     * Non-positive values are ignored. The presence of nextPageToken in the
-     * response indicates that more results might be available.
-     */
-    pageSize?: number;
-    /**
-     * Optional. If present, then retrieve the next batch of results from the
-     * preceding call to this method. pageToken must be the value of
-     * nextPageToken from the previous response. The values of other method
-     * parameters should be identical to those in the previous call.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name that owns the logs: "projects/[PROJECT_ID]"
-     * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
-     * "folders/[FOLDER_ID]"
-     */
-    parent?: string;
   }
 
 
   export class Resource$Projects$Metrics {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2842,7 +1849,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -2960,7 +1967,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3078,7 +2085,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -3215,7 +2222,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
@@ -3348,7 +2355,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -3358,7 +2365,8 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Metrics$Create {
+  export interface Params$Resource$Projects$Metrics$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3375,7 +2383,8 @@ export namespace logging_v2beta1 {
      */
     requestBody?: Schema$LogMetric;
   }
-  export interface Params$Resource$Projects$Metrics$Delete {
+  export interface Params$Resource$Projects$Metrics$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3387,7 +2396,8 @@ export namespace logging_v2beta1 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Get {
+  export interface Params$Resource$Projects$Metrics$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3399,7 +2409,8 @@ export namespace logging_v2beta1 {
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$List {
+  export interface Params$Resource$Projects$Metrics$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3424,7 +2435,8 @@ export namespace logging_v2beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Update {
+  export interface Params$Resource$Projects$Metrics$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3447,15 +2459,7 @@ export namespace logging_v2beta1 {
 
 
   export class Resource$Projects$Sinks {
-    root: Logging;
-    constructor(root: Logging) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3532,7 +2536,7 @@ export namespace logging_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+     * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3582,7 +2586,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -3707,7 +2711,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3828,7 +2832,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -3966,7 +2970,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -4055,7 +3059,7 @@ export namespace logging_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
      * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
-     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample: updateMask=filter.
+     * @param {string=} params.updateMask Optional. Field mask that specifies the fields in sink that need an update. A sink field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.An empty updateMask is temporarily treated as using the following mask for backwards compatibility purposes:  destination,filter,includeChildren At some point in the future, behavior will be removed and specifying an empty updateMask will be an error.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      * @param {().LogSink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4105,7 +3109,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4115,7 +3119,8 @@ export namespace logging_v2beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sinks$Create {
+  export interface Params$Resource$Projects$Sinks$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4132,13 +3137,13 @@ export namespace logging_v2beta1 {
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
      * sink's parent is a project, then the value returned as writer_identity is
-     * the same group or service account used by Stackdriver Logging before the
-     * addition of writer identities to this API. The sink's destination must be
-     * in the same project as the sink itself.If this field is set to true, or
-     * if the sink is owned by a non-project resource such as an organization,
-     * then the value of writer_identity will be a unique service account used
-     * only for exports from the new sink. For more information, see
-     * writer_identity in LogSink.
+     * the same group or service account used by Logging before the addition of
+     * writer identities to this API. The sink's destination must be in the same
+     * project as the sink itself.If this field is set to true, or if the sink
+     * is owned by a non-project resource such as an organization, then the
+     * value of writer_identity will be a unique service account used only for
+     * exports from the new sink. For more information, see writer_identity in
+     * LogSink.
      */
     uniqueWriterIdentity?: boolean;
 
@@ -4147,7 +3152,8 @@ export namespace logging_v2beta1 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Delete {
+  export interface Params$Resource$Projects$Sinks$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4164,7 +3170,8 @@ export namespace logging_v2beta1 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Get {
+  export interface Params$Resource$Projects$Sinks$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4180,7 +3187,8 @@ export namespace logging_v2beta1 {
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$List {
+  export interface Params$Resource$Projects$Sinks$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4206,7 +3214,8 @@ export namespace logging_v2beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Update {
+  export interface Params$Resource$Projects$Sinks$Update extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4242,7 +3251,7 @@ export namespace logging_v2beta1 {
      * some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.For a detailed FieldMask definition,
      * see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmaskExample:
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
      * updateMask=filter.
      */
     updateMask?: string;

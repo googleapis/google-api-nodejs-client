@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {vision_v1} from './v1';
 import {vision_v1p1beta1} from './v1p1beta1';
 import {vision_v1p2beta1} from './v1p2beta1';

@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace admin_reports_v1 {
   export interface Options extends GlobalOptions {
     version: 'reports_v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -47,10 +82,6 @@ export namespace admin_reports_v1 {
    * @param {object=} options Options for Admin
    */
   export class Admin {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     activities: Resource$Activities;
     channels: Resource$Channels;
     customerUsageReports: Resource$Customerusagereports;
@@ -58,19 +89,13 @@ export namespace admin_reports_v1 {
     userUsageReport: Resource$Userusagereport;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities(this);
-      this.channels = new Resource$Channels(this);
-      this.customerUsageReports = new Resource$Customerusagereports(this);
-      this.entityUsageReports = new Resource$Entityusagereports(this);
-      this.userUsageReport = new Resource$Userusagereport(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.activities = new Resource$Activities();
+      this.channels = new Resource$Channels();
+      this.customerUsageReports = new Resource$Customerusagereports();
+      this.entityUsageReports = new Resource$Entityusagereports();
+      this.userUsageReport = new Resource$Userusagereport();
     }
   }
 
@@ -102,7 +127,12 @@ export namespace admin_reports_v1 {
     /**
      * User doing the action.
      */
-    actor?: any;
+    actor?: {
+      callerType?: string;
+      email?: string;
+      key?: string;
+      profileId?: string;
+    };
     /**
      * ETag of the entry.
      */
@@ -110,11 +140,27 @@ export namespace admin_reports_v1 {
     /**
      * Activity events.
      */
-    events?: any[];
+    events?: Array<{
+      name?: string;
+      parameters?: Array<{
+        boolValue?: boolean;
+        intValue?: string;
+        multiIntValue?: string[];
+        multiValue?: string[];
+        name?: string;
+        value?: string;
+      }>;
+      type?: string;
+    }>;
     /**
      * Unique identifier for each activity record.
      */
-    id?: any;
+    id?: {
+      applicationName?: string;
+      customerId?: string;
+      time?: string;
+      uniqueQualifier?: string;
+    };
     /**
      * IP Address of the user doing the action.
      */
@@ -153,7 +199,7 @@ export namespace admin_reports_v1 {
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: any;
+    params?: {[key: string]: string;};
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
@@ -188,7 +234,13 @@ export namespace admin_reports_v1 {
     /**
      * Information about the type of the item.
      */
-    entity?: any;
+    entity?: {
+      customerId?: string;
+      entityId?: string;
+      profileId?: string;
+      type?: string;
+      userEmail?: string;
+    };
     /**
      * ETag of the resource.
      */
@@ -200,7 +252,14 @@ export namespace admin_reports_v1 {
     /**
      * Parameter value pairs for various applications.
      */
-    parameters?: any[];
+    parameters?: Array<{
+      boolValue?: boolean;
+      datetimeValue?: string;
+      intValue?: string;
+      msgValue?: Array<{[key: string]: any;}>;
+      name?: string;
+      stringValue?: string;
+    }>;
   }
   /**
    * JSON template for a collection of usage reports.
@@ -225,20 +284,16 @@ export namespace admin_reports_v1 {
     /**
      * Warnings if any.
      */
-    warnings?: any[];
+    warnings?: Array<{
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    }>;
   }
 
 
   export class Resource$Activities {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -308,7 +363,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Activities>(parameters, callback);
@@ -384,7 +439,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -394,7 +449,7 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Activities$List {
+  export interface Params$Resource$Activities$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -445,7 +500,7 @@ export namespace admin_reports_v1 {
      */
     userKey?: string;
   }
-  export interface Params$Resource$Activities$Watch {
+  export interface Params$Resource$Activities$Watch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -504,15 +559,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Channels {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -569,7 +616,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -579,7 +626,7 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Channels$Stop {
+  export interface Params$Resource$Channels$Stop extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -594,15 +641,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Customerusagereports {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -662,7 +701,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['date'],
         pathParams: ['date'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -672,7 +711,8 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Customerusagereports$Get {
+  export interface Params$Resource$Customerusagereports$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -700,15 +740,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Entityusagereports {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -774,7 +806,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['entityType', 'entityKey', 'date'],
         pathParams: ['date', 'entityKey', 'entityType'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -784,7 +816,8 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Entityusagereports$Get {
+  export interface Params$Resource$Entityusagereports$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -828,15 +861,7 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Userusagereport {
-    root: Admin;
-    constructor(root: Admin) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -900,7 +925,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'date'],
         pathParams: ['date', 'userKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -910,7 +935,8 @@ export namespace admin_reports_v1 {
     }
   }
 
-  export interface Params$Resource$Userusagereport$Get {
+  export interface Params$Resource$Userusagereport$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

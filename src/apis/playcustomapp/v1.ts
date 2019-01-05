@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace playcustomapp_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,22 +81,12 @@ export namespace playcustomapp_v1 {
    * @param {object=} options Options for Playcustomapp
    */
   export class Playcustomapp {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.accounts = new Resource$Accounts();
     }
   }
 
@@ -81,30 +106,15 @@ export namespace playcustomapp_v1 {
 
 
   export class Resource$Accounts {
-    root: Playcustomapp;
     customApps: Resource$Accounts$Customapps;
-    constructor(root: Playcustomapp) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.customApps = new Resource$Accounts$Customapps(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.customApps = new Resource$Accounts$Customapps();
     }
   }
 
 
   export class Resource$Accounts$Customapps {
-    root: Playcustomapp;
-    constructor(root: Playcustomapp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -171,7 +181,7 @@ export namespace playcustomapp_v1 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['account'],
         pathParams: ['account'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CustomApp>(parameters, callback);
@@ -181,7 +191,8 @@ export namespace playcustomapp_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Customapps$Create {
+  export interface Params$Resource$Accounts$Customapps$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace servicebroker_v1alpha1 {
   export interface Options extends GlobalOptions {
     version: 'v1alpha1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -48,24 +100,14 @@ export namespace servicebroker_v1alpha1 {
    * @param {object=} options Options for Servicebroker
    */
   export class Servicebroker {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     projects: Resource$Projects;
     v1alpha1: Resource$V1alpha1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects(this);
-      this.v1alpha1 = new Resource$V1alpha1(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.projects = new Resource$Projects();
+      this.v1alpha1 = new Resource$V1alpha1();
     }
   }
 
@@ -82,7 +124,7 @@ export namespace servicebroker_v1alpha1 {
      * A JSON object that contains data for platform resources associated with
      * the binding to be created.
      */
-    bind_resource?: any;
+    bind_resource?: {[key: string]: any;};
     /**
      * Output only. Timestamp for when the binding was created.
      */
@@ -90,7 +132,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Configuration options for the service binding.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
     /**
      * The ID of the plan. See `Service` and `Plan` resources for details.
      * Maximum length is 64, GUID recommended. Required.
@@ -110,7 +152,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Credentials to use the binding.
      */
-    credentials?: any;
+    credentials?: {[key: string]: any;};
     /**
      * Used to communicate description of the response. Usually for non-standard
      * error codes.
@@ -135,7 +177,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * An array of configuration for mounting volumes.
      */
-    volume_mounts?: any[];
+    volume_mounts?: Array<{[key: string]: any;}>;
   }
   /**
    * Response for the `CreateServiceInstance()` method.
@@ -211,7 +253,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Credentials to use the binding.
      */
-    credentials?: any;
+    credentials?: {[key: string]: any;};
     /**
      * Used to communicate description of the response. Usually for non-standard
      * error codes.
@@ -230,7 +272,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * An array of configuration for mounting volumes.
      */
-    volume_mounts?: any[];
+    volume_mounts?: Array<{[key: string]: any;}>;
   }
   /**
    * The response for the `ListBindings()` method.
@@ -341,7 +383,7 @@ export namespace servicebroker_v1alpha1 {
      * A list of metadata for a service offering. Metadata is an arbitrary JSON
      * object.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * User friendly name of the plan. The name must be globally unique within
      * GCP project. Note, which is different from (&quot;This must be globally
@@ -351,7 +393,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Schema definitions for service instances and bindings for the plan.
      */
-    schemas?: any;
+    schemas?: {[key: string]: any;};
   }
   /**
    * The resource model mostly follows the Open Service Broker API, as described
@@ -390,7 +432,7 @@ export namespace servicebroker_v1alpha1 {
      * A list of metadata for a service offering. Metadata is an arbitrary JSON
      * object.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * User friendly service name. Name must match [a-z0-9]+ regexp. The name
      * must be globally unique within GCP project. Note, which is different from
@@ -423,7 +465,7 @@ export namespace servicebroker_v1alpha1 {
      * can also contain anything. Currently only used for logging context
      * information.
      */
-    context?: any;
+    context?: {[key: string]: any;};
     /**
      * Output only. Timestamp for when the instance was created.
      */
@@ -447,7 +489,7 @@ export namespace servicebroker_v1alpha1 {
      * Configuration options for the service instance. Parameters is JSON object
      * serialized to string.
      */
-    parameters?: any;
+    parameters?: {[key: string]: any;};
     /**
      * The ID of the plan. See `Service` and `Plan` resources for details.
      * Maximum length is 64, GUID recommended. Required.
@@ -457,7 +499,7 @@ export namespace servicebroker_v1alpha1 {
      * Used only in UpdateServiceInstance request to optionally specify previous
      * fields.
      */
-    previous_values?: any;
+    previous_values?: {[key: string]: any;};
     /**
      * Output only. The resource name of the instance, e.g.
      * projects/project_id/brokers/broker_id/service_instances/instance_id
@@ -496,6 +538,13 @@ export namespace servicebroker_v1alpha1 {
    */
   export interface Schema$GoogleIamV1__Binding {
     /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$GoogleType__Expr;
+    /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
      * identifier that represents anyone who is    on the internet; with or
@@ -513,7 +562,7 @@ export namespace servicebroker_v1alpha1 {
     members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
-     * `roles/editor`, or `roles/owner`. Required
+     * `roles/editor`, or `roles/owner`.
      */
     role?: string;
   }
@@ -594,55 +643,63 @@ export namespace servicebroker_v1alpha1 {
      */
     permissions?: string[];
   }
+  /**
+   * Represents an expression text. Example:      title: &quot;User account
+   * presence&quot;     description: &quot;Determines whether the request has a
+   * user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$GoogleType__Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
 
 
   export class Resource$Projects {
-    root: Servicebroker;
     brokers: Resource$Projects$Brokers;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.brokers = new Resource$Projects$Brokers(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.brokers = new Resource$Projects$Brokers();
     }
   }
 
 
   export class Resource$Projects$Brokers {
-    root: Servicebroker;
     instances: Resource$Projects$Brokers$Instances;
     service_instances: Resource$Projects$Brokers$Service_instances;
     v2: Resource$Projects$Brokers$V2;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instances = new Resource$Projects$Brokers$Instances(root);
+    constructor() {
+      this.instances = new Resource$Projects$Brokers$Instances();
       this.service_instances =
-          new Resource$Projects$Brokers$Service_instances(root);
-      this.v2 = new Resource$Projects$Brokers$V2(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Brokers$Service_instances();
+      this.v2 = new Resource$Projects$Brokers$V2();
     }
   }
 
 
   export class Resource$Projects$Brokers$Instances {
-    root: Servicebroker;
     service_bindings: Resource$Projects$Brokers$Instances$Service_bindings;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.service_bindings =
-          new Resource$Projects$Brokers$Instances$Service_bindings(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Brokers$Instances$Service_bindings();
     }
 
 
@@ -709,7 +766,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -723,7 +780,8 @@ export namespace servicebroker_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$Instances$Get {
+  export interface Params$Resource$Projects$Brokers$Instances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -736,15 +794,7 @@ export namespace servicebroker_v1alpha1 {
   }
 
   export class Resource$Projects$Brokers$Instances$Service_bindings {
-    root: Servicebroker;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -823,7 +873,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -837,7 +887,8 @@ export namespace servicebroker_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$Instances$Service_bindings$List {
+  export interface Params$Resource$Projects$Brokers$Instances$Service_bindings$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -864,15 +915,7 @@ export namespace servicebroker_v1alpha1 {
 
 
   export class Resource$Projects$Brokers$Service_instances {
-    root: Servicebroker;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -949,7 +992,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -963,7 +1006,8 @@ export namespace servicebroker_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$Service_instances$List {
+  export interface Params$Resource$Projects$Brokers$Service_instances$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -988,33 +1032,18 @@ export namespace servicebroker_v1alpha1 {
 
 
   export class Resource$Projects$Brokers$V2 {
-    root: Servicebroker;
     catalog: Resource$Projects$Brokers$V2$Catalog;
     service_instances: Resource$Projects$Brokers$V2$Service_instances;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.catalog = new Resource$Projects$Brokers$V2$Catalog(root);
+    constructor() {
+      this.catalog = new Resource$Projects$Brokers$V2$Catalog();
       this.service_instances =
-          new Resource$Projects$Brokers$V2$Service_instances(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Brokers$V2$Service_instances();
     }
   }
 
 
   export class Resource$Projects$Brokers$V2$Catalog {
-    root: Servicebroker;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1090,7 +1119,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -1104,7 +1133,8 @@ export namespace servicebroker_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$V2$Catalog$List {
+  export interface Params$Resource$Projects$Brokers$V2$Catalog$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1129,19 +1159,11 @@ export namespace servicebroker_v1alpha1 {
 
 
   export class Resource$Projects$Brokers$V2$Service_instances {
-    root: Servicebroker;
     service_bindings:
         Resource$Projects$Brokers$V2$Service_instances$Service_bindings;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
+    constructor() {
       this.service_bindings =
-          new Resource$Projects$Brokers$V2$Service_instances$Service_bindings(
-              root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Projects$Brokers$V2$Service_instances$Service_bindings();
     }
 
 
@@ -1230,7 +1252,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instance_id'],
         pathParams: ['instance_id', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -1323,7 +1345,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instanceId'],
         pathParams: ['instanceId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -1402,7 +1424,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -1495,7 +1517,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instanceId'],
         pathParams: ['instanceId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1alpha1__Operation>(
@@ -1584,7 +1606,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instance_id'],
         pathParams: ['instance_id', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -1598,7 +1620,8 @@ export namespace servicebroker_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Create {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1628,7 +1651,8 @@ export namespace servicebroker_v1alpha1 {
      */
     requestBody?: Schema$GoogleCloudServicebrokerV1alpha1__ServiceInstance;
   }
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Delete {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1655,7 +1679,8 @@ export namespace servicebroker_v1alpha1 {
      */
     serviceId?: string;
   }
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Get {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1666,7 +1691,8 @@ export namespace servicebroker_v1alpha1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1694,7 +1720,8 @@ export namespace servicebroker_v1alpha1 {
      */
     serviceId?: string;
   }
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Patch {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1721,15 +1748,7 @@ export namespace servicebroker_v1alpha1 {
   }
 
   export class Resource$Projects$Brokers$V2$Service_instances$Service_bindings {
-    root: Servicebroker;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1815,7 +1834,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instanceId', 'binding_id'],
         pathParams: ['binding_id', 'instanceId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -1914,7 +1933,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instanceId', 'bindingId'],
         pathParams: ['bindingId', 'instanceId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -2003,7 +2022,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instanceId', 'bindingId'],
         pathParams: ['bindingId', 'instanceId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -2097,7 +2116,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['parent', 'instanceId', 'bindingId'],
         pathParams: ['bindingId', 'instanceId', 'parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1alpha1__Operation>(
@@ -2109,7 +2128,8 @@ export namespace servicebroker_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2139,7 +2159,8 @@ export namespace servicebroker_v1alpha1 {
      */
     requestBody?: Schema$GoogleCloudServicebrokerV1alpha1__Binding;
   }
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2170,7 +2191,8 @@ export namespace servicebroker_v1alpha1 {
      */
     serviceId?: string;
   }
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2197,7 +2219,8 @@ export namespace servicebroker_v1alpha1 {
      */
     serviceId?: string;
   }
-  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation {
+  export interface Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2233,15 +2256,7 @@ export namespace servicebroker_v1alpha1 {
 
 
   export class Resource$V1alpha1 {
-    root: Servicebroker;
-    constructor(root: Servicebroker) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2304,7 +2319,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2375,7 +2390,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2454,7 +2469,7 @@ export namespace servicebroker_v1alpha1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -2466,7 +2481,8 @@ export namespace servicebroker_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$V1alpha1$Getiampolicy {
+  export interface Params$Resource$V1alpha1$Getiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2478,7 +2494,8 @@ export namespace servicebroker_v1alpha1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$V1alpha1$Setiampolicy {
+  export interface Params$Resource$V1alpha1$Setiampolicy extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2495,7 +2512,8 @@ export namespace servicebroker_v1alpha1 {
      */
     requestBody?: Schema$GoogleIamV1__SetIamPolicyRequest;
   }
-  export interface Params$Resource$V1alpha1$Testiampermissions {
+  export interface Params$Resource$V1alpha1$Testiampermissions extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

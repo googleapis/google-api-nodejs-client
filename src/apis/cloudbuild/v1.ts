@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,10 +29,63 @@ export namespace cloudbuild_v1 {
     version: 'v1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
-   * Cloud Container Builder
+   * Cloud Build API
    *
-   * Builds container images in the cloud.
+   * Creates and manages builds on Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -46,24 +98,14 @@ export namespace cloudbuild_v1 {
    * @param {object=} options Options for Cloudbuild
    */
   export class Cloudbuild {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.operations = new Resource$Operations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -85,7 +127,7 @@ export namespace cloudbuild_v1 {
      */
     paths?: string[];
     /**
-     * Stores timing information for pushing all artifact objects. @OutputOnly
+     * Output only. Stores timing information for pushing all artifact objects.
      */
     timing?: Schema$TimeSpan;
   }
@@ -130,7 +172,7 @@ export namespace cloudbuild_v1 {
     objects?: Schema$ArtifactObjects;
   }
   /**
-   * A build resource in the Container Builder API.  At a high level, a `Build`
+   * A build resource in the Cloud Build API.  At a high level, a `Build`
    * describes where to find source code, how to build it (for example, the
    * builder image to run on the source), and where to store the built
    * artifacts.  Fields can include the following variables, which will be
@@ -149,22 +191,22 @@ export namespace cloudbuild_v1 {
      */
     artifacts?: Schema$Artifacts;
     /**
-     * The ID of the `BuildTrigger` that triggered this build, if it was
-     * triggered automatically. @OutputOnly
+     * Output only. The ID of the `BuildTrigger` that triggered this build, if
+     * it was triggered automatically.
      */
     buildTriggerId?: string;
     /**
-     * Time at which the request to create the build was received. @OutputOnly
+     * Output only. Time at which the request to create the build was received.
      */
     createTime?: string;
     /**
-     * Time at which execution of the build was finished.  The difference
-     * between finish_time and start_time is the duration of the build&#39;s
-     * execution. @OutputOnly
+     * Output only. Time at which execution of the build was finished.  The
+     * difference between finish_time and start_time is the duration of the
+     * build&#39;s execution.
      */
     finishTime?: string;
     /**
-     * Unique identifier of the build. @OutputOnly
+     * Output only. Unique identifier of the build.
      */
     id?: string;
     /**
@@ -184,7 +226,7 @@ export namespace cloudbuild_v1 {
      */
     logsBucket?: string;
     /**
-     * URL to logs for this build in Google Cloud Console. @OutputOnly
+     * Output only. URL to logs for this build in Google Cloud Console.
      */
     logUrl?: string;
     /**
@@ -192,11 +234,11 @@ export namespace cloudbuild_v1 {
      */
     options?: Schema$BuildOptions;
     /**
-     * ID of the project. @OutputOnly.
+     * Output only. ID of the project.
      */
     projectId?: string;
     /**
-     * Results of the build. @OutputOnly
+     * Output only. Results of the build.
      */
     results?: Schema$Results;
     /**
@@ -208,19 +250,19 @@ export namespace cloudbuild_v1 {
      */
     source?: Schema$Source;
     /**
-     * A permanent fixed identifier for source. @OutputOnly
+     * Output only. A permanent fixed identifier for source.
      */
     sourceProvenance?: Schema$SourceProvenance;
     /**
-     * Time at which execution of the build was started. @OutputOnly
+     * Output only. Time at which execution of the build was started.
      */
     startTime?: string;
     /**
-     * Status of the build. @OutputOnly
+     * Output only. Status of the build.
      */
     status?: string;
     /**
-     * Customer-readable message about the current status. @OutputOnly
+     * Output only. Customer-readable message about the current status.
      */
     statusDetail?: string;
     /**
@@ -230,7 +272,7 @@ export namespace cloudbuild_v1 {
     /**
      * Substitutions data for `Build` resource.
      */
-    substitutions?: any;
+    substitutions?: {[key: string]: string;};
     /**
      * Tags for annotation of a `Build`. These are not docker tags.
      */
@@ -242,12 +284,12 @@ export namespace cloudbuild_v1 {
      */
     timeout?: string;
     /**
-     * Stores timing information for phases of the build. Valid keys are:  *
-     * BUILD: time to execute all build steps * PUSH: time to push all specified
-     * images. * FETCHSOURCE: time to fetch source.  If the build does not
-     * specify source or images, these keys will not be included. @OutputOnly
+     * Output only. Stores timing information for phases of the build. Valid
+     * keys are:  * BUILD: time to execute all build steps * PUSH: time to push
+     * all specified images. * FETCHSOURCE: time to fetch source.  If the build
+     * does not specify source or images, these keys will not be included.
      */
-    timing?: any;
+    timing?: {[key: string]: Schema$TimeSpan;};
   }
   /**
    * Metadata for build operations.
@@ -273,6 +315,19 @@ export namespace cloudbuild_v1 {
      */
     diskSizeGb?: string;
     /**
+     * A list of global environment variable definitions that will exist for all
+     * build steps in this build. If a variable is defined in both globally and
+     * in a build step, the variable will use the build step value.  The
+     * elements are of the form &quot;KEY=VALUE&quot; for the environment
+     * variable &quot;KEY&quot; being given the value &quot;VALUE&quot;.
+     */
+    env?: string[];
+    /**
+     * Option to specify the logging mode, which determines where the logs are
+     * stored.
+     */
+    logging?: string;
+    /**
      * Option to define build log streaming behavior to Google Cloud Storage.
      */
     logStreamingOption?: string;
@@ -285,6 +340,13 @@ export namespace cloudbuild_v1 {
      */
     requestedVerifyOption?: string;
     /**
+     * A list of global environment variables, which are encrypted using a Cloud
+     * Key Management Service crypto key. These values must be specified in the
+     * build&#39;s `Secret`. These variables will be available to all build
+     * steps in this build.
+     */
+    secretEnv?: string[];
+    /**
      * Requested hash for SourceProvenance.
      */
     sourceProvenanceHash?: string[];
@@ -293,6 +355,21 @@ export namespace cloudbuild_v1 {
      * checks.
      */
     substitutionOption?: string;
+    /**
+     * Global list of volumes to mount for ALL build steps  Each volume is
+     * created as an empty volume prior to starting the build process. Upon
+     * completion of the build, volumes and their contents are discarded. Global
+     * volume names and paths cannot conflict with the volumes defined a build
+     * step.  Using a global volume in a build with only one step is not valid
+     * as it is indicative of a build request with an incorrect configuration.
+     */
+    volumes?: Schema$Volume[];
+    /**
+     * Option to specify a `WorkerPool` for the build. User specifies the pool
+     * with the format &quot;[WORKERPOOL_PROJECT_ID]/[WORKERPOOL_NAME]&quot;.
+     * This is an experimental field.
+     */
+    workerPool?: string;
   }
   /**
    * A step in the build pipeline.
@@ -351,15 +428,20 @@ export namespace cloudbuild_v1 {
      */
     name?: string;
     /**
+     * Output only. Stores timing information for pulling this build step&#39;s
+     * builder image only.
+     */
+    pullTiming?: Schema$TimeSpan;
+    /**
      * A list of environment variables which are encrypted using a Cloud Key
      * Management Service crypto key. These values must be specified in the
      * build&#39;s `Secret`.
      */
     secretEnv?: string[];
     /**
-     * Status of the build step. At this time, build step status is only updated
-     * on build completion; step status is not updated in real-time as the build
-     * progresses. @OutputOnly
+     * Output only. Status of the build step. At this time, build step status is
+     * only updated on build completion; step status is not updated in real-time
+     * as the build progresses.
      */
     status?: string;
     /**
@@ -369,15 +451,15 @@ export namespace cloudbuild_v1 {
      */
     timeout?: string;
     /**
-     * Stores timing information for executing this build step. @OutputOnly
+     * Output only. Stores timing information for executing this build step.
      */
     timing?: Schema$TimeSpan;
     /**
-     * List of volumes to mount into the build step.  Each volume will be
-     * created as an empty volume prior to execution of the build step. Upon
-     * completion of the build, volumes and their contents will be discarded.
-     * Using a named volume in only one step is not valid as it is indicative of
-     * a mis-configured build request.
+     * List of volumes to mount into the build step.  Each volume is created as
+     * an empty volume prior to execution of the build step. Upon completion of
+     * the build, volumes and their contents are discarded.  Using a named
+     * volume in only one step is not valid as it is indicative of a build
+     * request with an incorrect configuration.
      */
     volumes?: Schema$Volume[];
     /**
@@ -399,7 +481,7 @@ export namespace cloudbuild_v1 {
      */
     build?: Schema$Build;
     /**
-     * Time when the trigger was created.  @OutputOnly
+     * Output only. Time when the trigger was created.
      */
     createTime?: string;
     /**
@@ -416,13 +498,32 @@ export namespace cloudbuild_v1 {
      */
     filename?: string;
     /**
-     * Unique identifier of the trigger.  @OutputOnly
+     * Output only. Unique identifier of the trigger.
      */
     id?: string;
     /**
+     * ignored_files and included_files are file glob matches using
+     * http://godoc/pkg/path/filepath#Match extended with support for
+     * &quot;**&quot;.  If ignored_files and changed files are both empty, then
+     * they are not used to determine whether or not to trigger a build.  If
+     * ignored_files is not empty, then we ignore any files that match any of
+     * the ignored_file globs. If the change has no files that are outside of
+     * the ignored_files globs, then we do not trigger a build.
+     */
+    ignoredFiles?: string[];
+    /**
+     * If any of the files altered in the commit pass the ignored_files filter
+     * and included_files is empty, then as far as this filter is concerned, we
+     * should trigger the build.  If any of the files altered in the commit pass
+     * the ignored_files filter and included_files is not empty, then we make
+     * sure that at least one of those files matches a included_files glob. If
+     * not, then we do not trigger a build.
+     */
+    includedFiles?: string[];
+    /**
      * Substitutions data for Build resource.
      */
-    substitutions?: any;
+    substitutions?: {[key: string]: string;};
     /**
      * Template describing the types of source changes to trigger a build.
      * Branch and tag names in trigger templates are interpreted as regular
@@ -445,7 +546,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string;
     /**
-     * Stores timing information for pushing the specified image. @OutputOnly
+     * Output only. Stores timing information for pushing the specified image.
      */
     pushTiming?: Schema$TimeSpan;
   }
@@ -544,7 +645,7 @@ export namespace cloudbuild_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -560,7 +661,7 @@ export namespace cloudbuild_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Location of the source in a Google Cloud Source Repository.
@@ -610,6 +711,14 @@ export namespace cloudbuild_v1 {
      */
     buildStepImages?: string[];
     /**
+     * List of build step outputs, produced by builder images, in the order
+     * corresponding to build step indices.  [Cloud
+     * Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can
+     * produce this output by writing to `$BUILDER_OUTPUT/output`. Only the
+     * first 4KB of data is stored.
+     */
+    buildStepOutputs?: string[];
+    /**
      * Container images that were built as a part of the build.
      */
     images?: Schema$BuiltImage[];
@@ -634,11 +743,11 @@ export namespace cloudbuild_v1 {
     /**
      * Map of environment variable name to its encrypted value.  Secret
      * environment variables must be unique across all of a build&#39;s secrets,
-     * and must be used by at least one build step. Values can be at most 1 KB
-     * in size. There can be at most ten secret values across all of a
+     * and must be used by at least one build step. Values can be at most 64 KB
+     * in size. There can be at most 100 secret values across all of a
      * build&#39;s secrets.
      */
-    secretEnv?: any;
+    secretEnv?: {[key: string]: string;};
   }
   /**
    * Location of the source in a supported storage service.
@@ -660,16 +769,15 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$SourceProvenance {
     /**
-     * Hash(es) of the build source, which can be used to verify that the
-     * original source integrity was maintained in the build. Note that
-     * `FileHashes` will only be populated if `BuildOptions` has requested a
+     * Output only. Hash(es) of the build source, which can be used to verify
+     * that the originalsource integrity was maintained in the build. Note that
+     * `FileHashes` willonly be populated if `BuildOptions` has requested a
      * `SourceProvenanceHash`.  The keys to this map are file paths used as
      * build source and the values contain the hash values for those files.  If
      * the build source came in a single package such as a gzipped tarfile
      * (`.tar.gz`), the `FileHash` will be for the single path to that file.
-     * @OutputOnly
      */
-    fileHashes?: any;
+    fileHashes?: {[key: string]: Schema$FileHashes;};
     /**
      * A copy of the build&#39;s `source.repo_source`, if exists, with any
      * revisions resolved.
@@ -726,7 +834,7 @@ export namespace cloudbuild_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -788,15 +896,7 @@ export namespace cloudbuild_v1 {
 
 
   export class Resource$Operations {
-    root: Cloudbuild;
-    constructor(root: Cloudbuild) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -863,7 +963,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -926,7 +1026,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1002,7 +1102,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1012,7 +1112,8 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel {
+  export interface Params$Resource$Operations$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1028,7 +1129,7 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Get {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1039,7 +1140,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1065,32 +1166,17 @@ export namespace cloudbuild_v1 {
 
 
   export class Resource$Projects {
-    root: Cloudbuild;
     builds: Resource$Projects$Builds;
     triggers: Resource$Projects$Triggers;
-    constructor(root: Cloudbuild) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.builds = new Resource$Projects$Builds(root);
-      this.triggers = new Resource$Projects$Triggers(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.builds = new Resource$Projects$Builds();
+      this.triggers = new Resource$Projects$Triggers();
     }
   }
 
 
   export class Resource$Projects$Builds {
-    root: Cloudbuild;
-    constructor(root: Cloudbuild) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1151,7 +1237,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Build>(parameters, callback);
@@ -1222,7 +1308,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1287,7 +1373,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Build>(parameters, callback);
@@ -1359,7 +1445,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBuildsResponse>(parameters, callback);
@@ -1444,7 +1530,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1454,7 +1540,8 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Builds$Cancel {
+  export interface Params$Resource$Projects$Builds$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1474,7 +1561,8 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$CancelBuildRequest;
   }
-  export interface Params$Resource$Projects$Builds$Create {
+  export interface Params$Resource$Projects$Builds$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1490,7 +1578,8 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$Build;
   }
-  export interface Params$Resource$Projects$Builds$Get {
+  export interface Params$Resource$Projects$Builds$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1505,7 +1594,8 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Builds$List {
+  export interface Params$Resource$Projects$Builds$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1528,7 +1618,8 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Builds$Retry {
+  export interface Params$Resource$Projects$Builds$Retry extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1551,15 +1642,7 @@ export namespace cloudbuild_v1 {
 
 
   export class Resource$Projects$Triggers {
-    root: Cloudbuild;
-    constructor(root: Cloudbuild) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1620,7 +1703,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -1688,7 +1771,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1753,7 +1836,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -1823,7 +1906,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListBuildTriggersResponse>(
@@ -1894,7 +1977,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -1960,7 +2043,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1970,7 +2053,8 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Triggers$Create {
+  export interface Params$Resource$Projects$Triggers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1986,7 +2070,8 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Triggers$Delete {
+  export interface Params$Resource$Projects$Triggers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2001,7 +2086,8 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$Get {
+  export interface Params$Resource$Projects$Triggers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2016,7 +2102,8 @@ export namespace cloudbuild_v1 {
      */
     triggerId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$List {
+  export interface Params$Resource$Projects$Triggers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2027,7 +2114,8 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Triggers$Patch {
+  export interface Params$Resource$Projects$Triggers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2047,7 +2135,8 @@ export namespace cloudbuild_v1 {
      */
     requestBody?: Schema$BuildTrigger;
   }
-  export interface Params$Resource$Projects$Triggers$Run {
+  export interface Params$Resource$Projects$Triggers$Run extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

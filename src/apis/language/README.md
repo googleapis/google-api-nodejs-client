@@ -2,7 +2,7 @@
 
 # @google/language
 
-> Provides natural language understanding technologies to developers. Examples include sentiment analysis, entity recognition, entity sentiment analysis, and text annotations.
+> Provides natural language understanding technologies, such as sentiment analysis, entity recognition, entity sentiment analysis, and other text annotations, to developers.
 
 ## Installation
 
@@ -14,7 +14,7 @@ $ npm install @google/language
 All documentation and usage information can be found on [GitHub](https://github.com/google/google-api-nodejs-client).
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [COPYING](https://github.com/google/google-api-nodejs-client/blob/master/COPYING).
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/google/google-api-nodejs-client/blob/master/LICENSE).
 
 ## Contributing
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING](https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md).

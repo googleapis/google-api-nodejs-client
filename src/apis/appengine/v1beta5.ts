@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,11 +29,63 @@ export namespace appengine_v1beta5 {
     version: 'v1beta5';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * App Engine Admin API
    *
-   * The App Engine Admin API enables developers to provision and manage their
-   * App Engine applications.
+   * Provisions and manages developers&#39; App Engine applications.
    *
    * @example
    * const {google} = require('googleapis');
@@ -47,22 +98,12 @@ export namespace appengine_v1beta5 {
    * @param {object=} options Options for Appengine
    */
   export class Appengine {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     apps: Resource$Apps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.apps = new Resource$Apps(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.apps = new Resource$Apps();
     }
   }
 
@@ -166,10 +207,12 @@ export namespace appengine_v1beta5 {
    */
   export interface Schema$AutomaticScaling {
     /**
-     * Amount of time that the Autoscaler
-     * (https://cloud.google.com/compute/docs/autoscaler/) should wait between
-     * changes to the number of virtual machines. Only applicable for VM
-     * runtimes.
+     * The time period that the Autoscaler
+     * (https://cloud.google.com/compute/docs/autoscaler/) should wait before it
+     * starts collecting information from a new instance. This prevents the
+     * autoscaler from collecting information when the instance is initializing,
+     * during which the collected usage would not be reliable. Only applicable
+     * in the App Engine flexible environment.
      */
     coolDownPeriod?: string;
     /**
@@ -328,7 +371,7 @@ export namespace appengine_v1beta5 {
      * part of this version. All files must be readable using the credentials
      * supplied with this call.
      */
-    files?: any;
+    files?: {[key: string]: Schema$FileInfo;};
     /**
      * Origin of the source code for this deployment. There can be more than one
      * source reference per version if source code is distributed among multiple
@@ -374,6 +417,11 @@ export namespace appengine_v1beta5 {
      * specify RolloutStrategy.MANAGED and omit config_id.
      */
     configId?: string;
+    /**
+     * Enable or disable trace sampling. By default, this is set to false for
+     * enabled.
+     */
+    disableTraceSampling?: boolean;
     /**
      * Endpoints service name which is the name of the &quot;service&quot;
      * resource in the Service Management API. For example
@@ -657,7 +705,7 @@ export namespace appengine_v1beta5 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: &quot;us-east1&quot;.
      */
@@ -666,7 +714,7 @@ export namespace appengine_v1beta5 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: &quot;projects/example-project/locations/us-east1&quot;
@@ -778,7 +826,7 @@ export namespace appengine_v1beta5 {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -794,7 +842,7 @@ export namespace appengine_v1beta5 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata for the given google.longrunning.Operation.
@@ -1074,7 +1122,7 @@ export namespace appengine_v1beta5 {
     /**
      * HTTP headers to use for all responses from these URLs.
      */
-    httpHeaders?: any;
+    httpHeaders?: {[key: string]: string;};
     /**
      * MIME type used to serve all files served by this handler. Defaults to
      * file-specific MIME types, which are derived from each file&#39;s filename
@@ -1142,7 +1190,7 @@ export namespace appengine_v1beta5 {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1165,7 +1213,7 @@ export namespace appengine_v1beta5 {
      * for IP-based splits and up to three decimal places is supported for
      * cookie-based splits.
      */
-    allocations?: any;
+    allocations?: {[key: string]: number;};
     /**
      * Mechanism used to determine which version a request is sent to. The
      * traffic selection algorithm will be stable for either type until
@@ -1266,7 +1314,7 @@ export namespace appengine_v1beta5 {
      * Metadata settings that are supplied to this version to enable beta
      * runtime features.
      */
-    betaSettings?: any;
+    betaSettings?: {[key: string]: string;};
     /**
      * Time that this version was created.@OutputOnly
      */
@@ -1307,7 +1355,7 @@ export namespace appengine_v1beta5 {
      * Environment variables made available to the application.Only returned in
      * GET requests if view=FULL is set.
      */
-    envVariables?: any;
+    envVariables?: {[key: string]: string;};
     /**
      * Custom static error pages. Limited to 10KB per page.Only returned in GET
      * requests if view=FULL is set.
@@ -1419,20 +1467,13 @@ export namespace appengine_v1beta5 {
 
 
   export class Resource$Apps {
-    root: Appengine;
     locations: Resource$Apps$Locations;
     operations: Resource$Apps$Operations;
     services: Resource$Apps$Services;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.locations = new Resource$Apps$Locations(root);
-      this.operations = new Resource$Apps$Operations(root);
-      this.services = new Resource$Apps$Services(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.locations = new Resource$Apps$Locations();
+      this.operations = new Resource$Apps$Operations();
+      this.services = new Resource$Apps$Services();
     }
 
 
@@ -1496,7 +1537,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1559,7 +1600,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -1630,7 +1671,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1640,7 +1681,7 @@ export namespace appengine_v1beta5 {
     }
   }
 
-  export interface Params$Resource$Apps$Create {
+  export interface Params$Resource$Apps$Create extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1652,7 +1693,7 @@ export namespace appengine_v1beta5 {
      */
     requestBody?: Schema$Application;
   }
-  export interface Params$Resource$Apps$Get {
+  export interface Params$Resource$Apps$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1672,7 +1713,7 @@ export namespace appengine_v1beta5 {
      */
     ensureResourcesExist?: boolean;
   }
-  export interface Params$Resource$Apps$Patch {
+  export interface Params$Resource$Apps$Patch extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1695,15 +1736,7 @@ export namespace appengine_v1beta5 {
   }
 
   export class Resource$Apps$Locations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1759,7 +1792,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'locationsId'],
         pathParams: ['appsId', 'locationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1829,7 +1862,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1839,7 +1872,8 @@ export namespace appengine_v1beta5 {
     }
   }
 
-  export interface Params$Resource$Apps$Locations$Get {
+  export interface Params$Resource$Apps$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1854,7 +1888,8 @@ export namespace appengine_v1beta5 {
      */
     locationsId?: string;
   }
-  export interface Params$Resource$Apps$Locations$List {
+  export interface Params$Resource$Apps$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1881,15 +1916,7 @@ export namespace appengine_v1beta5 {
 
 
   export class Resource$Apps$Operations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1949,7 +1976,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'operationsId'],
         pathParams: ['appsId', 'operationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2028,7 +2055,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2038,7 +2065,8 @@ export namespace appengine_v1beta5 {
     }
   }
 
-  export interface Params$Resource$Apps$Operations$Get {
+  export interface Params$Resource$Apps$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2053,7 +2081,8 @@ export namespace appengine_v1beta5 {
      */
     operationsId?: string;
   }
-  export interface Params$Resource$Apps$Operations$List {
+  export interface Params$Resource$Apps$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2079,16 +2108,9 @@ export namespace appengine_v1beta5 {
 
 
   export class Resource$Apps$Services {
-    root: Appengine;
     versions: Resource$Apps$Services$Versions;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.versions = new Resource$Apps$Services$Versions(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.versions = new Resource$Apps$Services$Versions();
     }
 
 
@@ -2150,7 +2172,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2213,7 +2235,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -2282,7 +2304,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -2353,7 +2375,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2363,7 +2385,8 @@ export namespace appengine_v1beta5 {
     }
   }
 
-  export interface Params$Resource$Apps$Services$Delete {
+  export interface Params$Resource$Apps$Services$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2379,7 +2402,8 @@ export namespace appengine_v1beta5 {
      */
     servicesId?: string;
   }
-  export interface Params$Resource$Apps$Services$Get {
+  export interface Params$Resource$Apps$Services$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2395,7 +2419,8 @@ export namespace appengine_v1beta5 {
      */
     servicesId?: string;
   }
-  export interface Params$Resource$Apps$Services$List {
+  export interface Params$Resource$Apps$Services$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2414,7 +2439,8 @@ export namespace appengine_v1beta5 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Apps$Services$Patch {
+  export interface Params$Resource$Apps$Services$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2457,16 +2483,9 @@ export namespace appengine_v1beta5 {
   }
 
   export class Resource$Apps$Services$Versions {
-    root: Appengine;
     instances: Resource$Apps$Services$Versions$Instances;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.instances = new Resource$Apps$Services$Versions$Instances(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.instances = new Resource$Apps$Services$Versions$Instances();
     }
 
 
@@ -2530,7 +2549,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2601,7 +2620,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2670,7 +2689,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2743,7 +2762,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId'],
         pathParams: ['appsId', 'servicesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
@@ -2830,7 +2849,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2840,7 +2859,8 @@ export namespace appengine_v1beta5 {
     }
   }
 
-  export interface Params$Resource$Apps$Services$Versions$Create {
+  export interface Params$Resource$Apps$Services$Versions$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2861,7 +2881,8 @@ export namespace appengine_v1beta5 {
      */
     requestBody?: Schema$Version;
   }
-  export interface Params$Resource$Apps$Services$Versions$Delete {
+  export interface Params$Resource$Apps$Services$Versions$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2881,7 +2902,8 @@ export namespace appengine_v1beta5 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Get {
+  export interface Params$Resource$Apps$Services$Versions$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2905,7 +2927,8 @@ export namespace appengine_v1beta5 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$List {
+  export interface Params$Resource$Apps$Services$Versions$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2933,7 +2956,8 @@ export namespace appengine_v1beta5 {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Patch {
+  export interface Params$Resource$Apps$Services$Versions$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2964,15 +2988,7 @@ export namespace appengine_v1beta5 {
   }
 
   export class Resource$Apps$Services$Versions$Instances {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3044,7 +3060,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'servicesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3117,7 +3133,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'servicesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3184,7 +3200,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId', 'instancesId'],
         pathParams: ['appsId', 'instancesId', 'servicesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -3261,7 +3277,7 @@ export namespace appengine_v1beta5 {
         params,
         requiredParams: ['appsId', 'servicesId', 'versionsId'],
         pathParams: ['appsId', 'servicesId', 'versionsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -3271,7 +3287,8 @@ export namespace appengine_v1beta5 {
     }
   }
 
-  export interface Params$Resource$Apps$Services$Versions$Instances$Debug {
+  export interface Params$Resource$Apps$Services$Versions$Instances$Debug
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3300,7 +3317,8 @@ export namespace appengine_v1beta5 {
      */
     requestBody?: Schema$DebugInstanceRequest;
   }
-  export interface Params$Resource$Apps$Services$Versions$Instances$Delete {
+  export interface Params$Resource$Apps$Services$Versions$Instances$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3324,7 +3342,8 @@ export namespace appengine_v1beta5 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Instances$Get {
+  export interface Params$Resource$Apps$Services$Versions$Instances$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3348,7 +3367,8 @@ export namespace appengine_v1beta5 {
      */
     versionsId?: string;
   }
-  export interface Params$Resource$Apps$Services$Versions$Instances$List {
+  export interface Params$Resource$Apps$Services$Versions$Instances$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

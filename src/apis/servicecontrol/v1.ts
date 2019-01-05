@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,11 +29,64 @@ export namespace servicecontrol_v1 {
     version: 'v1';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * Service Control API
    *
-   * Google Service Control provides control plane functionality to managed
-   * services, such as logging, monitoring, and status checks.
+   * Provides control plane functionality to managed services, such as logging,
+   * monitoring, and status checks.
    *
    * @example
    * const {google} = require('googleapis');
@@ -47,22 +99,12 @@ export namespace servicecontrol_v1 {
    * @param {object=} options Options for Servicecontrol
    */
   export class Servicecontrol {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.services = new Resource$Services(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.services = new Resource$Services();
     }
   }
 
@@ -141,7 +183,7 @@ export namespace servicecontrol_v1 {
      * Other service-specific data about the request, response, and other
      * information associated with the current audited event.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The name of the service method or operation. For API calls, this should
      * be the name of the API method. For example,
@@ -161,7 +203,7 @@ export namespace servicecontrol_v1 {
      * file contents. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    request?: any;
+    request?: {[key: string]: any;};
     /**
      * Metadata about the operation.
      */
@@ -178,18 +220,27 @@ export namespace servicecontrol_v1 {
      */
     resourceName?: string;
     /**
+     * The resource&#39;s original state before mutation. Present only for
+     * operations which have successfully modified the targeted resource(s). In
+     * general, this field should contain all changed fields, except those that
+     * are already been included in `request`, `response`, `metadata` or
+     * `service_data` fields. When the JSON object represented here has a proto
+     * equivalent, the proto name will be indicated in the `@type` property.
+     */
+    resourceOriginalState?: {[key: string]: any;};
+    /**
      * The operation response. This may not include all response elements, such
      * as those that are too large, privacy-sensitive, or duplicated elsewhere
      * in the log record. It should never include user-generated data, such as
      * file contents. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    response?: any;
+    response?: {[key: string]: any;};
     /**
      * Deprecated, use `metadata` field instead. Other service-specific data
      * about the request, response, and other activities.
      */
-    serviceData?: any;
+    serviceData?: {[key: string]: any;};
     /**
      * The name of the API service performing the operation. For example,
      * `&quot;datastore.googleapis.com&quot;`.
@@ -199,6 +250,64 @@ export namespace servicecontrol_v1 {
      * The status of the overall operation.
      */
     status?: Schema$Status;
+  }
+  /**
+   * This message defines request authentication attributes. Terminology is
+   * based on the JSON Web Token (JWT) standard, but the terms also correlate to
+   * concepts in other standards.
+   */
+  export interface Schema$Auth {
+    /**
+     * A list of access level resource names that allow resources to be accessed
+     * by authenticated requester. It is part of Secure GCP processing for the
+     * incoming request. An access level string has the format:
+     * &quot;//{api_service_name}/accessPolicies/{policy_id}/accessLevels/{short_name}&quot;
+     * Example:
+     * &quot;//accesscontextmanager.googleapis.com/accessPolicies/MY_POLICY_ID/accessLevels/MY_LEVEL&quot;
+     */
+    accessLevels?: string[];
+    /**
+     * The intended audience(s) for this authentication information. Reflects
+     * the audience (`aud`) claim within a JWT. The audience value(s) depends on
+     * the `issuer`, but typically include one or more of the following pieces
+     * of information:  *  The services intended to receive the credential such
+     * as    [&quot;pubsub.googleapis.com&quot;,
+     * &quot;storage.googleapis.com&quot;] *  A set of service-based scopes. For
+     * example,    [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]
+     * *  The client id of an app, such as the Firebase project id for JWTs from
+     * Firebase Auth.  Consult the documentation for the credential issuer to
+     * determine the information provided.
+     */
+    audiences?: string[];
+    /**
+     * Structured claims presented with the credential. JWTs include `{key:
+     * value}` pairs for standard and private claims. The following is a subset
+     * of the standard required and optional claims that would typically be
+     * presented for a Google-based JWT:     {&#39;iss&#39;:
+     * &#39;accounts.google.com&#39;,     &#39;sub&#39;:
+     * &#39;113289723416554971153&#39;,     &#39;aud&#39;:
+     * [&#39;123456789012&#39;, &#39;pubsub.googleapis.com&#39;], &#39;azp&#39;:
+     * &#39;123456789012.apps.googleusercontent.com&#39;,     &#39;email&#39;:
+     * &#39;jsmith@example.com&#39;,     &#39;iat&#39;: 1353601026,
+     * &#39;exp&#39;: 1353604926}  SAML assertions are similarly specified, but
+     * with an identity provider dependent structure.
+     */
+    claims?: {[key: string]: any;};
+    /**
+     * The authorized presenter of the credential. Reflects the optional
+     * Authorized Presenter (`azp`) claim within a JWT or the OAuth client id.
+     * For example, a Google Cloud Platform client id looks as follows:
+     * &quot;123456789012.apps.googleusercontent.com&quot;.
+     */
+    presenter?: string;
+    /**
+     * The authenticated principal. Reflects the issuer (`iss`) and subject
+     * (`sub`) claims within a JWT. The issuer and subject should be `/`
+     * delimited, with `/` percent-encoded within the subject fragment. For
+     * Google accounts, the principal format is:
+     * &quot;https://accounts.google.com/{id}&quot;
+     */
+    principal?: string;
   }
   /**
    * Authentication information for the operation.
@@ -221,7 +330,7 @@ export namespace servicecontrol_v1 {
      * the request. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    thirdPartyPrincipal?: any;
+    thirdPartyPrincipal?: {[key: string]: any;};
   }
   /**
    * Authorization information for the operation.
@@ -240,6 +349,13 @@ export namespace servicecontrol_v1 {
      * bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
      */
     resource?: string;
+    /**
+     * Resource attributes used in IAM condition evaluation. This field contains
+     * resource attributes like resource type and resource name.  To get the
+     * whole view of the attributes used in IAM condition evaluation, the user
+     * must also look into `AuditLog.request_metadata.request_attributes`.
+     */
+    resourceAttributes?: Schema$Resource;
   }
   /**
    * Defines the errors to be returned in
@@ -331,14 +447,23 @@ export namespace servicecontrol_v1 {
     serviceConfigId?: string;
   }
   /**
-   * `ConsumerInfo` provides information about the consumer project.
+   * `ConsumerInfo` provides information about the consumer.
    */
   export interface Schema$ConsumerInfo {
     /**
+     * The consumer identity number, can be Google cloud project number, folder
+     * number or organization number e.g. 1234567890. A value of 0 indicates no
+     * consumer number is found.
+     */
+    consumerNumber?: string;
+    /**
      * The Google cloud project number, e.g. 1234567890. A value of 0 indicates
-     * no project number is found.
+     * no project number is found.  NOTE: This field is deprecated after Chemist
+     * support flexible consumer id. New code should not depend on this field
+     * anymore.
      */
     projectNumber?: string;
+    type?: string;
   }
   /**
    * Distribution represents a frequency distribution of double-valued sample
@@ -397,57 +522,6 @@ export namespace servicecontrol_v1 {
     sumOfSquaredDeviation?: number;
   }
   /**
-   * Request message for QuotaController.EndReconciliation.
-   */
-  export interface Schema$EndReconciliationRequest {
-    /**
-     * Operation that describes the quota reconciliation.
-     */
-    reconciliationOperation?: Schema$QuotaOperation;
-    /**
-     * Specifies which version of service configuration should be used to
-     * process the request. If unspecified or no matching version can be found,
-     * the latest one will be used.
-     */
-    serviceConfigId?: string;
-  }
-  /**
-   * Response message for QuotaController.EndReconciliation.
-   */
-  export interface Schema$EndReconciliationResponse {
-    /**
-     * The same operation_id value used in the EndReconciliationRequest. Used
-     * for logging and diagnostics purposes.
-     */
-    operationId?: string;
-    /**
-     * Metric values as tracked by One Platform before the adjustment was made.
-     * The following metrics will be included:  1. Per quota metric total usage
-     * will be specified using the following gauge metric:
-     * &quot;serviceruntime.googleapis.com/allocation/consumer/quota_used_count&quot;
-     * 2. Value for each quota limit associated with the metrics will be
-     * specified using the following gauge metric:
-     * &quot;serviceruntime.googleapis.com/quota/limit&quot;  3. Delta value of
-     * the usage after the reconciliation for limits associated with the metrics
-     * will be specified using the following metric:
-     * &quot;serviceruntime.googleapis.com/allocation/reconciliation_delta&quot;
-     * The delta value is defined as:   new_usage_from_client -
-     * existing_value_in_spanner. This metric is not defined in
-     * serviceruntime.yaml or in Cloud Monarch. This metric is meant for
-     * callers&#39; use only. Since this metric is not defined in the monitoring
-     * backend, reporting on this metric will result in an error.
-     */
-    quotaMetrics?: Schema$MetricValueSet[];
-    /**
-     * Indicates the decision of the reconciliation end.
-     */
-    reconciliationErrors?: Schema$QuotaError[];
-    /**
-     * ID of the actual config used to process the request.
-     */
-    serviceConfigId?: string;
-  }
-  /**
    * Describing buckets with arbitrary user-provided width.
    */
   export interface Schema$ExplicitBuckets {
@@ -490,6 +564,90 @@ export namespace servicecontrol_v1 {
     scale?: number;
   }
   /**
+   * A common proto for logging HTTP requests. Only contains semantics defined
+   * by the HTTP specification. Product-specific logging information MUST be
+   * defined in a separate message.
+   */
+  export interface Schema$HttpRequest {
+    /**
+     * The number of HTTP response bytes inserted into cache. Set only when a
+     * cache fill was attempted.
+     */
+    cacheFillBytes?: string;
+    /**
+     * Whether or not an entity was served from cache (with or without
+     * validation).
+     */
+    cacheHit?: boolean;
+    /**
+     * Whether or not a cache lookup was attempted.
+     */
+    cacheLookup?: boolean;
+    /**
+     * Whether or not the response was validated with the origin server before
+     * being served from cache. This field is only meaningful if `cache_hit` is
+     * True.
+     */
+    cacheValidatedWithOriginServer?: boolean;
+    /**
+     * The request processing latency on the server, from the time the request
+     * was received until the response was sent.
+     */
+    latency?: string;
+    /**
+     * Protocol used for the request. Examples: &quot;HTTP/1.1&quot;,
+     * &quot;HTTP/2&quot;, &quot;websocket&quot;
+     */
+    protocol?: string;
+    /**
+     * The referer URL of the request, as defined in [HTTP/1.1 Header Field
+     * Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     */
+    referer?: string;
+    /**
+     * The IP address (IPv4 or IPv6) of the client that issued the HTTP request.
+     * Examples: `&quot;192.168.1.1&quot;`,
+     * `&quot;FE80::0202:B3FF:FE1E:8329&quot;`.
+     */
+    remoteIp?: string;
+    /**
+     * The request method. Examples: `&quot;GET&quot;`, `&quot;HEAD&quot;`,
+     * `&quot;PUT&quot;`, `&quot;POST&quot;`.
+     */
+    requestMethod?: string;
+    /**
+     * The size of the HTTP request message in bytes, including the request
+     * headers and the request body.
+     */
+    requestSize?: string;
+    /**
+     * The scheme (http, https), the host name, the path, and the query portion
+     * of the URL that was requested. Example:
+     * `&quot;http://example.com/some/info?color=red&quot;`.
+     */
+    requestUrl?: string;
+    /**
+     * The size of the HTTP response message sent back to the client, in bytes,
+     * including the response headers and the response body.
+     */
+    responseSize?: string;
+    /**
+     * The IP address (IPv4 or IPv6) of the origin server that the request was
+     * sent to.
+     */
+    serverIp?: string;
+    /**
+     * The response code indicating the status of the response. Examples: 200,
+     * 404.
+     */
+    status?: number;
+    /**
+     * The user agent sent by the client. Example: `&quot;Mozilla/4.0
+     * (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)&quot;`.
+     */
+    userAgent?: string;
+  }
+  /**
    * Describing buckets with constant width.
    */
   export interface Schema$LinearBuckets {
@@ -517,6 +675,11 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$LogEntry {
     /**
+     * Optional. Information about the HTTP request associated with this log
+     * entry, if applicable.
+     */
+    httpRequest?: Schema$HttpRequest;
+    /**
      * A unique ID for the log entry used for deduplication. If omitted, the
      * implementation will generate one based on operation_id.
      */
@@ -525,17 +688,22 @@ export namespace servicecontrol_v1 {
      * A set of user-defined (key, value) data that provides additional
      * information about the log entry.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Required. The log to which this log entry belongs. Examples:
      * `&quot;syslog&quot;`, `&quot;book_log&quot;`.
      */
     name?: string;
     /**
+     * Optional. Information about an operation associated with the log entry,
+     * if applicable.
+     */
+    operation?: Schema$LogEntryOperation;
+    /**
      * The log entry payload, represented as a protocol buffer that is expressed
      * as a JSON object. The only accepted type currently is AuditLog.
      */
-    protoPayload?: any;
+    protoPayload?: {[key: string]: any;};
     /**
      * The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
@@ -545,7 +713,7 @@ export namespace servicecontrol_v1 {
      * The log entry payload, represented as a structure that is expressed as a
      * JSON object.
      */
-    structPayload?: any;
+    structPayload?: {[key: string]: any;};
     /**
      * The log entry payload, represented as a Unicode string (UTF-8).
      */
@@ -555,6 +723,41 @@ export namespace servicecontrol_v1 {
      * defaults to operation start time.
      */
     timestamp?: string;
+    /**
+     * Optional. Resource name of the trace associated with the log entry, if
+     * any. If this field contains a relative resource name, you can assume the
+     * name is relative to `//tracing.googleapis.com`. Example:
+     * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
+     */
+    trace?: string;
+  }
+  /**
+   * Additional information about a potentially long-running operation with
+   * which a log entry is associated.
+   */
+  export interface Schema$LogEntryOperation {
+    /**
+     * Optional. Set this to True if this is the first log entry in the
+     * operation.
+     */
+    first?: boolean;
+    /**
+     * Optional. An arbitrary operation identifier. Log entries with the same
+     * identifier are assumed to be part of the same operation.
+     */
+    id?: string;
+    /**
+     * Optional. Set this to True if this is the last log entry in the
+     * operation.
+     */
+    last?: boolean;
+    /**
+     * Optional. An arbitrary producer identifier. The combination of `id` and
+     * `producer` must be globally unique.  Examples for `producer`:
+     * `&quot;MyDivision.MyBigCompany.com&quot;`,
+     * `&quot;github.com/MyProject/MyApplication&quot;`.
+     */
+    producer?: string;
   }
   /**
    * Represents a single metric value.
@@ -586,7 +789,7 @@ export namespace servicecontrol_v1 {
      * google.api.servicecontrol.v1.Operation.labels for the overriding
      * relationship.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * A money value.
      */
@@ -678,7 +881,7 @@ export namespace servicecontrol_v1 {
      * the API is served, such as App Engine, Compute Engine, or Kubernetes
      * Engine.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Represents information to be logged.
      */
@@ -736,7 +939,44 @@ export namespace servicecontrol_v1 {
      * with. Only a combination of 1000 user labels per consumer project are
      * allowed.
      */
-    userLabels?: any;
+    userLabels?: {[key: string]: string;};
+  }
+  /**
+   * This message defines attributes for a node that handles a network request.
+   * The node can be either a service or an application that sends, forwards, or
+   * receives the request. Service peers should fill in the `service`,
+   * `principal`, and `labels` as appropriate.
+   */
+  export interface Schema$Peer {
+    /**
+     * The IP address of the peer.
+     */
+    ip?: string;
+    /**
+     * The labels associated with the peer.
+     */
+    labels?: {[key: string]: string;};
+    /**
+     * The network port of the peer.
+     */
+    port?: string;
+    /**
+     * The identity of this peer. Similar to `Request.auth.principal`, but
+     * relative to the peer instead of the request. For example, the idenity
+     * associated with a load balancer that forwared the request.
+     */
+    principal?: string;
+    /**
+     * The CLDR country/region code associated with the above IP address. If the
+     * IP address is private, the `region_code` should reflect the physical
+     * location where this peer is running.
+     */
+    regionCode?: string;
+    /**
+     * The canonical service name of the peer.  NOTE: different systems may have
+     * different service naming schemes.
+     */
+    service?: string;
   }
   /**
    * Represents error information for QuotaOperation.
@@ -778,7 +1018,7 @@ export namespace servicecontrol_v1 {
      * Castor (that scales quota usage) and &#39;quota_metrics&#39; for
      * SuperQuota (that doesn&#39;t scale quota usage).
      */
-    quotaConsumed?: any;
+    quotaConsumed?: {[key: string]: number;};
     /**
      * Quota metrics to indicate the usage. Depending on the check request, one
      * or more of the following metrics will be included:  1. For rate quota,
@@ -808,7 +1048,7 @@ export namespace servicecontrol_v1 {
     /**
      * Labels describing the operation.
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * Fully qualified name of the API method for which this quota operation is
      * requested. This name is used for matching quota rules or metric rules and
@@ -853,53 +1093,6 @@ export namespace servicecontrol_v1 {
      * Quota mode for this operation.
      */
     quotaMode?: string;
-  }
-  /**
-   * Request message for the ReleaseQuota method.
-   */
-  export interface Schema$ReleaseQuotaRequest {
-    /**
-     * Operation that describes the quota release.
-     */
-    releaseOperation?: Schema$QuotaOperation;
-    /**
-     * Specifies which version of service configuration should be used to
-     * process the request. If unspecified or no matching version can be found,
-     * the latest one will be used.
-     */
-    serviceConfigId?: string;
-  }
-  /**
-   * Response message for the ReleaseQuota method.
-   */
-  export interface Schema$ReleaseQuotaResponse {
-    /**
-     * The same operation_id value used in the ReleaseQuotaRequest. Used for
-     * logging and diagnostics purposes.
-     */
-    operationId?: string;
-    /**
-     * Quota metrics to indicate the result of release. Depending on the
-     * request, one or more of the following metrics will be included:  1. For
-     * rate quota, per quota group or per quota metric released amount will be
-     * specified using the following delta metric:
-     * &quot;serviceruntime.googleapis.com/api/consumer/quota_refund_count&quot;
-     * 2. For allocation quota, per quota metric total usage will be specified
-     * using the following gauge metric:
-     * &quot;serviceruntime.googleapis.com/allocation/consumer/quota_used_count&quot;
-     * 3. For allocation quota, value for each quota limit associated with the
-     * metrics will be specified using the following gauge metric:
-     * &quot;serviceruntime.googleapis.com/quota/limit&quot;
-     */
-    quotaMetrics?: Schema$MetricValueSet[];
-    /**
-     * Indicates the decision of the release.
-     */
-    releaseErrors?: Schema$QuotaError[];
-    /**
-     * ID of the actual config used to process the request.
-     */
-    serviceConfigId?: string;
   }
   /**
    * Represents the processing error of one Operation in the request.
@@ -980,6 +1173,78 @@ export namespace servicecontrol_v1 {
     serviceConfigId?: string;
   }
   /**
+   * This message defines attributes for an HTTP request. If the actual request
+   * is not an HTTP request, the runtime system should try to map the actual
+   * request to an equivalent HTTP request.
+   */
+  export interface Schema$Request {
+    /**
+     * The request authentication. May be absent for unauthenticated requests.
+     * Derived from the HTTP request `Authorization` header or equivalent.
+     */
+    auth?: Schema$Auth;
+    /**
+     * The HTTP URL fragment. No URL decoding is performed.
+     */
+    fragment?: string;
+    /**
+     * The HTTP request headers. If multiple headers share the same key, they
+     * must be merged according to the HTTP spec. All header keys must be
+     * lowercased, because HTTP header keys are case-insensitive.
+     */
+    headers?: {[key: string]: string;};
+    /**
+     * The HTTP request `Host` header value.
+     */
+    host?: string;
+    /**
+     * The unique ID for a request, which can be propagated to downstream
+     * systems. The ID should have low probability of collision within a single
+     * day for a specific service.
+     */
+    id?: string;
+    /**
+     * The HTTP request method, such as `GET`, `POST`.
+     */
+    method?: string;
+    /**
+     * The HTTP URL path.
+     */
+    path?: string;
+    /**
+     * The network protocol used with the request, such as &quot;http/1.1&quot;,
+     * &quot;spdy/3&quot;, &quot;h2&quot;, &quot;h2c&quot;, &quot;webrtc&quot;,
+     * &quot;tcp&quot;, &quot;udp&quot;, &quot;quic&quot;. See
+     * https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids
+     * for details.
+     */
+    protocol?: string;
+    /**
+     * The HTTP URL query in the format of `name1=value`&amp;name2=value2`, as
+     * it appears in the first line of the HTTP request. No decoding is
+     * performed.
+     */
+    query?: string;
+    /**
+     * A special parameter for request reason. It is used by security systems to
+     * associate auditing information with a request.
+     */
+    reason?: string;
+    /**
+     * The HTTP URL scheme, such as `http` and `https`.
+     */
+    scheme?: string;
+    /**
+     * The HTTP request size in bytes. If unknown, it must be -1.
+     */
+    size?: string;
+    /**
+     * The timestamp when the `destination` service receives the first byte of
+     * the request.
+     */
+    time?: string;
+  }
+  /**
    * Metadata about the request.
    */
   export interface Schema$RequestMetadata {
@@ -1013,6 +1278,58 @@ export namespace servicecontrol_v1 {
      * was made from the `my-project` App Engine app. NOLINT
      */
     callerSuppliedUserAgent?: string;
+    /**
+     * The destination of a network activity, such as accepting a TCP
+     * connection. In a multi hop network activity, the destination represents
+     * the receiver of the last hop. Only two fields are used in this message,
+     * Peer.port and Peer.ip. These fields are optionally populated by those
+     * services utilizing the IAM condition feature.
+     */
+    destinationAttributes?: Schema$Peer;
+    /**
+     * Request attributes used in IAM condition evaluation. This field contains
+     * request attributes like request time and access levels associated with
+     * the request.   To get the whole view of the attributes used in IAM
+     * condition evaluation, the user must also look into
+     * `AuditLog.authentication_info.resource_attributes`.
+     */
+    requestAttributes?: Schema$Request;
+  }
+  /**
+   * This message defines core attributes for a resource. A resource is an
+   * addressable (named) entity provided by the destination service. For
+   * example, a file stored on a network storage service.
+   */
+  export interface Schema$Resource {
+    /**
+     * The labels or tags on the resource, such as AWS resource tags and
+     * Kubernetes resource labels.
+     */
+    labels?: {[key: string]: string;};
+    /**
+     * The stable identifier (name) of a resource on the `service`. A resource
+     * can be logically identified as
+     * &quot;//{resource.service}/{resource.name}&quot;. The differences between
+     * a resource name and a URI are:  *   Resource name is a logical
+     * identifier, independent of network     protocol and API version. For
+     * example,     `//pubsub.googleapis.com/projects/123/topics/news-feed`. *
+     * URI often includes protocol and version information, so it can     be
+     * used directly by applications. For example,
+     * `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`.  See
+     * https://cloud.google.com/apis/design/resource_names for details.
+     */
+    name?: string;
+    /**
+     * The name of the service that this resource belongs to, such as
+     * `pubsub.googleapis.com`. The service may be different from the DNS
+     * hostname that actually serves the request.
+     */
+    service?: string;
+    /**
+     * The type of the resource. The scheme is platform-specific because
+     * different platforms define their resources differently.
+     */
+    type?: string;
   }
   /**
    * Describes a resource associated with this operation.
@@ -1025,6 +1342,13 @@ export namespace servicecontrol_v1 {
      * “organizations/&lt;organization-id&gt;”
      */
     resourceContainer?: string;
+    /**
+     * The location of the resource. If not empty, the resource will be checked
+     * against location policy. The value must be a valid zone, region or
+     * multiregion. For example: &quot;europe-west4&quot; or
+     * &quot;northamerica-northeast1-a&quot;
+     */
+    resourceLocation?: string;
     /**
      * Name of the resource. This is used for auditing purposes.
      */
@@ -1040,49 +1364,12 @@ export namespace servicecontrol_v1 {
      * &quot;nam3&quot;
      */
     currentLocations?: string[];
-  }
-  /**
-   * Request message for QuotaController.StartReconciliation.
-   */
-  export interface Schema$StartReconciliationRequest {
     /**
-     * Operation that describes the quota reconciliation.
+     * The locations of a resource prior to the execution of the operation. For
+     * example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;
+     * &quot;nam3&quot;
      */
-    reconciliationOperation?: Schema$QuotaOperation;
-    /**
-     * Specifies which version of service configuration should be used to
-     * process the request. If unspecified or no matching version can be found,
-     * the latest one will be used.
-     */
-    serviceConfigId?: string;
-  }
-  /**
-   * Response message for QuotaController.StartReconciliation.
-   */
-  export interface Schema$StartReconciliationResponse {
-    /**
-     * The same operation_id value used in the StartReconciliationRequest. Used
-     * for logging and diagnostics purposes.
-     */
-    operationId?: string;
-    /**
-     * Metric values as tracked by One Platform before the start of
-     * reconciliation. The following metrics will be included:  1. Per quota
-     * metric total usage will be specified using the following gauge metric:
-     * &quot;serviceruntime.googleapis.com/allocation/consumer/quota_used_count&quot;
-     * 2. Value for each quota limit associated with the metrics will be
-     * specified using the following gauge metric:
-     * &quot;serviceruntime.googleapis.com/quota/limit&quot;
-     */
-    quotaMetrics?: Schema$MetricValueSet[];
-    /**
-     * Indicates the decision of the reconciliation start.
-     */
-    reconciliationErrors?: Schema$QuotaError[];
-    /**
-     * ID of the actual config used to process the request.
-     */
-    serviceConfigId?: string;
+    originalLocations?: string[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1129,7 +1416,7 @@ export namespace servicecontrol_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1140,15 +1427,7 @@ export namespace servicecontrol_v1 {
 
 
   export class Resource$Services {
-    root: Servicecontrol;
-    constructor(root: Servicecontrol) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1219,7 +1498,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback);
@@ -1296,166 +1575,12 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(parameters, callback);
       } else {
         return createAPIRequest<Schema$CheckResponse>(parameters);
-      }
-    }
-
-
-    /**
-     * servicecontrol.services.endReconciliation
-     * @desc Signals the quota controller that service ends the ongoing usage
-     * reconciliation.  This method requires the
-     * `servicemanagement.services.quota` permission on the specified service.
-     * For more information, see [Google Cloud
-     * IAM](https://cloud.google.com/iam).
-     * @alias servicecontrol.services.endReconciliation
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
-     * @param {().EndReconciliationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    endReconciliation(
-        params?: Params$Resource$Services$Endreconciliation,
-        options?: MethodOptions):
-        AxiosPromise<Schema$EndReconciliationResponse>;
-    endReconciliation(
-        params: Params$Resource$Services$Endreconciliation,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$EndReconciliationResponse>,
-        callback: BodyResponseCallback<Schema$EndReconciliationResponse>): void;
-    endReconciliation(
-        params: Params$Resource$Services$Endreconciliation,
-        callback: BodyResponseCallback<Schema$EndReconciliationResponse>): void;
-    endReconciliation(
-        callback: BodyResponseCallback<Schema$EndReconciliationResponse>): void;
-    endReconciliation(
-        paramsOrCallback?: Params$Resource$Services$Endreconciliation|
-        BodyResponseCallback<Schema$EndReconciliationResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EndReconciliationResponse>,
-        callback?: BodyResponseCallback<Schema$EndReconciliationResponse>):
-        void|AxiosPromise<Schema$EndReconciliationResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Endreconciliation;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Endreconciliation;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-          options.rootUrl || 'https://servicecontrol.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:endReconciliation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['serviceName'],
-        pathParams: ['serviceName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$EndReconciliationResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$EndReconciliationResponse>(parameters);
-      }
-    }
-
-
-    /**
-     * servicecontrol.services.releaseQuota
-     * @desc Releases previously allocated quota done through AllocateQuota
-     * method.  This method requires the `servicemanagement.services.quota`
-     * permission on the specified service. For more information, see [Cloud
-     * IAM](https://cloud.google.com/iam).   **NOTE:** The client **must**
-     * fail-open on server errors `INTERNAL`, `UNKNOWN`, `DEADLINE_EXCEEDED`,
-     * and `UNAVAILABLE`. To ensure system reliability, the server may inject
-     * these errors to prohibit any hard dependency on the quota functionality.
-     * @alias servicecontrol.services.releaseQuota
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
-     * @param {().ReleaseQuotaRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    releaseQuota(
-        params?: Params$Resource$Services$Releasequota,
-        options?: MethodOptions): AxiosPromise<Schema$ReleaseQuotaResponse>;
-    releaseQuota(
-        params: Params$Resource$Services$Releasequota,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ReleaseQuotaResponse>,
-        callback: BodyResponseCallback<Schema$ReleaseQuotaResponse>): void;
-    releaseQuota(
-        params: Params$Resource$Services$Releasequota,
-        callback: BodyResponseCallback<Schema$ReleaseQuotaResponse>): void;
-    releaseQuota(callback: BodyResponseCallback<Schema$ReleaseQuotaResponse>):
-        void;
-    releaseQuota(
-        paramsOrCallback?: Params$Resource$Services$Releasequota|
-        BodyResponseCallback<Schema$ReleaseQuotaResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReleaseQuotaResponse>,
-        callback?: BodyResponseCallback<Schema$ReleaseQuotaResponse>):
-        void|AxiosPromise<Schema$ReleaseQuotaResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Releasequota;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Releasequota;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-          options.rootUrl || 'https://servicecontrol.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:releaseQuota')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['serviceName'],
-        pathParams: ['serviceName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$ReleaseQuotaResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ReleaseQuotaResponse>(parameters);
       }
     }
 
@@ -1527,7 +1652,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ReportResponse>(parameters, callback);
@@ -1535,105 +1660,10 @@ export namespace servicecontrol_v1 {
         return createAPIRequest<Schema$ReportResponse>(parameters);
       }
     }
-
-
-    /**
-     * servicecontrol.services.startReconciliation
-     * @desc Unlike rate quota, allocation quota does not get refilled
-     * periodically. So, it is possible that the quota usage as seen by the
-     * service differs from what the One Platform considers the usage is. This
-     * is expected to happen only rarely, but over time this can accumulate.
-     * Services can invoke StartReconciliation and EndReconciliation to correct
-     * this usage drift, as described below: 1. Service sends
-     * StartReconciliation with a timestamp in future for each    metric that
-     * needs to be reconciled. The timestamp being in future allows    to
-     * account for in-flight AllocateQuota and ReleaseQuota requests for the
-     * same metric. 2. One Platform records this timestamp and starts tracking
-     * subsequent    AllocateQuota and ReleaseQuota requests until
-     * EndReconciliation is    called. 3. At or after the time specified in the
-     * StartReconciliation, service    sends EndReconciliation with the usage
-     * that needs to be reconciled to. 4. One Platform adjusts its own record of
-     * usage for that metric to the    value specified in EndReconciliation by
-     * taking in to account any    allocation or release between
-     * StartReconciliation and EndReconciliation.  Signals the quota controller
-     * that the service wants to perform a usage reconciliation as specified in
-     * the request.  This method requires the `servicemanagement.services.quota`
-     * permission on the specified service. For more information, see [Google
-     * Cloud IAM](https://cloud.google.com/iam).
-     * @alias servicecontrol.services.startReconciliation
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
-     * @param {().StartReconciliationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    startReconciliation(
-        params?: Params$Resource$Services$Startreconciliation,
-        options?: MethodOptions):
-        AxiosPromise<Schema$StartReconciliationResponse>;
-    startReconciliation(
-        params: Params$Resource$Services$Startreconciliation,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$StartReconciliationResponse>,
-        callback: BodyResponseCallback<Schema$StartReconciliationResponse>):
-        void;
-    startReconciliation(
-        params: Params$Resource$Services$Startreconciliation,
-        callback: BodyResponseCallback<Schema$StartReconciliationResponse>):
-        void;
-    startReconciliation(
-        callback: BodyResponseCallback<Schema$StartReconciliationResponse>):
-        void;
-    startReconciliation(
-        paramsOrCallback?: Params$Resource$Services$Startreconciliation|
-        BodyResponseCallback<Schema$StartReconciliationResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$StartReconciliationResponse>,
-        callback?: BodyResponseCallback<Schema$StartReconciliationResponse>):
-        void|AxiosPromise<Schema$StartReconciliationResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Startreconciliation;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Startreconciliation;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-          options.rootUrl || 'https://servicecontrol.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:startReconciliation')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['serviceName'],
-        pathParams: ['serviceName'],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$StartReconciliationResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$StartReconciliationResponse>(parameters);
-      }
-    }
   }
 
-  export interface Params$Resource$Services$Allocatequota {
+  export interface Params$Resource$Services$Allocatequota extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1651,7 +1681,7 @@ export namespace servicecontrol_v1 {
      */
     requestBody?: Schema$AllocateQuotaRequest;
   }
-  export interface Params$Resource$Services$Check {
+  export interface Params$Resource$Services$Check extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1670,43 +1700,7 @@ export namespace servicecontrol_v1 {
      */
     requestBody?: Schema$CheckRequest;
   }
-  export interface Params$Resource$Services$Endreconciliation {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the service as specified in the service configuration. For
-     * example, `"pubsub.googleapis.com"`.  See google.api.Service for the
-     * definition of a service name.
-     */
-    serviceName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$EndReconciliationRequest;
-  }
-  export interface Params$Resource$Services$Releasequota {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the service as specified in the service configuration. For
-     * example, `"pubsub.googleapis.com"`.  See google.api.Service for the
-     * definition of a service name.
-     */
-    serviceName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ReleaseQuotaRequest;
-  }
-  export interface Params$Resource$Services$Report {
+  export interface Params$Resource$Services$Report extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1724,23 +1718,5 @@ export namespace servicecontrol_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ReportRequest;
-  }
-  export interface Params$Resource$Services$Startreconciliation {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the service as specified in the service configuration. For
-     * example, `"pubsub.googleapis.com"`.  See google.api.Service for the
-     * definition of a service name.
-     */
-    serviceName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$StartReconciliationRequest;
   }
 }

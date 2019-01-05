@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -30,11 +29,63 @@ export namespace appengine_v1alpha {
     version: 'v1alpha';
   }
 
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
+  }
+
   /**
    * App Engine Admin API
    *
-   * The App Engine Admin API enables developers to provision and manage their
-   * App Engine applications.
+   * Provisions and manages developers&#39; App Engine applications.
    *
    * @example
    * const {google} = require('googleapis');
@@ -47,22 +98,12 @@ export namespace appengine_v1alpha {
    * @param {object=} options Options for Appengine
    */
   export class Appengine {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     apps: Resource$Apps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.apps = new Resource$Apps(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.apps = new Resource$Apps();
     }
   }
 
@@ -311,7 +352,7 @@ export namespace appengine_v1alpha {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: any;
+    labels?: {[key: string]: string;};
     /**
      * The canonical id for this location. For example: &quot;us-east1&quot;.
      */
@@ -320,7 +361,7 @@ export namespace appengine_v1alpha {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: &quot;projects/example-project/locations/us-east1&quot;
@@ -380,7 +421,7 @@ export namespace appengine_v1alpha {
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: any;
+    metadata?: {[key: string]: any;};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
@@ -396,7 +437,7 @@ export namespace appengine_v1alpha {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: any;
+    response?: {[key: string]: any;};
   }
   /**
    * Metadata for the given google.longrunning.Operation.
@@ -653,7 +694,7 @@ export namespace appengine_v1alpha {
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -664,39 +705,23 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps {
-    root: Appengine;
     authorizedCertificates: Resource$Apps$Authorizedcertificates;
     authorizedDomains: Resource$Apps$Authorizeddomains;
     domainMappings: Resource$Apps$Domainmappings;
     locations: Resource$Apps$Locations;
     operations: Resource$Apps$Operations;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.authorizedCertificates =
-          new Resource$Apps$Authorizedcertificates(root);
-      this.authorizedDomains = new Resource$Apps$Authorizeddomains(root);
-      this.domainMappings = new Resource$Apps$Domainmappings(root);
-      this.locations = new Resource$Apps$Locations(root);
-      this.operations = new Resource$Apps$Operations(root);
-    }
-
-    getRoot() {
-      return this.root;
+    constructor() {
+      this.authorizedCertificates = new Resource$Apps$Authorizedcertificates();
+      this.authorizedDomains = new Resource$Apps$Authorizeddomains();
+      this.domainMappings = new Resource$Apps$Domainmappings();
+      this.locations = new Resource$Apps$Locations();
+      this.operations = new Resource$Apps$Operations();
     }
   }
 
 
   export class Resource$Apps$Authorizedcertificates {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -758,7 +783,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -827,7 +852,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -895,7 +920,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -974,7 +999,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
@@ -1053,7 +1078,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -1063,7 +1088,8 @@ export namespace appengine_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Authorizedcertificates$Create {
+  export interface Params$Resource$Apps$Authorizedcertificates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1080,7 +1106,8 @@ export namespace appengine_v1alpha {
      */
     requestBody?: Schema$AuthorizedCertificate;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$Delete {
+  export interface Params$Resource$Apps$Authorizedcertificates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1096,7 +1123,8 @@ export namespace appengine_v1alpha {
      */
     authorizedCertificatesId?: string;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$Get {
+  export interface Params$Resource$Apps$Authorizedcertificates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1116,7 +1144,8 @@ export namespace appengine_v1alpha {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$List {
+  export interface Params$Resource$Apps$Authorizedcertificates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1140,7 +1169,8 @@ export namespace appengine_v1alpha {
      */
     view?: string;
   }
-  export interface Params$Resource$Apps$Authorizedcertificates$Patch {
+  export interface Params$Resource$Apps$Authorizedcertificates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1169,15 +1199,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Authorizeddomains {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1244,7 +1266,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -1256,7 +1278,8 @@ export namespace appengine_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Authorizeddomains$List {
+  export interface Params$Resource$Apps$Authorizeddomains$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1279,15 +1302,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Domainmappings {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1353,7 +1368,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1424,7 +1439,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1489,7 +1504,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -1563,7 +1578,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
@@ -1639,7 +1654,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1649,7 +1664,8 @@ export namespace appengine_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Domainmappings$Create {
+  export interface Params$Resource$Apps$Domainmappings$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1678,7 +1694,8 @@ export namespace appengine_v1alpha {
      */
     requestBody?: Schema$DomainMapping;
   }
-  export interface Params$Resource$Apps$Domainmappings$Delete {
+  export interface Params$Resource$Apps$Domainmappings$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1694,7 +1711,8 @@ export namespace appengine_v1alpha {
      */
     domainMappingsId?: string;
   }
-  export interface Params$Resource$Apps$Domainmappings$Get {
+  export interface Params$Resource$Apps$Domainmappings$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1710,7 +1728,8 @@ export namespace appengine_v1alpha {
      */
     domainMappingsId?: string;
   }
-  export interface Params$Resource$Apps$Domainmappings$List {
+  export interface Params$Resource$Apps$Domainmappings$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1730,7 +1749,8 @@ export namespace appengine_v1alpha {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Apps$Domainmappings$Patch {
+  export interface Params$Resource$Apps$Domainmappings$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1767,15 +1787,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Locations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -1831,7 +1843,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'locationsId'],
         pathParams: ['appsId', 'locationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1901,7 +1913,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1911,7 +1923,8 @@ export namespace appengine_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Locations$Get {
+  export interface Params$Resource$Apps$Locations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1926,7 +1939,8 @@ export namespace appengine_v1alpha {
      */
     locationsId?: string;
   }
-  export interface Params$Resource$Apps$Locations$List {
+  export interface Params$Resource$Apps$Locations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -1953,15 +1967,7 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Operations {
-    root: Appengine;
-    constructor(root: Appengine) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2021,7 +2027,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'operationsId'],
         pathParams: ['appsId', 'operationsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2100,7 +2106,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2110,7 +2116,8 @@ export namespace appengine_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Operations$Get {
+  export interface Params$Resource$Apps$Operations$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2125,7 +2132,8 @@ export namespace appengine_v1alpha {
      */
     operationsId?: string;
   }
-  export interface Params$Resource$Apps$Operations$List {
+  export interface Params$Resource$Apps$Operations$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

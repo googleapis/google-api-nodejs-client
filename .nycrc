@@ -1,0 +1,28 @@
+{
+  "report-dir": "./.coverage",
+  "reporter": "lcov",
+  "exclude": [
+    "src/*{/*,/**/*}.js",
+    "src/*/v*/*.js",
+    "test/**/*.js",
+    "build/test"
+  ],
+  "watermarks": {
+    "branches": [
+      95,
+      100
+    ],
+    "functions": [
+      95,
+      100
+    ],
+    "lines": [
+      95,
+      100
+    ],
+    "statements": [
+      95,
+      100
+    ]
+  }
+}

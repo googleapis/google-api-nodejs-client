@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,59 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace dlp_v2 {
   export interface Options extends GlobalOptions {
     version: 'v2';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
+     */
+    alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * Available to use for quota purposes for server-side applications. Can be
+     * any arbitrary string assigned to a user, but should not exceed 40
+     * characters.
+     */
+    quotaUser?: string;
+    /**
+     * Legacy upload protocol for media (e.g. "media", "multipart").
+     */
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
@@ -48,26 +100,16 @@ export namespace dlp_v2 {
    * @param {object=} options Options for Dlp
    */
   export class Dlp {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     infoTypes: Resource$Infotypes;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.infoTypes = new Resource$Infotypes(this);
-      this.organizations = new Resource$Organizations(this);
-      this.projects = new Resource$Projects(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.infoTypes = new Resource$Infotypes();
+      this.organizations = new Resource$Organizations();
+      this.projects = new Resource$Projects();
     }
   }
 
@@ -134,6 +176,19 @@ export namespace dlp_v2 {
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
   /**
+   * Message defining a field of a BigQuery table.
+   */
+  export interface Schema$GooglePrivacyDlpV2BigQueryField {
+    /**
+     * Designated field in the BigQuery table.
+     */
+    field?: Schema$GooglePrivacyDlpV2FieldId;
+    /**
+     * Source table of the field.
+     */
+    table?: Schema$GooglePrivacyDlpV2BigQueryTable;
+  }
+  /**
    * Row key for identifying a record in BigQuery table.
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryKey {
@@ -152,6 +207,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryOptions {
     /**
+     * References to fields excluded from scanning. This allows you to skip
+     * inspection of entire columns which you know have no findings.
+     */
+    excludedFields?: Schema$GooglePrivacyDlpV2FieldId[];
+    /**
      * References to fields uniquely identifying rows within the table. Nested
      * fields in the format, like `person.birthdate.year`, are allowed.
      */
@@ -159,9 +219,18 @@ export namespace dlp_v2 {
     /**
      * Max number of rows to scan. If the table has more rows than this value,
      * the rest of the rows are omitted. If not set, or if set to 0, all rows
-     * will be scanned. Cannot be used in conjunction with TimespanConfig.
+     * will be scanned. Only one of rows_limit and rows_limit_percent can be
+     * specified. Cannot be used in conjunction with TimespanConfig.
      */
     rowsLimit?: string;
+    /**
+     * Max percentage of rows to scan. The rest are omitted. The number of rows
+     * scanned is rounded down. Must be between 0 and 100, inclusively. Both 0
+     * and 100 means no limit. Defaults to 0. Only one of rows_limit and
+     * rows_limit_percent can be specified. Cannot be used in conjunction with
+     * TimespanConfig.
+     */
+    rowsLimitPercent?: number;
     sampleMethod?: string;
     /**
      * Complete BigQuery table reference.
@@ -354,15 +423,37 @@ export namespace dlp_v2 {
     commonCharactersToIgnore?: string;
   }
   /**
-   * Options defining a file or a set of files (path ending with *) within a
-   * Google Cloud Storage bucket.
+   * Message representing a set of files in Cloud Storage.
+   */
+  export interface Schema$GooglePrivacyDlpV2CloudStorageFileSet {
+    /**
+     * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing
+     * wildcard in the path is allowed.
+     */
+    url?: string;
+  }
+  /**
+   * Options defining a file or a set of files within a Google Cloud Storage
+   * bucket.
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
     /**
      * Max number of bytes to scan from a file. If a scanned file&#39;s size is
-     * bigger than this value then the rest of the bytes are omitted.
+     * bigger than this value then the rest of the bytes are omitted. Only one
+     * of bytes_limit_per_file and bytes_limit_per_file_percent can be
+     * specified.
      */
     bytesLimitPerFile?: string;
+    /**
+     * Max percentage of bytes to scan from a file. The rest are omitted. The
+     * number of bytes scanned is rounded down. Must be between 0 and 100,
+     * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of
+     * bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     */
+    bytesLimitPerFilePercent?: number;
+    /**
+     * The set of one or more files to scan.
+     */
     fileSet?: Schema$GooglePrivacyDlpV2FileSet;
     /**
      * Limits the number of files to scan to this percentage of the input
@@ -372,7 +463,8 @@ export namespace dlp_v2 {
     filesLimitPercent?: number;
     /**
      * List of file type groups to include in the scan. If empty, all files are
-     * scanned and available data format processors are applied.
+     * scanned and available data format processors are applied. In addition,
+     * the binary content of the selected files is always scanned as well.
      */
     fileTypes?: string[];
     sampleMethod?: string;
@@ -386,6 +478,55 @@ export namespace dlp_v2 {
      * Example: gs://[BUCKET_NAME]/dictionary.txt
      */
     path?: string;
+  }
+  /**
+   * Message representing a set of files in a Cloud Storage bucket. Regular
+   * expressions are used to allow fine-grained control over which files in the
+   * bucket to include.  Included files are those that match at least one item
+   * in `include_regex` and do not match any items in `exclude_regex`. Note that
+   * a file that matches items from both lists will _not_ be included. For a
+   * match to occur, the entire file path (i.e., everything in the url after the
+   * bucket name) must match the regular expression.  For example, given the
+   * input `{bucket_name: &quot;mybucket&quot;, include_regex:
+   * [&quot;directory1/.*&quot;], exclude_regex:
+   * [&quot;directory1/excluded.*&quot;]}`:  * `gs://mybucket/directory1/myfile`
+   * will be included * `gs://mybucket/directory1/directory2/myfile` will be
+   * included (`.*` matches across `/`) *
+   * `gs://mybucket/directory0/directory1/myfile` will _not_ be included (the
+   * full path doesn&#39;t match any items in `include_regex`) *
+   * `gs://mybucket/directory1/excludedfile` will _not_ be included (the path
+   * matches an item in `exclude_regex`)  If `include_regex` is left empty, it
+   * will match all files by default (this is equivalent to setting
+   * `include_regex: [&quot;.*&quot;]`).  Some other common use cases:  *
+   * `{bucket_name: &quot;mybucket&quot;, exclude_regex: [&quot;.*\.pdf&quot;]}`
+   * will include all files in `mybucket` except for .pdf files * `{bucket_name:
+   * &quot;mybucket&quot;, include_regex: [&quot;directory/[^/]+&quot;]}` will
+   * include all files directly under `gs://mybucket/directory/`, without
+   * matching across `/`
+   */
+  export interface Schema$GooglePrivacyDlpV2CloudStorageRegexFileSet {
+    /**
+     * The name of a Cloud Storage bucket. Required.
+     */
+    bucketName?: string;
+    /**
+     * A list of regular expressions matching file paths to exclude. All files
+     * in the bucket that match at least one of these regular expressions will
+     * be excluded from the scan.  Regular expressions use RE2
+     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
+     * under the google/re2 repository on GitHub.
+     */
+    excludeRegex?: string[];
+    /**
+     * A list of regular expressions matching file paths to include. All files
+     * in the bucket that match at least one of these regular expressions will
+     * be included in the set of files, except for those that also match an item
+     * in `exclude_regex`. Leaving this field empty will match all files by
+     * default (this is equivalent to including `.*` in the list).  Regular
+     * expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax);
+     * a guide can be found under the google/re2 repository on GitHub.
+     */
+    includeRegex?: string[];
   }
   /**
    * Represents a color in the RGB color space.
@@ -461,9 +602,13 @@ export namespace dlp_v2 {
   export interface Schema$GooglePrivacyDlpV2ContentLocation {
     /**
      * Name of the container where the finding is located. The top level name is
-     * the source file name or table name. Nested names could be absent if the
-     * embedded object has no string identifier (for an example an image
-     * contained within a document).
+     * the source file name or table name. Names of some common storage
+     * containers are formatted as follows:  * BigQuery tables:
+     * `&lt;project_id&gt;:&lt;dataset_id&gt;.&lt;table_id&gt;` * Cloud Storage
+     * files: `gs://&lt;bucket&gt;/&lt;path&gt;` * Datastore namespace:
+     * &lt;namespace&gt;  Nested names could be absent if the embedded object
+     * has no string identifier (for an example an image contained within a
+     * document).
      */
     containerName?: string;
     /**
@@ -553,6 +698,22 @@ export namespace dlp_v2 {
      * generate one.
      */
     triggerId?: string;
+  }
+  /**
+   * Request message for CreateStoredInfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest {
+    /**
+     * Configuration of the storedInfoType to create.
+     */
+    config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
+    /**
+     * The storedInfoType ID can contain uppercase and lowercase letters,
+     * numbers, and hyphens; that is, it must match the regular expression:
+     * `[a-zA-Z\\d-]+`. The maximum length is 100 characters. Can be empty to
+     * allow the system to generate one.
+     */
+    storedInfoTypeId?: string;
   }
   /**
    * Pseudonymization method that generates surrogates via cryptographic
@@ -661,8 +822,17 @@ export namespace dlp_v2 {
      */
     dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
     /**
-     * All CustomInfoTypes must have a name that does not conflict with built-in
-     * InfoTypes or other CustomInfoTypes.
+     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
+     * to be returned. It still can be used for rules matching.
+     */
+    exclusionType?: string;
+    /**
+     * CustomInfoType can either be a new infoType, or an extension of built-in
+     * infoType, when the name matches one of existing infoTypes and that
+     * infoType is specified in `InspectContent.info_types` field. Specifying
+     * the latter adds findings to the one detected by the system. If built-in
+     * info type is not specified in `InspectContent.info_types` list then the
+     * name is treated as a custom info type.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
@@ -675,6 +845,11 @@ export namespace dlp_v2 {
      * Regular expression based CustomInfoType.
      */
     regex?: Schema$GooglePrivacyDlpV2Regex;
+    /**
+     * Load an existing `StoredInfoType` resource for use in
+     * `InspectDataSource`. Not currently supported in `InspectContent`.
+     */
+    storedType?: Schema$GooglePrivacyDlpV2StoredType;
     /**
      * Message for detecting output from deidentification transformations that
      * support reversing.
@@ -735,7 +910,7 @@ export namespace dlp_v2 {
     upperBoundDays?: number;
   }
   /**
-   * Message for a date time object.
+   * Message for a date time object. e.g. 2018-01-01, 5th August.
    */
   export interface Schema$GooglePrivacyDlpV2DateTime {
     /**
@@ -965,7 +1140,11 @@ export namespace dlp_v2 {
    * letters of the text &quot;jen123&quot; but will return no matches for
    * &quot;jennifer&quot;.  Dictionary words containing a large number of
    * characters that are not letters or digits may result in unexpected findings
-   * because such characters are treated as whitespace.
+   * because such characters are treated as whitespace. The
+   * [limits](https://cloud.google.com/dlp/limits) page contains details about
+   * the size limits of dictionaries. For dictionaries that do not fit within
+   * these constraints, consider using `LargeCustomDictionaryConfig` in the
+   * `StoredInfoType` API.
    */
   export interface Schema$GooglePrivacyDlpV2Dictionary {
     /**
@@ -1059,6 +1238,44 @@ export namespace dlp_v2 {
     timestamps?: string[];
   }
   /**
+   * List of exclude infoTypes.
+   */
+  export interface Schema$GooglePrivacyDlpV2ExcludeInfoTypes {
+    /**
+     * InfoType list in ExclusionRule rule drops a finding when it overlaps or
+     * contained within with a finding of an infoType from this list. For
+     * example, for `InspectionRuleSet.info_types` containing
+     * &quot;PHONE_NUMBER&quot;` and `exclusion_rule` containing
+     * `exclude_info_types.info_types` with &quot;EMAIL_ADDRESS&quot; the phone
+     * number findings are dropped if they overlap with EMAIL_ADDRESS finding.
+     * That leads to &quot;555-222-2222@example.org&quot; to generate only a
+     * single finding, namely email address.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+  }
+  /**
+   * The rule that specifies conditions when findings of infoTypes specified in
+   * `InspectionRuleSet` are removed from results.
+   */
+  export interface Schema$GooglePrivacyDlpV2ExclusionRule {
+    /**
+     * Dictionary which defines the rule.
+     */
+    dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
+    /**
+     * Set of infoTypes for which findings would affect this rule.
+     */
+    excludeInfoTypes?: Schema$GooglePrivacyDlpV2ExcludeInfoTypes;
+    /**
+     * How the rule is applied, see MatchingType documentation for details.
+     */
+    matchingType?: string;
+    /**
+     * Regular expression which defines the rule.
+     */
+    regex?: Schema$GooglePrivacyDlpV2Regex;
+  }
+  /**
    * An expression, consisting or an operator and conditions.
    */
   export interface Schema$GooglePrivacyDlpV2Expressions {
@@ -1110,8 +1327,14 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FileSet {
     /**
-     * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing
-     * wildcard in the path is allowed.
+     * The regex-filtered set of files to scan. Exactly one of `url` or
+     * `regex_file_set` must be set.
+     */
+    regexFileSet?: Schema$GooglePrivacyDlpV2CloudStorageRegexFileSet;
+    /**
+     * The Cloud Storage url of the file(s) to scan, in the format
+     * `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is
+     * allowed. Exactly one of `url` or `regex_file_set` must be set.
      */
     url?: string;
   }
@@ -1124,12 +1347,12 @@ export namespace dlp_v2 {
      */
     createTime?: string;
     /**
-     * The type of content that might have been found. Provided if requested by
-     * the `InspectConfig`.
+     * The type of content that might have been found. Provided if
+     * `excluded_types` is false.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
-     * Estimate of how likely it is that the `info_type` is correct.
+     * Confidence of how likely it is that the `info_type` is correct.
      */
     likelihood?: string;
     /**
@@ -1138,9 +1361,9 @@ export namespace dlp_v2 {
     location?: Schema$GooglePrivacyDlpV2Location;
     /**
      * The content that was found. Even if the content is not textual, it may be
-     * converted to a textual representation here. Provided if requested by the
-     * `InspectConfig` and the finding is less than or equal to 4096 bytes long.
-     * If the finding exceeds 4096 bytes in length, the quote may be omitted.
+     * converted to a textual representation here. Provided if `include_quote`
+     * is true and the finding is less than or equal to 4096 bytes long. If the
+     * finding exceeds 4096 bytes in length, the quote may be omitted.
      */
     quote?: string;
     /**
@@ -1270,7 +1493,8 @@ export namespace dlp_v2 {
      * Name of the information type. Either a name of your choosing when
      * creating a CustomInfoType, or one of the names listed at
      * https://cloud.google.com/dlp/docs/infotypes-reference when specifying a
-     * built-in type.
+     * built-in type. InfoType names should conform to the pattern
+     * [a-zA-Z0-9_]{1,64}.
      */
     name?: string;
   }
@@ -1377,7 +1601,14 @@ export namespace dlp_v2 {
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes
+     * or CustomInfoTypes are specified in a request, the system may
+     * automatically choose what detectors to run. By default this may be all
+     * types, but may change over time as detectors are updated.  The special
+     * InfoType name &quot;ALL_BASIC&quot; can be used to trigger all detectors,
+     * but may change over time as new InfoTypes are added. If you need precise
+     * control and predictability as to what detectors are run you should
+     * specify specific InfoTypes listed in the reference.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
@@ -1386,6 +1617,12 @@ export namespace dlp_v2 {
      * POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.
      */
     minLikelihood?: string;
+    /**
+     * Set of rules to apply to the findings for this InspectConfig. Exclusion
+     * rules, contained in the set are executed in the end, other rules are
+     * executed in the order they are specified for each info type.
+     */
+    ruleSet?: Schema$GooglePrivacyDlpV2InspectionRuleSet[];
   }
   /**
    * Request to search for potentially sensitive info in a ContentItem.
@@ -1430,6 +1667,35 @@ export namespace dlp_v2 {
      * A summary of the outcome of this inspect job.
      */
     result?: Schema$GooglePrivacyDlpV2Result;
+  }
+  /**
+   * A single inspection rule to be applied to infoTypes, specified in
+   * `InspectionRuleSet`.
+   */
+  export interface Schema$GooglePrivacyDlpV2InspectionRule {
+    /**
+     * Exclusion rule.
+     */
+    exclusionRule?: Schema$GooglePrivacyDlpV2ExclusionRule;
+    /**
+     * Hotword-based detection rule.
+     */
+    hotwordRule?: Schema$GooglePrivacyDlpV2HotwordRule;
+  }
+  /**
+   * Rule set for modifying a set of infoTypes to alter behavior under certain
+   * circumstances, depending on the specific details of the rules within the
+   * set.
+   */
+  export interface Schema$GooglePrivacyDlpV2InspectionRuleSet {
+    /**
+     * List of infoTypes this rule set is applied to.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+    /**
+     * Set of rules to be applied to infoTypes. The rules are applied in order.
+     */
+    rules?: Schema$GooglePrivacyDlpV2InspectionRule[];
   }
   export interface Schema$GooglePrivacyDlpV2InspectJobConfig {
     /**
@@ -1523,7 +1789,7 @@ export namespace dlp_v2 {
     displayName?: string;
     /**
      * A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automaticaly being paused. Will
+     * errors may result in the JobTrigger automatically being paused. Will
      * return the last 100 errors. Whenever the JobTrigger is modified this list
      * will be cleared. Output only field.
      */
@@ -1561,7 +1827,7 @@ export namespace dlp_v2 {
     /**
      * Optional message indicating that multiple rows might be associated to a
      * single individual. If the same entity_id is associated to multiple
-     * quasi-identifier tuples over distict rows, we consider the entire
+     * quasi-identifier tuples over distinct rows, we consider the entire
      * collection of tuples as the composite quasi-identifier. This collection
      * is a multiset: the order in which the different tuples appear in the
      * dataset is ignored, but their frequency is taken into account.  Important
@@ -1764,6 +2030,31 @@ export namespace dlp_v2 {
     wrappedKey?: string;
   }
   /**
+   * Configuration for a custom dictionary created from a data source of any
+   * size up to the maximum size defined in the
+   * [limits](https://cloud.google.com/dlp/limits) page. The artifacts of
+   * dictionary creation are stored in the specified Google Cloud Storage
+   * location. Consider using `CustomInfoType.Dictionary` for smaller
+   * dictionaries that satisfy the size requirements.
+   */
+  export interface Schema$GooglePrivacyDlpV2LargeCustomDictionaryConfig {
+    /**
+     * Field in a BigQuery table where each cell represents a dictionary phrase.
+     */
+    bigQueryField?: Schema$GooglePrivacyDlpV2BigQueryField;
+    /**
+     * Set of files containing newline-delimited lists of dictionary phrases.
+     */
+    cloudStorageFileSet?: Schema$GooglePrivacyDlpV2CloudStorageFileSet;
+    /**
+     * Location to store dictionary artifacts in Google Cloud Storage. These
+     * files will only be accessible by project owners and the DLP API. If any
+     * of these artifacts are modified, the dictionary is considered invalid and
+     * can no longer be used.
+     */
+    outputPath?: Schema$GooglePrivacyDlpV2CloudStoragePath;
+  }
+  /**
    * l-diversity metric, used for analysis of reidentification risk.
    */
   export interface Schema$GooglePrivacyDlpV2LDiversityConfig {
@@ -1921,6 +2212,20 @@ export namespace dlp_v2 {
     nextPageToken?: string;
   }
   /**
+   * Response message for ListStoredInfoTypes.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse {
+    /**
+     * If the next page is available then the next page token to be used in
+     * following ListStoredInfoTypes request.
+     */
+    nextPageToken?: string;
+    /**
+     * List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.
+     */
+    storedInfoTypes?: Schema$GooglePrivacyDlpV2StoredInfoType[];
+  }
+  /**
    * Specifies the location of the finding.
    */
   export interface Schema$GooglePrivacyDlpV2Location {
@@ -1981,8 +2286,9 @@ export namespace dlp_v2 {
      * derived from the `Finding` object. If appending to an existing table, any
      * columns from the predefined schema that are missing will be added. No
      * columns in the existing table will be deleted.  If unspecified, then all
-     * available columns will be used for a new table, and no changes will be
-     * made to an existing table.
+     * available columns will be used for a new table or an (existing) table
+     * with no schema, and no changes will be made to an existing table that has
+     * a schema.
      */
     outputSchema?: string;
     /**
@@ -2155,6 +2461,9 @@ export namespace dlp_v2 {
    * Message for infoType-dependent details parsed from quote.
    */
   export interface Schema$GooglePrivacyDlpV2QuoteInfo {
+    /**
+     * The date time indicated by the quote.
+     */
     dateTime?: Schema$GooglePrivacyDlpV2DateTime;
   }
   /**
@@ -2250,6 +2559,11 @@ export namespace dlp_v2 {
      */
     imageRedactionConfigs?: Schema$GooglePrivacyDlpV2ImageRedactionConfig[];
     /**
+     * Whether the response should include findings along with the redacted
+     * image.
+     */
+    includeFindings?: boolean;
+    /**
      * Configuration for the inspector.
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
@@ -2265,6 +2579,10 @@ export namespace dlp_v2 {
      */
     extractedText?: string;
     /**
+     * The findings. Populated when include_findings in the request is true.
+     */
+    inspectResult?: Schema$GooglePrivacyDlpV2InspectResult;
+    /**
      * The redacted image. The type will be the same as the original image.
      */
     redactedImage?: string;
@@ -2274,7 +2592,9 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Regex {
     /**
-     * Pattern defining the regular expression.
+     * Pattern defining the regular expression. Its syntax
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
+     * google/re2 repository on GitHub.
      */
     pattern?: string;
   }
@@ -2453,6 +2773,93 @@ export namespace dlp_v2 {
     timespanConfig?: Schema$GooglePrivacyDlpV2TimespanConfig;
   }
   /**
+   * StoredInfoType resource message that contains information about the current
+   * version and any pending updates.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredInfoType {
+    /**
+     * Current version of the stored info type.
+     */
+    currentVersion?: Schema$GooglePrivacyDlpV2StoredInfoTypeVersion;
+    /**
+     * Resource name.
+     */
+    name?: string;
+    /**
+     * Pending versions of the stored info type. Empty if no versions are
+     * pending.
+     */
+    pendingVersions?: Schema$GooglePrivacyDlpV2StoredInfoTypeVersion[];
+  }
+  /**
+   * Configuration for a StoredInfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredInfoTypeConfig {
+    /**
+     * Description of the StoredInfoType (max 256 characters).
+     */
+    description?: string;
+    /**
+     * Display name of the StoredInfoType (max 256 characters).
+     */
+    displayName?: string;
+    /**
+     * StoredInfoType where findings are defined by a dictionary of phrases.
+     */
+    largeCustomDictionary?:
+        Schema$GooglePrivacyDlpV2LargeCustomDictionaryConfig;
+  }
+  /**
+   * Version of a StoredInfoType, including the configuration used to build it,
+   * create timestamp, and current state.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredInfoTypeVersion {
+    /**
+     * StoredInfoType configuration.
+     */
+    config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
+    /**
+     * Create timestamp of the version. Read-only, determined by the system when
+     * the version is created.
+     */
+    createTime?: string;
+    /**
+     * Errors that occurred when creating this storedInfoType version, or
+     * anomalies detected in the storedInfoType data that render it unusable.
+     * Only the five most recent errors will be displayed, with the most recent
+     * error appearing first. &lt;p&gt;For example, some of the data for stored
+     * custom dictionaries is put in the user&#39;s Google Cloud Storage bucket,
+     * and if this data is modified or deleted by the user or another system,
+     * the dictionary becomes invalid. &lt;p&gt;If any errors occur, fix the
+     * problem indicated by the error message and use the UpdateStoredInfoType
+     * API method to create another version of the storedInfoType to continue
+     * using it, reusing the same `config` if it was not the source of the
+     * error.
+     */
+    errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * Stored info type version state. Read-only, updated by the system during
+     * dictionary creation.
+     */
+    state?: string;
+  }
+  /**
+   * A reference to a StoredInfoType to use with scanning.
+   */
+  export interface Schema$GooglePrivacyDlpV2StoredType {
+    /**
+     * Timestamp indicating when the version of the `StoredInfoType` used for
+     * inspection was created. Output-only field, populated by the system.
+     */
+    createTime?: string;
+    /**
+     * Resource name of the requested `StoredInfoType`, for example
+     * `organizations/433245324/storedInfoTypes/432452342` or
+     * `projects/project-id/storedInfoTypes/432452342`.
+     */
+    name?: string;
+  }
+  /**
    * A collection that informs the user the number of times a particular
    * `TransformationResultCode` and error details occurred.
    */
@@ -2538,20 +2945,22 @@ export namespace dlp_v2 {
      */
     enableAutoPopulationOfTimespanConfig?: boolean;
     /**
-     * Exclude files newer than this value. If set to zero, no upper time limit
-     * is applied.
+     * Exclude files or rows newer than this value. If set to zero, no upper
+     * time limit is applied.
      */
     endTime?: string;
     /**
-     * Exclude files older than this value.
+     * Exclude files or rows older than this value.
      */
     startTime?: string;
     /**
      * Specification of the field containing the timestamp of scanned items.
-     * Required for data sources like Datastore or BigQuery. The valid data
-     * types of the timestamp field are: for BigQuery - timestamp, date,
-     * datetime; for Datastore - timestamp. Datastore entity will be scanned if
-     * the timestamp property does not exist or its value is empty or invalid.
+     * Used for data sources like Datastore or BigQuery. If not specified for
+     * BigQuery, table last modification timestamp is checked against given time
+     * span. The valid data types of the timestamp field are: for BigQuery -
+     * timestamp, date, datetime; for Datastore - timestamp. Datastore entity
+     * will be scanned if the timestamp property does not exist or its value is
+     * empty or invalid.
      */
     timestampField?: Schema$GooglePrivacyDlpV2FieldId;
   }
@@ -2591,7 +3000,7 @@ export namespace dlp_v2 {
      */
     fieldTransformations?: Schema$GooglePrivacyDlpV2FieldTransformation[];
     /**
-     * Set if the transformation was limited to a specific info_type.
+     * Set if the transformation was limited to a specific InfoType.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
@@ -2676,6 +3085,21 @@ export namespace dlp_v2 {
      * New JobTrigger value.
      */
     jobTrigger?: Schema$GooglePrivacyDlpV2JobTrigger;
+    /**
+     * Mask to control which fields get updated.
+     */
+    updateMask?: string;
+  }
+  /**
+   * Request message for UpdateStoredInfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2UpdateStoredInfoTypeRequest {
+    /**
+     * Updated configuration for the storedInfoType. If not provided, a new
+     * version of the storedInfoType will be created with the existing
+     * configuration.
+     */
+    config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
     /**
      * Mask to control which fields get updated.
      */
@@ -2776,7 +3200,7 @@ export namespace dlp_v2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: any[];
+    details?: Array<{[key: string]: any;}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2785,23 +3209,25 @@ export namespace dlp_v2 {
     message?: string;
   }
   /**
-   * Represents a whole calendar date, e.g. date of birth. The time of day and
-   * time zone are either specified elsewhere or are not significant. The date
-   * is relative to the Proleptic Gregorian Calendar. The day may be 0 to
-   * represent a year and month where the day is not significant, e.g. credit
-   * card expiration date. The year may be 0 to represent a month and day
-   * independent of year, e.g. anniversary date. Related types are
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of
+   * day and time zone are either specified elsewhere or are not significant.
+   * The date is relative to the Proleptic Gregorian Calendar. This can
+   * represent:  * A full date, with non-zero year, month and day values * A
+   * month and day value, with a zero year, e.g. an anniversary * A year on its
+   * own, with zero month and day values * A year and month value, with a zero
+   * day, e.g. a credit card expiration date  Related types are
    * google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$GoogleTypeDate {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-     * if specifying a year/month where the day is not significant.
+     * if specifying a year by itself or a year and month where the day is not
+     * significant.
      */
     day?: number;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
-     * month.
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+     * month and day.
      */
     month?: number;
     /**
@@ -2839,15 +3265,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Infotypes {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -2912,7 +3330,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
@@ -2924,7 +3342,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Infotypes$List {
+  export interface Params$Resource$Infotypes$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -2945,33 +3363,20 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations {
-    root: Dlp;
     deidentifyTemplates: Resource$Organizations$Deidentifytemplates;
     inspectTemplates: Resource$Organizations$Inspecttemplates;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
+    storedInfoTypes: Resource$Organizations$Storedinfotypes;
+    constructor() {
       this.deidentifyTemplates =
-          new Resource$Organizations$Deidentifytemplates(root);
-      this.inspectTemplates = new Resource$Organizations$Inspecttemplates(root);
-    }
-
-    getRoot() {
-      return this.root;
+          new Resource$Organizations$Deidentifytemplates();
+      this.inspectTemplates = new Resource$Organizations$Inspecttemplates();
+      this.storedInfoTypes = new Resource$Organizations$Storedinfotypes();
     }
   }
 
 
   export class Resource$Organizations$Deidentifytemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3045,7 +3450,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3115,7 +3520,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -3188,7 +3593,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3208,6 +3613,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
@@ -3268,7 +3674,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -3351,7 +3757,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3363,7 +3769,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Deidentifytemplates$Create {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Create
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3380,7 +3787,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Delete {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Delete
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3393,7 +3801,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Get {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3406,12 +3815,24 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$List {
+  export interface Params$Resource$Organizations$Deidentifytemplates$List
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -3428,7 +3849,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Deidentifytemplates$Patch {
+  export interface Params$Resource$Organizations$Deidentifytemplates$Patch
+      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3449,15 +3871,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations$Inspecttemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3530,7 +3944,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -3600,7 +4014,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -3672,7 +4086,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -3692,6 +4106,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
@@ -3751,7 +4166,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
@@ -3830,7 +4245,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -3842,7 +4257,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Inspecttemplates$Create {
+  export interface Params$Resource$Organizations$Inspecttemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3859,7 +4275,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Delete {
+  export interface Params$Resource$Organizations$Inspecttemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3872,7 +4289,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Get {
+  export interface Params$Resource$Organizations$Inspecttemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3885,12 +4303,24 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$List {
+  export interface Params$Resource$Organizations$Inspecttemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -3907,7 +4337,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Inspecttemplates$Patch {
+  export interface Params$Resource$Organizations$Inspecttemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -3927,43 +4358,520 @@ export namespace dlp_v2 {
   }
 
 
+  export class Resource$Organizations$Storedinfotypes {
+    constructor() {}
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.create
+     * @desc Creates a pre-built stored infoType to be used for inspection. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Organizations$Storedinfotypes$Create,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+        params: Params$Resource$Organizations$Storedinfotypes$Create,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        params: Params$Resource$Organizations$Storedinfotypes$Create,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Create|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.delete
+     * @desc Deletes a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Organizations$Storedinfotypes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+        params: Params$Resource$Organizations$Storedinfotypes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        params: Params$Resource$Organizations$Storedinfotypes$Delete,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Delete|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.get
+     * @desc Gets a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Organizations$Storedinfotypes$Get,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(params: Params$Resource$Organizations$Storedinfotypes$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(params: Params$Resource$Organizations$Storedinfotypes$Get,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Get|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.list
+     * @desc Lists stored infoTypes. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Organizations$Storedinfotypes$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+        params: Params$Resource$Organizations$Storedinfotypes$List,
+        options: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        params: Params$Resource$Organizations$Storedinfotypes$List,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$List|
+        BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void|
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.organizations.storedInfoTypes.patch
+     * @desc Updates the stored infoType by creating a new version. The existing
+     * version will continue to be used until the new version is ready. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.organizations.storedInfoTypes.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Organizations$Storedinfotypes$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+        params: Params$Resource$Organizations$Storedinfotypes$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        params: Params$Resource$Organizations$Storedinfotypes$Patch,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(callback:
+              BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Organizations$Storedinfotypes$Patch|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizations$Storedinfotypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Storedinfotypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Storedinfotypes$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be deleted, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be read, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc, display_name, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the most recent version of the
+     * resource was created. - `state`: corresponds to the state of the
+     * resource. - `name`: corresponds to resource name. - `display_name`:
+     * corresponds to info type's display name.
+     */
+    orderBy?: string;
+    /**
+     * Optional size of the page, can be limited by server. If zero server
+     * returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional page token to continue retrieval. Comes from previous call to
+     * `ListStoredInfoTypes`.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Storedinfotypes$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of organization and storedInfoType to be updated, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateStoredInfoTypeRequest;
+  }
+
+
 
   export class Resource$Projects {
-    root: Dlp;
     content: Resource$Projects$Content;
     deidentifyTemplates: Resource$Projects$Deidentifytemplates;
     dlpJobs: Resource$Projects$Dlpjobs;
     image: Resource$Projects$Image;
     inspectTemplates: Resource$Projects$Inspecttemplates;
     jobTriggers: Resource$Projects$Jobtriggers;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-      this.content = new Resource$Projects$Content(root);
-      this.deidentifyTemplates =
-          new Resource$Projects$Deidentifytemplates(root);
-      this.dlpJobs = new Resource$Projects$Dlpjobs(root);
-      this.image = new Resource$Projects$Image(root);
-      this.inspectTemplates = new Resource$Projects$Inspecttemplates(root);
-      this.jobTriggers = new Resource$Projects$Jobtriggers(root);
-    }
-
-    getRoot() {
-      return this.root;
+    storedInfoTypes: Resource$Projects$Storedinfotypes;
+    constructor() {
+      this.content = new Resource$Projects$Content();
+      this.deidentifyTemplates = new Resource$Projects$Deidentifytemplates();
+      this.dlpJobs = new Resource$Projects$Dlpjobs();
+      this.image = new Resource$Projects$Image();
+      this.inspectTemplates = new Resource$Projects$Inspecttemplates();
+      this.jobTriggers = new Resource$Projects$Jobtriggers();
+      this.storedInfoTypes = new Resource$Projects$Storedinfotypes();
     }
   }
 
 
   export class Resource$Projects$Content {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -3971,7 +4879,10 @@ export namespace dlp_v2 {
      * @desc De-identifies potentially sensitive info from a ContentItem. This
      * method has limits on input size and output size. See
      * https://cloud.google.com/dlp/docs/deidentify-sensitive-data to learn
-     * more.
+     * more.  When no InfoTypes or CustomInfoTypes are specified in this
+     * request, the system will automatically choose what detectors to run. By
+     * default this may be all types, but may change over time as detectors are
+     * updated.
      * @alias dlp.projects.content.deidentify
      * @memberOf! ()
      *
@@ -4034,7 +4945,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
@@ -4049,8 +4960,11 @@ export namespace dlp_v2 {
     /**
      * dlp.projects.content.inspect
      * @desc Finds potentially sensitive info in content. This method has limits
-     * on input size, processing time, and output size.  For how to guides, see
-     * https://cloud.google.com/dlp/docs/inspecting-images and
+     * on input size, processing time, and output size.  When no InfoTypes or
+     * CustomInfoTypes are specified in this request, the system will
+     * automatically choose what detectors to run. By default this may be all
+     * types, but may change over time as detectors are updated.  For how to
+     * guides, see https://cloud.google.com/dlp/docs/inspecting-images and
      * https://cloud.google.com/dlp/docs/inspecting-text,
      * @alias dlp.projects.content.inspect
      * @memberOf! ()
@@ -4113,7 +5027,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
@@ -4192,7 +5106,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
@@ -4204,7 +5118,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Content$Deidentify {
+  export interface Params$Resource$Projects$Content$Deidentify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4220,7 +5135,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2DeidentifyContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Inspect {
+  export interface Params$Resource$Projects$Content$Inspect extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4236,7 +5152,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2InspectContentRequest;
   }
-  export interface Params$Resource$Projects$Content$Reidentify {
+  export interface Params$Resource$Projects$Content$Reidentify extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4255,15 +5172,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Deidentifytemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4336,7 +5245,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -4405,7 +5314,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -4477,7 +5386,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -4497,6 +5406,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
@@ -4556,7 +5466,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<
@@ -4638,7 +5548,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -4650,7 +5560,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Deidentifytemplates$Create {
+  export interface Params$Resource$Projects$Deidentifytemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4667,7 +5578,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Delete {
+  export interface Params$Resource$Projects$Deidentifytemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4680,7 +5592,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Get {
+  export interface Params$Resource$Projects$Deidentifytemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4693,12 +5606,24 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$List {
+  export interface Params$Resource$Projects$Deidentifytemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -4715,7 +5640,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Deidentifytemplates$Patch {
+  export interface Params$Resource$Projects$Deidentifytemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -4736,15 +5662,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Dlpjobs {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -4808,7 +5726,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -4823,6 +5741,9 @@ export namespace dlp_v2 {
      * @desc Creates a new job to inspect storage or calculate risk metrics. See
      * https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+     * system will automatically choose what detectors to run. By default this
+     * may be all types, but may change over time as detectors are updated.
      * @alias dlp.projects.dlpJobs.create
      * @memberOf! ()
      *
@@ -4880,7 +5801,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
@@ -4950,7 +5871,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5015,7 +5936,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
@@ -5035,6 +5956,7 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled)  The length of this field should be no more than 500 characters.
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id.
@@ -5098,7 +6020,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
@@ -5110,7 +6032,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Dlpjobs$Cancel {
+  export interface Params$Resource$Projects$Dlpjobs$Cancel extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5126,7 +6049,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CancelDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Create {
+  export interface Params$Resource$Projects$Dlpjobs$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5142,7 +6066,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateDlpJobRequest;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Delete {
+  export interface Params$Resource$Projects$Dlpjobs$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5153,7 +6078,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$Get {
+  export interface Params$Resource$Projects$Dlpjobs$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5164,7 +6090,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Dlpjobs$List {
+  export interface Params$Resource$Projects$Dlpjobs$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5188,6 +6115,16 @@ export namespace dlp_v2 {
      */
     filter?: string;
     /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc, end_time asc, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the job was created. - `end_time`:
+     * corresponds to time the job ended. - `name`: corresponds to job's name. -
+     * `state`: corresponds to `state`
+     */
+    orderBy?: string;
+    /**
      * The standard list page size.
      */
     pageSize?: number;
@@ -5207,15 +6144,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Image {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5223,7 +6152,10 @@ export namespace dlp_v2 {
      * @desc Redacts potentially sensitive info from an image. This method has
      * limits on input size, processing time, and output size. See
      * https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to
-     * learn more.
+     * learn more.  When no InfoTypes or CustomInfoTypes are specified in this
+     * request, the system will automatically choose what detectors to run. By
+     * default this may be all types, but may change over time as detectors are
+     * updated.
      * @alias dlp.projects.image.redact
      * @memberOf! ()
      *
@@ -5289,7 +6221,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
@@ -5301,7 +6233,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Image$Redact {
+  export interface Params$Resource$Projects$Image$Redact extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5320,15 +6253,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Inspecttemplates {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5400,7 +6325,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -5469,7 +6394,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5541,7 +6466,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -5561,6 +6486,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
      * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
@@ -5620,7 +6546,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
@@ -5699,7 +6625,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -5711,7 +6637,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Inspecttemplates$Create {
+  export interface Params$Resource$Projects$Inspecttemplates$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5728,7 +6655,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Delete {
+  export interface Params$Resource$Projects$Inspecttemplates$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5741,7 +6669,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Get {
+  export interface Params$Resource$Projects$Inspecttemplates$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5754,12 +6683,24 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$List {
+  export interface Params$Resource$Projects$Inspecttemplates$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc,update_time, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the template was created. -
+     * `update_time`: corresponds to time the template was last updated. -
+     * `name`: corresponds to template's name. - `display_name`: corresponds to
+     * template's display name.
+     */
+    orderBy?: string;
     /**
      * Optional size of the page, can be limited by server. If zero server
      * returns a page of max size 100.
@@ -5776,7 +6717,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Inspecttemplates$Patch {
+  export interface Params$Resource$Projects$Inspecttemplates$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5797,15 +6739,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Jobtriggers {
-    root: Dlp;
-    constructor(root: Dlp) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -5873,7 +6807,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -5942,7 +6876,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -6010,7 +6944,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -6030,7 +6964,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the triggeredJob was created. - `update_time`: corresponds to time the triggeredJob was last updated. - `name`: corresponds to JobTrigger's name.
+     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      * @param {integer=} params.pageSize Optional size of the page, can be limited by a server.
      * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      * @param {string} params.parent The parent resource name, for example `projects/my-project-id`.
@@ -6089,7 +7023,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
@@ -6164,7 +7098,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -6176,7 +7110,8 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Jobtriggers$Create {
+  export interface Params$Resource$Projects$Jobtriggers$Create extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6192,7 +7127,8 @@ export namespace dlp_v2 {
      */
     requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Delete {
+  export interface Params$Resource$Projects$Jobtriggers$Delete extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6204,7 +7140,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Get {
+  export interface Params$Resource$Projects$Jobtriggers$Get extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6216,7 +7153,8 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$List {
+  export interface Params$Resource$Projects$Jobtriggers$List extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6228,9 +7166,10 @@ export namespace dlp_v2 {
      * default sorting order is ascending, redundant space characters are
      * insignificant.  Example: `name asc,update_time, create_time desc`
      * Supported fields are:  - `create_time`: corresponds to time the
-     * triggeredJob was created. - `update_time`: corresponds to time the
-     * triggeredJob was last updated. - `name`: corresponds to JobTrigger's
-     * name.
+     * JobTrigger was created. - `update_time`: corresponds to time the
+     * JobTrigger was last updated. - `name`: corresponds to JobTrigger's name.
+     * - `display_name`: corresponds to JobTrigger's display name. - `status`:
+     * corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
@@ -6247,7 +7186,8 @@ export namespace dlp_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Jobtriggers$Patch {
+  export interface Params$Resource$Projects$Jobtriggers$Patch extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -6263,5 +7203,496 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateJobTriggerRequest;
+  }
+
+
+  export class Resource$Projects$Storedinfotypes {
+    constructor() {}
+
+
+    /**
+     * dlp.projects.storedInfoTypes.create
+     * @desc Creates a pre-built stored infoType to be used for inspection. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {().GooglePrivacyDlpV2CreateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Projects$Storedinfotypes$Create,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    create(
+        params: Params$Resource$Projects$Storedinfotypes$Create,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        params: Params$Resource$Projects$Storedinfotypes$Create,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Create|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.delete
+     * @desc Deletes a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Storedinfotypes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+        params: Params$Resource$Projects$Storedinfotypes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        params: Params$Resource$Projects$Storedinfotypes$Delete,
+        callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Delete|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+        callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.get
+     * @desc Gets a stored infoType. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Storedinfotypes$Get,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    get(params: Params$Resource$Projects$Storedinfotypes$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(params: Params$Resource$Projects$Storedinfotypes$Get,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Get|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.list
+     * @desc Lists stored infoTypes. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id or organizations/my-org-id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Storedinfotypes$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+    list(
+        params: Params$Resource$Projects$Storedinfotypes$List,
+        options: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Storedinfotypes$List,
+        callback: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$List|
+        BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+        callback?: BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void|
+        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+parent}/storedInfoTypes')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * dlp.projects.storedInfoTypes.patch
+     * @desc Updates the stored infoType by creating a new version. The existing
+     * version will continue to be used until the new version is ready. See
+     * https://cloud.google.com/dlp/docs/creating-stored-infotypes to learn
+     * more.
+     * @alias dlp.projects.storedInfoTypes.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
+     * @param {().GooglePrivacyDlpV2UpdateStoredInfoTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Storedinfotypes$Patch,
+        options?: MethodOptions):
+        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+    patch(
+        params: Params$Resource$Projects$Storedinfotypes$Patch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        params: Params$Resource$Projects$Storedinfotypes$Patch,
+        callback:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(callback:
+              BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Storedinfotypes$Patch|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
+        callback?:
+            BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
+        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Storedinfotypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Storedinfotypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Storedinfotypes$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be deleted, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the organization and storedInfoType to be read, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional comma separated list of fields to order by, followed by `asc` or
+     * `desc` postfix. This list is case-insensitive, default sorting order is
+     * ascending, redundant space characters are insignificant.  Example: `name
+     * asc, display_name, create_time desc`  Supported fields are:  -
+     * `create_time`: corresponds to time the most recent version of the
+     * resource was created. - `state`: corresponds to the state of the
+     * resource. - `name`: corresponds to resource name. - `display_name`:
+     * corresponds to info type's display name.
+     */
+    orderBy?: string;
+    /**
+     * Optional size of the page, can be limited by server. If zero server
+     * returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional page token to continue retrieval. Comes from previous call to
+     * `ListStoredInfoTypes`.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name, for example projects/my-project-id or
+     * organizations/my-org-id.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Storedinfotypes$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of organization and storedInfoType to be updated, for
+     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * projects/project-id/storedInfoTypes/432452342.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2UpdateStoredInfoTypeRequest;
   }
 }

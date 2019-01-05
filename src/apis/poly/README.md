@@ -2,7 +2,7 @@
 
 # @google/poly
 
-> The Poly API provides read-only access to assets hosted on poly.google.com.
+> The Poly API provides read access to assets hosted on poly.google.com to all, and upload access to poly.google.com for whitelisted accounts.
 
 ## Installation
 
@@ -14,7 +14,7 @@ $ npm install @google/poly
 All documentation and usage information can be found on [GitHub](https://github.com/google/google-api-nodejs-client).
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [COPYING](https://github.com/google/google-api-nodejs-client/blob/master/COPYING).
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/google/google-api-nodejs-client/blob/master/LICENSE).
 
 ## Contributing
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING](https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md).

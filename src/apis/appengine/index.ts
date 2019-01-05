@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from '../../shared/src';
+import {getAPI, GoogleConfigurable} from 'googleapis-common';
 import {appengine_v1} from './v1';
 import {appengine_v1alpha} from './v1alpha';
 import {appengine_v1beta} from './v1beta';

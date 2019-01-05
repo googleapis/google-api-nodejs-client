@@ -16,8 +16,7 @@
 
 import {AxiosPromise} from 'axios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-
-import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from '../../shared/src';
+import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -28,6 +27,42 @@ import {BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurabl
 export namespace appstate_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
+  }
+
+  let context: APIRequestContext;
+
+  interface StandardParameters {
+    /**
+     * Data format for the response.
+     */
+    alt?: string;
+    /**
+     * Selector specifying which fields to include in a partial response.
+     */
+    fields?: string;
+    /**
+     * API key. Your API key identifies your project and provides you with API
+     * access, quota, and reports. Required unless you provide an OAuth 2.0
+     * token.
+     */
+    key?: string;
+    /**
+     * OAuth 2.0 token for the current user.
+     */
+    oauth_token?: string;
+    /**
+     * Returns response with indentations and line breaks.
+     */
+    prettyPrint?: boolean;
+    /**
+     * An opaque string that represents a user for quota purposes. Must not
+     * exceed 40 characters.
+     */
+    quotaUser?: string;
+    /**
+     * Deprecated. Please use quotaUser instead.
+     */
+    userIp?: string;
   }
 
   /**
@@ -46,22 +81,12 @@ export namespace appstate_v1 {
    * @param {object=} options Options for Appstate
    */
   export class Appstate {
-    _options: GlobalOptions;
-    google?: GoogleConfigurable;
-    root = this;
-
     states: Resource$States;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      this._options = options || {};
-      this.google = google;
-      this.getRoot.bind(this);
+      context = {_options: options || {}, google};
 
-      this.states = new Resource$States(this);
-    }
-
-    getRoot() {
-      return this.root;
+      this.states = new Resource$States();
     }
   }
 
@@ -140,15 +165,7 @@ export namespace appstate_v1 {
 
 
   export class Resource$States {
-    root: Appstate;
-    constructor(root: Appstate) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
+    constructor() {}
 
 
     /**
@@ -209,7 +226,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResult>(parameters, callback);
@@ -276,7 +293,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -339,7 +356,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$GetResponse>(parameters, callback);
@@ -404,7 +421,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$ListResponse>(parameters, callback);
@@ -473,7 +490,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context: this.getRoot()
+        context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResult>(parameters, callback);
@@ -483,7 +500,7 @@ export namespace appstate_v1 {
     }
   }
 
-  export interface Params$Resource$States$Clear {
+  export interface Params$Resource$States$Clear extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -499,7 +516,7 @@ export namespace appstate_v1 {
      */
     stateKey?: number;
   }
-  export interface Params$Resource$States$Delete {
+  export interface Params$Resource$States$Delete extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -510,7 +527,7 @@ export namespace appstate_v1 {
      */
     stateKey?: number;
   }
-  export interface Params$Resource$States$Get {
+  export interface Params$Resource$States$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -521,7 +538,7 @@ export namespace appstate_v1 {
      */
     stateKey?: number;
   }
-  export interface Params$Resource$States$List {
+  export interface Params$Resource$States$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -532,7 +549,7 @@ export namespace appstate_v1 {
      */
     includeData?: boolean;
   }
-  export interface Params$Resource$States$Update {
+  export interface Params$Resource$States$Update extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

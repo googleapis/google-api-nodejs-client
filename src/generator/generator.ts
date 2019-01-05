@@ -14,25 +14,20 @@
 import {AxiosRequestConfig} from 'axios';
 import * as fs from 'fs';
 import {DefaultTransporter} from 'google-auth-library';
-import minimist from 'minimist';
-import mkdirp from 'mkdirp';
+import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from 'googleapis-common';
+import * as minimist from 'minimist';
+import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
-import Q from 'p-queue';
+import * as Q from 'p-queue';
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
-
-import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from '../shared/src';
 
 const argv = minimist(process.argv.slice(2));
 const cliArgs = argv._;
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
 
-const DISCOVERY_URL = argv['discovery-url'] ?
-    argv['discovery-url'] :
-    (cliArgs.length ? cliArgs[0] :
-                      'https://www.googleapis.com/discovery/v1/apis/');
 const FRAGMENT_URL =
     'https://storage.googleapis.com/apisnippets-staging/public/';
 
@@ -47,16 +42,52 @@ export interface GeneratorOptions {
   includePrivate?: boolean;
 }
 
+function getObjectType(item: SchemaItem): string {
+  if (item.additionalProperties) {
+    const valueType = getType(item.additionalProperties);
+    return `{ [key: string]: ${valueType}; }`;
+  } else if (item.properties) {
+    const fields = item.properties;
+    const objectType =
+        Object.keys(fields)
+            .map(
+                field =>
+                    `${cleanPropertyName(field)}?: ${getType(fields[field])};`)
+            .join(' ');
+    return `{ ${objectType} }`;
+  } else {
+    return 'any';
+  }
+}
+
+function isSimpleType(type: string): boolean {
+  if (type.indexOf('{') > -1) {
+    return false;
+  }
+  return true;
+}
+
+function cleanPropertyName(prop: string) {
+  const match = prop.match(/[-@.]/g);
+  return match ? `'${prop}'` : prop;
+}
+
 function getType(item: SchemaItem): string {
+  if (item.$ref) {
+    return `Schema$${item.$ref}`;
+  }
   switch (item.type) {
     case 'integer':
       return 'number';
     case 'object':
-      // TODO: This can be improved with an inline type.
-      return 'any';
+      return getObjectType(item);
     case 'array':
       const innerType = getType(item.items!);
-      return `${innerType}[]`;
+      if (isSimpleType(innerType)) {
+        return `${innerType}[]`;
+      } else {
+        return `Array<${innerType}>`;
+      }
     default:
       return item.type!;
   }
@@ -106,11 +137,6 @@ export class Generator {
     return param;
   }
 
-  private cleanPropertyName(prop: string) {
-    const match = prop.match(/[-@.]/g);
-    return match ? `'${prop}'` : prop;
-  }
-
   private hasResourceParam(method: SchemaMethod) {
     return method.parameters && method.parameters['resource'];
   }
@@ -130,7 +156,7 @@ export class Generator {
     this.env.addFilter('buildurl', buildurl);
     this.env.addFilter('oneLine', this.oneLine);
     this.env.addFilter('getType', getType);
-    this.env.addFilter('cleanPropertyName', this.cleanPropertyName);
+    this.env.addFilter('cleanPropertyName', cleanPropertyName);
     this.env.addFilter('cleanComments', this.cleanComments);
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
@@ -159,7 +185,7 @@ export class Generator {
    */
   private log(...args: string[]) {
     if (this.options && this.options.debug) {
-      console.log.apply(this, arguments);
+      console.log(...args);
     }
   }
 
@@ -178,9 +204,9 @@ export class Generator {
   /**
    * Generate all APIs and write to files.
    */
-  async generateAllAPIs() {
+  async generateAllAPIs(discoveryUrl: string) {
     const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
-    const res = await this.request<Schemas>({url: DISCOVERY_URL, headers});
+    const res = await this.request<Schemas>({url: discoveryUrl, headers});
     const apis = res.data.items;
     const queue = new Q({concurrency: 10});
     console.log(`Generating ${apis.length} APIs...`);
@@ -248,6 +274,10 @@ export class Generator {
           const rdPath = path.join(apisPath, file, 'README.md');
           const rdResult = this.env.render('README.md.njk', {name: file, desc});
           await writeFile(rdPath, rdResult);
+          // generate the tsconfig.json
+          const tsPath = path.join(apisPath, file, 'tsconfig.json');
+          const tsResult = this.env.render('tsconfig.json.njk');
+          await writeFile(tsPath, tsResult);
         }
       }
     }
