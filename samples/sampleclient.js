@@ -31,7 +31,6 @@ let keys = {
 };
 if (fs.existsSync(keyPath)) {
   const keyFile = require(keyPath);
-  console.log('keyFile: ', keyFile);
   keys = keyFile.installed || keyFile.web;
 }
 
