@@ -8,8 +8,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "googleapis/google-auth-library-nodejs#webbbpackkk",
-    "googleapis-common": "googleapis/nodejs-googleapis-common#webbbpackkk"
+    "google-auth-library": "git://github.com/googleapis/google-auth-library-nodejs.git",
+    "googleapis-common": "git://github.com/googleapis/nodejs-googleapis-common.git#webbbpackkk"
   },
   "files": [
     "LICENSE",
