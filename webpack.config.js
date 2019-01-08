@@ -27,7 +27,7 @@ module.exports = {
     },
   },
   output: {
-    library: 'Googleapis',
+    library: 'GoogleApis',
     filename: 'googleapis.min.js',
     path: path.resolve(__dirname, 'dist'),
   },

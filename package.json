@@ -8,8 +8,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "git://github.com/googleapis/google-auth-library-nodejs.git",
-    "googleapis-common": "git://github.com/googleapis/nodejs-googleapis-common.git#webbbpackkk"
+    "google-auth-library": "3.0.0-pre1",
+    "googleapis-common": "0.5.0-webpack"
   },
   "files": [
     "LICENSE",
@@ -20,7 +20,7 @@
   ],
   "repository": "google/google-api-nodejs-client",
   "name": "googleapis",
-  "version": "36.0.0",
+  "version": "37.0.0-webpack",
   "scripts": {
     "pretest": "npm run compile",
     "prepare": "npm run compile",
@@ -73,6 +73,7 @@
     "@types/source-map-support": "^0.4.0",
     "@types/tmp": "^0.0.33",
     "@types/url-template": "^2.0.28",
+    "@types/webpack": "^4.4.22",
     "assert-rejects": "^1.0.0",
     "axios": "^0.18.0",
     "chai": "^4.2.0",
