@@ -13,7 +13,8 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+
 import {drive_v2} from './v2';
 import {drive_v3} from './v3';
 
@@ -31,3 +32,6 @@ export function drive<T = drive_v2.Drive | drive_v3.Drive>(
     versionOrOptions: 'v2'|drive_v2.Options|'v3'|drive_v3.Options) {
   return getAPI<T>('drive', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

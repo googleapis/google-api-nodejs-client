@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<!--
+Copyright 2018, Google, LLC.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+   http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<html>
+<head>
+
+<!-- load webpacked client library -->
+<script type="text/javascript" src="drive.min.js"></script>
+
+<script type="text/javascript">
+function getStoredCredentials() {
+  var credentialsString = localStorage.getItem('credentials');
+  if (!credentialsString) {
+    return {};
+  }
+  const credentials = JSON.parse(credentialsString);
+  return credentials;
+}
+
+async function processCode(oAuth2Client, code) {
+  const getTokenResult = await oAuth2Client.getToken(code);
+  localStorage.setItem('credentials', JSON.stringify(getTokenResult.tokens));
+  window.location.href = '/';
+}
+
+async function runSample() { 
+  const keys = KEYS;
+  const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+
+  const {drive, auth} = Drive;
+  const oAuth2Client = new auth.OAuth2(
+    keys.web.client_id, 
+    keys.web.client_secret, 
+    keys.web.redirect_uris[0]
+  );
+
+  const code = new URL(window.location).searchParams.get('code');
+  if (code) {
+    alert('we got OAuth2 code from server, now getting OAuth2 token and redirecting to the main page');
+    await processCode(oAuth2Client, code);
+    return;
+  }
+
+  const credentials = getStoredCredentials();
+  if (!credentials.access_token) {
+    alert('there are no saved credentials, redirecting to OAuth2');
+    const url = oAuth2Client.generateAuthUrl({
+      scope: scopes
+    });
+    window.location.href = url;
+    return;
+  }
+
+  alert('found OAuth2 credentials, running query');
+  oAuth2Client.credentials = credentials;
+  const output = document.getElementById('result');
+  const service = drive('v3');
+  try {
+    const result = await service.files.list(
+      {
+        auth: oAuth2Client,
+        pageSize: 10,
+        fields: 'nextPageToken, files(id, name)',
+      }
+    );
+    const files = result.data.files;
+    if (files.length === 0) {
+      output.innerHTML += 'No files found.<br/>\n';
+    } else {
+      output.innerHTML += 'Files:<br>\n';
+      for (const file of files) {
+        output.innerHTML += `${file.name} (${file.id})<br/>\n`;
+      }
+    }
+    setTimeout(() => { alert('query completed'); }, 0); 
+  }
+  catch (err) {
+    alert(err.toString());
+  }
+}
+
+addEventListener('load', runSample);
+</script>
+</head>
+<body>
+<div id="result">
+</div>
+</body>
+</html>
