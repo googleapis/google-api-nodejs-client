@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/*! THIS FILE IS AUTO-GENERATED */
+/*! THIS FILE WILL EVENTUALLY BECOME AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 
