@@ -159,7 +159,13 @@ export namespace pagespeedonline_v5 {
     /**
      * Map of categories in the LHR.
      */
-    categories?: {[key: string]: Schema$LighthouseCategoryV5;};
+    categories?: {
+      accessibility?: Schema$LighthouseCategoryV5;
+      'best-practices'?: Schema$LighthouseCategoryV5;
+      performance?: Schema$LighthouseCategoryV5;
+      pwa?: Schema$LighthouseCategoryV5;
+      seo?: Schema$LighthouseCategoryV5;
+    };
     /**
      * Map of category groups in the LHR.
      */

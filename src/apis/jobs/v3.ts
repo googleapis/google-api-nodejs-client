@@ -1445,6 +1445,16 @@ export namespace jobs_v3 {
      */
     disableKeywordMatch?: boolean;
     /**
+     * Optional.  Controls whether highly similar jobs are returned next to each
+     * other in the search results. Jobs are identified as highly similar based
+     * on their titles, job categories, and locations. Highly similar results
+     * are clustered so that only one representative job of the cluster is
+     * displayed to the job seeker higher up in the results, with the other jobs
+     * being displayed lower down in the results.  Defaults to
+     * DiversificationLevel.SIMPLE if no value is specified.
+     */
+    diversificationLevel?: string;
+    /**
      * Optional.  Controls whether to broaden the search when it produces sparse
      * results. Broadened queries append results to the end of the matching
      * results list.  Defaults to false.

@@ -34,6 +34,7 @@ import * as appsactivity from './appsactivity';
 import * as appstate from './appstate';
 import * as bigquery from './bigquery';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
+import * as bigtableadmin from './bigtableadmin';
 import * as binaryauthorization from './binaryauthorization';
 import * as blogger from './blogger';
 import * as books from './books';
@@ -47,6 +48,7 @@ import * as cloudbuild from './cloudbuild';
 import * as clouddebugger from './clouddebugger';
 import * as clouderrorreporting from './clouderrorreporting';
 import * as cloudfunctions from './cloudfunctions';
+import * as cloudidentity from './cloudidentity';
 import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
 import * as cloudprofiler from './cloudprofiler';
@@ -59,6 +61,7 @@ import * as cloudtrace from './cloudtrace';
 import * as composer from './composer';
 import * as compute from './compute';
 import * as container from './container';
+import * as containeranalysis from './containeranalysis';
 import * as content from './content';
 import * as customsearch from './customsearch';
 import * as dataflow from './dataflow';
@@ -97,6 +100,7 @@ import * as indexing from './indexing';
 import * as jobs from './jobs';
 import * as kgsearch from './kgsearch';
 import * as language from './language';
+import * as libraryagent from './libraryagent';
 import * as licensing from './licensing';
 import * as logging from './logging';
 import * as manufacturers from './manufacturers';
@@ -114,8 +118,8 @@ import * as poly from './poly';
 import * as proximitybeacon from './proximitybeacon';
 import * as pubsub from './pubsub';
 import * as redis from './redis';
+import * as remotebuildexecution from './remotebuildexecution';
 import * as replicapool from './replicapool';
-import * as replicapoolupdater from './replicapoolupdater';
 import * as reseller from './reseller';
 import * as runtimeconfig from './runtimeconfig';
 import * as safebrowsing from './safebrowsing';
@@ -183,6 +187,7 @@ export const APIS: APIList = {
   appstate: appstate.VERSIONS,
   bigquery: bigquery.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
+  bigtableadmin: bigtableadmin.VERSIONS,
   binaryauthorization: binaryauthorization.VERSIONS,
   blogger: blogger.VERSIONS,
   books: books.VERSIONS,
@@ -196,6 +201,7 @@ export const APIS: APIList = {
   clouddebugger: clouddebugger.VERSIONS,
   clouderrorreporting: clouderrorreporting.VERSIONS,
   cloudfunctions: cloudfunctions.VERSIONS,
+  cloudidentity: cloudidentity.VERSIONS,
   cloudiot: cloudiot.VERSIONS,
   cloudkms: cloudkms.VERSIONS,
   cloudprofiler: cloudprofiler.VERSIONS,
@@ -208,6 +214,7 @@ export const APIS: APIList = {
   composer: composer.VERSIONS,
   compute: compute.VERSIONS,
   container: container.VERSIONS,
+  containeranalysis: containeranalysis.VERSIONS,
   content: content.VERSIONS,
   customsearch: customsearch.VERSIONS,
   dataflow: dataflow.VERSIONS,
@@ -246,6 +253,7 @@ export const APIS: APIList = {
   jobs: jobs.VERSIONS,
   kgsearch: kgsearch.VERSIONS,
   language: language.VERSIONS,
+  libraryagent: libraryagent.VERSIONS,
   licensing: licensing.VERSIONS,
   logging: logging.VERSIONS,
   manufacturers: manufacturers.VERSIONS,
@@ -263,8 +271,8 @@ export const APIS: APIList = {
   proximitybeacon: proximitybeacon.VERSIONS,
   pubsub: pubsub.VERSIONS,
   redis: redis.VERSIONS,
+  remotebuildexecution: remotebuildexecution.VERSIONS,
   replicapool: replicapool.VERSIONS,
-  replicapoolupdater: replicapoolupdater.VERSIONS,
   reseller: reseller.VERSIONS,
   runtimeconfig: runtimeconfig.VERSIONS,
   safebrowsing: safebrowsing.VERSIONS,
@@ -329,6 +337,7 @@ export class GeneratedAPIs {
   appstate = appstate.appstate;
   bigquery = bigquery.bigquery;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
+  bigtableadmin = bigtableadmin.bigtableadmin;
   binaryauthorization = binaryauthorization.binaryauthorization;
   blogger = blogger.blogger;
   books = books.books;
@@ -342,6 +351,7 @@ export class GeneratedAPIs {
   clouddebugger = clouddebugger.clouddebugger;
   clouderrorreporting = clouderrorreporting.clouderrorreporting;
   cloudfunctions = cloudfunctions.cloudfunctions;
+  cloudidentity = cloudidentity.cloudidentity;
   cloudiot = cloudiot.cloudiot;
   cloudkms = cloudkms.cloudkms;
   cloudprofiler = cloudprofiler.cloudprofiler;
@@ -354,6 +364,7 @@ export class GeneratedAPIs {
   composer = composer.composer;
   compute = compute.compute;
   container = container.container;
+  containeranalysis = containeranalysis.containeranalysis;
   content = content.content;
   customsearch = customsearch.customsearch;
   dataflow = dataflow.dataflow;
@@ -392,6 +403,7 @@ export class GeneratedAPIs {
   jobs = jobs.jobs;
   kgsearch = kgsearch.kgsearch;
   language = language.language;
+  libraryagent = libraryagent.libraryagent;
   licensing = licensing.licensing;
   logging = logging.logging;
   manufacturers = manufacturers.manufacturers;
@@ -409,8 +421,8 @@ export class GeneratedAPIs {
   proximitybeacon = proximitybeacon.proximitybeacon;
   pubsub = pubsub.pubsub;
   redis = redis.redis;
+  remotebuildexecution = remotebuildexecution.remotebuildexecution;
   replicapool = replicapool.replicapool;
-  replicapoolupdater = replicapoolupdater.replicapoolupdater;
   reseller = reseller.reseller;
   runtimeconfig = runtimeconfig.runtimeconfig;
   safebrowsing = safebrowsing.safebrowsing;

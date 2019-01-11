@@ -291,6 +291,7 @@ export namespace bigquery_v2 {
     access?: Array<{
       domain?: string;
       groupByEmail?: string;
+      iamMember?: string;
       role?: string;
       specialGroup?: string;
       userByEmail?: string;
@@ -372,7 +373,7 @@ export namespace bigquery_v2 {
     /**
      * The geographic location where the dataset should reside. The default
      * value is US. See details at
-     * https://cloud.google.com/bigquery/docs/dataset-locations.
+     * https://cloud.google.com/bigquery/docs/locations.
      */
     location?: string;
     /**
@@ -749,7 +750,9 @@ export namespace bigquery_v2 {
   export interface Schema$GoogleSheetsOptions {
     /**
      * [Beta] [Optional] Range of a sheet to query from. Only used when
-     * non-empty. Typical format: !:
+     * non-empty. Typical format:
+     * sheet_name!top_left_cell_id:bottom_right_cell_id For example:
+     * sheet1!A1:B20
      */
     range?: string;
     /**
@@ -1043,7 +1046,7 @@ export namespace bigquery_v2 {
      */
     quote?: string;
     /**
-     * [Experimental] Range partitioning specification for this table. Only one
+     * [TrustedTester] Range partitioning specification for this table. Only one
      * of timePartitioning and rangePartitioning should be specified.
      */
     rangePartitioning?: Schema$RangePartitioning;
@@ -1213,7 +1216,7 @@ export namespace bigquery_v2 {
      */
     queryParameters?: Schema$QueryParameter[];
     /**
-     * [Experimental] Range partitioning specification for this table. Only one
+     * [TrustedTester] Range partitioning specification for this table. Only one
      * of timePartitioning and rangePartitioning should be specified.
      */
     rangePartitioning?: Schema$RangePartitioning;
@@ -1393,6 +1396,10 @@ export namespace bigquery_v2 {
      */
     quotaDeferments?: string[];
     /**
+     * [Output-only] Job resource usage breakdown by reservation.
+     */
+    reservationUsage?: Array<{name?: string; slotMs?: string;}>;
+    /**
      * [Output-only] Start time of this job, in milliseconds since the epoch.
      * This field will be present when the job transitions from the PENDING
      * state to either RUNNING or DONE.
@@ -1403,6 +1410,10 @@ export namespace bigquery_v2 {
      * statistics instead.
      */
     totalBytesProcessed?: string;
+    /**
+     * [Output-only] Slot-milliseconds for the job.
+     */
+    totalSlotMs?: string;
   }
   export interface Schema$JobStatistics2 {
     /**
@@ -1472,18 +1483,19 @@ export namespace bigquery_v2 {
      * The type of query statement, if valid. Possible values (new values might
      * be added in the future): &quot;SELECT&quot;: SELECT query.
      * &quot;INSERT&quot;: INSERT query; see
-     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
+     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language.
      * &quot;UPDATE&quot;: UPDATE query; see
-     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
+     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language.
      * &quot;DELETE&quot;: DELETE query; see
-     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
+     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language.
      * &quot;MERGE&quot;: MERGE query; see
-     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language
+     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language.
      * &quot;CREATE_TABLE&quot;: CREATE [OR REPLACE] TABLE without AS SELECT.
      * &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS
-     * SELECT ... &quot;DROP_TABLE&quot;: DROP TABLE query.
-     * &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ...
-     * &quot;DROP_VIEW&quot;: DROP VIEW query.
+     * SELECT ... . &quot;DROP_TABLE&quot;: DROP TABLE query.
+     * &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ... .
+     * &quot;DROP_VIEW&quot;: DROP VIEW query. &quot;ALTER_TABLE&quot;: ALTER
+     * TABLE query. &quot;ALTER_VIEW&quot;: ALTER VIEW query.
      */
     statementType?: string;
     /**
@@ -1498,6 +1510,14 @@ export namespace bigquery_v2 {
      * [Output-only] Total bytes processed for the job.
      */
     totalBytesProcessed?: string;
+    /**
+     * [Output-only] For dry-run jobs, totalBytesProcessed is an estimate and
+     * this field specifies the accuracy of the estimate. Possible values can
+     * be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is
+     * precise. LOWER_BOUND: estimate is lower bound of what the query would
+     * cost. UPPER_BOUND: estiamte is upper bound of what the query would cost.
+     */
+    totalBytesProcessedAccuracy?: string;
     /**
      * [Output-only] Total number of partitions processed from all partitioned
      * tables referenced in the job.
@@ -1571,6 +1591,17 @@ export namespace bigquery_v2 {
    */
   export interface Schema$JsonObject {}
   export interface Schema$JsonValue {}
+  export interface Schema$MaterializedViewDefinition {
+    /**
+     * [Output-only] [TrustedTester] The time when this materialized view was
+     * last modified, in milliseconds since the epoch.
+     */
+    lastRefreshTime?: string;
+    /**
+     * [Required] A query whose result is persisted.
+     */
+    query?: string;
+  }
   export interface Schema$ModelDefinition {
     /**
      * [Output-only, Beta] Model options used for the first training run. These
@@ -1690,8 +1721,8 @@ export namespace bigquery_v2 {
      */
     kind?: string;
     /**
-     * The geographic location where the job should run. Required except for US
-     * and EU.
+     * The geographic location where the job should run. See details at
+     * https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -1836,13 +1867,13 @@ export namespace bigquery_v2 {
   }
   export interface Schema$RangePartitioning {
     /**
-     * [Experimental] [Required] The table is partitioned by this field. The
+     * [TrustedTester] [Required] The table is partitioned by this field. The
      * field must be a top-level NULLABLE/REQUIRED field. The only supported
      * type is INTEGER/INT64.
      */
     field?: string;
     /**
-     * [Experimental] [Required] Defines the ranges for range partitioning.
+     * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
     range?: {end?: string; interval?: string; start?: string;};
   }
@@ -1866,8 +1897,8 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Table {
     /**
-     * [Experimental] Clustering specification for the table. Must be specified
-     * with partitioning, data in the table will be first partitioned and
+     * [Beta] Clustering specification for the table. Must be specified with
+     * partitioning, data in the table will be first partitioned and
      * subsequently clustered.
      */
     clustering?: Schema$Clustering;
@@ -1937,6 +1968,10 @@ export namespace bigquery_v2 {
      */
     location?: string;
     /**
+     * [Optional] Materialized view definition.
+     */
+    materializedView?: Schema$MaterializedViewDefinition;
+    /**
      * [Output-only, Beta] Present iff this table represents a ML model.
      * Describes the training information for the model, and it is required to
      * run &#39;PREDICT&#39; queries.
@@ -1953,7 +1988,7 @@ export namespace bigquery_v2 {
      */
     numLongTermBytes?: string;
     /**
-     * [Output-only] [Experimental] The physical size of this table in bytes,
+     * [Output-only] [TrustedTester] The physical size of this table in bytes,
      * excluding any data in the streaming buffer. This includes compression and
      * storage used for time travel.
      */
@@ -1964,13 +1999,13 @@ export namespace bigquery_v2 {
      */
     numRows?: string;
     /**
-     * [Experimental] Range partitioning specification for this table. Only one
+     * [TrustedTester] Range partitioning specification for this table. Only one
      * of timePartitioning and rangePartitioning should be specified.
      */
     rangePartitioning?: Schema$RangePartitioning;
     /**
-     * [Experimental] [Optional] If set to true, queries over this table require
-     * a partition filter that can be used for partition elimination to be
+     * [Beta] [Optional] If set to true, queries over this table require a
+     * partition filter that can be used for partition elimination to be
      * specified.
      */
     requirePartitionFilter?: boolean;
@@ -2000,7 +2035,8 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Describes the table type. The following values are
      * supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined
-     * by a SQL query. EXTERNAL: A table that references data stored in an
+     * by a SQL query. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result
+     * is persisted. EXTERNAL: A table that references data stored in an
      * external storage system, such as Google Cloud Storage. The default value
      * is TABLE.
      */
@@ -2035,8 +2071,8 @@ export namespace bigquery_v2 {
      */
     skipInvalidRows?: boolean;
     /**
-     * [Experimental] If specified, treats the destination table as a base
-     * template, and inserts the rows into an instance table named
+     * If specified, treats the destination table as a base template, and
+     * inserts the rows into an instance table named
      * &quot;{destination}{templateSuffix}&quot;. BigQuery will manage creation
      * of the instance table, using the schema of the base template table. See
      * https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables
@@ -2186,11 +2222,6 @@ export namespace bigquery_v2 {
      * TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
      */
     field?: string;
-    /**
-     * [Beta] [Optional] If set to true, queries over this table require a
-     * partition filter that can be used for partition elimination to be
-     * specified.
-     */
     requirePartitionFilter?: boolean;
     /**
      * [Required] The only type supported is DAY, which will generate one
@@ -3229,7 +3260,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the job to cancel
-     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string=} params.location The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      * @param {string} params.projectId [Required] Project ID of the job to cancel
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3355,7 +3386,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the requested job
-     * @param {string=} params.location [Experimental] The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string=} params.location The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      * @param {string} params.projectId [Required] Project ID of the requested job
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3487,7 +3518,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the query job
-     * @param {string=} params.location [Experimental] The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * @param {string=} params.location The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      * @param {integer=} params.maxResults Maximum number of results to read
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId [Required] Project ID of the query job
@@ -3965,9 +3996,9 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * [Experimental] The geographic location of the job. Required except for US
-     * and EU. See details at
-     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * The geographic location of the job. Required except for US and EU. See
+     * details at
+     * https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -3986,9 +4017,9 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * [Experimental] The geographic location of the job. Required except for US
-     * and EU. See details at
-     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * The geographic location of the job. Required except for US and EU. See
+     * details at
+     * https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -4008,9 +4039,9 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * [Experimental] The geographic location where the job should run. Required
-     * except for US and EU. See details at
-     * https://cloud.google.com/bigquery/docs/dataset-locations#specifying_your_location.
+     * The geographic location where the job should run. Required except for US
+     * and EU. See details at
+     * https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**

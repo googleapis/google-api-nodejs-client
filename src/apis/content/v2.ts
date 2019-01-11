@@ -123,7 +123,8 @@ export namespace content_v2 {
 
   /**
    * Account data. After the creation of a new account it may take a few minutes
-   * before it is fully operational.
+   * before it is fully operational. The methods delete, insert, patch, and
+   * update require the admin role.
    */
   export interface Schema$Account {
     /**
@@ -719,7 +720,7 @@ export namespace content_v2 {
     pending?: string;
   }
   /**
-   * The tax settings of a merchant account.
+   * The tax settings of a merchant account. All methods require the admin role.
    */
   export interface Schema$AccountTax {
     /**
@@ -847,6 +848,18 @@ export namespace content_v2 {
      * User&#39;s email address.
      */
     emailAddress?: string;
+    /**
+     * Whether user is an order manager.
+     */
+    orderManager?: boolean;
+    /**
+     * Whether user can access payment statements.
+     */
+    paymentsAnalyst?: boolean;
+    /**
+     * Whether user can manage payment settings.
+     */
+    paymentsManager?: boolean;
   }
   export interface Schema$AccountYouTubeChannelLink {
     /**
@@ -1957,6 +1970,10 @@ export namespace content_v2 {
      */
     posExternalAccountId?: string;
   }
+  /**
+   * Local Inventory ads (LIA) settings. All methods except listposdataproviders
+   * require the admin role.
+   */
   export interface Schema$LiaSettings {
     /**
      * The ID of the account to which these LIA settings belong. Ignored upon
@@ -2168,6 +2185,9 @@ export namespace content_v2 {
     returnShipmentIds?: string[];
     state?: string;
   }
+  /**
+   * Order. All methods require the order manager role.
+   */
   export interface Schema$Order {
     /**
      * Whether the order was acknowledged.
@@ -2251,6 +2271,10 @@ export namespace content_v2 {
      * The status of the order.
      */
     status?: string;
+    /**
+     * The party responsible for collecting and remitting taxes.
+     */
+    taxCollector?: string;
   }
   export interface Schema$OrderAddress {
     /**
@@ -2860,6 +2884,9 @@ export namespace content_v2 {
      */
     reasonText?: string;
   }
+  /**
+   * Order disbursement. All methods require the payment analyst role.
+   */
   export interface Schema$OrderReportDisbursement {
     /**
      * The disbursement amount.
@@ -2946,6 +2973,10 @@ export namespace content_v2 {
      */
     productAmount?: Schema$Amount;
     /**
+     * Total amount with remitted tax for the items.
+     */
+    productAmountWithRemittedTax?: Schema$ProductAmount;
+    /**
      * The date of the transaction, in ISO 8601 format.
      */
     transactionDate?: string;
@@ -3020,7 +3051,9 @@ export namespace content_v2 {
      */
     amountPretax?: Schema$Price;
     /**
-     * Tax amount that correspond to cancellation amount in amountPretax.
+     * Tax amount that corresponds to cancellation amount in amountPretax.
+     * Optional, but if filled, then amountPretax must be set. Calculated
+     * automatically if not provided.
      */
     amountTax?: Schema$Price;
     /**
@@ -3252,7 +3285,9 @@ export namespace content_v2 {
      */
     amountPretax?: Schema$Price;
     /**
-     * Tax amount that correspond to cancellation amount in amountPretax.
+     * Tax amount that corresponds to cancellation amount in amountPretax.
+     * Optional, but if filled, then amountPretax must be set. Calculated
+     * automatically if not provided.
      */
     amountTax?: Schema$Price;
     /**
@@ -3326,12 +3361,14 @@ export namespace content_v2 {
      */
     amount?: Schema$Price;
     /**
-     * The amount that is refunded. Either amount or amountPretax and amountTax
-     * should be filled.
+     * The amount that is refunded. Either amount or amountPretax should be
+     * filled.
      */
     amountPretax?: Schema$Price;
     /**
-     * Tax amount that correspond to refund amount in amountPretax.
+     * Tax amount that corresponds to refund amount in amountPretax. Optional,
+     * but if filled, amountPretax must be set. Calculated automatically if not
+     * provided.
      */
     amountTax?: Schema$Price;
     /**
@@ -3394,12 +3431,13 @@ export namespace content_v2 {
   export interface Schema$OrdersCustomBatchRequestEntryReturnRefundLineItem {
     /**
      * The amount that is refunded. If omitted, refundless return is assumed
-     * (same as calling returnLineItem method). Optional, but if filled then
-     * both amountPretax and amountTax must be set.
+     * (same as calling returnLineItem method).
      */
     amountPretax?: Schema$Price;
     /**
-     * Tax amount that correspond to refund amount in amountPretax.
+     * Tax amount that corresponds to refund amount in amountPretax. Optional,
+     * but if filled, then amountPretax must be set. Calculated automatically if
+     * not provided.
      */
     amountTax?: Schema$Price;
     /**
@@ -3710,12 +3748,14 @@ export namespace content_v2 {
      */
     amount?: Schema$Price;
     /**
-     * The amount that is refunded. Either amount or amountPretax and amountTax
-     * should be filled.
+     * The amount that is refunded. Either amount or amountPretax should be
+     * filled.
      */
     amountPretax?: Schema$Price;
     /**
-     * Tax amount that correspond to refund amount in amountPretax.
+     * Tax amount that corresponds to refund amount in amountPretax. Optional,
+     * but if filled, amountPretax must be set. Calculated automatically if not
+     * provided.
      */
     amountTax?: Schema$Price;
     /**
@@ -3823,12 +3863,13 @@ export namespace content_v2 {
   export interface Schema$OrdersReturnRefundLineItemRequest {
     /**
      * The amount that is refunded. If omitted, refundless return is assumed
-     * (same as calling returnLineItem method). Optional, but if filled then
-     * both amountPretax and amountTax must be set.
+     * (same as calling returnLineItem method).
      */
     amountPretax?: Schema$Price;
     /**
-     * Tax amount that correspond to refund amount in amountPretax.
+     * Tax amount that corresponds to refund amount in amountPretax. Optional,
+     * but if filled, then amountPretax must be set. Calculated automatically if
+     * not provided.
      */
     amountTax?: Schema$Price;
     /**
@@ -4463,7 +4504,8 @@ export namespace content_v2 {
     value?: string;
   }
   /**
-   * Product data.
+   * Product data. After inserting, updating, or deleting a product, it may take
+   * several minutes before changes take effect.
    */
   export interface Schema$Product {
     /**
@@ -4805,6 +4847,20 @@ export namespace content_v2 {
      * Read-only warnings.
      */
     warnings?: Schema$Error[];
+  }
+  export interface Schema$ProductAmount {
+    /**
+     * The pre-tax or post-tax price depending on the location of the order.
+     */
+    priceAmount?: Schema$Price;
+    /**
+     * Remitted tax value.
+     */
+    remittedTaxAmount?: Schema$Price;
+    /**
+     * Tax value.
+     */
+    taxAmount?: Schema$Price;
   }
   export interface Schema$ProductAspect {
     /**
@@ -5372,7 +5428,8 @@ export namespace content_v2 {
     trackingNumber?: string;
   }
   /**
-   * The merchant account&#39;s shipping settings.
+   * The merchant account&#39;s shipping settings. All methods except
+   * getsupportedcarriers and getsupportedholidays require the admin role.
    */
   export interface Schema$ShippingSettings {
     /**
