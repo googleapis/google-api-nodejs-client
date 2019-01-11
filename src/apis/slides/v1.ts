@@ -2505,7 +2505,7 @@ export namespace slides_v1 {
    * table where all the cells of the last row are merged together. The table
    * looks like this:                      [             ]  A table range with
    * location = (0, 0), row span = 3 and column span = 2 specifies the following
-   * cells:        x     x       [      x      ]
+   * cells:        x     x       [ x    x    x ]
    */
   export interface Schema$TableRange {
     /**

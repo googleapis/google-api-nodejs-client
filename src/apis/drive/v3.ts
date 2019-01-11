@@ -431,6 +431,10 @@ export namespace drive_v3 {
      */
     explicitlyTrashed?: boolean;
     /**
+     * Links for exporting Google Docs to specific formats.
+     */
+    exportLinks?: {[key: string]: string;};
+    /**
      * The final component of fullFileExtension. This is only available for
      * files with binary content in Drive.
      */
@@ -901,6 +905,10 @@ export namespace drive_v3 {
    * The metadata for a revision to a file.
    */
   export interface Schema$Revision {
+    /**
+     * Links for exporting Google Docs to specific formats.
+     */
+    exportLinks?: {[key: string]: string;};
     /**
      * The ID of the revision.
      */

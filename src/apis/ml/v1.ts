@@ -593,7 +593,7 @@ export namespace ml_v1 {
     type?: string;
   }
   /**
-   * Represents input parameters for a prediction job. Next field: 19
+   * Represents input parameters for a prediction job. Next field: 20
    */
   export interface Schema$GoogleCloudMlV1__PredictionInput {
     /**
@@ -644,8 +644,8 @@ export namespace ml_v1 {
      */
     region?: string;
     /**
-     * Optional. The Google Cloud ML runtime version to use for this batch
-     * prediction. If not set, Google Cloud ML will pick the runtime version
+     * Optional. The Cloud ML Engine runtime version to use for this batch
+     * prediction. If not set, Cloud ML Engine will pick the runtime version
      * used during the CreateVersion request for this model version, or choose
      * the latest stable version when model version information is not available
      * such as when the model is specified by uri.
@@ -820,7 +820,9 @@ export namespace ml_v1 {
      * Optional. The version of Python used in training. If not set, the default
      * version is &#39;2.7&#39;. Python &#39;3.5&#39; is available when
      * `runtime_version` is set to &#39;1.4&#39; and above. Python &#39;2.7&#39;
-     * works with all supported runtime versions.
+     * works with all supported &lt;a
+     * href=&quot;/ml-engine/docs/runtime-version-list&quot;&gt;runtime
+     * versions&lt;/a&gt;.
      */
     pythonVersion?: string;
     /**
@@ -831,9 +833,13 @@ export namespace ml_v1 {
      */
     region?: string;
     /**
-     * Optional. The Google Cloud ML runtime version to use for training.  If
-     * not set, Google Cloud ML will choose a stable version, which is defined
-     * in the documentation of runtime version list.
+     * Optional. The Cloud ML Engine runtime version to use for training. If not
+     * set, Cloud ML Engine uses the default stable version, 1.0. For more
+     * information, see the &lt;a
+     * href=&quot;/ml-engine/docs/runtime-version-list&quot;&gt;runtime version
+     * list&lt;/a&gt; and &lt;a
+     * href=&quot;/ml-engine/docs/versioning&quot;&gt;how to manage runtime
+     * versions&lt;/a&gt;.
      */
     runtimeVersion?: string;
     /**
@@ -988,8 +994,11 @@ export namespace ml_v1 {
      */
     pythonVersion?: string;
     /**
-     * Optional. The Google Cloud ML runtime version to use for this deployment.
-     * If not set, Google Cloud ML will choose a version.
+     * Optional. The Cloud ML Engine runtime version to use for this deployment.
+     * If not set, Cloud ML Engine uses the default stable version, 1.0. For
+     * more information, see the [runtime version
+     * list](/ml-engine/docs/runtime-version-list) and [how to manage runtime
+     * versions](/ml-engine/docs/versioning).
      */
     runtimeVersion?: string;
     /**

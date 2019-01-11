@@ -375,6 +375,10 @@ export namespace fitness_v1 {
      * platform.
      */
     application?: Schema$Application;
+    /**
+     * DO NOT USE THIS FIELD. It is never populated in responses from the
+     * platform, and is ignored in queries.
+     */
     dataQualityStandard?: string[];
     /**
      * A unique identifier for the data stream produced by this data source. The

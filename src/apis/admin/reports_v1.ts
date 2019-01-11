@@ -311,6 +311,7 @@ export namespace admin_reports_v1 {
      * @param {string=} params.eventName Name of the event being queried.
      * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
      * @param {integer=} params.maxResults Number of activity records to be shown in each page.
+     * @param {string=} params.orgUnitID the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
      * @param {string=} params.pageToken Token to specify next page.
      * @param {string=} params.startTime Return events which occurred at or after this time.
      * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
@@ -387,6 +388,7 @@ export namespace admin_reports_v1 {
      * @param {string=} params.eventName Name of the event being queried.
      * @param {string=} params.filters Event parameters in the form [parameter1 name][operator][parameter1 value],[parameter2 name][operator][parameter2 value],...
      * @param {integer=} params.maxResults Number of activity records to be shown in each page.
+     * @param {string=} params.orgUnitID the organizational unit's(OU) ID to filter activities from users belonging to a specific OU or one of its sub-OU(s)
      * @param {string=} params.pageToken Token to specify next page.
      * @param {string=} params.startTime Return events which occurred at or after this time.
      * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
@@ -486,6 +488,11 @@ export namespace admin_reports_v1 {
      */
     maxResults?: number;
     /**
+     * the organizational unit's(OU) ID to filter activities from users
+     * belonging to a specific OU or one of its sub-OU(s)
+     */
+    orgUnitID?: string;
+    /**
      * Token to specify next page.
      */
     pageToken?: string;
@@ -536,6 +543,11 @@ export namespace admin_reports_v1 {
      * Number of activity records to be shown in each page.
      */
     maxResults?: number;
+    /**
+     * the organizational unit's(OU) ID to filter activities from users
+     * belonging to a specific OU or one of its sub-OU(s)
+     */
+    orgUnitID?: string;
     /**
      * Token to specify next page.
      */
@@ -876,6 +888,7 @@ export namespace admin_reports_v1 {
      * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
      * @param {string=} params.filters Represents the set of filters including parameter operator value.
      * @param {integer=} params.maxResults Maximum number of results to return. Maximum allowed is 1000
+     * @param {string=} params.orgUnitID the organizational unit's ID to filter usage parameters from users belonging to a specific OU or one of its sub-OU(s).
      * @param {string=} params.pageToken Token to specify next page.
      * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered.
@@ -959,6 +972,11 @@ export namespace admin_reports_v1 {
      * Maximum number of results to return. Maximum allowed is 1000
      */
     maxResults?: number;
+    /**
+     * the organizational unit's ID to filter usage parameters from users
+     * belonging to a specific OU or one of its sub-OU(s).
+     */
+    orgUnitID?: string;
     /**
      * Token to specify next page.
      */

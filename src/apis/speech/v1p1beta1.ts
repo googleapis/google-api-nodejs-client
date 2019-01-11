@@ -99,229 +99,48 @@ export namespace speech_v1p1beta1 {
    */
   export class Speech {
     operations: Resource$Operations;
-    projects: Resource$Projects;
     speech: Resource$Speech;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
       this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
       this.speech = new Resource$Speech();
     }
   }
 
   /**
-   * Different types of dataset errors and the stats associated with each error.
+   * The response message for Operations.ListOperations.
    */
-  export interface Schema$DataErrors {
+  export interface Schema$ListOperationsResponse {
     /**
-     * Number of records having errors associated with the enum.
-     */
-    count?: number;
-    /**
-     * Type of the error.
-     */
-    errorType?: string;
-  }
-  /**
-   * Specifies the parameters needed for creating a dataset. In addition this is
-   * also the message returned to the client by the `CreateDataset` method. It
-   * is included in the `result.response` field of the `Operation` returned by
-   * the `GetOperation` call of the `google::longrunning::Operations` service.
-   */
-  export interface Schema$Dataset {
-    /**
-     * Output only. All the blocking operations associated with this dataset.
-     * Like (pre-processing, training-model, testing-model)
-     */
-    blockingOperationIds?: string[];
-    /**
-     * If set, the log data to be used in this dataset is restricted to the
-     * bucket specified. This field is only applicable if use_logged_data is
-     * true. If use_logged_data is true, but this field is not set, then all
-     * logs will be used for training the models. See: RecognitionMetadata for
-     * information on setting up data logs.
-     */
-    bucketName?: string;
-    /**
-     * Output only. The timestamp this dataset is created.
-     */
-    createTime?: string;
-    /**
-     * Location where the data should be processed. If not specified then we
-     * will pick a location on behalf of the user for storing and processing the
-     * data. Currently only us-central is supported.
-     */
-    dataProcessingRegion?: string;
-    /**
-     * Output only. Stats assoiated with the data.
-     */
-    dataStats?: Schema$DataStats;
-    /**
-     * Required. Name of the data set for display.
-     */
-    displayName?: string;
-    /**
-     * Output only. True if the data is sufficient to create custom models.
-     */
-    hasSufficientData?: boolean;
-    /**
-     * Required. The language of the supplied audio as a
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Example: &quot;en-US&quot;. See [Language
-     * Support](/speech-to-text/docs/languages) for a list of the currently
-     * supported language codes.
-     */
-    languageCode?: string;
-    /**
-     * All the models (including models pending training) built using the
-     * dataset.
-     */
-    models?: Schema$Model[];
-    /**
-     * Output only. Resource name of the dataset. Form :-
-     * &#39;/projects/{project_number}/locations/{location_id}/datasets/{dataset_id}&#39;
-     */
-    name?: string;
-    /**
-     * Output only. The timestamp this dataset is last updated.
-     */
-    updateTime?: string;
-    /**
-     * URI that points to a file in csv file where each row has following
-     * format.
-     * &lt;gs_path_to_audio&gt;,&lt;gs_path_to_transcript&gt;,&lt;label&gt;
-     * label can be HUMAN_TRANSCRIBED or MACHINE_TRANSCRIBED. To be valid, rows
-     * must do the following: 1. Each row must have at least a label and
-     * &lt;gs_path_to_transcript&gt; 2. If a row is marked HUMAN_TRANSCRIBED,
-     * then you must specify both &lt;gs_path_to_audio&gt; and
-     * &lt;gs_path_to_transcript&gt;. Only WAV file formats which encode linear
-     * 16-bit pulse-code modulation (PCM) audio format are supported. The
-     * maximum audio file size is 50 MB. Also note that the audio has to be
-     * single channel audio. 3. There has to be at least 500 rows labelled
-     * HUMAN_TRANSCRIBED covering at least ~10K words in order to get reliable
-     * word error rate results. 4. To create a language model, you should
-     * provide at least 100,000 words in your transcriptions as training data if
-     * you have conversational and captions type of data. You should provide at
-     * least 10,000 words if you have short utterances like voice commands and
-     * search type of use cases. Currently, only Google Cloud Storage URIs are
-     * supported, which must be specified in the following format:
-     * `gs://bucket_name/object_name` (other URI formats will be ignored). For
-     * more information, see [Request URIs](/storage/docs/reference-uris).
-     */
-    uri?: string;
-    /**
-     * If this is true, then use the previously logged data (for the project)
-     * The logs data for this project will be preprocessed and prepared for
-     * downstream pipelines (like training)
-     */
-    useLoggedData?: boolean;
-  }
-  /**
-   * Contains stats about the data which was uploaded and preprocessed to be use
-   * by downstream pipelines like training, evals pipelines.
-   */
-  export interface Schema$DataStats {
-    /**
-     * Different types of data errors and the counts associated with them.
-     */
-    dataErrors?: Schema$DataErrors[];
-    /**
-     * The number of examples used for testing.
-     */
-    testExampleCount?: number;
-    /**
-     * The number of examples used for training.
-     */
-    trainingExampleCount?: number;
-  }
-  /**
-   * Message sent by the client for the `DeployModel` method.
-   */
-  export interface Schema$DeployModelRequest {}
-  /**
-   * Message sent by the client for the `EvaluateModel` method.
-   */
-  export interface Schema$EvaluateModelRequest {}
-  /**
-   * The only message returned to the client by the `EvaluateModel` method. This
-   * is also returned as part of the Dataset message returned to the client by
-   * the CreateDataset method. It is included in the `result.response` field of
-   * the `Operation` returned by the `GetOperation` call of the
-   * `google::longrunning::Operations` service.
-   */
-  export interface Schema$EvaluateModelResponse {
-    /**
-     * If true then it means we are referring to the results of an enhanced
-     * version of the model_type. Currently only PHONE_CALL model_type has an
-     * enhanced version.
-     */
-    isEnhancedModel?: boolean;
-    /**
-     * Required. The type of model used in this evaluation.
-     */
-    modelType?: string;
-    /**
-     * Number of words used in the word_error_rate computation.
-     */
-    wordCount?: number;
-    /**
-     * Word error rate metric computed on the test set using the AutoML model.
-     */
-    wordErrorRate?: number;
-  }
-  export interface Schema$ListDatasetsResponse {
-    /**
-     * Repeated list of data sets containing details about each data set.
-     */
-    datasets?: Schema$Dataset[];
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
+     * The standard List next-page token.
      */
     nextPageToken?: string;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$Operation[];
   }
   /**
-   * Message received by the client for the `ListLogDataStats` method.
+   * Describes the progress of a long-running `LongRunningRecognize` call. It is
+   * included in the `metadata` field of the `Operation` returned by the
+   * `GetOperation` call of the `google::longrunning::Operations` service.
    */
-  export interface Schema$ListLogDataStatsResponse {
+  export interface Schema$LongRunningRecognizeMetadata {
     /**
-     * Output only. True if user has opted in for log data collection.
+     * Time of the most recent processing update.
      */
-    logDataEnabled?: boolean;
+    lastUpdateTime?: string;
     /**
-     * The stats for each bucket.
+     * Approximate percentage of audio processed thus far. Guaranteed to be 100
+     * when the audio is fully processed and the results are available.
      */
-    logDataStats?: Schema$LogBucketStats[];
+    progressPercent?: number;
     /**
-     * The overall count for log data (including all bucket data).
+     * Time when the request was received.
      */
-    totalCount?: number;
-  }
-  export interface Schema$ListModelsResponse {
-    /**
-     * Repeated list of models containing details about each model.
-     */
-    models?: Schema$Model[];
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more
-     * results in the list.
-     */
-    nextPageToken?: string;
-  }
-  /**
-   * Stats for log data within a bucket.
-   */
-  export interface Schema$LogBucketStats {
-    /**
-     * The display name for the bucket in which logs are collected.
-     */
-    bucketName?: string;
-    /**
-     * Number of audio samples that have been collected in this bucket.
-     */
-    count?: number;
+    startTime?: string;
   }
   /**
    * The top-level message sent by the client for the `LongRunningRecognize`
@@ -339,37 +158,18 @@ export namespace speech_v1p1beta1 {
     config?: Schema$RecognitionConfig;
   }
   /**
-   * Specifies the model parameters needed for training a model. In addition
-   * this is also the message returned to the client by the `CreateModel`
-   * method. It is included in the `result.response` field of the `Operation`
-   * returned by the `GetOperation` call of the
+   * The only message returned to the client by the `LongRunningRecognize`
+   * method. It contains the result as zero or more sequential
+   * `SpeechRecognitionResult` messages. It is included in the `result.response`
+   * field of the `Operation` returned by the `GetOperation` call of the
    * `google::longrunning::Operations` service.
    */
-  export interface Schema$Model {
+  export interface Schema$LongRunningRecognizeResponse {
     /**
-     * Output only. Timestamp when this model was created.
+     * Output only. Sequential list of transcription results corresponding to
+     * sequential portions of audio.
      */
-    createTime?: string;
-    /**
-     * Required. Display name of the model to be trained.
-     */
-    displayName?: string;
-    /**
-     * Output only. Evaluation results associated with this model. A model can
-     * contain multiple sub-models in which case the evaluation results for all
-     * of those are available. If there are no sub models then there would be
-     * just a single EvaluateModelResponse.
-     */
-    evaluateModelResponses?: Schema$EvaluateModelResponse[];
-    /**
-     * Output only. Resource name of the model. Format:
-     * &quot;projects/{project_id}/locations/{location_id}/models/{model_id}&quot;
-     */
-    name?: string;
-    /**
-     * Required. Type of the training to perform.
-     */
-    trainingType?: string;
+    results?: Schema$SpeechRecognitionResult[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -464,9 +264,21 @@ export namespace speech_v1p1beta1 {
      */
     audioChannelCount?: number;
     /**
+     * *Optional* Config to enable speaker diarization and set additional
+     * parameters to make diarization better suited for your application. Note:
+     * When this is enabled, we send all the words from the beginning of the
+     * audio for the top alternative in every consecutive STREAMING responses.
+     * This is done in order to improve our speaker tags as our models learn to
+     * identify the speakers in the conversation over time. For non-streaming
+     * requests, the diarization results will be provided only in the top
+     * alternative of the FINAL SpeechRecognitionResult.
+     */
+    diarizationConfig?: Schema$SpeakerDiarizationConfig;
+    /**
      * *Optional* If set, specifies the estimated number of speakers in the
      * conversation. If not set, defaults to &#39;2&#39;. Ignored unless
-     * enable_speaker_diarization is set to true.&quot;
+     * enable_speaker_diarization is set to true.&quot; Note: Use
+     * diarization_config instead. This field will be DEPRECATED soon.
      */
     diarizationSpeakerCount?: number;
     /**
@@ -491,13 +303,8 @@ export namespace speech_v1p1beta1 {
     /**
      * *Optional* If &#39;true&#39;, enables speaker detection for each
      * recognized word in the top alternative of the recognition result using a
-     * speaker_tag provided in the WordInfo. Note: When this is true, we send
-     * all the words from the beginning of the audio for the top alternative in
-     * every consecutive STREAMING responses. This is done in order to improve
-     * our speaker tags as our models learn to identify the speakers in the
-     * conversation over time. For non-streaming requests, the diarization
-     * results will be provided only in the top alternative of the FINAL
-     * SpeechRecognitionResult.
+     * speaker_tag provided in the WordInfo. Note: Use diarization_config
+     * instead. This field will be DEPRECATED soon.
      */
     enableSpeakerDiarization?: boolean;
     /**
@@ -652,12 +459,6 @@ export namespace speech_v1p1beta1 {
      * The type of device the speech was recorded with.
      */
     recordingDeviceType?: string;
-    /**
-     * A freeform field to tag this input sample with. This can be used for
-     * grouping the logs into separate buckets. This enables selective purging
-     * of data based on the tags, and also for training models in AutoML.
-     */
-    tags?: string[];
   }
   /**
    * The top-level message sent by the client for the `Recognize` method.
@@ -685,30 +486,27 @@ export namespace speech_v1p1beta1 {
      */
     results?: Schema$SpeechRecognitionResult[];
   }
-  /**
-   * Message sent by the client to refresh data in a existing dataset.
-   */
-  export interface Schema$RefreshDataRequest {
+  export interface Schema$SpeakerDiarizationConfig {
     /**
-     * URI that points to a file in csv file where each row has following
-     * format.
-     * &lt;gs_path_to_audio&gt;,&lt;gs_path_to_transcript&gt;,&lt;label&gt;
-     * label can be HUMAN_TRANSCRIBED or MACHINE_TRANSCRIBED. Few rules for a
-     * row to be considered valid are :- 1. Each row must have at least a label
-     * and &lt;gs_path_to_transcript&gt; 2. If a row is marked
-     * HUMAN_TRANSCRIBED, then both &lt;gs_path_to_audio&gt; and
-     * &lt;gs_path_to_transcript&gt; needs to be specified. 3. There has to be
-     * minimum 500 number of rows labelled HUMAN_TRANSCRIBED if evaluation stats
-     * are required. 4. If use_logged_data_for_training is set to true, then we
-     * ignore the rows labelled as MACHINE_TRANSCRIBED. 5. There has to be
-     * minimum 100,000 words in the transcripts in order to provide sufficient
-     * textual training data for the language model. Currently, only Google
-     * Cloud Storage URIs are supported, which must be specified in the
-     * following format: `gs://bucket_name/object_name` (other URI formats will
-     * be ignored). For more information, see [Request
-     * URIs](https://cloud.google.com/storage/docs/reference-uris).
+     * *Optional* If &#39;true&#39;, enables speaker detection for each
+     * recognized word in the top alternative of the recognition result using a
+     * speaker_tag provided in the WordInfo.
      */
-    uri?: string;
+    enableSpeakerDiarization?: boolean;
+    /**
+     * *Optional* Only used if diarization_speaker_count is not set. Maximum
+     * number of speakers in the conversation. This range gives you more
+     * flexibility by allowing the system to automatically determine the correct
+     * number of speakers. If not set, the default value is 6.
+     */
+    maxSpeakerCount?: number;
+    /**
+     * *Optional* Only used if diarization_speaker_count is not set. Minimum
+     * number of speakers in the conversation. This range gives you more
+     * flexibility by allowing the system to automatically determine the correct
+     * number of speakers. If not set, the default value is 2.
+     */
+    minSpeakerCount?: number;
   }
   /**
    * Provides &quot;hints&quot; to the speech recognizer to favor specific words
@@ -725,14 +523,6 @@ export namespace speech_v1p1beta1 {
      * limits](/speech-to-text/quotas#content).
      */
     phrases?: string[];
-    /**
-     * Hint strength to use (high, medium or low). If you use a high strength
-     * then you are more likely to see those phrases in the results. If strength
-     * is not specified then by default medium strength will be used. If
-     * you&#39;d like different phrases to have different strengths, you can
-     * specify multiple speech_contexts.
-     */
-    strength?: string;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -947,6 +737,83 @@ export namespace speech_v1p1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * speech.operations.list
+     * @desc Lists operations that match the specified filter in the request. If
+     * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
+     * the `name` binding allows API services to override the binding to use
+     * different resource name schemes, such as `users/x/operations`. To
+     * override the binding, API services can add a binding such as
+     * `"/v1/{name=users/x}/operations"` to their service configuration. For
+     * backwards compatibility, the default name includes the operations
+     * collection id, however overriding users must ensure the name binding is
+     * the parent resource, without the operations collection id.
+     * @alias speech.operations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string=} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
+        AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+        void|AxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1p1beta1/operations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Operations$Get extends StandardParameters {
@@ -960,855 +827,29 @@ export namespace speech_v1p1beta1 {
      */
     name?: string;
   }
-
-
-  export class Resource$Projects {
-    locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
-    }
-  }
-
-
-  export class Resource$Projects$Locations {
-    datasets: Resource$Projects$Locations$Datasets;
-    log_data_stats: Resource$Projects$Locations$Log_data_stats;
-    models: Resource$Projects$Locations$Models;
-    constructor() {
-      this.datasets = new Resource$Projects$Locations$Datasets();
-      this.log_data_stats = new Resource$Projects$Locations$Log_data_stats();
-      this.models = new Resource$Projects$Locations$Models();
-    }
-  }
-
-
-  export class Resource$Projects$Locations$Datasets {
-    constructor() {}
-
-
-    /**
-     * speech.projects.locations.datasets.create
-     * @desc Performs asynchronous data upload for AutoML: receive results via
-     * the google.longrunning.Operations interface. Returns either an
-     * `Operation.error` or an `Operation.response` which contains a `Dataset`
-     * message.
-     * @alias speech.projects.locations.datasets.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name of the parent. Has the format :- "projects/{project_id}/locations/{location_id}"
-     * @param {().Dataset} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-        params?: Params$Resource$Projects$Locations$Datasets$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    create(
-        params: Params$Resource$Projects$Locations$Datasets$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-        params: Params$Resource$Projects$Locations$Datasets$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+parent}/datasets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * speech.projects.locations.datasets.get
-     * @desc Get the dataset associated with the dataset resource.
-     * @alias speech.projects.locations.datasets.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.includeModelInfo If true then also include information about the models built using this dataset.
-     * @param {string} params.name The resource name of the dataset to retrieve. Form :- '/projects/{project_number}/locations/{location_id}/datasets/{dataset_id}'
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Projects$Locations$Datasets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
-    get(params: Params$Resource$Projects$Locations$Datasets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(params: Params$Resource$Projects$Locations$Datasets$Get,
-        callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(callback: BodyResponseCallback<Schema$Dataset>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Get|
-        BodyResponseCallback<Schema$Dataset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+name}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Dataset>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Dataset>(parameters);
-      }
-    }
-
-
-    /**
-     * speech.projects.locations.datasets.list
-     * @desc Fetch the list of dataset associated with this project.
-     * @alias speech.projects.locations.datasets.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter the response based on display_name of the dataset. For e.g display_name=Foo The filter string is case sensitive
-     * @param {boolean=} params.includeModelInfo If true then also include information about the models built using the datasets.
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. Resource name of the parent. Has the format :- "projects/{project_id}/locations/{location_id}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Projects$Locations$Datasets$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDatasetsResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Datasets$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDatasetsResponse>,
-        callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
-    list(
-        params: Params$Resource$Projects$Locations$Datasets$List,
-        callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$List|
-        BodyResponseCallback<Schema$ListDatasetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDatasetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDatasetsResponse>):
-        void|AxiosPromise<Schema$ListDatasetsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+parent}/datasets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListDatasetsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListDatasetsResponse>(parameters);
-      }
-    }
-
-
-    /**
-     * speech.projects.locations.datasets.refreshData
-     * @desc Refresh data for a dataset.
-     * @alias speech.projects.locations.datasets.refreshData
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the destination dataset.
-     * @param {().RefreshDataRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    refreshData(
-        params?: Params$Resource$Projects$Locations$Datasets$Refreshdata,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    refreshData(
-        params: Params$Resource$Projects$Locations$Datasets$Refreshdata,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    refreshData(
-        params: Params$Resource$Projects$Locations$Datasets$Refreshdata,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    refreshData(callback: BodyResponseCallback<Schema$Operation>): void;
-    refreshData(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Refreshdata|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Refreshdata;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Refreshdata;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+name}:refreshData')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Datasets$Create extends
-      StandardParameters {
+  export interface Params$Resource$Operations$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. Resource name of the parent. Has the format :-
-     * "projects/{project_id}/locations/{location_id}"
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Dataset;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Get extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * If true then also include information about the models built using this
-     * dataset.
-     */
-    includeModelInfo?: boolean;
-    /**
-     * The resource name of the dataset to retrieve. Form :-
-     * '/projects/{project_number}/locations/{location_id}/datasets/{dataset_id}'
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$List extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Filter the response based on display_name of the dataset. For e.g
-     * display_name=Foo The filter string is case sensitive
+     * The standard list filter.
      */
     filter?: string;
     /**
-     * If true then also include information about the models built using the
-     * datasets.
+     * The name of the operation's parent resource.
      */
-    includeModelInfo?: boolean;
+    name?: string;
     /**
-     * The maximum number of items to return.
+     * The standard list page size.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous List request, if any.
+     * The standard list page token.
      */
     pageToken?: string;
-    /**
-     * Required. Resource name of the parent. Has the format :-
-     * "projects/{project_id}/locations/{location_id}"
-     */
-    parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Datasets$Refreshdata
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The resource name of the destination dataset.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RefreshDataRequest;
-  }
-
-
-  export class Resource$Projects$Locations$Log_data_stats {
-    constructor() {}
-
-
-    /**
-     * speech.projects.locations.log_data_stats.list
-     * @desc List all log data stats associated with this project.
-     * @alias speech.projects.locations.log_data_stats.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name of the parent. Has the format :- "projects/{project_id}/locations/{location_id}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Projects$Locations$Log_data_stats$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogDataStatsResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Log_data_stats$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLogDataStatsResponse>,
-        callback: BodyResponseCallback<Schema$ListLogDataStatsResponse>): void;
-    list(
-        params: Params$Resource$Projects$Locations$Log_data_stats$List,
-        callback: BodyResponseCallback<Schema$ListLogDataStatsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListLogDataStatsResponse>): void;
-    list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Log_data_stats$List|
-        BodyResponseCallback<Schema$ListLogDataStatsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLogDataStatsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLogDataStatsResponse>):
-        void|AxiosPromise<Schema$ListLogDataStatsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Log_data_stats$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Log_data_stats$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+parent}/log_data_stats')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLogDataStatsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLogDataStatsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Log_data_stats$List
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. Resource name of the parent. Has the format :-
-     * "projects/{project_id}/locations/{location_id}"
-     */
-    parent?: string;
-  }
-
-
-  export class Resource$Projects$Locations$Models {
-    constructor() {}
-
-
-    /**
-     * speech.projects.locations.models.create
-     * @desc Performs asynchronous model training for AutoML: receive results
-     * via the google.longrunning.Operations interface. Returns either an
-     * `Operation.error` or an `Operation.response` which contains a `Model`
-     * message.
-     * @alias speech.projects.locations.models.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.name Required. Resource name of the dataset being used to create the model. '/projects/{project_id}/locations/{location_id}/datasets/{dataset_id}'
-     * @param {string} params.parent Required. Resource name of the parent. Has the format :- "projects/{project_id}/locations/{location_id}"
-     * @param {().Model} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-        params?: Params$Resource$Projects$Locations$Models$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    create(
-        params: Params$Resource$Projects$Locations$Models$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-        params: Params$Resource$Projects$Locations$Models$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Models$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Models$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Models$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+parent}/models')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * speech.projects.locations.models.deploy
-     * @desc Performs asynchronous model deployment of the model: receive
-     * results via the google.longrunning.Operations interface. After the
-     * operation is completed this returns either an `Operation.error` in case
-     * of error or a `google.protobuf.Empty` if the deployment was successful.
-     * @alias speech.projects.locations.models.deploy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the model. Format: "projects/{project_id}/locations/{location_id}/models/{model_id}"
-     * @param {().DeployModelRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    deploy(
-        params?: Params$Resource$Projects$Locations$Models$Deploy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    deploy(
-        params: Params$Resource$Projects$Locations$Models$Deploy,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    deploy(
-        params: Params$Resource$Projects$Locations$Models$Deploy,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    deploy(callback: BodyResponseCallback<Schema$Operation>): void;
-    deploy(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Models$Deploy|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Models$Deploy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Models$Deploy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+name}:deploy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * speech.projects.locations.models.evaluate
-     * @desc Performs asynchronous evaluation of the model: receive results via
-     * the google.longrunning.Operations interface. After the operation is
-     * completed this returns either an `Operation.error` in case of error or a
-     * `EvaluateModelResponse` with the evaluation results.
-     * @alias speech.projects.locations.models.evaluate
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the model. Format: "projects/{project_id}/locations/{location_id}/models/{model_id}"
-     * @param {().EvaluateModelRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    evaluate(
-        params?: Params$Resource$Projects$Locations$Models$Evaluate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    evaluate(
-        params: Params$Resource$Projects$Locations$Models$Evaluate,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    evaluate(
-        params: Params$Resource$Projects$Locations$Models$Evaluate,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    evaluate(callback: BodyResponseCallback<Schema$Operation>): void;
-    evaluate(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Models$Evaluate|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Models$Evaluate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Models$Evaluate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+name}:evaluate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * speech.projects.locations.models.list
-     * @desc Fetch the list of models associated with this project.
-     * @alias speech.projects.locations.models.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter the response based on display_name of the model. For e.g display_name=Foo The filter string is case sensitive
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. Resource name of the parent. Has the format :- "projects/{project_id}/locations/{location_id}"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Projects$Locations$Models$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListModelsResponse>;
-    list(
-        params: Params$Resource$Projects$Locations$Models$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListModelsResponse>,
-        callback: BodyResponseCallback<Schema$ListModelsResponse>): void;
-    list(
-        params: Params$Resource$Projects$Locations$Models$List,
-        callback: BodyResponseCallback<Schema$ListModelsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListModelsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Models$List|
-        BodyResponseCallback<Schema$ListModelsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListModelsResponse>,
-        callback?: BodyResponseCallback<Schema$ListModelsResponse>):
-        void|AxiosPromise<Schema$ListModelsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Models$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Models$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1p1beta1/{+parent}/models')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListModelsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListModelsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Models$Create extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. Resource name of the dataset being used to create the model.
-     * '/projects/{project_id}/locations/{location_id}/datasets/{dataset_id}'
-     */
-    name?: string;
-    /**
-     * Required. Resource name of the parent. Has the format :-
-     * "projects/{project_id}/locations/{location_id}"
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Model;
-  }
-  export interface Params$Resource$Projects$Locations$Models$Deploy extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Resource name of the model. Format:
-     * "projects/{project_id}/locations/{location_id}/models/{model_id}"
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$DeployModelRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Models$Evaluate extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Resource name of the model. Format:
-     * "projects/{project_id}/locations/{location_id}/models/{model_id}"
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$EvaluateModelRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Models$List extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Filter the response based on display_name of the model. For e.g
-     * display_name=Foo The filter string is case sensitive
-     */
-    filter?: string;
-    /**
-     * The maximum number of items to return.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous List request, if any.
-     */
-    pageToken?: string;
-    /**
-     * Required. Resource name of the parent. Has the format :-
-     * "projects/{project_id}/locations/{location_id}"
-     */
-    parent?: string;
-  }
-
 
 
   export class Resource$Speech {

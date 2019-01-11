@@ -99,11 +99,13 @@ export namespace alertcenter_v1beta1 {
    */
   export class Alertcenter {
     alerts: Resource$Alerts;
+    v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
       this.alerts = new Resource$Alerts();
+      this.v1beta1 = new Resource$V1beta1();
     }
   }
 
@@ -159,7 +161,7 @@ export namespace alertcenter_v1beta1 {
      */
     securityInvestigationToolLink?: string;
     /**
-     * Required. A unique identifier for the system that is reported the alert.
+     * Required. A unique identifier for the system that reported the alert.
      * Supported sources are any of the following:  * Google Operations * Mobile
      * device management * Gmail phishing * Domain wide takeout * Government
      * attack warning * Google identity
@@ -235,6 +237,24 @@ export namespace alertcenter_v1beta1 {
      * The source IP address of the malicious email, for example, `127.0.0.1`.
      */
     sourceIp?: string;
+  }
+  /**
+   * A reference to a Cloud Pubsub topic.  To register for notifications, the
+   * owner of the topic must grant
+   * `alerts-api-push-notifications@system.gserviceaccount.com` the
+   * `projects.topics.publish` permission.
+   */
+  export interface Schema$CloudPubsubTopic {
+    /**
+     * Optional. The format of the payload that would be sent. If not specified
+     * the format will be JSON.
+     */
+    payloadFormat?: string;
+    /**
+     * The `name` field of a Cloud Pubsub [Topic]
+     * (https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+     */
+    topicName?: string;
   }
   /**
    * A representation of a CSV file attachment, as a list of column headers and
@@ -476,6 +496,16 @@ export namespace alertcenter_v1beta1 {
     fromHeader?: string;
   }
   /**
+   * Settings for callback notifications. For more details see [G Suite Alert
+   * Notification](/admin-sdk/alertcenter/guides/notifications).
+   */
+  export interface Schema$Notification {
+    /**
+     * A Google Cloud Pub/sub topic destination.
+     */
+    cloudPubsubTopic?: Schema$CloudPubsubTopic;
+  }
+  /**
    * Alert for a spike in user reported phishing. &lt;aside
    * class=&quot;warning&quot;&gt;&lt;b&gt;Warning&lt;/b&gt;: This type has been
    * deprecated. Use
@@ -499,6 +529,15 @@ export namespace alertcenter_v1beta1 {
      * The list of messages contained by this alert.
      */
     messages?: Schema$GmailMessageInfo[];
+  }
+  /**
+   * Customer-level settings.
+   */
+  export interface Schema$Settings {
+    /**
+     * The list of notifications.
+     */
+    notifications?: Schema$Notification[];
   }
   /**
    * A state-sponsored attack alert. Derived from audit logs.
@@ -562,6 +601,17 @@ export namespace alertcenter_v1beta1 {
      * The serial number of the device.
      */
     serialNumber?: string;
+  }
+  /**
+   * A request to undelete a specific alert that was marked for deletion.
+   */
+  export interface Schema$UndeleteAlertRequest {
+    /**
+     * Optional. The unique identifier of the G Suite organization account of
+     * the customer the alert is associated with. Inferred from the caller
+     * identity if not provided.
+     */
+    customerId?: string;
   }
 
 
@@ -769,6 +819,76 @@ export namespace alertcenter_v1beta1 {
         return createAPIRequest<Schema$ListAlertsResponse>(parameters);
       }
     }
+
+
+    /**
+     * alertcenter.alerts.undelete
+     * @desc Restores, or "undeletes", an alert that was marked for deletion
+     * within the past 30 days. Attempting to undelete an alert which was marked
+     * for deletion over 30 days ago (which has been removed from the Alert
+     * Center database) or a nonexistent alert returns a `NOT_FOUND` error.
+     * Attempting to undelete an alert which has not been marked for deletion
+     * has no effect.
+     * @alias alertcenter.alerts.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.alertId Required. The identifier of the alert to undelete.
+     * @param {().UndeleteAlertRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(params?: Params$Resource$Alerts$Undelete, options?: MethodOptions):
+        AxiosPromise<Schema$Alert>;
+    undelete(
+        params: Params$Resource$Alerts$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$Alert>,
+        callback: BodyResponseCallback<Schema$Alert>): void;
+    undelete(
+        params: Params$Resource$Alerts$Undelete,
+        callback: BodyResponseCallback<Schema$Alert>): void;
+    undelete(callback: BodyResponseCallback<Schema$Alert>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Alerts$Undelete|
+        BodyResponseCallback<Schema$Alert>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alert>,
+        callback?: BodyResponseCallback<Schema$Alert>):
+        void|AxiosPromise<Schema$Alert> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Alerts$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/alerts/{alertId}:undelete')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['alertId'],
+        pathParams: ['alertId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Alert>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Alert>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Alerts$Delete extends StandardParameters {
@@ -844,6 +964,22 @@ export namespace alertcenter_v1beta1 {
      * the value from the previous ListAlertsResponse's next_page_token field.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Alerts$Undelete extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The identifier of the alert to undelete.
+     */
+    alertId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteAlertRequest;
   }
 
   export class Resource$Alerts$Feedback {
@@ -1041,5 +1177,178 @@ export namespace alertcenter_v1beta1 {
      * fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      */
     filter?: string;
+  }
+
+
+
+  export class Resource$V1beta1 {
+    constructor() {}
+
+
+    /**
+     * alertcenter.getSettings
+     * @desc Returns customer-level settings.
+     * @alias alertcenter.getSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getSettings(
+        params?: Params$Resource$V1beta1$Getsettings,
+        options?: MethodOptions): AxiosPromise<Schema$Settings>;
+    getSettings(
+        params: Params$Resource$V1beta1$Getsettings,
+        options: MethodOptions|BodyResponseCallback<Schema$Settings>,
+        callback: BodyResponseCallback<Schema$Settings>): void;
+    getSettings(
+        params: Params$Resource$V1beta1$Getsettings,
+        callback: BodyResponseCallback<Schema$Settings>): void;
+    getSettings(callback: BodyResponseCallback<Schema$Settings>): void;
+    getSettings(
+        paramsOrCallback?: Params$Resource$V1beta1$Getsettings|
+        BodyResponseCallback<Schema$Settings>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
+        callback?: BodyResponseCallback<Schema$Settings>):
+        void|AxiosPromise<Schema$Settings> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1beta1$Getsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1beta1$Getsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Settings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Settings>(parameters);
+      }
+    }
+
+
+    /**
+     * alertcenter.updateSettings
+     * @desc Update the customer-level settings.
+     * @alias alertcenter.updateSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * @param {().Settings} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateSettings(
+        params?: Params$Resource$V1beta1$Updatesettings,
+        options?: MethodOptions): AxiosPromise<Schema$Settings>;
+    updateSettings(
+        params: Params$Resource$V1beta1$Updatesettings,
+        options: MethodOptions|BodyResponseCallback<Schema$Settings>,
+        callback: BodyResponseCallback<Schema$Settings>): void;
+    updateSettings(
+        params: Params$Resource$V1beta1$Updatesettings,
+        callback: BodyResponseCallback<Schema$Settings>): void;
+    updateSettings(callback: BodyResponseCallback<Schema$Settings>): void;
+    updateSettings(
+        paramsOrCallback?: Params$Resource$V1beta1$Updatesettings|
+        BodyResponseCallback<Schema$Settings>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
+        callback?: BodyResponseCallback<Schema$Settings>):
+        void|AxiosPromise<Schema$Settings> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1beta1$Updatesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1beta1$Updatesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alertcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl + '/v1beta1/settings').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Settings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Settings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1beta1$Getsettings extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The unique identifier of the G Suite organization account of
+     * the customer the alert settings are associated with. Inferred from the
+     * caller identity if not provided.
+     */
+    customerId?: string;
+  }
+  export interface Params$Resource$V1beta1$Updatesettings extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The unique identifier of the G Suite organization account of
+     * the customer the alert settings are associated with. Inferred from the
+     * caller identity if not provided.
+     */
+    customerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Settings;
   }
 }
