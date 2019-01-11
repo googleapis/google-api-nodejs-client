@@ -6481,10 +6481,10 @@ export namespace vision_v1 {
 
     /**
      * vision.projects.locations.productSets.delete
-     * @desc Permanently deletes a ProductSet. All Products and ReferenceImages
-     * in the ProductSet will be deleted.  The actual image files are not
-     * deleted from Google Cloud Storage.  Possible errors:  * Returns NOT_FOUND
-     * if the ProductSet does not exist.
+     * @desc Permanently deletes a ProductSet. Products and ReferenceImages in
+     * the ProductSet are not deleted.  The actual image files are not deleted
+     * from Google Cloud Storage.  Possible errors:  * Returns NOT_FOUND if the
+     * ProductSet does not exist.
      * @alias vision.projects.locations.productSets.delete
      * @memberOf! ()
      *

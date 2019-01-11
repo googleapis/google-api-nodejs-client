@@ -1144,9 +1144,10 @@ export namespace streetviewpublish_v1 {
      * BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures
      * that can occur per photo.  Only the fields specified in updateMask field
      * are used. If `updateMask` is not present, the update applies to all
-     * fields.  <aside class="note"><b>Note:</b> To update Pose.altitude,
-     * Pose.latLngPair has to be filled as well. Otherwise, the request will
-     * fail.</aside>
+     * fields.  The number of UpdatePhotoRequest messages in a
+     * BatchUpdatePhotosRequest must not exceed 20.  <aside
+     * class="note"><b>Note:</b> To update Pose.altitude, Pose.latLngPair has to
+     * be filled as well. Otherwise, the request will fail.</aside>
      * @alias streetviewpublish.photos.batchUpdate
      * @memberOf! ()
      *

@@ -14,19 +14,16 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {getAPI, GoogleConfigurable} from 'googleapis-common';
-import {replicapoolupdater_v1beta1} from './v1beta1';
+import {bigtableadmin_v2} from './v2';
 
 export const VERSIONS = {
-  'v1beta1': replicapoolupdater_v1beta1.Replicapoolupdater,
+  'v2': bigtableadmin_v2.Bigtableadmin,
 };
 
-export function replicapoolupdater(version: 'v1beta1'):
-    replicapoolupdater_v1beta1.Replicapoolupdater;
-export function replicapoolupdater(options: replicapoolupdater_v1beta1.Options):
-    replicapoolupdater_v1beta1.Replicapoolupdater;
-export function
-replicapoolupdater<T = replicapoolupdater_v1beta1.Replicapoolupdater>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1beta1'|replicapoolupdater_v1beta1.Options) {
-  return getAPI<T>('replicapoolupdater', versionOrOptions, VERSIONS, this);
+export function bigtableadmin(version: 'v2'): bigtableadmin_v2.Bigtableadmin;
+export function bigtableadmin(options: bigtableadmin_v2.Options):
+    bigtableadmin_v2.Bigtableadmin;
+export function bigtableadmin<T = bigtableadmin_v2.Bigtableadmin>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|bigtableadmin_v2.Options) {
+  return getAPI<T>('bigtableadmin', versionOrOptions, VERSIONS, this);
 }

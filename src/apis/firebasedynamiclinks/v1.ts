@@ -549,6 +549,11 @@ export namespace firebasedynamiclinks_v1 {
      */
     invitationId?: string;
     /**
+     * FDL input value of the &quot;&amp;imv=&quot; parameter, minimum app
+     * version to be returned to Google Firebase SDK running on iOS-9.
+     */
+    iosMinAppVersion?: string;
+    /**
      * The entire FDL, expanded from a short link. It is the same as the
      * requested_link, if it is long.
      */

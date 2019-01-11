@@ -194,10 +194,10 @@ export namespace deploymentmanager_alpha {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
-     * condition will not allow user access via current binding. Different
-     * bindings, including their conditions, are examined independently. This
-     * field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
      */
     condition?: Schema$Expr;
     /**
@@ -249,13 +249,9 @@ export namespace deploymentmanager_alpha {
      * when the resource is created.
      */
     description?: string;
-    /**
-     * Output only. Unique identifier for the resource; defined by the server.
-     */
     id?: string;
     /**
-     * Output only. Timestamp when the composite type was created, in RFC3339
-     * text format.
+     * Output only. Creation timestamp in RFC3339 text format.
      */
     insertTime?: string;
     /**
@@ -278,7 +274,7 @@ export namespace deploymentmanager_alpha {
      */
     operation?: Schema$Operation;
     /**
-     * Output only. Self link for the type provider.
+     * Output only. Server defined URL for the resource.
      */
     selfLink?: string;
     status?: string;
@@ -402,13 +398,9 @@ export namespace deploymentmanager_alpha {
      * perform a get() request to a deployment.
      */
     fingerprint?: string;
-    /**
-     * Output only. Unique identifier for the resource; defined by the server.
-     */
     id?: string;
     /**
-     * Output only. Timestamp when the deployment was created, in RFC3339 text
-     * format .
+     * Output only. Creation timestamp in RFC3339 text format.
      */
     insertTime?: string;
     /**
@@ -446,7 +438,7 @@ export namespace deploymentmanager_alpha {
      */
     outputs?: Schema$DeploymentOutputsEntry[];
     /**
-     * Output only. Self link for the deployment.
+     * Output only. Server defined URL for the resource.
      */
     selfLink?: string;
     /**
@@ -459,6 +451,10 @@ export namespace deploymentmanager_alpha {
      * update to this deployment, the updated configuration appears here.
      */
     update?: Schema$DeploymentUpdate;
+    /**
+     * Output only. Update timestamp in RFC3339 text format.
+     */
+    updateTime?: string;
   }
   export interface Schema$DeploymentLabelEntry {
     key?: string;
@@ -582,7 +578,7 @@ export namespace deploymentmanager_alpha {
   }
   export interface Schema$GlobalSetPolicyRequest {
     /**
-     * Flatten Policy to create a backwacd compatible wire-format. Deprecated.
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
      * Use &#39;policy&#39; to specify bindings.
      */
     bindings?: Schema$Binding[];
@@ -667,16 +663,17 @@ export namespace deploymentmanager_alpha {
    * and end in &quot;_count&quot;. Field names should not contain an initial
    * slash. The actual exported metric names will have &quot;/iam/policy&quot;
    * prepended.  Field names correspond to IAM request parameters and field
-   * values are their respective values.  At present the only supported field
-   * names are - &quot;iam_principal&quot;, corresponding to
-   * IAMContext.principal; - &quot;&quot; (empty string), resulting in one
-   * aggretated counter with no field.  Examples: counter { metric:
+   * values are their respective values.  Supported field names: -
+   * &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is
+   * present, otherwise the value of IAMContext.authority_selector if present,
+   * and otherwise a representation of IAMContext.principal; or -
+   * &quot;iam_principal&quot;, a representation of IAMContext.principal even if
+   * a token or authority selector is present; or - &quot;&quot; (empty string),
+   * resulting in a counter with no fields.  Examples: counter { metric:
    * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
    * increment counter /iam/policy/backend_debug_access_count
    * {iam_principal=[value of IAMContext.principal]}  At this time we do not
-   * support: * multiple field names (though this may be supported in the
-   * future) * decrementing the counter * incrementing it by anything other than
-   * 1
+   * support multiple field names (though this may be supported in the future).
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -694,7 +691,11 @@ export namespace deploymentmanager_alpha {
   export interface Schema$LogConfigDataAccessOptions {
     /**
      * Whether Gin logging should happen in a fail-closed manner at the caller.
-     * This is relevant only in the LocalIAM implementation, for now.
+     * This is relevant only in the LocalIAM implementation, for now.  NOTE:
+     * Logging to Gin in a fail-closed manner is currently unsupported while
+     * work is being done to satisfy the requirements of go/345. Currently,
+     * setting LOG_FAIL_CLOSED mode will have no effect, but still exists
+     * because there is active work being done to support it (b/115874152).
      */
     logMode?: string;
   }
@@ -708,17 +709,13 @@ export namespace deploymentmanager_alpha {
      * templates and references.
      */
     expandedConfig?: string;
-    /**
-     * Output only. Unique identifier for the resource; defined by the server.
-     */
     id?: string;
     /**
      * Output only. The imported files for this manifest.
      */
     imports?: Schema$ImportFile[];
     /**
-     * Output only. Timestamp when the manifest was created, in RFC3339 text
-     * format.
+     * Output only. Creation timestamp in RFC3339 text format.
      */
     insertTime?: string;
     /**
@@ -1042,13 +1039,9 @@ export namespace deploymentmanager_alpha {
      * expanded. Returned as serialized YAML.
      */
     finalProperties?: string;
-    /**
-     * Output only. Unique identifier for the resource; defined by the server.
-     */
     id?: string;
     /**
-     * Output only. Timestamp when the resource was created or acquired, in
-     * RFC3339 text format .
+     * Output only. Creation timestamp in RFC3339 text format.
      */
     insertTime?: string;
     /**
@@ -1086,8 +1079,7 @@ export namespace deploymentmanager_alpha {
      */
     update?: Schema$ResourceUpdate;
     /**
-     * Output only. Timestamp when the resource was updated, in RFC3339 text
-     * format .
+     * Output only. Update timestamp in RFC3339 text format.
      */
     updateTime?: string;
     /**
@@ -1298,12 +1290,9 @@ export namespace deploymentmanager_alpha {
      * when the resource is created.
      */
     description?: string;
-    /**
-     * Output only. Unique identifier for the resource; defined by the server.
-     */
     id?: string;
     /**
-     * Output only. Timestamp when the type was created, in RFC3339 text format.
+     * Output only. Creation timestamp in RFC3339 text format.
      */
     insertTime?: string;
     /**
@@ -1325,13 +1314,13 @@ export namespace deploymentmanager_alpha {
      */
     operation?: Schema$Operation;
     /**
-     * Output only. Self link for the type.
+     * Output only. Server defined URL for the resource.
      */
     selfLink?: string;
   }
   /**
-   * Contains detailed information about a composite type, base type, or base
-   * type with specific collection.
+   * Type Information. Contains detailed information about a composite type,
+   * base type, or base type with specific collection.
    */
   export interface Schema$TypeInfo {
     /**
@@ -1358,7 +1347,7 @@ export namespace deploymentmanager_alpha {
      */
     schema?: Schema$TypeInfoSchemaInfo;
     /**
-     * Output only. Server-defined URL for the resource.
+     * Output only. Self link for the type provider.
      */
     selfLink?: string;
     /**
@@ -1405,12 +1394,11 @@ export namespace deploymentmanager_alpha {
      */
     descriptorUrl?: string;
     /**
-     * Output only. Unique identifier for the resource; defined by the server.
+     * Output only. Unique identifier for the resource defined by the server.
      */
     id?: string;
     /**
-     * Output only. Timestamp when the type provider was created, in RFC3339
-     * text format.
+     * Output only. Creation timestamp in RFC3339 text format.
      */
     insertTime?: string;
     /**
@@ -2301,7 +2289,7 @@ export namespace deploymentmanager_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2590,7 +2578,7 @@ export namespace deploymentmanager_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2730,7 +2718,7 @@ export namespace deploymentmanager_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().TestPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2938,7 +2926,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
   }
@@ -3081,7 +3069,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -3122,7 +3110,7 @@ export namespace deploymentmanager_alpha {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 

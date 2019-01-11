@@ -403,6 +403,46 @@ export namespace androidenterprise_v1 {
     token?: string;
   }
   /**
+   * The Auto install constraint. Defines a set of restrictions for
+   * installation. At least one of the fields must be set.
+   */
+  export interface Schema$AutoInstallConstraint {
+    /**
+     * Charging state to constrain on.
+     */
+    chargingStateConstraint?: string;
+    /**
+     * The idle state of the device to constrain on.
+     */
+    deviceIdleStateConstraint?: string;
+    /**
+     * Network type to constrain on.
+     */
+    networkTypeConstraint?: string;
+  }
+  export interface Schema$AutoInstallPolicy {
+    /**
+     * The constraints for the install. Currently there can be at most one
+     * constraint.
+     */
+    autoInstallConstraint?: Schema$AutoInstallConstraint[];
+    /**
+     * The auto install mode. If unset defaults to AVAILABLE.
+     */
+    autoInstallMode?: string;
+    /**
+     * The priority of the install, as an unsigned integer. Lower number means
+     * higher priority.
+     */
+    autoInstallPriority?: number;
+    /**
+     * The minimum version of the app. If a lower version of the app is
+     * installed then the app will be auto-updated according to the auto-install
+     * constraints, instead of waiting for the regular auto-update.
+     */
+    minimumVersionCode?: number;
+  }
+  /**
    * A configuration variables resource contains the managed configuration
    * settings ID to be applied to a single user, as well as the variable set
    * that is attributed to the user. The variable set will be used to replace
@@ -1360,6 +1400,10 @@ export namespace androidenterprise_v1 {
    * The policy for a product.
    */
   export interface Schema$ProductPolicy {
+    /**
+     * The auto install policy for the product.
+     */
+    autoInstallPolicy?: Schema$AutoInstallPolicy;
     /**
      * The ID of the product. For example,
      * &quot;app:com.google.android.gm&quot;.
