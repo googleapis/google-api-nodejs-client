@@ -9,13 +9,13 @@
   ],
   "author": "Google LLC",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/google/google-api-nodejs-client",
+  "homepage": "https://github.com/googleapis/google-api-nodejs-client",
   "bugs": {
-    "url": "https://github.com/google/google-api-nodejs-client/issues"
+    "url": "https://github.com/googleapis/google-api-nodejs-client/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/google/google-api-nodejs-client.git"
+    "url": "https://github.com/googleapis/google-api-nodejs-client.git"
   },
   "engines": {
     "node": ">=6.0.0"
