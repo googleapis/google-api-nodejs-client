@@ -915,8 +915,10 @@ export namespace cloudkms_v1 {
 
   export class Resource$Projects$Locations$Keyrings {
     cryptoKeys: Resource$Projects$Locations$Keyrings$Cryptokeys;
+    importJobs: Resource$Projects$Locations$Keyrings$Importjobs;
     constructor() {
       this.cryptoKeys = new Resource$Projects$Locations$Keyrings$Cryptokeys();
+      this.importJobs = new Resource$Projects$Locations$Keyrings$Importjobs();
     }
 
 
@@ -3228,5 +3230,290 @@ export namespace cloudkms_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RestoreCryptoKeyVersionRequest;
+  }
+
+
+
+  export class Resource$Projects$Locations$Keyrings$Importjobs {
+    constructor() {}
+
+
+    /**
+     * cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias cloudkms.projects.locations.keyRings.importJobs.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
+     * be used for building permission-aware UIs and command-line tools, not for
+     * authorization checking. This operation may "fail open" without warning.
+     * @alias cloudkms.projects.locations.keyRings.importJobs.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 }

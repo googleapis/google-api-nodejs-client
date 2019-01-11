@@ -123,6 +123,26 @@ export namespace speech_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Describes the progress of a long-running `LongRunningRecognize` call. It is
+   * included in the `metadata` field of the `Operation` returned by the
+   * `GetOperation` call of the `google::longrunning::Operations` service.
+   */
+  export interface Schema$LongRunningRecognizeMetadata {
+    /**
+     * Time of the most recent processing update.
+     */
+    lastUpdateTime?: string;
+    /**
+     * Approximate percentage of audio processed thus far. Guaranteed to be 100
+     * when the audio is fully processed and the results are available.
+     */
+    progressPercent?: number;
+    /**
+     * Time when the request was received.
+     */
+    startTime?: string;
+  }
+  /**
    * The top-level message sent by the client for the `LongRunningRecognize`
    * method.
    */
@@ -136,6 +156,20 @@ export namespace speech_v1 {
      * process the request.
      */
     config?: Schema$RecognitionConfig;
+  }
+  /**
+   * The only message returned to the client by the `LongRunningRecognize`
+   * method. It contains the result as zero or more sequential
+   * `SpeechRecognitionResult` messages. It is included in the `result.response`
+   * field of the `Operation` returned by the `GetOperation` call of the
+   * `google::longrunning::Operations` service.
+   */
+  export interface Schema$LongRunningRecognizeResponse {
+    /**
+     * Output only. Sequential list of transcription results corresponding to
+     * sequential portions of audio.
+     */
+    results?: Schema$SpeechRecognitionResult[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -450,15 +484,6 @@ export namespace speech_v1 {
      * an experimental feature and the accuracy of the time offset can vary.
      */
     endTime?: string;
-    /**
-     * Output only. A distinct integer value is assigned for every speaker
-     * within the audio. This field specifies which one of those speakers was
-     * detected to have spoken this word. Value ranges from &#39;1&#39; to
-     * diarization_speaker_count. speaker_tag is set if
-     * enable_speaker_diarization = &#39;true&#39; and only in the top
-     * alternative.
-     */
-    speakerTag?: number;
     /**
      * Output only. Time offset relative to the beginning of the audio, and
      * corresponding to the start of the spoken word. This field is only set if

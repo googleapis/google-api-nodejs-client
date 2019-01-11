@@ -1673,9 +1673,13 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$WorkflowMetadata {
     /**
-     * Output only. The name of the managed cluster.
+     * Output only. The name of the target cluster.
      */
     clusterName?: string;
+    /**
+     * Output only. The UUID of target cluster.
+     */
+    clusterUuid?: string;
     /**
      * Output only. The create cluster operation metadata.
      */
@@ -1750,7 +1754,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The template id.The id must contain only letters (a-z, A-Z),
      * numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with
-     * underscore or hyphen. Must consist of between 3 and 50 characters.
+     * underscore or hyphen. Must consist of between 3 and 50 characters..
      */
     id?: string;
     /**

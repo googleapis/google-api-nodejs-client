@@ -181,6 +181,11 @@ export namespace dataflow_v1b3 {
      */
     fractionConsumed?: number;
     /**
+     * The fraction of the remainder of work to split the work item at, from 0.0
+     * (split at the current position) to 1.0 (end of the input).
+     */
+    fractionOfRemainder?: number;
+    /**
      * A Position at which to split the work item.
      */
     position?: Schema$Position;
@@ -1983,6 +1988,10 @@ export namespace dataflow_v1b3 {
      */
     additionalExperiments?: string[];
     /**
+     * Additional user labels attached to the job.
+     */
+    additionalUserLabels?: {[key: string]: string;};
+    /**
      * Whether to bypass the safety checks for the job&#39;s temporary
      * directory. Use with caution.
      */
@@ -2002,6 +2011,10 @@ export namespace dataflow_v1b3 {
      * service will use the network &quot;default&quot;.
      */
     network?: string;
+    /**
+     * The initial number of Google Compute Engine instnaces for the job.
+     */
+    numWorkers?: number;
     /**
      * The email address of the service account to run the job as.
      */

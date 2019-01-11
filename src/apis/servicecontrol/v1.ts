@@ -326,6 +326,13 @@ export namespace servicecontrol_v1 {
      */
     principalEmail?: string;
     /**
+     * The name of the service account key used to create or exchange
+     * credentials for authenticating the service account making the request.
+     * This is a scheme-less URI full resource name. For example:
+     * &quot;//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}&quot;
+     */
+    serviceAccountKeyName?: string;
+    /**
      * The third party identification (if any) of the authenticated user making
      * the request. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
@@ -1359,14 +1366,18 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ResourceLocation {
     /**
-     * The locations of a resource after the execution of the operation. For
-     * example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;
-     * &quot;nam3&quot;
+     * The locations of a resource after the execution of the operation.
+     * Requests to create or delete a location based resource must populate the
+     * &#39;current_locations&#39; field and not the
+     * &#39;original_locations&#39; field. For example:
+     * &quot;europe-west1-a&quot;     &quot;us-east1&quot;     &quot;nam3&quot;
      */
     currentLocations?: string[];
     /**
-     * The locations of a resource prior to the execution of the operation. For
-     * example:      &quot;europe-west1-a&quot;     &quot;us-east1&quot;
+     * The locations of a resource prior to the execution of the operation.
+     * Requests that mutate the resource&#39;s location must populate both the
+     * &#39;original_locations&#39; as well as the &#39;current_locations&#39;
+     * fields. For example:      &quot;europe-west1-a&quot; &quot;us-east1&quot;
      * &quot;nam3&quot;
      */
     originalLocations?: string[];
