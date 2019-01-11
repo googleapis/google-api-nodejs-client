@@ -9,7 +9,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-	  "@google/drive": "0.1.0",
+    "@google/drive": "0.1.0",
     "express": "^4.16.4",
     "opn": "^5.4.0"
   }
