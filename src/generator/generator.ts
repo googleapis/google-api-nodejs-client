@@ -72,6 +72,23 @@ function cleanPropertyName(prop: string) {
   return match ? `'${prop}'` : prop;
 }
 
+function camelify(name: string) {
+  // If the name has a `-`, remove it and camelize.
+  // Ex: `well-known` => `wellKnown`
+  if (name.includes('-')) {
+    const parts = name.split('-').filter(x => !!x);
+    name = parts
+               .map((part, i) => {
+                 if (i === 0) {
+                   return part;
+                 }
+                 return part.charAt(0).toUpperCase() + part.slice(1);
+               })
+               .join('');
+  }
+  return name;
+}
+
 function getType(item: SchemaItem): string {
   if (item.$ref) {
     return `Schema$${item.$ref}`;
@@ -158,6 +175,7 @@ export class Generator {
     this.env.addFilter('getType', getType);
     this.env.addFilter('cleanPropertyName', cleanPropertyName);
     this.env.addFilter('cleanComments', this.cleanComments);
+    this.env.addFilter('camelify', camelify);
     this.env.addFilter('getPathParams', this.getPathParams);
     this.env.addFilter('getSafeParamName', this.getSafeParamName);
     this.env.addFilter('hasResourceParam', this.hasResourceParam);

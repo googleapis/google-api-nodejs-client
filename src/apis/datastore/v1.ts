@@ -591,7 +591,7 @@ export namespace datastore_v1 {
     labels?: {[key: string]: string;};
   }
   /**
-   * A minimal index definition. Next tag: 8
+   * A minimal index definition.
    */
   export interface Schema$GoogleDatastoreAdminV1Index {
     /**
@@ -622,7 +622,7 @@ export namespace datastore_v1 {
     state?: string;
   }
   /**
-   * Next tag: 3
+   * A property of an index.
    */
   export interface Schema$GoogleDatastoreAdminV1IndexedProperty {
     /**

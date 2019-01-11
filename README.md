@@ -236,8 +236,10 @@ For example, a JWT auth client will be created when your code is running on your
 The code below shows how to retrieve a default credential type, depending upon the runtime environment. The createScopedRequired must be called to determine when you need to pass in the scopes manually, and when they have been set for you automatically based on the configured runtime environment.
 
 ```js
-async function main () {
+const {google} = require('googleapis');
+const compute = google.compute('v1');
 
+async function main () {
   // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
   // environment variables.
   const auth = await google.auth.getClient({

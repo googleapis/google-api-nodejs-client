@@ -295,7 +295,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     audiences?: string;
     /**
-     * Redirect URL if JWT token is required but no present or is expired.
+     * Redirect URL if JWT token is required but not present or is expired.
      * Implement authorizationUrl of securityDefinitions in OpenAPI spec.
      */
     authorizationUrl?: string;
@@ -376,6 +376,10 @@ export namespace serviceconsumermanagement_v1 {
      */
     deadline?: number;
     /**
+     * The JWT audience is used when generating a JWT id token for the backend.
+     */
+    jwtAudience?: string;
+    /**
      * Minimum deadline in seconds needed for this method. Calls having deadline
      * value lower than this will be rejected.
      */
@@ -385,6 +389,7 @@ export namespace serviceconsumermanagement_v1 {
      * operation. The default is no deadline.
      */
     operationDeadline?: number;
+    pathTranslation?: string;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1445,16 +1450,20 @@ export namespace serviceconsumermanagement_v1 {
   export interface Schema$Monitoring {
     /**
      * Monitoring configurations for sending metrics to the consumer project.
-     * There can be multiple consumer destinations, each one must have a
-     * different monitored resource type. A metric can be used in at most one
-     * consumer destination.
+     * There can be multiple consumer destinations. A monitored resouce type may
+     * appear in multiple monitoring destinations if different aggregations are
+     * needed for different sets of metrics associated with that monitored
+     * resource type. A monitored resource and metric pair may only be used once
+     * in the Monitoring configuration.
      */
     consumerDestinations?: Schema$MonitoringDestination[];
     /**
      * Monitoring configurations for sending metrics to the producer project.
-     * There can be multiple producer destinations, each one must have a
-     * different monitored resource type. A metric can be used in at most one
-     * producer destination.
+     * There can be multiple producer destinations. A monitored resouce type may
+     * appear in multiple monitoring destinations if different aggregations are
+     * needed for different sets of metrics associated with that monitored
+     * resource type. A monitored resource and metric pair may only be used once
+     * in the Monitoring configuration.
      */
     producerDestinations?: Schema$MonitoringDestination[];
   }
@@ -1464,7 +1473,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$MonitoringDestination {
     /**
-     * Names of the metrics to report to this monitoring destination. Each name
+     * Types of the metrics to report to this monitoring destination. Each type
      * must be defined in Service.metrics section.
      */
     metrics?: string[];
@@ -1854,8 +1863,10 @@ export namespace serviceconsumermanagement_v1 {
      */
     monitoring?: Schema$Monitoring;
     /**
-     * The DNS address at which this service is available, e.g.
-     * `calendar.googleapis.com`.
+     * The service name, which is a DNS-like logical identifier for the service,
+     * such as `calendar.googleapis.com`. The service name typically goes
+     * through DNS verification to make sure the owner of the service also owns
+     * the DNS name.
      */
     name?: string;
     /**
@@ -3028,7 +3039,8 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.delete
      * @desc Delete a tenancy unit.  Before the tenancy unit is deleted, there
-     * should be no tenant resources in it. Operation<response: Empty>.
+     * should be no tenant resources in it not in DELETED state.
+     * Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.delete
      * @memberOf! ()
      *
@@ -3173,7 +3185,9 @@ export namespace serviceconsumermanagement_v1 {
      * @desc Removes specified project resource identified by tenant resource
      * tag. It will remove project lien with 'TenantManager' origin if that was
      * added. It will then attempt to delete the project. If that operation
-     * fails, this method fails. Operation<response: Empty>.
+     * fails, this method fails. After the project has been deleted, or if was
+     * already in DELETED state, resource metadata is permanently removed from
+     * the tenancy unit. Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.removeProject
      * @memberOf! ()
      *

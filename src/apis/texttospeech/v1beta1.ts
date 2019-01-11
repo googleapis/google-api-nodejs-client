@@ -121,7 +121,9 @@ export namespace texttospeech_v1beta1 {
     /**
      * An identifier which selects &#39;audio effects&#39; profiles that are
      * applied on (post synthesized) text to speech. Effects are applied on top
-     * of each other in the order they are given.
+     * of each other in the order they are given. See  [audio-profiles](https:
+     * //cloud.google.com/text-to-speech/docs/audio-profiles) for current
+     * supported profile ids.
      */
     effectsProfileId?: string[];
     /**
