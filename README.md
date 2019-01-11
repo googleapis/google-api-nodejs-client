@@ -144,9 +144,9 @@ const oauth2Client = new google.auth.OAuth2(
   YOUR_REDIRECT_URL
 );
 
-// generate a url that asks permissions for Google+ and Google Calendar scopes
+// generate a url that asks permissions for Blogger and Google Calendar scopes
 const scopes = [
-  'https://www.googleapis.com/auth/plus.me',
+  'https://www.googleapis.com/auth/blogger',
   'https://www.googleapis.com/auth/calendar'
 ];
 
@@ -204,18 +204,22 @@ oauth2client.setCredentials({
 Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API.
 
 ### Using API keys
-You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Google+ API service to retrieve a person's profile given a userId:
+You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Blogger API service to retrieve a blog's name, url, and its total amount of posts:
 
 ``` js
 const {google} = require('googleapis');
-const plus = google.plus({
-  version: 'v1',
+const blogger = google.blogger_v3({
+  version: 'v3',
   auth: 'YOUR_API_KEY' // specify your API key here
 });
 
-async function main() {
-  const res = await plus.people.get({ userId: 'me' });
-  console.log(`Hello ${res.data.displayName}!`);
+const params = {
+  blogId: 3213900
+};
+
+async function main(params) {
+  const res = await blogger.blogs.get({blogId: params.blogId});
+  console.log(`${res.data.name} has ${res.data.posts.totalItems} posts! The blog url is ${res.data.url}`)
 };
 
 main().catch(console.error);
@@ -232,8 +236,10 @@ For example, a JWT auth client will be created when your code is running on your
 The code below shows how to retrieve a default credential type, depending upon the runtime environment. The createScopedRequired must be called to determine when you need to pass in the scopes manually, and when they have been set for you automatically based on the configured runtime environment.
 
 ```js
-async function main () {
+const {google} = require('googleapis');
+const compute = google.compute('v1');
 
+async function main () {
   // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
   // environment variables.
   const auth = await google.auth.getClient({
@@ -492,7 +498,7 @@ const apis = google.getSupportedAPIs();
 This will return an object with the API name as object property names, and an array of version strings as the object values;
 
 ### TypeScript
-This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace.  For example, the Drive v3 API types are are all available from the `drive_v3` namespace:
+This library is written in TypeScript, and provides types out of the box. All classes and interfaces generated for each API are exported under the `${apiName}_${version}` namespace.  For example, the Drive v3 API types are all available from the `drive_v3` namespace:
 
 ```ts
 import { drive_v3 } from 'googleapis';

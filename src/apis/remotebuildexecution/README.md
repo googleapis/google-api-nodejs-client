@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/replicapoolupdater
+# @google/remotebuildexecution
 
-> [Deprecated. Please use compute.instanceGroupManagers.update method. replicapoolupdater API will be disabled after December 30th, 2016] Updates groups of Compute Engine instances.
+> Supplies a Remote Execution API service for tools such as bazel.
 
 ## Installation
 
 ```sh
-$ npm install @google/replicapoolupdater
+$ npm install @google/remotebuildexecution
 ```
 
 ## Usage

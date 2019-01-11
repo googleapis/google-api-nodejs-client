@@ -370,27 +370,6 @@ export namespace dialogflow_v2 {
     parameters?: {[key: string]: any;};
   }
   /**
-   * Represents a notification sent to Cloud Pub/Sub subscribers for
-   * conversation lifecycle events.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1ConversationEvent {
-    /**
-     * Required. The unique identifier of the conversation this notification
-     * refers to. Format: `projects/&lt;Project
-     * ID&gt;/conversations/&lt;Conversation ID&gt;`.
-     */
-    conversation?: string;
-    /**
-     * Optional. More detailed information about an error. Only set for type
-     * UNRECOVERABLE_ERROR_IN_PHONE_CALL.
-     */
-    errorStatus?: Schema$GoogleRpcStatus;
-    /**
-     * Required. The type of the event that this notification refers to.
-     */
-    type?: string;
-  }
-  /**
    * Represents an entity type. Entity types serve as a tool for extracting
    * parameter values from natural language queries.
    */
@@ -481,21 +460,6 @@ export namespace dialogflow_v2 {
      * only if `agent_uri` is specified in `ExportAgentRequest`.
      */
     agentUri?: string;
-  }
-  /**
-   * Represents a notification sent to Cloud Pub/Sub subscribers for agent
-   * assistant events in a specific conversation.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent {
-    /**
-     * Required. The conversation this notification refers to. Format:
-     * `projects/&lt;Project ID&gt;/conversations/&lt;Conversation ID&gt;`.
-     */
-    conversation?: string;
-    /**
-     * Required. The type of the event that this notification refers to.
-     */
-    type?: string;
   }
   /**
    * Represents an intent. Intents convert a number of user expressions or
@@ -1147,10 +1111,10 @@ export namespace dialogflow_v2 {
     faqQuestion?: string;
     /**
      * The system&#39;s confidence score that this Knowledge answer is a good
-     * match for this converstational query, range from 0.0 (completely
+     * match for this conversational query. The range is from 0.0 (completely
      * uncertain) to 1.0 (completely certain). Note: The confidence score is
      * likely to vary somewhat (possibly even for identical requests), as the
-     * underlying model is under constant improvement, we may deprecate it in
+     * underlying model is under constant improvement. It may be deprecated in
      * the future. We recommend using `match_confidence_level` which should be
      * generally more stable.
      */
@@ -1225,7 +1189,8 @@ export namespace dialogflow_v2 {
     allRequiredParamsPresent?: boolean;
     /**
      * The free-form diagnostic info. For example, this field could contain
-     * webhook call latency.
+     * webhook call latency. The string keys of the Struct&#39;s fields map can
+     * change without notice.
      */
     diagnosticInfo?: {[key: string]: any;};
     /**
@@ -2364,7 +2329,8 @@ export namespace dialogflow_v2 {
     allRequiredParamsPresent?: boolean;
     /**
      * The free-form diagnostic info. For example, this field could contain
-     * webhook call latency.
+     * webhook call latency. The string keys of the Struct&#39;s fields map can
+     * change without notice.
      */
     diagnosticInfo?: {[key: string]: any;};
     /**
@@ -2511,7 +2477,7 @@ export namespace dialogflow_v2 {
     languageCode?: string;
     /**
      * Required. The UTF-8 encoded natural language text to be processed. Text
-     * length must not exceed 256 bytes.
+     * length must not exceed 256 characters.
      */
     text?: string;
   }

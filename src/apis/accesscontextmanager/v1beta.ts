@@ -113,8 +113,7 @@ export namespace accesscontextmanager_v1beta {
   /**
    * An `AccessLevel` is a label that can be applied to requests to GCP
    * services, along with a list of requirements necessary for the label to be
-   * applied. `AccessLevels` can be referenced in `AccessZones` and in the
-   * `Cloud Org Policy` API.
+   * applied.
    */
   export interface Schema$AccessLevel {
     /**

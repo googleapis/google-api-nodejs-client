@@ -1565,9 +1565,13 @@ export namespace dataproc_v1 {
    */
   export interface Schema$WorkflowMetadata {
     /**
-     * Output only. The name of the managed cluster.
+     * Output only. The name of the target cluster.
      */
     clusterName?: string;
+    /**
+     * Output only. The UUID of target cluster.
+     */
+    clusterUuid?: string;
     /**
      * Output only. The create cluster operation metadata.
      */

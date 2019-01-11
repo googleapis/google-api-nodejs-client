@@ -679,10 +679,10 @@ export namespace cloudsearch_v1 {
     freshnessDuration?: string;
     /**
      * This property indicates the freshness level of the object in the index.
-     * If set, this property must be a top-level property within the
-     * PropertyDefinitions and it must be a timestamp type or date type.
-     * Otherwise, the Indexing API uses updateTime as the freshness indicator.
-     * The maximum length is 256 characters.
+     * If set, this property must be a top-level property within the property
+     * definitions and it must be a timestamp type or date type. Otherwise, the
+     * Indexing API uses updateTime as the freshness indicator. The maximum
+     * length is 256 characters.
      */
     freshnessProperty?: string;
   }
