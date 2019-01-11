@@ -216,8 +216,10 @@ export namespace compute_v1 {
     acceleratorCount?: number;
     /**
      * Full or partial URL of the accelerator type resource to attach to this
-     * instance. If you are creating an instance template, specify only the
-     * accelerator name.
+     * instance. For example:
+     * projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100
+     * If you are creating an instance template, specify only the accelerator
+     * name. See GPUs on Compute Engine for a full list of accelerator types.
      */
     acceleratorType?: string;
   }
@@ -454,11 +456,28 @@ export namespace compute_v1 {
      */
     name?: string;
     /**
+     * The URL of the network in which to reserve the address. This field can
+     * only be used with INTERNAL type with VPC_PEERING purpose.
+     */
+    network?: string;
+    /**
      * This signifies the networking tier used for configuring this Address and
-     * can only take the following values: PREMIUM , STANDARD.  If this field is
-     * not specified, it is assumed to be PREMIUM.
+     * can only take the following values: PREMIUM, STANDARD. Global forwarding
+     * rules can only be Premium Tier. Regional forwarding rules can be either
+     * Premium or Standard Tier. Standard Tier addresses applied to regional
+     * forwarding rules can be used with any external load balancer. Regional
+     * forwarding rules in Premium Tier can only be used with a Network load
+     * balancer.  If this field is not specified, it is assumed to be PREMIUM.
      */
     networkTier?: string;
+    /**
+     * The prefix length if the resource reprensents an IP range.
+     */
+    prefixLength?: number;
+    /**
+     * The purpose of resource, only used with INTERNAL type.
+     */
+    purpose?: string;
     /**
      * [Output Only] URL of the region where the regional address resides. This
      * field is not applicable to global addresses. You must specify this field
@@ -617,8 +636,8 @@ export namespace compute_v1 {
      * the instance. This name can be used to reference the device for mounting,
      * resizing, and so on, from within the instance.  If not specified, the
      * server chooses a default device name to apply to this disk, in the form
-     * persistent-disks-x, where x is a number assigned by Google Compute
-     * Engine. This field is only applicable for persistent disks.
+     * persistent-disk-x, where x is a number assigned by Google Compute Engine.
+     * This field is only applicable for persistent disks.
      */
     deviceName?: string;
     /**
@@ -763,6 +782,70 @@ export namespace compute_v1 {
      * images are encrypted with your own keys.
      */
     sourceImageEncryptionKey?: Schema$CustomerEncryptionKey;
+  }
+  /**
+   * Specifies the audit configuration for a service. The configuration
+   * determines which permission types are logged, and what identities, if any,
+   * are exempted from logging. An AuditConfig must have one or more
+   * AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a
+   * specific service, the union of the two AuditConfigs is used for that
+   * service: the log_types specified in each AuditConfig are enabled, and the
+   * exempted_members in each AuditLogConfig are exempted.  Example Policy with
+   * multiple AuditConfigs:  { &quot;audit_configs&quot;: [ {
+   * &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;:
+   * [ { &quot;log_type&quot;: &quot;DATA_READ&quot;,
+   * &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, {
+   * &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;:
+   * &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;:
+   * &quot;fooservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ {
+   * &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;:
+   * &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [
+   * &quot;user:bar@gmail.com&quot; ] } ] } ] }  For fooservice, this policy
+   * enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts
+   * foo@gmail.com from DATA_READ logging, and bar@gmail.com from DATA_WRITE
+   * logging.
+   */
+  export interface Schema$AuditConfig {
+    /**
+     * The configuration for logging of each type of permission.
+     */
+    auditLogConfigs?: Schema$AuditLogConfig[];
+    exemptedMembers?: string[];
+    /**
+     * Specifies a service that will be enabled for audit logging. For example,
+     * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
+     * special value that covers all services.
+     */
+    service?: string;
+  }
+  /**
+   * Provides the configuration for logging a type of permissions. Example:  {
+   * &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;:
+   * &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [
+   * &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;:
+   * &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and
+   * &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ
+   * logging.
+   */
+  export interface Schema$AuditLogConfig {
+    /**
+     * Specifies the identities that do not cause logging for this type of
+     * permission. Follows the same format of [Binding.members][].
+     */
+    exemptedMembers?: string[];
+    /**
+     * The log type that this config enables.
+     */
+    logType?: string;
+  }
+  /**
+   * Authorization-related information used by Cloud Audit Logging.
+   */
+  export interface Schema$AuthorizationLoggingOptions {
+    /**
+     * The type of the permission that was checked.
+     */
+    permissionType?: string;
   }
   /**
    * Represents an Autoscaler resource. Autoscalers allow you to automatically
@@ -1019,7 +1102,6 @@ export namespace compute_v1 {
     /**
      * Defines how target utilization value is expressed for a Stackdriver
      * Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE.
-     * If not specified, the default is GAUGE.
      */
     utilizationTargetType?: string;
   }
@@ -1028,7 +1110,7 @@ export namespace compute_v1 {
    */
   export interface Schema$AutoscalingPolicyLoadBalancingUtilization {
     /**
-     * Fraction of backend capacity utilization (set in HTTP(s) load balancing
+     * Fraction of backend capacity utilization (set in HTTP(S) load balancing
      * configuration) that autoscaler should maintain. Must be a positive float
      * value. If not defined, the default is 0.8.
      */
@@ -1172,9 +1254,9 @@ export namespace compute_v1 {
      * considered fresh. After this time period, the response will be
      * revalidated before being served. Defaults to 1hr (3600s). When serving
      * responses to signed URL requests, Cloud CDN will internally behave as
-     * though all responses from this backend had a ?Cache-Control: public,
-     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
-     * The actual headers served in responses will not be altered.
+     * though all responses from this backend had a &quot;Cache-Control: public,
+     * max-age=[TTL]&quot; header, regardless of any existing Cache-Control
+     * header. The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
@@ -1260,8 +1342,9 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a BackendService. An up-to-date fingerprint must
-     * be provided in order to update the BackendService.  To see the latest
-     * fingerprint, make a get() request to retrieve a BackendService.
+     * be provided in order to update the BackendService, otherwise the request
+     * will fail with error 412 conditionNotMet.  To see the latest fingerprint,
+     * make a get() request to retrieve a BackendService.
      */
     fingerprint?: string;
     /**
@@ -1401,9 +1484,9 @@ export namespace compute_v1 {
      * considered fresh. After this time period, the response will be
      * revalidated before being served. Defaults to 1hr (3600s). When serving
      * responses to signed URL requests, Cloud CDN will internally behave as
-     * though all responses from this backend had a ?Cache-Control: public,
-     * max-age=[TTL]? header, regardless of any existing Cache-Control header.
-     * The actual headers served in responses will not be altered.
+     * though all responses from this backend had a &quot;Cache-Control: public,
+     * max-age=[TTL]&quot; header, regardless of any existing Cache-Control
+     * header. The actual headers served in responses will not be altered.
      */
     signedUrlCacheMaxAgeSec?: string;
     /**
@@ -1487,6 +1570,39 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  /**
+   * Associates `members` with a `role`.
+   */
+  export interface Schema$Binding {
+    /**
+     * Unimplemented. The condition that is associated with this binding. NOTE:
+     * an unsatisfied condition will not allow user access via current binding.
+     * Different bindings, including their conditions, are examined
+     * independently.
+     */
+    condition?: Schema$Expr;
+    /**
+     * Specifies the identities requesting access for a Cloud Platform resource.
+     * `members` can have the following values:  * `allUsers`: A special
+     * identifier that represents anyone who is on the internet; with or without
+     * a Google account.  * `allAuthenticatedUsers`: A special identifier that
+     * represents anyone who is authenticated with a Google account or a service
+     * account.  * `user:{emailid}`: An email address that represents a specific
+     * Google account. For example, `alice@gmail.com` .    *
+     * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.    * `domain:{domain}`: A Google Apps
+     * domain name that represents all the users of that domain. For example,
+     * `google.com` or `example.com`.
+     */
+    members?: string[];
+    /**
+     * Role that is assigned to `members`. For example, `roles/viewer`,
+     * `roles/editor`, or `roles/owner`.
+     */
+    role?: string;
   }
   export interface Schema$CacheInvalidationRule {
     /**
@@ -1699,6 +1815,37 @@ export namespace compute_v1 {
     };
   }
   /**
+   * A condition to be met.
+   */
+  export interface Schema$Condition {
+    /**
+     * Trusted attributes supplied by the IAM system.
+     */
+    iam?: string;
+    /**
+     * An operator to apply the subject with.
+     */
+    op?: string;
+    /**
+     * Trusted attributes discharged by the service.
+     */
+    svc?: string;
+    /**
+     * Trusted attributes supplied by any service that owns resources and uses
+     * the IAM system for access control.
+     */
+    sys?: string;
+    /**
+     * DEPRECATED. Use &#39;values&#39; instead.
+     */
+    value?: string;
+    /**
+     * The objects of the condition. This is mutually exclusive with
+     * &#39;value&#39;.
+     */
+    values?: string[];
+  }
+  /**
    * Message containing connection draining configuration.
    */
   export interface Schema$ConnectionDraining {
@@ -1822,7 +1969,8 @@ export namespace compute_v1 {
      * essentially a hash of the labels set used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update labels. You must always provide an
-     * up-to-date fingerprint hash in order to update or change labels.  To see
+     * up-to-date fingerprint hash in order to update or change labels,
+     * otherwise the request will fail with error 412 conditionNotMet.  To see
      * the latest fingerprint, make a get() request to retrieve a disk.
      */
     labelFingerprint?: string;
@@ -1862,6 +2010,14 @@ export namespace compute_v1 {
      * Internal use only.
      */
     options?: string;
+    /**
+     * Physical block size of the persistent disk, in bytes. If not present in a
+     * request, a default value is used. Currently supported sizes are 4096 and
+     * 16384, other sizes may be added in the future. If an unsupported value is
+     * requested, the error message will list the supported values for the
+     * caller&#39;s project.
+     */
+    physicalBlockSizeBytes?: string;
     /**
      * [Output Only] URL of the region where the disk resides. Only applicable
      * for regional resources. You must specify this field as part of the HTTP
@@ -2262,6 +2418,35 @@ export namespace compute_v1 {
     zone?: string;
   }
   /**
+   * Represents an expression text. Example:  title: &quot;User account
+   * presence&quot; description: &quot;Determines whether the request has a user
+   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax.  The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
+  }
+  /**
    * Represents a Firewall resource.
    */
   export interface Schema$Firewall {
@@ -2314,6 +2499,11 @@ export namespace compute_v1 {
      * rules.
      */
     kind?: string;
+    /**
+     * This field denotes the logging options for a particular firewall rule. If
+     * logging is enabled, logs will be exported to Stackdriver.
+     */
+    logConfig?: Schema$FirewallLogConfig;
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -2444,6 +2634,16 @@ export namespace compute_v1 {
     };
   }
   /**
+   * The available logging options for a firewall rule.
+   */
+  export interface Schema$FirewallLogConfig {
+    /**
+     * This field denotes whether to enable logging for a particular firewall
+     * rule.
+     */
+    enable?: boolean;
+  }
+  /**
    * A ForwardingRule resource. A ForwardingRule resource specifies which pool
    * of target virtual machines to forward a packet to if it matches the given
    * [IPAddress, IPProtocol, ports] tuple. (== resource_for beta.forwardingRules
@@ -2569,10 +2769,11 @@ export namespace compute_v1 {
     portRange?: string;
     /**
      * This field is used along with the backend_service field for internal load
-     * balancing.  When the load balancing scheme is INTERNAL, a single port or
-     * a comma separated list of ports can be configured. Only packets addressed
-     * to these ports will be forwarded to the backends configured with this
-     * forwarding rule.  You may specify a maximum of up to 5 ports.
+     * balancing.  When the load balancing scheme is INTERNAL, a list of ports
+     * can be configured, for example, [&#39;80&#39;],
+     * [&#39;8000&#39;,&#39;9000&#39;] etc. Only packets addressed to these
+     * ports will be forwarded to the backends configured with this forwarding
+     * rule.  You may specify a maximum of up to 5 ports.
      */
     ports?: string[];
     /**
@@ -2697,7 +2898,8 @@ export namespace compute_v1 {
      * detect conflicts. The fingerprint is initially generated by Compute
      * Engine and changes after every request to modify or update labels. You
      * must always provide an up-to-date fingerprint hash when updating or
-     * changing labels. Make a get() request to the resource to get the latest
+     * changing labels, otherwise the request will fail with error 412
+     * conditionNotMet. Make a get() request to the resource to get the latest
      * fingerprint.
      */
     labelFingerprint?: string;
@@ -2712,6 +2914,25 @@ export namespace compute_v1 {
      * also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
      */
     labels?: {[key: string]: string;};
+  }
+  export interface Schema$GlobalSetPolicyRequest {
+    /**
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify bindings.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify the etag.
+     */
+    etag?: string;
+    /**
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
+     * The size of the policy is limited to a few 10s of KB. An empty policy is
+     * in general a valid policy but certain services (like Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
   }
   /**
    * Guest OS features.
@@ -3027,6 +3248,40 @@ export namespace compute_v1 {
       message?: string;
     };
   }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
+  }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTPS.
@@ -3101,40 +3356,6 @@ export namespace compute_v1 {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -3237,7 +3458,8 @@ export namespace compute_v1 {
      * essentially a hash of the labels used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update labels. You must always provide an
-     * up-to-date fingerprint hash in order to update or change labels.  To see
+     * up-to-date fingerprint hash in order to update or change labels,
+     * otherwise the request will fail with error 412 conditionNotMet.  To see
      * the latest fingerprint, make a get() request to retrieve an image.
      */
     labelFingerprint?: string;
@@ -3418,6 +3640,7 @@ export namespace compute_v1 {
      * instance.
      */
     guestAccelerators?: Schema$AcceleratorConfig[];
+    hostname?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
@@ -3724,6 +3947,11 @@ export namespace compute_v1 {
    */
   export interface Schema$InstanceGroupManager {
     /**
+     * The autohealing policy for this managed instance group. You can specify
+     * only one value.
+     */
+    autoHealingPolicies?: Schema$InstanceGroupManagerAutoHealingPolicy[];
+    /**
      * The base instance name to use for instances in this group. The value must
      * be 1-58 characters long. Instances are named by appending a hyphen and a
      * random four-character string to the base instance name. The base instance
@@ -3754,8 +3982,9 @@ export namespace compute_v1 {
      * Fingerprint of this resource. This field may be used in optimistic
      * locking. It will be ignored when inserting an InstanceGroupManager. An
      * up-to-date fingerprint must be provided in order to update the
-     * InstanceGroupManager.  To see the latest fingerprint, make a get()
-     * request to retrieve an InstanceGroupManager.
+     * InstanceGroupManager, otherwise the request will fail with error 412
+     * conditionNotMet.  To see the latest fingerprint, make a get() request to
+     * retrieve an InstanceGroupManager.
      */
     fingerprint?: string;
     /**
@@ -3911,6 +4140,21 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  export interface Schema$InstanceGroupManagerAutoHealingPolicy {
+    /**
+     * The URL for the health check that signals autohealing.
+     */
+    healthCheck?: string;
+    /**
+     * The number of seconds that the managed instance group waits before it
+     * applies autohealing policies to new instances or recently recreated
+     * instances. This initial delay allows instances to initialize and run
+     * their startup scripts before the instance group determines that they are
+     * UNHEALTHY. This prevents the managed instance group from recreating its
+     * instances prematurely. This value must be from range [0, 3600].
+     */
+    initialDelaySec?: number;
   }
   /**
    * [Output Only] A list of managed instance groups.
@@ -4098,7 +4342,8 @@ export namespace compute_v1 {
      * change the named ports settings concurrently. Obtain the fingerprint with
      * the instanceGroups.get method. Then, include the fingerprint in your
      * request to ensure that you do not overwrite changes that were applied
-     * from another concurrent request.
+     * from another concurrent request. A request with an incorrect fingerprint
+     * will fail with error 412 conditionNotMet.
      */
     fingerprint?: string;
     /**
@@ -4520,8 +4765,7 @@ export namespace compute_v1 {
     kind?: string;
     /**
      * Type of link requested. This field indicates speed of each of the links
-     * in the bundle, not the entire bundle. Only 10G per link is allowed for a
-     * dedicated interconnect. Options: Ethernet_10G_LR
+     * in the bundle, not the entire bundle.
      */
     linkType?: string;
     /**
@@ -4591,8 +4835,7 @@ export namespace compute_v1 {
     /**
      * Provisioned bandwidth capacity for the interconnectAttachment. Can be set
      * by the partner to update the customer&#39;s provisioned bandwidth. Output
-     * only for for PARTNER type, mutable for PARTNER_PROVIDER, not available
-     * for DEDICATED.
+     * only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED.
      */
     bandwidth?: string;
     /**
@@ -4701,7 +4944,7 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * URL of the cloud router to be used for dynamic routing. This router must
+     * URL of the Cloud Router to be used for dynamic routing. This router must
      * be in the same region as this InterconnectAttachment. The
      * InterconnectAttachment will automatically connect the Interconnect to the
      * network &amp; region within which the Cloud Router is configured.
@@ -4717,9 +4960,8 @@ export namespace compute_v1 {
     state?: string;
     type?: string;
     /**
-     * Available only for DEDICATED and PARTNER_PROVIDER. Desired VLAN tag for
-     * this attachment, in the range 2-4094. This field refers to 802.1q VLAN
-     * tag, also known as IEEE 802.1Q Only specified at creation time.
+     * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only
+     * specified at creation time.
      */
     vlanTag8021q?: number;
   }
@@ -4806,8 +5048,8 @@ export namespace compute_v1 {
   export interface Schema$InterconnectAttachmentPartnerMetadata {
     /**
      * Plain text name of the Interconnect this attachment is connected to, as
-     * displayed in the Partner?s portal. For instance ?Chicago 1?. This value
-     * may be validated to match approved Partner values.
+     * displayed in the Partner?s portal. For instance &quot;Chicago 1&quot;.
+     * This value may be validated to match approved Partner values.
      */
     interconnectName?: string;
     /**
@@ -4916,7 +5158,10 @@ export namespace compute_v1 {
   export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
     state?: string;
     /**
-     * Value of the current optical power, read in dBm.
+     * Value of the current optical power, read in dBm. Take a known good
+     * optical value, give it a 10% margin and trigger warnings relative to that
+     * value. In general, a -7dBm warning and a -11dBm alarm are good optical
+     * value estimates for most links.
      */
     value?: number;
   }
@@ -5051,6 +5296,12 @@ export namespace compute_v1 {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * [Output Only] The status of this InterconnectLocation. If the status is
+     * AVAILABLE, new Interconnects may be provisioned in this
+     * InterconnectLocation. Otherwise, no new Interconnects may be provisioned.
+     */
+    status?: string;
   }
   /**
    * Response to the list request, and contains a list of interconnect
@@ -5304,6 +5555,78 @@ export namespace compute_v1 {
     };
   }
   /**
+   * Specifies what kind of log the caller must write
+   */
+  export interface Schema$LogConfig {
+    /**
+     * Cloud audit options.
+     */
+    cloudAudit?: Schema$LogConfigCloudAuditOptions;
+    /**
+     * Counter options.
+     */
+    counter?: Schema$LogConfigCounterOptions;
+    /**
+     * Data access options.
+     */
+    dataAccess?: Schema$LogConfigDataAccessOptions;
+  }
+  /**
+   * Write a Cloud Audit log
+   */
+  export interface Schema$LogConfigCloudAuditOptions {
+    /**
+     * Information used by the Cloud Audit Logging pipeline.
+     */
+    authorizationLoggingOptions?: Schema$AuthorizationLoggingOptions;
+    /**
+     * The log_name to populate in the Cloud Audit Record.
+     */
+    logName?: string;
+  }
+  /**
+   * Increment a streamz counter with the specified metric and field names.
+   * Metric names should start with a &#39;/&#39;, generally be lowercase-only,
+   * and end in &quot;_count&quot;. Field names should not contain an initial
+   * slash. The actual exported metric names will have &quot;/iam/policy&quot;
+   * prepended.  Field names correspond to IAM request parameters and field
+   * values are their respective values.  Supported field names: -
+   * &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is
+   * present, otherwise the value of IAMContext.authority_selector if present,
+   * and otherwise a representation of IAMContext.principal; or -
+   * &quot;iam_principal&quot;, a representation of IAMContext.principal even if
+   * a token or authority selector is present; or - &quot;&quot; (empty string),
+   * resulting in a counter with no fields.  Examples: counter { metric:
+   * &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt;
+   * increment counter /iam/policy/backend_debug_access_count
+   * {iam_principal=[value of IAMContext.principal]}  At this time we do not
+   * support multiple field names (though this may be supported in the future).
+   */
+  export interface Schema$LogConfigCounterOptions {
+    /**
+     * The field value to attribute.
+     */
+    field?: string;
+    /**
+     * The metric to update.
+     */
+    metric?: string;
+  }
+  /**
+   * Write a Data Access (Gin) log
+   */
+  export interface Schema$LogConfigDataAccessOptions {
+    /**
+     * Whether Gin logging should happen in a fail-closed manner at the caller.
+     * This is relevant only in the LocalIAM implementation, for now.  NOTE:
+     * Logging to Gin in a fail-closed manner is currently unsupported while
+     * work is being done to satisfy the requirements of go/345. Currently,
+     * setting LOG_FAIL_CLOSED mode will have no effect, but still exists
+     * because there is active work being done to support it (b/115874152).
+     */
+    logMode?: string;
+  }
+  /**
    * A Machine Type resource. (== resource_for v1.machineTypes ==) (==
    * resource_for beta.machineTypes ==)
    */
@@ -5530,9 +5853,9 @@ export namespace compute_v1 {
      * the metadata&#39;s contents and used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update metadata. You must always provide an
-     * up-to-date fingerprint hash in order to update or change metadata.  To
-     * see the latest fingerprint, make a get() request to retrieve the
-     * resource.
+     * up-to-date fingerprint hash in order to update or change metadata,
+     * otherwise the request will fail with error 412 conditionNotMet.  To see
+     * the latest fingerprint, make a get() request to retrieve the resource.
      */
     fingerprint?: string;
     /**
@@ -5651,7 +5974,8 @@ export namespace compute_v1 {
      * Fingerprint hash of contents stored in this network interface. This field
      * will be ignored when inserting an Instance or adding a NetworkInterface.
      * An up-to-date fingerprint must be provided in order to update the
-     * NetworkInterface.
+     * NetworkInterface, otherwise the request will fail with error 412
+     * conditionNotMet.
      */
     fingerprint?: string;
     /**
@@ -5740,11 +6064,11 @@ export namespace compute_v1 {
    */
   export interface Schema$NetworkPeering {
     /**
-     * Whether full mesh connectivity is created and managed automatically. When
-     * it is set to true, Google Compute Engine will automatically create and
-     * manage the routes between two networks when the state is ACTIVE.
-     * Otherwise, user needs to create routes manually to route packets to peer
-     * network.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically. When it is set to true, Google Compute Engine will
+     * automatically create and manage the routes between two networks when the
+     * state is ACTIVE. Otherwise, user needs to create routes manually to route
+     * packets to peer network.
      */
     autoCreateRoutes?: boolean;
     /**
@@ -6615,6 +6939,63 @@ export namespace compute_v1 {
     service?: string;
   }
   /**
+   * Defines an Identity and Access Management (IAM) policy. It is used to
+   * specify access control policies for Cloud Platform resources.    A `Policy`
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
+   * a `role`, where the members can be user accounts, Google groups, Google
+   * domains, and service accounts. A `role` is a named list of permissions
+   * defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ {
+   * &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [
+   * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
+   * &quot;domain:google.com&quot;,
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: -
+   * members: - user:mike@example.com - group:admins@example.com -
+   * domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com
+   * role: roles/owner - members: - user:sean@example.com role: roles/viewer For
+   * a description of IAM and its features, see the [IAM developer&#39;s
+   * guide](https://cloud.google.com/iam/docs).
+   */
+  export interface Schema$Policy {
+    /**
+     * Specifies cloud audit logging configuration for this policy.
+     */
+    auditConfigs?: Schema$AuditConfig[];
+    /**
+     * Associates a list of `members` to a `role`. `bindings` with no members
+     * will result in an error.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * `etag` is used for optimistic concurrency control as a way to help
+     * prevent simultaneous updates of a policy from overwriting each other. It
+     * is strongly suggested that systems make use of the `etag` in the
+     * read-modify-write cycle to perform policy updates in order to avoid race
+     * conditions: An `etag` is returned in the response to `getIamPolicy`, and
+     * systems are expected to put that etag in the request to `setIamPolicy` to
+     * ensure that their change will be applied to the same version of the
+     * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
+     * existing policy is overwritten blindly.
+     */
+    etag?: string;
+    iamOwned?: boolean;
+    /**
+     * If more than one rule is specified, the rules are applied in the
+     * following manner: - All matching LOG rules are always applied. - If any
+     * DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be
+     * applied if one or more matching rule requires logging. - Otherwise, if
+     * any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging
+     * will be applied if one or more matching rule requires logging. -
+     * Otherwise, if no rule applies, permission is denied.
+     */
+    rules?: Schema$Rule[];
+    /**
+     * Deprecated.
+     */
+    version?: number;
+  }
+  /**
    * A Project resource. For an overview of projects, see  Cloud Platform
    * Resource Hierarchy. (== resource_for v1.projects ==) (== resource_for
    * beta.projects ==)
@@ -6740,6 +7121,11 @@ export namespace compute_v1 {
      * [Output Only] Name of the quota metric.
      */
     metric?: string;
+    /**
+     * [Output Only] Owning resource. This is the resource on which this quota
+     * is applied.
+     */
+    owner?: string;
     /**
      * [Output Only] Current usage of this metric.
      */
@@ -7133,6 +7519,25 @@ export namespace compute_v1 {
      */
     labels?: {[key: string]: string;};
   }
+  export interface Schema$RegionSetPolicyRequest {
+    /**
+     * Flatten Policy to create a backwacd compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify bindings.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify the etag.
+     */
+    etag?: string;
+    /**
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
+     * The size of the policy is limited to a few 10s of KB. An empty policy is
+     * in general a valid policy but certain services (like Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
+  }
   /**
    * Commitment for a particular resource (a Commitment is composed of one or
    * more of these).
@@ -7489,11 +7894,13 @@ export namespace compute_v1 {
      */
     ipAddress?: string;
     /**
-     * [Output Only] Type of how the resource/configuration of the BGP peer is
-     * managed. MANAGED_BY_USER is the default value; MANAGED_BY_ATTACHMENT
-     * represents an BGP peer that is automatically created for PARTNER
-     * interconnectAttachment, Google will automatically create/delete this type
-     * of BGP peer when the PARTNER interconnectAttachment is created/deleted.
+     * [Output Only] The resource that configures and manages this BGP peer.
+     * MANAGED_BY_USER is the default value and can be managed by you or other
+     * users; MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
+     * by Cloud Interconnect, specifically by an InterconnectAttachment of type
+     * PARTNER. Google will automatically create, update, and delete this type
+     * of BGP peer when the PARTNER InterconnectAttachment is created, updated,
+     * or deleted.
      */
     managementType?: string;
     /**
@@ -7533,12 +7940,13 @@ export namespace compute_v1 {
      */
     linkedVpnTunnel?: string;
     /**
-     * [Output Only] Type of how the resource/configuration of the interface is
-     * managed. MANAGED_BY_USER is the default value; MANAGED_BY_ATTACHMENT
-     * represents an interface that is automatically created for PARTNER type
-     * interconnectAttachment, Google will automatically create/update/delete
-     * this type of interface when the PARTNER interconnectAttachment is
-     * created/provisioned/deleted.
+     * [Output Only] The resource that configures and manages this interface.
+     * MANAGED_BY_USER is the default value and can be managed by you or other
+     * users; MANAGED_BY_ATTACHMENT is an interface that is configured and
+     * managed by Cloud Interconnect, specifically by an InterconnectAttachment
+     * of type PARTNER. Google will automatically create, update, and delete
+     * this type of interface when the PARTNER InterconnectAttachment is
+     * created, updated, or deleted.
      */
     managementType?: string;
     /**
@@ -7792,6 +8200,46 @@ export namespace compute_v1 {
     result?: Schema$RouterStatus;
   }
   /**
+   * A rule to be applied in a Policy.
+   */
+  export interface Schema$Rule {
+    /**
+     * Required
+     */
+    action?: string;
+    /**
+     * Additional restrictions that must be met. All conditions must pass for
+     * the rule to match.
+     */
+    conditions?: Schema$Condition[];
+    /**
+     * Human-readable description of the rule.
+     */
+    description?: string;
+    /**
+     * If one or more &#39;in&#39; clauses are specified, the rule matches if
+     * the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     */
+    ins?: string[];
+    /**
+     * The config returned to callers of tech.iam.IAM.CheckPolicy for any
+     * entries that match the LOG action.
+     */
+    logConfigs?: Schema$LogConfig[];
+    /**
+     * If one or more &#39;not_in&#39; clauses are specified, the rule matches
+     * if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+     */
+    notIns?: string[];
+    /**
+     * A permission is a string of form &#39;..&#39; (e.g.,
+     * &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all
+     * permissions, and a verb part of &#39;*&#39; (e.g.,
+     * &#39;storage.buckets.*&#39;) matches all verbs.
+     */
+    permissions?: string[];
+  }
+  /**
    * Sets the scheduling options for an Instance.
    */
   export interface Schema$Scheduling {
@@ -7860,8 +8308,9 @@ export namespace compute_v1 {
      * the metadata&#39;s contents and used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update metadata. You must always provide an
-     * up-to-date fingerprint hash in order to update or change metadata.  To
-     * see the latest fingerprint, make get() request to the security policy.
+     * up-to-date fingerprint hash in order to update or change metadata,
+     * otherwise the request will fail with error 412 conditionNotMet.  To see
+     * the latest fingerprint, make get() request to the security policy.
      */
     fingerprint?: string;
     /**
@@ -7962,8 +8411,9 @@ export namespace compute_v1 {
     preview?: boolean;
     /**
      * An integer indicating the priority of a rule in the list. The priority
-     * must be a positive value between 0 and 2147483647. Rules are evaluated in
-     * the increasing order of priority.
+     * must be a positive value between 0 and 2147483647. Rules are evaluated
+     * from highest to lowest priority where 0 is the highest priority and
+     * 2147483647 is the lowest prority.
      */
     priority?: number;
   }
@@ -8088,7 +8538,8 @@ export namespace compute_v1 {
      * essentially a hash of the labels set used for optimistic locking. The
      * fingerprint is initially generated by Compute Engine and changes after
      * every request to modify or update labels. You must always provide an
-     * up-to-date fingerprint hash in order to update or change labels.  To see
+     * up-to-date fingerprint hash in order to update or change labels,
+     * otherwise the request will fail with error 412 conditionNotMet.  To see
      * the latest fingerprint, make a get() request to retrieve a snapshot.
      */
     labelFingerprint?: string;
@@ -8405,8 +8856,9 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a SslPolicy. An up-to-date fingerprint must be
-     * provided in order to update the SslPolicy.  To see the latest
-     * fingerprint, make a get() request to retrieve an SslPolicy.
+     * provided in order to update the SslPolicy, otherwise the request will
+     * fail with error 412 conditionNotMet.  To see the latest fingerprint, make
+     * a get() request to retrieve an SslPolicy.
      */
     fingerprint?: string;
     /**
@@ -8487,8 +8939,9 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a Subnetwork. An up-to-date fingerprint must be
-     * provided in order to update the Subnetwork.  To see the latest
-     * fingerprint, make a get() request to retrieve a Subnetwork.
+     * provided in order to update the Subnetwork, otherwise the request will
+     * fail with error 412 conditionNotMet.  To see the latest fingerprint, make
+     * a get() request to retrieve a Subnetwork.
      */
     fingerprint?: string;
     /**
@@ -8546,7 +8999,8 @@ export namespace compute_v1 {
      * An array of configurations for secondary IP ranges for VM instances
      * contained in this subnetwork. The primary IP of such VM must belong to
      * the primary ipCidrRange of the subnetwork. The alias IPs may belong to
-     * either primary or secondary ranges.
+     * either primary or secondary ranges. This field can be updated with a
+     * patch request.
      */
     secondaryIpRanges?: Schema$SubnetworkSecondaryRange[];
     /**
@@ -9721,8 +10175,9 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this
      * object. This field is used in optimistic locking. This field will be
      * ignored when inserting a UrlMap. An up-to-date fingerprint must be
-     * provided in order to update the UrlMap.  To see the latest fingerprint,
-     * make a get() request to retrieve a UrlMap.
+     * provided in order to update the UrlMap, otherwise the request will fail
+     * with error 412 conditionNotMet.  To see the latest fingerprint, make a
+     * get() request to retrieve a UrlMap.
      */
     fingerprint?: string;
     /**
@@ -10243,7 +10698,7 @@ export namespace compute_v1 {
   export interface Schema$XpnResourceId {
     /**
      * The ID of the service resource. In the case of projects, this field
-     * matches the project ID (e.g., my-project), not the project number (e.g.,
+     * supports project id (e.g., my-project-123) and project number (e.g.
      * 12345678).
      */
     id?: string;
@@ -10350,6 +10805,25 @@ export namespace compute_v1 {
      * The labels to set for this resource.
      */
     labels?: {[key: string]: string;};
+  }
+  export interface Schema$ZoneSetPolicyRequest {
+    /**
+     * Flatten Policy to create a backwacd compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify bindings.
+     */
+    bindings?: Schema$Binding[];
+    /**
+     * Flatten Policy to create a backward compatible wire-format. Deprecated.
+     * Use &#39;policy&#39; to specify the etag.
+     */
+    etag?: string;
+    /**
+     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;.
+     * The size of the policy is limited to a few 10s of KB. An empty policy is
+     * in general a valid policy but certain services (like Projects) might
+     * reject them.
+     */
+    policy?: Schema$Policy;
   }
 
 
@@ -14641,7 +15115,7 @@ export namespace compute_v1 {
     /**
      * compute.backendServices.get
      * @desc Returns the specified BackendService resource. Gets a list of
-     * available backend services by making a list() request.
+     * available backend services.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -16432,6 +16906,77 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.disks.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.disks.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Disks$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Disks$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Disks$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Disks$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Disks$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.disks.insert
      * @desc Creates a persistent disk in the specified project using the data
      * in the request. You can create a disk with a sourceImage, a
@@ -16841,6 +17386,78 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.disks.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.disks.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Disks$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Disks$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Disks$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Disks$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Disks$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.disks.setLabels
      * @desc Sets the labels on a disk. To learn more about labels, read the
      * Labeling Resources documentation.
@@ -16913,7 +17530,7 @@ export namespace compute_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {().ZoneSetLabelsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16972,6 +17589,80 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.disks.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.disks.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Disks$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Disks$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Disks$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Disks$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Disks$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/disks/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
   }
@@ -17124,6 +17815,26 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
+  export interface Params$Resource$Disks$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Disks$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -17256,6 +17967,31 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$DisksResizeRequest;
   }
+  export interface Params$Resource$Disks$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
+  }
   export interface Params$Resource$Disks$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -17280,7 +18016,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -17292,6 +18028,31 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ZoneSetLabelsRequest;
+  }
+  export interface Params$Resource$Disks$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -25505,6 +26266,76 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.images.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.images.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Images$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Images$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Images$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Images$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Images$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Images$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/images/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.images.insert
      * @desc Creates an image in the specified project using the data included
      * in the request.
@@ -25771,6 +26602,77 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.images.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.images.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Images$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Images$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Images$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Images$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Images$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Images$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/images/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.images.setLabels
      * @desc Sets the labels on an image. To learn more about labels, read the
      * Labeling Resources documentation.
@@ -25839,7 +26741,7 @@ export namespace compute_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetLabelsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -25897,6 +26799,79 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.images.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.images.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Images$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Images$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Images$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Images$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Images$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Images$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/images/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
   }
@@ -25993,6 +26968,22 @@ export namespace compute_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Images$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Images$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -26080,6 +27071,27 @@ export namespace compute_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Images$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
+  }
   export interface Params$Resource$Images$Setlabels extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -26091,7 +27103,7 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -26099,6 +27111,27 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
+  }
+  export interface Params$Resource$Images$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -27254,6 +28287,85 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.instanceGroupManagers.patch
+     * @desc Updates a managed instance group using the information that you
+     * specify in the request. This operation is marked as DONE when the group
+     * is patched even if the instances in the group are still in the process of
+     * being patched. You must separately verify the status of the individual
+     * instances with the listManagedInstances method. This method supports
+     * PATCH semantics and uses the JSON merge patch format and processing
+     * rules.
+     * @alias compute.instanceGroupManagers.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone where you want to create the managed instance group.
+     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Instancegroupmanagers$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    patch(
+        params: Params$Resource$Instancegroupmanagers$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Instancegroupmanagers$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Instancegroupmanagers$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instanceGroupManagers.recreateInstances
      * @desc Flags the specified instances in the managed instance group to be
      * immediately recreated. The instances are deleted and recreated using the
@@ -28170,6 +29282,44 @@ export namespace compute_v1 {
      * The name of the zone where the managed instance group is located.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone where you want to create the managed instance group.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceGroupManager;
   }
   export interface Params$Resource$Instancegroupmanagers$Recreateinstances
       extends StandardParameters {
@@ -30742,8 +31892,8 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.deviceName Disk device name to detach.
-     * @param {string} params.instance Instance name.
+     * @param {string} params.deviceName The device name of the disk to detach. Make a get() request on the instance to view currently attached disks and device names.
+     * @param {string} params.instance Instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -30929,6 +32079,77 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Instance>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.instances.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Instances$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Instances$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Instances$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Instances$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -31613,7 +32834,7 @@ export namespace compute_v1 {
      * @param {boolean=} params.deletionProtection Whether the resource should be protected against deletion.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -31750,8 +32971,8 @@ export namespace compute_v1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean} params.autoDelete Whether to auto-delete the disk when the instance is deleted.
-     * @param {string} params.deviceName The device name of the disk to modify.
-     * @param {string} params.instance The instance name.
+     * @param {string} params.deviceName The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+     * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -31813,6 +33034,78 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.instances.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Instances$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Instances$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Instances$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Instances$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Instances$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -32571,7 +33864,7 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.instance Instance name.
+     * @param {string} params.instance Instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -33384,6 +34677,80 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.instances.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.instances.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Instances$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Instances$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Instances$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Instances$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.updateAccessConfig
      * @desc Updates the specified access config from an instance's network
      * interface with the data included in the request. This method supports
@@ -33757,11 +35124,12 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Disk device name to detach.
+     * The device name of the disk to detach. Make a get() request on the
+     * instance to view currently attached disks and device names.
      */
     deviceName?: string;
     /**
-     * Instance name.
+     * Instance name for this request.
      */
     instance?: string;
     /**
@@ -33800,6 +35168,26 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
@@ -34062,7 +35450,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
     /**
@@ -34082,11 +35470,12 @@ export namespace compute_v1 {
      */
     autoDelete?: boolean;
     /**
-     * The device name of the disk to modify.
+     * The device name of the disk to modify. Make a get() request on the
+     * instance to view currently attached disks and device names.
      */
     deviceName?: string;
     /**
-     * The instance name.
+     * The instance name for this request.
      */
     instance?: string;
     /**
@@ -34110,6 +35499,31 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Instances$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
   }
   export interface Params$Resource$Instances$Setlabels extends
       StandardParameters {
@@ -34309,7 +35723,7 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Instance name.
+     * Instance name for this request.
      */
     instance?: string;
     /**
@@ -34537,6 +35951,31 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
+  export interface Params$Resource$Instances$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
   export interface Params$Resource$Instances$Updateaccessconfig extends
       StandardParameters {
     /**
@@ -34630,8 +36069,8 @@ export namespace compute_v1 {
     /**
      * compute.instanceTemplates.delete
      * @desc Deletes the specified instance template. Deleting an instance
-     * template is permanent and cannot be undone. It's not possible to delete
-     * templates which are in use by an instance group.
+     * template is permanent and cannot be undone. It is not possible to delete
+     * templates that are already in use by a managed instance group.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -34882,6 +36321,76 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.instanceTemplates.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.instanceTemplates.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Instancetemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Instancetemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instanceTemplates.insert
      * @desc Creates an instance template in the specified project using the
      * data that is included in the request. If you are creating a new template
@@ -35015,7 +36524,7 @@ export namespace compute_v1 {
     /**
      * compute.instanceTemplates.list
      * @desc Retrieves a list of instance templates that are contained within
-     * the specified project and zone.
+     * the specified project.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -35150,6 +36659,150 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$InstanceTemplateList>(parameters);
       }
     }
+
+
+    /**
+     * compute.instanceTemplates.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.instanceTemplates.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Instancetemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Instancetemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instanceTemplates.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.instanceTemplates.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Instancetemplates$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Instancetemplates$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Instancetemplates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Instancetemplates$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancetemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancetemplates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/instanceTemplates/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Instancetemplates$Delete extends
@@ -35196,6 +36849,22 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Instancetemplates$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Instancetemplates$Insert extends
       StandardParameters {
@@ -35281,6 +36950,48 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Instancetemplates$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
+  }
+  export interface Params$Resource$Instancetemplates$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -37933,6 +39644,76 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.licenses.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.licenses.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Licenses$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Licenses$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Licenses$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Licenses$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Licenses$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenses$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/licenses/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.licenses.insert
      * @desc Create a License resource in the specified project.
      * @alias compute.licenses.insert
@@ -38075,6 +39856,77 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.licenses.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.licenses.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Licenses$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Licenses$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Licenses$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Licenses$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Licenses$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenses$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/licenses/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.licenses.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.licenses.testIamPermissions
@@ -38190,6 +40042,22 @@ export namespace compute_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Licenses$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Licenses$Insert extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -38272,6 +40140,27 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Licenses$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
   }
   export interface Params$Resource$Licenses$Testiampermissions extends
       StandardParameters {
@@ -40148,7 +42037,7 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.nodeGroup Name of the NodeGroup resource.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -40502,6 +42391,77 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.nodeGroups.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.nodeGroups.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Nodegroups$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Nodegroups$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Nodegroups$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Nodegroups$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.nodeGroups.insert
      * @desc Creates a NodeGroup resource in the specified project using the
      * data included in the request.
@@ -40721,13 +42681,85 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.nodeGroups.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.nodeGroups.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Nodegroups$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Nodegroups$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Nodegroups$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Nodegroups$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Nodegroups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.nodeGroups.setNodeTemplate
      * @desc Updates the node template of the node group.
      * @alias compute.nodeGroups.setNodeTemplate
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.nodeGroup Name of the NodeGroup resource to delete.
+     * @param {string} params.nodeGroup Name of the NodeGroup resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
@@ -40791,6 +42823,80 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * compute.nodeGroups.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.nodeGroups.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Nodegroups$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Nodegroups$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Nodegroups$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Nodegroups$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Nodegroups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Nodegroups$Addnodes extends
@@ -40801,7 +42907,7 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the NodeGroup resource to delete.
+     * Name of the NodeGroup resource.
      */
     nodeGroup?: string;
     /**
@@ -40976,6 +43082,26 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
+  export interface Params$Resource$Nodegroups$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Nodegroups$Insert extends
       StandardParameters {
     /**
@@ -41135,6 +43261,31 @@ export namespace compute_v1 {
      */
     zone?: string;
   }
+  export interface Params$Resource$Nodegroups$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
+  }
   export interface Params$Resource$Nodegroups$Setnodetemplate extends
       StandardParameters {
     /**
@@ -41143,7 +43294,7 @@ export namespace compute_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the NodeGroup resource to delete.
+     * Name of the NodeGroup resource to update.
      */
     nodeGroup?: string;
     /**
@@ -41172,6 +43323,31 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$NodeGroupsSetNodeTemplateRequest;
+  }
+  export interface Params$Resource$Nodegroups$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -41399,6 +43575,77 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.nodeTemplates.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.nodeTemplates.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Nodetemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Nodetemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Nodetemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Nodetemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Nodetemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.nodeTemplates.insert
      * @desc Creates a NodeTemplate resource in the specified project using the
      * data included in the request.
@@ -41543,6 +43790,152 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$NodeTemplateList>(parameters);
       }
     }
+
+
+    /**
+     * compute.nodeTemplates.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.nodeTemplates.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Nodetemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Nodetemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Nodetemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Nodetemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Nodetemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.nodeTemplates.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.nodeTemplates.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Nodetemplates$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Nodetemplates$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Nodetemplates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Nodetemplates$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Nodetemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodetemplates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Nodetemplates$Aggregatedlist extends
@@ -41653,6 +44046,26 @@ export namespace compute_v1 {
      */
     region?: string;
   }
+  export interface Params$Resource$Nodetemplates$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Nodetemplates$Insert extends
       StandardParameters {
     /**
@@ -41745,6 +44158,56 @@ export namespace compute_v1 {
      * The name of the region for this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Nodetemplates$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetPolicyRequest;
+  }
+  export interface Params$Resource$Nodetemplates$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -47512,7 +49975,7 @@ export namespace compute_v1 {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().RegionSetLabelsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -47902,7 +50365,7 @@ export namespace compute_v1 {
      */
     requestId?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -49163,6 +51626,85 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.regionInstanceGroupManagers.patch
+     * @desc Updates a managed instance group using the information that you
+     * specify in the request. This operation is marked as DONE when the group
+     * is patched even if the instances in the group are still in the process of
+     * being patched. You must separately verify the status of the individual
+     * instances with the listmanagedinstances method. This method supports
+     * PATCH semantics and uses the JSON merge patch format and processing
+     * rules.
+     * @alias compute.regionInstanceGroupManagers.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Regioninstancegroupmanagers$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    patch(
+        params: Params$Resource$Regioninstancegroupmanagers$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Regioninstancegroupmanagers$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Regioninstancegroupmanagers$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|AxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regioninstancegroupmanagers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstancegroupmanagers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionInstanceGroupManagers.recreateInstances
      * @desc Flags the specified instances in the managed instance group to be
      * immediately recreated. The instances are deleted and recreated using the
@@ -50012,6 +52554,44 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Regioninstancegroupmanagers$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the instance group manager.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceGroupManager;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances
       extends StandardParameters {
@@ -54978,7 +57558,7 @@ export namespace compute_v1 {
      * a single snapshot might not necessarily delete all the data on that
      * snapshot. If any data on the snapshot that is marked for deletion is
      * needed for subsequent snapshots, the data will be moved to the next
-     * corresponding snapshot.  For more information, see Deleting snaphots.
+     * corresponding snapshot.  For more information, see Deleting snapshots.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -55223,6 +57803,76 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.snapshots.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.snapshots.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Snapshots$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Snapshots$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Snapshots$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Snapshots$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Snapshots$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshots$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/snapshots/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.snapshots.list
      * @desc Retrieves the list of Snapshot resources contained within the
      * specified project.
@@ -55359,6 +58009,77 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.snapshots.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.snapshots.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Snapshots$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Snapshots$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Snapshots$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Snapshots$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Snapshots$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshots$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/snapshots/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.snapshots.setLabels
      * @desc Sets the labels on a snapshot. To learn more about labels, read the
      * Labeling Resources documentation.
@@ -55427,7 +58148,7 @@ export namespace compute_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {().GlobalSetLabelsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -55488,6 +58209,79 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * compute.snapshots.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.snapshots.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Snapshots$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Snapshots$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Snapshots$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Snapshots$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Snapshots$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshots$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/global/snapshots/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Snapshots$Delete extends StandardParameters {
@@ -55532,6 +58326,22 @@ export namespace compute_v1 {
      * Name of the Snapshot resource to return.
      */
     snapshot?: string;
+  }
+  export interface Params$Resource$Snapshots$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Snapshots$List extends StandardParameters {
     /**
@@ -55587,6 +58397,27 @@ export namespace compute_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Snapshots$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
+  }
   export interface Params$Resource$Snapshots$Setlabels extends
       StandardParameters {
     /**
@@ -55599,7 +58430,7 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
-     * Name of the resource for this request.
+     * Name or id of the resource for this request.
      */
     resource?: string;
 
@@ -55607,6 +58438,27 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GlobalSetLabelsRequest;
+  }
+  export interface Params$Resource$Snapshots$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 
@@ -57464,6 +60316,77 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.subnetworks.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.subnetworks.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Subnetworks$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Subnetworks$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Subnetworks$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Subnetworks$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Subnetworks$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subnetworks$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.subnetworks.insert
      * @desc Creates a subnetwork in the specified project using the data
      * included in the request.
@@ -57822,10 +60745,9 @@ export namespace compute_v1 {
     /**
      * compute.subnetworks.patch
      * @desc Patches the specified subnetwork with the data included in the
-     * request. Only the following fields within the subnetwork resource can be
-     * specified in the request: secondary_ip_range,
-     * allow_subnet_cidr_routes_overlap and role. It is also mandatory to
-     * specify the current fingeprint of the subnetwork resource being patched.
+     * request. Only certain fields can up updated with a patch request as
+     * indicated in the field descriptions. You must specify the current
+     * fingeprint of the subnetwork resource being patched.
      * @alias compute.subnetworks.patch
      * @memberOf! ()
      *
@@ -57891,6 +60813,78 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.subnetworks.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.subnetworks.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Subnetworks$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Subnetworks$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Subnetworks$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Subnetworks$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Subnetworks$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subnetworks$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
       }
     }
 
@@ -58027,6 +61021,80 @@ export namespace compute_v1 {
         createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.subnetworks.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.subnetworks.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Subnetworks$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Subnetworks$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Subnetworks$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Subnetworks$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|AxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Subnetworks$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Subnetworks$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
       }
     }
   }
@@ -58175,6 +61243,26 @@ export namespace compute_v1 {
      * Name of the Subnetwork resource to return.
      */
     subnetwork?: string;
+  }
+  export interface Params$Resource$Subnetworks$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Subnetworks$Insert extends
       StandardParameters {
@@ -58361,6 +61449,31 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$Subnetwork;
   }
+  export interface Params$Resource$Subnetworks$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetPolicyRequest;
+  }
   export interface Params$Resource$Subnetworks$Setprivateipgoogleaccess extends
       StandardParameters {
     /**
@@ -58398,6 +61511,31 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SubnetworksSetPrivateIpGoogleAccessRequest;
+  }
+  export interface Params$Resource$Subnetworks$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
 

@@ -115,7 +115,7 @@ export namespace cloudasset_v1beta1 {
    */
   export interface Schema$Asset {
     /**
-     * Type of the asset. Example: &quot;google.compute.disk&quot;.
+     * Type of the asset. Example: &quot;google.compute.Disk&quot;.
      */
     assetType?: string;
     /**
@@ -239,7 +239,7 @@ export namespace cloudasset_v1beta1 {
   export interface Schema$ExportAssetsRequest {
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * &quot;google.compute.disk&quot;. If specified, only matching assets will
+     * &quot;google.compute.Disk&quot;. If specified, only matching assets will
      * be returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
      * for all supported asset types.

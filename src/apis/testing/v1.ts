@@ -113,11 +113,11 @@ export namespace testing_v1 {
   }
 
   /**
-   * Identifies an account and how to log into it
+   * Identifies an account and how to log into it.
    */
   export interface Schema$Account {
     /**
-     * An automatic google login account
+     * An automatic google login account.
      */
     googleAuto?: Schema$GoogleAuto;
   }
@@ -126,23 +126,23 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidDevice {
     /**
-     * The id of the Android device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options. Required
+     * Required. The id of the Android device to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
      */
     androidModelId?: string;
     /**
-     * The id of the Android OS version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options. Required
+     * Required. The id of the Android OS version to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
      */
     androidVersionId?: string;
     /**
-     * The locale the test device used for testing. Use the
-     * EnvironmentDiscoveryService to get supported options. Required
+     * Required. The locale the test device used for testing. Use the
+     * EnvironmentDiscoveryService to get supported options.
      */
     locale?: string;
     /**
-     * How the device is oriented during the test. Use the
-     * EnvironmentDiscoveryService to get supported options. Required
+     * Required. How the device is oriented during the test. Use the
+     * EnvironmentDiscoveryService to get supported options.
      */
     orientation?: string;
   }
@@ -151,15 +151,15 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidDeviceCatalog {
     /**
-     * The set of supported Android device models. @OutputOnly
+     * The set of supported Android device models.
      */
     models?: Schema$AndroidModel[];
     /**
-     * The set of supported runtime configurations. @OutputOnly
+     * The set of supported runtime configurations.
      */
     runtimeConfiguration?: Schema$AndroidRuntimeConfiguration;
     /**
-     * The set of supported Android OS versions. @OutputOnly
+     * The set of supported Android OS versions.
      */
     versions?: Schema$AndroidVersion[];
   }
@@ -169,7 +169,7 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidDeviceList {
     /**
-     * A list of Android devices Required
+     * Required. A list of Android devices.
      */
     androidDevices?: Schema$AndroidDevice[];
   }
@@ -193,7 +193,7 @@ export namespace testing_v1 {
      */
     appBundle?: Schema$AppBundle;
     /**
-     * The java package for the application under test. Optional, default is
+     * The java package for the application under test. The default value is
      * determined by examining the application&#39;s manifest.
      */
     appPackageId?: string;
@@ -204,21 +204,21 @@ export namespace testing_v1 {
      * Orchestrator offers the following benefits:  - No shared state  - Crashes
      * are isolated  - Logs are scoped per test  See
      * &lt;https://developer.android.com/training/testing/junit-runner.html#using-android-test-orchestrator&gt;
-     * for more information about Android Test Orchestrator.  Optional. If not
-     * set, the test will be run without the orchestrator.
+     * for more information about Android Test Orchestrator.  If not set, the
+     * test will be run without the orchestrator.
      */
     orchestratorOption?: string;
     /**
-     * The APK containing the test code to be executed. Required
+     * Required. The APK containing the test code to be executed.
      */
     testApk?: Schema$FileReference;
     /**
-     * The java package for the test to be executed. Optional, default is
+     * The java package for the test to be executed. The default value is
      * determined by examining the application&#39;s manifest.
      */
     testPackageId?: string;
     /**
-     * The InstrumentationTestRunner class. Optional, default is determined by
+     * The InstrumentationTestRunner class. The default value is determined by
      * examining the application&#39;s manifest.
      */
     testRunnerClass?: string;
@@ -226,37 +226,37 @@ export namespace testing_v1 {
      * Each target must be fully qualified with the package name or class name,
      * in one of these formats:  - &quot;package package_name&quot;  -
      * &quot;class package_name.class_name&quot;  - &quot;class
-     * package_name.class_name#method_name&quot;  Optional, if empty, all
-     * targets in the module will be run.
+     * package_name.class_name#method_name&quot;  If empty, all targets in the
+     * module will be run.
      */
     testTargets?: string[];
   }
   /**
    * A set of Android device configuration permutations is defined by the the
-   * cross-product of the given axes.  Internally, the given AndroidMatrix will
+   * cross-product of the given axes. Internally, the given AndroidMatrix will
    * be expanded into a set of AndroidDevices.  Only supported permutations will
    * be instantiated.  Invalid permutations (e.g., incompatible models/versions)
    * are ignored.
    */
   export interface Schema$AndroidMatrix {
     /**
-     * The ids of the set of Android device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options. Required
+     * Required. The ids of the set of Android device to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
      */
     androidModelIds?: string[];
     /**
-     * The ids of the set of Android OS version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options. Required
+     * Required. The ids of the set of Android OS version to be used. Use the
+     * EnvironmentDiscoveryService to get supported options.
      */
     androidVersionIds?: string[];
     /**
-     * The set of locales the test device will enable for testing. Use the
-     * EnvironmentDiscoveryService to get supported options. Required
+     * Required. The set of locales the test device will enable for testing. Use
+     * the EnvironmentDiscoveryService to get supported options.
      */
     locales?: string[];
     /**
-     * The set of orientations to test with. Use the EnvironmentDiscoveryService
-     * to get supported options. Required
+     * Required. The set of orientations to test with. Use the
+     * EnvironmentDiscoveryService to get supported options.
      */
     orientations?: string[];
   }
@@ -266,53 +266,51 @@ export namespace testing_v1 {
   export interface Schema$AndroidModel {
     /**
      * The company that this device is branded with. Example:
-     * &quot;Google&quot;, &quot;Samsung&quot; @OutputOnly
+     * &quot;Google&quot;, &quot;Samsung&quot;.
      */
     brand?: string;
     /**
      * The name of the industrial design. This corresponds to
-     * android.os.Build.DEVICE @OutputOnly
+     * android.os.Build.DEVICE.
      */
     codename?: string;
     /**
-     * Whether this device is virtual or physical. @OutputOnly
+     * Whether this device is virtual or physical.
      */
     form?: string;
     /**
-     * Whether this device is a phone, tablet, wearable, etc. @OutputOnly
+     * Whether this device is a phone, tablet, wearable, etc.
      */
     formFactor?: string;
     /**
      * The unique opaque id for this model. Use this for invoking the
-     * TestExecutionService. @OutputOnly
+     * TestExecutionService.
      */
     id?: string;
     /**
      * True if and only if tests with this model are recorded by stitching
      * together screenshots. See use_low_spec_video_recording in device config.
-     * @OutputOnly
      */
     lowFpsVideoRecording?: boolean;
     /**
-     * The manufacturer of this device. @OutputOnly
+     * The manufacturer of this device.
      */
     manufacturer?: string;
     /**
      * The human-readable marketing name for this device model. Examples:
-     * &quot;Nexus 5&quot;, &quot;Galaxy S5&quot; @OutputOnly
+     * &quot;Nexus 5&quot;, &quot;Galaxy S5&quot;.
      */
     name?: string;
     /**
-     * Screen density in DPI. This corresponds to ro.sf.lcd_density @OutputOnly
+     * Screen density in DPI. This corresponds to ro.sf.lcd_density
      */
     screenDensity?: number;
     /**
      * Screen size in the horizontal (X) dimension measured in pixels.
-     * @OutputOnly
      */
     screenX?: number;
     /**
-     * Screen size in the vertical (Y) dimension measured in pixels. @OutputOnly
+     * Screen size in the vertical (Y) dimension measured in pixels.
      */
     screenY?: number;
     /**
@@ -322,16 +320,16 @@ export namespace testing_v1 {
      * element in the list.  Elements are optionally prefixed by
      * &quot;version_id:&quot; (where version_id is the id of an
      * AndroidVersion), denoting an ABI that is supported only on a particular
-     * version. @OutputOnly
+     * version.
      */
     supportedAbis?: string[];
     /**
-     * The set of Android versions this device supports. @OutputOnly
+     * The set of Android versions this device supports.
      */
     supportedVersionIds?: string[];
     /**
      * Tags for this dimension. Examples: &quot;default&quot;,
-     * &quot;preview&quot;, &quot;deprecated&quot;
+     * &quot;preview&quot;, &quot;deprecated&quot;.
      */
     tags?: string[];
   }
@@ -349,33 +347,33 @@ export namespace testing_v1 {
      */
     appBundle?: Schema$AppBundle;
     /**
-     * The initial activity that should be used to start the app. Optional
+     * The initial activity that should be used to start the app.
      */
     appInitialActivity?: string;
     /**
-     * The java package for the application under test. Optional, default is
+     * The java package for the application under test. The default value is
      * determined by examining the application&#39;s manifest.
      */
     appPackageId?: string;
     /**
      * The max depth of the traversal stack Robo can explore. Needs to be at
      * least 2 to make Robo explore the app beyond the first activity. Default
-     * is 50. Optional
+     * is 50.
      */
     maxDepth?: number;
     /**
-     * The max number of steps Robo can execute. Default is no limit. Optional
+     * The max number of steps Robo can execute. Default is no limit.
      */
     maxSteps?: number;
     /**
      * A set of directives Robo should apply during the crawl. This allows users
      * to customize the crawl. For example, the username and password for a test
-     * account can be provided. Optional
+     * account can be provided.
      */
     roboDirectives?: Schema$RoboDirective[];
     /**
      * A JSON file with a sequence of actions Robo should perform as a prologue
-     * for the crawl. Optional
+     * for the crawl.
      */
     roboScript?: Schema$FileReference;
     /**
@@ -391,18 +389,18 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidRuntimeConfiguration {
     /**
-     * The set of available locales. @OutputOnly
+     * The set of available locales.
      */
     locales?: Schema$Locale[];
     /**
-     * The set of available orientations. @OutputOnly
+     * The set of available orientations.
      */
     orientations?: Schema$Orientation[];
   }
   /**
    * A test of an Android Application with a Test Loop. The intent
-   * &lt;intent-name&gt; will be implicitly added, since Games is the only user
-   * of this api, for the time being.
+   * \&lt;intent-name\&gt; will be implicitly added, since Games is the only
+   * user of this api, for the time being.
    */
   export interface Schema$AndroidTestLoop {
     /**
@@ -414,7 +412,7 @@ export namespace testing_v1 {
      */
     appBundle?: Schema$AppBundle;
     /**
-     * The java package for the application under test. Optional, default is
+     * The java package for the application under test. The default is
      * determined by examining the application&#39;s manifest.
      */
     appPackageId?: string;
@@ -424,50 +422,49 @@ export namespace testing_v1 {
      * manifest. For example, player_experience and
      * com.google.test.loops.player_experience add all of the loops labeled in
      * the manifest with the com.google.test.loops.player_experience name to the
-     * execution. Optional. Scenarios can also be specified in the scenarios
-     * field.
+     * execution. Scenarios can also be specified in the scenarios field.
      */
     scenarioLabels?: string[];
     /**
-     * The list of scenarios that should be run during the test. Optional,
-     * default is all test loops, derived from the application&#39;s manifest.
+     * The list of scenarios that should be run during the test. The default is
+     * all test loops, derived from the application&#39;s manifest.
      */
     scenarios?: number[];
   }
   /**
-   * A version of the Android OS
+   * A version of the Android OS.
    */
   export interface Schema$AndroidVersion {
     /**
-     * The API level for this Android version. Examples: 18, 19 @OutputOnly
+     * The API level for this Android version. Examples: 18, 19.
      */
     apiLevel?: number;
     /**
      * The code name for this Android version. Examples: &quot;JellyBean&quot;,
-     * &quot;KitKat&quot; @OutputOnly
+     * &quot;KitKat&quot;.
      */
     codeName?: string;
     /**
-     * Market share for this version. @OutputOnly
+     * Market share for this version.
      */
     distribution?: Schema$Distribution;
     /**
      * An opaque id for this Android version. Use this id to invoke the
-     * TestExecutionService. @OutputOnly
+     * TestExecutionService.
      */
     id?: string;
     /**
-     * The date this Android version became available in the market. @OutputOnly
+     * The date this Android version became available in the market.
      */
     releaseDate?: Schema$Date;
     /**
      * Tags for this dimension. Examples: &quot;default&quot;,
-     * &quot;preview&quot;, &quot;deprecated&quot;
+     * &quot;preview&quot;, &quot;deprecated&quot;.
      */
     tags?: string[];
     /**
      * A string representing this version of the Android OS. Examples:
-     * &quot;4.3&quot;, &quot;4.4&quot; @OutputOnly
+     * &quot;4.3&quot;, &quot;4.4&quot;.
      */
     versionString?: string;
   }
@@ -477,18 +474,17 @@ export namespace testing_v1 {
   export interface Schema$Apk {
     /**
      * The path to an APK to be installed on the device before the test begins.
-     * Optional
      */
     location?: Schema$FileReference;
     /**
-     * The java package for the APK to be installed. Optional, value is
-     * determined by examining the application&#39;s manifest.
+     * The java package for the APK to be installed. Value is determined by
+     * examining the application&#39;s manifest.
      */
     packageName?: string;
   }
   /**
    * Android application details based on application manifest and apk archive
-   * contents
+   * contents.
    */
   export interface Schema$ApkDetail {
     apkManifest?: Schema$ApkManifest;
@@ -548,22 +544,22 @@ export namespace testing_v1 {
      */
     clientInfoDetails?: Schema$ClientInfoDetail[];
     /**
-     * Client name, such as gcloud. Required
+     * Required. Client name, such as gcloud.
      */
     name?: string;
   }
   /**
    * Key-value pair of detailed information about the client which invoked the
-   * test. For example {&#39;Version&#39;, &#39;1.0&#39;}, {&#39;Release
-   * Track&#39;, &#39;BETA&#39;}
+   * test. Examples: {&#39;Version&#39;, &#39;1.0&#39;}, {&#39;Release
+   * Track&#39;, &#39;BETA&#39;}.
    */
   export interface Schema$ClientInfoDetail {
     /**
-     * The key of detailed client information. Required
+     * Required. The key of detailed client information.
      */
     key?: string;
     /**
-     * The value of detailed client information. Required
+     * Required. The value of detailed client information.
      */
     value?: string;
   }
@@ -614,12 +610,12 @@ export namespace testing_v1 {
    */
   export interface Schema$Distribution {
     /**
-     * The estimated fraction (0-1) of the total market with this configuration.
-     * @OutputOnly
+     * Output only. The estimated fraction (0-1) of the total market with this
+     * configuration.
      */
     marketShare?: number;
     /**
-     * The time this distribution was measured. @OutputOnly
+     * Output only. The time this distribution was measured.
      */
     measurementTime?: string;
   }
@@ -655,15 +651,15 @@ export namespace testing_v1 {
     iosDeviceList?: Schema$IosDeviceList;
   }
   /**
-   * A key-value pair passed as an environment variable to the test
+   * A key-value pair passed as an environment variable to the test.
    */
   export interface Schema$EnvironmentVariable {
     /**
-     * Key for the environment variable
+     * Key for the environment variable.
      */
     key?: string;
     /**
-     * Value for the environment variable
+     * Value for the environment variable.
      */
     value?: string;
   }
@@ -700,9 +696,9 @@ export namespace testing_v1 {
    */
   export interface Schema$GoogleCloudStorage {
     /**
-     * The path to a directory in GCS that will eventually contain the results
-     * for this test. The requesting user must have write access on the bucket
-     * in the supplied path. Required
+     * Required. The path to a directory in GCS that will eventually contain the
+     * results for this test. The requesting user must have write access on the
+     * bucket in the supplied path.
      */
     gcsPath?: string;
   }
@@ -712,15 +708,15 @@ export namespace testing_v1 {
    */
   export interface Schema$IntentFilter {
     /**
-     * The android:name value of the &lt;action&gt; tag
+     * The android:name value of the &lt;action&gt; tag.
      */
     actionNames?: string[];
     /**
-     * The android:name value of the &lt;category&gt; tag
+     * The android:name value of the &lt;category&gt; tag.
      */
     categoryNames?: string[];
     /**
-     * The android:mimeType value of the &lt;data&gt; tag
+     * The android:mimeType value of the &lt;data&gt; tag.
      */
     mimeType?: string;
   }
@@ -754,19 +750,19 @@ export namespace testing_v1 {
    */
   export interface Schema$IosDeviceCatalog {
     /**
-     * Output only. The set of supported iOS device models.
+     * The set of supported iOS device models.
      */
     models?: Schema$IosModel[];
     /**
-     * Output only. The set of supported runtime configurations.
+     * The set of supported runtime configurations.
      */
     runtimeConfiguration?: Schema$IosRuntimeConfiguration;
     /**
-     * Output only. The set of supported iOS software versions.
+     * The set of supported iOS software versions.
      */
     versions?: Schema$IosVersion[];
     /**
-     * Output only. The set of supported Xcode versions.
+     * The set of supported Xcode versions.
      */
     xcodeVersions?: Schema$XcodeVersion[];
   }
@@ -775,7 +771,7 @@ export namespace testing_v1 {
    */
   export interface Schema$IosDeviceList {
     /**
-     * Required. A list of iOS devices
+     * Required. A list of iOS devices.
      */
     iosDevices?: Schema$IosDevice[];
   }
@@ -784,31 +780,31 @@ export namespace testing_v1 {
    */
   export interface Schema$IosModel {
     /**
-     * Output only. Device capabilities. Copied from
+     * Device capabilities. Copied from
      * https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/DeviceCompatibilityMatrix/DeviceCompatibilityMatrix.html
      */
     deviceCapabilities?: string[];
     /**
-     * Whether this device is a phone, tablet, wearable, etc. @OutputOnly
+     * Whether this device is a phone, tablet, wearable, etc.
      */
     formFactor?: string;
     /**
-     * Output only. The unique opaque id for this model. Use this for invoking
-     * the TestExecutionService.
+     * The unique opaque id for this model. Use this for invoking the
+     * TestExecutionService.
      */
     id?: string;
     /**
-     * Output only. The human-readable name for this device model. Examples:
-     * &quot;iPhone 4s&quot;, &quot;iPad Mini 2&quot;
+     * The human-readable name for this device model. Examples: &quot;iPhone
+     * 4s&quot;, &quot;iPad Mini 2&quot;.
      */
     name?: string;
     /**
-     * Output only. The set of iOS major software versions this device supports.
+     * The set of iOS major software versions this device supports.
      */
     supportedVersionIds?: string[];
     /**
-     * Output only. Tags for this dimension. Examples: &quot;default&quot;,
-     * &quot;preview&quot;, &quot;deprecated&quot;
+     * Tags for this dimension. Examples: &quot;default&quot;,
+     * &quot;preview&quot;, &quot;deprecated&quot;.
      */
     tags?: string[];
   }
@@ -817,11 +813,11 @@ export namespace testing_v1 {
    */
   export interface Schema$IosRuntimeConfiguration {
     /**
-     * Output only. The set of available locales.
+     * The set of available locales.
      */
     locales?: Schema$Locale[];
     /**
-     * Output only. The set of available orientations.
+     * The set of available orientations.
      */
     orientations?: Schema$Orientation[];
   }
@@ -830,39 +826,39 @@ export namespace testing_v1 {
    */
   export interface Schema$IosTestSetup {
     /**
-     * Optional. The network traffic profile used for running the test.
-     * Available network profiles can be queried by using the
-     * NETWORK_CONFIGURATION environment type when calling
+     * The network traffic profile used for running the test. Available network
+     * profiles can be queried by using the NETWORK_CONFIGURATION environment
+     * type when calling
      * TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string;
   }
   /**
-   * An iOS version
+   * An iOS version.
    */
   export interface Schema$IosVersion {
     /**
-     * Output only. An opaque id for this iOS version. Use this id to invoke the
+     * An opaque id for this iOS version. Use this id to invoke the
      * TestExecutionService.
      */
     id?: string;
     /**
-     * Output only. An integer representing the major iOS version. Examples:
-     * &quot;8&quot;, &quot;9&quot;
+     * An integer representing the major iOS version. Examples: &quot;8&quot;,
+     * &quot;9&quot;.
      */
     majorVersion?: number;
     /**
-     * Output only. An integer representing the minor iOS version. Examples:
-     * &quot;1&quot;, &quot;2&quot;
+     * An integer representing the minor iOS version. Examples: &quot;1&quot;,
+     * &quot;2&quot;.
      */
     minorVersion?: number;
     /**
-     * Output only. The available Xcode versions for this version.
+     * The available Xcode versions for this version.
      */
     supportedXcodeVersionIds?: string[];
     /**
-     * Output only. Tags for this dimension. Examples: &quot;default&quot;,
-     * &quot;preview&quot;, &quot;deprecated&quot;
+     * Tags for this dimension. Examples: &quot;default&quot;,
+     * &quot;preview&quot;, &quot;deprecated&quot;.
      */
     tags?: string[];
   }
@@ -876,22 +872,26 @@ export namespace testing_v1 {
    */
   export interface Schema$IosXcTest {
     /**
+     * Output only. The bundle id for the application under test.
+     */
+    appBundleId?: string;
+    /**
      * Required. The .zip containing the .xctestrun file and the contents of the
      * DerivedData/Build/Products directory. The .xctestrun file in this zip is
      * ignored if the xctestrun field is specified.
      */
     testsZip?: Schema$FileReference;
     /**
-     * Optional. The Xcode version that should be used for the test. Use the
+     * The Xcode version that should be used for the test. Use the
      * EnvironmentDiscoveryService to get supported options. Defaults to the
      * latest Xcode version Firebase Test Lab supports.
      */
     xcodeVersion?: string;
     /**
-     * Optional. An .xctestrun file that will override the .xctestrun file in
-     * the tests zip. Because the .xctestrun file contains environment variables
-     * along with test methods to run and/or ignore, this can be useful for
-     * sharding tests. Default is taken from the tests zip.
+     * An .xctestrun file that will override the .xctestrun file in the tests
+     * zip. Because the .xctestrun file contains environment variables along
+     * with test methods to run and/or ignore, this can be useful for sharding
+     * tests. Default is taken from the tests zip.
      */
     xctestrun?: Schema$FileReference;
   }
@@ -904,35 +904,35 @@ export namespace testing_v1 {
    */
   export interface Schema$Locale {
     /**
-     * The id for this locale. Example: &quot;en_US&quot; @OutputOnly
+     * The id for this locale. Example: &quot;en_US&quot;.
      */
     id?: string;
     /**
      * A human-friendly name for this language/locale. Example:
-     * &quot;English&quot; @OutputOnly
+     * &quot;English&quot;.
      */
     name?: string;
     /**
      * A human-friendly string representing the region for this locale. Example:
-     * &quot;United States&quot; Not present for every locale. @OutputOnly
+     * &quot;United States&quot;. Not present for every locale.
      */
     region?: string;
     /**
-     * Tags for this dimension. Examples: &quot;default&quot;
+     * Tags for this dimension. Example: &quot;default&quot;.
      */
     tags?: string[];
   }
   export interface Schema$NetworkConfiguration {
     /**
-     * The emulation rule applying to the download traffic
+     * The emulation rule applying to the download traffic.
      */
     downRule?: Schema$TrafficRule;
     /**
-     * The unique opaque id for this network traffic configuration @OutputOnly
+     * The unique opaque id for this network traffic configuration.
      */
     id?: string;
     /**
-     * The emulation rule applying to the upload traffic
+     * The emulation rule applying to the upload traffic.
      */
     upRule?: Schema$TrafficRule;
   }
@@ -940,18 +940,19 @@ export namespace testing_v1 {
     configurations?: Schema$NetworkConfiguration[];
   }
   /**
-   * An opaque binary blob file to install on the device before the test starts
+   * An opaque binary blob file to install on the device before the test starts.
    */
   export interface Schema$ObbFile {
     /**
-     * Opaque Binary Blob (OBB) file(s) to install on the device Required
+     * Required. Opaque Binary Blob (OBB) file(s) to install on the device.
      */
     obb?: Schema$FileReference;
     /**
-     * OBB file name which must conform to the format as specified by Android
-     * e.g. [main|patch].0300110.com.example.android.obb which will be installed
-     * into   &lt;shared-storage&gt;/Android/obb/&lt;package-name&gt;/ on the
-     * device Required
+     * Required. OBB file name which must conform to the format as specified by
+     * Android e.g. [main|patch].0300110.com.example.android.obb which will be
+     * installed into
+     * \&lt;shared-storage\&gt;/Android/obb/\&lt;package-name\&gt;/ on the
+     * device.
      */
     obbFileName?: string;
   }
@@ -960,16 +961,16 @@ export namespace testing_v1 {
    */
   export interface Schema$Orientation {
     /**
-     * The id for this orientation. Example: &quot;portrait&quot; @OutputOnly
+     * The id for this orientation. Example: &quot;portrait&quot;.
      */
     id?: string;
     /**
-     * A human-friendly name for this orientation. Example: &quot;portrait&quot;
-     * @OutputOnly
+     * A human-friendly name for this orientation. Example:
+     * &quot;portrait&quot;.
      */
     name?: string;
     /**
-     * Tags for this dimension. Examples: &quot;default&quot;
+     * Tags for this dimension. Example: &quot;default&quot;.
      */
     tags?: string[];
   }
@@ -979,22 +980,23 @@ export namespace testing_v1 {
   export interface Schema$ProvidedSoftwareCatalog {
     /**
      * A string representing the current version of Android Test Orchestrator
-     * that is provided by TestExecutionService. Example: &quot;1.0.2 beta&quot;
+     * that is provided by TestExecutionService. Example: &quot;1.0.2
+     * beta&quot;.
      */
     orchestratorVersion?: string;
   }
   /**
-   * A file or directory to install on the device before the test starts
+   * A file or directory to install on the device before the test starts.
    */
   export interface Schema$RegularFile {
     /**
-     * Required
+     * Required. The source file.
      */
     content?: Schema$FileReference;
     /**
-     * Where to put the content on the device. Must be an absolute, whitelisted
-     * path. If the file exists, it will be replaced. The following device-side
-     * directories and any of their subdirectories are whitelisted:
+     * Required. Where to put the content on the device. Must be an absolute,
+     * whitelisted path. If the file exists, it will be replaced. The following
+     * device-side directories and any of their subdirectories are whitelisted:
      * &lt;p&gt;${EXTERNAL_STORAGE}, or /sdcard&lt;/p&gt;
      * &lt;p&gt;${ANDROID_DATA}/local/tmp, or /data/local/tmp&lt;/p&gt;
      * &lt;p&gt;Specifying a path outside of these directory trees is invalid.
@@ -1005,7 +1007,7 @@ export namespace testing_v1 {
      * &lt;p&gt; It is strongly advised to use the &lt;a href=
      * &quot;http://developer.android.com/reference/android/os/Environment.html&quot;&gt;
      * Environment API&lt;/a&gt; in app and test code to access files on the
-     * device in a portable way. Required
+     * device in a portable way.
      */
     devicePath?: string;
   }
@@ -1018,13 +1020,13 @@ export namespace testing_v1 {
      */
     googleCloudStorage?: Schema$GoogleCloudStorage;
     /**
-     * The tool results execution that results are written to. @OutputOnly
+     * Output only. The tool results execution that results are written to.
      */
     toolResultsExecution?: Schema$ToolResultsExecution;
     /**
      * The tool results history that contains the tool results execution that
-     * results are written to.  Optional, if not provided the service will
-     * choose an appropriate value.
+     * results are written to.  If not provided, the service will choose an
+     * appropriate value.
      */
     toolResultsHistory?: Schema$ToolResultsHistory;
   }
@@ -1034,26 +1036,25 @@ export namespace testing_v1 {
    */
   export interface Schema$RoboDirective {
     /**
-     * The type of action that Robo should perform on the specified element.
-     * Required.
+     * Required. The type of action that Robo should perform on the specified
+     * element.
      */
     actionType?: string;
     /**
      * The text that Robo is directed to set. If left empty, the directive will
-     * be treated as a CLICK on the element matching the resource_name. Optional
+     * be treated as a CLICK on the element matching the resource_name.
      */
     inputText?: string;
     /**
-     * The android resource name of the target UI element For example,    in
-     * Java: R.string.foo    in xml: @string/foo Only the “foo” part is needed.
-     * Reference doc:
+     * Required. The android resource name of the target UI element. For
+     * example,    in Java: R.string.foo    in xml: @string/foo Only the
+     * &quot;foo&quot; part is needed. Reference doc:
      * https://developer.android.com/guide/topics/resources/accessing-resources.html
-     * Required
      */
     resourceName?: string;
   }
   /**
-   * Message for specifying the start activities to crawl
+   * Message for specifying the start activities to crawl.
    */
   export interface Schema$RoboStartingIntent {
     launcherActivity?: Schema$LauncherActivityIntent;
@@ -1068,11 +1069,11 @@ export namespace testing_v1 {
      */
     action?: string;
     /**
-     * Intent categories to set on the intent. Optional.
+     * Intent categories to set on the intent.
      */
     categories?: string[];
     /**
-     * URI for the action. Optional.
+     * URI for the action.
      */
     uri?: string;
   }
@@ -1081,15 +1082,15 @@ export namespace testing_v1 {
    */
   export interface Schema$TestDetails {
     /**
-     * If the TestState is ERROR, then this string will contain human-readable
-     * details about the error. @OutputOnly
+     * Output only. If the TestState is ERROR, then this string will contain
+     * human-readable details about the error.
      */
     errorMessage?: string;
     /**
-     * Human-readable, detailed descriptions of the test&#39;s progress. For
-     * example: &quot;Provisioning a device&quot;, &quot;Starting Test&quot;.
-     * During the course of execution new data may be appended to the end of
-     * progress_messages. @OutputOnly
+     * Output only. Human-readable, detailed descriptions of the test&#39;s
+     * progress. For example: &quot;Provisioning a device&quot;, &quot;Starting
+     * Test&quot;.  During the course of execution new data may be appended to
+     * the end of progress_messages.
      */
     progressMessages?: string[];
   }
@@ -1098,15 +1099,15 @@ export namespace testing_v1 {
    */
   export interface Schema$TestEnvironmentCatalog {
     /**
-     * Android devices suitable for running Android Instrumentation Tests.
+     * Supported Android devices.
      */
     androidDeviceCatalog?: Schema$AndroidDeviceCatalog;
     /**
-     * Supported iOS devices
+     * Supported iOS devices.
      */
     iosDeviceCatalog?: Schema$IosDeviceCatalog;
     /**
-     * Supported network configurations
+     * Supported network configurations.
      */
     networkConfigurationCatalog?: Schema$NetworkConfigurationCatalog;
     /**
@@ -1119,40 +1120,40 @@ export namespace testing_v1 {
    */
   export interface Schema$TestExecution {
     /**
-     * How the host machine(s) are configured. @OutputOnly
+     * Output only. How the host machine(s) are configured.
      */
     environment?: Schema$Environment;
     /**
-     * Unique id set by the backend. @OutputOnly
+     * Output only. Unique id set by the backend.
      */
     id?: string;
     /**
-     * Id of the containing TestMatrix. @OutputOnly
+     * Output only. Id of the containing TestMatrix.
      */
     matrixId?: string;
     /**
-     * The cloud project that owns the test execution. @OutputOnly
+     * Output only. The cloud project that owns the test execution.
      */
     projectId?: string;
     /**
-     * Indicates the current progress of the test execution (e.g., FINISHED).
-     * @OutputOnly
+     * Output only. Indicates the current progress of the test execution (e.g.,
+     * FINISHED).
      */
     state?: string;
     /**
-     * Additional details about the running test. @OutputOnly
+     * Output only. Additional details about the running test.
      */
     testDetails?: Schema$TestDetails;
     /**
-     * How to run the test. @OutputOnly
+     * Output only. How to run the test.
      */
     testSpecification?: Schema$TestSpecification;
     /**
-     * The time this test execution was initially created. @OutputOnly
+     * Output only. The time this test execution was initially created.
      */
     timestamp?: string;
     /**
-     * Where the results for this execution are written. @OutputOnly
+     * Output only. Where the results for this execution are written.
      */
     toolResultsStep?: Schema$ToolResultsStep;
   }
@@ -1162,46 +1163,52 @@ export namespace testing_v1 {
    */
   export interface Schema$TestMatrix {
     /**
-     * Information about the client which invoked the test. Optional
+     * Information about the client which invoked the test.
      */
     clientInfo?: Schema$ClientInfo;
     /**
-     * How the host machine(s) are configured. Required
+     * Required. How the host machine(s) are configured.
      */
     environmentMatrix?: Schema$EnvironmentMatrix;
     /**
-     * Describes why the matrix is considered invalid. Only useful for matrices
-     * in the INVALID state. @OutputOnly
+     * The number of times a TestExecution should be re-attempted if one or more
+     * of its test cases fail for any reason. The maximum number of reruns
+     * allowed is 10.  Default is 0, which implies no reruns.
+     */
+    flakyTestAttempts?: number;
+    /**
+     * Output only. Describes why the matrix is considered invalid. Only useful
+     * for matrices in the INVALID state.
      */
     invalidMatrixDetails?: string;
     /**
-     * The cloud project that owns the test matrix. @OutputOnly
+     * The cloud project that owns the test matrix.
      */
     projectId?: string;
     /**
-     * Where the results for the matrix are written. Required
+     * Required. Where the results for the matrix are written.
      */
     resultStorage?: Schema$ResultStorage;
     /**
-     * Indicates the current progress of the test matrix (e.g., FINISHED)
-     * @OutputOnly
+     * Output only. Indicates the current progress of the test matrix (e.g.,
+     * FINISHED).
      */
     state?: string;
     /**
-     * The list of test executions that the service creates for this matrix.
-     * @OutputOnly
+     * Output only. The list of test executions that the service creates for
+     * this matrix.
      */
     testExecutions?: Schema$TestExecution[];
     /**
-     * Unique id set by the service. @OutputOnly
+     * Output only. Unique id set by the service.
      */
     testMatrixId?: string;
     /**
-     * How to run the test. Required
+     * Required. How to run the test.
      */
     testSpecification?: Schema$TestSpecification;
     /**
-     * The time this test matrix was initially created. @OutputOnly
+     * Output only. The time this test matrix was initially created.
      */
     timestamp?: string;
   }
@@ -1212,12 +1219,12 @@ export namespace testing_v1 {
   export interface Schema$TestSetup {
     /**
      * The device will be logged in on this account for the duration of the
-     * test. Optional
+     * test.
      */
     account?: Schema$Account;
     /**
      * APKs to install in addition to those being directly tested. Currently
-     * capped at 100. Optional
+     * capped at 100.
      */
     additionalApks?: Schema$Apk[];
     /**
@@ -1227,7 +1234,7 @@ export namespace testing_v1 {
      * paths /sdcard and /data will be made available and treated as implicit
      * path substitutions. E.g. if /sdcard on a particular device does not map
      * to external storage, the system will replace it with the external storage
-     * path prefix for that device.  Optional
+     * path prefix for that device.
      */
     directoriesToPull?: string[];
     /**
@@ -1236,13 +1243,13 @@ export namespace testing_v1 {
      */
     environmentVariables?: Schema$EnvironmentVariable[];
     /**
-     * List of files to push to the device before starting the test.  Optional
+     * List of files to push to the device before starting the test.
      */
     filesToPush?: Schema$DeviceFile[];
     /**
-     * Optional. The network traffic profile used for running the test.
-     * Available network profiles can be queried by using the
-     * NETWORK_CONFIGURATION environment type when calling
+     * The network traffic profile used for running the test. Available network
+     * profiles can be queried by using the NETWORK_CONFIGURATION environment
+     * type when calling
      * TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string;
@@ -1260,7 +1267,7 @@ export namespace testing_v1 {
      */
     androidRoboTest?: Schema$AndroidRoboTest;
     /**
-     * An Android Application with a Test Loop
+     * An Android Application with a Test Loop.
      */
     androidTestLoop?: Schema$AndroidTestLoop;
     /**
@@ -1269,7 +1276,7 @@ export namespace testing_v1 {
      * before executing the test. Note that test accounts might be reused. Many
      * applications show their full set of functionalities when an account is
      * present on the device. Logging into the device with these generated
-     * accounts allows testing more functionalities. Default is false. Optional
+     * accounts allows testing more functionalities. Default is false.
      */
     autoGoogleLogin?: boolean;
     /**
@@ -1281,21 +1288,21 @@ export namespace testing_v1 {
      */
     disableVideoRecording?: boolean;
     /**
-     * Optional. Test setup requirements for iOS.
+     * Test setup requirements for iOS.
      */
     iosTestSetup?: Schema$IosTestSetup;
     /**
-     * An iOS XCTest, via an .xctestrun file
+     * An iOS XCTest, via an .xctestrun file.
      */
     iosXcTest?: Schema$IosXcTest;
     /**
      * Test setup requirements for Android e.g. files to install, bootstrap
-     * scripts. Optional
+     * scripts.
      */
     testSetup?: Schema$TestSetup;
     /**
      * Max time a test execution is allowed to run before it is automatically
-     * cancelled. Optional, default is 5 min.
+     * cancelled. The default value is 5 min.
      */
     testTimeout?: string;
   }
@@ -1305,15 +1312,15 @@ export namespace testing_v1 {
    */
   export interface Schema$ToolResultsExecution {
     /**
-     * A tool results execution ID. @OutputOnly
+     * Output only. A tool results execution ID.
      */
     executionId?: string;
     /**
-     * A tool results history ID. @OutputOnly
+     * Output only. A tool results history ID.
      */
     historyId?: string;
     /**
-     * The cloud project that owns the tool results execution. @OutputOnly
+     * Output only. The cloud project that owns the tool results execution.
      */
     projectId?: string;
   }
@@ -1322,11 +1329,11 @@ export namespace testing_v1 {
    */
   export interface Schema$ToolResultsHistory {
     /**
-     * A tool results history ID. Required
+     * Required. A tool results history ID.
      */
     historyId?: string;
     /**
-     * The cloud project that owns the tool results history. Required
+     * Required. The cloud project that owns the tool results history.
      */
     projectId?: string;
   }
@@ -1336,44 +1343,44 @@ export namespace testing_v1 {
    */
   export interface Schema$ToolResultsStep {
     /**
-     * A tool results execution ID. @OutputOnly
+     * Output only. A tool results execution ID.
      */
     executionId?: string;
     /**
-     * A tool results history ID. @OutputOnly
+     * Output only. A tool results history ID.
      */
     historyId?: string;
     /**
-     * The cloud project that owns the tool results step. @OutputOnly
+     * Output only. The cloud project that owns the tool results step.
      */
     projectId?: string;
     /**
-     * A tool results step ID. @OutputOnly
+     * Output only. A tool results step ID.
      */
     stepId?: string;
   }
   /**
-   * Network emulation parameters
+   * Network emulation parameters.
    */
   export interface Schema$TrafficRule {
     /**
-     * Bandwidth in kbits/second
+     * Bandwidth in kbits/second.
      */
     bandwidth?: number;
     /**
-     * Burst size in kbits
+     * Burst size in kbits.
      */
     burst?: number;
     /**
-     * Packet delay, must be &gt;= 0
+     * Packet delay, must be &gt;= 0.
      */
     delay?: string;
     /**
-     * Packet duplication ratio (0.0 - 1.0)
+     * Packet duplication ratio (0.0 - 1.0).
      */
     packetDuplicationRatio?: number;
     /**
-     * Packet loss ratio (0.0 - 1.0)
+     * Packet loss ratio (0.0 - 1.0).
      */
     packetLossRatio?: number;
   }
@@ -1382,11 +1389,11 @@ export namespace testing_v1 {
    */
   export interface Schema$XcodeVersion {
     /**
-     * Output only. Tags for this Xcode version. Examples: &quot;default&quot;
+     * Tags for this Xcode version. Example: &quot;default&quot;.
      */
     tags?: string[];
     /**
-     * Output only. The id for this version. Example: &quot;9.2&quot;
+     * The id for this version. Example: &quot;9.2&quot;.
      */
     version?: string;
   }
@@ -1398,7 +1405,7 @@ export namespace testing_v1 {
 
     /**
      * testing.applicationDetailService.getApkDetails
-     * @desc Request the details of an Android application APK.
+     * @desc Gets the details of an Android application APK.
      * @alias testing.applicationDetailService.getApkDetails
      * @memberOf! ()
      *
@@ -1572,7 +1579,7 @@ export namespace testing_v1 {
 
     /**
      * testing.projects.testMatrices.create
-     * @desc Request to run a matrix of tests according to the given
+     * @desc Creates and runs a matrix of tests according to the given
      * specifications. Unsupported environments will be returned in the state
      * UNSUPPORTED. Matrices are limited to at most 200 supported executions.
      * May return any of the following canonical error codes:  -
@@ -1647,9 +1654,9 @@ export namespace testing_v1 {
 
     /**
      * testing.projects.testMatrices.get
-     * @desc Check the status of a test matrix.  May return any of the following
-     * canonical error codes:  - PERMISSION_DENIED - if the user is not
-     * authorized to read project - INVALID_ARGUMENT - if the request is
+     * @desc Checks the status of a test matrix.  May return any of the
+     * following canonical error codes:  - PERMISSION_DENIED - if the user is
+     * not authorized to read project - INVALID_ARGUMENT - if the request is
      * malformed - NOT_FOUND - if the Test Matrix does not exist
      * @alias testing.projects.testMatrices.get
      * @memberOf! ()
@@ -1777,7 +1784,7 @@ export namespace testing_v1 {
 
     /**
      * testing.testEnvironmentCatalog.get
-     * @desc Get the catalog of supported test environments.  May return any of
+     * @desc Gets the catalog of supported test environments.  May return any of
      * the following canonical error codes:  - INVALID_ARGUMENT - if the request
      * is malformed - NOT_FOUND - if the environment type does not exist -
      * INTERNAL - if an internal error occurred
@@ -1785,8 +1792,8 @@ export namespace testing_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.environmentType The type of environment that should be listed. Required
-     * @param {string=} params.projectId For authorization, the cloud project requesting the TestEnvironmentCatalog. Optional
+     * @param {string} params.environmentType Required. The type of environment that should be listed.
+     * @param {string=} params.projectId For authorization, the cloud project requesting the TestEnvironmentCatalog.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1851,12 +1858,12 @@ export namespace testing_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The type of environment that should be listed. Required
+     * Required. The type of environment that should be listed.
      */
     environmentType?: string;
     /**
      * For authorization, the cloud project requesting the
-     * TestEnvironmentCatalog. Optional
+     * TestEnvironmentCatalog.
      */
     projectId?: string;
   }
