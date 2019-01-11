@@ -131,8 +131,8 @@ export namespace gmail_v1 {
   }
   /**
    * Settings for a delegate. Delegates can read, send, and delete messages, as
-   * well as manage contacts, for the delegator&#39;s account. See &quot;Set up
-   * mail delegation&quot; for more information about delegates.
+   * well as view and add contacts, for the delegator&#39;s account. See
+   * &quot;Set up mail delegation&quot; for more information about delegates.
    */
   export interface Schema$Delegate {
     /**

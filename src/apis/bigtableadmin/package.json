@@ -1,7 +1,7 @@
 {
-  "name": "@google/replicapoolupdater",
+  "name": "@google/bigtableadmin",
   "version": "0.1.0",
-  "description": "replicapoolupdater",
+  "description": "bigtableadmin",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": ["google"],

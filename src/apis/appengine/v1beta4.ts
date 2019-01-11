@@ -1457,6 +1457,10 @@ export namespace appengine_v1beta4 {
      */
     runtimeApiVersion?: string;
     /**
+     * The path or name of the app&#39;s main executable.
+     */
+    runtimeMainExecutablePath?: string;
+    /**
      * Current serving status of this version. Only the versions with a SERVING
      * status create instances and can be billed.SERVING_STATUS_UNSPECIFIED is
      * an invalid value. Defaults to SERVING.

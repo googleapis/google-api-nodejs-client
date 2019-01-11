@@ -893,8 +893,8 @@ export namespace cloudfunctions_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string=} params.name The name of the operation's parent resource.
+     * @param {string=} params.filter Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
+     * @param {string=} params.name Must not be set.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -973,11 +973,15 @@ export namespace cloudfunctions_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The standard list filter.
+     * Required. A filter for matching the requested operations.<br><br> The
+     * supported formats of <b>filter</b> are:<br> To query for specific
+     * function: <code>project:*,location:*,function:*</code><br> To query for
+     * all of the latest operations for a project:
+     * <code>project:*,latest:true</code>
      */
     filter?: string;
     /**
-     * The name of the operation's parent resource.
+     * Must not be set.
      */
     name?: string;
     /**
@@ -1109,8 +1113,10 @@ export namespace cloudfunctions_v1 {
 
     /**
      * cloudfunctions.projects.locations.functions.call
-     * @desc Invokes synchronously deployed function. To be used for testing,
-     * very limited traffic allowed.
+     * @desc Synchronously invokes a deployed Cloud Function. To be used for
+     * testing purposes as very limited traffic is allowed. For more information
+     * on the actual limits refer to [API Calls](
+     * https://cloud.google.com/functions/quotas#rate_limits).
      * @alias cloudfunctions.projects.locations.functions.call
      * @memberOf! ()
      *

@@ -2,19 +2,19 @@
 {% macro render(api, rootApi, classPath) %}
 {% if api.resources %}
   {% for rname, r in api.resources|dictsort %}
-    {% set ClassName = classPath + rname|capitalize %}
+    {% set ClassName = classPath + rname|capitalize|camelify %}
     export class {{ ClassName }} {
       {% if r.resources %}
         {% for rname, r2 in r.resources|dictsort %}
-          {% set innerClassName = ClassName + "$" + rname|capitalize %}
-          {{ rname }}: {{ innerClassName }};
+          {% set innerClassName = ClassName + "$" + rname|capitalize|camelify %}
+          {{ rname|camelify }}: {{ innerClassName }};
         {% endfor %}
       {% endif %}
       constructor() {
         {% if r.resources %}
           {% for rname, r2 in r.resources|dictsort %}
-            {% set innerClassName = ClassName + "$" + rname|capitalize %}
-            this.{{ rname }} = new {{ innerClassName }}();
+            {% set innerClassName = ClassName + "$" + rname|capitalize|camelify %}
+            this.{{ rname|camelify }} = new {{ innerClassName }}();
           {% endfor %}
         {% endif %}
       }
