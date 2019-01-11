@@ -11,54 +11,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-"use strict";
+'use strict';
 
-const { google } = require("googleapis");
-const sampleClient = require("./sampleclient");
+const {google} = require('googleapis');
+const sampleClient = require('./sampleclient');
 
 const people = google.people({
-  version: "v1",
-  auth: sampleClient.oAuth2Client
+  version: 'v1',
+  auth: sampleClient.oAuth2Client,
 });
 
 async function runSample() {
   // List all user's contact groups
   // https://developers.google.com/people/api/rest/v1/contactGroups
-  const { data: groups } = await people.people.get({
-    resourceName: "contactGroups"
+  const {data: groups} = await people.people.get({
+    resourceName: 'contactGroups',
   });
-  console.log("Contact Groups:\n", groups);
+  console.log('Contact Groups:\n', groups);
 
   // List all user connections / contacts
   // https://developers.google.com/people/api/rest/v1/people.connections
   const {
-    data: { connections }
+    data: {connections},
   } = await people.people.connections.list({
-    personFields: ["names", "emailAddresses"],
-    resourceName: "people/me",
-    pageSize: 10
+    personFields: ['names', 'emailAddresses'],
+    resourceName: 'people/me',
+    pageSize: 10,
   });
   console.log("\n\nUser's Connections:\n");
   connections.forEach(c => console.log(c));
 
   // Create a new contact
   // https://developers.google.com/people/api/rest/v1/people/createContact
-  const { data: newContact } = await people.people.createContact({
+  const {data: newContact} = await people.people.createContact({
     requestBody: {
-      emailAddresses: [{ value: "john@doe.com" }],
+      emailAddresses: [{value: 'john@doe.com'}],
       names: [
         {
-          displayName: "John Doe",
-          familyName: "Doe",
-          givenName: "John"
-        }
-      ]
-    }
+          displayName: 'John Doe',
+          familyName: 'Doe',
+          givenName: 'John',
+        },
+      ],
+    },
   });
-  console.log("\n\nCreated Contact:", newContact);
+  console.log('\n\nCreated Contact:', newContact);
 }
 
-const scopes = ["https://www.googleapis.com/auth/contacts"];
+const scopes = ['https://www.googleapis.com/auth/contacts'];
 
 if (module === require.main) {
   sampleClient
