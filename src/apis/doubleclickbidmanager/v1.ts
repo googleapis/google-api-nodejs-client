@@ -130,14 +130,15 @@ export namespace doubleclickbidmanager_v1 {
     lineItems?: string;
   }
   /**
-   * Request to fetch stored campaigns, insertion orders, line items, TrueView
-   * ad groups and ads.
+   * Request to fetch stored inventory sources, campaigns, insertion orders,
+   * line items, TrueView ad groups and ads.
    */
   export interface Schema$DownloadRequest {
     /**
      * File types that will be returned.  Acceptable values are:   -
      * &quot;AD&quot;  - &quot;AD_GROUP&quot;  - &quot;CAMPAIGN&quot;  -
-     * &quot;INSERTION_ORDER&quot;  - &quot;LINE_ITEM&quot;
+     * &quot;INSERTION_ORDER&quot;  - &quot;LINE_ITEM&quot;  -
+     * &quot;INVENTORY_SOURCE&quot;
      */
     fileTypes?: string[];
     /**
@@ -175,6 +176,7 @@ export namespace doubleclickbidmanager_v1 {
      * Retrieved insertion orders in SDF format.
      */
     insertionOrders?: string;
+    inventorySources?: string;
     /**
      * Retrieved line items in SDF format.
      */

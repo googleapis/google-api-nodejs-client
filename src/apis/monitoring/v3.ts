@@ -866,6 +866,10 @@ export namespace monitoring_v3 {
      * same as the workspace project.
      */
     peerProjectId?: string;
+    /**
+     * The current operational state of the internal checker.
+     */
+    state?: string;
   }
   /**
    * A description of a label.

@@ -103,7 +103,13 @@ export namespace dns_v1beta2 {
   }
 
   /**
-   * An atomic update to a collection of ResourceRecordSets.
+   * A Change represents a set of ResourceRecordSet additions and deletions
+   * applied atomically to a ManagedZone. ResourceRecordSets within a
+   * ManagedZone are modified by creating a new Change element in the Changes
+   * collection. In turn the Changes collection also records the past
+   * modifications to the ResourceRecordSets in a ManagedZone. The current state
+   * of the ManagedZone is the sum effect of applying all Change elements in the
+   * Changes collection in sequence.
    */
   export interface Schema$Change {
     /**
@@ -133,7 +139,9 @@ export namespace dns_v1beta2 {
      */
     startTime?: string;
     /**
-     * Status of the operation (output only).
+     * Status of the operation (output only). A status of &quot;done&quot; means
+     * that the request to update the authoritative servers has been sent, but
+     * the servers might not be updated yet.
      */
     status?: string;
   }
@@ -283,11 +291,11 @@ export namespace dns_v1beta2 {
      */
     keyLength?: number;
     /**
-     * One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type
-     * KEY_SIGNING have the Secure Entry Point flag set and, when active, will
-     * be used to sign only resource record sets of type DNSKEY. Otherwise, the
-     * Secure Entry Point flag will be cleared and this key will be used to sign
-     * only resource record sets of other types.
+     * Specifies whether this is a key signing key (KSK) or a zone signing key
+     * (ZSK). Key signing keys have the Secure Entry Point flag set and, when
+     * active, will only be used to sign resource record sets of type DNSKEY.
+     * Zone signing keys do not have the Secure Entry Point flag set and will be
+     * used to sign all other types of resource record sets.
      */
     keyType?: string;
     /**
@@ -358,13 +366,13 @@ export namespace dns_v1beta2 {
      */
     nameServerSet?: string;
     /**
-     * For privately visible zones, the set of GCP resources that the zone is
-     * visible from.
+     * For privately visible zones, the set of Virtual Private Cloud resources
+     * that the zone is visible from.
      */
     privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
     /**
      * The zone&#39;s visibility: public zones are exposed to the Internet,
-     * while private zones are visible only to GCP resources.
+     * while private zones are visible only to Virtual Private Cloud resources.
      */
     visibility?: string;
   }
@@ -442,7 +450,7 @@ export namespace dns_v1beta2 {
      */
     kind?: string;
     /**
-     * The list of GCE private network IDs that can see this zone.
+     * The list of VPC networks that can see this zone.
      */
     networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
   }
@@ -453,8 +461,8 @@ export namespace dns_v1beta2 {
      */
     kind?: string;
     /**
-     * The fully qualified URL of the GCE private network to bind to. This
-     * should be formatted like
+     * The fully qualified URL of the VPC network to bind to. This should be
+     * formatted like
      * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
      */
     networkUrl?: string;
@@ -512,7 +520,9 @@ export namespace dns_v1beta2 {
     startTime?: string;
     /**
      * Status of the operation. Can be one of the following: &quot;PENDING&quot;
-     * or &quot;DONE&quot; (output only).
+     * or &quot;DONE&quot; (output only). A status of &quot;DONE&quot; means
+     * that the request to update the authoritative servers has been sent, but
+     * the servers might not be updated yet.
      */
     status?: string;
     /**
@@ -583,8 +593,8 @@ export namespace dns_v1beta2 {
     policy?: Schema$Policy;
   }
   /**
-   * A policy is a collection of rules applied to one or more networks that
-   * specify forwarding behavior for that network.
+   * A policy is a collection of DNS rules applied to one or more Virtual
+   * Private Cloud resources.
    */
   export interface Schema$Policy {
     /**
@@ -659,8 +669,8 @@ export namespace dns_v1beta2 {
      */
     kind?: string;
     /**
-     * The fully qualified URL of the GCE private network to bind to. This
-     * should be formatted like
+     * The fully qualified URL of the VPC network to bind to. This should be
+     * formatted like
      * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
      */
     networkUrl?: string;
@@ -788,8 +798,8 @@ export namespace dns_v1beta2 {
      */
     ttl?: number;
     /**
-     * The identifier of a supported record type, for example, A, AAAA, MX, TXT,
-     * and so on.
+     * The identifier of a supported record type. See the list of Supported DNS
+     * record types.
      */
     type?: string;
   }

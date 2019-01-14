@@ -1,0 +1,36 @@
+{
+  "name": "@google/libraryagent",
+  "version": "0.1.0",
+  "description": "libraryagent",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "keywords": ["google"],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/google/google-api-nodejs-client",
+  "bugs": {
+    "url" : "https://github.com/google/google-api-nodejs-client/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/google/google-api-nodejs-client.git"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "fix": "gts fix",
+    "lint": "gts check",
+    "compile": "tsc -p .",
+    "prepare": "npm run compile",
+    "docs": "typedoc --out docs/"
+  },
+  "dependencies": {
+    "googleapis-common": "^0.4.0"
+  },
+  "devDependencies": {
+    "gts": "^0.9.0",
+    "typescript": "~3.2.0",
+    "typedoc": "^0.14.0"
+  }
+}

@@ -128,6 +128,12 @@ export namespace container_v1beta1 {
    */
   export interface Schema$AddonsConfig {
     /**
+     * Configuration for the Cloud Run addon. The `IstioConfig` addon must be
+     * enabled in order to enable Cloud Run addon. This option can only be
+     * enabled at cluster creation time.
+     */
+    cloudRunConfig?: Schema$CloudRunConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases
      * or decreases the number of replica pods a replication controller has
      * based on the resource usage of the existing pods.
@@ -138,6 +144,11 @@ export namespace container_v1beta1 {
      * makes it easy to set up HTTP load balancers for services in a cluster.
      */
     httpLoadBalancing?: Schema$HttpLoadBalancing;
+    /**
+     * Configuration for Istio, an open platform to connect, manage, and secure
+     * microservices.
+     */
+    istioConfig?: Schema$IstioConfig;
     /**
      * Configuration for the Kubernetes Dashboard.
      */
@@ -165,6 +176,15 @@ export namespace container_v1beta1 {
      * the description of the upgrade.
      */
     description?: string;
+  }
+  /**
+   * Parameters for using BigQuery as the destination of resource usage export.
+   */
+  export interface Schema$BigQueryDestination {
+    /**
+     * The ID of a BigQuery Dataset.
+     */
+    datasetId?: string;
   }
   /**
    * Configuration for Binary Authorization.
@@ -224,6 +244,15 @@ export namespace container_v1beta1 {
      * Issue a client certificate.
      */
     issueClientCertificate?: boolean;
+  }
+  /**
+   * Configuration options for the Cloud Run feature.
+   */
+  export interface Schema$CloudRunConfig {
+    /**
+     * Whether Cloud Run addon is enabled for this cluster.
+     */
+    disabled?: boolean;
   }
   /**
    * A Google Kubernetes Engine cluster.
@@ -466,6 +495,11 @@ export namespace container_v1beta1 {
      */
     resourceLabels?: {[key: string]: string;};
     /**
+     * Configuration for exporting resource usages. Resource usage export is
+     * disabled when this config unspecified.
+     */
+    resourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -620,6 +654,10 @@ export namespace container_v1beta1 {
      * The desired configuration options for the PodSecurityPolicy feature.
      */
     desiredPodSecurityPolicyConfig?: Schema$PodSecurityPolicyConfig;
+    /**
+     * The desired configuration for exporting resource usage.
+     */
+    desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
@@ -872,6 +910,19 @@ export namespace container_v1beta1 {
     useIpAliases?: boolean;
   }
   /**
+   * Configuration options for Istio addon.
+   */
+  export interface Schema$IstioConfig {
+    /**
+     * The specified Istio auth mode, either none, or mutual TLS.
+     */
+    auth?: string;
+    /**
+     * Whether Istio is enabled for this cluster.
+     */
+    disabled?: boolean;
+  }
+  /**
    * Configuration for the Kubernetes Dashboard.
    */
   export interface Schema$KubernetesDashboard {
@@ -976,10 +1027,7 @@ export namespace container_v1beta1 {
      */
     name?: string;
     /**
-     * Recommended is a bool combining the drain state of the location (ie- has
-     * the region been drained manually?), and the stockout status of any zone
-     * according to Zone Advisor. This will be internal only for use by
-     * pantheon.
+     * Whether the location is recomended for GKE cluster scheduling.
      */
     recommended?: boolean;
     /**
@@ -1545,6 +1593,20 @@ export namespace container_v1beta1 {
      * Resource name &quot;cpu&quot;, &quot;memory&quot; or gpu-specific string.
      */
     resourceType?: string;
+  }
+  /**
+   * Configuration for exporting cluster resource usages.
+   */
+  export interface Schema$ResourceUsageExportConfig {
+    /**
+     * Configuration to use BigQuery as usage export destination.
+     */
+    bigqueryDestination?: Schema$BigQueryDestination;
+    /**
+     * Whether to enable network egress metering for this cluster. If enabled, a
+     * daemonset will be created in the cluster to meter network egress traffic.
+     */
+    enableNetworkEgressMetering?: boolean;
   }
   /**
    * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
@@ -2483,6 +2545,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.list
+     * @desc Used to fetch locations that offer GKE.
      * @alias container.projects.locations.list
      * @memberOf! ()
      *

@@ -123,7 +123,7 @@ The are three primary ways to authenticate to Google APIs. Some service support 
 To learn more about the authentication client, see the [Google Auth Library](https://github.com/googleapis/google-auth-library-nodejs).
 
 ### OAuth2 client
-This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token and refreshes the token and retry the request seamlessly. The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
+This client comes with an [OAuth2][oauth] client that allows you to retrieve an access token, refresh it, and retry the request seamlessly. The basics of Google's OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
 
 In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and `REDIRECT_URL`. You can find these pieces of information by going to the [Developer Console][devconsole], clicking your project --> APIs & auth --> credentials.
 
@@ -236,8 +236,10 @@ For example, a JWT auth client will be created when your code is running on your
 The code below shows how to retrieve a default credential type, depending upon the runtime environment. The createScopedRequired must be called to determine when you need to pass in the scopes manually, and when they have been set for you automatically based on the configured runtime environment.
 
 ```js
-async function main () {
+const {google} = require('googleapis');
+const compute = google.compute('v1');
 
+async function main () {
   // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
   // environment variables.
   const auth = await google.auth.getClient({
