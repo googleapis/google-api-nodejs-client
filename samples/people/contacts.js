@@ -14,7 +14,7 @@
 'use strict';
 
 const {google} = require('googleapis');
-const sampleClient = require('./sampleclient');
+const sampleClient = require('../sampleclient');
 
 const people = google.people({
   version: 'v1',
