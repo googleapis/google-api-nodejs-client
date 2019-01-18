@@ -28,7 +28,7 @@
 
     {% if r.methods %}
       {% for mname, m in r.methods|dictsort %}
-        export interface Params${{ClassName}}${{ mname|capitalize }} extends StandardParameters {
+        export interface Params${{ClassName}}${{ mname|camelify|capitalize }} extends StandardParameters {
           /**
            * Auth client or API Key for the request
            */
