@@ -298,7 +298,8 @@ export class Generator {
           await writeFile(tsPath, tsResult);
           // generate the webpack.config.js
           const wpPath = path.join(apisPath, file, 'webpack.config.js');
-          const wpResult = this.env.render('webpack.config.js.njk', {name: file});
+          const wpResult =
+              this.env.render('webpack.config.js.njk', {name: file});
           await writeFile(wpPath, wpResult);
         }
       }
