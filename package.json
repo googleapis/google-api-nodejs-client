@@ -8,8 +8,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "^2.0.0",
-    "googleapis-common": "^0.4.0"
+    "google-auth-library": "^3.0.0",
+    "googleapis-common": "^0.6.0"
   },
   "files": [
     "LICENSE",
